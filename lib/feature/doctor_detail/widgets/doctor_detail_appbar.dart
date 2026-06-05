@@ -5,7 +5,7 @@ import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 
 class DoctorDetailScreenAppbar extends StatelessWidget
-    with PreferredSizeWidget {
+    implements PreferredSizeWidget {
   const DoctorDetailScreenAppbar({super.key});
 
   @override

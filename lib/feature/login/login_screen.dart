@@ -1,14 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/login/widgets/login_otp_verification_section.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../resources/dimens.dart';
-import '../profile/bloc/user_bloc.dart';
 import 'helpers/login_screen_helpers.dart';
 import 'widgets/Login_with_password_section.dart';
 import 'widgets/login_otp_generation_section.dart';
@@ -19,7 +17,8 @@ List<String> bagroundImages = [
   'assets/images/login_baground_image.png',
   'assets/images/login_baground_image.png'
 ];
-final CarouselController bagroundImageCarouselController = CarouselController();
+final CarouselSliderController bagroundImageCarouselController =
+    CarouselSliderController();
 
 class LogInScreen extends StatelessWidget {
   const LogInScreen({super.key});

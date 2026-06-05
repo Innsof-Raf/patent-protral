@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 
-class MainAppBar extends StatelessWidget with PreferredSizeWidget {
+class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MainAppBar({super.key, required this.title});
   final String title;
 

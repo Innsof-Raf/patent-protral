@@ -4,7 +4,8 @@ import 'package:flutter/services.dart';
 import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 
-class BookAppointmentAppbar extends StatelessWidget with PreferredSizeWidget {
+class BookAppointmentAppbar extends StatelessWidget
+    implements PreferredSizeWidget {
   const BookAppointmentAppbar({super.key});
 
   @override

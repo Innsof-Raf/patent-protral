@@ -94,7 +94,7 @@ class AddDocumentScreenHelpers {
                   title: 'Files',
                   iconPath: 'assets/icons/folder_icon.svg',
                   onPressed: () async {
-                    await FilePicker.platform.pickFiles(
+                    await FilePicker.pickFiles(
                         type: FileType.custom,
                         allowMultiple: false,
                         allowedExtensions: ['jpg', 'png', 'pdf']).then((value) {

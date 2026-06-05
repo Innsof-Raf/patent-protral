@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeHelpers.packageAdPositionNotifier.value = 0;
-    CarouselController pkgCrouselContoller = CarouselController();
+    CarouselSliderController pkgCrouselContoller = CarouselSliderController();
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         return Scaffold(

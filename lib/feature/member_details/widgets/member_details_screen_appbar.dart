@@ -5,10 +5,10 @@ import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 
 class MemberDetailsScreenAppbar extends StatelessWidget
-    with PreferredSizeWidget {
+    implements PreferredSizeWidget {
   const MemberDetailsScreenAppbar({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -8,8 +8,8 @@ import '../../profile/bloc/user_bloc.dart';
 
 class DrawerProfileTile extends StatelessWidget {
   const DrawerProfileTile({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +30,7 @@ class DrawerProfileTile extends StatelessWidget {
                     width: 62,
                     decoration: BoxDecoration(
                         color: AppColors.white,
-                        border: Border.all(
-                            width: 2,
-                            strokeAlign: StrokeAlign.inside,
-                            color: AppColors.white),
+                        border: Border.all(width: 2, color: AppColors.white),
                         shape: BoxShape.circle,
                         image: const DecorationImage(
                             image: AssetImage(

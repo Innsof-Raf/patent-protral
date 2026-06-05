@@ -14,10 +14,7 @@ class ActiveOutlinedButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
             minimumSize: const Size(0, 0),
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            side: const BorderSide(
-                color: AppColors.vilot,
-                strokeAlign: StrokeAlign.inside,
-                width: .5),
+            side: const BorderSide(color: AppColors.vilot, width: .5),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
             padding: const EdgeInsets.all(10),

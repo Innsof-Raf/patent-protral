@@ -9,9 +9,9 @@ import '../../../resources/app_text_styles.dart';
 class DocumentTile extends StatelessWidget {
   final DocumentModel document;
   const DocumentTile({
-    Key? key,
+    super.key,
     required this.document,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,7 @@ class DocumentTile extends StatelessWidget {
           foregroundColor: AppColors.borderColor,
           minimumSize: const Size(0, 0),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          side: const BorderSide(
-              color: AppColors.borderColor,
-              width: .5,
-              strokeAlign: StrokeAlign.outside),
+          side: const BorderSide(color: AppColors.borderColor, width: .5),
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           padding: const EdgeInsets.all(13)),
       onPressed: () {},

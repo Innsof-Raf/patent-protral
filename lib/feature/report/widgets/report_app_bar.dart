@@ -9,17 +9,17 @@ import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 import '../bloc/report_bloc.dart';
 
-class ReportAppBar extends StatelessWidget with PreferredSizeWidget {
+class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String doctorName;
   final String documentUrl;
 
   final DateTime consultaionDateTime;
   const ReportAppBar({
-    Key? key,
+    super.key,
     required this.doctorName,
     required this.consultaionDateTime,
     required this.documentUrl,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

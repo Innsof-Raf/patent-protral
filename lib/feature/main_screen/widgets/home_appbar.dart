@@ -8,7 +8,7 @@ import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 import '../../home/bloc/home_bloc.dart';
 
-class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
+class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({
     super.key,
   });

@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 
-class MyProfileAppBar extends StatelessWidget with PreferredSizeWidget{
-  const MyProfileAppBar({Key? key}) : super(key: key);
+class MyProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const MyProfileAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +42,7 @@ class MyProfileAppBar extends StatelessWidget with PreferredSizeWidget{
       ],
     );
   }
-   @override
+
+  @override
   Size get preferredSize => const Size.fromHeight(35);
 }

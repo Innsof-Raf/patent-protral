@@ -5,7 +5,8 @@ import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 
-class MemberScreenAppbar extends StatelessWidget with PreferredSizeWidget {
+class MemberScreenAppbar extends StatelessWidget
+    implements PreferredSizeWidget {
   const MemberScreenAppbar({super.key});
 
   @override

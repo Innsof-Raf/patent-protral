@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 
-class CommonAppbar extends StatelessWidget with PreferredSizeWidget {
+class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   const CommonAppbar({super.key, required this.title});
 

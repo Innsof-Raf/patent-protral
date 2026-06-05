@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
 import 'package:patient_portal/feature/report/bloc/report_bloc.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
@@ -61,9 +60,7 @@ class TestReportButton extends StatelessWidget {
                   borderRadius: BorderRadius.circular(4),
                 ),
                 side: BorderSide(
-                    width: .5,
-                    strokeAlign: StrokeAlign.inside,
-                    color: AppColors.vilot.withOpacity(.3))),
+                    width: .5, color: AppColors.vilot.withOpacity(.3))),
             onPressed: () {},
             child: Text(
               title,

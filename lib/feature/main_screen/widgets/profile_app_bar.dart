@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 
-class ProfileAppBar extends StatelessWidget with PreferredSizeWidget {
+class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ProfileAppBar({Key? key}) : super(key: key);
 
   @override

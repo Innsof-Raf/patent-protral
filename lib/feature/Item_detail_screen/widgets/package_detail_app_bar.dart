@@ -4,8 +4,9 @@ import 'package:flutter/services.dart';
 import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 
-class PackageDetailAppBar extends StatelessWidget with PreferredSizeWidget{
-  const PackageDetailAppBar({Key? key}) : super(key: key);
+class PackageDetailAppBar extends StatelessWidget
+    implements PreferredSizeWidget {
+  const PackageDetailAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class PackageDetailAppBar extends StatelessWidget with PreferredSizeWidget{
         'Health Packages',
         style: AppTextStyles.largeSemiBoldRoboto,
       ),
-    leading: IconButton(
+      leading: IconButton(
         icon: const Icon(
           Icons.arrow_back_ios,
           color: AppColors.textDark,
@@ -32,6 +33,7 @@ class PackageDetailAppBar extends StatelessWidget with PreferredSizeWidget{
       ),
     );
   }
+
   @override
   Size get preferredSize => const Size.fromHeight(55);
 }

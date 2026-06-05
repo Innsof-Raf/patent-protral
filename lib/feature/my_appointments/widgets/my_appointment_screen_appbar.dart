@@ -5,7 +5,7 @@ import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 
 class MyAppointmentScreenAppBar extends StatelessWidget
-    with PreferredSizeWidget {
+    implements PreferredSizeWidget {
   const MyAppointmentScreenAppBar({super.key});
 
   @override

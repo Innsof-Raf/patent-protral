@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 
-class SetPasswordAppBar extends StatelessWidget with PreferredSizeWidget{
+class SetPasswordAppBar extends StatelessWidget implements PreferredSizeWidget {
   const SetPasswordAppBar({Key? key}) : super(key: key);
 
   @override
@@ -42,7 +42,7 @@ class SetPasswordAppBar extends StatelessWidget with PreferredSizeWidget{
       ],
     );
   }
-  
+
   @override
   Size get preferredSize => const Size.fromHeight(35);
 }

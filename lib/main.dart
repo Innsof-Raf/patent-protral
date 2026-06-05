@@ -120,7 +120,7 @@ class MyApp extends StatelessWidget {
                     foregroundColor: AppColors.textLight)),
             primarySwatch: Colors.blue,
             textTheme: TextTheme(
-                subtitle1: AppTextStyles.largeRobotoNormal
+                titleMedium: AppTextStyles.largeRobotoNormal
                     .copyWith(color: AppColors.textDark)),
             inputDecorationTheme: InputDecorationTheme(
                 contentPadding: const EdgeInsets.all(15),

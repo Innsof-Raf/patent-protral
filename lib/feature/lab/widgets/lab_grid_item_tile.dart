@@ -7,7 +7,6 @@ import 'package:patient_portal/feature/lab/models/item_model/item_model.dart';
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
-
 import 'package:patient_portal/resources/urls.dart';
 import 'package:patient_portal/route/route_constants.dart';
 
@@ -96,8 +95,7 @@ class LabGridItemTile extends StatelessWidget {
                                   color: item.isCart
                                       ? AppColors.vilot
                                       : AppColors.borderColor,
-                                  width: .5,
-                                  strokeAlign: StrokeAlign.inside),
+                                  width: .5),
                               elevation: 0,
                               padding: const EdgeInsets.all(6),
                               minimumSize: const Size(0, 0),

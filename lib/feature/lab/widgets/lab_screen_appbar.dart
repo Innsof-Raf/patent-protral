@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 
-class LabScreenAppbar extends StatelessWidget with PreferredSizeWidget {
+class LabScreenAppbar extends StatelessWidget implements PreferredSizeWidget {
   const LabScreenAppbar({super.key});
 
   @override

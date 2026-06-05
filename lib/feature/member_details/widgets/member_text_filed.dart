@@ -25,9 +25,7 @@ class MemberTextFiled extends StatelessWidget {
           padding: const EdgeInsets.all(15),
           decoration: BoxDecoration(
             border: Border.all(
-                width: 1,
-                strokeAlign: StrokeAlign.inside,
-                color: AppColors.textFormFIeldBagroundColor),
+                width: 1, color: AppColors.textFormFIeldBagroundColor),
             borderRadius: BorderRadius.circular(4),
           ),
           child: Text(

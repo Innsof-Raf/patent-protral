@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/documents/helpers/documents_screen_helpers.dart';
+
 import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 import '../../profile/bloc/user_bloc.dart';
 import '../bloc/documents_bloc.dart';
 
-class DocumentsScreenAppBar extends StatelessWidget with PreferredSizeWidget {
-  const DocumentsScreenAppBar({Key? key}) : super(key: key);
+class DocumentsScreenAppBar extends StatelessWidget
+    implements PreferredSizeWidget {
+  const DocumentsScreenAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {

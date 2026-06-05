@@ -174,7 +174,6 @@ class AddDocumentScreen extends StatelessWidget {
                                       OutlinedButton(
                                           style: OutlinedButton.styleFrom(
                                             side: const BorderSide(
-                                                strokeAlign: StrokeAlign.inside,
                                                 width: .5,
                                                 color: AppColors
                                                     .textFormFIeldBagroundColor),

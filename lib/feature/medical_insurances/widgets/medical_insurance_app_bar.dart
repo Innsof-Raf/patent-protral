@@ -4,8 +4,9 @@ import 'package:flutter/services.dart';
 import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 
-class MedicalInsuranceAppBar extends StatelessWidget with PreferredSizeWidget {
-  const MedicalInsuranceAppBar({Key? key}) : super(key: key);
+class MedicalInsuranceAppBar extends StatelessWidget
+    implements PreferredSizeWidget {
+  const MedicalInsuranceAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
