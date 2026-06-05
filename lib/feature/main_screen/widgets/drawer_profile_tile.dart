@@ -1,0 +1,97 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+
+import '../../../resources/app_colors.dart';
+import '../../../resources/app_text_styles.dart';
+import '../../profile/bloc/user_bloc.dart';
+
+class DrawerProfileTile extends StatelessWidget {
+  const DrawerProfileTile({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<UserBloc, UserState>(
+      builder: (context, state) {
+        return Row(
+          children: [
+            const SizedBox(
+              width: 32,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 7),
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Container(
+                    height: 62,
+                    width: 62,
+                    decoration: BoxDecoration(
+                        color: AppColors.white,
+                        border: Border.all(
+                            width: 2,
+                            strokeAlign: StrokeAlign.inside,
+                            color: AppColors.white),
+                        shape: BoxShape.circle,
+                        image: const DecorationImage(
+                            image: AssetImage(
+                          'assets/images/member_default_profile_image.png',
+                        ))),
+                  ),
+                  Positioned(
+                    bottom: -7,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      padding: const EdgeInsets.all(3),
+                      decoration: const BoxDecoration(
+                          color: AppColors.white, shape: BoxShape.circle),
+                      child: SvgPicture.asset(
+                        "assets/icons/female_gender_icon.svg",
+                        height: 12,
+                        width: 12,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              width: 12,
+            ),
+            Expanded(
+                child: Padding(
+              padding: const EdgeInsets.only(bottom: 7),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "Anzil Alphones",
+                    style: AppTextStyles.subHeaddingSemiBoldRoboto
+                        .copyWith(color: AppColors.white),
+                  ),
+                  Text(
+                    "Age : 32  | National ID : 08923739 ",
+                    style: AppTextStyles.bodySmallInterNormal
+                        .copyWith(color: AppColors.borderColor),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    "anzilalphonse@gmail.com",
+                    style: AppTextStyles.bodyTextInterSemibold
+                        .copyWith(color: AppColors.white),
+                  ),
+                ],
+              ),
+            ))
+          ],
+        );
+      },
+    );
+  }
+}

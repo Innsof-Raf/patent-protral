@@ -1,0 +1,5 @@
+
+enum CartItemTypes {
+  package,
+  test,
+}
