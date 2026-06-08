@@ -68,7 +68,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ReportBloc()),
         BlocProvider(create: (context) => DocumentsBloc()),
         BlocProvider(create: (context) => AddDocumentBloc()),
-        BlocProvider(create: (context) => LoginWithPasswordBloc()),
+        BlocProvider<LoginWithPasswordBloc>(
+          create: (context) => di.sl<LoginWithPasswordBloc>(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
