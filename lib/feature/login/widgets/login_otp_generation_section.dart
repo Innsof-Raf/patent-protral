@@ -107,7 +107,7 @@ class LoginOtpGenerationSection extends StatelessWidget {
                               }
                             },
                             child: const Icon(
-                              Icons.arrow_forward_ios,
+                              Icons.arrow_forward_ios_rounded,
                               color: AppColors.white,
                             ),
                           ),
