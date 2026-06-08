@@ -11,7 +11,7 @@ import '../service/member_services.dart';
 
 part 'user_event.dart';
 part 'user_state.dart';
-part 'user_bloc.freezed.dart';
+part 'generated/user_bloc.freezed.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc() : super(UserState.initial()) {

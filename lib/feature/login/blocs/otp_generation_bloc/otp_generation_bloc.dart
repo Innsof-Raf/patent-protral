@@ -7,7 +7,7 @@ import '../../service/login_otp_generation_services.dart';
 
 part 'otp_generation_event.dart';
 part 'otp_generation_state.dart';
-part 'otp_generation_bloc.freezed.dart';
+part 'generated/otp_generation_bloc.freezed.dart';
 
 class OtpGenerationBloc extends Bloc<OtpGenerationEvent, OtpGenerationState> {
   OtpGenerationBloc() : super(OtpGenerationState.initial()) {

@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'delete_member_bloc.freezed.dart';
+part 'generated/delete_member_bloc.freezed.dart';
 part 'delete_member_event.dart';
 part 'delete_member_state.dart';
 

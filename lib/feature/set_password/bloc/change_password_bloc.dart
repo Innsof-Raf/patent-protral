@@ -6,7 +6,7 @@ import 'package:patient_portal/resources/error_model.dart';
 
 part 'change_password_event.dart';
 part 'change_password_state.dart';
-part 'change_password_bloc.freezed.dart';
+part 'generated/change_password_bloc.freezed.dart';
 
 class ChangePasswordBloc
     extends Bloc<ChangePasswordEvent, ChangePasswordState> {

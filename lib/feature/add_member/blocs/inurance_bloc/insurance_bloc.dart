@@ -8,7 +8,7 @@ import '../../services/insurance_services.dart';
 
 part 'insurance_event.dart';
 part 'insurance_state.dart';
-part 'insurance_bloc.freezed.dart';
+part 'generated/insurance_bloc.freezed.dart';
 
 class InsuranceBloc extends Bloc<InsuranceEvent, InsuranceState> {
   InsuranceBloc() : super(InsuranceState.initial()) {

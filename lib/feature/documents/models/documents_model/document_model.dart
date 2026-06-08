@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'document_model.freezed.dart';
-part 'document_model.g.dart';
+part 'generated/document_model.freezed.dart';
+part 'generated/document_model.g.dart';
 
 @freezed
 sealed class DocumentModel with _$DocumentModel {

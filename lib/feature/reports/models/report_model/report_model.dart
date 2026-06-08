@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'report_model.freezed.dart';
-part 'report_model.g.dart';
+part 'generated/report_model.freezed.dart';
+part 'generated/report_model.g.dart';
 
 @freezed
 sealed class ReportModel with _$ReportModel {

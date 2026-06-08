@@ -21,7 +21,7 @@ import 'package:patient_portal/feature/reports/reports_screen.dart';
 import 'package:patient_portal/feature/speciality/speciality_screen.dart';
 import 'package:patient_portal/route/route_constants.dart';
 
-import '../feature/doctors/doctors_screen.dart';
+import '../feature/doctors/presentation/pages/doctors_screen.dart';
 import '../feature/lab_item_detail/lab_item_detail_screen.dart';
 import '../feature/login/login_screen.dart';
 import '../feature/report/report_screen.dart';

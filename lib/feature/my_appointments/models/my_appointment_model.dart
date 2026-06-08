@@ -2,8 +2,8 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'my_appointment_model.freezed.dart';
-part 'my_appointment_model.g.dart';
+part 'generated/my_appointment_model.freezed.dart';
+part 'generated/my_appointment_model.g.dart';
 
 @freezed
 sealed class MyAppointmentModel with _$MyAppointmentModel {

@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'otp_resent_bloc_bloc.freezed.dart';
+part 'generated/otp_resent_bloc_bloc.freezed.dart';
 part 'otp_resent_bloc_event.dart';
 part 'otp_resent_bloc_state.dart';
 

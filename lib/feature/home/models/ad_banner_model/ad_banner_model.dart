@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'ad_banner_model.freezed.dart';
-part 'ad_banner_model.g.dart';
+part 'generated/ad_banner_model.freezed.dart';
+part 'generated/ad_banner_model.g.dart';
 
 @freezed
 sealed class AdBannerModel with _$AdBannerModel {

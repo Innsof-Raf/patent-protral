@@ -5,8 +5,8 @@ import 'package:patient_portal/feature/add_document/bloc/add_document_bloc.dart'
 import 'package:patient_portal/feature/add_member/blocs/inurance_bloc/insurance_bloc.dart';
 import 'package:patient_portal/feature/book_appointment/blocs/appointment_bloc.dart/appointment_bloc.dart';
 import 'package:patient_portal/feature/book_appointment/blocs/slot_bloc/slot_bloc.dart';
-import 'package:patient_portal/feature/doctors/blocs/doctor/doctor_bloc.dart';
-import 'package:patient_portal/feature/doctors/blocs/search_doctor/search_doctor_bloc.dart';
+import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc.dart';
+import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc.dart';
 import 'package:patient_portal/feature/documents/bloc/documents_bloc.dart';
 import 'package:patient_portal/feature/home/bloc/home_bloc.dart';
 import 'package:patient_portal/feature/lab/blocs/items_bloc/items_bloc.dart';
@@ -49,9 +49,12 @@ class MyApp extends StatelessWidget {
         BlocProvider<OtpVerificationBloc>(
           create: (context) => di.sl<OtpVerificationBloc>(),
         ),
+        BlocProvider<DoctorBloc>(create: (context) => di.sl<DoctorBloc>()),
+        BlocProvider<SearchDoctorBloc>(
+          create: (context) => di.sl<SearchDoctorBloc>(),
+        ),
         BlocProvider(create: (context) => UserBloc()),
         BlocProvider(create: (context) => SpecialityBloc()),
-        BlocProvider(create: (context) => DoctorBloc()),
         BlocProvider(create: (context) => HomeBloc()),
         BlocProvider(create: (context) => InsuranceBloc()),
         BlocProvider(create: (context) => SlotBloc()),
@@ -62,7 +65,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ReportsBloc()),
         BlocProvider(create: (context) => ChangePasswordBloc()),
         BlocProvider(create: (context) => SearchSpecialityBloc()),
-        BlocProvider(create: (context) => SearchDoctorBloc()),
         BlocProvider(create: (context) => ReportBloc()),
         BlocProvider(create: (context) => DocumentsBloc()),
         BlocProvider(create: (context) => AddDocumentBloc()),

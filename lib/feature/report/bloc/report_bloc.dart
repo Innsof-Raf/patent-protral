@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/report/services/report_services.dart';
 import 'package:patient_portal/resources/error_model.dart';
 
-part 'report_bloc.freezed.dart';
+part 'generated/report_bloc.freezed.dart';
 part 'report_event.dart';
 part 'report_state.dart';
 

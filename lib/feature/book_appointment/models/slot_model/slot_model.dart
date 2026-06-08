@@ -2,8 +2,8 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'slot_model.freezed.dart';
-part 'slot_model.g.dart';
+part 'generated/slot_model.freezed.dart';
+part 'generated/slot_model.g.dart';
 
 @freezed
 sealed class SlotModel with _$SlotModel {

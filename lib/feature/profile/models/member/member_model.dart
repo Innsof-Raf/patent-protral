@@ -4,8 +4,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../member_document_model/member_document_model.dart';
 
-part 'member_model.freezed.dart';
-part 'member_model.g.dart';
+part 'generated/member_model.freezed.dart';
+part 'generated/member_model.g.dart';
 
 @freezed
 sealed class MemberModel with _$MemberModel {

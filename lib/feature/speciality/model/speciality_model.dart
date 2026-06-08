@@ -2,8 +2,8 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'speciality_model.freezed.dart';
-part 'speciality_model.g.dart';
+part 'generated/speciality_model.freezed.dart';
+part 'generated/speciality_model.g.dart';
 
 @freezed
 sealed class SpecialityModel with _$SpecialityModel {

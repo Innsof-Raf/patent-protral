@@ -8,7 +8,7 @@ import '../../service/login_with_password_service.dart';
 
 part 'login_with_password_event.dart';
 part 'login_with_password_state.dart';
-part 'login_with_password_bloc.freezed.dart';
+part 'generated/login_with_password_bloc.freezed.dart';
 
 class LoginWithPasswordBloc
     extends Bloc<LoginWithPasswordEvent, LoginWithPasswordState> {

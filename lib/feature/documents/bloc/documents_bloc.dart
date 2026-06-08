@@ -7,7 +7,7 @@ import 'package:patient_portal/resources/error_model.dart';
 
 part 'documents_event.dart';
 part 'documents_state.dart';
-part 'documents_bloc.freezed.dart';
+part 'generated/documents_bloc.freezed.dart';
 
 class DocumentsBloc extends Bloc<DocumentsEvent, DocumentsState> {
   DocumentsBloc() : super(DocumentsState.initial()) {

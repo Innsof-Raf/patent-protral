@@ -7,7 +7,7 @@ import 'package:patient_portal/resources/error_model.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
-part 'home_bloc.freezed.dart';
+part 'generated/home_bloc.freezed.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeState.initial()) {

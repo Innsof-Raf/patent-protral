@@ -8,7 +8,7 @@ import '../services/my_appointment_services.dart';
 
 part 'my_appointments_event.dart';
 part 'my_appointments_state.dart';
-part 'my_appointments_bloc.freezed.dart';
+part 'generated/my_appointments_bloc.freezed.dart';
 
 class MyAppointmentsBloc
     extends Bloc<MyAppointmentsEvent, MyAppointmentsState> {

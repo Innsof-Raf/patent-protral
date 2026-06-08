@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/book_appointment/models/slot_model/slot_model.dart';
 
-part 'shift_model.freezed.dart';
-part 'shift_model.g.dart';
+part 'generated/shift_model.freezed.dart';
+part 'generated/shift_model.g.dart';
 
 @freezed
 sealed class ShiftModel with _$ShiftModel {

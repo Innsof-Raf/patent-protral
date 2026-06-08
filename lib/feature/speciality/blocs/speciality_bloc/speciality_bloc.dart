@@ -9,7 +9,7 @@ import '../../service/speciality_services.dart';
 
 part 'speciality_event.dart';
 part 'speciality_state.dart';
-part 'speciality_bloc.freezed.dart';
+part 'generated/speciality_bloc.freezed.dart';
 
 class SpecialityBloc extends Bloc<SpecialityEvent, SpecialityState> {
   SpecialityBloc() : super(SpecialityState.initial()) {

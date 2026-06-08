@@ -4,8 +4,8 @@ import 'package:patient_portal/feature/speciality/model/speciality_model.dart';
 import '../../../../resources/common_models/insurance/insurance_model.dart';
 import '../ad_banner_model/ad_banner_model.dart';
 
-part 'home_data_model.freezed.dart';
-part 'home_data_model.g.dart';
+part 'generated/home_data_model.freezed.dart';
+part 'generated/home_data_model.g.dart';
 
 @freezed
 sealed class HomeDataModel with _$HomeDataModel {

@@ -1,5 +1,11 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
+import 'package:patient_portal/feature/doctors/data/datasources/doctor_remote_data_source.dart';
+import 'package:patient_portal/feature/doctors/data/repositories/doctor_repository_impl.dart';
+import 'package:patient_portal/feature/doctors/domain/repositories/doctor_repository.dart';
+import 'package:patient_portal/feature/doctors/domain/usecases/get_available_doctors_usecase.dart';
+import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc.dart';
+import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc.dart';
 import 'package:patient_portal/feature/login/data/datasources/login_remote_data_source.dart';
 import 'package:patient_portal/feature/login/data/repositories/login_repository_impl.dart';
 import 'package:patient_portal/feature/login/domain/repositories/login_repository.dart';
@@ -30,6 +36,24 @@ Future<void> init() async {
   // Data sources
   sl.registerLazySingleton<LoginRemoteDataSource>(
     () => LoginRemoteDataSourceImpl(client: sl()),
+  );
+
+  //! Features - Doctors
+  // Bloc
+  sl.registerFactory(() => DoctorBloc(getAvailableDoctorsUseCase: sl()));
+  sl.registerFactory(() => SearchDoctorBloc());
+
+  // Use cases
+  sl.registerLazySingleton(() => GetAvailableDoctorsUseCase(sl()));
+
+  // Repository
+  sl.registerLazySingleton<DoctorRepository>(
+    () => DoctorRepositoryImpl(remoteDataSource: sl()),
+  );
+
+  // Data sources
+  sl.registerLazySingleton<DoctorRemoteDataSource>(
+    () => DoctorRemoteDataSourceImpl(client: sl()),
   );
 
   //! External

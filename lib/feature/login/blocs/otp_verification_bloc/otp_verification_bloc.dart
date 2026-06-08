@@ -7,7 +7,7 @@ import 'package:patient_portal/resources/error_model.dart';
 
 part 'otp_verification_event.dart';
 part 'otp_verification_state.dart';
-part 'otp_verification_bloc.freezed.dart';
+part 'generated/otp_verification_bloc.freezed.dart';
 
 class OtpVerificationBloc
     extends Bloc<OtpVerificationEvent, OtpVerificationState> {

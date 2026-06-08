@@ -5,7 +5,7 @@ import '../../../profile/models/member/member_model.dart';
 
 part 'member_search_event.dart';
 part 'member_search_state.dart';
-part 'member_search_bloc.freezed.dart';
+part 'generated/member_search_bloc.freezed.dart';
 
 class MemberSearchBloc extends Bloc<MemberSearchEvent, MemberSearchState> {
   MemberSearchBloc() : super(MemberSearchState.initial()) {

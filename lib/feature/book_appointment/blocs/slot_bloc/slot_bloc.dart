@@ -9,7 +9,7 @@ import '../../services/slot_services.dart';
 
 part 'slot_event.dart';
 part 'slot_state.dart';
-part 'slot_bloc.freezed.dart';
+part 'generated/slot_bloc.freezed.dart';
 
 class SlotBloc extends Bloc<SlotEvent, SlotState> {
   SlotBloc() : super(SlotState.initial()) {

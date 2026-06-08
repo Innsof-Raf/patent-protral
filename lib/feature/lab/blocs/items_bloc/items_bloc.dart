@@ -8,7 +8,7 @@ import '../../models/item_model/item_model.dart';
 
 part 'items_event.dart';
 part 'items_state.dart';
-part 'items_bloc.freezed.dart';
+part 'generated/items_bloc.freezed.dart';
 
 class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
   ItemsBloc() : super(ItemsState.inoitial()) {

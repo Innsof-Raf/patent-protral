@@ -8,7 +8,7 @@ import '../models/report_model/report_model.dart';
 
 part 'reports_event.dart';
 part 'reports_state.dart';
-part 'reports_bloc.freezed.dart';
+part 'generated/reports_bloc.freezed.dart';
 
 class ReportsBloc extends Bloc<ReportsEvent, ReportsState> {
   ReportsBloc() : super(ReportsState.initial()) {

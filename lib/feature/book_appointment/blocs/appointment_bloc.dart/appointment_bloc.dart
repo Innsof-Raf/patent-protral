@@ -8,7 +8,7 @@ import '../../../../resources/error_model.dart';
 
 part 'appointment_event.dart';
 part 'appointment_state.dart';
-part 'appointment_bloc.freezed.dart';
+part 'generated/appointment_bloc.freezed.dart';
 
 class AppointmentBloc extends Bloc<AppointmentEvent, AppointmentState> {
   AppointmentBloc() : super(AppointmentState.initial()) {

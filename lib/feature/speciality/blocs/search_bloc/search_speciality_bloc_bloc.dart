@@ -4,7 +4,7 @@ import 'package:patient_portal/feature/speciality/model/speciality_model.dart';
 
 part 'search_speciality_bloc_event.dart';
 part 'search_speciality_bloc_state.dart';
-part 'search_speciality_bloc_bloc.freezed.dart';
+part 'generated/search_speciality_bloc_bloc.freezed.dart';
 
 class SearchSpecialityBloc
     extends Bloc<SearchSpecialityBlocEvent, SearchSpecialityBlocState> {

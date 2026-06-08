@@ -2,8 +2,8 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'insurance_model.freezed.dart';
-part 'insurance_model.g.dart';
+part 'generated/insurance_model.freezed.dart';
+part 'generated/insurance_model.g.dart';
 
 @freezed
 sealed class InsuranceModel with _$InsuranceModel {
