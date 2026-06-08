@@ -9,8 +9,10 @@ import '../../../resources/common_widgets.dart/image_picker_tile.dart';
 import '../../../resources/dimens.dart';
 
 class EditProfileDetailScreenHelpers {
-  static Future<DateTime?> getDob(
-      {required DateTime initialDate, required BuildContext context}) async {
+  static Future<DateTime?> getDob({
+    required DateTime initialDate,
+    required BuildContext context,
+  }) async {
     DateTime? selectedDate;
     selectedDate = await showDatePicker(
       context: context,
@@ -18,11 +20,13 @@ class EditProfileDetailScreenHelpers {
       firstDate: DateTime(1940),
       lastDate: DateTime.now(),
       builder: (context, child) => Theme(
-          data: Theme.of(context).copyWith(
-              textButtonTheme: TextButtonThemeData(
-                  style:
-                      TextButton.styleFrom(foregroundColor: AppColors.vilot))),
-          child: child!),
+        data: Theme.of(context).copyWith(
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(foregroundColor: AppColors.vilot),
+          ),
+        ),
+        child: child!,
+      ),
     );
     return selectedDate;
   }
@@ -41,44 +45,38 @@ class EditProfileDetailScreenHelpers {
               'Profile photo',
               style: AppTextStyles.largeSemiBoldRoboto,
             ),
-            const SizedBox(
-              height: 15,
-            ),
+            const SizedBox(height: 15),
             Row(
               children: [
                 ImagePickerTile(
                   title: 'Camera',
                   iconPath: 'assets/icons/camera_icon.svg',
                   onPressed: () async {
-                    await ImagePicker()
-                        .pickImage(source: ImageSource.camera)
-                        .then((image) {
-                      if (image != null) {
-                        profileImage.value = File(image.path);
-                        Navigator.pop(context);
-                      }
-                    });
+                    final XFile? image = await ImagePicker().pickImage(
+                      source: ImageSource.camera,
+                    );
+                    if (image != null) {
+                      profileImage.value = File(image.path);
+                      if (context.mounted) Navigator.pop(context);
+                    }
                   },
                 ),
-                const SizedBox(
-                  width: 15,
-                ),
+                const SizedBox(width: 15),
                 ImagePickerTile(
                   title: 'Gallery',
                   iconPath: 'assets/icons/gallery_icon.svg',
                   onPressed: () async {
-                    await ImagePicker()
-                        .pickImage(source: ImageSource.gallery)
-                        .then((image) {
-                      if (image != null) {
-                        profileImage.value = File(image.path);
-                        Navigator.pop(context);
-                      }
-                    });
+                    final XFile? image = await ImagePicker().pickImage(
+                      source: ImageSource.gallery,
+                    );
+                    if (image != null) {
+                      profileImage.value = File(image.path);
+                      if (context.mounted) Navigator.pop(context);
+                    }
                   },
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),
@@ -88,5 +86,4 @@ class EditProfileDetailScreenHelpers {
   //value Notifier for profile Image
   static ValueNotifier<File?> profileImage = ValueNotifier<File?>(null);
   //value Notifier for gender Selection
-
 }

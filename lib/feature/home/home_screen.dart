@@ -297,7 +297,7 @@ class HomeScreen extends StatelessWidget {
                                                 dotWidth: 4,
                                                 dotHeight: 4,
                                                 dotColor: AppColors.white
-                                                    .withOpacity(.39),
+                                                    .withValues(alpha: .39),
                                                 activePaintStyle:
                                                     PaintingStyle.fill),
                                             activeIndex: value,

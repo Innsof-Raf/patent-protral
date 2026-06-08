@@ -1,7 +1,7 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'login_with_password_bloc.dart';
 
@@ -9,459 +9,547 @@ part of 'login_with_password_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
 /// @nodoc
 mixin _$LoginWithPasswordEvent {
-  String get mobileNumber => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String mobileNumber, String password)
-        loginWithPassword,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String mobileNumber, String password)? loginWithPassword,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String mobileNumber, String password)? loginWithPassword,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LoginWithPassword value) loginWithPassword,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoginWithPassword value)? loginWithPassword,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoginWithPassword value)? loginWithPassword,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $LoginWithPasswordEventCopyWith<LoginWithPasswordEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+ String get mobileNumber; String get password;
+/// Create a copy of LoginWithPasswordEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LoginWithPasswordEventCopyWith<LoginWithPasswordEvent> get copyWith => _$LoginWithPasswordEventCopyWithImpl<LoginWithPasswordEvent>(this as LoginWithPasswordEvent, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginWithPasswordEvent&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.password, password) || other.password == password));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,mobileNumber,password);
+
+@override
+String toString() {
+  return 'LoginWithPasswordEvent(mobileNumber: $mobileNumber, password: $password)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $LoginWithPasswordEventCopyWith<$Res> {
-  factory $LoginWithPasswordEventCopyWith(LoginWithPasswordEvent value,
-          $Res Function(LoginWithPasswordEvent) then) =
-      _$LoginWithPasswordEventCopyWithImpl<$Res>;
-  $Res call({String mobileNumber, String password});
-}
+abstract mixin class $LoginWithPasswordEventCopyWith<$Res>  {
+  factory $LoginWithPasswordEventCopyWith(LoginWithPasswordEvent value, $Res Function(LoginWithPasswordEvent) _then) = _$LoginWithPasswordEventCopyWithImpl;
+@useResult
+$Res call({
+ String mobileNumber, String password
+});
 
+
+
+
+}
 /// @nodoc
 class _$LoginWithPasswordEventCopyWithImpl<$Res>
     implements $LoginWithPasswordEventCopyWith<$Res> {
-  _$LoginWithPasswordEventCopyWithImpl(this._value, this._then);
+  _$LoginWithPasswordEventCopyWithImpl(this._self, this._then);
 
-  final LoginWithPasswordEvent _value;
-  // ignore: unused_field
+  final LoginWithPasswordEvent _self;
   final $Res Function(LoginWithPasswordEvent) _then;
 
-  @override
-  $Res call({
-    Object? mobileNumber = freezed,
-    Object? password = freezed,
-  }) {
-    return _then(_value.copyWith(
-      mobileNumber: mobileNumber == freezed
-          ? _value.mobileNumber
-          : mobileNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Create a copy of LoginWithPasswordEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? mobileNumber = null,Object? password = null,}) {
+  return _then(_self.copyWith(
+mobileNumber: null == mobileNumber ? _self.mobileNumber : mobileNumber // ignore: cast_nullable_to_non_nullable
+as String,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [LoginWithPasswordEvent].
+extension LoginWithPasswordEventPatterns on LoginWithPasswordEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( LoginWithPassword value)?  loginWithPassword,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case LoginWithPassword() when loginWithPassword != null:
+return loginWithPassword(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( LoginWithPassword value)  loginWithPassword,}){
+final _that = this;
+switch (_that) {
+case LoginWithPassword():
+return loginWithPassword(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( LoginWithPassword value)?  loginWithPassword,}){
+final _that = this;
+switch (_that) {
+case LoginWithPassword() when loginWithPassword != null:
+return loginWithPassword(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String mobileNumber,  String password)?  loginWithPassword,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case LoginWithPassword() when loginWithPassword != null:
+return loginWithPassword(_that.mobileNumber,_that.password);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String mobileNumber,  String password)  loginWithPassword,}) {final _that = this;
+switch (_that) {
+case LoginWithPassword():
+return loginWithPassword(_that.mobileNumber,_that.password);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String mobileNumber,  String password)?  loginWithPassword,}) {final _that = this;
+switch (_that) {
+case LoginWithPassword() when loginWithPassword != null:
+return loginWithPassword(_that.mobileNumber,_that.password);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$LoginWithPasswordCopyWith<$Res>
-    implements $LoginWithPasswordEventCopyWith<$Res> {
-  factory _$$LoginWithPasswordCopyWith(
-          _$LoginWithPassword value, $Res Function(_$LoginWithPassword) then) =
-      __$$LoginWithPasswordCopyWithImpl<$Res>;
-  @override
-  $Res call({String mobileNumber, String password});
+
+
+class LoginWithPassword implements LoginWithPasswordEvent {
+  const LoginWithPassword({required this.mobileNumber, required this.password});
+  
+
+@override final  String mobileNumber;
+@override final  String password;
+
+/// Create a copy of LoginWithPasswordEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LoginWithPasswordCopyWith<LoginWithPassword> get copyWith => _$LoginWithPasswordCopyWithImpl<LoginWithPassword>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginWithPassword&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.password, password) || other.password == password));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,mobileNumber,password);
+
+@override
+String toString() {
+  return 'LoginWithPasswordEvent.loginWithPassword(mobileNumber: $mobileNumber, password: $password)';
+}
+
+
 }
 
 /// @nodoc
-class __$$LoginWithPasswordCopyWithImpl<$Res>
-    extends _$LoginWithPasswordEventCopyWithImpl<$Res>
-    implements _$$LoginWithPasswordCopyWith<$Res> {
-  __$$LoginWithPasswordCopyWithImpl(
-      _$LoginWithPassword _value, $Res Function(_$LoginWithPassword) _then)
-      : super(_value, (v) => _then(v as _$LoginWithPassword));
+abstract mixin class $LoginWithPasswordCopyWith<$Res> implements $LoginWithPasswordEventCopyWith<$Res> {
+  factory $LoginWithPasswordCopyWith(LoginWithPassword value, $Res Function(LoginWithPassword) _then) = _$LoginWithPasswordCopyWithImpl;
+@override @useResult
+$Res call({
+ String mobileNumber, String password
+});
 
-  @override
-  _$LoginWithPassword get _value => super._value as _$LoginWithPassword;
 
-  @override
-  $Res call({
-    Object? mobileNumber = freezed,
-    Object? password = freezed,
-  }) {
-    return _then(_$LoginWithPassword(
-      mobileNumber: mobileNumber == freezed
-          ? _value.mobileNumber
-          : mobileNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+
+
 }
-
 /// @nodoc
+class _$LoginWithPasswordCopyWithImpl<$Res>
+    implements $LoginWithPasswordCopyWith<$Res> {
+  _$LoginWithPasswordCopyWithImpl(this._self, this._then);
 
-class _$LoginWithPassword implements LoginWithPassword {
-  const _$LoginWithPassword(
-      {required this.mobileNumber, required this.password});
+  final LoginWithPassword _self;
+  final $Res Function(LoginWithPassword) _then;
 
-  @override
-  final String mobileNumber;
-  @override
-  final String password;
-
-  @override
-  String toString() {
-    return 'LoginWithPasswordEvent.loginWithPassword(mobileNumber: $mobileNumber, password: $password)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoginWithPassword &&
-            const DeepCollectionEquality()
-                .equals(other.mobileNumber, mobileNumber) &&
-            const DeepCollectionEquality().equals(other.password, password));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(mobileNumber),
-      const DeepCollectionEquality().hash(password));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$LoginWithPasswordCopyWith<_$LoginWithPassword> get copyWith =>
-      __$$LoginWithPasswordCopyWithImpl<_$LoginWithPassword>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String mobileNumber, String password)
-        loginWithPassword,
-  }) {
-    return loginWithPassword(mobileNumber, password);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String mobileNumber, String password)? loginWithPassword,
-  }) {
-    return loginWithPassword?.call(mobileNumber, password);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String mobileNumber, String password)? loginWithPassword,
-    required TResult orElse(),
-  }) {
-    if (loginWithPassword != null) {
-      return loginWithPassword(mobileNumber, password);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LoginWithPassword value) loginWithPassword,
-  }) {
-    return loginWithPassword(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoginWithPassword value)? loginWithPassword,
-  }) {
-    return loginWithPassword?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoginWithPassword value)? loginWithPassword,
-    required TResult orElse(),
-  }) {
-    if (loginWithPassword != null) {
-      return loginWithPassword(this);
-    }
-    return orElse();
-  }
+/// Create a copy of LoginWithPasswordEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? mobileNumber = null,Object? password = null,}) {
+  return _then(LoginWithPassword(
+mobileNumber: null == mobileNumber ? _self.mobileNumber : mobileNumber // ignore: cast_nullable_to_non_nullable
+as String,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-abstract class LoginWithPassword implements LoginWithPasswordEvent {
-  const factory LoginWithPassword(
-      {required final String mobileNumber,
-      required final String password}) = _$LoginWithPassword;
 
-  @override
-  String get mobileNumber;
-  @override
-  String get password;
-  @override
-  @JsonKey(ignore: true)
-  _$$LoginWithPasswordCopyWith<_$LoginWithPassword> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$LoginWithPasswordState {
-  bool get isLogingin => throw _privateConstructorUsedError;
-  bool get isLoginFailed => throw _privateConstructorUsedError;
-  bool get isLoginSucces => throw _privateConstructorUsedError;
-  ErrorModel get error => throw _privateConstructorUsedError;
-  UserModel? get user => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $LoginWithPasswordStateCopyWith<LoginWithPasswordState> get copyWith =>
-      throw _privateConstructorUsedError;
+ bool get isLogingin; bool get isLoginFailed; bool get isLoginSucces; ErrorModel get error; UserModel? get user;
+/// Create a copy of LoginWithPasswordState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LoginWithPasswordStateCopyWith<LoginWithPasswordState> get copyWith => _$LoginWithPasswordStateCopyWithImpl<LoginWithPasswordState>(this as LoginWithPasswordState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginWithPasswordState&&(identical(other.isLogingin, isLogingin) || other.isLogingin == isLogingin)&&(identical(other.isLoginFailed, isLoginFailed) || other.isLoginFailed == isLoginFailed)&&(identical(other.isLoginSucces, isLoginSucces) || other.isLoginSucces == isLoginSucces)&&(identical(other.error, error) || other.error == error)&&(identical(other.user, user) || other.user == user));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isLogingin,isLoginFailed,isLoginSucces,error,user);
+
+@override
+String toString() {
+  return 'LoginWithPasswordState(isLogingin: $isLogingin, isLoginFailed: $isLoginFailed, isLoginSucces: $isLoginSucces, error: $error, user: $user)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $LoginWithPasswordStateCopyWith<$Res> {
-  factory $LoginWithPasswordStateCopyWith(LoginWithPasswordState value,
-          $Res Function(LoginWithPasswordState) then) =
-      _$LoginWithPasswordStateCopyWithImpl<$Res>;
-  $Res call(
-      {bool isLogingin,
-      bool isLoginFailed,
-      bool isLoginSucces,
-      ErrorModel error,
-      UserModel? user});
+abstract mixin class $LoginWithPasswordStateCopyWith<$Res>  {
+  factory $LoginWithPasswordStateCopyWith(LoginWithPasswordState value, $Res Function(LoginWithPasswordState) _then) = _$LoginWithPasswordStateCopyWithImpl;
+@useResult
+$Res call({
+ bool isLogingin, bool isLoginFailed, bool isLoginSucces, ErrorModel error, UserModel? user
+});
 
-  $UserModelCopyWith<$Res>? get user;
+
+$UserModelCopyWith<$Res>? get user;
+
 }
-
 /// @nodoc
 class _$LoginWithPasswordStateCopyWithImpl<$Res>
     implements $LoginWithPasswordStateCopyWith<$Res> {
-  _$LoginWithPasswordStateCopyWithImpl(this._value, this._then);
+  _$LoginWithPasswordStateCopyWithImpl(this._self, this._then);
 
-  final LoginWithPasswordState _value;
-  // ignore: unused_field
+  final LoginWithPasswordState _self;
   final $Res Function(LoginWithPasswordState) _then;
 
-  @override
-  $Res call({
-    Object? isLogingin = freezed,
-    Object? isLoginFailed = freezed,
-    Object? isLoginSucces = freezed,
-    Object? error = freezed,
-    Object? user = freezed,
-  }) {
-    return _then(_value.copyWith(
-      isLogingin: isLogingin == freezed
-          ? _value.isLogingin
-          : isLogingin // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLoginFailed: isLoginFailed == freezed
-          ? _value.isLoginFailed
-          : isLoginFailed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLoginSucces: isLoginSucces == freezed
-          ? _value.isLoginSucces
-          : isLoginSucces // ignore: cast_nullable_to_non_nullable
-              as bool,
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as ErrorModel,
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel?,
-    ));
+/// Create a copy of LoginWithPasswordState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? isLogingin = null,Object? isLoginFailed = null,Object? isLoginSucces = null,Object? error = null,Object? user = freezed,}) {
+  return _then(_self.copyWith(
+isLogingin: null == isLogingin ? _self.isLogingin : isLogingin // ignore: cast_nullable_to_non_nullable
+as bool,isLoginFailed: null == isLoginFailed ? _self.isLoginFailed : isLoginFailed // ignore: cast_nullable_to_non_nullable
+as bool,isLoginSucces: null == isLoginSucces ? _self.isLoginSucces : isLoginSucces // ignore: cast_nullable_to_non_nullable
+as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as ErrorModel,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as UserModel?,
+  ));
+}
+/// Create a copy of LoginWithPasswordState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserModelCopyWith<$Res>? get user {
+    if (_self.user == null) {
+    return null;
   }
 
-  @override
-  $UserModelCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
+  return $UserModelCopyWith<$Res>(_self.user!, (value) {
+    return _then(_self.copyWith(user: value));
+  });
+}
+}
 
-    return $UserModelCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value));
-    });
-  }
+
+/// Adds pattern-matching-related methods to [LoginWithPasswordState].
+extension LoginWithPasswordStatePatterns on LoginWithPasswordState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _LoginWithPasswordState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _LoginWithPasswordState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _LoginWithPasswordState value)  $default,){
+final _that = this;
+switch (_that) {
+case _LoginWithPasswordState():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _LoginWithPasswordState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _LoginWithPasswordState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLogingin,  bool isLoginFailed,  bool isLoginSucces,  ErrorModel error,  UserModel? user)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _LoginWithPasswordState() when $default != null:
+return $default(_that.isLogingin,_that.isLoginFailed,_that.isLoginSucces,_that.error,_that.user);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLogingin,  bool isLoginFailed,  bool isLoginSucces,  ErrorModel error,  UserModel? user)  $default,) {final _that = this;
+switch (_that) {
+case _LoginWithPasswordState():
+return $default(_that.isLogingin,_that.isLoginFailed,_that.isLoginSucces,_that.error,_that.user);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLogingin,  bool isLoginFailed,  bool isLoginSucces,  ErrorModel error,  UserModel? user)?  $default,) {final _that = this;
+switch (_that) {
+case _LoginWithPasswordState() when $default != null:
+return $default(_that.isLogingin,_that.isLoginFailed,_that.isLoginSucces,_that.error,_that.user);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$_LoginWithPasswordStateCopyWith<$Res>
-    implements $LoginWithPasswordStateCopyWith<$Res> {
-  factory _$$_LoginWithPasswordStateCopyWith(_$_LoginWithPasswordState value,
-          $Res Function(_$_LoginWithPasswordState) then) =
-      __$$_LoginWithPasswordStateCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {bool isLogingin,
-      bool isLoginFailed,
-      bool isLoginSucces,
-      ErrorModel error,
-      UserModel? user});
 
-  @override
-  $UserModelCopyWith<$Res>? get user;
+
+class _LoginWithPasswordState implements LoginWithPasswordState {
+  const _LoginWithPasswordState({required this.isLogingin, required this.isLoginFailed, required this.isLoginSucces, required this.error, required this.user});
+  
+
+@override final  bool isLogingin;
+@override final  bool isLoginFailed;
+@override final  bool isLoginSucces;
+@override final  ErrorModel error;
+@override final  UserModel? user;
+
+/// Create a copy of LoginWithPasswordState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LoginWithPasswordStateCopyWith<_LoginWithPasswordState> get copyWith => __$LoginWithPasswordStateCopyWithImpl<_LoginWithPasswordState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginWithPasswordState&&(identical(other.isLogingin, isLogingin) || other.isLogingin == isLogingin)&&(identical(other.isLoginFailed, isLoginFailed) || other.isLoginFailed == isLoginFailed)&&(identical(other.isLoginSucces, isLoginSucces) || other.isLoginSucces == isLoginSucces)&&(identical(other.error, error) || other.error == error)&&(identical(other.user, user) || other.user == user));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isLogingin,isLoginFailed,isLoginSucces,error,user);
+
+@override
+String toString() {
+  return 'LoginWithPasswordState(isLogingin: $isLogingin, isLoginFailed: $isLoginFailed, isLoginSucces: $isLoginSucces, error: $error, user: $user)';
+}
+
+
 }
 
 /// @nodoc
-class __$$_LoginWithPasswordStateCopyWithImpl<$Res>
-    extends _$LoginWithPasswordStateCopyWithImpl<$Res>
-    implements _$$_LoginWithPasswordStateCopyWith<$Res> {
-  __$$_LoginWithPasswordStateCopyWithImpl(_$_LoginWithPasswordState _value,
-      $Res Function(_$_LoginWithPasswordState) _then)
-      : super(_value, (v) => _then(v as _$_LoginWithPasswordState));
+abstract mixin class _$LoginWithPasswordStateCopyWith<$Res> implements $LoginWithPasswordStateCopyWith<$Res> {
+  factory _$LoginWithPasswordStateCopyWith(_LoginWithPasswordState value, $Res Function(_LoginWithPasswordState) _then) = __$LoginWithPasswordStateCopyWithImpl;
+@override @useResult
+$Res call({
+ bool isLogingin, bool isLoginFailed, bool isLoginSucces, ErrorModel error, UserModel? user
+});
 
-  @override
-  _$_LoginWithPasswordState get _value =>
-      super._value as _$_LoginWithPasswordState;
 
-  @override
-  $Res call({
-    Object? isLogingin = freezed,
-    Object? isLoginFailed = freezed,
-    Object? isLoginSucces = freezed,
-    Object? error = freezed,
-    Object? user = freezed,
-  }) {
-    return _then(_$_LoginWithPasswordState(
-      isLogingin: isLogingin == freezed
-          ? _value.isLogingin
-          : isLogingin // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLoginFailed: isLoginFailed == freezed
-          ? _value.isLoginFailed
-          : isLoginFailed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLoginSucces: isLoginSucces == freezed
-          ? _value.isLoginSucces
-          : isLoginSucces // ignore: cast_nullable_to_non_nullable
-              as bool,
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as ErrorModel,
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel?,
-    ));
-  }
+@override $UserModelCopyWith<$Res>? get user;
+
 }
-
 /// @nodoc
+class __$LoginWithPasswordStateCopyWithImpl<$Res>
+    implements _$LoginWithPasswordStateCopyWith<$Res> {
+  __$LoginWithPasswordStateCopyWithImpl(this._self, this._then);
 
-class _$_LoginWithPasswordState implements _LoginWithPasswordState {
-  const _$_LoginWithPasswordState(
-      {required this.isLogingin,
-      required this.isLoginFailed,
-      required this.isLoginSucces,
-      required this.error,
-      required this.user});
+  final _LoginWithPasswordState _self;
+  final $Res Function(_LoginWithPasswordState) _then;
 
-  @override
-  final bool isLogingin;
-  @override
-  final bool isLoginFailed;
-  @override
-  final bool isLoginSucces;
-  @override
-  final ErrorModel error;
-  @override
-  final UserModel? user;
-
-  @override
-  String toString() {
-    return 'LoginWithPasswordState(isLogingin: $isLogingin, isLoginFailed: $isLoginFailed, isLoginSucces: $isLoginSucces, error: $error, user: $user)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_LoginWithPasswordState &&
-            const DeepCollectionEquality()
-                .equals(other.isLogingin, isLogingin) &&
-            const DeepCollectionEquality()
-                .equals(other.isLoginFailed, isLoginFailed) &&
-            const DeepCollectionEquality()
-                .equals(other.isLoginSucces, isLoginSucces) &&
-            const DeepCollectionEquality().equals(other.error, error) &&
-            const DeepCollectionEquality().equals(other.user, user));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(isLogingin),
-      const DeepCollectionEquality().hash(isLoginFailed),
-      const DeepCollectionEquality().hash(isLoginSucces),
-      const DeepCollectionEquality().hash(error),
-      const DeepCollectionEquality().hash(user));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_LoginWithPasswordStateCopyWith<_$_LoginWithPasswordState> get copyWith =>
-      __$$_LoginWithPasswordStateCopyWithImpl<_$_LoginWithPasswordState>(
-          this, _$identity);
+/// Create a copy of LoginWithPasswordState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? isLogingin = null,Object? isLoginFailed = null,Object? isLoginSucces = null,Object? error = null,Object? user = freezed,}) {
+  return _then(_LoginWithPasswordState(
+isLogingin: null == isLogingin ? _self.isLogingin : isLogingin // ignore: cast_nullable_to_non_nullable
+as bool,isLoginFailed: null == isLoginFailed ? _self.isLoginFailed : isLoginFailed // ignore: cast_nullable_to_non_nullable
+as bool,isLoginSucces: null == isLoginSucces ? _self.isLoginSucces : isLoginSucces // ignore: cast_nullable_to_non_nullable
+as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as ErrorModel,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as UserModel?,
+  ));
 }
 
-abstract class _LoginWithPasswordState implements LoginWithPasswordState {
-  const factory _LoginWithPasswordState(
-      {required final bool isLogingin,
-      required final bool isLoginFailed,
-      required final bool isLoginSucces,
-      required final ErrorModel error,
-      required final UserModel? user}) = _$_LoginWithPasswordState;
+/// Create a copy of LoginWithPasswordState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserModelCopyWith<$Res>? get user {
+    if (_self.user == null) {
+    return null;
+  }
 
-  @override
-  bool get isLogingin;
-  @override
-  bool get isLoginFailed;
-  @override
-  bool get isLoginSucces;
-  @override
-  ErrorModel get error;
-  @override
-  UserModel? get user;
-  @override
-  @JsonKey(ignore: true)
-  _$$_LoginWithPasswordStateCopyWith<_$_LoginWithPasswordState> get copyWith =>
-      throw _privateConstructorUsedError;
+  return $UserModelCopyWith<$Res>(_self.user!, (value) {
+    return _then(_self.copyWith(user: value));
+  });
 }
+}
+
+// dart format on

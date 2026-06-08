@@ -11,21 +11,20 @@ class MemberProfileImageSection extends StatelessWidget {
   final int memberId;
   final String title;
   final String? image;
+
   const MemberProfileImageSection({
-    Key? key,
+    super.key,
     required this.title,
     required this.image,
     required this.memberId,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const SizedBox(
-          height: 15,
-        ),
+        const SizedBox(height: 15),
         Row(
           children: [
             image == null
@@ -34,8 +33,10 @@ class MemberProfileImageSection extends StatelessWidget {
                     backgroundColor: AppColors.orange,
                     child: Text(
                       title[0],
-                      style: AppTextStyles.subHeaddingSemiBoldRoboto
-                          .copyWith(fontSize: 18, color: AppColors.white),
+                      style: AppTextStyles.subHeaddingSemiBoldRoboto.copyWith(
+                        fontSize: 18,
+                        color: AppColors.white,
+                      ),
                     ),
                   )
                 : ClipOval(
@@ -46,7 +47,10 @@ class MemberProfileImageSection extends StatelessWidget {
                             fit: BoxFit.fill,
                             loadingBuilder: (context, child, loadingProgress) =>
                                 AppHelpers.imageLoadingIndicator(
-                                    context, child, loadingProgress),
+                                  context,
+                                  child,
+                                  loadingProgress,
+                                ),
                             errorBuilder: (context, error, stackTrace) =>
                                 const DefaultProfileImage(),
                             height: 44,
@@ -59,7 +63,7 @@ class MemberProfileImageSection extends StatelessWidget {
                 title,
                 style: AppTextStyles.subHeaddingSemiBoldRoboto,
               ),
-            )
+            ),
           ],
         ),
       ],

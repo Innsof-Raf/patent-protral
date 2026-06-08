@@ -6,26 +6,25 @@ part of 'doctor_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_DoctorModel _$$_DoctorModelFromJson(Map<String, dynamic> json) =>
-    _$_DoctorModel(
-      doctorId: json['employee_id'] as String,
-      idDoctor: json['id_employee'] as int,
-      idBusUnit: json['id_busunit'] as int,
-      busUnitName: json['busunit_name'] as String,
-      doctorName: json['employee_name'] as String,
-      departmentName: json['dept_name'] as String,
-      doctorSpecility: json['speciality'] as String,
-      experience: json['experience'] as String,
-      branch: json['branch'] as String,
-      knownLanguages: (json['Language_Known'] as List<dynamic>)
-          .map((e) => LanguageKnownModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      doctorImage: json['profileUrl'] as String,
-      consultationFee: (json['cons_fee'] as num).toDouble(),
-      doctorBio: json['employee_bio'] as String?,
-    );
+_DoctorModel _$DoctorModelFromJson(Map<String, dynamic> json) => _DoctorModel(
+  doctorId: json['employee_id'] as String,
+  idDoctor: (json['id_employee'] as num).toInt(),
+  idBusUnit: (json['id_busunit'] as num).toInt(),
+  busUnitName: json['busunit_name'] as String,
+  doctorName: json['employee_name'] as String,
+  departmentName: json['dept_name'] as String,
+  doctorSpecility: json['speciality'] as String,
+  experience: json['experience'] as String,
+  branch: json['branch'] as String,
+  knownLanguages: (json['Language_Known'] as List<dynamic>)
+      .map((e) => LanguageKnownModel.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  doctorImage: json['profileUrl'] as String,
+  consultationFee: (json['cons_fee'] as num).toDouble(),
+  doctorBio: json['employee_bio'] as String?,
+);
 
-Map<String, dynamic> _$$_DoctorModelToJson(_$_DoctorModel instance) =>
+Map<String, dynamic> _$DoctorModelToJson(_DoctorModel instance) =>
     <String, dynamic>{
       'employee_id': instance.doctorId,
       'id_employee': instance.idDoctor,

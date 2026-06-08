@@ -1,7 +1,7 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'member_detail_bloc.dart';
 
@@ -9,417 +9,520 @@ part of 'member_detail_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
 /// @nodoc
 mixin _$MemberDetailEvent {
-  int get memberId => throw _privateConstructorUsedError;
-  String get token => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int memberId, String token) getMemberDetails,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int memberId, String token)? getMemberDetails,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int memberId, String token)? getMemberDetails,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetMemberDetails value) getMemberDetails,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetMemberDetails value)? getMemberDetails,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetMemberDetails value)? getMemberDetails,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $MemberDetailEventCopyWith<MemberDetailEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+ int get memberId; String get token;
+/// Create a copy of MemberDetailEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MemberDetailEventCopyWith<MemberDetailEvent> get copyWith => _$MemberDetailEventCopyWithImpl<MemberDetailEvent>(this as MemberDetailEvent, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MemberDetailEvent&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.token, token) || other.token == token));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,memberId,token);
+
+@override
+String toString() {
+  return 'MemberDetailEvent(memberId: $memberId, token: $token)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $MemberDetailEventCopyWith<$Res> {
-  factory $MemberDetailEventCopyWith(
-          MemberDetailEvent value, $Res Function(MemberDetailEvent) then) =
-      _$MemberDetailEventCopyWithImpl<$Res>;
-  $Res call({int memberId, String token});
-}
+abstract mixin class $MemberDetailEventCopyWith<$Res>  {
+  factory $MemberDetailEventCopyWith(MemberDetailEvent value, $Res Function(MemberDetailEvent) _then) = _$MemberDetailEventCopyWithImpl;
+@useResult
+$Res call({
+ int memberId, String token
+});
 
+
+
+
+}
 /// @nodoc
 class _$MemberDetailEventCopyWithImpl<$Res>
     implements $MemberDetailEventCopyWith<$Res> {
-  _$MemberDetailEventCopyWithImpl(this._value, this._then);
+  _$MemberDetailEventCopyWithImpl(this._self, this._then);
 
-  final MemberDetailEvent _value;
-  // ignore: unused_field
+  final MemberDetailEvent _self;
   final $Res Function(MemberDetailEvent) _then;
 
-  @override
-  $Res call({
-    Object? memberId = freezed,
-    Object? token = freezed,
-  }) {
-    return _then(_value.copyWith(
-      memberId: memberId == freezed
-          ? _value.memberId
-          : memberId // ignore: cast_nullable_to_non_nullable
-              as int,
-      token: token == freezed
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Create a copy of MemberDetailEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? memberId = null,Object? token = null,}) {
+  return _then(_self.copyWith(
+memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
+as int,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [MemberDetailEvent].
+extension MemberDetailEventPatterns on MemberDetailEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( GetMemberDetail value)?  getMemberDetail,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case GetMemberDetail() when getMemberDetail != null:
+return getMemberDetail(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( GetMemberDetail value)  getMemberDetail,}){
+final _that = this;
+switch (_that) {
+case GetMemberDetail():
+return getMemberDetail(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( GetMemberDetail value)?  getMemberDetail,}){
+final _that = this;
+switch (_that) {
+case GetMemberDetail() when getMemberDetail != null:
+return getMemberDetail(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int memberId,  String token)?  getMemberDetail,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case GetMemberDetail() when getMemberDetail != null:
+return getMemberDetail(_that.memberId,_that.token);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int memberId,  String token)  getMemberDetail,}) {final _that = this;
+switch (_that) {
+case GetMemberDetail():
+return getMemberDetail(_that.memberId,_that.token);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int memberId,  String token)?  getMemberDetail,}) {final _that = this;
+switch (_that) {
+case GetMemberDetail() when getMemberDetail != null:
+return getMemberDetail(_that.memberId,_that.token);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$GetMemberDetailsCopyWith<$Res>
-    implements $MemberDetailEventCopyWith<$Res> {
-  factory _$$GetMemberDetailsCopyWith(
-          _$GetMemberDetails value, $Res Function(_$GetMemberDetails) then) =
-      __$$GetMemberDetailsCopyWithImpl<$Res>;
-  @override
-  $Res call({int memberId, String token});
+
+
+class GetMemberDetail implements MemberDetailEvent {
+  const GetMemberDetail({required this.memberId, required this.token});
+  
+
+@override final  int memberId;
+@override final  String token;
+
+/// Create a copy of MemberDetailEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$GetMemberDetailCopyWith<GetMemberDetail> get copyWith => _$GetMemberDetailCopyWithImpl<GetMemberDetail>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetMemberDetail&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.token, token) || other.token == token));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,memberId,token);
+
+@override
+String toString() {
+  return 'MemberDetailEvent.getMemberDetail(memberId: $memberId, token: $token)';
+}
+
+
 }
 
 /// @nodoc
-class __$$GetMemberDetailsCopyWithImpl<$Res>
-    extends _$MemberDetailEventCopyWithImpl<$Res>
-    implements _$$GetMemberDetailsCopyWith<$Res> {
-  __$$GetMemberDetailsCopyWithImpl(
-      _$GetMemberDetails _value, $Res Function(_$GetMemberDetails) _then)
-      : super(_value, (v) => _then(v as _$GetMemberDetails));
+abstract mixin class $GetMemberDetailCopyWith<$Res> implements $MemberDetailEventCopyWith<$Res> {
+  factory $GetMemberDetailCopyWith(GetMemberDetail value, $Res Function(GetMemberDetail) _then) = _$GetMemberDetailCopyWithImpl;
+@override @useResult
+$Res call({
+ int memberId, String token
+});
 
-  @override
-  _$GetMemberDetails get _value => super._value as _$GetMemberDetails;
 
-  @override
-  $Res call({
-    Object? memberId = freezed,
-    Object? token = freezed,
-  }) {
-    return _then(_$GetMemberDetails(
-      memberId: memberId == freezed
-          ? _value.memberId
-          : memberId // ignore: cast_nullable_to_non_nullable
-              as int,
-      token: token == freezed
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+
+
 }
-
 /// @nodoc
+class _$GetMemberDetailCopyWithImpl<$Res>
+    implements $GetMemberDetailCopyWith<$Res> {
+  _$GetMemberDetailCopyWithImpl(this._self, this._then);
 
-class _$GetMemberDetails implements GetMemberDetails {
-  const _$GetMemberDetails({required this.memberId, required this.token});
+  final GetMemberDetail _self;
+  final $Res Function(GetMemberDetail) _then;
 
-  @override
-  final int memberId;
-  @override
-  final String token;
-
-  @override
-  String toString() {
-    return 'MemberDetailEvent.getMemberDetails(memberId: $memberId, token: $token)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GetMemberDetails &&
-            const DeepCollectionEquality().equals(other.memberId, memberId) &&
-            const DeepCollectionEquality().equals(other.token, token));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(memberId),
-      const DeepCollectionEquality().hash(token));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$GetMemberDetailsCopyWith<_$GetMemberDetails> get copyWith =>
-      __$$GetMemberDetailsCopyWithImpl<_$GetMemberDetails>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int memberId, String token) getMemberDetails,
-  }) {
-    return getMemberDetails(memberId, token);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int memberId, String token)? getMemberDetails,
-  }) {
-    return getMemberDetails?.call(memberId, token);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int memberId, String token)? getMemberDetails,
-    required TResult orElse(),
-  }) {
-    if (getMemberDetails != null) {
-      return getMemberDetails(memberId, token);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetMemberDetails value) getMemberDetails,
-  }) {
-    return getMemberDetails(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetMemberDetails value)? getMemberDetails,
-  }) {
-    return getMemberDetails?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetMemberDetails value)? getMemberDetails,
-    required TResult orElse(),
-  }) {
-    if (getMemberDetails != null) {
-      return getMemberDetails(this);
-    }
-    return orElse();
-  }
+/// Create a copy of MemberDetailEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? memberId = null,Object? token = null,}) {
+  return _then(GetMemberDetail(
+memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
+as int,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-abstract class GetMemberDetails implements MemberDetailEvent {
-  const factory GetMemberDetails(
-      {required final int memberId,
-      required final String token}) = _$GetMemberDetails;
 
-  @override
-  int get memberId;
-  @override
-  String get token;
-  @override
-  @JsonKey(ignore: true)
-  _$$GetMemberDetailsCopyWith<_$GetMemberDetails> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$MemberDetailState {
-  bool get isFetching => throw _privateConstructorUsedError;
-  bool get isFetchingFailed => throw _privateConstructorUsedError;
-  bool get isFetchingSucces => throw _privateConstructorUsedError;
-  ErrorModel get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $MemberDetailStateCopyWith<MemberDetailState> get copyWith =>
-      throw _privateConstructorUsedError;
+ bool get isFetching; bool get isFetchingFailed; bool get isFetchingSucces; ErrorModel get error;
+/// Create a copy of MemberDetailState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MemberDetailStateCopyWith<MemberDetailState> get copyWith => _$MemberDetailStateCopyWithImpl<MemberDetailState>(this as MemberDetailState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MemberDetailState&&(identical(other.isFetching, isFetching) || other.isFetching == isFetching)&&(identical(other.isFetchingFailed, isFetchingFailed) || other.isFetchingFailed == isFetchingFailed)&&(identical(other.isFetchingSucces, isFetchingSucces) || other.isFetchingSucces == isFetchingSucces)&&(identical(other.error, error) || other.error == error));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isFetching,isFetchingFailed,isFetchingSucces,error);
+
+@override
+String toString() {
+  return 'MemberDetailState(isFetching: $isFetching, isFetchingFailed: $isFetchingFailed, isFetchingSucces: $isFetchingSucces, error: $error)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $MemberDetailStateCopyWith<$Res> {
-  factory $MemberDetailStateCopyWith(
-          MemberDetailState value, $Res Function(MemberDetailState) then) =
-      _$MemberDetailStateCopyWithImpl<$Res>;
-  $Res call(
-      {bool isFetching,
-      bool isFetchingFailed,
-      bool isFetchingSucces,
-      ErrorModel error});
-}
+abstract mixin class $MemberDetailStateCopyWith<$Res>  {
+  factory $MemberDetailStateCopyWith(MemberDetailState value, $Res Function(MemberDetailState) _then) = _$MemberDetailStateCopyWithImpl;
+@useResult
+$Res call({
+ bool isFetching, bool isFetchingFailed, bool isFetchingSucces, ErrorModel error
+});
 
+
+
+
+}
 /// @nodoc
 class _$MemberDetailStateCopyWithImpl<$Res>
     implements $MemberDetailStateCopyWith<$Res> {
-  _$MemberDetailStateCopyWithImpl(this._value, this._then);
+  _$MemberDetailStateCopyWithImpl(this._self, this._then);
 
-  final MemberDetailState _value;
-  // ignore: unused_field
+  final MemberDetailState _self;
   final $Res Function(MemberDetailState) _then;
 
-  @override
-  $Res call({
-    Object? isFetching = freezed,
-    Object? isFetchingFailed = freezed,
-    Object? isFetchingSucces = freezed,
-    Object? error = freezed,
-  }) {
-    return _then(_value.copyWith(
-      isFetching: isFetching == freezed
-          ? _value.isFetching
-          : isFetching // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFetchingFailed: isFetchingFailed == freezed
-          ? _value.isFetchingFailed
-          : isFetchingFailed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFetchingSucces: isFetchingSucces == freezed
-          ? _value.isFetchingSucces
-          : isFetchingSucces // ignore: cast_nullable_to_non_nullable
-              as bool,
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as ErrorModel,
-    ));
-  }
+/// Create a copy of MemberDetailState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? isFetching = null,Object? isFetchingFailed = null,Object? isFetchingSucces = null,Object? error = null,}) {
+  return _then(_self.copyWith(
+isFetching: null == isFetching ? _self.isFetching : isFetching // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingFailed: null == isFetchingFailed ? _self.isFetchingFailed : isFetchingFailed // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingSucces: null == isFetchingSucces ? _self.isFetchingSucces : isFetchingSucces // ignore: cast_nullable_to_non_nullable
+as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as ErrorModel,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [MemberDetailState].
+extension MemberDetailStatePatterns on MemberDetailState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MemberDetailState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _MemberDetailState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MemberDetailState value)  $default,){
+final _that = this;
+switch (_that) {
+case _MemberDetailState():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MemberDetailState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _MemberDetailState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isFetching,  bool isFetchingFailed,  bool isFetchingSucces,  ErrorModel error)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _MemberDetailState() when $default != null:
+return $default(_that.isFetching,_that.isFetchingFailed,_that.isFetchingSucces,_that.error);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isFetching,  bool isFetchingFailed,  bool isFetchingSucces,  ErrorModel error)  $default,) {final _that = this;
+switch (_that) {
+case _MemberDetailState():
+return $default(_that.isFetching,_that.isFetchingFailed,_that.isFetchingSucces,_that.error);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isFetching,  bool isFetchingFailed,  bool isFetchingSucces,  ErrorModel error)?  $default,) {final _that = this;
+switch (_that) {
+case _MemberDetailState() when $default != null:
+return $default(_that.isFetching,_that.isFetchingFailed,_that.isFetchingSucces,_that.error);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$_MemberDetailStateCopyWith<$Res>
-    implements $MemberDetailStateCopyWith<$Res> {
-  factory _$$_MemberDetailStateCopyWith(_$_MemberDetailState value,
-          $Res Function(_$_MemberDetailState) then) =
-      __$$_MemberDetailStateCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {bool isFetching,
-      bool isFetchingFailed,
-      bool isFetchingSucces,
-      ErrorModel error});
+
+
+class _MemberDetailState implements MemberDetailState {
+  const _MemberDetailState({required this.isFetching, required this.isFetchingFailed, required this.isFetchingSucces, required this.error});
+  
+
+@override final  bool isFetching;
+@override final  bool isFetchingFailed;
+@override final  bool isFetchingSucces;
+@override final  ErrorModel error;
+
+/// Create a copy of MemberDetailState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MemberDetailStateCopyWith<_MemberDetailState> get copyWith => __$MemberDetailStateCopyWithImpl<_MemberDetailState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MemberDetailState&&(identical(other.isFetching, isFetching) || other.isFetching == isFetching)&&(identical(other.isFetchingFailed, isFetchingFailed) || other.isFetchingFailed == isFetchingFailed)&&(identical(other.isFetchingSucces, isFetchingSucces) || other.isFetchingSucces == isFetchingSucces)&&(identical(other.error, error) || other.error == error));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isFetching,isFetchingFailed,isFetchingSucces,error);
+
+@override
+String toString() {
+  return 'MemberDetailState(isFetching: $isFetching, isFetchingFailed: $isFetchingFailed, isFetchingSucces: $isFetchingSucces, error: $error)';
+}
+
+
 }
 
 /// @nodoc
-class __$$_MemberDetailStateCopyWithImpl<$Res>
-    extends _$MemberDetailStateCopyWithImpl<$Res>
-    implements _$$_MemberDetailStateCopyWith<$Res> {
-  __$$_MemberDetailStateCopyWithImpl(
-      _$_MemberDetailState _value, $Res Function(_$_MemberDetailState) _then)
-      : super(_value, (v) => _then(v as _$_MemberDetailState));
+abstract mixin class _$MemberDetailStateCopyWith<$Res> implements $MemberDetailStateCopyWith<$Res> {
+  factory _$MemberDetailStateCopyWith(_MemberDetailState value, $Res Function(_MemberDetailState) _then) = __$MemberDetailStateCopyWithImpl;
+@override @useResult
+$Res call({
+ bool isFetching, bool isFetchingFailed, bool isFetchingSucces, ErrorModel error
+});
 
-  @override
-  _$_MemberDetailState get _value => super._value as _$_MemberDetailState;
 
-  @override
-  $Res call({
-    Object? isFetching = freezed,
-    Object? isFetchingFailed = freezed,
-    Object? isFetchingSucces = freezed,
-    Object? error = freezed,
-  }) {
-    return _then(_$_MemberDetailState(
-      isFetching: isFetching == freezed
-          ? _value.isFetching
-          : isFetching // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFetchingFailed: isFetchingFailed == freezed
-          ? _value.isFetchingFailed
-          : isFetchingFailed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFetchingSucces: isFetchingSucces == freezed
-          ? _value.isFetchingSucces
-          : isFetchingSucces // ignore: cast_nullable_to_non_nullable
-              as bool,
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as ErrorModel,
-    ));
-  }
+
+
 }
-
 /// @nodoc
+class __$MemberDetailStateCopyWithImpl<$Res>
+    implements _$MemberDetailStateCopyWith<$Res> {
+  __$MemberDetailStateCopyWithImpl(this._self, this._then);
 
-class _$_MemberDetailState implements _MemberDetailState {
-  const _$_MemberDetailState(
-      {required this.isFetching,
-      required this.isFetchingFailed,
-      required this.isFetchingSucces,
-      required this.error});
+  final _MemberDetailState _self;
+  final $Res Function(_MemberDetailState) _then;
 
-  @override
-  final bool isFetching;
-  @override
-  final bool isFetchingFailed;
-  @override
-  final bool isFetchingSucces;
-  @override
-  final ErrorModel error;
-
-  @override
-  String toString() {
-    return 'MemberDetailState(isFetching: $isFetching, isFetchingFailed: $isFetchingFailed, isFetchingSucces: $isFetchingSucces, error: $error)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_MemberDetailState &&
-            const DeepCollectionEquality()
-                .equals(other.isFetching, isFetching) &&
-            const DeepCollectionEquality()
-                .equals(other.isFetchingFailed, isFetchingFailed) &&
-            const DeepCollectionEquality()
-                .equals(other.isFetchingSucces, isFetchingSucces) &&
-            const DeepCollectionEquality().equals(other.error, error));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(isFetching),
-      const DeepCollectionEquality().hash(isFetchingFailed),
-      const DeepCollectionEquality().hash(isFetchingSucces),
-      const DeepCollectionEquality().hash(error));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_MemberDetailStateCopyWith<_$_MemberDetailState> get copyWith =>
-      __$$_MemberDetailStateCopyWithImpl<_$_MemberDetailState>(
-          this, _$identity);
+/// Create a copy of MemberDetailState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? isFetching = null,Object? isFetchingFailed = null,Object? isFetchingSucces = null,Object? error = null,}) {
+  return _then(_MemberDetailState(
+isFetching: null == isFetching ? _self.isFetching : isFetching // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingFailed: null == isFetchingFailed ? _self.isFetchingFailed : isFetchingFailed // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingSucces: null == isFetchingSucces ? _self.isFetchingSucces : isFetchingSucces // ignore: cast_nullable_to_non_nullable
+as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as ErrorModel,
+  ));
 }
 
-abstract class _MemberDetailState implements MemberDetailState {
-  const factory _MemberDetailState(
-      {required final bool isFetching,
-      required final bool isFetchingFailed,
-      required final bool isFetchingSucces,
-      required final ErrorModel error}) = _$_MemberDetailState;
 
-  @override
-  bool get isFetching;
-  @override
-  bool get isFetchingFailed;
-  @override
-  bool get isFetchingSucces;
-  @override
-  ErrorModel get error;
-  @override
-  @JsonKey(ignore: true)
-  _$$_MemberDetailStateCopyWith<_$_MemberDetailState> get copyWith =>
-      throw _privateConstructorUsedError;
 }
+
+// dart format on

@@ -43,111 +43,85 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => OtpGenerationBloc(),
-        ),
-        BlocProvider(
-          create: (context) => OtpVerificationBloc(),
-        ),
-        BlocProvider(
-          create: (context) => UserBloc(),
-        ),
-        BlocProvider(
-          create: (context) => SpecialityBloc(),
-        ),
-        BlocProvider(
-          create: (context) => DoctorBloc(),
-        ),
-        BlocProvider(
-          create: (context) => HomeBloc(),
-        ),
-        BlocProvider(
-          create: (context) => InsuranceBloc(),
-        ),
-        BlocProvider(
-          create: (context) => SlotBloc(),
-        ),
-        BlocProvider(
-          create: (context) => AppointmentBloc(),
-        ),
-        BlocProvider(
-          create: (context) => MemberSearchBloc(),
-        ),
-        BlocProvider(
-          create: (context) => MyAppointmentsBloc(),
-        ),
-        BlocProvider(
-          create: (context) => ItemsBloc(),
-        ),
-        BlocProvider(
-          create: (context) => ReportsBloc(),
-        ),
-        BlocProvider(
-          create: (context) => ChangePasswordBloc(),
-        ),
-        BlocProvider(
-          create: (context) => SearchSpecialityBloc(),
-        ),
-        BlocProvider(
-          create: (context) => SearchDoctorBloc(),
-        ),
-        BlocProvider(
-          create: (context) => ReportBloc(),
-        ),
-        BlocProvider(
-          create: (context) => DocumentsBloc(),
-        ),
-        BlocProvider(
-          create: (context) => AddDocumentBloc(),
-        ),
-        BlocProvider(
-          create: (context) => LoginWithPasswordBloc(),
-        )
+        BlocProvider(create: (context) => OtpGenerationBloc()),
+        BlocProvider(create: (context) => OtpVerificationBloc()),
+        BlocProvider(create: (context) => UserBloc()),
+        BlocProvider(create: (context) => SpecialityBloc()),
+        BlocProvider(create: (context) => DoctorBloc()),
+        BlocProvider(create: (context) => HomeBloc()),
+        BlocProvider(create: (context) => InsuranceBloc()),
+        BlocProvider(create: (context) => SlotBloc()),
+        BlocProvider(create: (context) => AppointmentBloc()),
+        BlocProvider(create: (context) => MemberSearchBloc()),
+        BlocProvider(create: (context) => MyAppointmentsBloc()),
+        BlocProvider(create: (context) => ItemsBloc()),
+        BlocProvider(create: (context) => ReportsBloc()),
+        BlocProvider(create: (context) => ChangePasswordBloc()),
+        BlocProvider(create: (context) => SearchSpecialityBloc()),
+        BlocProvider(create: (context) => SearchDoctorBloc()),
+        BlocProvider(create: (context) => ReportBloc()),
+        BlocProvider(create: (context) => DocumentsBloc()),
+        BlocProvider(create: (context) => AddDocumentBloc()),
+        BlocProvider(create: (context) => LoginWithPasswordBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            colorScheme: const ColorScheme.light(
-              primary: AppColors.vilot,
-              onPrimary: AppColors.white,
-              onSurface: AppColors.textDark,
+          colorScheme: const ColorScheme.light(
+            primary: AppColors.vilot,
+            onPrimary: AppColors.white,
+            onSurface: AppColors.textDark,
+          ),
+          primaryColor: AppColors.vilot,
+          scaffoldBackgroundColor: AppColors.white,
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+              padding: EdgeInsets.zero,
+              foregroundColor: AppColors.textLight,
             ),
-            primaryColor: AppColors.vilot,
-            scaffoldBackgroundColor: AppColors.white,
-            textButtonTheme: TextButtonThemeData(
-                style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    foregroundColor: AppColors.textLight)),
-            primarySwatch: Colors.blue,
-            textTheme: TextTheme(
-                titleMedium: AppTextStyles.largeRobotoNormal
-                    .copyWith(color: AppColors.textDark)),
-            inputDecorationTheme: InputDecorationTheme(
-                contentPadding: const EdgeInsets.all(15),
-                labelStyle: AppTextStyles.largeRobotoNormal,
-                floatingLabelStyle: AppTextStyles.bodyTextRoboto,
-                errorMaxLines: 2,
-                errorStyle:
-                    AppTextStyles.bodyTextInter.copyWith(color: AppColors.red),
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(4),
-                    borderSide: const BorderSide(
-                        color: AppColors.textFormFIeldBagroundColor)),
-                errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(4),
-                    borderSide: const BorderSide(color: AppColors.red)),
-                focusedErrorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(4),
-                    borderSide: const BorderSide(color: AppColors.red)),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(
-                      color: AppColors.textFormFIeldBagroundColor),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(4),
-                    borderSide: const BorderSide(
-                        color: Color.fromRGBO(202, 212, 224, 1))))),
+          ),
+          primarySwatch: Colors.blue,
+          textTheme: TextTheme(
+            titleMedium: AppTextStyles.largeRobotoNormal.copyWith(
+              color: AppColors.textDark,
+            ),
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            contentPadding: const EdgeInsets.all(15),
+            labelStyle: AppTextStyles.largeRobotoNormal,
+            floatingLabelStyle: AppTextStyles.bodyTextRoboto,
+            errorMaxLines: 2,
+            errorStyle: AppTextStyles.bodyTextInter.copyWith(
+              color: AppColors.red,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(4),
+              borderSide: const BorderSide(
+                color: AppColors.textFormFIeldBagroundColor,
+              ),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(4),
+              borderSide: const BorderSide(color: AppColors.red),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(4),
+              borderSide: const BorderSide(color: AppColors.red),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                color: AppColors.textFormFIeldBagroundColor,
+              ),
+              borderRadius: BorderRadius.circular(4),
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(4),
+              borderSide: const BorderSide(
+                color: Color.fromRGBO(202, 212, 224, 1),
+              ),
+            ),
+          ),
+        ),
         initialRoute: RouteConstants.loginScreen,
         onGenerateRoute: (settings) => Approuter.generateRoute(settings),
       ),

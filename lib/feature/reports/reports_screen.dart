@@ -3,20 +3,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
 import 'package:patient_portal/feature/profile/models/user/user_model.dart';
 import 'package:patient_portal/feature/reports/bloc/reports_bloc.dart';
+
 import '../../resources/app_text_styles.dart';
 import 'widgets/report_tile.dart';
 
 class ReportsScreen extends StatelessWidget {
-  const ReportsScreen({Key? key}) : super(key: key);
+  const ReportsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final UserModel user = context.read<UserBloc>().state.user!;
-      context.read<ReportsBloc>().add(GetReports(
+      context.read<ReportsBloc>().add(
+        GetReports(
           memberId: 0,
           token: user.accessToken,
-          mobileNumber: user.mobileNumber));
+          mobileNumber: user.mobileNumber,
+        ),
+      );
     });
     return Scaffold(
       body: Padding(
@@ -26,36 +30,36 @@ class ReportsScreen extends StatelessWidget {
             return state.isFetchingReports
                 ? LayoutBuilder(
                     builder: (context, constraints) => Center(
-                          child: Image.asset(
-                            'assets/gif_images/Ripple-0 2.gif',
-                            width: constraints.maxWidth * .3,
-                          ),
-                        ))
+                      child: Image.asset(
+                        'assets/gif_images/Ripple-0 2.gif',
+                        width: constraints.maxWidth * .3,
+                      ),
+                    ),
+                  )
                 : state.isFetchingFailed
-                    ? Center(
-                        child: Text(
-                          state.error.message,
-                          style: AppTextStyles.largeRobotoNormal,
-                        ),
-                      )
-                    : state.reports.isEmpty
-                        ? const Center(
-                            child: Text(
-                              'No Reports Available',
-                              style: AppTextStyles.largeRobotoNormal,
-                            ),
-                          )
-                        : ListView.separated(
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(height: 10),
-                            padding: const EdgeInsets.only(top: 10, bottom: 90),
-                            shrinkWrap: true,
-                            itemCount: state.reports.length,
-                            itemBuilder: (context, index) {
-                              return MyReportTile(
-                                report: state.reports[index],
-                              );
-                            });
+                ? Center(
+                    child: Text(
+                      state.error.message,
+                      style: AppTextStyles.largeRobotoNormal,
+                    ),
+                  )
+                : state.reports.isEmpty
+                ? const Center(
+                    child: Text(
+                      'No Reports Available',
+                      style: AppTextStyles.largeRobotoNormal,
+                    ),
+                  )
+                : ListView.separated(
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 10),
+                    padding: const EdgeInsets.only(top: 10, bottom: 90),
+                    shrinkWrap: true,
+                    itemCount: state.reports.length,
+                    itemBuilder: (context, index) {
+                      return MyReportTile(report: state.reports[index]);
+                    },
+                  );
           },
         ),
       ),

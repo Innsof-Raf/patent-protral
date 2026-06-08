@@ -1,9 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-part 'report_model.g.dart';
+
 part 'report_model.freezed.dart';
+part 'report_model.g.dart';
 
 @freezed
-class ReportModel with _$ReportModel {
+sealed class ReportModel with _$ReportModel {
   const factory ReportModel({
     @JsonKey(name: "id_cons") required int idConseltation,
     @JsonKey(name: "id") required int id,

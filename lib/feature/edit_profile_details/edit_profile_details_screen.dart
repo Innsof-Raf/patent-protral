@@ -5,12 +5,11 @@ import '../../resources/app_colors.dart';
 import '../../resources/app_text_styles.dart';
 import '../../resources/dimens.dart';
 import '../../route/route_constants.dart';
-
-import 'widgets/edit_user_profile_image_section.dart';
 import 'widgets/edit_profile_details_section.dart';
+import 'widgets/edit_user_profile_image_section.dart';
 
 class EditProfileDetailsScreen extends StatelessWidget {
-  const EditProfileDetailsScreen({Key? key}) : super(key: key);
+  const EditProfileDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +41,7 @@ class EditProfileDetailsScreen extends StatelessWidget {
             BoxDecoration(borderRadius: BorderRadius.circular(6), boxShadow: [
           BoxShadow(
               blurRadius: 1,
-              color: AppColors.black.withOpacity(.25),
+              color: AppColors.black.withValues(alpha: .25),
               offset: const Offset(0, 0))
         ]),
         child: ElevatedButton(

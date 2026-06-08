@@ -9,33 +9,28 @@ class QuickMenuButton extends StatelessWidget {
   final String imagePath;
   final VoidCallback onPressed;
   const QuickMenuButton({
-    Key? key,
+    super.key,
     required this.title,
     required this.imagePath,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          fixedSize: const Size(105, 54),
-          elevation: 0,
-          padding: const EdgeInsets.all(3),
-          backgroundColor: AppColors.white,
-          side: const BorderSide(
-            color: AppColors.borderDarkColor,
-          )),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        fixedSize: const Size(105, 54),
+        elevation: 0,
+        padding: const EdgeInsets.all(3),
+        backgroundColor: AppColors.white,
+        side: const BorderSide(color: AppColors.borderDarkColor),
+      ),
       onPressed: onPressed,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          SvgPicture.asset(
-            imagePath,
-            height: 16,
-            width: 16,
-          ),
+          SvgPicture.asset(imagePath, height: 16, width: 16),
           Text(
             title,
             style: AppTextStyles.bodySemiBoldRoboto,

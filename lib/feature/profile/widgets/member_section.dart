@@ -8,9 +8,7 @@ import '../../../resources/common_widgets.dart/member_tile.dart';
 import '../bloc/user_bloc.dart';
 
 class MemberSection extends StatelessWidget {
-  const MemberSection({
-    Key? key,
-  }) : super(key: key);
+  const MemberSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,42 +32,45 @@ class MemberSection extends StatelessWidget {
                           ? "No member found"
                           : "Found ${state.user!.members.length} members",
                       style: AppTextStyles.bodyTextRoboto,
-                    )
+                    ),
                   ],
                 ),
                 ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        shape: const CircleBorder(),
-                        elevation: 0,
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        backgroundColor: AppColors.dividerGrayColor,
-                        padding: const EdgeInsets.all(7),
-                        minimumSize: const Size(0, 0)),
-                    onPressed: () {
-                      Navigator.of(context)
-                          .pushNamed(RouteConstants.membersScreen);
-                    },
-                    child: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 13,
-                      color: AppColors.textDark,
-                    )),
+                  style: ElevatedButton.styleFrom(
+                    shape: const CircleBorder(),
+                    elevation: 0,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    backgroundColor: AppColors.dividerGrayColor,
+                    padding: const EdgeInsets.all(7),
+                    minimumSize: const Size(0, 0),
+                  ),
+                  onPressed: () {
+                    Navigator.of(
+                      context,
+                    ).pushNamed(RouteConstants.membersScreen);
+                  },
+                  child: const Icon(
+                    Icons.arrow_forward_ios,
+                    size: 13,
+                    color: AppColors.textDark,
+                  ),
+                ),
               ],
             ),
             Expanded(
               child: state.user!.members.isEmpty
                   ? const Center(
                       child: Text(
-                      "No member found",
-                      style: AppTextStyles.bodyTextRobotoSemiBold,
-                    ))
+                        "No member found",
+                        style: AppTextStyles.bodyTextRobotoSemiBold,
+                      ),
+                    )
                   : ListView.separated(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       padding: const EdgeInsets.only(top: 15, bottom: 95),
-                      separatorBuilder: (context, index) => const SizedBox(
-                        height: 10,
-                      ),
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: 10),
                       itemCount: state.user!.members.length,
                       itemBuilder: (context, index) =>
                           MemberTile(member: state.user!.members[index]),

@@ -6,11 +6,10 @@ part of 'my_appointment_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_MyAppointmentModel _$$_MyAppointmentModelFromJson(
-        Map<String, dynamic> json) =>
-    _$_MyAppointmentModel(
-      id: json['Id'] as int,
-      memberId: json['id_customer'] as int,
+_MyAppointmentModel _$MyAppointmentModelFromJson(Map<String, dynamic> json) =>
+    _MyAppointmentModel(
+      id: (json['Id'] as num).toInt(),
+      memberId: (json['id_customer'] as num).toInt(),
       memberName: json['customer_name'] as String,
       email: json['email'] as String,
       mobileNumber: json['mobile_no'] as String,
@@ -22,12 +21,11 @@ _$_MyAppointmentModel _$$_MyAppointmentModelFromJson(
       profileUrl: json['profileurl'] as String,
       busunitName: json['busunit_name'] as String,
       appointmentDateTime: DateTime.parse(json['Appmnt_Dttm'] as String),
-      idDoctor: json['id_employee'] as int,
+      idDoctor: (json['id_employee'] as num).toInt(),
       isCanceling: json['isCanceling'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$_MyAppointmentModelToJson(
-        _$_MyAppointmentModel instance) =>
+Map<String, dynamic> _$MyAppointmentModelToJson(_MyAppointmentModel instance) =>
     <String, dynamic>{
       'Id': instance.id,
       'id_customer': instance.memberId,

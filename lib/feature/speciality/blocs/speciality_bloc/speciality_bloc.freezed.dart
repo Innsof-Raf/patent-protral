@@ -1,7 +1,7 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'speciality_bloc.dart';
 
@@ -9,468 +9,553 @@ part of 'speciality_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
 /// @nodoc
-mixin _$SpecialityEvent {
-  String get token => throw _privateConstructorUsedError;
-  int get idBusUnit => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String token, int idBusUnit) fetchSpecialities,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String token, int idBusUnit)? fetchSpecialities,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String token, int idBusUnit)? fetchSpecialities,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FetchSpecialities value) fetchSpecialities,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(FetchSpecialities value)? fetchSpecialities,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchSpecialities value)? fetchSpecialities,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+mixin _$SpecialityEvent implements DiagnosticableTreeMixin {
 
-  @JsonKey(ignore: true)
-  $SpecialityEventCopyWith<SpecialityEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+ String get token; int get idBusUnit;
+/// Create a copy of SpecialityEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SpecialityEventCopyWith<SpecialityEvent> get copyWith => _$SpecialityEventCopyWithImpl<SpecialityEvent>(this as SpecialityEvent, _$identity);
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SpecialityEvent'))
+    ..add(DiagnosticsProperty('token', token))..add(DiagnosticsProperty('idBusUnit', idBusUnit));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SpecialityEvent&&(identical(other.token, token) || other.token == token)&&(identical(other.idBusUnit, idBusUnit) || other.idBusUnit == idBusUnit));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,token,idBusUnit);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'SpecialityEvent(token: $token, idBusUnit: $idBusUnit)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SpecialityEventCopyWith<$Res> {
-  factory $SpecialityEventCopyWith(
-          SpecialityEvent value, $Res Function(SpecialityEvent) then) =
-      _$SpecialityEventCopyWithImpl<$Res>;
-  $Res call({String token, int idBusUnit});
-}
+abstract mixin class $SpecialityEventCopyWith<$Res>  {
+  factory $SpecialityEventCopyWith(SpecialityEvent value, $Res Function(SpecialityEvent) _then) = _$SpecialityEventCopyWithImpl;
+@useResult
+$Res call({
+ String token, int idBusUnit
+});
 
+
+
+
+}
 /// @nodoc
 class _$SpecialityEventCopyWithImpl<$Res>
     implements $SpecialityEventCopyWith<$Res> {
-  _$SpecialityEventCopyWithImpl(this._value, this._then);
+  _$SpecialityEventCopyWithImpl(this._self, this._then);
 
-  final SpecialityEvent _value;
-  // ignore: unused_field
+  final SpecialityEvent _self;
   final $Res Function(SpecialityEvent) _then;
 
-  @override
-  $Res call({
-    Object? token = freezed,
-    Object? idBusUnit = freezed,
-  }) {
-    return _then(_value.copyWith(
-      token: token == freezed
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
-      idBusUnit: idBusUnit == freezed
-          ? _value.idBusUnit
-          : idBusUnit // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
+/// Create a copy of SpecialityEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? token = null,Object? idBusUnit = null,}) {
+  return _then(_self.copyWith(
+token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,idBusUnit: null == idBusUnit ? _self.idBusUnit : idBusUnit // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [SpecialityEvent].
+extension SpecialityEventPatterns on SpecialityEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( FetchSpecialities value)?  fetchSpecialities,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case FetchSpecialities() when fetchSpecialities != null:
+return fetchSpecialities(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( FetchSpecialities value)  fetchSpecialities,}){
+final _that = this;
+switch (_that) {
+case FetchSpecialities():
+return fetchSpecialities(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( FetchSpecialities value)?  fetchSpecialities,}){
+final _that = this;
+switch (_that) {
+case FetchSpecialities() when fetchSpecialities != null:
+return fetchSpecialities(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String token,  int idBusUnit)?  fetchSpecialities,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case FetchSpecialities() when fetchSpecialities != null:
+return fetchSpecialities(_that.token,_that.idBusUnit);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String token,  int idBusUnit)  fetchSpecialities,}) {final _that = this;
+switch (_that) {
+case FetchSpecialities():
+return fetchSpecialities(_that.token,_that.idBusUnit);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String token,  int idBusUnit)?  fetchSpecialities,}) {final _that = this;
+switch (_that) {
+case FetchSpecialities() when fetchSpecialities != null:
+return fetchSpecialities(_that.token,_that.idBusUnit);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$FetchSpecialitiesCopyWith<$Res>
-    implements $SpecialityEventCopyWith<$Res> {
-  factory _$$FetchSpecialitiesCopyWith(
-          _$FetchSpecialities value, $Res Function(_$FetchSpecialities) then) =
-      __$$FetchSpecialitiesCopyWithImpl<$Res>;
-  @override
-  $Res call({String token, int idBusUnit});
+
+
+class FetchSpecialities with DiagnosticableTreeMixin implements SpecialityEvent {
+  const FetchSpecialities({required this.token, required this.idBusUnit});
+  
+
+@override final  String token;
+@override final  int idBusUnit;
+
+/// Create a copy of SpecialityEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$FetchSpecialitiesCopyWith<FetchSpecialities> get copyWith => _$FetchSpecialitiesCopyWithImpl<FetchSpecialities>(this, _$identity);
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SpecialityEvent.fetchSpecialities'))
+    ..add(DiagnosticsProperty('token', token))..add(DiagnosticsProperty('idBusUnit', idBusUnit));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FetchSpecialities&&(identical(other.token, token) || other.token == token)&&(identical(other.idBusUnit, idBusUnit) || other.idBusUnit == idBusUnit));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,token,idBusUnit);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'SpecialityEvent.fetchSpecialities(token: $token, idBusUnit: $idBusUnit)';
+}
+
+
 }
 
 /// @nodoc
-class __$$FetchSpecialitiesCopyWithImpl<$Res>
-    extends _$SpecialityEventCopyWithImpl<$Res>
-    implements _$$FetchSpecialitiesCopyWith<$Res> {
-  __$$FetchSpecialitiesCopyWithImpl(
-      _$FetchSpecialities _value, $Res Function(_$FetchSpecialities) _then)
-      : super(_value, (v) => _then(v as _$FetchSpecialities));
+abstract mixin class $FetchSpecialitiesCopyWith<$Res> implements $SpecialityEventCopyWith<$Res> {
+  factory $FetchSpecialitiesCopyWith(FetchSpecialities value, $Res Function(FetchSpecialities) _then) = _$FetchSpecialitiesCopyWithImpl;
+@override @useResult
+$Res call({
+ String token, int idBusUnit
+});
 
-  @override
-  _$FetchSpecialities get _value => super._value as _$FetchSpecialities;
 
-  @override
-  $Res call({
-    Object? token = freezed,
-    Object? idBusUnit = freezed,
-  }) {
-    return _then(_$FetchSpecialities(
-      token: token == freezed
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
-      idBusUnit: idBusUnit == freezed
-          ? _value.idBusUnit
-          : idBusUnit // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
+
+
+}
+/// @nodoc
+class _$FetchSpecialitiesCopyWithImpl<$Res>
+    implements $FetchSpecialitiesCopyWith<$Res> {
+  _$FetchSpecialitiesCopyWithImpl(this._self, this._then);
+
+  final FetchSpecialities _self;
+  final $Res Function(FetchSpecialities) _then;
+
+/// Create a copy of SpecialityEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? token = null,Object? idBusUnit = null,}) {
+  return _then(FetchSpecialities(
+token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,idBusUnit: null == idBusUnit ? _self.idBusUnit : idBusUnit // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
 }
 
 /// @nodoc
+mixin _$SpecialityState implements DiagnosticableTreeMixin {
 
-class _$FetchSpecialities
-    with DiagnosticableTreeMixin
-    implements FetchSpecialities {
-  const _$FetchSpecialities({required this.token, required this.idBusUnit});
+ bool get isFetching; bool get isFetchingSuccess; bool get isFetchingError; ErrorModel get error; List<SpecialityModel> get specialities;
+/// Create a copy of SpecialityState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SpecialityStateCopyWith<SpecialityState> get copyWith => _$SpecialityStateCopyWithImpl<SpecialityState>(this as SpecialityState, _$identity);
 
-  @override
-  final String token;
-  @override
-  final int idBusUnit;
 
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SpecialityEvent.fetchSpecialities(token: $token, idBusUnit: $idBusUnit)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'SpecialityEvent.fetchSpecialities'))
-      ..add(DiagnosticsProperty('token', token))
-      ..add(DiagnosticsProperty('idBusUnit', idBusUnit));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FetchSpecialities &&
-            const DeepCollectionEquality().equals(other.token, token) &&
-            const DeepCollectionEquality().equals(other.idBusUnit, idBusUnit));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(token),
-      const DeepCollectionEquality().hash(idBusUnit));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$FetchSpecialitiesCopyWith<_$FetchSpecialities> get copyWith =>
-      __$$FetchSpecialitiesCopyWithImpl<_$FetchSpecialities>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String token, int idBusUnit) fetchSpecialities,
-  }) {
-    return fetchSpecialities(token, idBusUnit);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String token, int idBusUnit)? fetchSpecialities,
-  }) {
-    return fetchSpecialities?.call(token, idBusUnit);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String token, int idBusUnit)? fetchSpecialities,
-    required TResult orElse(),
-  }) {
-    if (fetchSpecialities != null) {
-      return fetchSpecialities(token, idBusUnit);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FetchSpecialities value) fetchSpecialities,
-  }) {
-    return fetchSpecialities(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(FetchSpecialities value)? fetchSpecialities,
-  }) {
-    return fetchSpecialities?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchSpecialities value)? fetchSpecialities,
-    required TResult orElse(),
-  }) {
-    if (fetchSpecialities != null) {
-      return fetchSpecialities(this);
-    }
-    return orElse();
-  }
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SpecialityState'))
+    ..add(DiagnosticsProperty('isFetching', isFetching))..add(DiagnosticsProperty('isFetchingSuccess', isFetchingSuccess))..add(DiagnosticsProperty('isFetchingError', isFetchingError))..add(DiagnosticsProperty('error', error))..add(DiagnosticsProperty('specialities', specialities));
 }
 
-abstract class FetchSpecialities implements SpecialityEvent {
-  const factory FetchSpecialities(
-      {required final String token,
-      required final int idBusUnit}) = _$FetchSpecialities;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SpecialityState&&(identical(other.isFetching, isFetching) || other.isFetching == isFetching)&&(identical(other.isFetchingSuccess, isFetchingSuccess) || other.isFetchingSuccess == isFetchingSuccess)&&(identical(other.isFetchingError, isFetchingError) || other.isFetchingError == isFetchingError)&&(identical(other.error, error) || other.error == error)&&const DeepCollectionEquality().equals(other.specialities, specialities));
+}
 
-  @override
-  String get token;
-  @override
-  int get idBusUnit;
-  @override
-  @JsonKey(ignore: true)
-  _$$FetchSpecialitiesCopyWith<_$FetchSpecialities> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+int get hashCode => Object.hash(runtimeType,isFetching,isFetchingSuccess,isFetchingError,error,const DeepCollectionEquality().hash(specialities));
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'SpecialityState(isFetching: $isFetching, isFetchingSuccess: $isFetchingSuccess, isFetchingError: $isFetchingError, error: $error, specialities: $specialities)';
+}
+
+
 }
 
 /// @nodoc
-mixin _$SpecialityState {
-  bool get isFetching => throw _privateConstructorUsedError;
-  bool get isFetchingSuccess => throw _privateConstructorUsedError;
-  bool get isFetchingError => throw _privateConstructorUsedError;
-  ErrorModel get error => throw _privateConstructorUsedError;
-  List<SpecialityModel> get specialities => throw _privateConstructorUsedError;
+abstract mixin class $SpecialityStateCopyWith<$Res>  {
+  factory $SpecialityStateCopyWith(SpecialityState value, $Res Function(SpecialityState) _then) = _$SpecialityStateCopyWithImpl;
+@useResult
+$Res call({
+ bool isFetching, bool isFetchingSuccess, bool isFetchingError, ErrorModel error, List<SpecialityModel> specialities
+});
 
-  @JsonKey(ignore: true)
-  $SpecialityStateCopyWith<SpecialityState> get copyWith =>
-      throw _privateConstructorUsedError;
+
+
+
 }
-
-/// @nodoc
-abstract class $SpecialityStateCopyWith<$Res> {
-  factory $SpecialityStateCopyWith(
-          SpecialityState value, $Res Function(SpecialityState) then) =
-      _$SpecialityStateCopyWithImpl<$Res>;
-  $Res call(
-      {bool isFetching,
-      bool isFetchingSuccess,
-      bool isFetchingError,
-      ErrorModel error,
-      List<SpecialityModel> specialities});
-}
-
 /// @nodoc
 class _$SpecialityStateCopyWithImpl<$Res>
     implements $SpecialityStateCopyWith<$Res> {
-  _$SpecialityStateCopyWithImpl(this._value, this._then);
+  _$SpecialityStateCopyWithImpl(this._self, this._then);
 
-  final SpecialityState _value;
-  // ignore: unused_field
+  final SpecialityState _self;
   final $Res Function(SpecialityState) _then;
 
-  @override
-  $Res call({
-    Object? isFetching = freezed,
-    Object? isFetchingSuccess = freezed,
-    Object? isFetchingError = freezed,
-    Object? error = freezed,
-    Object? specialities = freezed,
-  }) {
-    return _then(_value.copyWith(
-      isFetching: isFetching == freezed
-          ? _value.isFetching
-          : isFetching // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFetchingSuccess: isFetchingSuccess == freezed
-          ? _value.isFetchingSuccess
-          : isFetchingSuccess // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFetchingError: isFetchingError == freezed
-          ? _value.isFetchingError
-          : isFetchingError // ignore: cast_nullable_to_non_nullable
-              as bool,
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as ErrorModel,
-      specialities: specialities == freezed
-          ? _value.specialities
-          : specialities // ignore: cast_nullable_to_non_nullable
-              as List<SpecialityModel>,
-    ));
-  }
+/// Create a copy of SpecialityState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? isFetching = null,Object? isFetchingSuccess = null,Object? isFetchingError = null,Object? error = null,Object? specialities = null,}) {
+  return _then(_self.copyWith(
+isFetching: null == isFetching ? _self.isFetching : isFetching // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingSuccess: null == isFetchingSuccess ? _self.isFetchingSuccess : isFetchingSuccess // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingError: null == isFetchingError ? _self.isFetchingError : isFetchingError // ignore: cast_nullable_to_non_nullable
+as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as ErrorModel,specialities: null == specialities ? _self.specialities : specialities // ignore: cast_nullable_to_non_nullable
+as List<SpecialityModel>,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [SpecialityState].
+extension SpecialityStatePatterns on SpecialityState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SpecialityState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SpecialityState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SpecialityState value)  $default,){
+final _that = this;
+switch (_that) {
+case _SpecialityState():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SpecialityState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SpecialityState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isFetching,  bool isFetchingSuccess,  bool isFetchingError,  ErrorModel error,  List<SpecialityModel> specialities)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SpecialityState() when $default != null:
+return $default(_that.isFetching,_that.isFetchingSuccess,_that.isFetchingError,_that.error,_that.specialities);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isFetching,  bool isFetchingSuccess,  bool isFetchingError,  ErrorModel error,  List<SpecialityModel> specialities)  $default,) {final _that = this;
+switch (_that) {
+case _SpecialityState():
+return $default(_that.isFetching,_that.isFetchingSuccess,_that.isFetchingError,_that.error,_that.specialities);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isFetching,  bool isFetchingSuccess,  bool isFetchingError,  ErrorModel error,  List<SpecialityModel> specialities)?  $default,) {final _that = this;
+switch (_that) {
+case _SpecialityState() when $default != null:
+return $default(_that.isFetching,_that.isFetchingSuccess,_that.isFetchingError,_that.error,_that.specialities);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$_SpecialityStateCopyWith<$Res>
-    implements $SpecialityStateCopyWith<$Res> {
-  factory _$$_SpecialityStateCopyWith(
-          _$_SpecialityState value, $Res Function(_$_SpecialityState) then) =
-      __$$_SpecialityStateCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {bool isFetching,
-      bool isFetchingSuccess,
-      bool isFetchingError,
-      ErrorModel error,
-      List<SpecialityModel> specialities});
+
+
+class _SpecialityState with DiagnosticableTreeMixin implements SpecialityState {
+  const _SpecialityState({required this.isFetching, required this.isFetchingSuccess, required this.isFetchingError, required this.error, required final  List<SpecialityModel> specialities}): _specialities = specialities;
+  
+
+@override final  bool isFetching;
+@override final  bool isFetchingSuccess;
+@override final  bool isFetchingError;
+@override final  ErrorModel error;
+ final  List<SpecialityModel> _specialities;
+@override List<SpecialityModel> get specialities {
+  if (_specialities is EqualUnmodifiableListView) return _specialities;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_specialities);
+}
+
+
+/// Create a copy of SpecialityState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SpecialityStateCopyWith<_SpecialityState> get copyWith => __$SpecialityStateCopyWithImpl<_SpecialityState>(this, _$identity);
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SpecialityState'))
+    ..add(DiagnosticsProperty('isFetching', isFetching))..add(DiagnosticsProperty('isFetchingSuccess', isFetchingSuccess))..add(DiagnosticsProperty('isFetchingError', isFetchingError))..add(DiagnosticsProperty('error', error))..add(DiagnosticsProperty('specialities', specialities));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SpecialityState&&(identical(other.isFetching, isFetching) || other.isFetching == isFetching)&&(identical(other.isFetchingSuccess, isFetchingSuccess) || other.isFetchingSuccess == isFetchingSuccess)&&(identical(other.isFetchingError, isFetchingError) || other.isFetchingError == isFetchingError)&&(identical(other.error, error) || other.error == error)&&const DeepCollectionEquality().equals(other._specialities, _specialities));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isFetching,isFetchingSuccess,isFetchingError,error,const DeepCollectionEquality().hash(_specialities));
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'SpecialityState(isFetching: $isFetching, isFetchingSuccess: $isFetchingSuccess, isFetchingError: $isFetchingError, error: $error, specialities: $specialities)';
+}
+
+
 }
 
 /// @nodoc
-class __$$_SpecialityStateCopyWithImpl<$Res>
-    extends _$SpecialityStateCopyWithImpl<$Res>
-    implements _$$_SpecialityStateCopyWith<$Res> {
-  __$$_SpecialityStateCopyWithImpl(
-      _$_SpecialityState _value, $Res Function(_$_SpecialityState) _then)
-      : super(_value, (v) => _then(v as _$_SpecialityState));
+abstract mixin class _$SpecialityStateCopyWith<$Res> implements $SpecialityStateCopyWith<$Res> {
+  factory _$SpecialityStateCopyWith(_SpecialityState value, $Res Function(_SpecialityState) _then) = __$SpecialityStateCopyWithImpl;
+@override @useResult
+$Res call({
+ bool isFetching, bool isFetchingSuccess, bool isFetchingError, ErrorModel error, List<SpecialityModel> specialities
+});
 
-  @override
-  _$_SpecialityState get _value => super._value as _$_SpecialityState;
 
-  @override
-  $Res call({
-    Object? isFetching = freezed,
-    Object? isFetchingSuccess = freezed,
-    Object? isFetchingError = freezed,
-    Object? error = freezed,
-    Object? specialities = freezed,
-  }) {
-    return _then(_$_SpecialityState(
-      isFetching: isFetching == freezed
-          ? _value.isFetching
-          : isFetching // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFetchingSuccess: isFetchingSuccess == freezed
-          ? _value.isFetchingSuccess
-          : isFetchingSuccess // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFetchingError: isFetchingError == freezed
-          ? _value.isFetchingError
-          : isFetchingError // ignore: cast_nullable_to_non_nullable
-              as bool,
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as ErrorModel,
-      specialities: specialities == freezed
-          ? _value._specialities
-          : specialities // ignore: cast_nullable_to_non_nullable
-              as List<SpecialityModel>,
-    ));
-  }
+
+
 }
-
 /// @nodoc
+class __$SpecialityStateCopyWithImpl<$Res>
+    implements _$SpecialityStateCopyWith<$Res> {
+  __$SpecialityStateCopyWithImpl(this._self, this._then);
 
-class _$_SpecialityState
-    with DiagnosticableTreeMixin
-    implements _SpecialityState {
-  const _$_SpecialityState(
-      {required this.isFetching,
-      required this.isFetchingSuccess,
-      required this.isFetchingError,
-      required this.error,
-      required final List<SpecialityModel> specialities})
-      : _specialities = specialities;
+  final _SpecialityState _self;
+  final $Res Function(_SpecialityState) _then;
 
-  @override
-  final bool isFetching;
-  @override
-  final bool isFetchingSuccess;
-  @override
-  final bool isFetchingError;
-  @override
-  final ErrorModel error;
-  final List<SpecialityModel> _specialities;
-  @override
-  List<SpecialityModel> get specialities {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_specialities);
-  }
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SpecialityState(isFetching: $isFetching, isFetchingSuccess: $isFetchingSuccess, isFetchingError: $isFetchingError, error: $error, specialities: $specialities)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'SpecialityState'))
-      ..add(DiagnosticsProperty('isFetching', isFetching))
-      ..add(DiagnosticsProperty('isFetchingSuccess', isFetchingSuccess))
-      ..add(DiagnosticsProperty('isFetchingError', isFetchingError))
-      ..add(DiagnosticsProperty('error', error))
-      ..add(DiagnosticsProperty('specialities', specialities));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SpecialityState &&
-            const DeepCollectionEquality()
-                .equals(other.isFetching, isFetching) &&
-            const DeepCollectionEquality()
-                .equals(other.isFetchingSuccess, isFetchingSuccess) &&
-            const DeepCollectionEquality()
-                .equals(other.isFetchingError, isFetchingError) &&
-            const DeepCollectionEquality().equals(other.error, error) &&
-            const DeepCollectionEquality()
-                .equals(other._specialities, _specialities));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(isFetching),
-      const DeepCollectionEquality().hash(isFetchingSuccess),
-      const DeepCollectionEquality().hash(isFetchingError),
-      const DeepCollectionEquality().hash(error),
-      const DeepCollectionEquality().hash(_specialities));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_SpecialityStateCopyWith<_$_SpecialityState> get copyWith =>
-      __$$_SpecialityStateCopyWithImpl<_$_SpecialityState>(this, _$identity);
+/// Create a copy of SpecialityState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? isFetching = null,Object? isFetchingSuccess = null,Object? isFetchingError = null,Object? error = null,Object? specialities = null,}) {
+  return _then(_SpecialityState(
+isFetching: null == isFetching ? _self.isFetching : isFetching // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingSuccess: null == isFetchingSuccess ? _self.isFetchingSuccess : isFetchingSuccess // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingError: null == isFetchingError ? _self.isFetchingError : isFetchingError // ignore: cast_nullable_to_non_nullable
+as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as ErrorModel,specialities: null == specialities ? _self._specialities : specialities // ignore: cast_nullable_to_non_nullable
+as List<SpecialityModel>,
+  ));
 }
 
-abstract class _SpecialityState implements SpecialityState {
-  const factory _SpecialityState(
-      {required final bool isFetching,
-      required final bool isFetchingSuccess,
-      required final bool isFetchingError,
-      required final ErrorModel error,
-      required final List<SpecialityModel> specialities}) = _$_SpecialityState;
 
-  @override
-  bool get isFetching;
-  @override
-  bool get isFetchingSuccess;
-  @override
-  bool get isFetchingError;
-  @override
-  ErrorModel get error;
-  @override
-  List<SpecialityModel> get specialities;
-  @override
-  @JsonKey(ignore: true)
-  _$$_SpecialityStateCopyWith<_$_SpecialityState> get copyWith =>
-      throw _privateConstructorUsedError;
 }
+
+// dart format on

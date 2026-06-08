@@ -1,7 +1,7 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'insurance_bloc.dart';
 
@@ -9,425 +9,526 @@ part of 'insurance_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
 /// @nodoc
 mixin _$InsuranceEvent {
-  String get token => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String token) featchInsurance,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String token)? featchInsurance,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String token)? featchInsurance,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FeatchInsurance value) featchInsurance,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(FeatchInsurance value)? featchInsurance,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FeatchInsurance value)? featchInsurance,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $InsuranceEventCopyWith<InsuranceEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+ String get token;
+/// Create a copy of InsuranceEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$InsuranceEventCopyWith<InsuranceEvent> get copyWith => _$InsuranceEventCopyWithImpl<InsuranceEvent>(this as InsuranceEvent, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InsuranceEvent&&(identical(other.token, token) || other.token == token));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,token);
+
+@override
+String toString() {
+  return 'InsuranceEvent(token: $token)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $InsuranceEventCopyWith<$Res> {
-  factory $InsuranceEventCopyWith(
-          InsuranceEvent value, $Res Function(InsuranceEvent) then) =
-      _$InsuranceEventCopyWithImpl<$Res>;
-  $Res call({String token});
-}
+abstract mixin class $InsuranceEventCopyWith<$Res>  {
+  factory $InsuranceEventCopyWith(InsuranceEvent value, $Res Function(InsuranceEvent) _then) = _$InsuranceEventCopyWithImpl;
+@useResult
+$Res call({
+ String token
+});
 
+
+
+
+}
 /// @nodoc
 class _$InsuranceEventCopyWithImpl<$Res>
     implements $InsuranceEventCopyWith<$Res> {
-  _$InsuranceEventCopyWithImpl(this._value, this._then);
+  _$InsuranceEventCopyWithImpl(this._self, this._then);
 
-  final InsuranceEvent _value;
-  // ignore: unused_field
+  final InsuranceEvent _self;
   final $Res Function(InsuranceEvent) _then;
 
-  @override
-  $Res call({
-    Object? token = freezed,
-  }) {
-    return _then(_value.copyWith(
-      token: token == freezed
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Create a copy of InsuranceEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? token = null,}) {
+  return _then(_self.copyWith(
+token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [InsuranceEvent].
+extension InsuranceEventPatterns on InsuranceEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( FeatchInsurance value)?  featchInsurance,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case FeatchInsurance() when featchInsurance != null:
+return featchInsurance(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( FeatchInsurance value)  featchInsurance,}){
+final _that = this;
+switch (_that) {
+case FeatchInsurance():
+return featchInsurance(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( FeatchInsurance value)?  featchInsurance,}){
+final _that = this;
+switch (_that) {
+case FeatchInsurance() when featchInsurance != null:
+return featchInsurance(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String token)?  featchInsurance,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case FeatchInsurance() when featchInsurance != null:
+return featchInsurance(_that.token);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String token)  featchInsurance,}) {final _that = this;
+switch (_that) {
+case FeatchInsurance():
+return featchInsurance(_that.token);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String token)?  featchInsurance,}) {final _that = this;
+switch (_that) {
+case FeatchInsurance() when featchInsurance != null:
+return featchInsurance(_that.token);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$FeatchInsuranceCopyWith<$Res>
-    implements $InsuranceEventCopyWith<$Res> {
-  factory _$$FeatchInsuranceCopyWith(
-          _$FeatchInsurance value, $Res Function(_$FeatchInsurance) then) =
-      __$$FeatchInsuranceCopyWithImpl<$Res>;
-  @override
-  $Res call({String token});
+
+
+class FeatchInsurance implements InsuranceEvent {
+  const FeatchInsurance({required this.token});
+  
+
+@override final  String token;
+
+/// Create a copy of InsuranceEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$FeatchInsuranceCopyWith<FeatchInsurance> get copyWith => _$FeatchInsuranceCopyWithImpl<FeatchInsurance>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FeatchInsurance&&(identical(other.token, token) || other.token == token));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,token);
+
+@override
+String toString() {
+  return 'InsuranceEvent.featchInsurance(token: $token)';
+}
+
+
 }
 
 /// @nodoc
-class __$$FeatchInsuranceCopyWithImpl<$Res>
-    extends _$InsuranceEventCopyWithImpl<$Res>
-    implements _$$FeatchInsuranceCopyWith<$Res> {
-  __$$FeatchInsuranceCopyWithImpl(
-      _$FeatchInsurance _value, $Res Function(_$FeatchInsurance) _then)
-      : super(_value, (v) => _then(v as _$FeatchInsurance));
+abstract mixin class $FeatchInsuranceCopyWith<$Res> implements $InsuranceEventCopyWith<$Res> {
+  factory $FeatchInsuranceCopyWith(FeatchInsurance value, $Res Function(FeatchInsurance) _then) = _$FeatchInsuranceCopyWithImpl;
+@override @useResult
+$Res call({
+ String token
+});
 
-  @override
-  _$FeatchInsurance get _value => super._value as _$FeatchInsurance;
 
-  @override
-  $Res call({
-    Object? token = freezed,
-  }) {
-    return _then(_$FeatchInsurance(
-      token: token == freezed
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+
+
 }
-
 /// @nodoc
+class _$FeatchInsuranceCopyWithImpl<$Res>
+    implements $FeatchInsuranceCopyWith<$Res> {
+  _$FeatchInsuranceCopyWithImpl(this._self, this._then);
 
-class _$FeatchInsurance implements FeatchInsurance {
-  const _$FeatchInsurance({required this.token});
+  final FeatchInsurance _self;
+  final $Res Function(FeatchInsurance) _then;
 
-  @override
-  final String token;
-
-  @override
-  String toString() {
-    return 'InsuranceEvent.featchInsurance(token: $token)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FeatchInsurance &&
-            const DeepCollectionEquality().equals(other.token, token));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(token));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$FeatchInsuranceCopyWith<_$FeatchInsurance> get copyWith =>
-      __$$FeatchInsuranceCopyWithImpl<_$FeatchInsurance>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String token) featchInsurance,
-  }) {
-    return featchInsurance(token);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String token)? featchInsurance,
-  }) {
-    return featchInsurance?.call(token);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String token)? featchInsurance,
-    required TResult orElse(),
-  }) {
-    if (featchInsurance != null) {
-      return featchInsurance(token);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FeatchInsurance value) featchInsurance,
-  }) {
-    return featchInsurance(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(FeatchInsurance value)? featchInsurance,
-  }) {
-    return featchInsurance?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FeatchInsurance value)? featchInsurance,
-    required TResult orElse(),
-  }) {
-    if (featchInsurance != null) {
-      return featchInsurance(this);
-    }
-    return orElse();
-  }
+/// Create a copy of InsuranceEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? token = null,}) {
+  return _then(FeatchInsurance(
+token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-abstract class FeatchInsurance implements InsuranceEvent {
-  const factory FeatchInsurance({required final String token}) =
-      _$FeatchInsurance;
 
-  @override
-  String get token;
-  @override
-  @JsonKey(ignore: true)
-  _$$FeatchInsuranceCopyWith<_$FeatchInsurance> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$InsuranceState {
-  bool get isFetchingInsurances => throw _privateConstructorUsedError;
-  bool get isInsuranceFecthingFailed => throw _privateConstructorUsedError;
-  bool get isInsuranceFechingSuccess => throw _privateConstructorUsedError;
-  List<InsuranceModel> get insurances => throw _privateConstructorUsedError;
-  ErrorModel get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $InsuranceStateCopyWith<InsuranceState> get copyWith =>
-      throw _privateConstructorUsedError;
+ bool get isFetchingInsurances; bool get isInsuranceFecthingFailed; bool get isInsuranceFechingSuccess; List<InsuranceModel> get insurances; ErrorModel get error;
+/// Create a copy of InsuranceState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$InsuranceStateCopyWith<InsuranceState> get copyWith => _$InsuranceStateCopyWithImpl<InsuranceState>(this as InsuranceState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InsuranceState&&(identical(other.isFetchingInsurances, isFetchingInsurances) || other.isFetchingInsurances == isFetchingInsurances)&&(identical(other.isInsuranceFecthingFailed, isInsuranceFecthingFailed) || other.isInsuranceFecthingFailed == isInsuranceFecthingFailed)&&(identical(other.isInsuranceFechingSuccess, isInsuranceFechingSuccess) || other.isInsuranceFechingSuccess == isInsuranceFechingSuccess)&&const DeepCollectionEquality().equals(other.insurances, insurances)&&(identical(other.error, error) || other.error == error));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isFetchingInsurances,isInsuranceFecthingFailed,isInsuranceFechingSuccess,const DeepCollectionEquality().hash(insurances),error);
+
+@override
+String toString() {
+  return 'InsuranceState(isFetchingInsurances: $isFetchingInsurances, isInsuranceFecthingFailed: $isInsuranceFecthingFailed, isInsuranceFechingSuccess: $isInsuranceFechingSuccess, insurances: $insurances, error: $error)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $InsuranceStateCopyWith<$Res> {
-  factory $InsuranceStateCopyWith(
-          InsuranceState value, $Res Function(InsuranceState) then) =
-      _$InsuranceStateCopyWithImpl<$Res>;
-  $Res call(
-      {bool isFetchingInsurances,
-      bool isInsuranceFecthingFailed,
-      bool isInsuranceFechingSuccess,
-      List<InsuranceModel> insurances,
-      ErrorModel error});
-}
+abstract mixin class $InsuranceStateCopyWith<$Res>  {
+  factory $InsuranceStateCopyWith(InsuranceState value, $Res Function(InsuranceState) _then) = _$InsuranceStateCopyWithImpl;
+@useResult
+$Res call({
+ bool isFetchingInsurances, bool isInsuranceFecthingFailed, bool isInsuranceFechingSuccess, List<InsuranceModel> insurances, ErrorModel error
+});
 
+
+
+
+}
 /// @nodoc
 class _$InsuranceStateCopyWithImpl<$Res>
     implements $InsuranceStateCopyWith<$Res> {
-  _$InsuranceStateCopyWithImpl(this._value, this._then);
+  _$InsuranceStateCopyWithImpl(this._self, this._then);
 
-  final InsuranceState _value;
-  // ignore: unused_field
+  final InsuranceState _self;
   final $Res Function(InsuranceState) _then;
 
-  @override
-  $Res call({
-    Object? isFetchingInsurances = freezed,
-    Object? isInsuranceFecthingFailed = freezed,
-    Object? isInsuranceFechingSuccess = freezed,
-    Object? insurances = freezed,
-    Object? error = freezed,
-  }) {
-    return _then(_value.copyWith(
-      isFetchingInsurances: isFetchingInsurances == freezed
-          ? _value.isFetchingInsurances
-          : isFetchingInsurances // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isInsuranceFecthingFailed: isInsuranceFecthingFailed == freezed
-          ? _value.isInsuranceFecthingFailed
-          : isInsuranceFecthingFailed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isInsuranceFechingSuccess: isInsuranceFechingSuccess == freezed
-          ? _value.isInsuranceFechingSuccess
-          : isInsuranceFechingSuccess // ignore: cast_nullable_to_non_nullable
-              as bool,
-      insurances: insurances == freezed
-          ? _value.insurances
-          : insurances // ignore: cast_nullable_to_non_nullable
-              as List<InsuranceModel>,
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as ErrorModel,
-    ));
-  }
+/// Create a copy of InsuranceState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? isFetchingInsurances = null,Object? isInsuranceFecthingFailed = null,Object? isInsuranceFechingSuccess = null,Object? insurances = null,Object? error = null,}) {
+  return _then(_self.copyWith(
+isFetchingInsurances: null == isFetchingInsurances ? _self.isFetchingInsurances : isFetchingInsurances // ignore: cast_nullable_to_non_nullable
+as bool,isInsuranceFecthingFailed: null == isInsuranceFecthingFailed ? _self.isInsuranceFecthingFailed : isInsuranceFecthingFailed // ignore: cast_nullable_to_non_nullable
+as bool,isInsuranceFechingSuccess: null == isInsuranceFechingSuccess ? _self.isInsuranceFechingSuccess : isInsuranceFechingSuccess // ignore: cast_nullable_to_non_nullable
+as bool,insurances: null == insurances ? _self.insurances : insurances // ignore: cast_nullable_to_non_nullable
+as List<InsuranceModel>,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as ErrorModel,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [InsuranceState].
+extension InsuranceStatePatterns on InsuranceState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _InsuranceState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _InsuranceState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _InsuranceState value)  $default,){
+final _that = this;
+switch (_that) {
+case _InsuranceState():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _InsuranceState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _InsuranceState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isFetchingInsurances,  bool isInsuranceFecthingFailed,  bool isInsuranceFechingSuccess,  List<InsuranceModel> insurances,  ErrorModel error)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _InsuranceState() when $default != null:
+return $default(_that.isFetchingInsurances,_that.isInsuranceFecthingFailed,_that.isInsuranceFechingSuccess,_that.insurances,_that.error);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isFetchingInsurances,  bool isInsuranceFecthingFailed,  bool isInsuranceFechingSuccess,  List<InsuranceModel> insurances,  ErrorModel error)  $default,) {final _that = this;
+switch (_that) {
+case _InsuranceState():
+return $default(_that.isFetchingInsurances,_that.isInsuranceFecthingFailed,_that.isInsuranceFechingSuccess,_that.insurances,_that.error);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isFetchingInsurances,  bool isInsuranceFecthingFailed,  bool isInsuranceFechingSuccess,  List<InsuranceModel> insurances,  ErrorModel error)?  $default,) {final _that = this;
+switch (_that) {
+case _InsuranceState() when $default != null:
+return $default(_that.isFetchingInsurances,_that.isInsuranceFecthingFailed,_that.isInsuranceFechingSuccess,_that.insurances,_that.error);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$_InsuranceStateCopyWith<$Res>
-    implements $InsuranceStateCopyWith<$Res> {
-  factory _$$_InsuranceStateCopyWith(
-          _$_InsuranceState value, $Res Function(_$_InsuranceState) then) =
-      __$$_InsuranceStateCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {bool isFetchingInsurances,
-      bool isInsuranceFecthingFailed,
-      bool isInsuranceFechingSuccess,
-      List<InsuranceModel> insurances,
-      ErrorModel error});
+
+
+class _InsuranceState implements InsuranceState {
+  const _InsuranceState({required this.isFetchingInsurances, required this.isInsuranceFecthingFailed, required this.isInsuranceFechingSuccess, required final  List<InsuranceModel> insurances, required this.error}): _insurances = insurances;
+  
+
+@override final  bool isFetchingInsurances;
+@override final  bool isInsuranceFecthingFailed;
+@override final  bool isInsuranceFechingSuccess;
+ final  List<InsuranceModel> _insurances;
+@override List<InsuranceModel> get insurances {
+  if (_insurances is EqualUnmodifiableListView) return _insurances;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_insurances);
+}
+
+@override final  ErrorModel error;
+
+/// Create a copy of InsuranceState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$InsuranceStateCopyWith<_InsuranceState> get copyWith => __$InsuranceStateCopyWithImpl<_InsuranceState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InsuranceState&&(identical(other.isFetchingInsurances, isFetchingInsurances) || other.isFetchingInsurances == isFetchingInsurances)&&(identical(other.isInsuranceFecthingFailed, isInsuranceFecthingFailed) || other.isInsuranceFecthingFailed == isInsuranceFecthingFailed)&&(identical(other.isInsuranceFechingSuccess, isInsuranceFechingSuccess) || other.isInsuranceFechingSuccess == isInsuranceFechingSuccess)&&const DeepCollectionEquality().equals(other._insurances, _insurances)&&(identical(other.error, error) || other.error == error));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isFetchingInsurances,isInsuranceFecthingFailed,isInsuranceFechingSuccess,const DeepCollectionEquality().hash(_insurances),error);
+
+@override
+String toString() {
+  return 'InsuranceState(isFetchingInsurances: $isFetchingInsurances, isInsuranceFecthingFailed: $isInsuranceFecthingFailed, isInsuranceFechingSuccess: $isInsuranceFechingSuccess, insurances: $insurances, error: $error)';
+}
+
+
 }
 
 /// @nodoc
-class __$$_InsuranceStateCopyWithImpl<$Res>
-    extends _$InsuranceStateCopyWithImpl<$Res>
-    implements _$$_InsuranceStateCopyWith<$Res> {
-  __$$_InsuranceStateCopyWithImpl(
-      _$_InsuranceState _value, $Res Function(_$_InsuranceState) _then)
-      : super(_value, (v) => _then(v as _$_InsuranceState));
+abstract mixin class _$InsuranceStateCopyWith<$Res> implements $InsuranceStateCopyWith<$Res> {
+  factory _$InsuranceStateCopyWith(_InsuranceState value, $Res Function(_InsuranceState) _then) = __$InsuranceStateCopyWithImpl;
+@override @useResult
+$Res call({
+ bool isFetchingInsurances, bool isInsuranceFecthingFailed, bool isInsuranceFechingSuccess, List<InsuranceModel> insurances, ErrorModel error
+});
 
-  @override
-  _$_InsuranceState get _value => super._value as _$_InsuranceState;
 
-  @override
-  $Res call({
-    Object? isFetchingInsurances = freezed,
-    Object? isInsuranceFecthingFailed = freezed,
-    Object? isInsuranceFechingSuccess = freezed,
-    Object? insurances = freezed,
-    Object? error = freezed,
-  }) {
-    return _then(_$_InsuranceState(
-      isFetchingInsurances: isFetchingInsurances == freezed
-          ? _value.isFetchingInsurances
-          : isFetchingInsurances // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isInsuranceFecthingFailed: isInsuranceFecthingFailed == freezed
-          ? _value.isInsuranceFecthingFailed
-          : isInsuranceFecthingFailed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isInsuranceFechingSuccess: isInsuranceFechingSuccess == freezed
-          ? _value.isInsuranceFechingSuccess
-          : isInsuranceFechingSuccess // ignore: cast_nullable_to_non_nullable
-              as bool,
-      insurances: insurances == freezed
-          ? _value._insurances
-          : insurances // ignore: cast_nullable_to_non_nullable
-              as List<InsuranceModel>,
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as ErrorModel,
-    ));
-  }
+
+
 }
-
 /// @nodoc
+class __$InsuranceStateCopyWithImpl<$Res>
+    implements _$InsuranceStateCopyWith<$Res> {
+  __$InsuranceStateCopyWithImpl(this._self, this._then);
 
-class _$_InsuranceState implements _InsuranceState {
-  const _$_InsuranceState(
-      {required this.isFetchingInsurances,
-      required this.isInsuranceFecthingFailed,
-      required this.isInsuranceFechingSuccess,
-      required final List<InsuranceModel> insurances,
-      required this.error})
-      : _insurances = insurances;
+  final _InsuranceState _self;
+  final $Res Function(_InsuranceState) _then;
 
-  @override
-  final bool isFetchingInsurances;
-  @override
-  final bool isInsuranceFecthingFailed;
-  @override
-  final bool isInsuranceFechingSuccess;
-  final List<InsuranceModel> _insurances;
-  @override
-  List<InsuranceModel> get insurances {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_insurances);
-  }
-
-  @override
-  final ErrorModel error;
-
-  @override
-  String toString() {
-    return 'InsuranceState(isFetchingInsurances: $isFetchingInsurances, isInsuranceFecthingFailed: $isInsuranceFecthingFailed, isInsuranceFechingSuccess: $isInsuranceFechingSuccess, insurances: $insurances, error: $error)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_InsuranceState &&
-            const DeepCollectionEquality()
-                .equals(other.isFetchingInsurances, isFetchingInsurances) &&
-            const DeepCollectionEquality().equals(
-                other.isInsuranceFecthingFailed, isInsuranceFecthingFailed) &&
-            const DeepCollectionEquality().equals(
-                other.isInsuranceFechingSuccess, isInsuranceFechingSuccess) &&
-            const DeepCollectionEquality()
-                .equals(other._insurances, _insurances) &&
-            const DeepCollectionEquality().equals(other.error, error));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(isFetchingInsurances),
-      const DeepCollectionEquality().hash(isInsuranceFecthingFailed),
-      const DeepCollectionEquality().hash(isInsuranceFechingSuccess),
-      const DeepCollectionEquality().hash(_insurances),
-      const DeepCollectionEquality().hash(error));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_InsuranceStateCopyWith<_$_InsuranceState> get copyWith =>
-      __$$_InsuranceStateCopyWithImpl<_$_InsuranceState>(this, _$identity);
+/// Create a copy of InsuranceState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? isFetchingInsurances = null,Object? isInsuranceFecthingFailed = null,Object? isInsuranceFechingSuccess = null,Object? insurances = null,Object? error = null,}) {
+  return _then(_InsuranceState(
+isFetchingInsurances: null == isFetchingInsurances ? _self.isFetchingInsurances : isFetchingInsurances // ignore: cast_nullable_to_non_nullable
+as bool,isInsuranceFecthingFailed: null == isInsuranceFecthingFailed ? _self.isInsuranceFecthingFailed : isInsuranceFecthingFailed // ignore: cast_nullable_to_non_nullable
+as bool,isInsuranceFechingSuccess: null == isInsuranceFechingSuccess ? _self.isInsuranceFechingSuccess : isInsuranceFechingSuccess // ignore: cast_nullable_to_non_nullable
+as bool,insurances: null == insurances ? _self._insurances : insurances // ignore: cast_nullable_to_non_nullable
+as List<InsuranceModel>,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as ErrorModel,
+  ));
 }
 
-abstract class _InsuranceState implements InsuranceState {
-  const factory _InsuranceState(
-      {required final bool isFetchingInsurances,
-      required final bool isInsuranceFecthingFailed,
-      required final bool isInsuranceFechingSuccess,
-      required final List<InsuranceModel> insurances,
-      required final ErrorModel error}) = _$_InsuranceState;
 
-  @override
-  bool get isFetchingInsurances;
-  @override
-  bool get isInsuranceFecthingFailed;
-  @override
-  bool get isInsuranceFechingSuccess;
-  @override
-  List<InsuranceModel> get insurances;
-  @override
-  ErrorModel get error;
-  @override
-  @JsonKey(ignore: true)
-  _$$_InsuranceStateCopyWith<_$_InsuranceState> get copyWith =>
-      throw _privateConstructorUsedError;
 }
+
+// dart format on

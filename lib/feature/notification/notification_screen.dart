@@ -4,18 +4,14 @@ import 'package:patient_portal/resources/common_widgets.dart/common_appbar.dart'
 import 'widgets/notification_widget.dart';
 
 class Notificationscreen extends StatelessWidget {
-  const Notificationscreen({Key? key}) : super(key: key);
+  const Notificationscreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CommonAppbar(
-        title: 'Notifications',
-      ),
+      appBar: const CommonAppbar(title: 'Notifications'),
       body: ListView.separated(
-        separatorBuilder: (context, index) => const SizedBox(
-          height: 10,
-        ),
+        separatorBuilder: (context, index) => const SizedBox(height: 10),
         padding: const EdgeInsets.symmetric(horizontal: 10),
         shrinkWrap: true,
         itemCount: 5,

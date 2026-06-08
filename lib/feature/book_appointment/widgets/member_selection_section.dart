@@ -6,14 +6,11 @@ import 'package:patient_portal/route/route_constants.dart';
 import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 import '../../../resources/common_helpers/insurance_helpers.dart';
-import '../../../resources/dimens.dart';
 import '../../profile/bloc/user_bloc.dart';
 import 'member__selection_tile.dart';
 
 class MemberSelectionSection extends StatelessWidget {
-  const MemberSelectionSection({
-    Key? key,
-  }) : super(key: key);
+  const MemberSelectionSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,25 +43,23 @@ class MemberSelectionSection extends StatelessWidget {
                 ),
               ),
               ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.vilot,
-                      padding: const EdgeInsets.all(10),
-                      shape: const CircleBorder(),
-                      minimumSize: const Size(0, 0)),
-                  onPressed: () {
-                    InsuranceHelpers.insuranceCheackBoxNotifier.value = false;
-                    Navigator.of(context)
-                        .pushNamed(RouteConstants.addMemberScreen);
-                  },
-                  child: const Icon(
-                    Icons.add,
-                    color: AppColors.white,
-                  ))
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.vilot,
+                  padding: const EdgeInsets.all(10),
+                  shape: const CircleBorder(),
+                  minimumSize: const Size(0, 0),
+                ),
+                onPressed: () {
+                  InsuranceHelpers.insuranceCheackBoxNotifier.value = false;
+                  Navigator.of(
+                    context,
+                  ).pushNamed(RouteConstants.addMemberScreen);
+                },
+                child: const Icon(Icons.add, color: AppColors.white),
+              ),
             ],
           ),
-          const SizedBox(
-            height: 15,
-          ),
+          const SizedBox(height: 15),
           BlocBuilder<UserBloc, UserState>(
             builder: (context, state) {
               return state.user!.members.isEmpty
@@ -73,22 +68,20 @@ class MemberSelectionSection extends StatelessWidget {
                       valueListenable:
                           BookAppointmentScreenHelpers.selectedMemberNotifier,
                       builder: (context, value, child) => ListView.separated(
-                            padding: const EdgeInsets.only(bottom: 68),
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(
-                              height: 10,
-                            ),
-                            itemBuilder: (context, index) =>
-                                MemberSelectionTile(
-                              isSelected: value == state.user!.members[index],
-                              member: state.user!.members[index],
-                            ),
-                            itemCount: state.user!.members.length,
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                          ));
+                        padding: const EdgeInsets.only(bottom: 68),
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(height: 10),
+                        itemBuilder: (context, index) => MemberSelectionTile(
+                          isSelected: value == state.user!.members[index],
+                          member: state.user!.members[index],
+                        ),
+                        itemCount: state.user!.members.length,
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                      ),
+                    );
             },
-          )
+          ),
         ],
       ),
     );

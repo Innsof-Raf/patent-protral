@@ -10,7 +10,6 @@ import '../../resources/app_text_styles.dart';
 import '../../resources/common_helpers/insurance_helpers.dart';
 import '../../resources/dimens.dart';
 import '../profile/bloc/user_bloc.dart';
-
 import 'blocs/member_serach_bloc/member_search_bloc.dart';
 
 class MembersScreen extends StatelessWidget {
@@ -25,97 +24,107 @@ class MembersScreen extends StatelessWidget {
       appBar: const CommonAppbar(title: 'Members'),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Dimens.constHeight,
-          const Text(
-            'Member list',
-            style: AppTextStyles.subHeaddingSemiBoldRoboto,
-          ),
-          BlocBuilder<UserBloc, UserState>(
-            builder: (context, state) {
-              return Text(
-                state.user!.members.isEmpty
-                    ? 'No members found add a member'
-                    : 'Found ${state.user!.members.length}  Members or add new member',
-                style: AppTextStyles.bodyTextInter,
-              );
-            },
-          ),
-          BlocBuilder<UserBloc, UserState>(
-            builder: (context, state) {
-              return state.user!.members.isEmpty
-                  ? const SizedBox()
-                  : Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Dimens.constHeight,
-                        Form(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Dimens.constHeight,
+            const Text(
+              'Member list',
+              style: AppTextStyles.subHeaddingSemiBoldRoboto,
+            ),
+            BlocBuilder<UserBloc, UserState>(
+              builder: (context, state) {
+                return Text(
+                  state.user!.members.isEmpty
+                      ? 'No members found add a member'
+                      : 'Found ${state.user!.members.length}  Members or add new member',
+                  style: AppTextStyles.bodyTextInter,
+                );
+              },
+            ),
+            BlocBuilder<UserBloc, UserState>(
+              builder: (context, state) {
+                return state.user!.members.isEmpty
+                    ? const SizedBox.shrink()
+                    : Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Dimens.constHeight,
+                          Form(
                             key: formKey,
                             child: TextFormField(
                               keyboardType: TextInputType.text,
                               onChanged: (value) {
                                 context.read<MemberSearchBloc>().add(
-                                    SearchMember(
-                                        members: state.user!.members,
-                                        searchKey: searchController.text
-                                            .toLowerCase()));
+                                  SearchMember(
+                                    members: state.user!.members,
+                                    searchKey: searchController.text
+                                        .toLowerCase(),
+                                  ),
+                                );
                               },
                               controller: searchController,
-                              style: AppTextStyles.largeRobotoNormal
-                                  .copyWith(color: AppColors.textBluishDark),
+                              style: AppTextStyles.largeRobotoNormal.copyWith(
+                                color: AppColors.textBluishDark,
+                              ),
                               decoration: const InputDecoration(
-                                  suffixIcon: Icon(
-                                    Icons.search,
-                                    color: AppColors.textDark,
-                                  ),
-                                  hintStyle: AppTextStyles.largeRobotoNormal,
-                                  hintText: 'Search Here',
-                                  contentPadding: EdgeInsets.all(15)),
-                            )),
-                      ],
-                    );
-            },
-          ),
-          Expanded(child: BlocBuilder<UserBloc, UserState>(
-            builder: (context, userState) {
-              return userState.user!.members.isEmpty
-                  ? const Center(
-                      child: Text(
-                        'No members found add new member',
-                        style: AppTextStyles.largeRobotoNormal,
-                      ),
-                    )
-                  : BlocBuilder<MemberSearchBloc, MemberSearchState>(
-                      builder: (context, searchState) {
-                        List<MemberModel> members = [];
-                        if (searchController.text.isNotEmpty) {
-                          members = searchState.searchResultMembers;
-                        } else {
-                          members = userState.user!.members;
-                        }
-                        return members.isEmpty
-                            ? const Center(
-                                child: Text(
-                                  'No Member found',
-                                  style: AppTextStyles.largeRobotoNormal,
+                                suffixIcon: Icon(
+                                  Icons.search,
+                                  color: AppColors.textDark,
                                 ),
-                              )
-                            : ListView.separated(
-                                padding:
-                                    const EdgeInsets.only(top: 15, bottom: 80),
-                                separatorBuilder: (context, index) =>
-                                    const SizedBox(
-                                      height: 10,
+                                hintStyle: AppTextStyles.largeRobotoNormal,
+                                hintText: 'Search Here',
+                                contentPadding: EdgeInsets.all(15),
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+              },
+            ),
+            Expanded(
+              child: BlocBuilder<UserBloc, UserState>(
+                builder: (context, userState) {
+                  return userState.user!.members.isEmpty
+                      ? const Center(
+                          child: Text(
+                            'No members found add new member',
+                            style: AppTextStyles.largeRobotoNormal,
+                          ),
+                        )
+                      : BlocBuilder<MemberSearchBloc, MemberSearchState>(
+                          builder: (context, searchState) {
+                            List<MemberModel> members = [];
+                            if (searchController.text.isNotEmpty) {
+                              members = searchState.searchResultMembers;
+                            } else {
+                              members = userState.user!.members;
+                            }
+                            return members.isEmpty
+                                ? const Center(
+                                    child: Text(
+                                      'No Member found',
+                                      style: AppTextStyles.largeRobotoNormal,
                                     ),
-                                itemCount: members.length,
-                                itemBuilder: (context, index) => MemberTile(
-                                      member: members[index],
-                                    ));
-                      },
-                    );
-            },
-          ))
-        ]),
+                                  )
+                                : ListView.separated(
+                                    padding: const EdgeInsets.only(
+                                      top: 15,
+                                      bottom: 80,
+                                    ),
+                                    separatorBuilder: (context, index) =>
+                                        const SizedBox(height: 10),
+                                    itemCount: members.length,
+                                    itemBuilder: (context, index) =>
+                                        MemberTile(member: members[index]),
+                                  );
+                          },
+                        );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.vilot,
@@ -123,10 +132,7 @@ class MembersScreen extends StatelessWidget {
           InsuranceHelpers.insuranceCheackBoxNotifier.value = false;
           Navigator.of(context).pushNamed(RouteConstants.addMemberScreen);
         },
-        child: const Icon(
-          Icons.add,
-          color: AppColors.white,
-        ),
+        child: const Icon(Icons.add, color: AppColors.white),
       ),
     );
   }

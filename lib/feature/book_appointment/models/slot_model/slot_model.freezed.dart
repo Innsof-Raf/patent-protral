@@ -1,7 +1,7 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'slot_model.dart';
 
@@ -9,217 +9,272 @@ part of 'slot_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-SlotModel _$SlotModelFromJson(Map<String, dynamic> json) {
-  return _SlotModel.fromJson(json);
-}
 
 /// @nodoc
 mixin _$SlotModel {
-  @JsonKey(name: "id")
-  String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: "label")
-  String get label => throw _privateConstructorUsedError;
-  @JsonKey(name: "appdttm")
-  DateTime get appdttm => throw _privateConstructorUsedError;
-  @JsonKey(name: "booked")
-  bool get isBooked => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $SlotModelCopyWith<SlotModel> get copyWith =>
-      throw _privateConstructorUsedError;
+@JsonKey(name: "id") String get id;@JsonKey(name: "label") String get label;@JsonKey(name: "appdttm") DateTime get appdttm;@JsonKey(name: "booked") bool get isBooked;
+/// Create a copy of SlotModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SlotModelCopyWith<SlotModel> get copyWith => _$SlotModelCopyWithImpl<SlotModel>(this as SlotModel, _$identity);
+
+  /// Serializes this SlotModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SlotModel&&(identical(other.id, id) || other.id == id)&&(identical(other.label, label) || other.label == label)&&(identical(other.appdttm, appdttm) || other.appdttm == appdttm)&&(identical(other.isBooked, isBooked) || other.isBooked == isBooked));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,label,appdttm,isBooked);
+
+@override
+String toString() {
+  return 'SlotModel(id: $id, label: $label, appdttm: $appdttm, isBooked: $isBooked)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SlotModelCopyWith<$Res> {
-  factory $SlotModelCopyWith(SlotModel value, $Res Function(SlotModel) then) =
-      _$SlotModelCopyWithImpl<$Res>;
-  $Res call(
-      {@JsonKey(name: "id") String id,
-      @JsonKey(name: "label") String label,
-      @JsonKey(name: "appdttm") DateTime appdttm,
-      @JsonKey(name: "booked") bool isBooked});
+abstract mixin class $SlotModelCopyWith<$Res>  {
+  factory $SlotModelCopyWith(SlotModel value, $Res Function(SlotModel) _then) = _$SlotModelCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: "id") String id,@JsonKey(name: "label") String label,@JsonKey(name: "appdttm") DateTime appdttm,@JsonKey(name: "booked") bool isBooked
+});
+
+
+
+
 }
-
 /// @nodoc
-class _$SlotModelCopyWithImpl<$Res> implements $SlotModelCopyWith<$Res> {
-  _$SlotModelCopyWithImpl(this._value, this._then);
+class _$SlotModelCopyWithImpl<$Res>
+    implements $SlotModelCopyWith<$Res> {
+  _$SlotModelCopyWithImpl(this._self, this._then);
 
-  final SlotModel _value;
-  // ignore: unused_field
+  final SlotModel _self;
   final $Res Function(SlotModel) _then;
 
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? label = freezed,
-    Object? appdttm = freezed,
-    Object? isBooked = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      label: label == freezed
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String,
-      appdttm: appdttm == freezed
-          ? _value.appdttm
-          : appdttm // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      isBooked: isBooked == freezed
-          ? _value.isBooked
-          : isBooked // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
+/// Create a copy of SlotModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? label = null,Object? appdttm = null,Object? isBooked = null,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,label: null == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
+as String,appdttm: null == appdttm ? _self.appdttm : appdttm // ignore: cast_nullable_to_non_nullable
+as DateTime,isBooked: null == isBooked ? _self.isBooked : isBooked // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
 }
 
-/// @nodoc
-abstract class _$$_SlotModelCopyWith<$Res> implements $SlotModelCopyWith<$Res> {
-  factory _$$_SlotModelCopyWith(
-          _$_SlotModel value, $Res Function(_$_SlotModel) then) =
-      __$$_SlotModelCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {@JsonKey(name: "id") String id,
-      @JsonKey(name: "label") String label,
-      @JsonKey(name: "appdttm") DateTime appdttm,
-      @JsonKey(name: "booked") bool isBooked});
 }
 
-/// @nodoc
-class __$$_SlotModelCopyWithImpl<$Res> extends _$SlotModelCopyWithImpl<$Res>
-    implements _$$_SlotModelCopyWith<$Res> {
-  __$$_SlotModelCopyWithImpl(
-      _$_SlotModel _value, $Res Function(_$_SlotModel) _then)
-      : super(_value, (v) => _then(v as _$_SlotModel));
 
-  @override
-  _$_SlotModel get _value => super._value as _$_SlotModel;
+/// Adds pattern-matching-related methods to [SlotModel].
+extension SlotModelPatterns on SlotModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? label = freezed,
-    Object? appdttm = freezed,
-    Object? isBooked = freezed,
-  }) {
-    return _then(_$_SlotModel(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      label: label == freezed
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String,
-      appdttm: appdttm == freezed
-          ? _value.appdttm
-          : appdttm // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      isBooked: isBooked == freezed
-          ? _value.isBooked
-          : isBooked // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SlotModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SlotModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SlotModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _SlotModel():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SlotModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SlotModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  String id, @JsonKey(name: "label")  String label, @JsonKey(name: "appdttm")  DateTime appdttm, @JsonKey(name: "booked")  bool isBooked)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SlotModel() when $default != null:
+return $default(_that.id,_that.label,_that.appdttm,_that.isBooked);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  String id, @JsonKey(name: "label")  String label, @JsonKey(name: "appdttm")  DateTime appdttm, @JsonKey(name: "booked")  bool isBooked)  $default,) {final _that = this;
+switch (_that) {
+case _SlotModel():
+return $default(_that.id,_that.label,_that.appdttm,_that.isBooked);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "id")  String id, @JsonKey(name: "label")  String label, @JsonKey(name: "appdttm")  DateTime appdttm, @JsonKey(name: "booked")  bool isBooked)?  $default,) {final _that = this;
+switch (_that) {
+case _SlotModel() when $default != null:
+return $default(_that.id,_that.label,_that.appdttm,_that.isBooked);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_SlotModel implements _SlotModel {
-  const _$_SlotModel(
-      {@JsonKey(name: "id") required this.id,
-      @JsonKey(name: "label") required this.label,
-      @JsonKey(name: "appdttm") required this.appdttm,
-      @JsonKey(name: "booked") required this.isBooked});
 
-  factory _$_SlotModel.fromJson(Map<String, dynamic> json) =>
-      _$$_SlotModelFromJson(json);
+class _SlotModel implements SlotModel {
+  const _SlotModel({@JsonKey(name: "id") required this.id, @JsonKey(name: "label") required this.label, @JsonKey(name: "appdttm") required this.appdttm, @JsonKey(name: "booked") required this.isBooked});
+  factory _SlotModel.fromJson(Map<String, dynamic> json) => _$SlotModelFromJson(json);
 
-  @override
-  @JsonKey(name: "id")
-  final String id;
-  @override
-  @JsonKey(name: "label")
-  final String label;
-  @override
-  @JsonKey(name: "appdttm")
-  final DateTime appdttm;
-  @override
-  @JsonKey(name: "booked")
-  final bool isBooked;
+@override@JsonKey(name: "id") final  String id;
+@override@JsonKey(name: "label") final  String label;
+@override@JsonKey(name: "appdttm") final  DateTime appdttm;
+@override@JsonKey(name: "booked") final  bool isBooked;
 
-  @override
-  String toString() {
-    return 'SlotModel(id: $id, label: $label, appdttm: $appdttm, isBooked: $isBooked)';
-  }
+/// Create a copy of SlotModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SlotModelCopyWith<_SlotModel> get copyWith => __$SlotModelCopyWithImpl<_SlotModel>(this, _$identity);
 
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SlotModel &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.label, label) &&
-            const DeepCollectionEquality().equals(other.appdttm, appdttm) &&
-            const DeepCollectionEquality().equals(other.isBooked, isBooked));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(label),
-      const DeepCollectionEquality().hash(appdttm),
-      const DeepCollectionEquality().hash(isBooked));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_SlotModelCopyWith<_$_SlotModel> get copyWith =>
-      __$$_SlotModelCopyWithImpl<_$_SlotModel>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_SlotModelToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$SlotModelToJson(this, );
 }
 
-abstract class _SlotModel implements SlotModel {
-  const factory _SlotModel(
-      {@JsonKey(name: "id") required final String id,
-      @JsonKey(name: "label") required final String label,
-      @JsonKey(name: "appdttm") required final DateTime appdttm,
-      @JsonKey(name: "booked") required final bool isBooked}) = _$_SlotModel;
-
-  factory _SlotModel.fromJson(Map<String, dynamic> json) =
-      _$_SlotModel.fromJson;
-
-  @override
-  @JsonKey(name: "id")
-  String get id;
-  @override
-  @JsonKey(name: "label")
-  String get label;
-  @override
-  @JsonKey(name: "appdttm")
-  DateTime get appdttm;
-  @override
-  @JsonKey(name: "booked")
-  bool get isBooked;
-  @override
-  @JsonKey(ignore: true)
-  _$$_SlotModelCopyWith<_$_SlotModel> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SlotModel&&(identical(other.id, id) || other.id == id)&&(identical(other.label, label) || other.label == label)&&(identical(other.appdttm, appdttm) || other.appdttm == appdttm)&&(identical(other.isBooked, isBooked) || other.isBooked == isBooked));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,label,appdttm,isBooked);
+
+@override
+String toString() {
+  return 'SlotModel(id: $id, label: $label, appdttm: $appdttm, isBooked: $isBooked)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SlotModelCopyWith<$Res> implements $SlotModelCopyWith<$Res> {
+  factory _$SlotModelCopyWith(_SlotModel value, $Res Function(_SlotModel) _then) = __$SlotModelCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: "id") String id,@JsonKey(name: "label") String label,@JsonKey(name: "appdttm") DateTime appdttm,@JsonKey(name: "booked") bool isBooked
+});
+
+
+
+
+}
+/// @nodoc
+class __$SlotModelCopyWithImpl<$Res>
+    implements _$SlotModelCopyWith<$Res> {
+  __$SlotModelCopyWithImpl(this._self, this._then);
+
+  final _SlotModel _self;
+  final $Res Function(_SlotModel) _then;
+
+/// Create a copy of SlotModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? label = null,Object? appdttm = null,Object? isBooked = null,}) {
+  return _then(_SlotModel(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,label: null == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
+as String,appdttm: null == appdttm ? _self.appdttm : appdttm // ignore: cast_nullable_to_non_nullable
+as DateTime,isBooked: null == isBooked ? _self.isBooked : isBooked // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+
+}
+
+// dart format on

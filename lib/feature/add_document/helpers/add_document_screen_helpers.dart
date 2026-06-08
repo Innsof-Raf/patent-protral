@@ -75,16 +75,14 @@ class AddDocumentScreenHelpers {
                   title: 'Camera',
                   iconPath: 'assets/icons/camera_icon.svg',
                   onPressed: () async {
-                    await ImagePicker()
-                        .pickImage(source: ImageSource.camera)
-                        .then((image) {
-                      if (image != null) {
-                        AddDocumentScreen.selectedDocument = File(image.path);
-                        AddDocumentScreen.documentNameController.text =
-                            image.name;
-                        Navigator.pop(context);
-                      }
-                    });
+                    final image = await ImagePicker()
+                        .pickImage(source: ImageSource.camera);
+                    if (image != null && context.mounted) {
+                      AddDocumentScreen.selectedDocument = File(image.path);
+                      AddDocumentScreen.documentNameController.text =
+                          image.name;
+                      Navigator.pop(context);
+                    }
                   },
                 ),
                 const SizedBox(
@@ -94,18 +92,19 @@ class AddDocumentScreenHelpers {
                   title: 'Files',
                   iconPath: 'assets/icons/folder_icon.svg',
                   onPressed: () async {
-                    await FilePicker.pickFiles(
+                    final value = await FilePicker.pickFiles(
                         type: FileType.custom,
                         allowMultiple: false,
-                        allowedExtensions: ['jpg', 'png', 'pdf']).then((value) {
-                      if (value != null) {
-                        AddDocumentScreen.selectedDocument =
-                            File(value.files[0].path!);
-                        AddDocumentScreen.documentNameController.text =
-                            value.files[0].name;
-                      }
+                        allowedExtensions: ['jpg', 'png', 'pdf']);
+                    if (value != null) {
+                      AddDocumentScreen.selectedDocument =
+                          File(value.files[0].path!);
+                      AddDocumentScreen.documentNameController.text =
+                          value.files[0].name;
+                    }
+                    if (context.mounted) {
                       Navigator.pop(context);
-                    });
+                    }
                   },
                 )
               ],

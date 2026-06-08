@@ -5,14 +5,15 @@ import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 
 class SetPasswordAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const SetPasswordAppBar({Key? key}) : super(key: key);
+  const SetPasswordAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: AppColors.white,
-          statusBarIconBrightness: Brightness.dark),
+        statusBarColor: AppColors.white,
+        statusBarIconBrightness: Brightness.dark,
+      ),
       backgroundColor: AppColors.white,
       elevation: 0,
       titleSpacing: 0,
@@ -23,22 +24,17 @@ class SetPasswordAppBar extends StatelessWidget implements PreferredSizeWidget {
         style: AppTextStyles.largeSemiBoldRoboto,
       ),
       leading: IconButton(
-        icon: const Icon(
-          Icons.arrow_back_ios,
-          color: AppColors.textDark,
-        ),
+        icon: const Icon(Icons.arrow_back_ios, color: AppColors.textDark),
         onPressed: () {
           Navigator.of(context).pop();
         },
       ),
       actions: [
         IconButton(
-            splashRadius: 20,
-            onPressed: () {},
-            icon: const Icon(
-              Icons.more_vert,
-              color: AppColors.textDark,
-            ))
+          splashRadius: 20,
+          onPressed: () {},
+          icon: const Icon(Icons.more_vert, color: AppColors.textDark),
+        ),
       ],
     );
   }

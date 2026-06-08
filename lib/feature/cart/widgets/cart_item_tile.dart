@@ -6,7 +6,6 @@ import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
 
 import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
-import '../../../resources/helpers.dart';
 import '../../../resources/urls.dart';
 import '../../lab/models/item_model/item_model.dart';
 
@@ -19,94 +18,101 @@ class CartItemTile extends StatelessWidget {
     return OutlinedButton(
       onPressed: () {},
       style: OutlinedButton.styleFrom(
-          elevation: 0,
-          foregroundColor: AppColors.borderColor,
-          padding: const EdgeInsets.all(5),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
-          ),
-          side: const BorderSide(
-            color: AppColors.borderColor,
-            width: .5,
-          )),
+        elevation: 0,
+        foregroundColor: AppColors.borderColor,
+        padding: const EdgeInsets.all(5),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        side: const BorderSide(color: AppColors.borderColor, width: .5),
+      ),
       child: Column(
         children: [
           Expanded(
-              child: ClipRRect(
-            borderRadius: BorderRadius.circular(5),
-            child: CachedNetworkImage(
-              imageUrl:
-                  "${ConstantUrls.packageImageUrl}/${item.idItem}/${item.itemImg}",
-              errorWidget: (context, url, error) {
-                return Image.asset(
-                    'assets/images/image_loading_failed_image.png');
-              },
-              fadeInDuration: const Duration(seconds: 0),
-              fadeOutDuration: const Duration(seconds: 0),
-              progressIndicatorBuilder: (context, url, progress) {
-                return const Center(child: CircularProgressIndicator());
-              },
-              width: double.infinity,
-              fit: BoxFit.fill,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: CachedNetworkImage(
+                imageUrl:
+                    "${ConstantUrls.packageImageUrl}/${item.idItem}/${item.itemImg}",
+                errorWidget: (context, url, error) {
+                  return Image.asset(
+                    'assets/images/image_loading_failed_image.png',
+                  );
+                },
+                fadeInDuration: const Duration(seconds: 0),
+                fadeOutDuration: const Duration(seconds: 0),
+                progressIndicatorBuilder: (context, url, progress) {
+                  return const Center(child: CircularProgressIndicator());
+                },
+                width: double.infinity,
+                fit: BoxFit.fill,
+              ),
             ),
-          )),
-          const SizedBox(
-            height: 5,
           ),
+          const SizedBox(height: 5),
           Expanded(
-              child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                item.itemNmae,
-                textAlign: TextAlign.center,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-                style: AppTextStyles.bodyLargeRobotoSemiBold.copyWith(
-                  fontSize: 12,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  item.itemNmae,
+                  textAlign: TextAlign.center,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTextStyles.bodyLargeRobotoSemiBold.copyWith(
+                    fontSize: 12,
+                  ),
                 ),
-              ),
-              Text(
-                item.itemShortDesc,
-                style: AppTextStyles.bodyXSmallInterNormal,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-              ),
-              Text(
-                '${item.itemPrice}',
-                style: AppTextStyles.bodyTextRobotoSemiBold,
-                textAlign: TextAlign.center,
-              ),
-              item.isChangingCartStatus
-                  ? const SizedBox(
-                      height: 10, width: 10, child: CircularProgressIndicator())
-                  : OutlinedButton(
-                      style: OutlinedButton.styleFrom(
+                Text(
+                  item.itemShortDesc,
+                  style: AppTextStyles.bodyXSmallInterNormal,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  '${item.itemPrice}',
+                  style: AppTextStyles.bodyTextRobotoSemiBold,
+                  textAlign: TextAlign.center,
+                ),
+                item.isChangingCartStatus
+                    ? const SizedBox(
+                        height: 10,
+                        width: 10,
+                        child: CircularProgressIndicator(),
+                      )
+                    : OutlinedButton(
+                        style: OutlinedButton.styleFrom(
                           shape: const CircleBorder(),
                           side: const BorderSide(
-                              color: AppColors.borderColor, width: .5),
+                            color: AppColors.borderColor,
+                            width: .5,
+                          ),
                           elevation: 0,
                           padding: const EdgeInsets.all(6),
                           minimumSize: const Size(0, 0),
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                      onPressed: () {
-                        context.read<ItemsBloc>().add(UpdateItemCartSatus(
-                            idItem: item.idItem,
-                            idUser: context.read<UserBloc>().state.user!.id,
-                            token: context
-                                .read<UserBloc>()
-                                .state
-                                .user!
-                                .accessToken));
-                      },
-                      child: const Icon(
-                        Icons.close,
-                        color: AppColors.textDark,
-                        size: 10,
-                      )),
-            ],
-          )),
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
+                        onPressed: () {
+                          context.read<ItemsBloc>().add(
+                            UpdateItemCartSatus(
+                              idItem: item.idItem,
+                              idUser: context.read<UserBloc>().state.user!.id,
+                              token: context
+                                  .read<UserBloc>()
+                                  .state
+                                  .user!
+                                  .accessToken,
+                            ),
+                          );
+                        },
+                        child: const Icon(
+                          Icons.close,
+                          color: AppColors.textDark,
+                          size: 10,
+                        ),
+                      ),
+              ],
+            ),
+          ),
         ],
       ),
     );

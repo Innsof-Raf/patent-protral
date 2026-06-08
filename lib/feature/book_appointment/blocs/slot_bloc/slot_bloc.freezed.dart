@@ -1,7 +1,7 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'slot_bloc.dart';
 
@@ -9,789 +9,663 @@ part of 'slot_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
 /// @nodoc
 mixin _$SlotEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int idDoctor, DateTime date, String token)
-        getAvailableSlots,
-    required TResult Function(DateTime slotTime) changeBookedSlotState,
-    required TResult Function(DateTime oldSlot, DateTime currentSlot)
-        changeResheduledSlotState,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int idDoctor, DateTime date, String token)?
-        getAvailableSlots,
-    TResult Function(DateTime slotTime)? changeBookedSlotState,
-    TResult Function(DateTime oldSlot, DateTime currentSlot)?
-        changeResheduledSlotState,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int idDoctor, DateTime date, String token)?
-        getAvailableSlots,
-    TResult Function(DateTime slotTime)? changeBookedSlotState,
-    TResult Function(DateTime oldSlot, DateTime currentSlot)?
-        changeResheduledSlotState,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetAvailableSlots value) getAvailableSlots,
-    required TResult Function(ChangeBookedSlotState value)
-        changeBookedSlotState,
-    required TResult Function(ChangeResheduledSlotState value)
-        changeResheduledSlotState,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetAvailableSlots value)? getAvailableSlots,
-    TResult Function(ChangeBookedSlotState value)? changeBookedSlotState,
-    TResult Function(ChangeResheduledSlotState value)?
-        changeResheduledSlotState,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetAvailableSlots value)? getAvailableSlots,
-    TResult Function(ChangeBookedSlotState value)? changeBookedSlotState,
-    TResult Function(ChangeResheduledSlotState value)?
-        changeResheduledSlotState,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SlotEvent);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'SlotEvent()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SlotEventCopyWith<$Res> {
-  factory $SlotEventCopyWith(SlotEvent value, $Res Function(SlotEvent) then) =
-      _$SlotEventCopyWithImpl<$Res>;
+class $SlotEventCopyWith<$Res>  {
+$SlotEventCopyWith(SlotEvent _, $Res Function(SlotEvent) __);
 }
 
-/// @nodoc
-class _$SlotEventCopyWithImpl<$Res> implements $SlotEventCopyWith<$Res> {
-  _$SlotEventCopyWithImpl(this._value, this._then);
 
-  final SlotEvent _value;
-  // ignore: unused_field
-  final $Res Function(SlotEvent) _then;
+/// Adds pattern-matching-related methods to [SlotEvent].
+extension SlotEventPatterns on SlotEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( GetAvailableSlots value)?  getAvailableSlots,TResult Function( ChangeBookedSlotState value)?  changeBookedSlotState,TResult Function( ChangeResheduledSlotState value)?  changeResheduledSlotState,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case GetAvailableSlots() when getAvailableSlots != null:
+return getAvailableSlots(_that);case ChangeBookedSlotState() when changeBookedSlotState != null:
+return changeBookedSlotState(_that);case ChangeResheduledSlotState() when changeResheduledSlotState != null:
+return changeResheduledSlotState(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( GetAvailableSlots value)  getAvailableSlots,required TResult Function( ChangeBookedSlotState value)  changeBookedSlotState,required TResult Function( ChangeResheduledSlotState value)  changeResheduledSlotState,}){
+final _that = this;
+switch (_that) {
+case GetAvailableSlots():
+return getAvailableSlots(_that);case ChangeBookedSlotState():
+return changeBookedSlotState(_that);case ChangeResheduledSlotState():
+return changeResheduledSlotState(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( GetAvailableSlots value)?  getAvailableSlots,TResult? Function( ChangeBookedSlotState value)?  changeBookedSlotState,TResult? Function( ChangeResheduledSlotState value)?  changeResheduledSlotState,}){
+final _that = this;
+switch (_that) {
+case GetAvailableSlots() when getAvailableSlots != null:
+return getAvailableSlots(_that);case ChangeBookedSlotState() when changeBookedSlotState != null:
+return changeBookedSlotState(_that);case ChangeResheduledSlotState() when changeResheduledSlotState != null:
+return changeResheduledSlotState(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int idDoctor,  DateTime date,  String token)?  getAvailableSlots,TResult Function( DateTime slotTime)?  changeBookedSlotState,TResult Function( DateTime oldSlot,  DateTime currentSlot)?  changeResheduledSlotState,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case GetAvailableSlots() when getAvailableSlots != null:
+return getAvailableSlots(_that.idDoctor,_that.date,_that.token);case ChangeBookedSlotState() when changeBookedSlotState != null:
+return changeBookedSlotState(_that.slotTime);case ChangeResheduledSlotState() when changeResheduledSlotState != null:
+return changeResheduledSlotState(_that.oldSlot,_that.currentSlot);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int idDoctor,  DateTime date,  String token)  getAvailableSlots,required TResult Function( DateTime slotTime)  changeBookedSlotState,required TResult Function( DateTime oldSlot,  DateTime currentSlot)  changeResheduledSlotState,}) {final _that = this;
+switch (_that) {
+case GetAvailableSlots():
+return getAvailableSlots(_that.idDoctor,_that.date,_that.token);case ChangeBookedSlotState():
+return changeBookedSlotState(_that.slotTime);case ChangeResheduledSlotState():
+return changeResheduledSlotState(_that.oldSlot,_that.currentSlot);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int idDoctor,  DateTime date,  String token)?  getAvailableSlots,TResult? Function( DateTime slotTime)?  changeBookedSlotState,TResult? Function( DateTime oldSlot,  DateTime currentSlot)?  changeResheduledSlotState,}) {final _that = this;
+switch (_that) {
+case GetAvailableSlots() when getAvailableSlots != null:
+return getAvailableSlots(_that.idDoctor,_that.date,_that.token);case ChangeBookedSlotState() when changeBookedSlotState != null:
+return changeBookedSlotState(_that.slotTime);case ChangeResheduledSlotState() when changeResheduledSlotState != null:
+return changeResheduledSlotState(_that.oldSlot,_that.currentSlot);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$GetAvailableSlotsCopyWith<$Res> {
-  factory _$$GetAvailableSlotsCopyWith(
-          _$GetAvailableSlots value, $Res Function(_$GetAvailableSlots) then) =
-      __$$GetAvailableSlotsCopyWithImpl<$Res>;
-  $Res call({int idDoctor, DateTime date, String token});
-}
-
-/// @nodoc
-class __$$GetAvailableSlotsCopyWithImpl<$Res>
-    extends _$SlotEventCopyWithImpl<$Res>
-    implements _$$GetAvailableSlotsCopyWith<$Res> {
-  __$$GetAvailableSlotsCopyWithImpl(
-      _$GetAvailableSlots _value, $Res Function(_$GetAvailableSlots) _then)
-      : super(_value, (v) => _then(v as _$GetAvailableSlots));
-
-  @override
-  _$GetAvailableSlots get _value => super._value as _$GetAvailableSlots;
-
-  @override
-  $Res call({
-    Object? idDoctor = freezed,
-    Object? date = freezed,
-    Object? token = freezed,
-  }) {
-    return _then(_$GetAvailableSlots(
-      idDoctor: idDoctor == freezed
-          ? _value.idDoctor
-          : idDoctor // ignore: cast_nullable_to_non_nullable
-              as int,
-      date: date == freezed
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      token: token == freezed
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$GetAvailableSlots implements GetAvailableSlots {
-  const _$GetAvailableSlots(
-      {required this.idDoctor, required this.date, required this.token});
-
-  @override
-  final int idDoctor;
-  @override
-  final DateTime date;
-  @override
-  final String token;
-
-  @override
-  String toString() {
-    return 'SlotEvent.getAvailableSlots(idDoctor: $idDoctor, date: $date, token: $token)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GetAvailableSlots &&
-            const DeepCollectionEquality().equals(other.idDoctor, idDoctor) &&
-            const DeepCollectionEquality().equals(other.date, date) &&
-            const DeepCollectionEquality().equals(other.token, token));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(idDoctor),
-      const DeepCollectionEquality().hash(date),
-      const DeepCollectionEquality().hash(token));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$GetAvailableSlotsCopyWith<_$GetAvailableSlots> get copyWith =>
-      __$$GetAvailableSlotsCopyWithImpl<_$GetAvailableSlots>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int idDoctor, DateTime date, String token)
-        getAvailableSlots,
-    required TResult Function(DateTime slotTime) changeBookedSlotState,
-    required TResult Function(DateTime oldSlot, DateTime currentSlot)
-        changeResheduledSlotState,
-  }) {
-    return getAvailableSlots(idDoctor, date, token);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int idDoctor, DateTime date, String token)?
-        getAvailableSlots,
-    TResult Function(DateTime slotTime)? changeBookedSlotState,
-    TResult Function(DateTime oldSlot, DateTime currentSlot)?
-        changeResheduledSlotState,
-  }) {
-    return getAvailableSlots?.call(idDoctor, date, token);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int idDoctor, DateTime date, String token)?
-        getAvailableSlots,
-    TResult Function(DateTime slotTime)? changeBookedSlotState,
-    TResult Function(DateTime oldSlot, DateTime currentSlot)?
-        changeResheduledSlotState,
-    required TResult orElse(),
-  }) {
-    if (getAvailableSlots != null) {
-      return getAvailableSlots(idDoctor, date, token);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetAvailableSlots value) getAvailableSlots,
-    required TResult Function(ChangeBookedSlotState value)
-        changeBookedSlotState,
-    required TResult Function(ChangeResheduledSlotState value)
-        changeResheduledSlotState,
-  }) {
-    return getAvailableSlots(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetAvailableSlots value)? getAvailableSlots,
-    TResult Function(ChangeBookedSlotState value)? changeBookedSlotState,
-    TResult Function(ChangeResheduledSlotState value)?
-        changeResheduledSlotState,
-  }) {
-    return getAvailableSlots?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetAvailableSlots value)? getAvailableSlots,
-    TResult Function(ChangeBookedSlotState value)? changeBookedSlotState,
-    TResult Function(ChangeResheduledSlotState value)?
-        changeResheduledSlotState,
-    required TResult orElse(),
-  }) {
-    if (getAvailableSlots != null) {
-      return getAvailableSlots(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class GetAvailableSlots implements SlotEvent {
-  const factory GetAvailableSlots(
-      {required final int idDoctor,
-      required final DateTime date,
-      required final String token}) = _$GetAvailableSlots;
-
-  int get idDoctor;
-  DateTime get date;
-  String get token;
-  @JsonKey(ignore: true)
-  _$$GetAvailableSlotsCopyWith<_$GetAvailableSlots> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ChangeBookedSlotStateCopyWith<$Res> {
-  factory _$$ChangeBookedSlotStateCopyWith(_$ChangeBookedSlotState value,
-          $Res Function(_$ChangeBookedSlotState) then) =
-      __$$ChangeBookedSlotStateCopyWithImpl<$Res>;
-  $Res call({DateTime slotTime});
-}
-
-/// @nodoc
-class __$$ChangeBookedSlotStateCopyWithImpl<$Res>
-    extends _$SlotEventCopyWithImpl<$Res>
-    implements _$$ChangeBookedSlotStateCopyWith<$Res> {
-  __$$ChangeBookedSlotStateCopyWithImpl(_$ChangeBookedSlotState _value,
-      $Res Function(_$ChangeBookedSlotState) _then)
-      : super(_value, (v) => _then(v as _$ChangeBookedSlotState));
-
-  @override
-  _$ChangeBookedSlotState get _value => super._value as _$ChangeBookedSlotState;
-
-  @override
-  $Res call({
-    Object? slotTime = freezed,
-  }) {
-    return _then(_$ChangeBookedSlotState(
-      slotTime: slotTime == freezed
-          ? _value.slotTime
-          : slotTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$ChangeBookedSlotState implements ChangeBookedSlotState {
-  const _$ChangeBookedSlotState({required this.slotTime});
 
-  @override
-  final DateTime slotTime;
+class GetAvailableSlots implements SlotEvent {
+  const GetAvailableSlots({required this.idDoctor, required this.date, required this.token});
+  
 
-  @override
-  String toString() {
-    return 'SlotEvent.changeBookedSlotState(slotTime: $slotTime)';
-  }
+ final  int idDoctor;
+ final  DateTime date;
+ final  String token;
 
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ChangeBookedSlotState &&
-            const DeepCollectionEquality().equals(other.slotTime, slotTime));
-  }
+/// Create a copy of SlotEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$GetAvailableSlotsCopyWith<GetAvailableSlots> get copyWith => _$GetAvailableSlotsCopyWithImpl<GetAvailableSlots>(this, _$identity);
 
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(slotTime));
 
-  @JsonKey(ignore: true)
-  @override
-  _$$ChangeBookedSlotStateCopyWith<_$ChangeBookedSlotState> get copyWith =>
-      __$$ChangeBookedSlotStateCopyWithImpl<_$ChangeBookedSlotState>(
-          this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int idDoctor, DateTime date, String token)
-        getAvailableSlots,
-    required TResult Function(DateTime slotTime) changeBookedSlotState,
-    required TResult Function(DateTime oldSlot, DateTime currentSlot)
-        changeResheduledSlotState,
-  }) {
-    return changeBookedSlotState(slotTime);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int idDoctor, DateTime date, String token)?
-        getAvailableSlots,
-    TResult Function(DateTime slotTime)? changeBookedSlotState,
-    TResult Function(DateTime oldSlot, DateTime currentSlot)?
-        changeResheduledSlotState,
-  }) {
-    return changeBookedSlotState?.call(slotTime);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int idDoctor, DateTime date, String token)?
-        getAvailableSlots,
-    TResult Function(DateTime slotTime)? changeBookedSlotState,
-    TResult Function(DateTime oldSlot, DateTime currentSlot)?
-        changeResheduledSlotState,
-    required TResult orElse(),
-  }) {
-    if (changeBookedSlotState != null) {
-      return changeBookedSlotState(slotTime);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetAvailableSlots value) getAvailableSlots,
-    required TResult Function(ChangeBookedSlotState value)
-        changeBookedSlotState,
-    required TResult Function(ChangeResheduledSlotState value)
-        changeResheduledSlotState,
-  }) {
-    return changeBookedSlotState(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetAvailableSlots value)? getAvailableSlots,
-    TResult Function(ChangeBookedSlotState value)? changeBookedSlotState,
-    TResult Function(ChangeResheduledSlotState value)?
-        changeResheduledSlotState,
-  }) {
-    return changeBookedSlotState?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetAvailableSlots value)? getAvailableSlots,
-    TResult Function(ChangeBookedSlotState value)? changeBookedSlotState,
-    TResult Function(ChangeResheduledSlotState value)?
-        changeResheduledSlotState,
-    required TResult orElse(),
-  }) {
-    if (changeBookedSlotState != null) {
-      return changeBookedSlotState(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetAvailableSlots&&(identical(other.idDoctor, idDoctor) || other.idDoctor == idDoctor)&&(identical(other.date, date) || other.date == date)&&(identical(other.token, token) || other.token == token));
 }
 
-abstract class ChangeBookedSlotState implements SlotEvent {
-  const factory ChangeBookedSlotState({required final DateTime slotTime}) =
-      _$ChangeBookedSlotState;
 
-  DateTime get slotTime;
-  @JsonKey(ignore: true)
-  _$$ChangeBookedSlotStateCopyWith<_$ChangeBookedSlotState> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+int get hashCode => Object.hash(runtimeType,idDoctor,date,token);
+
+@override
+String toString() {
+  return 'SlotEvent.getAvailableSlots(idDoctor: $idDoctor, date: $date, token: $token)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$ChangeResheduledSlotStateCopyWith<$Res> {
-  factory _$$ChangeResheduledSlotStateCopyWith(
-          _$ChangeResheduledSlotState value,
-          $Res Function(_$ChangeResheduledSlotState) then) =
-      __$$ChangeResheduledSlotStateCopyWithImpl<$Res>;
-  $Res call({DateTime oldSlot, DateTime currentSlot});
+abstract mixin class $GetAvailableSlotsCopyWith<$Res> implements $SlotEventCopyWith<$Res> {
+  factory $GetAvailableSlotsCopyWith(GetAvailableSlots value, $Res Function(GetAvailableSlots) _then) = _$GetAvailableSlotsCopyWithImpl;
+@useResult
+$Res call({
+ int idDoctor, DateTime date, String token
+});
+
+
+
+
+}
+/// @nodoc
+class _$GetAvailableSlotsCopyWithImpl<$Res>
+    implements $GetAvailableSlotsCopyWith<$Res> {
+  _$GetAvailableSlotsCopyWithImpl(this._self, this._then);
+
+  final GetAvailableSlots _self;
+  final $Res Function(GetAvailableSlots) _then;
+
+/// Create a copy of SlotEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? idDoctor = null,Object? date = null,Object? token = null,}) {
+  return _then(GetAvailableSlots(
+idDoctor: null == idDoctor ? _self.idDoctor : idDoctor // ignore: cast_nullable_to_non_nullable
+as int,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as DateTime,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-class __$$ChangeResheduledSlotStateCopyWithImpl<$Res>
-    extends _$SlotEventCopyWithImpl<$Res>
-    implements _$$ChangeResheduledSlotStateCopyWith<$Res> {
-  __$$ChangeResheduledSlotStateCopyWithImpl(_$ChangeResheduledSlotState _value,
-      $Res Function(_$ChangeResheduledSlotState) _then)
-      : super(_value, (v) => _then(v as _$ChangeResheduledSlotState));
 
-  @override
-  _$ChangeResheduledSlotState get _value =>
-      super._value as _$ChangeResheduledSlotState;
-
-  @override
-  $Res call({
-    Object? oldSlot = freezed,
-    Object? currentSlot = freezed,
-  }) {
-    return _then(_$ChangeResheduledSlotState(
-      oldSlot: oldSlot == freezed
-          ? _value.oldSlot
-          : oldSlot // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      currentSlot: currentSlot == freezed
-          ? _value.currentSlot
-          : currentSlot // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$ChangeResheduledSlotState implements ChangeResheduledSlotState {
-  const _$ChangeResheduledSlotState(
-      {required this.oldSlot, required this.currentSlot});
 
-  @override
-  final DateTime oldSlot;
-  @override
-  final DateTime currentSlot;
+class ChangeBookedSlotState implements SlotEvent {
+  const ChangeBookedSlotState({required this.slotTime});
+  
 
-  @override
-  String toString() {
-    return 'SlotEvent.changeResheduledSlotState(oldSlot: $oldSlot, currentSlot: $currentSlot)';
-  }
+ final  DateTime slotTime;
 
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ChangeResheduledSlotState &&
-            const DeepCollectionEquality().equals(other.oldSlot, oldSlot) &&
-            const DeepCollectionEquality()
-                .equals(other.currentSlot, currentSlot));
-  }
+/// Create a copy of SlotEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ChangeBookedSlotStateCopyWith<ChangeBookedSlotState> get copyWith => _$ChangeBookedSlotStateCopyWithImpl<ChangeBookedSlotState>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(oldSlot),
-      const DeepCollectionEquality().hash(currentSlot));
 
-  @JsonKey(ignore: true)
-  @override
-  _$$ChangeResheduledSlotStateCopyWith<_$ChangeResheduledSlotState>
-      get copyWith => __$$ChangeResheduledSlotStateCopyWithImpl<
-          _$ChangeResheduledSlotState>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int idDoctor, DateTime date, String token)
-        getAvailableSlots,
-    required TResult Function(DateTime slotTime) changeBookedSlotState,
-    required TResult Function(DateTime oldSlot, DateTime currentSlot)
-        changeResheduledSlotState,
-  }) {
-    return changeResheduledSlotState(oldSlot, currentSlot);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int idDoctor, DateTime date, String token)?
-        getAvailableSlots,
-    TResult Function(DateTime slotTime)? changeBookedSlotState,
-    TResult Function(DateTime oldSlot, DateTime currentSlot)?
-        changeResheduledSlotState,
-  }) {
-    return changeResheduledSlotState?.call(oldSlot, currentSlot);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int idDoctor, DateTime date, String token)?
-        getAvailableSlots,
-    TResult Function(DateTime slotTime)? changeBookedSlotState,
-    TResult Function(DateTime oldSlot, DateTime currentSlot)?
-        changeResheduledSlotState,
-    required TResult orElse(),
-  }) {
-    if (changeResheduledSlotState != null) {
-      return changeResheduledSlotState(oldSlot, currentSlot);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetAvailableSlots value) getAvailableSlots,
-    required TResult Function(ChangeBookedSlotState value)
-        changeBookedSlotState,
-    required TResult Function(ChangeResheduledSlotState value)
-        changeResheduledSlotState,
-  }) {
-    return changeResheduledSlotState(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetAvailableSlots value)? getAvailableSlots,
-    TResult Function(ChangeBookedSlotState value)? changeBookedSlotState,
-    TResult Function(ChangeResheduledSlotState value)?
-        changeResheduledSlotState,
-  }) {
-    return changeResheduledSlotState?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetAvailableSlots value)? getAvailableSlots,
-    TResult Function(ChangeBookedSlotState value)? changeBookedSlotState,
-    TResult Function(ChangeResheduledSlotState value)?
-        changeResheduledSlotState,
-    required TResult orElse(),
-  }) {
-    if (changeResheduledSlotState != null) {
-      return changeResheduledSlotState(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangeBookedSlotState&&(identical(other.slotTime, slotTime) || other.slotTime == slotTime));
 }
 
-abstract class ChangeResheduledSlotState implements SlotEvent {
-  const factory ChangeResheduledSlotState(
-      {required final DateTime oldSlot,
-      required final DateTime currentSlot}) = _$ChangeResheduledSlotState;
 
-  DateTime get oldSlot;
-  DateTime get currentSlot;
-  @JsonKey(ignore: true)
-  _$$ChangeResheduledSlotStateCopyWith<_$ChangeResheduledSlotState>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+int get hashCode => Object.hash(runtimeType,slotTime);
+
+@override
+String toString() {
+  return 'SlotEvent.changeBookedSlotState(slotTime: $slotTime)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ChangeBookedSlotStateCopyWith<$Res> implements $SlotEventCopyWith<$Res> {
+  factory $ChangeBookedSlotStateCopyWith(ChangeBookedSlotState value, $Res Function(ChangeBookedSlotState) _then) = _$ChangeBookedSlotStateCopyWithImpl;
+@useResult
+$Res call({
+ DateTime slotTime
+});
+
+
+
+
+}
+/// @nodoc
+class _$ChangeBookedSlotStateCopyWithImpl<$Res>
+    implements $ChangeBookedSlotStateCopyWith<$Res> {
+  _$ChangeBookedSlotStateCopyWithImpl(this._self, this._then);
+
+  final ChangeBookedSlotState _self;
+  final $Res Function(ChangeBookedSlotState) _then;
+
+/// Create a copy of SlotEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? slotTime = null,}) {
+  return _then(ChangeBookedSlotState(
+slotTime: null == slotTime ? _self.slotTime : slotTime // ignore: cast_nullable_to_non_nullable
+as DateTime,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class ChangeResheduledSlotState implements SlotEvent {
+  const ChangeResheduledSlotState({required this.oldSlot, required this.currentSlot});
+  
+
+ final  DateTime oldSlot;
+ final  DateTime currentSlot;
+
+/// Create a copy of SlotEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ChangeResheduledSlotStateCopyWith<ChangeResheduledSlotState> get copyWith => _$ChangeResheduledSlotStateCopyWithImpl<ChangeResheduledSlotState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangeResheduledSlotState&&(identical(other.oldSlot, oldSlot) || other.oldSlot == oldSlot)&&(identical(other.currentSlot, currentSlot) || other.currentSlot == currentSlot));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,oldSlot,currentSlot);
+
+@override
+String toString() {
+  return 'SlotEvent.changeResheduledSlotState(oldSlot: $oldSlot, currentSlot: $currentSlot)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ChangeResheduledSlotStateCopyWith<$Res> implements $SlotEventCopyWith<$Res> {
+  factory $ChangeResheduledSlotStateCopyWith(ChangeResheduledSlotState value, $Res Function(ChangeResheduledSlotState) _then) = _$ChangeResheduledSlotStateCopyWithImpl;
+@useResult
+$Res call({
+ DateTime oldSlot, DateTime currentSlot
+});
+
+
+
+
+}
+/// @nodoc
+class _$ChangeResheduledSlotStateCopyWithImpl<$Res>
+    implements $ChangeResheduledSlotStateCopyWith<$Res> {
+  _$ChangeResheduledSlotStateCopyWithImpl(this._self, this._then);
+
+  final ChangeResheduledSlotState _self;
+  final $Res Function(ChangeResheduledSlotState) _then;
+
+/// Create a copy of SlotEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? oldSlot = null,Object? currentSlot = null,}) {
+  return _then(ChangeResheduledSlotState(
+oldSlot: null == oldSlot ? _self.oldSlot : oldSlot // ignore: cast_nullable_to_non_nullable
+as DateTime,currentSlot: null == currentSlot ? _self.currentSlot : currentSlot // ignore: cast_nullable_to_non_nullable
+as DateTime,
+  ));
+}
+
+
 }
 
 /// @nodoc
 mixin _$SlotState {
-  bool get isLoading => throw _privateConstructorUsedError;
-  bool get isFetchingSuccses => throw _privateConstructorUsedError;
-  bool get isFetchingError => throw _privateConstructorUsedError;
-  ErrorModel get error => throw _privateConstructorUsedError;
-  ShiftModel get shift => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $SlotStateCopyWith<SlotState> get copyWith =>
-      throw _privateConstructorUsedError;
+ bool get isLoading; bool get isFetchingSuccses; bool get isFetchingError; ErrorModel get error; ShiftModel get shift;
+/// Create a copy of SlotState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SlotStateCopyWith<SlotState> get copyWith => _$SlotStateCopyWithImpl<SlotState>(this as SlotState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SlotState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isFetchingSuccses, isFetchingSuccses) || other.isFetchingSuccses == isFetchingSuccses)&&(identical(other.isFetchingError, isFetchingError) || other.isFetchingError == isFetchingError)&&(identical(other.error, error) || other.error == error)&&(identical(other.shift, shift) || other.shift == shift));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isLoading,isFetchingSuccses,isFetchingError,error,shift);
+
+@override
+String toString() {
+  return 'SlotState(isLoading: $isLoading, isFetchingSuccses: $isFetchingSuccses, isFetchingError: $isFetchingError, error: $error, shift: $shift)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SlotStateCopyWith<$Res> {
-  factory $SlotStateCopyWith(SlotState value, $Res Function(SlotState) then) =
-      _$SlotStateCopyWithImpl<$Res>;
-  $Res call(
-      {bool isLoading,
-      bool isFetchingSuccses,
-      bool isFetchingError,
-      ErrorModel error,
-      ShiftModel shift});
+abstract mixin class $SlotStateCopyWith<$Res>  {
+  factory $SlotStateCopyWith(SlotState value, $Res Function(SlotState) _then) = _$SlotStateCopyWithImpl;
+@useResult
+$Res call({
+ bool isLoading, bool isFetchingSuccses, bool isFetchingError, ErrorModel error, ShiftModel shift
+});
 
-  $ShiftModelCopyWith<$Res> get shift;
+
+$ShiftModelCopyWith<$Res> get shift;
+
 }
-
 /// @nodoc
-class _$SlotStateCopyWithImpl<$Res> implements $SlotStateCopyWith<$Res> {
-  _$SlotStateCopyWithImpl(this._value, this._then);
+class _$SlotStateCopyWithImpl<$Res>
+    implements $SlotStateCopyWith<$Res> {
+  _$SlotStateCopyWithImpl(this._self, this._then);
 
-  final SlotState _value;
-  // ignore: unused_field
+  final SlotState _self;
   final $Res Function(SlotState) _then;
 
-  @override
-  $Res call({
-    Object? isLoading = freezed,
-    Object? isFetchingSuccses = freezed,
-    Object? isFetchingError = freezed,
-    Object? error = freezed,
-    Object? shift = freezed,
-  }) {
-    return _then(_value.copyWith(
-      isLoading: isLoading == freezed
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFetchingSuccses: isFetchingSuccses == freezed
-          ? _value.isFetchingSuccses
-          : isFetchingSuccses // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFetchingError: isFetchingError == freezed
-          ? _value.isFetchingError
-          : isFetchingError // ignore: cast_nullable_to_non_nullable
-              as bool,
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as ErrorModel,
-      shift: shift == freezed
-          ? _value.shift
-          : shift // ignore: cast_nullable_to_non_nullable
-              as ShiftModel,
-    ));
-  }
+/// Create a copy of SlotState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? isFetchingSuccses = null,Object? isFetchingError = null,Object? error = null,Object? shift = null,}) {
+  return _then(_self.copyWith(
+isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingSuccses: null == isFetchingSuccses ? _self.isFetchingSuccses : isFetchingSuccses // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingError: null == isFetchingError ? _self.isFetchingError : isFetchingError // ignore: cast_nullable_to_non_nullable
+as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as ErrorModel,shift: null == shift ? _self.shift : shift // ignore: cast_nullable_to_non_nullable
+as ShiftModel,
+  ));
+}
+/// Create a copy of SlotState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ShiftModelCopyWith<$Res> get shift {
+  
+  return $ShiftModelCopyWith<$Res>(_self.shift, (value) {
+    return _then(_self.copyWith(shift: value));
+  });
+}
+}
 
-  @override
-  $ShiftModelCopyWith<$Res> get shift {
-    return $ShiftModelCopyWith<$Res>(_value.shift, (value) {
-      return _then(_value.copyWith(shift: value));
-    });
-  }
+
+/// Adds pattern-matching-related methods to [SlotState].
+extension SlotStatePatterns on SlotState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SlotState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SlotState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SlotState value)  $default,){
+final _that = this;
+switch (_that) {
+case _SlotState():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SlotState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SlotState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  bool isFetchingSuccses,  bool isFetchingError,  ErrorModel error,  ShiftModel shift)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SlotState() when $default != null:
+return $default(_that.isLoading,_that.isFetchingSuccses,_that.isFetchingError,_that.error,_that.shift);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  bool isFetchingSuccses,  bool isFetchingError,  ErrorModel error,  ShiftModel shift)  $default,) {final _that = this;
+switch (_that) {
+case _SlotState():
+return $default(_that.isLoading,_that.isFetchingSuccses,_that.isFetchingError,_that.error,_that.shift);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  bool isFetchingSuccses,  bool isFetchingError,  ErrorModel error,  ShiftModel shift)?  $default,) {final _that = this;
+switch (_that) {
+case _SlotState() when $default != null:
+return $default(_that.isLoading,_that.isFetchingSuccses,_that.isFetchingError,_that.error,_that.shift);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$_SlotStateCopyWith<$Res> implements $SlotStateCopyWith<$Res> {
-  factory _$$_SlotStateCopyWith(
-          _$_SlotState value, $Res Function(_$_SlotState) then) =
-      __$$_SlotStateCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {bool isLoading,
-      bool isFetchingSuccses,
-      bool isFetchingError,
-      ErrorModel error,
-      ShiftModel shift});
 
-  @override
-  $ShiftModelCopyWith<$Res> get shift;
+
+class _SlotState implements SlotState {
+  const _SlotState({required this.isLoading, required this.isFetchingSuccses, required this.isFetchingError, required this.error, required this.shift});
+  
+
+@override final  bool isLoading;
+@override final  bool isFetchingSuccses;
+@override final  bool isFetchingError;
+@override final  ErrorModel error;
+@override final  ShiftModel shift;
+
+/// Create a copy of SlotState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SlotStateCopyWith<_SlotState> get copyWith => __$SlotStateCopyWithImpl<_SlotState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SlotState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isFetchingSuccses, isFetchingSuccses) || other.isFetchingSuccses == isFetchingSuccses)&&(identical(other.isFetchingError, isFetchingError) || other.isFetchingError == isFetchingError)&&(identical(other.error, error) || other.error == error)&&(identical(other.shift, shift) || other.shift == shift));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isLoading,isFetchingSuccses,isFetchingError,error,shift);
+
+@override
+String toString() {
+  return 'SlotState(isLoading: $isLoading, isFetchingSuccses: $isFetchingSuccses, isFetchingError: $isFetchingError, error: $error, shift: $shift)';
+}
+
+
 }
 
 /// @nodoc
-class __$$_SlotStateCopyWithImpl<$Res> extends _$SlotStateCopyWithImpl<$Res>
-    implements _$$_SlotStateCopyWith<$Res> {
-  __$$_SlotStateCopyWithImpl(
-      _$_SlotState _value, $Res Function(_$_SlotState) _then)
-      : super(_value, (v) => _then(v as _$_SlotState));
+abstract mixin class _$SlotStateCopyWith<$Res> implements $SlotStateCopyWith<$Res> {
+  factory _$SlotStateCopyWith(_SlotState value, $Res Function(_SlotState) _then) = __$SlotStateCopyWithImpl;
+@override @useResult
+$Res call({
+ bool isLoading, bool isFetchingSuccses, bool isFetchingError, ErrorModel error, ShiftModel shift
+});
 
-  @override
-  _$_SlotState get _value => super._value as _$_SlotState;
 
-  @override
-  $Res call({
-    Object? isLoading = freezed,
-    Object? isFetchingSuccses = freezed,
-    Object? isFetchingError = freezed,
-    Object? error = freezed,
-    Object? shift = freezed,
-  }) {
-    return _then(_$_SlotState(
-      isLoading: isLoading == freezed
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFetchingSuccses: isFetchingSuccses == freezed
-          ? _value.isFetchingSuccses
-          : isFetchingSuccses // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFetchingError: isFetchingError == freezed
-          ? _value.isFetchingError
-          : isFetchingError // ignore: cast_nullable_to_non_nullable
-              as bool,
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as ErrorModel,
-      shift: shift == freezed
-          ? _value.shift
-          : shift // ignore: cast_nullable_to_non_nullable
-              as ShiftModel,
-    ));
-  }
+@override $ShiftModelCopyWith<$Res> get shift;
+
 }
-
 /// @nodoc
+class __$SlotStateCopyWithImpl<$Res>
+    implements _$SlotStateCopyWith<$Res> {
+  __$SlotStateCopyWithImpl(this._self, this._then);
 
-class _$_SlotState implements _SlotState {
-  const _$_SlotState(
-      {required this.isLoading,
-      required this.isFetchingSuccses,
-      required this.isFetchingError,
-      required this.error,
-      required this.shift});
+  final _SlotState _self;
+  final $Res Function(_SlotState) _then;
 
-  @override
-  final bool isLoading;
-  @override
-  final bool isFetchingSuccses;
-  @override
-  final bool isFetchingError;
-  @override
-  final ErrorModel error;
-  @override
-  final ShiftModel shift;
-
-  @override
-  String toString() {
-    return 'SlotState(isLoading: $isLoading, isFetchingSuccses: $isFetchingSuccses, isFetchingError: $isFetchingError, error: $error, shift: $shift)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SlotState &&
-            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
-            const DeepCollectionEquality()
-                .equals(other.isFetchingSuccses, isFetchingSuccses) &&
-            const DeepCollectionEquality()
-                .equals(other.isFetchingError, isFetchingError) &&
-            const DeepCollectionEquality().equals(other.error, error) &&
-            const DeepCollectionEquality().equals(other.shift, shift));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(isLoading),
-      const DeepCollectionEquality().hash(isFetchingSuccses),
-      const DeepCollectionEquality().hash(isFetchingError),
-      const DeepCollectionEquality().hash(error),
-      const DeepCollectionEquality().hash(shift));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_SlotStateCopyWith<_$_SlotState> get copyWith =>
-      __$$_SlotStateCopyWithImpl<_$_SlotState>(this, _$identity);
+/// Create a copy of SlotState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? isFetchingSuccses = null,Object? isFetchingError = null,Object? error = null,Object? shift = null,}) {
+  return _then(_SlotState(
+isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingSuccses: null == isFetchingSuccses ? _self.isFetchingSuccses : isFetchingSuccses // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingError: null == isFetchingError ? _self.isFetchingError : isFetchingError // ignore: cast_nullable_to_non_nullable
+as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as ErrorModel,shift: null == shift ? _self.shift : shift // ignore: cast_nullable_to_non_nullable
+as ShiftModel,
+  ));
 }
 
-abstract class _SlotState implements SlotState {
-  const factory _SlotState(
-      {required final bool isLoading,
-      required final bool isFetchingSuccses,
-      required final bool isFetchingError,
-      required final ErrorModel error,
-      required final ShiftModel shift}) = _$_SlotState;
-
-  @override
-  bool get isLoading;
-  @override
-  bool get isFetchingSuccses;
-  @override
-  bool get isFetchingError;
-  @override
-  ErrorModel get error;
-  @override
-  ShiftModel get shift;
-  @override
-  @JsonKey(ignore: true)
-  _$$_SlotStateCopyWith<_$_SlotState> get copyWith =>
-      throw _privateConstructorUsedError;
+/// Create a copy of SlotState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ShiftModelCopyWith<$Res> get shift {
+  
+  return $ShiftModelCopyWith<$Res>(_self.shift, (value) {
+    return _then(_self.copyWith(shift: value));
+  });
 }
+}
+
+// dart format on

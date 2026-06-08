@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
 import 'package:patient_portal/feature/profile/models/member/member_model.dart';
 import 'package:patient_portal/route/route_constants.dart';
+
 import '../../resources/app_colors.dart';
 import '../../resources/app_text_styles.dart';
 import '../../resources/common_helpers/insurance_helpers.dart';
@@ -91,7 +92,7 @@ class MemberDetailsScreen extends StatelessWidget {
         decoration: BoxDecoration(boxShadow: [
           BoxShadow(
               blurRadius: 1,
-              color: AppColors.black.withOpacity(.25),
+              color: AppColors.black.withValues(alpha: .25),
               offset: const Offset(0, 0))
         ]),
         child: ElevatedButton(

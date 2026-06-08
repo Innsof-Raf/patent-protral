@@ -5,9 +5,11 @@ import '../../../resources/urls.dart';
 
 class MedicalInsuranceWidget extends StatelessWidget {
   final int idInsurance;
-  const MedicalInsuranceWidget(
-      {Key? key, required this.image, required this.idInsurance})
-      : super(key: key);
+  const MedicalInsuranceWidget({
+    super.key,
+    required this.image,
+    required this.idInsurance,
+  });
   final String image;
   @override
   Widget build(BuildContext context) {

@@ -3,22 +3,20 @@ import 'package:patient_portal/feature/speciality/model/speciality_model.dart';
 
 import '../../../../resources/common_models/insurance/insurance_model.dart';
 import '../ad_banner_model/ad_banner_model.dart';
+
 part 'home_data_model.freezed.dart';
 part 'home_data_model.g.dart';
 
 @freezed
-class HomeDataModel with _$HomeDataModel {
+sealed class HomeDataModel with _$HomeDataModel {
   const factory HomeDataModel(
-      {@JsonKey(name: 'ad_banner')
-          required List<AdBannerModel> ads,
+      {@JsonKey(name: 'ad_banner') required List<AdBannerModel> ads,
       @JsonKey(name: 'speciality')
-          required List<SpecialityModel> topSpecialities,
-      @JsonKey(name: 'insurance')
-          required List<InsuranceModel> topInsurances,
-      @JsonKey(name: 'package_banner')
-          required List<AdBannerModel> topPackages,
+      required List<SpecialityModel> topSpecialities,
+      @JsonKey(name: 'insurance') required List<InsuranceModel> topInsurances,
+      @JsonKey(name: 'package_banner') required List<AdBannerModel> topPackages,
       @JsonKey(name: 'notification_count')
-          required int notificationCount}) = _HomeDataModel;
+      required int notificationCount}) = _HomeDataModel;
 
   factory HomeDataModel.fromJson(Map<String, dynamic> json) =>
       _$HomeDataModelFromJson(json);

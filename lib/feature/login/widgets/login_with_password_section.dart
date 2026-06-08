@@ -24,78 +24,91 @@ class LoginWithPasswordSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text(
-            'Enter Pssword',
-            style: AppTextStyles.bodyTextRoboto,
-          ),
-          const SizedBox(
-            height: 4,
-          ),
+          const Text('Enter Pssword', style: AppTextStyles.bodyTextRoboto),
+          const SizedBox(height: 4),
           Row(
             children: [
               Expanded(
-                  child: TextFormField(
-                obscureText: true,
-                obscuringCharacter: '•',
-                keyboardType: TextInputType.name,
-                cursorColor: AppColors.textFormFiledStyleColor,
-                style: AppTextStyles.textFormFieldStyle,
-                onFieldSubmitted: (value) {
-                  if (passwordFormKey.currentState!.validate()) {}
-                },
-                controller: passwordController,
-              )),
+                child: TextFormField(
+                  obscureText: true,
+                  obscuringCharacter: '•',
+                  keyboardType: TextInputType.name,
+                  cursorColor: AppColors.textFormFiledStyleColor,
+                  style: AppTextStyles.textFormFieldStyle,
+                  onFieldSubmitted: (value) {
+                    if (passwordFormKey.currentState!.validate()) {}
+                  },
+                  controller: passwordController,
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child:
                     BlocConsumer<LoginWithPasswordBloc, LoginWithPasswordState>(
-                  listener: (context, state) {
-                    if (state.isLoginFailed && !state.isLoginSucces) {
-                      showGeneralDialog(
-                        context: context,
-                        pageBuilder: (context, animation, secondaryAnimation) =>
-                            Container(),
-                        transitionDuration: const Duration(milliseconds: 300),
-                        transitionBuilder: (context, animation,
-                                secondaryAnimation, child) =>
-                            Transform.scale(
-                                scale:
-                                    Curves.easeOut.transform(animation.value),
-                                child: CommonErrorAlert(
-                                    content: state.error.message)),
-                      );
-                    } else if (state.isLoginSucces && !state.isLoginFailed) {
-                      context
-                          .read<UserBloc>()
-                          .add(StoreUserDetails(user: state.user!));
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          RouteConstants.mainScreen, (route) => false);
-                    }
-                  },
-                  builder: (context, state) {
-                    return ElevatedButton(
-                        style: ElevatedButton.styleFrom(
+                      listener: (context, state) {
+                        if (state.isLoginFailed && !state.isLoginSucces) {
+                          showGeneralDialog(
+                            context: context,
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    Container(),
+                            transitionDuration: const Duration(
+                              milliseconds: 300,
+                            ),
+                            transitionBuilder:
+                                (
+                                  context,
+                                  animation,
+                                  secondaryAnimation,
+                                  child,
+                                ) => Transform.scale(
+                                  scale: Curves.easeOut.transform(
+                                    animation.value,
+                                  ),
+                                  child: CommonErrorAlert(
+                                    content: state.error.message,
+                                  ),
+                                ),
+                          );
+                        } else if (state.isLoginSucces &&
+                            !state.isLoginFailed) {
+                          context.read<UserBloc>().add(
+                            StoreUserDetails(user: state.user!),
+                          );
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            RouteConstants.mainScreen,
+                            (route) => false,
+                          );
+                        }
+                      },
+                      builder: (context, state) {
+                        return ElevatedButton(
+                          style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.all(10),
                             backgroundColor: AppColors.vilot,
-                            shape: const CircleBorder()),
-                        onPressed: () {
-                          if (passwordFormKey.currentState!.validate() &&
-                              !state.isLogingin) {
-                            context.read<LoginWithPasswordBloc>().add(
+                            shape: const CircleBorder(),
+                          ),
+                          onPressed: () {
+                            if (passwordFormKey.currentState!.validate() &&
+                                !state.isLogingin) {
+                              context.read<LoginWithPasswordBloc>().add(
                                 LoginWithPassword(
-                                    mobileNumber: context
-                                        .read<OtpGenerationBloc>()
-                                        .state
-                                        .mobileNumber,
-                                    password: passwordController.text));
-                          }
-                        },
-                        child: state.isLogingin
-                            ? const CircularProgressIndicator()
-                            : const Icon(Icons.arrow_forward_ios));
-                  },
-                ),
-              )
+                                  mobileNumber: context
+                                      .read<OtpGenerationBloc>()
+                                      .state
+                                      .mobileNumber,
+                                  password: passwordController.text,
+                                ),
+                              );
+                            }
+                          },
+                          child: state.isLogingin
+                              ? const CircularProgressIndicator()
+                              : const Icon(Icons.login),
+                        );
+                      },
+                    ),
+              ),
             ],
           ),
           LoginScreenHelpers.constHeiht20,
@@ -109,7 +122,8 @@ class LoginWithPasswordSection extends StatelessWidget {
                 onPressed: () async {
                   if (!await launchUrl(
                     Uri.parse(
-                        'https://www.alleviamedicalcenter.com/home/user_policy'),
+                      'https://www.alleviamedicalcenter.com/home/user_policy',
+                    ),
                     mode: LaunchMode.inAppWebView,
                   )) {
                     throw 'Could not launch';
@@ -118,10 +132,11 @@ class LoginWithPasswordSection extends StatelessWidget {
                 child: Text(
                   'Terms & Conditions',
                   style: AppTextStyles.bodyTextInter.copyWith(
-                      color: AppColors.textDark,
-                      decoration: TextDecoration.underline),
+                    color: AppColors.textDark,
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
-              )
+              ),
             ],
           ),
         ],

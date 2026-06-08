@@ -11,8 +11,9 @@ class NotificationWidget extends StatelessWidget {
     required this.title,
     required this.subTitle,
     required this.description,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
+
   final String bookingDate;
   final String bookingMonth;
   final String title;
@@ -37,24 +38,23 @@ class NotificationWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: AppColors.vilot,
                   borderRadius: BorderRadius.circular(5),
-                  border: Border.all(
-                    color: AppColors.borderColor,
-                    width: 0.5,
-                  ),
+                  border: Border.all(color: AppColors.borderColor, width: 0.5),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       bookingDate,
-                      style: AppTextStyles.largeSemiBoldRoboto
-                          .copyWith(color: AppColors.white),
+                      style: AppTextStyles.largeSemiBoldRoboto.copyWith(
+                        color: AppColors.white,
+                      ),
                     ),
                     Text(
                       bookingMonth,
-                      style: AppTextStyles.bodyLargeRobotoSemiBold
-                          .copyWith(color: AppColors.white),
-                    )
+                      style: AppTextStyles.bodyLargeRobotoSemiBold.copyWith(
+                        color: AppColors.white,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -66,20 +66,13 @@ class NotificationWidget extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: AppTextStyles.bodyLargeRobotoSemiBold
-                    .copyWith(color: AppColors.textDark),
+                style: AppTextStyles.bodyLargeRobotoSemiBold.copyWith(
+                  color: AppColors.textDark,
+                ),
               ),
-              const SizedBox(
-                height: 5,
-              ),
-              Text(
-                subTitle,
-                style: AppTextStyles.bodySmallInterNormal,
-              ),
-              Text(
-                description,
-                style: AppTextStyles.bodySmallInterNormal,
-              )
+              const SizedBox(height: 5),
+              Text(subTitle, style: AppTextStyles.bodySmallInterNormal),
+              Text(description, style: AppTextStyles.bodySmallInterNormal),
             ],
           ),
         ],

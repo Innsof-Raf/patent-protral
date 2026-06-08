@@ -90,4 +90,16 @@ class AppTextStyles {
       fontWeight: FontWeight.w400,
       color: AppColors.textLight,
       fontFamily: interFont);
+
+  static const TextStyle subHeadingInter = TextStyle(
+      fontSize: 10,
+      fontWeight: FontWeight.w400,
+      color: AppColors.textLight,
+      fontFamily: interFont);
+
+  static const TextStyle subHeadingInter2 = TextStyle(
+      fontSize: 10,
+      fontWeight: FontWeight.w400,
+      color: AppColors.textLight,
+      fontFamily: interFont);
 }

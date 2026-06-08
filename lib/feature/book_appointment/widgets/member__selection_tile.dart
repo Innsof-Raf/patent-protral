@@ -12,22 +12,21 @@ class MemberSelectionTile extends StatelessWidget {
   final MemberModel member;
   final bool isSelected;
   const MemberSelectionTile({
-    Key? key,
+    super.key,
     required this.member,
     required this.isSelected,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
         side: BorderSide(
-            width: .5,
-            color: isSelected ? AppColors.vilot : AppColors.borderColor),
-        foregroundColor: isSelected ? AppColors.white : AppColors.vilot,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
+          width: .5,
+          color: isSelected ? AppColors.vilot : AppColors.borderColor,
         ),
+        foregroundColor: isSelected ? AppColors.white : AppColors.vilot,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         minimumSize: const Size(0, 0),
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       ),
@@ -43,17 +42,21 @@ class MemberSelectionTile extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 18,
-            backgroundColor:
-                member.profileImage == null ? AppColors.orange : null,
+            backgroundColor: member.profileImage == null
+                ? AppColors.orange
+                : null,
             backgroundImage: member.profileImage != null
                 ? NetworkImage(
-                    '${ConstantUrls.memberImageUrl}/${member.id}//${member.profileImage}')
+                    '${ConstantUrls.memberImageUrl}/${member.id}//${member.profileImage}',
+                  )
                 : null,
             child: member.profileImage == null
                 ? Text(
                     member.name[0],
-                    style: AppTextStyles.subHeaddingSemiBoldRoboto
-                        .copyWith(fontSize: 18, color: AppColors.white),
+                    style: AppTextStyles.subHeaddingSemiBoldRoboto.copyWith(
+                      fontSize: 18,
+                      color: AppColors.white,
+                    ),
                   )
                 : null,
           ),
@@ -65,16 +68,17 @@ class MemberSelectionTile extends StatelessWidget {
               Text(
                 member.name,
                 style: AppTextStyles.bodyLargeRobotoSemiBold.copyWith(
-                    fontSize: 12,
-                    color: isSelected ? AppColors.vilot : AppColors.textLight),
+                  fontSize: 12,
+                  color: isSelected ? AppColors.vilot : AppColors.textLight,
+                ),
               ),
-              const SizedBox(
-                height: 4,
+              const SizedBox(height: 4),
+              Text(
+                member.age,
+                style: AppTextStyles.bodyTextInter.copyWith(
+                  color: isSelected ? AppColors.vilot : AppColors.textLight,
+                ),
               ),
-              Text(member.age,
-                  style: AppTextStyles.bodyTextInter.copyWith(
-                      color:
-                          isSelected ? AppColors.vilot : AppColors.textLight)),
             ],
           ),
           const Spacer(),
@@ -84,7 +88,7 @@ class MemberSelectionTile extends StatelessWidget {
                       ? 'assets/icons/insurance_icon_vilot.svg'
                       : 'assets/icons/insurance_cart_icon.svg',
                 )
-              : const SizedBox()
+              : const SizedBox(),
         ],
       ),
     );

@@ -6,16 +6,16 @@ part of 'document_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_DocumentsModel _$$_DocumentsModelFromJson(Map<String, dynamic> json) =>
-    _$_DocumentsModel(
-      docId: json['doc_id'] as int,
-      memberId: json['id_customer'] as int,
+_DocumentsModel _$DocumentsModelFromJson(Map<String, dynamic> json) =>
+    _DocumentsModel(
+      docId: (json['doc_id'] as num).toInt(),
+      memberId: (json['id_customer'] as num).toInt(),
       expireDate: DateTime.parse(json['expire_date'] as String),
       docName: json['doc_name'] as String,
       docType: json['doc_type'] as String,
     );
 
-Map<String, dynamic> _$$_DocumentsModelToJson(_$_DocumentsModel instance) =>
+Map<String, dynamic> _$DocumentsModelToJson(_DocumentsModel instance) =>
     <String, dynamic>{
       'doc_id': instance.docId,
       'id_customer': instance.memberId,

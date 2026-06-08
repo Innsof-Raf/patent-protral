@@ -20,15 +20,17 @@ class EditMemberInsuranceSection extends StatelessWidget {
   static TextEditingController expireDateController = TextEditingController();
   static TextEditingController insuranceNameController =
       TextEditingController();
-  const EditMemberInsuranceSection({
-    Key? key,
-  }) : super(key: key);
+
+  const EditMemberInsuranceSection({super.key});
 
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<InsuranceBloc>().add(FeatchInsurance(
-          token: context.read<UserBloc>().state.user!.accessToken));
+      context.read<InsuranceBloc>().add(
+        FeatchInsurance(
+          token: context.read<UserBloc>().state.user!.accessToken,
+        ),
+      );
     });
     expireDate = null;
 
@@ -49,19 +51,16 @@ class EditMemberInsuranceSection extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               DropdownButtonFormField<int>(
                 focusColor: AppColors.white,
                 isExpanded: true,
                 items: [],
                 validator: (value) =>
                     InsuranceValidationHelpers.validateInsuranceType(
-                        value: value),
-                decoration: const InputDecoration(
-                  labelText: 'Insurence',
-                ),
+                      value: value,
+                    ),
+                decoration: const InputDecoration(labelText: 'Insurence'),
                 onChanged: (value) {
                   EditMemberInuranceHelpers.selectedInsuranceNotifer.value =
                       value;
@@ -78,24 +77,26 @@ class EditMemberInsuranceSection extends StatelessWidget {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              const SizedBox(
-                                height: 10,
-                              ),
+                              const SizedBox(height: 10),
                               TextFormField(
                                 controller: insuranceNameController,
                                 keyboardType: TextInputType.name,
                                 textInputAction: TextInputAction.next,
                                 inputFormatters: [
                                   FilteringTextInputFormatter.allow(
-                                      RegExp(r'[A-Za-z ]')),
-                                  LengthLimitingTextInputFormatter(20)
+                                    RegExp(r'[A-Za-z ]'),
+                                  ),
+                                  LengthLimitingTextInputFormatter(20),
                                 ],
-                                validator: (value) => InsuranceValidationHelpers
-                                    .validateInsuranceName(value: value),
+                                validator: (value) =>
+                                    InsuranceValidationHelpers.validateInsuranceName(
+                                      value: value,
+                                    ),
                                 textCapitalization:
                                     TextCapitalization.characters,
                                 decoration: const InputDecoration(
-                                    labelText: 'Insurance Name'),
+                                  labelText: 'Insurance Name',
+                                ),
                                 style: AppTextStyles.textFormFieldStyle,
                                 cursorColor: AppColors.textFormFiledStyleColor,
                               ),
@@ -105,51 +106,52 @@ class EditMemberInsuranceSection extends StatelessWidget {
                       : const SizedBox();
                 },
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               TextFormField(
                 validator: (value) =>
                     InsuranceValidationHelpers.validateMemberNumber(
-                        value: value),
+                      value: value,
+                    ),
                 controller: memberNumberController,
                 keyboardType: TextInputType.name,
                 textInputAction: TextInputAction.next,
                 inputFormatters: [
                   LengthLimitingTextInputFormatter(20),
-                  FilteringTextInputFormatter.allow(RegExp(r'[A-Za-z0-9]'))
+                  FilteringTextInputFormatter.allow(RegExp(r'[A-Za-z0-9]')),
                 ],
                 decoration: const InputDecoration(labelText: 'Member Number'),
                 style: AppTextStyles.textFormFieldStyle,
                 cursorColor: AppColors.textFormFiledStyleColor,
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               TextFormField(
                 readOnly: true,
                 validator: (value) =>
                     InsuranceValidationHelpers.expireDateValidator(
-                        value: value),
+                      value: value,
+                    ),
                 decoration: const InputDecoration(labelText: 'Expire date'),
                 style: AppTextStyles.textFormFieldStyle,
                 controller: expireDateController,
                 onTap: () async {
                   DateTime? selectedDate =
                       await EditMemberInuranceHelpers.getExpireDate(
-                          initialDate: expireDate ??
-                              DateTime.now().add(const Duration(days: 1)),
-                          context: context);
+                        initialDate:
+                            expireDate ??
+                            DateTime.now().add(const Duration(days: 1)),
+                        context: context,
+                      );
                   if (selectedDate != null) {
                     expireDate = selectedDate;
-                    expireDateController.text =
-                        DateFormat('dd-MM-yyyy').format(expireDate!);
+                    expireDateController.text = DateFormat(
+                      'dd-MM-yyyy',
+                    ).format(expireDate!);
                   }
                 },
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }

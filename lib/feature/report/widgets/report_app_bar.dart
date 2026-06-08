@@ -14,6 +14,7 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String documentUrl;
 
   final DateTime consultaionDateTime;
+
   const ReportAppBar({
     super.key,
     required this.doctorName,
@@ -25,8 +26,9 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: AppColors.white,
-          statusBarIconBrightness: Brightness.dark),
+        statusBarColor: AppColors.white,
+        statusBarIconBrightness: Brightness.dark,
+      ),
       backgroundColor: AppColors.white,
       elevation: 0,
       titleSpacing: 0,
@@ -34,12 +36,8 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SvgPicture.asset(
-            "assets/icons/pdf_icon.svg",
-          ),
-          const SizedBox(
-            width: 16,
-          ),
+          SvgPicture.asset("assets/icons/pdf_icon.svg"),
+          const SizedBox(width: 16),
           Flexible(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,24 +46,22 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Text(
                   doctorName,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.bodyTextRobotoSemiBold
-                      .copyWith(color: AppColors.textDark),
+                  style: AppTextStyles.bodyTextRobotoSemiBold.copyWith(
+                    color: AppColors.textDark,
+                  ),
                 ),
                 Text(
                   "Consulted on : ${DateFormat('dd/MM/yyyy  |  ').add_jm().format(consultaionDateTime)}",
                   style: AppTextStyles.bodySmallInterNormal,
                   overflow: TextOverflow.ellipsis,
-                )
+                ),
               ],
             ),
           ),
         ],
       ),
       leading: IconButton(
-        icon: const Icon(
-          Icons.arrow_back_ios,
-          color: AppColors.textDark,
-        ),
+        icon: const Icon(Icons.arrow_back_ios, color: AppColors.textDark),
         onPressed: () {
           Navigator.of(context).pop();
         },
@@ -80,17 +76,20 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
                 : IconButton(
                     splashRadius: 20,
                     onPressed: () async {
-                      XFile file = XFile.fromData(state.report!,
-                          name: 'report', mimeType: 'pdf');
+                      XFile file = XFile.fromData(
+                        state.report!,
+                        name: 'report',
+                        mimeType: 'pdf',
+                      );
 
-                      await Share.shareXFiles([file]);
+                      await SharePlus.instance.share(
+                        ShareParams(files: [file]),
+                      );
                     },
-                    icon: const Icon(
-                      Icons.share,
-                      color: AppColors.textDark,
-                    ));
+                    icon: const Icon(Icons.share, color: AppColors.textDark),
+                  );
           },
-        )
+        ),
       ],
     );
   }

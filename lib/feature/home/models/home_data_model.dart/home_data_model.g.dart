@@ -6,13 +6,13 @@ part of 'home_data_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_HomeDataModel _$$_HomeDataModelFromJson(Map<String, dynamic> json) =>
-    _$_HomeDataModel(
+_HomeDataModel _$HomeDataModelFromJson(Map<String, dynamic> json) =>
+    _HomeDataModel(
       ads: (json['ad_banner'] as List<dynamic>)
           .map((e) => AdBannerModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       topSpecialities: (json['speciality'] as List<dynamic>)
-          .map((e) => SpecialityModel.fromJson(e))
+          .map((e) => SpecialityModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       topInsurances: (json['insurance'] as List<dynamic>)
           .map((e) => InsuranceModel.fromJson(e as Map<String, dynamic>))
@@ -20,10 +20,10 @@ _$_HomeDataModel _$$_HomeDataModelFromJson(Map<String, dynamic> json) =>
       topPackages: (json['package_banner'] as List<dynamic>)
           .map((e) => AdBannerModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      notificationCount: json['notification_count'] as int,
+      notificationCount: (json['notification_count'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$_HomeDataModelToJson(_$_HomeDataModel instance) =>
+Map<String, dynamic> _$HomeDataModelToJson(_HomeDataModel instance) =>
     <String, dynamic>{
       'ad_banner': instance.ads,
       'speciality': instance.topSpecialities,

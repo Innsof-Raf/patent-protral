@@ -9,12 +9,11 @@ import '../../resources/app_colors.dart';
 import '../../resources/app_text_styles.dart';
 import '../../resources/common_widgets.dart/common_error_alert.dart';
 import '../../resources/dimens.dart';
-
 import '../../route/route_constants.dart';
 import 'widgets/set_password_section.dart';
 
 class SetPasswordScreen extends StatelessWidget {
-  const SetPasswordScreen({Key? key}) : super(key: key);
+  const SetPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +52,7 @@ class SetPasswordScreen extends StatelessWidget {
         decoration: BoxDecoration(boxShadow: [
           BoxShadow(
               blurRadius: 1,
-              color: AppColors.black.withOpacity(.25),
+              color: AppColors.black.withValues(alpha: .25),
               offset: const Offset(0, 0))
         ]),
         child: BlocConsumer<ChangePasswordBloc, ChangePasswordState>(

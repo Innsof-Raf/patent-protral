@@ -1,7 +1,7 @@
 part of 'doctor_bloc.dart';
 
 @freezed
-class DoctorState with _$DoctorState {
+sealed class DoctorState with _$DoctorState {
   const factory DoctorState({
     required bool isDoctorsFetching,
     required bool isDoctorsFetchingFailed,
@@ -9,6 +9,7 @@ class DoctorState with _$DoctorState {
     required ErrorModel error,
     required List<DoctorModel> doctors,
   }) = _DoctorState;
+
   factory DoctorState.initial() => DoctorState(
         error: ErrorModel(message: ''),
         isDoctorsFetchingSuccess: false,

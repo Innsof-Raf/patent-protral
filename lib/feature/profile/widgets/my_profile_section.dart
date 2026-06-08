@@ -9,7 +9,7 @@ import '../../../resources/app_text_styles.dart';
 import '../bloc/user_bloc.dart';
 
 class ProfileDetailsSection extends StatelessWidget {
-  const ProfileDetailsSection({Key? key}) : super(key: key);
+  const ProfileDetailsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,10 @@ class ProfileDetailsSection extends StatelessWidget {
                         },
                         loadingBuilder: (context, child, loadingProgress) =>
                             AppHelpers.imageLoadingIndicator(
-                                context, child, loadingProgress),
+                              context,
+                              child,
+                              loadingProgress,
+                            ),
                       ),
                     ),
                     Positioned(
@@ -49,7 +52,9 @@ class ProfileDetailsSection extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(2),
                         decoration: const BoxDecoration(
-                            color: AppColors.white, shape: BoxShape.circle),
+                          color: AppColors.white,
+                          shape: BoxShape.circle,
+                        ),
                         child: SvgPicture.asset(
                           "assets/icons/female_gender_icon.svg",
                         ),
@@ -57,9 +62,7 @@ class ProfileDetailsSection extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  width: 12,
-                ),
+                const SizedBox(width: 12),
                 Flexible(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,47 +72,51 @@ class ProfileDetailsSection extends StatelessWidget {
                         "Anzil Alphones",
                         style: AppTextStyles.subHeaddingSemiBoldRoboto,
                       ),
-                      Text("Age : 32  | National ID : 08923739 ",
-                          style: AppTextStyles.bodySmallInterNormal),
+                      Text(
+                        "Age : 32  | National ID : 08923739 ",
+                        style: AppTextStyles.bodySmallInterNormal,
+                      ),
                       Padding(
                         padding: EdgeInsets.only(top: 5),
-                        child: Text("anzilalphonse@gmail.com",
-                            style: AppTextStyles.bodyTextInterSemibold),
+                        child: Text(
+                          "anzilalphonse@gmail.com",
+                          style: AppTextStyles.bodyTextInterSemibold,
+                        ),
                       ),
                     ],
                   ),
                 ),
               ],
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    padding: const EdgeInsets.all(20),
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6)),
-                    minimumSize: const Size(0, 0),
-                    backgroundColor: AppColors.vilot,
-                    foregroundColor: AppColors.white),
+                  elevation: 0,
+                  padding: const EdgeInsets.all(20),
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  minimumSize: const Size(0, 0),
+                  backgroundColor: AppColors.vilot,
+                  foregroundColor: AppColors.white,
+                ),
                 onPressed: () {
-                  Navigator.of(context)
-                      .pushNamed(RouteConstants.editProfileDetailsScreen);
+                  Navigator.of(
+                    context,
+                  ).pushNamed(RouteConstants.editProfileDetailsScreen);
                 },
                 child: Text(
                   "EDIT PROFILE",
-                  style: AppTextStyles.bodyLargeRobotoBold
-                      .copyWith(color: AppColors.white),
+                  style: AppTextStyles.bodyLargeRobotoBold.copyWith(
+                    color: AppColors.white,
+                  ),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            const SizedBox(height: 10),
           ],
         );
       },

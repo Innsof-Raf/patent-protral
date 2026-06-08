@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 
 class AppHelpers {
-  static imageLoadingIndicator(
-      BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+  static Widget imageLoadingIndicator(
+    BuildContext context,
+    Widget child,
+    ImageChunkEvent? loadingProgress,
+  ) {
     if (loadingProgress == null) {
       return child;
     }
@@ -12,7 +15,7 @@ class AppHelpers {
         color: AppColors.vilot,
         value: loadingProgress.expectedTotalBytes != null
             ? loadingProgress.cumulativeBytesLoaded /
-                loadingProgress.expectedTotalBytes!
+                  loadingProgress.expectedTotalBytes!
             : null,
       ),
     );

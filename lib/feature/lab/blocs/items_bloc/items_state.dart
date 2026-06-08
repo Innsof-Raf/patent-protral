@@ -1,7 +1,7 @@
 part of 'items_bloc.dart';
 
 @freezed
-class ItemsState with _$ItemsState {
+sealed class ItemsState with _$ItemsState {
   const factory ItemsState({
     required bool isItemsFetching,
     required bool isItemsFetchingFailed,

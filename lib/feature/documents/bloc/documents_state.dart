@@ -1,7 +1,7 @@
 part of 'documents_bloc.dart';
 
 @freezed
-class DocumentsState with _$DocumentsState {
+sealed class DocumentsState with _$DocumentsState {
   const factory DocumentsState({
     required List<DocumentModel> documents,
     required bool isFetching,
@@ -10,6 +10,7 @@ class DocumentsState with _$DocumentsState {
     required ErrorModel error,
     required int selectedMemberId,
   }) = _DocumentsState;
+
   factory DocumentsState.initial() => DocumentsState(
       documents: [],
       selectedMemberId: 0,

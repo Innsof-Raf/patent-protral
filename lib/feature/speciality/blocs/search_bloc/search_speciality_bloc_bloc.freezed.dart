@@ -1,7 +1,7 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'search_speciality_bloc_bloc.dart';
 
@@ -9,374 +9,523 @@ part of 'search_speciality_bloc_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
 /// @nodoc
 mixin _$SearchSpecialityBlocEvent {
-  String get searchKey => throw _privateConstructorUsedError;
-  List<SpecialityModel> get specialities => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            String searchKey, List<SpecialityModel> specialities)
-        searchSpeciality,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String searchKey, List<SpecialityModel> specialities)?
-        searchSpeciality,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String searchKey, List<SpecialityModel> specialities)?
-        searchSpeciality,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SearchSpeciality value) searchSpeciality,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SearchSpeciality value)? searchSpeciality,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SearchSpeciality value)? searchSpeciality,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $SearchSpecialityBlocEventCopyWith<SearchSpecialityBlocEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+ String get searchKey; List<SpecialityModel> get specialities;
+/// Create a copy of SearchSpecialityBlocEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SearchSpecialityBlocEventCopyWith<SearchSpecialityBlocEvent> get copyWith => _$SearchSpecialityBlocEventCopyWithImpl<SearchSpecialityBlocEvent>(this as SearchSpecialityBlocEvent, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchSpecialityBlocEvent&&(identical(other.searchKey, searchKey) || other.searchKey == searchKey)&&const DeepCollectionEquality().equals(other.specialities, specialities));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,searchKey,const DeepCollectionEquality().hash(specialities));
+
+@override
+String toString() {
+  return 'SearchSpecialityBlocEvent(searchKey: $searchKey, specialities: $specialities)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SearchSpecialityBlocEventCopyWith<$Res> {
-  factory $SearchSpecialityBlocEventCopyWith(SearchSpecialityBlocEvent value,
-          $Res Function(SearchSpecialityBlocEvent) then) =
-      _$SearchSpecialityBlocEventCopyWithImpl<$Res>;
-  $Res call({String searchKey, List<SpecialityModel> specialities});
-}
+abstract mixin class $SearchSpecialityBlocEventCopyWith<$Res>  {
+  factory $SearchSpecialityBlocEventCopyWith(SearchSpecialityBlocEvent value, $Res Function(SearchSpecialityBlocEvent) _then) = _$SearchSpecialityBlocEventCopyWithImpl;
+@useResult
+$Res call({
+ String searchKey, List<SpecialityModel> specialities
+});
 
+
+
+
+}
 /// @nodoc
 class _$SearchSpecialityBlocEventCopyWithImpl<$Res>
     implements $SearchSpecialityBlocEventCopyWith<$Res> {
-  _$SearchSpecialityBlocEventCopyWithImpl(this._value, this._then);
+  _$SearchSpecialityBlocEventCopyWithImpl(this._self, this._then);
 
-  final SearchSpecialityBlocEvent _value;
-  // ignore: unused_field
+  final SearchSpecialityBlocEvent _self;
   final $Res Function(SearchSpecialityBlocEvent) _then;
 
-  @override
-  $Res call({
-    Object? searchKey = freezed,
-    Object? specialities = freezed,
-  }) {
-    return _then(_value.copyWith(
-      searchKey: searchKey == freezed
-          ? _value.searchKey
-          : searchKey // ignore: cast_nullable_to_non_nullable
-              as String,
-      specialities: specialities == freezed
-          ? _value.specialities
-          : specialities // ignore: cast_nullable_to_non_nullable
-              as List<SpecialityModel>,
-    ));
-  }
+/// Create a copy of SearchSpecialityBlocEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? searchKey = null,Object? specialities = null,}) {
+  return _then(_self.copyWith(
+searchKey: null == searchKey ? _self.searchKey : searchKey // ignore: cast_nullable_to_non_nullable
+as String,specialities: null == specialities ? _self.specialities : specialities // ignore: cast_nullable_to_non_nullable
+as List<SpecialityModel>,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [SearchSpecialityBlocEvent].
+extension SearchSpecialityBlocEventPatterns on SearchSpecialityBlocEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( SearchSpeciality value)?  searchSpeciality,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case SearchSpeciality() when searchSpeciality != null:
+return searchSpeciality(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( SearchSpeciality value)  searchSpeciality,}){
+final _that = this;
+switch (_that) {
+case SearchSpeciality():
+return searchSpeciality(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( SearchSpeciality value)?  searchSpeciality,}){
+final _that = this;
+switch (_that) {
+case SearchSpeciality() when searchSpeciality != null:
+return searchSpeciality(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String searchKey,  List<SpecialityModel> specialities)?  searchSpeciality,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case SearchSpeciality() when searchSpeciality != null:
+return searchSpeciality(_that.searchKey,_that.specialities);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String searchKey,  List<SpecialityModel> specialities)  searchSpeciality,}) {final _that = this;
+switch (_that) {
+case SearchSpeciality():
+return searchSpeciality(_that.searchKey,_that.specialities);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String searchKey,  List<SpecialityModel> specialities)?  searchSpeciality,}) {final _that = this;
+switch (_that) {
+case SearchSpeciality() when searchSpeciality != null:
+return searchSpeciality(_that.searchKey,_that.specialities);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$SearchSpecialityCopyWith<$Res>
-    implements $SearchSpecialityBlocEventCopyWith<$Res> {
-  factory _$$SearchSpecialityCopyWith(
-          _$SearchSpeciality value, $Res Function(_$SearchSpeciality) then) =
-      __$$SearchSpecialityCopyWithImpl<$Res>;
-  @override
-  $Res call({String searchKey, List<SpecialityModel> specialities});
+
+
+class SearchSpeciality implements SearchSpecialityBlocEvent {
+  const SearchSpeciality({required this.searchKey, required final  List<SpecialityModel> specialities}): _specialities = specialities;
+  
+
+@override final  String searchKey;
+ final  List<SpecialityModel> _specialities;
+@override List<SpecialityModel> get specialities {
+  if (_specialities is EqualUnmodifiableListView) return _specialities;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_specialities);
+}
+
+
+/// Create a copy of SearchSpecialityBlocEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SearchSpecialityCopyWith<SearchSpeciality> get copyWith => _$SearchSpecialityCopyWithImpl<SearchSpeciality>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchSpeciality&&(identical(other.searchKey, searchKey) || other.searchKey == searchKey)&&const DeepCollectionEquality().equals(other._specialities, _specialities));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,searchKey,const DeepCollectionEquality().hash(_specialities));
+
+@override
+String toString() {
+  return 'SearchSpecialityBlocEvent.searchSpeciality(searchKey: $searchKey, specialities: $specialities)';
+}
+
+
 }
 
 /// @nodoc
-class __$$SearchSpecialityCopyWithImpl<$Res>
-    extends _$SearchSpecialityBlocEventCopyWithImpl<$Res>
-    implements _$$SearchSpecialityCopyWith<$Res> {
-  __$$SearchSpecialityCopyWithImpl(
-      _$SearchSpeciality _value, $Res Function(_$SearchSpeciality) _then)
-      : super(_value, (v) => _then(v as _$SearchSpeciality));
+abstract mixin class $SearchSpecialityCopyWith<$Res> implements $SearchSpecialityBlocEventCopyWith<$Res> {
+  factory $SearchSpecialityCopyWith(SearchSpeciality value, $Res Function(SearchSpeciality) _then) = _$SearchSpecialityCopyWithImpl;
+@override @useResult
+$Res call({
+ String searchKey, List<SpecialityModel> specialities
+});
 
-  @override
-  _$SearchSpeciality get _value => super._value as _$SearchSpeciality;
 
-  @override
-  $Res call({
-    Object? searchKey = freezed,
-    Object? specialities = freezed,
-  }) {
-    return _then(_$SearchSpeciality(
-      searchKey: searchKey == freezed
-          ? _value.searchKey
-          : searchKey // ignore: cast_nullable_to_non_nullable
-              as String,
-      specialities: specialities == freezed
-          ? _value._specialities
-          : specialities // ignore: cast_nullable_to_non_nullable
-              as List<SpecialityModel>,
-    ));
-  }
+
+
 }
-
 /// @nodoc
+class _$SearchSpecialityCopyWithImpl<$Res>
+    implements $SearchSpecialityCopyWith<$Res> {
+  _$SearchSpecialityCopyWithImpl(this._self, this._then);
 
-class _$SearchSpeciality implements SearchSpeciality {
-  const _$SearchSpeciality(
-      {required this.searchKey,
-      required final List<SpecialityModel> specialities})
-      : _specialities = specialities;
+  final SearchSpeciality _self;
+  final $Res Function(SearchSpeciality) _then;
 
-  @override
-  final String searchKey;
-  final List<SpecialityModel> _specialities;
-  @override
-  List<SpecialityModel> get specialities {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_specialities);
-  }
-
-  @override
-  String toString() {
-    return 'SearchSpecialityBlocEvent.searchSpeciality(searchKey: $searchKey, specialities: $specialities)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SearchSpeciality &&
-            const DeepCollectionEquality().equals(other.searchKey, searchKey) &&
-            const DeepCollectionEquality()
-                .equals(other._specialities, _specialities));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(searchKey),
-      const DeepCollectionEquality().hash(_specialities));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$SearchSpecialityCopyWith<_$SearchSpeciality> get copyWith =>
-      __$$SearchSpecialityCopyWithImpl<_$SearchSpeciality>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            String searchKey, List<SpecialityModel> specialities)
-        searchSpeciality,
-  }) {
-    return searchSpeciality(searchKey, specialities);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String searchKey, List<SpecialityModel> specialities)?
-        searchSpeciality,
-  }) {
-    return searchSpeciality?.call(searchKey, specialities);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String searchKey, List<SpecialityModel> specialities)?
-        searchSpeciality,
-    required TResult orElse(),
-  }) {
-    if (searchSpeciality != null) {
-      return searchSpeciality(searchKey, specialities);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SearchSpeciality value) searchSpeciality,
-  }) {
-    return searchSpeciality(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SearchSpeciality value)? searchSpeciality,
-  }) {
-    return searchSpeciality?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SearchSpeciality value)? searchSpeciality,
-    required TResult orElse(),
-  }) {
-    if (searchSpeciality != null) {
-      return searchSpeciality(this);
-    }
-    return orElse();
-  }
+/// Create a copy of SearchSpecialityBlocEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? searchKey = null,Object? specialities = null,}) {
+  return _then(SearchSpeciality(
+searchKey: null == searchKey ? _self.searchKey : searchKey // ignore: cast_nullable_to_non_nullable
+as String,specialities: null == specialities ? _self._specialities : specialities // ignore: cast_nullable_to_non_nullable
+as List<SpecialityModel>,
+  ));
 }
 
-abstract class SearchSpeciality implements SearchSpecialityBlocEvent {
-  const factory SearchSpeciality(
-      {required final String searchKey,
-      required final List<SpecialityModel> specialities}) = _$SearchSpeciality;
 
-  @override
-  String get searchKey;
-  @override
-  List<SpecialityModel> get specialities;
-  @override
-  @JsonKey(ignore: true)
-  _$$SearchSpecialityCopyWith<_$SearchSpeciality> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$SearchSpecialityBlocState {
-  List<SpecialityModel> get searchResult => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $SearchSpecialityBlocStateCopyWith<SearchSpecialityBlocState> get copyWith =>
-      throw _privateConstructorUsedError;
+ List<SpecialityModel> get searchResult;
+/// Create a copy of SearchSpecialityBlocState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SearchSpecialityBlocStateCopyWith<SearchSpecialityBlocState> get copyWith => _$SearchSpecialityBlocStateCopyWithImpl<SearchSpecialityBlocState>(this as SearchSpecialityBlocState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchSpecialityBlocState&&const DeepCollectionEquality().equals(other.searchResult, searchResult));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(searchResult));
+
+@override
+String toString() {
+  return 'SearchSpecialityBlocState(searchResult: $searchResult)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SearchSpecialityBlocStateCopyWith<$Res> {
-  factory $SearchSpecialityBlocStateCopyWith(SearchSpecialityBlocState value,
-          $Res Function(SearchSpecialityBlocState) then) =
-      _$SearchSpecialityBlocStateCopyWithImpl<$Res>;
-  $Res call({List<SpecialityModel> searchResult});
-}
+abstract mixin class $SearchSpecialityBlocStateCopyWith<$Res>  {
+  factory $SearchSpecialityBlocStateCopyWith(SearchSpecialityBlocState value, $Res Function(SearchSpecialityBlocState) _then) = _$SearchSpecialityBlocStateCopyWithImpl;
+@useResult
+$Res call({
+ List<SpecialityModel> searchResult
+});
 
+
+
+
+}
 /// @nodoc
 class _$SearchSpecialityBlocStateCopyWithImpl<$Res>
     implements $SearchSpecialityBlocStateCopyWith<$Res> {
-  _$SearchSpecialityBlocStateCopyWithImpl(this._value, this._then);
+  _$SearchSpecialityBlocStateCopyWithImpl(this._self, this._then);
 
-  final SearchSpecialityBlocState _value;
-  // ignore: unused_field
+  final SearchSpecialityBlocState _self;
   final $Res Function(SearchSpecialityBlocState) _then;
 
-  @override
-  $Res call({
-    Object? searchResult = freezed,
-  }) {
-    return _then(_value.copyWith(
-      searchResult: searchResult == freezed
-          ? _value.searchResult
-          : searchResult // ignore: cast_nullable_to_non_nullable
-              as List<SpecialityModel>,
-    ));
-  }
+/// Create a copy of SearchSpecialityBlocState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? searchResult = null,}) {
+  return _then(_self.copyWith(
+searchResult: null == searchResult ? _self.searchResult : searchResult // ignore: cast_nullable_to_non_nullable
+as List<SpecialityModel>,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [SearchSpecialityBlocState].
+extension SearchSpecialityBlocStatePatterns on SearchSpecialityBlocState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SearchSpecialityBlocState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SearchSpecialityBlocState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SearchSpecialityBlocState value)  $default,){
+final _that = this;
+switch (_that) {
+case _SearchSpecialityBlocState():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SearchSpecialityBlocState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SearchSpecialityBlocState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<SpecialityModel> searchResult)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SearchSpecialityBlocState() when $default != null:
+return $default(_that.searchResult);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<SpecialityModel> searchResult)  $default,) {final _that = this;
+switch (_that) {
+case _SearchSpecialityBlocState():
+return $default(_that.searchResult);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<SpecialityModel> searchResult)?  $default,) {final _that = this;
+switch (_that) {
+case _SearchSpecialityBlocState() when $default != null:
+return $default(_that.searchResult);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$_SearchSpecialityBlocStateCopyWith<$Res>
-    implements $SearchSpecialityBlocStateCopyWith<$Res> {
-  factory _$$_SearchSpecialityBlocStateCopyWith(
-          _$_SearchSpecialityBlocState value,
-          $Res Function(_$_SearchSpecialityBlocState) then) =
-      __$$_SearchSpecialityBlocStateCopyWithImpl<$Res>;
-  @override
-  $Res call({List<SpecialityModel> searchResult});
+
+
+class _SearchSpecialityBlocState implements SearchSpecialityBlocState {
+  const _SearchSpecialityBlocState({required final  List<SpecialityModel> searchResult}): _searchResult = searchResult;
+  
+
+ final  List<SpecialityModel> _searchResult;
+@override List<SpecialityModel> get searchResult {
+  if (_searchResult is EqualUnmodifiableListView) return _searchResult;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_searchResult);
+}
+
+
+/// Create a copy of SearchSpecialityBlocState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SearchSpecialityBlocStateCopyWith<_SearchSpecialityBlocState> get copyWith => __$SearchSpecialityBlocStateCopyWithImpl<_SearchSpecialityBlocState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchSpecialityBlocState&&const DeepCollectionEquality().equals(other._searchResult, _searchResult));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_searchResult));
+
+@override
+String toString() {
+  return 'SearchSpecialityBlocState(searchResult: $searchResult)';
+}
+
+
 }
 
 /// @nodoc
-class __$$_SearchSpecialityBlocStateCopyWithImpl<$Res>
-    extends _$SearchSpecialityBlocStateCopyWithImpl<$Res>
-    implements _$$_SearchSpecialityBlocStateCopyWith<$Res> {
-  __$$_SearchSpecialityBlocStateCopyWithImpl(
-      _$_SearchSpecialityBlocState _value,
-      $Res Function(_$_SearchSpecialityBlocState) _then)
-      : super(_value, (v) => _then(v as _$_SearchSpecialityBlocState));
+abstract mixin class _$SearchSpecialityBlocStateCopyWith<$Res> implements $SearchSpecialityBlocStateCopyWith<$Res> {
+  factory _$SearchSpecialityBlocStateCopyWith(_SearchSpecialityBlocState value, $Res Function(_SearchSpecialityBlocState) _then) = __$SearchSpecialityBlocStateCopyWithImpl;
+@override @useResult
+$Res call({
+ List<SpecialityModel> searchResult
+});
 
-  @override
-  _$_SearchSpecialityBlocState get _value =>
-      super._value as _$_SearchSpecialityBlocState;
 
-  @override
-  $Res call({
-    Object? searchResult = freezed,
-  }) {
-    return _then(_$_SearchSpecialityBlocState(
-      searchResult: searchResult == freezed
-          ? _value._searchResult
-          : searchResult // ignore: cast_nullable_to_non_nullable
-              as List<SpecialityModel>,
-    ));
-  }
+
+
 }
-
 /// @nodoc
+class __$SearchSpecialityBlocStateCopyWithImpl<$Res>
+    implements _$SearchSpecialityBlocStateCopyWith<$Res> {
+  __$SearchSpecialityBlocStateCopyWithImpl(this._self, this._then);
 
-class _$_SearchSpecialityBlocState implements _SearchSpecialityBlocState {
-  const _$_SearchSpecialityBlocState(
-      {required final List<SpecialityModel> searchResult})
-      : _searchResult = searchResult;
+  final _SearchSpecialityBlocState _self;
+  final $Res Function(_SearchSpecialityBlocState) _then;
 
-  final List<SpecialityModel> _searchResult;
-  @override
-  List<SpecialityModel> get searchResult {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_searchResult);
-  }
-
-  @override
-  String toString() {
-    return 'SearchSpecialityBlocState(searchResult: $searchResult)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SearchSpecialityBlocState &&
-            const DeepCollectionEquality()
-                .equals(other._searchResult, _searchResult));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_searchResult));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_SearchSpecialityBlocStateCopyWith<_$_SearchSpecialityBlocState>
-      get copyWith => __$$_SearchSpecialityBlocStateCopyWithImpl<
-          _$_SearchSpecialityBlocState>(this, _$identity);
+/// Create a copy of SearchSpecialityBlocState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? searchResult = null,}) {
+  return _then(_SearchSpecialityBlocState(
+searchResult: null == searchResult ? _self._searchResult : searchResult // ignore: cast_nullable_to_non_nullable
+as List<SpecialityModel>,
+  ));
 }
 
-abstract class _SearchSpecialityBlocState implements SearchSpecialityBlocState {
-  const factory _SearchSpecialityBlocState(
-          {required final List<SpecialityModel> searchResult}) =
-      _$_SearchSpecialityBlocState;
 
-  @override
-  List<SpecialityModel> get searchResult;
-  @override
-  @JsonKey(ignore: true)
-  _$$_SearchSpecialityBlocStateCopyWith<_$_SearchSpecialityBlocState>
-      get copyWith => throw _privateConstructorUsedError;
 }
+
+// dart format on

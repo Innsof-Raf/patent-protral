@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/feature/book_appointment/blocs/appointment_bloc.dart/appointment_bloc.dart';
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
+
 import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 import '../../../resources/urls.dart';
@@ -18,8 +19,9 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
   final int idDoctor;
   final String doctorImage;
   final MemberModel member;
+
   const BookAppoitmentConfirmationPopUp({
-    Key? key,
+    super.key,
     required this.title,
     required this.appintmentDateTime,
     required this.member,
@@ -27,7 +29,7 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
     required this.doctorName,
     required this.idDoctor,
     required this.doctorImage,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,49 +44,34 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 IconButton(
-                    padding: EdgeInsets.zero,
-                    splashRadius: 15,
-                    style: IconButton.styleFrom(minimumSize: const Size(0, 0)),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(
-                      Icons.close,
-                      color: AppColors.black,
-                    )),
+                  padding: EdgeInsets.zero,
+                  splashRadius: 15,
+                  style: IconButton.styleFrom(minimumSize: const Size(0, 0)),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(Icons.close, color: AppColors.black),
+                ),
               ],
             ),
-            Text(
-              title,
-              style: AppTextStyles.extraLargeRobotoSemiBold,
-            ),
-            const SizedBox(
-              height: 25,
-            ),
+            Text(title, style: AppTextStyles.extraLargeRobotoSemiBold),
+            const SizedBox(height: 25),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'On ',
-                  style: AppTextStyles.largeRobotoNormal,
-                ),
+                const Text('On ', style: AppTextStyles.largeRobotoNormal),
                 Text(
                   DateFormat('dd EEE yyyy ').format(appintmentDateTime),
                   style: AppTextStyles.largeSemiBoldRoboto,
                 ),
-                const Text(
-                  'at ',
-                  style: AppTextStyles.largeRobotoNormal,
-                ),
+                const Text('at ', style: AppTextStyles.largeRobotoNormal),
                 Text(
                   DateFormat.jm().format(appintmentDateTime),
                   style: AppTextStyles.largeSemiBoldRoboto,
                 ),
               ],
             ),
-            const SizedBox(
-              height: 40,
-            ),
+            const SizedBox(height: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -100,21 +87,16 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: AppTextStyles.bodyLargeRobotoSemiBold,
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
+                        const SizedBox(height: 5),
                         CircleAvatar(
                           radius: 30,
                           backgroundImage: NetworkImage(doctorImage),
-                        )
+                        ),
                       ],
                     ),
                   ),
                 ),
-                const Text(
-                  'For',
-                  style: AppTextStyles.largeRobotoNormal,
-                ),
+                const Text('For', style: AppTextStyles.largeRobotoNormal),
                 Expanded(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -126,9 +108,7 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(
-                        height: 5,
-                      ),
+                      const SizedBox(height: 5),
                       CircleAvatar(
                         radius: 30,
                         backgroundColor: member.profileImage == null
@@ -136,25 +116,26 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
                             : null,
                         backgroundImage: member.profileImage != null
                             ? NetworkImage(
-                                '${ConstantUrls.memberImageUrl}/${member.id}//${member.profileImage}')
+                                '${ConstantUrls.memberImageUrl}/${member.id}//${member.profileImage}',
+                              )
                             : null,
                         child: member.profileImage == null
                             ? Text(
                                 member.name[0],
                                 style: AppTextStyles.subHeaddingSemiBoldRoboto
                                     .copyWith(
-                                        fontSize: 18, color: AppColors.white),
+                                      fontSize: 18,
+                                      color: AppColors.white,
+                                    ),
                               )
                             : null,
-                      )
+                      ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
-            const SizedBox(
-              height: 25,
-            ),
+            const SizedBox(height: 25),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -167,33 +148,42 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
                 AlertActiveElevatedButton(
                   onPressed: () {
                     if (appointmentId == 0) {
-                      context.read<AppointmentBloc>().add(BookNewAppointment(
+                      context.read<AppointmentBloc>().add(
+                        BookNewAppointment(
                           appointmentDateTime: appintmentDateTime,
                           idDoctor: idDoctor,
                           idMember: member.id,
-                          mobileNo:
-                              context.read<UserBloc>().state.user!.mobileNumber,
+                          mobileNo: context
+                              .read<UserBloc>()
+                              .state
+                              .user!
+                              .mobileNumber,
                           token: context
                               .read<UserBloc>()
                               .state
                               .user!
-                              .accessToken));
+                              .accessToken,
+                        ),
+                      );
                     } else {
-                      context.read<AppointmentBloc>().add(ResheduleAppointment(
+                      context.read<AppointmentBloc>().add(
+                        ResheduleAppointment(
                           idAppointment: appointmentId,
                           appointmentDateTime: appintmentDateTime,
                           token: context
                               .read<UserBloc>()
                               .state
                               .user!
-                              .accessToken));
+                              .accessToken,
+                        ),
+                      );
                     }
                     Navigator.pop(context);
                   },
                   title: 'CONFIRM',
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

@@ -1,7 +1,7 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'report_model.dart';
 
@@ -9,393 +9,293 @@ part of 'report_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-ReportModel _$ReportModelFromJson(Map<String, dynamic> json) {
-  return _ReportModel.fromJson(json);
-}
 
 /// @nodoc
 mixin _$ReportModel {
-  @JsonKey(name: "id_cons")
-  int get idConseltation => throw _privateConstructorUsedError;
-  @JsonKey(name: "id")
-  int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: "ID_CUSTOMER")
-  int get memberId => throw _privateConstructorUsedError;
-  @JsonKey(name: "employee_name")
-  String get doctorName => throw _privateConstructorUsedError;
-  @JsonKey(name: "speciality")
-  String get departmentName => throw _privateConstructorUsedError;
-  @JsonKey(name: "appmnt_dttm")
-  DateTime get appointmentDate => throw _privateConstructorUsedError;
-  @JsonKey(name: "appmnt_time")
-  String get appointmentTime => throw _privateConstructorUsedError;
-  @JsonKey(name: "labreport_url")
-  String? get labPdfUrl => throw _privateConstructorUsedError;
-  @JsonKey(name: "xrayreport_url")
-  String? get xRayPdfUrl => throw _privateConstructorUsedError;
-  @JsonKey(name: "ussreport_url")
-  String? get ussPdfUrl => throw _privateConstructorUsedError;
-  @JsonKey(name: "ct_url")
-  String? get ctPdfUrl => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ReportModelCopyWith<ReportModel> get copyWith =>
-      throw _privateConstructorUsedError;
+@JsonKey(name: "id_cons") int get idConseltation;@JsonKey(name: "id") int get id;@JsonKey(name: "ID_CUSTOMER") int get memberId;@JsonKey(name: "employee_name") String get doctorName;@JsonKey(name: "speciality") String get departmentName;@JsonKey(name: "appmnt_dttm") DateTime get appointmentDate;@JsonKey(name: "appmnt_time") String get appointmentTime;@JsonKey(name: "labreport_url") String? get labPdfUrl;@JsonKey(name: "xrayreport_url") String? get xRayPdfUrl;@JsonKey(name: "ussreport_url") String? get ussPdfUrl;@JsonKey(name: "ct_url") String? get ctPdfUrl;
+/// Create a copy of ReportModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ReportModelCopyWith<ReportModel> get copyWith => _$ReportModelCopyWithImpl<ReportModel>(this as ReportModel, _$identity);
+
+  /// Serializes this ReportModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReportModel&&(identical(other.idConseltation, idConseltation) || other.idConseltation == idConseltation)&&(identical(other.id, id) || other.id == id)&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.doctorName, doctorName) || other.doctorName == doctorName)&&(identical(other.departmentName, departmentName) || other.departmentName == departmentName)&&(identical(other.appointmentDate, appointmentDate) || other.appointmentDate == appointmentDate)&&(identical(other.appointmentTime, appointmentTime) || other.appointmentTime == appointmentTime)&&(identical(other.labPdfUrl, labPdfUrl) || other.labPdfUrl == labPdfUrl)&&(identical(other.xRayPdfUrl, xRayPdfUrl) || other.xRayPdfUrl == xRayPdfUrl)&&(identical(other.ussPdfUrl, ussPdfUrl) || other.ussPdfUrl == ussPdfUrl)&&(identical(other.ctPdfUrl, ctPdfUrl) || other.ctPdfUrl == ctPdfUrl));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,idConseltation,id,memberId,doctorName,departmentName,appointmentDate,appointmentTime,labPdfUrl,xRayPdfUrl,ussPdfUrl,ctPdfUrl);
+
+@override
+String toString() {
+  return 'ReportModel(idConseltation: $idConseltation, id: $id, memberId: $memberId, doctorName: $doctorName, departmentName: $departmentName, appointmentDate: $appointmentDate, appointmentTime: $appointmentTime, labPdfUrl: $labPdfUrl, xRayPdfUrl: $xRayPdfUrl, ussPdfUrl: $ussPdfUrl, ctPdfUrl: $ctPdfUrl)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ReportModelCopyWith<$Res> {
-  factory $ReportModelCopyWith(
-          ReportModel value, $Res Function(ReportModel) then) =
-      _$ReportModelCopyWithImpl<$Res>;
-  $Res call(
-      {@JsonKey(name: "id_cons") int idConseltation,
-      @JsonKey(name: "id") int id,
-      @JsonKey(name: "ID_CUSTOMER") int memberId,
-      @JsonKey(name: "employee_name") String doctorName,
-      @JsonKey(name: "speciality") String departmentName,
-      @JsonKey(name: "appmnt_dttm") DateTime appointmentDate,
-      @JsonKey(name: "appmnt_time") String appointmentTime,
-      @JsonKey(name: "labreport_url") String? labPdfUrl,
-      @JsonKey(name: "xrayreport_url") String? xRayPdfUrl,
-      @JsonKey(name: "ussreport_url") String? ussPdfUrl,
-      @JsonKey(name: "ct_url") String? ctPdfUrl});
+abstract mixin class $ReportModelCopyWith<$Res>  {
+  factory $ReportModelCopyWith(ReportModel value, $Res Function(ReportModel) _then) = _$ReportModelCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: "id_cons") int idConseltation,@JsonKey(name: "id") int id,@JsonKey(name: "ID_CUSTOMER") int memberId,@JsonKey(name: "employee_name") String doctorName,@JsonKey(name: "speciality") String departmentName,@JsonKey(name: "appmnt_dttm") DateTime appointmentDate,@JsonKey(name: "appmnt_time") String appointmentTime,@JsonKey(name: "labreport_url") String? labPdfUrl,@JsonKey(name: "xrayreport_url") String? xRayPdfUrl,@JsonKey(name: "ussreport_url") String? ussPdfUrl,@JsonKey(name: "ct_url") String? ctPdfUrl
+});
+
+
+
+
 }
-
 /// @nodoc
-class _$ReportModelCopyWithImpl<$Res> implements $ReportModelCopyWith<$Res> {
-  _$ReportModelCopyWithImpl(this._value, this._then);
+class _$ReportModelCopyWithImpl<$Res>
+    implements $ReportModelCopyWith<$Res> {
+  _$ReportModelCopyWithImpl(this._self, this._then);
 
-  final ReportModel _value;
-  // ignore: unused_field
+  final ReportModel _self;
   final $Res Function(ReportModel) _then;
 
-  @override
-  $Res call({
-    Object? idConseltation = freezed,
-    Object? id = freezed,
-    Object? memberId = freezed,
-    Object? doctorName = freezed,
-    Object? departmentName = freezed,
-    Object? appointmentDate = freezed,
-    Object? appointmentTime = freezed,
-    Object? labPdfUrl = freezed,
-    Object? xRayPdfUrl = freezed,
-    Object? ussPdfUrl = freezed,
-    Object? ctPdfUrl = freezed,
-  }) {
-    return _then(_value.copyWith(
-      idConseltation: idConseltation == freezed
-          ? _value.idConseltation
-          : idConseltation // ignore: cast_nullable_to_non_nullable
-              as int,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      memberId: memberId == freezed
-          ? _value.memberId
-          : memberId // ignore: cast_nullable_to_non_nullable
-              as int,
-      doctorName: doctorName == freezed
-          ? _value.doctorName
-          : doctorName // ignore: cast_nullable_to_non_nullable
-              as String,
-      departmentName: departmentName == freezed
-          ? _value.departmentName
-          : departmentName // ignore: cast_nullable_to_non_nullable
-              as String,
-      appointmentDate: appointmentDate == freezed
-          ? _value.appointmentDate
-          : appointmentDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      appointmentTime: appointmentTime == freezed
-          ? _value.appointmentTime
-          : appointmentTime // ignore: cast_nullable_to_non_nullable
-              as String,
-      labPdfUrl: labPdfUrl == freezed
-          ? _value.labPdfUrl
-          : labPdfUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      xRayPdfUrl: xRayPdfUrl == freezed
-          ? _value.xRayPdfUrl
-          : xRayPdfUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      ussPdfUrl: ussPdfUrl == freezed
-          ? _value.ussPdfUrl
-          : ussPdfUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      ctPdfUrl: ctPdfUrl == freezed
-          ? _value.ctPdfUrl
-          : ctPdfUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+/// Create a copy of ReportModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? idConseltation = null,Object? id = null,Object? memberId = null,Object? doctorName = null,Object? departmentName = null,Object? appointmentDate = null,Object? appointmentTime = null,Object? labPdfUrl = freezed,Object? xRayPdfUrl = freezed,Object? ussPdfUrl = freezed,Object? ctPdfUrl = freezed,}) {
+  return _then(_self.copyWith(
+idConseltation: null == idConseltation ? _self.idConseltation : idConseltation // ignore: cast_nullable_to_non_nullable
+as int,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
+as int,doctorName: null == doctorName ? _self.doctorName : doctorName // ignore: cast_nullable_to_non_nullable
+as String,departmentName: null == departmentName ? _self.departmentName : departmentName // ignore: cast_nullable_to_non_nullable
+as String,appointmentDate: null == appointmentDate ? _self.appointmentDate : appointmentDate // ignore: cast_nullable_to_non_nullable
+as DateTime,appointmentTime: null == appointmentTime ? _self.appointmentTime : appointmentTime // ignore: cast_nullable_to_non_nullable
+as String,labPdfUrl: freezed == labPdfUrl ? _self.labPdfUrl : labPdfUrl // ignore: cast_nullable_to_non_nullable
+as String?,xRayPdfUrl: freezed == xRayPdfUrl ? _self.xRayPdfUrl : xRayPdfUrl // ignore: cast_nullable_to_non_nullable
+as String?,ussPdfUrl: freezed == ussPdfUrl ? _self.ussPdfUrl : ussPdfUrl // ignore: cast_nullable_to_non_nullable
+as String?,ctPdfUrl: freezed == ctPdfUrl ? _self.ctPdfUrl : ctPdfUrl // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$_ReportModelCopyWith<$Res>
-    implements $ReportModelCopyWith<$Res> {
-  factory _$$_ReportModelCopyWith(
-          _$_ReportModel value, $Res Function(_$_ReportModel) then) =
-      __$$_ReportModelCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {@JsonKey(name: "id_cons") int idConseltation,
-      @JsonKey(name: "id") int id,
-      @JsonKey(name: "ID_CUSTOMER") int memberId,
-      @JsonKey(name: "employee_name") String doctorName,
-      @JsonKey(name: "speciality") String departmentName,
-      @JsonKey(name: "appmnt_dttm") DateTime appointmentDate,
-      @JsonKey(name: "appmnt_time") String appointmentTime,
-      @JsonKey(name: "labreport_url") String? labPdfUrl,
-      @JsonKey(name: "xrayreport_url") String? xRayPdfUrl,
-      @JsonKey(name: "ussreport_url") String? ussPdfUrl,
-      @JsonKey(name: "ct_url") String? ctPdfUrl});
 }
 
-/// @nodoc
-class __$$_ReportModelCopyWithImpl<$Res> extends _$ReportModelCopyWithImpl<$Res>
-    implements _$$_ReportModelCopyWith<$Res> {
-  __$$_ReportModelCopyWithImpl(
-      _$_ReportModel _value, $Res Function(_$_ReportModel) _then)
-      : super(_value, (v) => _then(v as _$_ReportModel));
 
-  @override
-  _$_ReportModel get _value => super._value as _$_ReportModel;
+/// Adds pattern-matching-related methods to [ReportModel].
+extension ReportModelPatterns on ReportModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  @override
-  $Res call({
-    Object? idConseltation = freezed,
-    Object? id = freezed,
-    Object? memberId = freezed,
-    Object? doctorName = freezed,
-    Object? departmentName = freezed,
-    Object? appointmentDate = freezed,
-    Object? appointmentTime = freezed,
-    Object? labPdfUrl = freezed,
-    Object? xRayPdfUrl = freezed,
-    Object? ussPdfUrl = freezed,
-    Object? ctPdfUrl = freezed,
-  }) {
-    return _then(_$_ReportModel(
-      idConseltation: idConseltation == freezed
-          ? _value.idConseltation
-          : idConseltation // ignore: cast_nullable_to_non_nullable
-              as int,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      memberId: memberId == freezed
-          ? _value.memberId
-          : memberId // ignore: cast_nullable_to_non_nullable
-              as int,
-      doctorName: doctorName == freezed
-          ? _value.doctorName
-          : doctorName // ignore: cast_nullable_to_non_nullable
-              as String,
-      departmentName: departmentName == freezed
-          ? _value.departmentName
-          : departmentName // ignore: cast_nullable_to_non_nullable
-              as String,
-      appointmentDate: appointmentDate == freezed
-          ? _value.appointmentDate
-          : appointmentDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      appointmentTime: appointmentTime == freezed
-          ? _value.appointmentTime
-          : appointmentTime // ignore: cast_nullable_to_non_nullable
-              as String,
-      labPdfUrl: labPdfUrl == freezed
-          ? _value.labPdfUrl
-          : labPdfUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      xRayPdfUrl: xRayPdfUrl == freezed
-          ? _value.xRayPdfUrl
-          : xRayPdfUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      ussPdfUrl: ussPdfUrl == freezed
-          ? _value.ussPdfUrl
-          : ussPdfUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      ctPdfUrl: ctPdfUrl == freezed
-          ? _value.ctPdfUrl
-          : ctPdfUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ReportModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ReportModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ReportModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _ReportModel():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ReportModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ReportModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "id_cons")  int idConseltation, @JsonKey(name: "id")  int id, @JsonKey(name: "ID_CUSTOMER")  int memberId, @JsonKey(name: "employee_name")  String doctorName, @JsonKey(name: "speciality")  String departmentName, @JsonKey(name: "appmnt_dttm")  DateTime appointmentDate, @JsonKey(name: "appmnt_time")  String appointmentTime, @JsonKey(name: "labreport_url")  String? labPdfUrl, @JsonKey(name: "xrayreport_url")  String? xRayPdfUrl, @JsonKey(name: "ussreport_url")  String? ussPdfUrl, @JsonKey(name: "ct_url")  String? ctPdfUrl)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ReportModel() when $default != null:
+return $default(_that.idConseltation,_that.id,_that.memberId,_that.doctorName,_that.departmentName,_that.appointmentDate,_that.appointmentTime,_that.labPdfUrl,_that.xRayPdfUrl,_that.ussPdfUrl,_that.ctPdfUrl);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "id_cons")  int idConseltation, @JsonKey(name: "id")  int id, @JsonKey(name: "ID_CUSTOMER")  int memberId, @JsonKey(name: "employee_name")  String doctorName, @JsonKey(name: "speciality")  String departmentName, @JsonKey(name: "appmnt_dttm")  DateTime appointmentDate, @JsonKey(name: "appmnt_time")  String appointmentTime, @JsonKey(name: "labreport_url")  String? labPdfUrl, @JsonKey(name: "xrayreport_url")  String? xRayPdfUrl, @JsonKey(name: "ussreport_url")  String? ussPdfUrl, @JsonKey(name: "ct_url")  String? ctPdfUrl)  $default,) {final _that = this;
+switch (_that) {
+case _ReportModel():
+return $default(_that.idConseltation,_that.id,_that.memberId,_that.doctorName,_that.departmentName,_that.appointmentDate,_that.appointmentTime,_that.labPdfUrl,_that.xRayPdfUrl,_that.ussPdfUrl,_that.ctPdfUrl);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "id_cons")  int idConseltation, @JsonKey(name: "id")  int id, @JsonKey(name: "ID_CUSTOMER")  int memberId, @JsonKey(name: "employee_name")  String doctorName, @JsonKey(name: "speciality")  String departmentName, @JsonKey(name: "appmnt_dttm")  DateTime appointmentDate, @JsonKey(name: "appmnt_time")  String appointmentTime, @JsonKey(name: "labreport_url")  String? labPdfUrl, @JsonKey(name: "xrayreport_url")  String? xRayPdfUrl, @JsonKey(name: "ussreport_url")  String? ussPdfUrl, @JsonKey(name: "ct_url")  String? ctPdfUrl)?  $default,) {final _that = this;
+switch (_that) {
+case _ReportModel() when $default != null:
+return $default(_that.idConseltation,_that.id,_that.memberId,_that.doctorName,_that.departmentName,_that.appointmentDate,_that.appointmentTime,_that.labPdfUrl,_that.xRayPdfUrl,_that.ussPdfUrl,_that.ctPdfUrl);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_ReportModel implements _ReportModel {
-  const _$_ReportModel(
-      {@JsonKey(name: "id_cons") required this.idConseltation,
-      @JsonKey(name: "id") required this.id,
-      @JsonKey(name: "ID_CUSTOMER") required this.memberId,
-      @JsonKey(name: "employee_name") required this.doctorName,
-      @JsonKey(name: "speciality") required this.departmentName,
-      @JsonKey(name: "appmnt_dttm") required this.appointmentDate,
-      @JsonKey(name: "appmnt_time") required this.appointmentTime,
-      @JsonKey(name: "labreport_url") this.labPdfUrl = null,
-      @JsonKey(name: "xrayreport_url") this.xRayPdfUrl = null,
-      @JsonKey(name: "ussreport_url") this.ussPdfUrl = null,
-      @JsonKey(name: "ct_url") this.ctPdfUrl = null});
 
-  factory _$_ReportModel.fromJson(Map<String, dynamic> json) =>
-      _$$_ReportModelFromJson(json);
+class _ReportModel implements ReportModel {
+  const _ReportModel({@JsonKey(name: "id_cons") required this.idConseltation, @JsonKey(name: "id") required this.id, @JsonKey(name: "ID_CUSTOMER") required this.memberId, @JsonKey(name: "employee_name") required this.doctorName, @JsonKey(name: "speciality") required this.departmentName, @JsonKey(name: "appmnt_dttm") required this.appointmentDate, @JsonKey(name: "appmnt_time") required this.appointmentTime, @JsonKey(name: "labreport_url") this.labPdfUrl = null, @JsonKey(name: "xrayreport_url") this.xRayPdfUrl = null, @JsonKey(name: "ussreport_url") this.ussPdfUrl = null, @JsonKey(name: "ct_url") this.ctPdfUrl = null});
+  factory _ReportModel.fromJson(Map<String, dynamic> json) => _$ReportModelFromJson(json);
 
-  @override
-  @JsonKey(name: "id_cons")
-  final int idConseltation;
-  @override
-  @JsonKey(name: "id")
-  final int id;
-  @override
-  @JsonKey(name: "ID_CUSTOMER")
-  final int memberId;
-  @override
-  @JsonKey(name: "employee_name")
-  final String doctorName;
-  @override
-  @JsonKey(name: "speciality")
-  final String departmentName;
-  @override
-  @JsonKey(name: "appmnt_dttm")
-  final DateTime appointmentDate;
-  @override
-  @JsonKey(name: "appmnt_time")
-  final String appointmentTime;
-  @override
-  @JsonKey(name: "labreport_url")
-  final String? labPdfUrl;
-  @override
-  @JsonKey(name: "xrayreport_url")
-  final String? xRayPdfUrl;
-  @override
-  @JsonKey(name: "ussreport_url")
-  final String? ussPdfUrl;
-  @override
-  @JsonKey(name: "ct_url")
-  final String? ctPdfUrl;
+@override@JsonKey(name: "id_cons") final  int idConseltation;
+@override@JsonKey(name: "id") final  int id;
+@override@JsonKey(name: "ID_CUSTOMER") final  int memberId;
+@override@JsonKey(name: "employee_name") final  String doctorName;
+@override@JsonKey(name: "speciality") final  String departmentName;
+@override@JsonKey(name: "appmnt_dttm") final  DateTime appointmentDate;
+@override@JsonKey(name: "appmnt_time") final  String appointmentTime;
+@override@JsonKey(name: "labreport_url") final  String? labPdfUrl;
+@override@JsonKey(name: "xrayreport_url") final  String? xRayPdfUrl;
+@override@JsonKey(name: "ussreport_url") final  String? ussPdfUrl;
+@override@JsonKey(name: "ct_url") final  String? ctPdfUrl;
 
-  @override
-  String toString() {
-    return 'ReportModel(idConseltation: $idConseltation, id: $id, memberId: $memberId, doctorName: $doctorName, departmentName: $departmentName, appointmentDate: $appointmentDate, appointmentTime: $appointmentTime, labPdfUrl: $labPdfUrl, xRayPdfUrl: $xRayPdfUrl, ussPdfUrl: $ussPdfUrl, ctPdfUrl: $ctPdfUrl)';
-  }
+/// Create a copy of ReportModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ReportModelCopyWith<_ReportModel> get copyWith => __$ReportModelCopyWithImpl<_ReportModel>(this, _$identity);
 
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ReportModel &&
-            const DeepCollectionEquality()
-                .equals(other.idConseltation, idConseltation) &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.memberId, memberId) &&
-            const DeepCollectionEquality()
-                .equals(other.doctorName, doctorName) &&
-            const DeepCollectionEquality()
-                .equals(other.departmentName, departmentName) &&
-            const DeepCollectionEquality()
-                .equals(other.appointmentDate, appointmentDate) &&
-            const DeepCollectionEquality()
-                .equals(other.appointmentTime, appointmentTime) &&
-            const DeepCollectionEquality().equals(other.labPdfUrl, labPdfUrl) &&
-            const DeepCollectionEquality()
-                .equals(other.xRayPdfUrl, xRayPdfUrl) &&
-            const DeepCollectionEquality().equals(other.ussPdfUrl, ussPdfUrl) &&
-            const DeepCollectionEquality().equals(other.ctPdfUrl, ctPdfUrl));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(idConseltation),
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(memberId),
-      const DeepCollectionEquality().hash(doctorName),
-      const DeepCollectionEquality().hash(departmentName),
-      const DeepCollectionEquality().hash(appointmentDate),
-      const DeepCollectionEquality().hash(appointmentTime),
-      const DeepCollectionEquality().hash(labPdfUrl),
-      const DeepCollectionEquality().hash(xRayPdfUrl),
-      const DeepCollectionEquality().hash(ussPdfUrl),
-      const DeepCollectionEquality().hash(ctPdfUrl));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_ReportModelCopyWith<_$_ReportModel> get copyWith =>
-      __$$_ReportModelCopyWithImpl<_$_ReportModel>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_ReportModelToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$ReportModelToJson(this, );
 }
 
-abstract class _ReportModel implements ReportModel {
-  const factory _ReportModel(
-      {@JsonKey(name: "id_cons") required final int idConseltation,
-      @JsonKey(name: "id") required final int id,
-      @JsonKey(name: "ID_CUSTOMER") required final int memberId,
-      @JsonKey(name: "employee_name") required final String doctorName,
-      @JsonKey(name: "speciality") required final String departmentName,
-      @JsonKey(name: "appmnt_dttm") required final DateTime appointmentDate,
-      @JsonKey(name: "appmnt_time") required final String appointmentTime,
-      @JsonKey(name: "labreport_url") final String? labPdfUrl,
-      @JsonKey(name: "xrayreport_url") final String? xRayPdfUrl,
-      @JsonKey(name: "ussreport_url") final String? ussPdfUrl,
-      @JsonKey(name: "ct_url") final String? ctPdfUrl}) = _$_ReportModel;
-
-  factory _ReportModel.fromJson(Map<String, dynamic> json) =
-      _$_ReportModel.fromJson;
-
-  @override
-  @JsonKey(name: "id_cons")
-  int get idConseltation;
-  @override
-  @JsonKey(name: "id")
-  int get id;
-  @override
-  @JsonKey(name: "ID_CUSTOMER")
-  int get memberId;
-  @override
-  @JsonKey(name: "employee_name")
-  String get doctorName;
-  @override
-  @JsonKey(name: "speciality")
-  String get departmentName;
-  @override
-  @JsonKey(name: "appmnt_dttm")
-  DateTime get appointmentDate;
-  @override
-  @JsonKey(name: "appmnt_time")
-  String get appointmentTime;
-  @override
-  @JsonKey(name: "labreport_url")
-  String? get labPdfUrl;
-  @override
-  @JsonKey(name: "xrayreport_url")
-  String? get xRayPdfUrl;
-  @override
-  @JsonKey(name: "ussreport_url")
-  String? get ussPdfUrl;
-  @override
-  @JsonKey(name: "ct_url")
-  String? get ctPdfUrl;
-  @override
-  @JsonKey(ignore: true)
-  _$$_ReportModelCopyWith<_$_ReportModel> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ReportModel&&(identical(other.idConseltation, idConseltation) || other.idConseltation == idConseltation)&&(identical(other.id, id) || other.id == id)&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.doctorName, doctorName) || other.doctorName == doctorName)&&(identical(other.departmentName, departmentName) || other.departmentName == departmentName)&&(identical(other.appointmentDate, appointmentDate) || other.appointmentDate == appointmentDate)&&(identical(other.appointmentTime, appointmentTime) || other.appointmentTime == appointmentTime)&&(identical(other.labPdfUrl, labPdfUrl) || other.labPdfUrl == labPdfUrl)&&(identical(other.xRayPdfUrl, xRayPdfUrl) || other.xRayPdfUrl == xRayPdfUrl)&&(identical(other.ussPdfUrl, ussPdfUrl) || other.ussPdfUrl == ussPdfUrl)&&(identical(other.ctPdfUrl, ctPdfUrl) || other.ctPdfUrl == ctPdfUrl));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,idConseltation,id,memberId,doctorName,departmentName,appointmentDate,appointmentTime,labPdfUrl,xRayPdfUrl,ussPdfUrl,ctPdfUrl);
+
+@override
+String toString() {
+  return 'ReportModel(idConseltation: $idConseltation, id: $id, memberId: $memberId, doctorName: $doctorName, departmentName: $departmentName, appointmentDate: $appointmentDate, appointmentTime: $appointmentTime, labPdfUrl: $labPdfUrl, xRayPdfUrl: $xRayPdfUrl, ussPdfUrl: $ussPdfUrl, ctPdfUrl: $ctPdfUrl)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ReportModelCopyWith<$Res> implements $ReportModelCopyWith<$Res> {
+  factory _$ReportModelCopyWith(_ReportModel value, $Res Function(_ReportModel) _then) = __$ReportModelCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: "id_cons") int idConseltation,@JsonKey(name: "id") int id,@JsonKey(name: "ID_CUSTOMER") int memberId,@JsonKey(name: "employee_name") String doctorName,@JsonKey(name: "speciality") String departmentName,@JsonKey(name: "appmnt_dttm") DateTime appointmentDate,@JsonKey(name: "appmnt_time") String appointmentTime,@JsonKey(name: "labreport_url") String? labPdfUrl,@JsonKey(name: "xrayreport_url") String? xRayPdfUrl,@JsonKey(name: "ussreport_url") String? ussPdfUrl,@JsonKey(name: "ct_url") String? ctPdfUrl
+});
+
+
+
+
+}
+/// @nodoc
+class __$ReportModelCopyWithImpl<$Res>
+    implements _$ReportModelCopyWith<$Res> {
+  __$ReportModelCopyWithImpl(this._self, this._then);
+
+  final _ReportModel _self;
+  final $Res Function(_ReportModel) _then;
+
+/// Create a copy of ReportModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? idConseltation = null,Object? id = null,Object? memberId = null,Object? doctorName = null,Object? departmentName = null,Object? appointmentDate = null,Object? appointmentTime = null,Object? labPdfUrl = freezed,Object? xRayPdfUrl = freezed,Object? ussPdfUrl = freezed,Object? ctPdfUrl = freezed,}) {
+  return _then(_ReportModel(
+idConseltation: null == idConseltation ? _self.idConseltation : idConseltation // ignore: cast_nullable_to_non_nullable
+as int,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
+as int,doctorName: null == doctorName ? _self.doctorName : doctorName // ignore: cast_nullable_to_non_nullable
+as String,departmentName: null == departmentName ? _self.departmentName : departmentName // ignore: cast_nullable_to_non_nullable
+as String,appointmentDate: null == appointmentDate ? _self.appointmentDate : appointmentDate // ignore: cast_nullable_to_non_nullable
+as DateTime,appointmentTime: null == appointmentTime ? _self.appointmentTime : appointmentTime // ignore: cast_nullable_to_non_nullable
+as String,labPdfUrl: freezed == labPdfUrl ? _self.labPdfUrl : labPdfUrl // ignore: cast_nullable_to_non_nullable
+as String?,xRayPdfUrl: freezed == xRayPdfUrl ? _self.xRayPdfUrl : xRayPdfUrl // ignore: cast_nullable_to_non_nullable
+as String?,ussPdfUrl: freezed == ussPdfUrl ? _self.ussPdfUrl : ussPdfUrl // ignore: cast_nullable_to_non_nullable
+as String?,ctPdfUrl: freezed == ctPdfUrl ? _self.ctPdfUrl : ctPdfUrl // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+// dart format on

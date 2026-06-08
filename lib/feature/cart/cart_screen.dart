@@ -40,7 +40,8 @@ class CartScreen extends StatelessWidget {
         builder: (context, state) {
           return Container(
             decoration: BoxDecoration(color: AppColors.white, boxShadow: [
-              BoxShadow(blurRadius: 1, color: AppColors.black.withOpacity(.25))
+              BoxShadow(
+                  blurRadius: 1, color: AppColors.black.withValues(alpha: .25))
             ]),
             child: Row(
               children: [

@@ -9,22 +9,18 @@ import 'test_report_button.dart';
 
 class MyReportTile extends StatelessWidget {
   final ReportModel report;
-  const MyReportTile({
-    Key? key,
-    required this.report,
-  }) : super(key: key);
+  const MyReportTile({super.key, required this.report});
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
-          elevation: 0,
-          foregroundColor: AppColors.textLight,
-          padding: const EdgeInsets.all(15),
-          side: const BorderSide(color: AppColors.borderColor, width: 0.5),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
-          )),
+        elevation: 0,
+        foregroundColor: AppColors.textLight,
+        padding: const EdgeInsets.all(15),
+        side: const BorderSide(color: AppColors.borderColor, width: 0.5),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+      ),
       onPressed: () {},
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -37,9 +33,7 @@ class MyReportTile extends StatelessWidget {
                 height: 25,
                 width: 21,
               ),
-              const SizedBox(
-                width: 15,
-              ),
+              const SizedBox(width: 15),
               Flexible(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,22 +42,21 @@ class MyReportTile extends StatelessWidget {
                     Text(
                       report.doctorName,
                       overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.bodyTextRobotoSemiBold
-                          .copyWith(color: AppColors.textDark),
+                      style: AppTextStyles.bodyTextRobotoSemiBold.copyWith(
+                        color: AppColors.textDark,
+                      ),
                     ),
                     Text(
                       "Consulted on : ${DateFormat('dd/MM/yyyy  |  ').add_jm().format(report.appointmentDate)}",
                       style: AppTextStyles.bodySmallInterNormal,
                       overflow: TextOverflow.ellipsis,
-                    )
+                    ),
                   ],
                 ),
               ),
             ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -94,9 +87,9 @@ class MyReportTile extends StatelessWidget {
                 title: 'CT',
                 consultedDateTime: report.appointmentDate,
                 doctorName: report.doctorName,
-              )
+              ),
             ],
-          )
+          ),
         ],
       ),
     );

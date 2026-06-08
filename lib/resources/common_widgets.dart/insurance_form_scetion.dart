@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/feature/add_member/blocs/inurance_bloc/insurance_bloc.dart';
-import 'package:patient_portal/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
+import 'package:patient_portal/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/resources/constant_messages.dart';
 
 import '../app_colors.dart';
@@ -25,12 +25,12 @@ class InsuranceFormSection extends StatelessWidget {
   static TextEditingController insuranceNameController =
       TextEditingController();
   const InsuranceFormSection({
-    Key? key,
+    super.key,
     this.idInsurance,
     this.insuranceName,
     this.memberNumber,
     this.memberInsuranvceExpireDate,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +38,9 @@ class InsuranceFormSection extends StatelessWidget {
       InsuranceHelpers.selectedInsuranceNotifer.value = idInsurance;
       expireDate = memberInsuranvceExpireDate;
       memberNumberController.text = memberNumber!;
-      expireDateController.text =
-          DateFormat('dd-MM-yyyy').format(memberInsuranvceExpireDate!);
+      expireDateController.text = DateFormat(
+        'dd-MM-yyyy',
+      ).format(memberInsuranvceExpireDate!);
     } else {
       expireDateController.text = '';
       memberNumberController.text = '';
@@ -47,8 +48,11 @@ class InsuranceFormSection extends StatelessWidget {
       InsuranceHelpers.selectedInsuranceNotifer.value = null;
     }
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<InsuranceBloc>().add(FeatchInsurance(
-          token: context.read<UserBloc>().state.user!.accessToken));
+      context.read<InsuranceBloc>().add(
+        FeatchInsurance(
+          token: context.read<UserBloc>().state.user!.accessToken,
+        ),
+      );
     });
 
     return BlocConsumer<InsuranceBloc, InsuranceState>(
@@ -57,54 +61,52 @@ class InsuranceFormSection extends StatelessWidget {
             !state.isInsuranceFechingSuccess) {
           InsuranceHelpers.insuranceCheackBoxNotifier.value = false;
           InsuranceHelpers.showInsuranceFetrchingFailedSnakBar(
-              context: context,
-              contant:
-                  '${state.error.message} \n Can\'t add insurance right now');
+            context: context,
+            contant: '${state.error.message} \n Can\'t add insurance right now',
+          );
         }
         if (state.isInsuranceFechingSuccess &&
             !state.isInsuranceFecthingFailed &&
             state.insurances.isEmpty) {
           InsuranceHelpers.insuranceCheackBoxNotifier.value = false;
           InsuranceHelpers.showInsuranceFetrchingFailedSnakBar(
-              context: context,
-              contant:
-                  '${ConstantMessages.serverFailureMessage} \n Can\'t add insurance right now');
+            context: context,
+            contant:
+                '${ConstantMessages.serverFailureMessage} \n Can\'t add insurance right now',
+          );
         }
       },
       builder: (context, state) {
         return state.isFetchingInsurances
-            ? Column(mainAxisSize: MainAxisSize.min, children: [
-                const SizedBox(
-                  height: 10,
-                ),
-                Image.asset(
-                  'assets/gif_images/Ripple-0 2.gif',
-                  width: 100,
-                )
-              ])
+            ? Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: 10),
+                  Image.asset('assets/gif_images/Ripple-0 2.gif', width: 100),
+                ],
+              )
             : Form(
                 key: insuranceFormKey,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     DropdownButtonFormField(
                       focusColor: AppColors.white,
                       isExpanded: true,
-                      value: idInsurance,
+                      initialValue: idInsurance,
                       items: state.insurances
-                          .map((insurance) =>
-                              InsuranceHelpers.createDropDownItem(
-                                  insurance: insurance))
+                          .map(
+                            (insurance) => InsuranceHelpers.createDropDownItem(
+                              insurance: insurance,
+                            ),
+                          )
                           .toList(),
                       validator: (value) =>
                           InsuranceValidationHelpers.validateInsuranceType(
-                              value: value),
-                      decoration: const InputDecoration(
-                        labelText: 'Insurence',
-                      ),
+                            value: value,
+                          ),
+                      decoration: const InputDecoration(labelText: 'Insurence'),
                       onChanged: (value) {
                         InsuranceHelpers.selectedInsuranceNotifer.value = value;
                       },
@@ -124,26 +126,26 @@ class InsuranceFormSection extends StatelessWidget {
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
+                                    const SizedBox(height: 10),
                                     TextFormField(
                                       controller: insuranceNameController,
                                       keyboardType: TextInputType.name,
                                       textInputAction: TextInputAction.next,
                                       inputFormatters: [
                                         FilteringTextInputFormatter.allow(
-                                            RegExp(r'[A-Za-z ]')),
-                                        LengthLimitingTextInputFormatter(20)
+                                          RegExp(r'[A-Za-z ]'),
+                                        ),
+                                        LengthLimitingTextInputFormatter(20),
                                       ],
                                       validator: (value) =>
-                                          InsuranceValidationHelpers
-                                              .validateInsuranceName(
-                                                  value: value),
+                                          InsuranceValidationHelpers.validateInsuranceName(
+                                            value: value,
+                                          ),
                                       textCapitalization:
                                           TextCapitalization.characters,
                                       decoration: const InputDecoration(
-                                          labelText: 'Insurance Name'),
+                                        labelText: 'Insurance Name',
+                                      ),
                                       style: AppTextStyles.textFormFieldStyle,
                                       cursorColor:
                                           AppColors.textFormFiledStyleColor,
@@ -154,54 +156,56 @@ class InsuranceFormSection extends StatelessWidget {
                             : const SizedBox();
                       },
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     TextFormField(
                       validator: (value) =>
                           InsuranceValidationHelpers.validateMemberNumber(
-                              value: value),
+                            value: value,
+                          ),
                       controller: memberNumberController,
                       keyboardType: TextInputType.name,
                       textInputAction: TextInputAction.next,
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(20),
                         FilteringTextInputFormatter.allow(
-                            RegExp(r'[A-Za-z0-9]'))
+                          RegExp(r'[A-Za-z0-9]'),
+                        ),
                       ],
-                      decoration:
-                          const InputDecoration(labelText: 'Member Number'),
+                      decoration: const InputDecoration(
+                        labelText: 'Member Number',
+                      ),
                       style: AppTextStyles.textFormFieldStyle,
                       cursorColor: AppColors.textFormFiledStyleColor,
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     TextFormField(
                       readOnly: true,
                       validator: (value) =>
                           InsuranceValidationHelpers.expireDateValidator(
-                              value: value),
-                      decoration:
-                          const InputDecoration(labelText: 'Expire date'),
+                            value: value,
+                          ),
+                      decoration: const InputDecoration(
+                        labelText: 'Expire date',
+                      ),
                       style: AppTextStyles.textFormFieldStyle,
                       controller: expireDateController,
                       onTap: () async {
                         DateTime? selectedDate =
                             await InsuranceHelpers.getExpireDate(
-                                initialDate: expireDate ??
-                                    DateTime.now().add(const Duration(days: 1)),
-                                context: context);
+                              initialDate:
+                                  expireDate ??
+                                  DateTime.now().add(const Duration(days: 1)),
+                              context: context,
+                            );
                         if (selectedDate != null) {
                           expireDate = selectedDate;
-                          expireDateController.text =
-                              DateFormat('dd-MM-yyyy').format(expireDate!);
+                          expireDateController.text = DateFormat(
+                            'dd-MM-yyyy',
+                          ).format(expireDate!);
                         }
                       },
                     ),
-                    const SizedBox(
-                      height: 55,
-                    )
+                    const SizedBox(height: 55),
                   ],
                 ),
               );

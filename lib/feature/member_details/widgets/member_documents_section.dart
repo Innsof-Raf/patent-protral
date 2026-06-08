@@ -6,10 +6,8 @@ import '../../../resources/app_text_styles.dart';
 
 class MemberDocumentsSection extends StatelessWidget {
   final List<MmemberDocumentModel> documents;
-  const MemberDocumentsSection({
-    Key? key,
-    required this.documents,
-  }) : super(key: key);
+
+  const MemberDocumentsSection({super.key, required this.documents});
 
   @override
   Widget build(BuildContext context) {
@@ -22,23 +20,31 @@ class MemberDocumentsSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Flexible(
-              child: Text(
-            documents[index].docName,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-            style: AppTextStyles.largeRobotoNormal
-                .copyWith(color: AppColors.textDark),
-          )),
+            child: Text(
+              documents[index].docName,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              style: AppTextStyles.largeRobotoNormal.copyWith(
+                color: AppColors.textDark,
+              ),
+            ),
+          ),
           TextButton(
-              style: TextButton.styleFrom(
-                  backgroundColor: AppColors.white,
-                  foregroundColor: AppColors.skyblue,
-                  minimumSize: const Size(0, 0),
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-              onPressed: () {},
-              child: Text('Download',
-                  style: AppTextStyles.bodyLargeRobotoBold.copyWith(
-                      fontWeight: FontWeight.w400, color: AppColors.skyblue)))
+            style: TextButton.styleFrom(
+              backgroundColor: AppColors.white,
+              foregroundColor: AppColors.skyblue,
+              minimumSize: const Size(0, 0),
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            ),
+            onPressed: () {},
+            child: Text(
+              'Download',
+              style: AppTextStyles.bodyLargeRobotoBold.copyWith(
+                fontWeight: FontWeight.w400,
+                color: AppColors.skyblue,
+              ),
+            ),
+          ),
         ],
       ),
     );

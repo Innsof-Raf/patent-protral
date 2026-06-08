@@ -4,31 +4,32 @@ import 'package:patient_portal/feature/main_screen/helpers/main_screen_helpers.d
 import 'package:patient_portal/feature/main_screen/widgets/bottom_navigation_bar_widget.dart';
 import 'package:patient_portal/feature/main_screen/widgets/home_appbar.dart';
 import 'package:patient_portal/feature/main_screen/widgets/main_appbar.dart';
-import 'package:patient_portal/feature/profile/profile_screen.dart';
 import 'package:patient_portal/feature/main_screen/widgets/profile_app_bar.dart';
 import 'package:patient_portal/feature/main_screen/widgets/reports_app_bar.dart';
+import 'package:patient_portal/feature/profile/profile_screen.dart';
 import 'package:patient_portal/feature/speciality/speciality_screen.dart';
+
 import '../home/bloc/home_bloc.dart';
 import '../home/home_screen.dart';
+import '../my_appointments/my_appointment_screen.dart';
 import '../profile/bloc/user_bloc.dart';
 import '../profile/models/user/user_model.dart';
-import 'widgets/app_drawer.dart';
-import '../my_appointments/my_appointment_screen.dart';
 import '../reports/reports_screen.dart';
+import 'widgets/app_drawer.dart';
 
 List<Widget> screens = const [
   HomeScreen(),
   MyAppointmentScreen(),
   SpecilityScreen(),
   ReportsScreen(),
-  ProfileScreen()
+  ProfileScreen(),
 ];
 List<PreferredSizeWidget?> appBars = const [
   HomeAppBar(),
   MainAppBar(title: 'My Appointments'),
   MainAppBar(title: 'Specialist'),
   ReportsAppBar(),
-  ProfileAppBar()
+  ProfileAppBar(),
 ];
 
 class MainScreen extends StatelessWidget {
@@ -38,9 +39,9 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final UserModel user = context.read<UserBloc>().state.user!;
-      context
-          .read<HomeBloc>()
-          .add(GetHomeData(token: user.accessToken, idBusunit: 3));
+      context.read<HomeBloc>().add(
+        GetHomeData(token: user.accessToken, idBusunit: 3),
+      );
     });
     MainScreenHelpers.mainScreenNotifier.value = 0;
     return ValueListenableBuilder(
@@ -49,16 +50,16 @@ class MainScreen extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         drawer: const AppDrawer(),
         appBar: appBars[value],
-        body: WillPopScope(
-            onWillPop: () async {
-              if (value != 0) {
-                MainScreenHelpers.mainScreenNotifier.value = 0;
-                return false;
-              } else {
-                return true;
-              }
-            },
-            child: screens[value]),
+        body: PopScope(
+          canPop: value == 0,
+          onPopInvokedWithResult: (didPop, result) {
+            if (didPop) {
+              return;
+            }
+            MainScreenHelpers.mainScreenNotifier.value = 0;
+          },
+          child: screens[value],
+        ),
         floatingActionButton: const BottomNavigationBarWidget(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),

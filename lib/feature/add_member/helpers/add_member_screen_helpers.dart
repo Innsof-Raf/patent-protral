@@ -1,15 +1,16 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/resources/common_helpers/gender_form_helpers.dart';
-import 'package:patient_portal/resources/common_helpers/insurance_helpers.dart';
-import 'package:patient_portal/resources/common_widgets.dart/insurance_form_scetion.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:patient_portal/feature/add_member/widgets/member_details_section.dart';
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
+import 'package:patient_portal/resources/common_helpers/gender_form_helpers.dart';
+import 'package:patient_portal/resources/common_helpers/insurance_helpers.dart';
+import 'package:patient_portal/resources/common_widgets.dart/insurance_form_scetion.dart';
 import 'package:patient_portal/resources/dimens.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../resources/common_widgets.dart/image_picker_tile.dart';
 
@@ -55,15 +56,15 @@ class AddMemberScreenHelpers {
                   title: 'Camera',
                   iconPath: 'assets/icons/camera_icon.svg',
                   onPressed: () async {
-                    await ImagePicker()
-                        .pickImage(source: ImageSource.camera)
-                        .then((image) {
-                      if (image != null) {
-                        AddMemberScreenHelpers.profileImageNotifer.value =
-                            File(image.path);
-                        Navigator.pop(context);
-                      }
-                    });
+                    final image = await ImagePicker()
+                        .pickImage(source: ImageSource.camera);
+                    if (image != null) {
+                      AddMemberScreenHelpers.profileImageNotifer.value =
+                          File(image.path);
+                    }
+                    if (context.mounted) {
+                      Navigator.pop(context);
+                    }
                   },
                 ),
                 const SizedBox(
@@ -73,15 +74,15 @@ class AddMemberScreenHelpers {
                   title: 'Gallery',
                   iconPath: 'assets/icons/gallery_icon.svg',
                   onPressed: () async {
-                    await ImagePicker()
-                        .pickImage(source: ImageSource.gallery)
-                        .then((image) {
-                      if (image != null) {
-                        AddMemberScreenHelpers.profileImageNotifer.value =
-                            File(image.path);
-                        Navigator.pop(context);
-                      }
-                    });
+                    final image = await ImagePicker()
+                        .pickImage(source: ImageSource.gallery);
+                    if (image != null) {
+                      AddMemberScreenHelpers.profileImageNotifer.value =
+                          File(image.path);
+                    }
+                    if (context.mounted) {
+                      Navigator.pop(context);
+                    }
                   },
                 )
               ],

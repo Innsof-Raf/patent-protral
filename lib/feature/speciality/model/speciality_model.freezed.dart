@@ -1,7 +1,7 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'speciality_model.dart';
 
@@ -9,226 +9,279 @@ part of 'speciality_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-SpecialityModel _$SpecialityModelFromJson(Map<String, dynamic> json) {
-  return _SpecilityModel.fromJson(json);
+SpecialityModel _$SpecialityModelFromJson(
+  Map<String, dynamic> json
+) {
+    return _SpecilityModel.fromJson(
+      json
+    );
 }
 
 /// @nodoc
 mixin _$SpecialityModel {
-  @JsonKey(name: 'id_dept')
-  int get idSpeciality => throw _privateConstructorUsedError;
-  @JsonKey(name: 'dept_id')
-  String get specialityId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'dept_name')
-  String get specialityName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'dept_img')
-  String? get specialityImage => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $SpecialityModelCopyWith<SpecialityModel> get copyWith =>
-      throw _privateConstructorUsedError;
+@JsonKey(name: 'id_dept') int get idSpeciality;@JsonKey(name: 'dept_id') String get specialityId;@JsonKey(name: 'dept_name') String get specialityName;@JsonKey(name: 'dept_img') String? get specialityImage;
+/// Create a copy of SpecialityModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SpecialityModelCopyWith<SpecialityModel> get copyWith => _$SpecialityModelCopyWithImpl<SpecialityModel>(this as SpecialityModel, _$identity);
+
+  /// Serializes this SpecialityModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SpecialityModel&&(identical(other.idSpeciality, idSpeciality) || other.idSpeciality == idSpeciality)&&(identical(other.specialityId, specialityId) || other.specialityId == specialityId)&&(identical(other.specialityName, specialityName) || other.specialityName == specialityName)&&(identical(other.specialityImage, specialityImage) || other.specialityImage == specialityImage));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,idSpeciality,specialityId,specialityName,specialityImage);
+
+@override
+String toString() {
+  return 'SpecialityModel(idSpeciality: $idSpeciality, specialityId: $specialityId, specialityName: $specialityName, specialityImage: $specialityImage)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SpecialityModelCopyWith<$Res> {
-  factory $SpecialityModelCopyWith(
-          SpecialityModel value, $Res Function(SpecialityModel) then) =
-      _$SpecialityModelCopyWithImpl<$Res>;
-  $Res call(
-      {@JsonKey(name: 'id_dept') int idSpeciality,
-      @JsonKey(name: 'dept_id') String specialityId,
-      @JsonKey(name: 'dept_name') String specialityName,
-      @JsonKey(name: 'dept_img') String? specialityImage});
-}
+abstract mixin class $SpecialityModelCopyWith<$Res>  {
+  factory $SpecialityModelCopyWith(SpecialityModel value, $Res Function(SpecialityModel) _then) = _$SpecialityModelCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'id_dept') int idSpeciality,@JsonKey(name: 'dept_id') String specialityId,@JsonKey(name: 'dept_name') String specialityName,@JsonKey(name: 'dept_img') String? specialityImage
+});
 
+
+
+
+}
 /// @nodoc
 class _$SpecialityModelCopyWithImpl<$Res>
     implements $SpecialityModelCopyWith<$Res> {
-  _$SpecialityModelCopyWithImpl(this._value, this._then);
+  _$SpecialityModelCopyWithImpl(this._self, this._then);
 
-  final SpecialityModel _value;
-  // ignore: unused_field
+  final SpecialityModel _self;
   final $Res Function(SpecialityModel) _then;
 
-  @override
-  $Res call({
-    Object? idSpeciality = freezed,
-    Object? specialityId = freezed,
-    Object? specialityName = freezed,
-    Object? specialityImage = freezed,
-  }) {
-    return _then(_value.copyWith(
-      idSpeciality: idSpeciality == freezed
-          ? _value.idSpeciality
-          : idSpeciality // ignore: cast_nullable_to_non_nullable
-              as int,
-      specialityId: specialityId == freezed
-          ? _value.specialityId
-          : specialityId // ignore: cast_nullable_to_non_nullable
-              as String,
-      specialityName: specialityName == freezed
-          ? _value.specialityName
-          : specialityName // ignore: cast_nullable_to_non_nullable
-              as String,
-      specialityImage: specialityImage == freezed
-          ? _value.specialityImage
-          : specialityImage // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+/// Create a copy of SpecialityModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? idSpeciality = null,Object? specialityId = null,Object? specialityName = null,Object? specialityImage = freezed,}) {
+  return _then(_self.copyWith(
+idSpeciality: null == idSpeciality ? _self.idSpeciality : idSpeciality // ignore: cast_nullable_to_non_nullable
+as int,specialityId: null == specialityId ? _self.specialityId : specialityId // ignore: cast_nullable_to_non_nullable
+as String,specialityName: null == specialityName ? _self.specialityName : specialityName // ignore: cast_nullable_to_non_nullable
+as String,specialityImage: freezed == specialityImage ? _self.specialityImage : specialityImage // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$_SpecilityModelCopyWith<$Res>
-    implements $SpecialityModelCopyWith<$Res> {
-  factory _$$_SpecilityModelCopyWith(
-          _$_SpecilityModel value, $Res Function(_$_SpecilityModel) then) =
-      __$$_SpecilityModelCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {@JsonKey(name: 'id_dept') int idSpeciality,
-      @JsonKey(name: 'dept_id') String specialityId,
-      @JsonKey(name: 'dept_name') String specialityName,
-      @JsonKey(name: 'dept_img') String? specialityImage});
 }
 
-/// @nodoc
-class __$$_SpecilityModelCopyWithImpl<$Res>
-    extends _$SpecialityModelCopyWithImpl<$Res>
-    implements _$$_SpecilityModelCopyWith<$Res> {
-  __$$_SpecilityModelCopyWithImpl(
-      _$_SpecilityModel _value, $Res Function(_$_SpecilityModel) _then)
-      : super(_value, (v) => _then(v as _$_SpecilityModel));
 
-  @override
-  _$_SpecilityModel get _value => super._value as _$_SpecilityModel;
+/// Adds pattern-matching-related methods to [SpecialityModel].
+extension SpecialityModelPatterns on SpecialityModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  @override
-  $Res call({
-    Object? idSpeciality = freezed,
-    Object? specialityId = freezed,
-    Object? specialityName = freezed,
-    Object? specialityImage = freezed,
-  }) {
-    return _then(_$_SpecilityModel(
-      idSpeciality: idSpeciality == freezed
-          ? _value.idSpeciality
-          : idSpeciality // ignore: cast_nullable_to_non_nullable
-              as int,
-      specialityId: specialityId == freezed
-          ? _value.specialityId
-          : specialityId // ignore: cast_nullable_to_non_nullable
-              as String,
-      specialityName: specialityName == freezed
-          ? _value.specialityName
-          : specialityName // ignore: cast_nullable_to_non_nullable
-              as String,
-      specialityImage: specialityImage == freezed
-          ? _value.specialityImage
-          : specialityImage // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SpecilityModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SpecilityModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SpecilityModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _SpecilityModel():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SpecilityModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SpecilityModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_dept')  int idSpeciality, @JsonKey(name: 'dept_id')  String specialityId, @JsonKey(name: 'dept_name')  String specialityName, @JsonKey(name: 'dept_img')  String? specialityImage)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SpecilityModel() when $default != null:
+return $default(_that.idSpeciality,_that.specialityId,_that.specialityName,_that.specialityImage);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_dept')  int idSpeciality, @JsonKey(name: 'dept_id')  String specialityId, @JsonKey(name: 'dept_name')  String specialityName, @JsonKey(name: 'dept_img')  String? specialityImage)  $default,) {final _that = this;
+switch (_that) {
+case _SpecilityModel():
+return $default(_that.idSpeciality,_that.specialityId,_that.specialityName,_that.specialityImage);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id_dept')  int idSpeciality, @JsonKey(name: 'dept_id')  String specialityId, @JsonKey(name: 'dept_name')  String specialityName, @JsonKey(name: 'dept_img')  String? specialityImage)?  $default,) {final _that = this;
+switch (_that) {
+case _SpecilityModel() when $default != null:
+return $default(_that.idSpeciality,_that.specialityId,_that.specialityName,_that.specialityImage);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_SpecilityModel implements _SpecilityModel {
-  const _$_SpecilityModel(
-      {@JsonKey(name: 'id_dept') required this.idSpeciality,
-      @JsonKey(name: 'dept_id') required this.specialityId,
-      @JsonKey(name: 'dept_name') required this.specialityName,
-      @JsonKey(name: 'dept_img') required this.specialityImage});
 
-  factory _$_SpecilityModel.fromJson(Map<String, dynamic> json) =>
-      _$$_SpecilityModelFromJson(json);
+class _SpecilityModel implements SpecialityModel {
+  const _SpecilityModel({@JsonKey(name: 'id_dept') required this.idSpeciality, @JsonKey(name: 'dept_id') required this.specialityId, @JsonKey(name: 'dept_name') required this.specialityName, @JsonKey(name: 'dept_img') required this.specialityImage});
+  factory _SpecilityModel.fromJson(Map<String, dynamic> json) => _$SpecilityModelFromJson(json);
 
-  @override
-  @JsonKey(name: 'id_dept')
-  final int idSpeciality;
-  @override
-  @JsonKey(name: 'dept_id')
-  final String specialityId;
-  @override
-  @JsonKey(name: 'dept_name')
-  final String specialityName;
-  @override
-  @JsonKey(name: 'dept_img')
-  final String? specialityImage;
+@override@JsonKey(name: 'id_dept') final  int idSpeciality;
+@override@JsonKey(name: 'dept_id') final  String specialityId;
+@override@JsonKey(name: 'dept_name') final  String specialityName;
+@override@JsonKey(name: 'dept_img') final  String? specialityImage;
 
-  @override
-  String toString() {
-    return 'SpecialityModel(idSpeciality: $idSpeciality, specialityId: $specialityId, specialityName: $specialityName, specialityImage: $specialityImage)';
-  }
+/// Create a copy of SpecialityModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SpecilityModelCopyWith<_SpecilityModel> get copyWith => __$SpecilityModelCopyWithImpl<_SpecilityModel>(this, _$identity);
 
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SpecilityModel &&
-            const DeepCollectionEquality()
-                .equals(other.idSpeciality, idSpeciality) &&
-            const DeepCollectionEquality()
-                .equals(other.specialityId, specialityId) &&
-            const DeepCollectionEquality()
-                .equals(other.specialityName, specialityName) &&
-            const DeepCollectionEquality()
-                .equals(other.specialityImage, specialityImage));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(idSpeciality),
-      const DeepCollectionEquality().hash(specialityId),
-      const DeepCollectionEquality().hash(specialityName),
-      const DeepCollectionEquality().hash(specialityImage));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_SpecilityModelCopyWith<_$_SpecilityModel> get copyWith =>
-      __$$_SpecilityModelCopyWithImpl<_$_SpecilityModel>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_SpecilityModelToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$SpecilityModelToJson(this, );
 }
 
-abstract class _SpecilityModel implements SpecialityModel {
-  const factory _SpecilityModel(
-          {@JsonKey(name: 'id_dept') required final int idSpeciality,
-          @JsonKey(name: 'dept_id') required final String specialityId,
-          @JsonKey(name: 'dept_name') required final String specialityName,
-          @JsonKey(name: 'dept_img') required final String? specialityImage}) =
-      _$_SpecilityModel;
-
-  factory _SpecilityModel.fromJson(Map<String, dynamic> json) =
-      _$_SpecilityModel.fromJson;
-
-  @override
-  @JsonKey(name: 'id_dept')
-  int get idSpeciality;
-  @override
-  @JsonKey(name: 'dept_id')
-  String get specialityId;
-  @override
-  @JsonKey(name: 'dept_name')
-  String get specialityName;
-  @override
-  @JsonKey(name: 'dept_img')
-  String? get specialityImage;
-  @override
-  @JsonKey(ignore: true)
-  _$$_SpecilityModelCopyWith<_$_SpecilityModel> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SpecilityModel&&(identical(other.idSpeciality, idSpeciality) || other.idSpeciality == idSpeciality)&&(identical(other.specialityId, specialityId) || other.specialityId == specialityId)&&(identical(other.specialityName, specialityName) || other.specialityName == specialityName)&&(identical(other.specialityImage, specialityImage) || other.specialityImage == specialityImage));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,idSpeciality,specialityId,specialityName,specialityImage);
+
+@override
+String toString() {
+  return 'SpecialityModel(idSpeciality: $idSpeciality, specialityId: $specialityId, specialityName: $specialityName, specialityImage: $specialityImage)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SpecilityModelCopyWith<$Res> implements $SpecialityModelCopyWith<$Res> {
+  factory _$SpecilityModelCopyWith(_SpecilityModel value, $Res Function(_SpecilityModel) _then) = __$SpecilityModelCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'id_dept') int idSpeciality,@JsonKey(name: 'dept_id') String specialityId,@JsonKey(name: 'dept_name') String specialityName,@JsonKey(name: 'dept_img') String? specialityImage
+});
+
+
+
+
+}
+/// @nodoc
+class __$SpecilityModelCopyWithImpl<$Res>
+    implements _$SpecilityModelCopyWith<$Res> {
+  __$SpecilityModelCopyWithImpl(this._self, this._then);
+
+  final _SpecilityModel _self;
+  final $Res Function(_SpecilityModel) _then;
+
+/// Create a copy of SpecialityModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? idSpeciality = null,Object? specialityId = null,Object? specialityName = null,Object? specialityImage = freezed,}) {
+  return _then(_SpecilityModel(
+idSpeciality: null == idSpeciality ? _self.idSpeciality : idSpeciality // ignore: cast_nullable_to_non_nullable
+as int,specialityId: null == specialityId ? _self.specialityId : specialityId // ignore: cast_nullable_to_non_nullable
+as String,specialityName: null == specialityName ? _self.specialityName : specialityName // ignore: cast_nullable_to_non_nullable
+as String,specialityImage: freezed == specialityImage ? _self.specialityImage : specialityImage // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+// dart format on

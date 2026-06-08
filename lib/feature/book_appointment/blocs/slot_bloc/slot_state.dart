@@ -1,7 +1,7 @@
 part of 'slot_bloc.dart';
 
 @freezed
-class SlotState with _$SlotState {
+sealed class SlotState with _$SlotState {
   const factory SlotState({
     required bool isLoading,
     required bool isFetchingSuccses,
@@ -9,6 +9,7 @@ class SlotState with _$SlotState {
     required ErrorModel error,
     required ShiftModel shift,
   }) = _SlotState;
+
   factory SlotState.initial() => SlotState(
       isLoading: false,
       isFetchingSuccses: false,

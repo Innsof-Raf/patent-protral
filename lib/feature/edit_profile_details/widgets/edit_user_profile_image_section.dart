@@ -8,8 +8,7 @@ import '../../../resources/dimens.dart';
 
 class EditUserProfileImageSection extends StatelessWidget {
   final String? image;
-  const EditUserProfileImageSection({Key? key, required this.image})
-      : super(key: key);
+  const EditUserProfileImageSection({super.key, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -25,47 +24,42 @@ class EditUserProfileImageSection extends StatelessWidget {
                   backgroundImage: FileImage(value),
                 )
               : image != null
-                  ? CircleAvatar(
-                      radius: 22,
-                      backgroundColor: AppColors.dividerGrayColor,
-                      backgroundImage: NetworkImage(
-                        image!,
-                      ),
-                    )
-                  : const CircleAvatar(
-                      radius: 22,
-                      backgroundColor: AppColors.dividerGrayColor,
-                      backgroundImage: AssetImage(
-                          'assets/images/member_default_profile_image.png'),
-                    ),
+              ? CircleAvatar(
+                  radius: 22,
+                  backgroundColor: AppColors.dividerGrayColor,
+                  backgroundImage: NetworkImage(image!),
+                )
+              : const CircleAvatar(
+                  radius: 22,
+                  backgroundColor: AppColors.dividerGrayColor,
+                  backgroundImage: AssetImage(
+                    'assets/images/member_default_profile_image.png',
+                  ),
+                ),
         ),
         Dimens.constWidth10,
         Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
-            Text(
-              'Add photo',
-              style: AppTextStyles.subHeaddingSemiBoldRoboto,
-            ),
-            Text(
-              'Min size 1 mb',
-              style: AppTextStyles.bodyTextRoboto,
-            ),
+            Text('Add photo', style: AppTextStyles.subHeaddingSemiBoldRoboto),
+            Text('Min size 1 mb', style: AppTextStyles.bodyTextRoboto),
           ],
         ),
         const Spacer(),
         ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                shape: const CircleBorder(),
-                elevation: 0,
-                backgroundColor: AppColors.dividerGrayColor,
-                padding: const EdgeInsets.all(12),
-                minimumSize: const Size(0, 0)),
-            onPressed: () {
-              EditProfileDetailScreenHelpers.pickImage(context: context);
-            },
-            child: SvgPicture.asset('assets/icons/camera_icon.svg')),
+          style: ElevatedButton.styleFrom(
+            shape: const CircleBorder(),
+            elevation: 0,
+            backgroundColor: AppColors.dividerGrayColor,
+            padding: const EdgeInsets.all(12),
+            minimumSize: const Size(0, 0),
+          ),
+          onPressed: () {
+            EditProfileDetailScreenHelpers.pickImage(context: context);
+          },
+          child: SvgPicture.asset('assets/icons/camera_icon.svg'),
+        ),
       ],
     );
   }

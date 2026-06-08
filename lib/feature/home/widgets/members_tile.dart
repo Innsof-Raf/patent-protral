@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
 import 'package:patient_portal/route/route_constants.dart';
 
@@ -8,9 +7,7 @@ import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 
 class MembersTile extends StatelessWidget {
-  const MembersTile({
-    Key? key,
-  }) : super(key: key);
+  const MembersTile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +20,11 @@ class MembersTile extends StatelessWidget {
         padding: EdgeInsets.all(size.width < 600 ? 10 : 20),
         decoration: BoxDecoration(
           image: const DecorationImage(
-              image: AssetImage(
-                  'assets/images/home_member_tile_baground_image.png'),
-              fit: BoxFit.fill),
+            image: AssetImage(
+              'assets/images/home_member_tile_baground_image.png',
+            ),
+            fit: BoxFit.fill,
+          ),
           borderRadius: BorderRadius.circular(11.5),
         ),
         child: Column(
@@ -36,25 +35,29 @@ class MembersTile extends StatelessWidget {
               children: [
                 Text(
                   'Members',
-                  style: AppTextStyles.bodyLargeRobotoSemiBold
-                      .copyWith(fontSize: 13, color: AppColors.textDark),
+                  style: AppTextStyles.bodyLargeRobotoSemiBold.copyWith(
+                    fontSize: 13,
+                    color: AppColors.textDark,
+                  ),
                 ),
                 ElevatedButton(
-                    style: OutlinedButton.styleFrom(
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        minimumSize: const Size(0, 0),
-                        elevation: 0,
-                        backgroundColor: AppColors.transparent,
-                        shape: const CircleBorder(
-                            side: BorderSide(
-                                width: .4, color: AppColors.textDark)),
-                        padding: const EdgeInsets.all(4)),
-                    onPressed: () {},
-                    child: const Icon(
-                      Icons.arrow_forward_ios,
-                      color: AppColors.textDark,
-                      size: 10,
-                    ))
+                  style: OutlinedButton.styleFrom(
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    minimumSize: const Size(0, 0),
+                    elevation: 0,
+                    backgroundColor: AppColors.transparent,
+                    shape: const CircleBorder(
+                      side: BorderSide(width: .4, color: AppColors.textDark),
+                    ),
+                    padding: const EdgeInsets.all(4),
+                  ),
+                  onPressed: () {},
+                  child: const Icon(
+                    Icons.arrow_forward_ios,
+                    color: AppColors.textDark,
+                    size: 10,
+                  ),
+                ),
               ],
             ),
             BlocBuilder<UserBloc, UserState>(
@@ -66,7 +69,7 @@ class MembersTile extends StatelessWidget {
                   style: AppTextStyles.bodySmallRobotoNormal,
                 );
               },
-            )
+            ),
           ],
         ),
       ),

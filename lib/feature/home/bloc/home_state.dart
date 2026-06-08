@@ -1,7 +1,7 @@
 part of 'home_bloc.dart';
 
 @freezed
-class HomeState with _$HomeState {
+sealed class HomeState with _$HomeState {
   const factory HomeState({
     required bool isDataFetching,
     required bool isDataFetchingFailed,
@@ -9,6 +9,7 @@ class HomeState with _$HomeState {
     required ErrorModel error,
     required HomeDataModel homeData,
   }) = _HomeState;
+
   factory HomeState.initial() => HomeState(
       isDataFetching: false,
       isDataFetchingFailed: false,

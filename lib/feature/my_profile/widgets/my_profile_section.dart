@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:innsof_patient_portal/resources/app_colors.dart';
-import 'package:innsof_patient_portal/resources/app_text_styles.dart';
-
-import '../../../resources/dimens.dart';
+import 'package:patient_portal/resources/app_colors.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
 
 class MyProfileSection extends StatelessWidget {
-  const MyProfileSection({Key? key}) : super(key: key);
+  const MyProfileSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +56,7 @@ class MyProfileSection extends StatelessWidget {
                         left: 0,
                         right: 0,
                         child: Container(
-                          padding: const EdgeInsets.all(Dimens.constPadding3),
+                          padding: const EdgeInsets.all(3),
                           decoration: const BoxDecoration(
                               color: AppColors.white, shape: BoxShape.circle),
                           child: SvgPicture.asset(
@@ -73,10 +71,10 @@ class MyProfileSection extends StatelessWidget {
                 ),
               ],
             ),
-            Dimens.constWidth10,
-            Column(
+            const SizedBox(width: 10),
+            const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   "Anzil Alphones",
                   style: AppTextStyles.subHeaddingSemiBoldRoboto,
@@ -89,7 +87,7 @@ class MyProfileSection extends StatelessWidget {
             ),
           ],
         ),
-        Dimens.constHeight5,
+        const SizedBox(height: 5),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
               elevation: 0,

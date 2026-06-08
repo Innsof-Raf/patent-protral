@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/feature/my_profile/widgets/member_section.dart';
+import 'package:patient_portal/feature/profile/widgets/my_profile_section.dart';
 
 import '../../resources/app_colors.dart';
 import '../../resources/dimens.dart';
-import 'widgets/member_section.dart';
-import '../main_screen/widgets/profile_app_bar.dart';
-import 'widgets/my_profile_section.dart';
 import 'widgets/quick_menus_section.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

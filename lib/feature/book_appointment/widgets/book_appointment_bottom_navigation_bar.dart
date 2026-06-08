@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 import '../../../resources/common_widgets.dart/common_error_alert.dart';
@@ -13,12 +14,12 @@ import '../helpers/book_appointment_screen_helpers.dart';
 
 class BookAppointmentBottomNavigationBar extends StatelessWidget {
   const BookAppointmentBottomNavigationBar({
-    Key? key,
+    super.key,
     required this.appointmentId,
     required this.doctorName,
     required this.doctorImage,
     required this.idDoctor,
-  }) : super(key: key);
+  });
 
   final int appointmentId;
   final String doctorName;
@@ -66,6 +67,7 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                               }),
                         ),
                       ).then((value) {
+                        if (!context.mounted) return;
                         BookAppointmentScreenHelpers
                             .selectedSlotNotifier.value = null;
                         context.read<MyAppointmentsBloc>().add(
@@ -128,6 +130,7 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                               }),
                         ),
                       ).then((value) {
+                        if (!context.mounted) return;
                         BookAppointmentScreenHelpers
                             .selectedSlotNotifier.value = null;
                         final MyAppointmentModel selectedAppointment = context
@@ -158,7 +161,7 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                         boxShadow: [
                           BoxShadow(
                               blurRadius: 1,
-                              color: AppColors.black.withOpacity(.25),
+                              color: AppColors.black.withValues(alpha: .25),
                               offset: const Offset(0, 0))
                         ]),
                     width: double.infinity,

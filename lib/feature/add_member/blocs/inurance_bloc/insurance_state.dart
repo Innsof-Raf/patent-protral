@@ -1,7 +1,7 @@
 part of 'insurance_bloc.dart';
 
 @freezed
-class InsuranceState with _$InsuranceState {
+sealed class InsuranceState with _$InsuranceState {
   const factory InsuranceState({
     required bool isFetchingInsurances,
     required bool isInsuranceFecthingFailed,
@@ -9,6 +9,7 @@ class InsuranceState with _$InsuranceState {
     required List<InsuranceModel> insurances,
     required ErrorModel error,
   }) = _InsuranceState;
+
   factory InsuranceState.initial() => InsuranceState(
       isFetchingInsurances: false,
       isInsuranceFecthingFailed: false,

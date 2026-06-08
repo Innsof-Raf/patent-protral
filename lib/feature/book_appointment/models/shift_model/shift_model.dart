@@ -1,10 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/book_appointment/models/slot_model/slot_model.dart';
-part 'shift_model.g.dart';
+
 part 'shift_model.freezed.dart';
+part 'shift_model.g.dart';
 
 @freezed
-class ShiftModel with _$ShiftModel {
+sealed class ShiftModel with _$ShiftModel {
   const factory ShiftModel({
     @JsonKey(name: 'slots') required List<SlotModel> slots,
     @JsonKey(name: 'shift_detail') required String shift,

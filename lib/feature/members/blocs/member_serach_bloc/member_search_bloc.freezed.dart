@@ -1,7 +1,7 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'member_search_bloc.dart';
 
@@ -9,365 +9,523 @@ part of 'member_search_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
 /// @nodoc
 mixin _$MemberSearchEvent {
-  List<MemberModel> get members => throw _privateConstructorUsedError;
-  String get searchKey => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(List<MemberModel> members, String searchKey)
-        searchMember,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(List<MemberModel> members, String searchKey)? searchMember,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<MemberModel> members, String searchKey)? searchMember,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SearchMember value) searchMember,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SearchMember value)? searchMember,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SearchMember value)? searchMember,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $MemberSearchEventCopyWith<MemberSearchEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+ List<MemberModel> get members; String get searchKey;
+/// Create a copy of MemberSearchEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MemberSearchEventCopyWith<MemberSearchEvent> get copyWith => _$MemberSearchEventCopyWithImpl<MemberSearchEvent>(this as MemberSearchEvent, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MemberSearchEvent&&const DeepCollectionEquality().equals(other.members, members)&&(identical(other.searchKey, searchKey) || other.searchKey == searchKey));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(members),searchKey);
+
+@override
+String toString() {
+  return 'MemberSearchEvent(members: $members, searchKey: $searchKey)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $MemberSearchEventCopyWith<$Res> {
-  factory $MemberSearchEventCopyWith(
-          MemberSearchEvent value, $Res Function(MemberSearchEvent) then) =
-      _$MemberSearchEventCopyWithImpl<$Res>;
-  $Res call({List<MemberModel> members, String searchKey});
-}
+abstract mixin class $MemberSearchEventCopyWith<$Res>  {
+  factory $MemberSearchEventCopyWith(MemberSearchEvent value, $Res Function(MemberSearchEvent) _then) = _$MemberSearchEventCopyWithImpl;
+@useResult
+$Res call({
+ List<MemberModel> members, String searchKey
+});
 
+
+
+
+}
 /// @nodoc
 class _$MemberSearchEventCopyWithImpl<$Res>
     implements $MemberSearchEventCopyWith<$Res> {
-  _$MemberSearchEventCopyWithImpl(this._value, this._then);
+  _$MemberSearchEventCopyWithImpl(this._self, this._then);
 
-  final MemberSearchEvent _value;
-  // ignore: unused_field
+  final MemberSearchEvent _self;
   final $Res Function(MemberSearchEvent) _then;
 
-  @override
-  $Res call({
-    Object? members = freezed,
-    Object? searchKey = freezed,
-  }) {
-    return _then(_value.copyWith(
-      members: members == freezed
-          ? _value.members
-          : members // ignore: cast_nullable_to_non_nullable
-              as List<MemberModel>,
-      searchKey: searchKey == freezed
-          ? _value.searchKey
-          : searchKey // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Create a copy of MemberSearchEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? members = null,Object? searchKey = null,}) {
+  return _then(_self.copyWith(
+members: null == members ? _self.members : members // ignore: cast_nullable_to_non_nullable
+as List<MemberModel>,searchKey: null == searchKey ? _self.searchKey : searchKey // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [MemberSearchEvent].
+extension MemberSearchEventPatterns on MemberSearchEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( SearchMember value)?  searchMember,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case SearchMember() when searchMember != null:
+return searchMember(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( SearchMember value)  searchMember,}){
+final _that = this;
+switch (_that) {
+case SearchMember():
+return searchMember(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( SearchMember value)?  searchMember,}){
+final _that = this;
+switch (_that) {
+case SearchMember() when searchMember != null:
+return searchMember(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( List<MemberModel> members,  String searchKey)?  searchMember,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case SearchMember() when searchMember != null:
+return searchMember(_that.members,_that.searchKey);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( List<MemberModel> members,  String searchKey)  searchMember,}) {final _that = this;
+switch (_that) {
+case SearchMember():
+return searchMember(_that.members,_that.searchKey);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( List<MemberModel> members,  String searchKey)?  searchMember,}) {final _that = this;
+switch (_that) {
+case SearchMember() when searchMember != null:
+return searchMember(_that.members,_that.searchKey);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$SearchMemberCopyWith<$Res>
-    implements $MemberSearchEventCopyWith<$Res> {
-  factory _$$SearchMemberCopyWith(
-          _$SearchMember value, $Res Function(_$SearchMember) then) =
-      __$$SearchMemberCopyWithImpl<$Res>;
-  @override
-  $Res call({List<MemberModel> members, String searchKey});
+
+
+class SearchMember implements MemberSearchEvent {
+  const SearchMember({required final  List<MemberModel> members, required this.searchKey}): _members = members;
+  
+
+ final  List<MemberModel> _members;
+@override List<MemberModel> get members {
+  if (_members is EqualUnmodifiableListView) return _members;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_members);
+}
+
+@override final  String searchKey;
+
+/// Create a copy of MemberSearchEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SearchMemberCopyWith<SearchMember> get copyWith => _$SearchMemberCopyWithImpl<SearchMember>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchMember&&const DeepCollectionEquality().equals(other._members, _members)&&(identical(other.searchKey, searchKey) || other.searchKey == searchKey));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_members),searchKey);
+
+@override
+String toString() {
+  return 'MemberSearchEvent.searchMember(members: $members, searchKey: $searchKey)';
+}
+
+
 }
 
 /// @nodoc
-class __$$SearchMemberCopyWithImpl<$Res>
-    extends _$MemberSearchEventCopyWithImpl<$Res>
-    implements _$$SearchMemberCopyWith<$Res> {
-  __$$SearchMemberCopyWithImpl(
-      _$SearchMember _value, $Res Function(_$SearchMember) _then)
-      : super(_value, (v) => _then(v as _$SearchMember));
+abstract mixin class $SearchMemberCopyWith<$Res> implements $MemberSearchEventCopyWith<$Res> {
+  factory $SearchMemberCopyWith(SearchMember value, $Res Function(SearchMember) _then) = _$SearchMemberCopyWithImpl;
+@override @useResult
+$Res call({
+ List<MemberModel> members, String searchKey
+});
 
-  @override
-  _$SearchMember get _value => super._value as _$SearchMember;
 
-  @override
-  $Res call({
-    Object? members = freezed,
-    Object? searchKey = freezed,
-  }) {
-    return _then(_$SearchMember(
-      members: members == freezed
-          ? _value._members
-          : members // ignore: cast_nullable_to_non_nullable
-              as List<MemberModel>,
-      searchKey: searchKey == freezed
-          ? _value.searchKey
-          : searchKey // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+
+
 }
-
 /// @nodoc
+class _$SearchMemberCopyWithImpl<$Res>
+    implements $SearchMemberCopyWith<$Res> {
+  _$SearchMemberCopyWithImpl(this._self, this._then);
 
-class _$SearchMember implements SearchMember {
-  const _$SearchMember(
-      {required final List<MemberModel> members, required this.searchKey})
-      : _members = members;
+  final SearchMember _self;
+  final $Res Function(SearchMember) _then;
 
-  final List<MemberModel> _members;
-  @override
-  List<MemberModel> get members {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_members);
-  }
-
-  @override
-  final String searchKey;
-
-  @override
-  String toString() {
-    return 'MemberSearchEvent.searchMember(members: $members, searchKey: $searchKey)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SearchMember &&
-            const DeepCollectionEquality().equals(other._members, _members) &&
-            const DeepCollectionEquality().equals(other.searchKey, searchKey));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_members),
-      const DeepCollectionEquality().hash(searchKey));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$SearchMemberCopyWith<_$SearchMember> get copyWith =>
-      __$$SearchMemberCopyWithImpl<_$SearchMember>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(List<MemberModel> members, String searchKey)
-        searchMember,
-  }) {
-    return searchMember(members, searchKey);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(List<MemberModel> members, String searchKey)? searchMember,
-  }) {
-    return searchMember?.call(members, searchKey);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<MemberModel> members, String searchKey)? searchMember,
-    required TResult orElse(),
-  }) {
-    if (searchMember != null) {
-      return searchMember(members, searchKey);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SearchMember value) searchMember,
-  }) {
-    return searchMember(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SearchMember value)? searchMember,
-  }) {
-    return searchMember?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SearchMember value)? searchMember,
-    required TResult orElse(),
-  }) {
-    if (searchMember != null) {
-      return searchMember(this);
-    }
-    return orElse();
-  }
+/// Create a copy of MemberSearchEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? members = null,Object? searchKey = null,}) {
+  return _then(SearchMember(
+members: null == members ? _self._members : members // ignore: cast_nullable_to_non_nullable
+as List<MemberModel>,searchKey: null == searchKey ? _self.searchKey : searchKey // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-abstract class SearchMember implements MemberSearchEvent {
-  const factory SearchMember(
-      {required final List<MemberModel> members,
-      required final String searchKey}) = _$SearchMember;
 
-  @override
-  List<MemberModel> get members;
-  @override
-  String get searchKey;
-  @override
-  @JsonKey(ignore: true)
-  _$$SearchMemberCopyWith<_$SearchMember> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$MemberSearchState {
-  List<MemberModel> get searchResultMembers =>
-      throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $MemberSearchStateCopyWith<MemberSearchState> get copyWith =>
-      throw _privateConstructorUsedError;
+ List<MemberModel> get searchResultMembers;
+/// Create a copy of MemberSearchState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MemberSearchStateCopyWith<MemberSearchState> get copyWith => _$MemberSearchStateCopyWithImpl<MemberSearchState>(this as MemberSearchState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MemberSearchState&&const DeepCollectionEquality().equals(other.searchResultMembers, searchResultMembers));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(searchResultMembers));
+
+@override
+String toString() {
+  return 'MemberSearchState(searchResultMembers: $searchResultMembers)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $MemberSearchStateCopyWith<$Res> {
-  factory $MemberSearchStateCopyWith(
-          MemberSearchState value, $Res Function(MemberSearchState) then) =
-      _$MemberSearchStateCopyWithImpl<$Res>;
-  $Res call({List<MemberModel> searchResultMembers});
-}
+abstract mixin class $MemberSearchStateCopyWith<$Res>  {
+  factory $MemberSearchStateCopyWith(MemberSearchState value, $Res Function(MemberSearchState) _then) = _$MemberSearchStateCopyWithImpl;
+@useResult
+$Res call({
+ List<MemberModel> searchResultMembers
+});
 
+
+
+
+}
 /// @nodoc
 class _$MemberSearchStateCopyWithImpl<$Res>
     implements $MemberSearchStateCopyWith<$Res> {
-  _$MemberSearchStateCopyWithImpl(this._value, this._then);
+  _$MemberSearchStateCopyWithImpl(this._self, this._then);
 
-  final MemberSearchState _value;
-  // ignore: unused_field
+  final MemberSearchState _self;
   final $Res Function(MemberSearchState) _then;
 
-  @override
-  $Res call({
-    Object? searchResultMembers = freezed,
-  }) {
-    return _then(_value.copyWith(
-      searchResultMembers: searchResultMembers == freezed
-          ? _value.searchResultMembers
-          : searchResultMembers // ignore: cast_nullable_to_non_nullable
-              as List<MemberModel>,
-    ));
-  }
+/// Create a copy of MemberSearchState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? searchResultMembers = null,}) {
+  return _then(_self.copyWith(
+searchResultMembers: null == searchResultMembers ? _self.searchResultMembers : searchResultMembers // ignore: cast_nullable_to_non_nullable
+as List<MemberModel>,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [MemberSearchState].
+extension MemberSearchStatePatterns on MemberSearchState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MemberSearchState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _MemberSearchState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MemberSearchState value)  $default,){
+final _that = this;
+switch (_that) {
+case _MemberSearchState():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MemberSearchState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _MemberSearchState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<MemberModel> searchResultMembers)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _MemberSearchState() when $default != null:
+return $default(_that.searchResultMembers);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<MemberModel> searchResultMembers)  $default,) {final _that = this;
+switch (_that) {
+case _MemberSearchState():
+return $default(_that.searchResultMembers);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<MemberModel> searchResultMembers)?  $default,) {final _that = this;
+switch (_that) {
+case _MemberSearchState() when $default != null:
+return $default(_that.searchResultMembers);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$_MemberSearchStateCopyWith<$Res>
-    implements $MemberSearchStateCopyWith<$Res> {
-  factory _$$_MemberSearchStateCopyWith(_$_MemberSearchState value,
-          $Res Function(_$_MemberSearchState) then) =
-      __$$_MemberSearchStateCopyWithImpl<$Res>;
-  @override
-  $Res call({List<MemberModel> searchResultMembers});
+
+
+class _MemberSearchState implements MemberSearchState {
+  const _MemberSearchState({required final  List<MemberModel> searchResultMembers}): _searchResultMembers = searchResultMembers;
+  
+
+ final  List<MemberModel> _searchResultMembers;
+@override List<MemberModel> get searchResultMembers {
+  if (_searchResultMembers is EqualUnmodifiableListView) return _searchResultMembers;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_searchResultMembers);
+}
+
+
+/// Create a copy of MemberSearchState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MemberSearchStateCopyWith<_MemberSearchState> get copyWith => __$MemberSearchStateCopyWithImpl<_MemberSearchState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MemberSearchState&&const DeepCollectionEquality().equals(other._searchResultMembers, _searchResultMembers));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_searchResultMembers));
+
+@override
+String toString() {
+  return 'MemberSearchState(searchResultMembers: $searchResultMembers)';
+}
+
+
 }
 
 /// @nodoc
-class __$$_MemberSearchStateCopyWithImpl<$Res>
-    extends _$MemberSearchStateCopyWithImpl<$Res>
-    implements _$$_MemberSearchStateCopyWith<$Res> {
-  __$$_MemberSearchStateCopyWithImpl(
-      _$_MemberSearchState _value, $Res Function(_$_MemberSearchState) _then)
-      : super(_value, (v) => _then(v as _$_MemberSearchState));
+abstract mixin class _$MemberSearchStateCopyWith<$Res> implements $MemberSearchStateCopyWith<$Res> {
+  factory _$MemberSearchStateCopyWith(_MemberSearchState value, $Res Function(_MemberSearchState) _then) = __$MemberSearchStateCopyWithImpl;
+@override @useResult
+$Res call({
+ List<MemberModel> searchResultMembers
+});
 
-  @override
-  _$_MemberSearchState get _value => super._value as _$_MemberSearchState;
 
-  @override
-  $Res call({
-    Object? searchResultMembers = freezed,
-  }) {
-    return _then(_$_MemberSearchState(
-      searchResultMembers: searchResultMembers == freezed
-          ? _value._searchResultMembers
-          : searchResultMembers // ignore: cast_nullable_to_non_nullable
-              as List<MemberModel>,
-    ));
-  }
+
+
 }
-
 /// @nodoc
+class __$MemberSearchStateCopyWithImpl<$Res>
+    implements _$MemberSearchStateCopyWith<$Res> {
+  __$MemberSearchStateCopyWithImpl(this._self, this._then);
 
-class _$_MemberSearchState implements _MemberSearchState {
-  const _$_MemberSearchState(
-      {required final List<MemberModel> searchResultMembers})
-      : _searchResultMembers = searchResultMembers;
+  final _MemberSearchState _self;
+  final $Res Function(_MemberSearchState) _then;
 
-  final List<MemberModel> _searchResultMembers;
-  @override
-  List<MemberModel> get searchResultMembers {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_searchResultMembers);
-  }
-
-  @override
-  String toString() {
-    return 'MemberSearchState(searchResultMembers: $searchResultMembers)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_MemberSearchState &&
-            const DeepCollectionEquality()
-                .equals(other._searchResultMembers, _searchResultMembers));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_searchResultMembers));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_MemberSearchStateCopyWith<_$_MemberSearchState> get copyWith =>
-      __$$_MemberSearchStateCopyWithImpl<_$_MemberSearchState>(
-          this, _$identity);
+/// Create a copy of MemberSearchState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? searchResultMembers = null,}) {
+  return _then(_MemberSearchState(
+searchResultMembers: null == searchResultMembers ? _self._searchResultMembers : searchResultMembers // ignore: cast_nullable_to_non_nullable
+as List<MemberModel>,
+  ));
 }
 
-abstract class _MemberSearchState implements MemberSearchState {
-  const factory _MemberSearchState(
-          {required final List<MemberModel> searchResultMembers}) =
-      _$_MemberSearchState;
 
-  @override
-  List<MemberModel> get searchResultMembers;
-  @override
-  @JsonKey(ignore: true)
-  _$$_MemberSearchStateCopyWith<_$_MemberSearchState> get copyWith =>
-      throw _privateConstructorUsedError;
 }
+
+// dart format on

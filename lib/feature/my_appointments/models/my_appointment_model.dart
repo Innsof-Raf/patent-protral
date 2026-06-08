@@ -6,7 +6,7 @@ part 'my_appointment_model.freezed.dart';
 part 'my_appointment_model.g.dart';
 
 @freezed
-class MyAppointmentModel with _$MyAppointmentModel {
+sealed class MyAppointmentModel with _$MyAppointmentModel {
   const factory MyAppointmentModel({
     @JsonKey(name: 'Id') required int id,
     @JsonKey(name: 'id_customer') required int memberId,

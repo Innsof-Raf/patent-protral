@@ -4,9 +4,11 @@ import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 
 class AlertActiveElevatedButton extends StatelessWidget {
-  const AlertActiveElevatedButton(
-      {Key? key, required this.onPressed, required this.title})
-      : super(key: key);
+  const AlertActiveElevatedButton({
+    super.key,
+    required this.onPressed,
+    required this.title,
+  });
   final VoidCallback onPressed;
   final String title;
   @override
@@ -18,9 +20,7 @@ class AlertActiveElevatedButton extends StatelessWidget {
         backgroundColor: AppColors.vilot,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6),
-          side: const BorderSide(
-            color: AppColors.vilot,
-          ),
+          side: const BorderSide(color: AppColors.vilot),
         ),
       ),
       onPressed: onPressed,

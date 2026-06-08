@@ -4,11 +4,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../language_known_model/language_known_model.dart';
 
-part 'doctor_model.g.dart';
 part 'doctor_model.freezed.dart';
+part 'doctor_model.g.dart';
 
 @freezed
-class DoctorModel with _$DoctorModel {
+sealed class DoctorModel with _$DoctorModel {
   const factory DoctorModel({
     @JsonKey(name: 'employee_id') required String doctorId,
     @JsonKey(name: 'id_employee') required int idDoctor,
@@ -20,7 +20,7 @@ class DoctorModel with _$DoctorModel {
     required String experience,
     required String branch,
     @JsonKey(name: 'Language_Known')
-        required List<LanguageKnownModel> knownLanguages,
+    required List<LanguageKnownModel> knownLanguages,
     @JsonKey(name: 'profileUrl') required String doctorImage,
     @JsonKey(name: 'cons_fee') required double consultationFee,
     @JsonKey(name: 'employee_bio') required String? doctorBio,

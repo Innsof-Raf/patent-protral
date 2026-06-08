@@ -1,9 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-part 'appointment_model.g.dart';
+
 part 'appointment_model.freezed.dart';
+part 'appointment_model.g.dart';
 
 @freezed
-class AppointmentModel with _$AppointmentModel {
+sealed class AppointmentModel with _$AppointmentModel {
   const factory AppointmentModel({
     @JsonKey(name: "Id") required int id,
     @JsonKey(name: "appmt_id") required String appointmentId,

@@ -1,11 +1,12 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'doument_type_model.freezed.dart';
 part 'doument_type_model.g.dart';
 
 @freezed
-class DocumentTypeModel with _$DocumentTypeModel {
+sealed class DocumentTypeModel with _$DocumentTypeModel {
   const factory DocumentTypeModel({
     @JsonKey(name: 'id_document') required int idDocument,
     @JsonKey(name: 'document_name') required String documentType,

@@ -6,15 +6,15 @@ part of 'package_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PackageModel _$$_PackageModelFromJson(Map<String, dynamic> json) =>
-    _$_PackageModel(
-      id: json['id'] as int,
+_PackageModel _$PackageModelFromJson(Map<String, dynamic> json) =>
+    _PackageModel(
+      id: (json['id'] as num).toInt(),
       pkgName: json['pkg_name'] as String,
       pkgPrice: (json['pkg_price'] as num).toDouble(),
       pkgImage: json['pkg_img'] as String,
     );
 
-Map<String, dynamic> _$$_PackageModelToJson(_$_PackageModel instance) =>
+Map<String, dynamic> _$PackageModelToJson(_PackageModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'pkg_name': instance.pkgName,

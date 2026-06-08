@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 
 import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 import '../../../resources/common_helpers/gender_form_helpers.dart';
 import '../../../resources/common_helpers/member_form_validation_helpers.dart';
 import '../../../resources/common_widgets.dart/radio_button.dart';
-import '../../../resources/common_widgets.dart/rounded_cheack_box.dart';
-import '../helpers/edit_member_details_screen_helpers.dart';
 
 class EditmemberDetailSection extends StatelessWidget {
   static DateTime dob = DateTime.now();
@@ -16,9 +13,7 @@ class EditmemberDetailSection extends StatelessWidget {
   static TextEditingController nationalIdController = TextEditingController();
   static TextEditingController dobController = TextEditingController();
 
-  const EditmemberDetailSection({
-    Key? key,
-  }) : super(key: key);
+  const EditmemberDetailSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +27,9 @@ class EditmemberDetailSection extends StatelessWidget {
           decoration: const InputDecoration(labelText: 'Date of birth'),
           style: AppTextStyles.textFormFieldStyle,
         ),
-        const SizedBox(
-          height: 10,
-        ),
-        const Text(
-          'Gender',
-          style: AppTextStyles.bodyTextRoboto,
-        ),
-        const SizedBox(
-          height: 5,
-        ),
+        const SizedBox(height: 10),
+        const Text('Gender', style: AppTextStyles.bodyTextRoboto),
+        const SizedBox(height: 5),
         Row(
           children: [
             ValueListenableBuilder(
@@ -57,9 +45,7 @@ class EditmemberDetailSection extends StatelessWidget {
                 title: 'Male',
               ),
             ),
-            const SizedBox(
-              width: 20,
-            ),
+            const SizedBox(width: 20),
             ValueListenableBuilder(
               valueListenable: GenderFormHelpers.genderNotifier,
               builder: (context, value, child) => RadioButton(
@@ -75,14 +61,12 @@ class EditmemberDetailSection extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(
-          height: 20,
-        ),
+        const SizedBox(height: 20),
         TextFormField(
           controller: nationalIdController,
           inputFormatters: [
             FilteringTextInputFormatter.digitsOnly,
-            LengthLimitingTextInputFormatter(11)
+            LengthLimitingTextInputFormatter(11),
           ],
           keyboardType: TextInputType.number,
           validator: (value) =>
@@ -92,9 +76,7 @@ class EditmemberDetailSection extends StatelessWidget {
           style: AppTextStyles.textFormFieldStyle,
           cursorColor: AppColors.textFormFiledStyleColor,
         ),
-        const SizedBox(
-          height: 10,
-        ),
+        const SizedBox(height: 10),
         TextFormField(
           controller: emailController,
           keyboardType: TextInputType.emailAddress,
@@ -104,9 +86,7 @@ class EditmemberDetailSection extends StatelessWidget {
               MemeberFormValidationHelpers.emailValidator(value: value),
           cursorColor: AppColors.textFormFiledStyleColor,
         ),
-        const SizedBox(
-          height: 20,
-        ),
+        const SizedBox(height: 20),
       ],
     );
   }

@@ -6,14 +6,14 @@ part of 'insurance_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_InsuranceModel _$$_InsuranceModelFromJson(Map<String, dynamic> json) =>
-    _$_InsuranceModel(
-      idInsurance: json['id_insurance'] as int,
+_InsuranceModel _$InsuranceModelFromJson(Map<String, dynamic> json) =>
+    _InsuranceModel(
+      idInsurance: (json['id_insurance'] as num).toInt(),
       insuranceName: json['ins_name'] as String,
-      img: json['Img'] as String? ?? null,
+      img: json['Img'] as String?,
     );
 
-Map<String, dynamic> _$$_InsuranceModelToJson(_$_InsuranceModel instance) =>
+Map<String, dynamic> _$InsuranceModelToJson(_InsuranceModel instance) =>
     <String, dynamic>{
       'id_insurance': instance.idInsurance,
       'ins_name': instance.insuranceName,

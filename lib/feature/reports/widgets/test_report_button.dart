@@ -60,12 +60,12 @@ class TestReportButton extends StatelessWidget {
                   borderRadius: BorderRadius.circular(4),
                 ),
                 side: BorderSide(
-                    width: .5, color: AppColors.vilot.withOpacity(.3))),
+                    width: .5, color: AppColors.vilot.withValues(alpha: .3))),
             onPressed: () {},
             child: Text(
               title,
               style: AppTextStyles.bodyTextBoldRoboto
-                  .copyWith(color: AppColors.vilot.withOpacity(.3)),
+                  .copyWith(color: AppColors.vilot.withValues(alpha: .3)),
             ));
   }
 }

@@ -1,9 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'document_model.freezed.dart';
 part 'document_model.g.dart';
 
 @freezed
-class DocumentModel with _$DocumentModel {
+sealed class DocumentModel with _$DocumentModel {
   const factory DocumentModel({
     @JsonKey(name: 'doc_id') required int docId,
     @JsonKey(name: 'id_customer') required int memberId,

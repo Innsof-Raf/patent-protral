@@ -13,9 +13,7 @@ import '../helpers/login_screen_helpers.dart';
 TextEditingController mobileNumerController = TextEditingController();
 
 class LoginOtpGenerationSection extends StatelessWidget {
-  const LoginOtpGenerationSection({
-    Key? key,
-  }) : super(key: key);
+  const LoginOtpGenerationSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +31,9 @@ class LoginOtpGenerationSection extends StatelessWidget {
             transitionBuilder:
                 (context, animation, secondaryAnimation, child) =>
                     Transform.scale(
-                        scale: Curves.easeOut.transform(animation.value),
-                        child: CommonErrorAlert(content: state.error.message)),
+                      scale: Curves.easeOut.transform(animation.value),
+                      child: CommonErrorAlert(content: state.error.message),
+                    ),
           );
         } else if (state.isOtpGenerationSuccess &&
             state.isOtpGenerationFailed == false &&
@@ -54,35 +53,35 @@ class LoginOtpGenerationSection extends StatelessWidget {
                 'Enter your Mobile Number',
                 style: AppTextStyles.bodyTextRoboto,
               ),
-              const SizedBox(
-                height: 4,
-              ),
+              const SizedBox(height: 4),
               Row(
                 children: [
                   Expanded(
-                      child: TextFormField(
-                    keyboardType: TextInputType.phone,
-                    cursorColor: AppColors.textFormFiledStyleColor,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(8)
-                    ],
-                    decoration: const InputDecoration(
+                    child: TextFormField(
+                      keyboardType: TextInputType.phone,
+                      cursorColor: AppColors.textFormFiledStyleColor,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        LengthLimitingTextInputFormatter(8),
+                      ],
+                      decoration: const InputDecoration(
                         prefixText: '+974 ',
-                        prefixStyle: AppTextStyles.textFormFieldStyle),
-                    style: AppTextStyles.textFormFieldStyle,
-                    onFieldSubmitted: (value) {
-                      if (formKey.currentState!.validate() &&
-                          state.isOtpGenerating == false) {
-                        context
-                            .read<OtpGenerationBloc>()
-                            .add(GenerateOtp(mobileNumber: value));
-                      }
-                    },
-                    controller: mobileNumerController,
-                    validator: (value) =>
-                        LoginScreenFormHelpers.validateMobileNumber(value),
-                  )),
+                        prefixStyle: AppTextStyles.textFormFieldStyle,
+                      ),
+                      style: AppTextStyles.textFormFieldStyle,
+                      onFieldSubmitted: (value) {
+                        if (formKey.currentState!.validate() &&
+                            state.isOtpGenerating == false) {
+                          context.read<OtpGenerationBloc>().add(
+                            GenerateOtp(mobileNumber: value),
+                          );
+                        }
+                      },
+                      controller: mobileNumerController,
+                      validator: (value) =>
+                          LoginScreenFormHelpers.validateMobileNumber(value),
+                    ),
+                  ),
                   state.isOtpGenerating
                       ? Image.asset(
                           'assets/gif_images/Ripple-0 2.gif',
@@ -92,35 +91,42 @@ class LoginOtpGenerationSection extends StatelessWidget {
                       : Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  padding: const EdgeInsets.all(10),
-                                  backgroundColor: AppColors.vilot,
-                                  shape: const CircleBorder()),
-                              onPressed: () {
-                                if (formKey.currentState!.validate() &&
-                                    !state.isOtpGenerating) {
-                                  context.read<OtpGenerationBloc>().add(
-                                      GenerateOtp(
-                                          mobileNumber:
-                                              mobileNumerController.text));
-                                }
-                              },
-                              child: const Icon(Icons.arrow_forward_ios)),
-                        )
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.all(10),
+                              backgroundColor: AppColors.vilot,
+                              shape: const CircleBorder(),
+                            ),
+                            onPressed: () {
+                              if (formKey.currentState!.validate() &&
+                                  !state.isOtpGenerating) {
+                                context.read<OtpGenerationBloc>().add(
+                                  GenerateOtp(
+                                    mobileNumber: mobileNumerController.text,
+                                  ),
+                                );
+                              }
+                            },
+                            child: const Icon(
+                              Icons.arrow_forward_ios,
+                              color: AppColors.white,
+                            ),
+                          ),
+                        ),
                 ],
               ),
               LoginScreenHelpers.constHeiht20,
               Row(
                 children: [
                   const Text(
-                    'Continue by agree our',
+                    'Continue by agree our ',
                     style: AppTextStyles.bodyTextInter,
                   ),
                   TextButton(
                     onPressed: () async {
                       if (!await launchUrl(
                         Uri.parse(
-                            'https://www.alleviamedicalcenter.com/home/user_policy'),
+                          'https://www.alleviamedicalcenter.com/home/user_policy',
+                        ),
                         mode: LaunchMode.inAppWebView,
                       )) {
                         throw 'Could not launch';
@@ -129,10 +135,11 @@ class LoginOtpGenerationSection extends StatelessWidget {
                     child: Text(
                       'Terms & Conditions',
                       style: AppTextStyles.bodyTextInter.copyWith(
-                          color: AppColors.textDark,
-                          decoration: TextDecoration.underline),
+                        color: AppColors.textDark,
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ],

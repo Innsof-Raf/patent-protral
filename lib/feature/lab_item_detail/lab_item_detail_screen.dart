@@ -13,21 +13,21 @@ import '../../resources/urls.dart';
 
 class LabItemDetailScreen extends StatelessWidget {
   final int idItem;
-  const LabItemDetailScreen({Key? key, required this.idItem}) : super(key: key);
+  const LabItemDetailScreen({super.key, required this.idItem});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ItemsBloc, ItemsState>(
       builder: (context, state) {
-        int itemIndex =
-            state.items.indexWhere((element) => element.idItem == idItem);
+        int itemIndex = state.items.indexWhere(
+          (element) => element.idItem == idItem,
+        );
 
-        ItemModel? selectedItem =
-            itemIndex != -1 ? state.items[itemIndex] : null;
+        ItemModel? selectedItem = itemIndex != -1
+            ? state.items[itemIndex]
+            : null;
         return Scaffold(
-          appBar: const CommonAppbar(
-            title: 'Lab',
-          ),
+          appBar: const CommonAppbar(title: 'Lab'),
           body: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
@@ -45,15 +45,17 @@ class LabItemDetailScreen extends StatelessWidget {
                                   "${ConstantUrls.packageImageUrl}/${selectedItem.idItem}/${selectedItem.itemImg}",
                               errorWidget: (context, url, error) {
                                 return Image.asset(
-                                    'assets/images/image_loading_failed_image.png');
+                                  'assets/images/image_loading_failed_image.png',
+                                );
                               },
                               fadeInDuration: const Duration(seconds: 0),
                               fadeOutDuration: const Duration(seconds: 0),
                               progressIndicatorBuilder:
                                   (context, url, progress) {
-                                return const Center(
-                                    child: CircularProgressIndicator());
-                              },
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  },
                               width: double.infinity,
                               fit: BoxFit.fill,
                             ),
@@ -70,107 +72,119 @@ class LabItemDetailScreen extends StatelessWidget {
                   selectedItem != null ? selectedItem.itemNmae : '',
                   style: AppTextStyles.bodyLargeRobotoSemiBold,
                 ),
-                const SizedBox(
-                  height: 4,
+                const SizedBox(height: 4),
+                const Text(
+                  "Package Description",
+                  style: AppTextStyles.bodySmallRobotoNormal,
                 ),
-                const Text("Package Description",
-                    style: AppTextStyles.bodySmallRobotoNormal),
-                const SizedBox(
-                  height: 4,
-                ),
+                const SizedBox(height: 4),
                 Text(
-                  "subtitle subtitle subttilte subtitlte jhwhdfjfjfji efujiejfij bfuhufujnj\n\jfjjjfjfjj\ndjfjigjigjij\hfhfh",
-                  style: AppTextStyles.bodySmallInterNormal
-                      .copyWith(color: AppColors.textLight),
+                  "subtitle subtitle subttilte subtitlte jhwhdfjfjfji efujiejfij bfuhufujnj\njfjjjfjfjj\ndjfjigjigjijhfhfh",
+                  style: AppTextStyles.bodySmallInterNormal.copyWith(
+                    color: AppColors.textLight,
+                  ),
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Dimens.constHeight,
                 ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return Row(
-                        children: const [
-                          CircleAvatar(
-                            radius: 4,
-                            backgroundColor: AppColors.vilot,
+                  shrinkWrap: true,
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      children: const [
+                        CircleAvatar(
+                          radius: 4,
+                          backgroundColor: AppColors.vilot,
+                        ),
+                        SizedBox(width: 5),
+                        Flexible(
+                          child: Text(
+                            "Lorem ipsum dolor sit amet, consectetuer",
+                            style: AppTextStyles.bodyTextBoldRoboto,
                           ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Flexible(
-                            child: Text(
-                              "Lorem ipsum dolor sit amet, consectetuer",
-                              style: AppTextStyles.bodyTextBoldRoboto,
-                            ),
-                          ),
-                        ],
-                      );
-                    }),
+                        ),
+                      ],
+                    );
+                  },
+                ),
               ],
             ),
           ),
           bottomNavigationBar: Container(
-            decoration: BoxDecoration(boxShadow: [
-              BoxShadow(blurRadius: 1, color: AppColors.black.withOpacity(.25))
-            ]),
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 1,
+                  color: AppColors.black.withValues(alpha: .25),
+                ),
+              ],
+            ),
             child: Row(
               children: [
                 Expanded(
-                    child: OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    side: BorderSide.none,
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero),
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    padding: const EdgeInsets.symmetric(vertical: 25),
-                    minimumSize: const Size(0, 0),
-                    foregroundColor: AppColors.vilot,
-                    backgroundColor: AppColors.white,
-                    elevation: 0,
+                  child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide.none,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero,
+                      ),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      padding: const EdgeInsets.symmetric(vertical: 25),
+                      minimumSize: const Size(0, 0),
+                      foregroundColor: AppColors.vilot,
+                      backgroundColor: AppColors.white,
+                      elevation: 0,
+                    ),
+                    child: Text(
+                      'VIEW CART',
+                      style: AppTextStyles.largeBoldRoboto.copyWith(
+                        color: AppColors.vilot,
+                      ),
+                    ),
+                    onPressed: () {},
                   ),
-                  child: Text(
-                    'VIEW CART',
-                    style: AppTextStyles.largeBoldRoboto
-                        .copyWith(color: AppColors.vilot),
-                  ),
-                  onPressed: () {},
-                )),
+                ),
                 Expanded(
-                    child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero),
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    padding: const EdgeInsets.symmetric(vertical: 25),
-                    minimumSize: const Size(0, 0),
-                    foregroundColor: AppColors.white,
-                    backgroundColor: selectedItem != null
-                        ? selectedItem.isChangingCartStatus
-                            ? AppColors.white
-                            : AppColors.vilot
-                        : AppColors.vilot,
-                    elevation: 0,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero,
+                      ),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      padding: const EdgeInsets.symmetric(vertical: 25),
+                      minimumSize: const Size(0, 0),
+                      foregroundColor: AppColors.white,
+                      backgroundColor: selectedItem != null
+                          ? selectedItem.isChangingCartStatus
+                                ? AppColors.white
+                                : AppColors.vilot
+                          : AppColors.vilot,
+                      elevation: 0,
+                    ),
+                    child: Text(
+                      'ADD TO CART',
+                      style: AppTextStyles.largeBoldRoboto.copyWith(
+                        color: AppColors.white,
+                      ),
+                    ),
+                    onPressed: () {
+                      if (selectedItem != null) {
+                        context.read<ItemsBloc>().add(
+                          UpdateItemCartSatus(
+                            idItem: selectedItem.idItem,
+                            idUser: context.read<UserBloc>().state.user!.id,
+                            token: context
+                                .read<UserBloc>()
+                                .state
+                                .user!
+                                .accessToken,
+                          ),
+                        );
+                      }
+                    },
                   ),
-                  child: Text(
-                    'ADD TO CART',
-                    style: AppTextStyles.largeBoldRoboto
-                        .copyWith(color: AppColors.white),
-                  ),
-                  onPressed: () {
-                    if (selectedItem != null) {
-                      context.read<ItemsBloc>().add(UpdateItemCartSatus(
-                          idItem: selectedItem.idItem,
-                          idUser: context.read<UserBloc>().state.user!.id,
-                          token: context
-                              .read<UserBloc>()
-                              .state
-                              .user!
-                              .accessToken));
-                    }
-                  },
-                ))
+                ),
               ],
             ),
           ),

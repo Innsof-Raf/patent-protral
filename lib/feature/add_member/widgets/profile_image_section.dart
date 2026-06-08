@@ -8,9 +8,7 @@ import '../../../resources/dimens.dart';
 import '../helpers/add_member_screen_helpers.dart';
 
 class ProfileImageSection extends StatelessWidget {
-  const ProfileImageSection({
-    Key? key,
-  }) : super(key: key);
+  const ProfileImageSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,28 +31,24 @@ class ProfileImageSection extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
-            Text(
-              'Add photo',
-              style: AppTextStyles.subHeaddingSemiBoldRoboto,
-            ),
-            Text(
-              'Min size 1 mb',
-              style: AppTextStyles.bodyTextRoboto,
-            ),
+            Text('Add photo', style: AppTextStyles.subHeaddingSemiBoldRoboto),
+            Text('Min size 1 mb', style: AppTextStyles.bodyTextRoboto),
           ],
         ),
         const Spacer(),
         ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                shape: const CircleBorder(),
-                elevation: 0,
-                backgroundColor: AppColors.dividerGrayColor,
-                padding: const EdgeInsets.all(12),
-                minimumSize: const Size(0, 0)),
-            onPressed: () {
-              AddMemberScreenHelpers.pickImage(context: context);
-            },
-            child: SvgPicture.asset('assets/icons/camera_icon.svg')),
+          style: ElevatedButton.styleFrom(
+            shape: const CircleBorder(),
+            elevation: 0,
+            backgroundColor: AppColors.dividerGrayColor,
+            padding: const EdgeInsets.all(12),
+            minimumSize: const Size(0, 0),
+          ),
+          onPressed: () {
+            AddMemberScreenHelpers.pickImage(context: context);
+          },
+          child: SvgPicture.asset('assets/icons/camera_icon.svg'),
+        ),
       ],
     );
   }

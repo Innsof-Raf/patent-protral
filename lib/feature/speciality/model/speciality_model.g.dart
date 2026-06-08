@@ -6,15 +6,15 @@ part of 'speciality_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_SpecilityModel _$$_SpecilityModelFromJson(Map<String, dynamic> json) =>
-    _$_SpecilityModel(
-      idSpeciality: json['id_dept'] as int,
+_SpecilityModel _$SpecilityModelFromJson(Map<String, dynamic> json) =>
+    _SpecilityModel(
+      idSpeciality: (json['id_dept'] as num).toInt(),
       specialityId: json['dept_id'] as String,
       specialityName: json['dept_name'] as String,
       specialityImage: json['dept_img'] as String?,
     );
 
-Map<String, dynamic> _$$_SpecilityModelToJson(_$_SpecilityModel instance) =>
+Map<String, dynamic> _$SpecilityModelToJson(_SpecilityModel instance) =>
     <String, dynamic>{
       'id_dept': instance.idSpeciality,
       'dept_id': instance.specialityId,

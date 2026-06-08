@@ -1,7 +1,7 @@
 part of 'speciality_bloc.dart';
 
 @freezed
-class SpecialityState with _$SpecialityState {
+sealed class SpecialityState with _$SpecialityState {
   const factory SpecialityState({
     required bool isFetching,
     required bool isFetchingSuccess,
@@ -9,6 +9,7 @@ class SpecialityState with _$SpecialityState {
     required ErrorModel error,
     required List<SpecialityModel> specialities,
   }) = _SpecialityState;
+
   factory SpecialityState.initial() => SpecialityState(
         isFetching: false,
         specialities: [],

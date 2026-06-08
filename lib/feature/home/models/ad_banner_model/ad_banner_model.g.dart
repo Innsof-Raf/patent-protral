@@ -6,15 +6,15 @@ part of 'ad_banner_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_AdBannerModel _$$_AdBannerModelFromJson(Map<String, dynamic> json) =>
-    _$_AdBannerModel(
+_AdBannerModel _$AdBannerModelFromJson(Map<String, dynamic> json) =>
+    _AdBannerModel(
       imageName: json['Image_nm'] as String?,
       url: json['url'] as String?,
-      idPrimary: json['id_primary'] as int,
+      idPrimary: (json['id_primary'] as num).toInt(),
       bannerType: json['banner_type'] as String,
     );
 
-Map<String, dynamic> _$$_AdBannerModelToJson(_$_AdBannerModel instance) =>
+Map<String, dynamic> _$AdBannerModelToJson(_AdBannerModel instance) =>
     <String, dynamic>{
       'Image_nm': instance.imageName,
       'url': instance.url,

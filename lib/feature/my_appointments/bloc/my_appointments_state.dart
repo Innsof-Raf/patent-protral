@@ -1,7 +1,7 @@
 part of 'my_appointments_bloc.dart';
 
 @freezed
-class MyAppointmentsState with _$MyAppointmentsState {
+sealed class MyAppointmentsState with _$MyAppointmentsState {
   const factory MyAppointmentsState({
     required bool isAppointmentsFetching,
     required bool isAppointmentsFetchingFailed,
@@ -16,6 +16,7 @@ class MyAppointmentsState with _$MyAppointmentsState {
     required bool isAppointmentsCancelationSuccess,
     required List<MyAppointmentModel> myAppointments,
   }) = _MyAppointmentState;
+
   factory MyAppointmentsState.initial() => MyAppointmentsState(
       monthTimeLineListOfConsulted: [],
       monthTimeLineListOfNotConsulted: [],

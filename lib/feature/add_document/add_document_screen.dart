@@ -204,7 +204,7 @@ class AddDocumentScreen extends StatelessWidget {
               boxShadow: [
                 BoxShadow(
                     blurRadius: 1,
-                    color: AppColors.black.withOpacity(.25),
+                    color: AppColors.black.withValues(alpha: .25),
                     offset: const Offset(0, 0))
               ],
               borderRadius: BorderRadius.circular(6)),

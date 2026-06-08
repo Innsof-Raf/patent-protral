@@ -1,7 +1,7 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'home_bloc.dart';
 
@@ -9,442 +9,541 @@ part of 'home_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
 /// @nodoc
 mixin _$HomeEvent {
-  String get token => throw _privateConstructorUsedError;
-  int get idBusunit => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String token, int idBusunit) getHomeData,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String token, int idBusunit)? getHomeData,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String token, int idBusunit)? getHomeData,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetHomeData value) getHomeData,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetHomeData value)? getHomeData,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetHomeData value)? getHomeData,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $HomeEventCopyWith<HomeEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+ String get token; int get idBusunit;
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$HomeEventCopyWith<HomeEvent> get copyWith => _$HomeEventCopyWithImpl<HomeEvent>(this as HomeEvent, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeEvent&&(identical(other.token, token) || other.token == token)&&(identical(other.idBusunit, idBusunit) || other.idBusunit == idBusunit));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,token,idBusunit);
+
+@override
+String toString() {
+  return 'HomeEvent(token: $token, idBusunit: $idBusunit)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $HomeEventCopyWith<$Res> {
-  factory $HomeEventCopyWith(HomeEvent value, $Res Function(HomeEvent) then) =
-      _$HomeEventCopyWithImpl<$Res>;
-  $Res call({String token, int idBusunit});
+abstract mixin class $HomeEventCopyWith<$Res>  {
+  factory $HomeEventCopyWith(HomeEvent value, $Res Function(HomeEvent) _then) = _$HomeEventCopyWithImpl;
+@useResult
+$Res call({
+ String token, int idBusunit
+});
+
+
+
+
 }
-
 /// @nodoc
-class _$HomeEventCopyWithImpl<$Res> implements $HomeEventCopyWith<$Res> {
-  _$HomeEventCopyWithImpl(this._value, this._then);
+class _$HomeEventCopyWithImpl<$Res>
+    implements $HomeEventCopyWith<$Res> {
+  _$HomeEventCopyWithImpl(this._self, this._then);
 
-  final HomeEvent _value;
-  // ignore: unused_field
+  final HomeEvent _self;
   final $Res Function(HomeEvent) _then;
 
-  @override
-  $Res call({
-    Object? token = freezed,
-    Object? idBusunit = freezed,
-  }) {
-    return _then(_value.copyWith(
-      token: token == freezed
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
-      idBusunit: idBusunit == freezed
-          ? _value.idBusunit
-          : idBusunit // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? token = null,Object? idBusunit = null,}) {
+  return _then(_self.copyWith(
+token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,idBusunit: null == idBusunit ? _self.idBusunit : idBusunit // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [HomeEvent].
+extension HomeEventPatterns on HomeEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( GetHomeData value)?  getHomeData,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case GetHomeData() when getHomeData != null:
+return getHomeData(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( GetHomeData value)  getHomeData,}){
+final _that = this;
+switch (_that) {
+case GetHomeData():
+return getHomeData(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( GetHomeData value)?  getHomeData,}){
+final _that = this;
+switch (_that) {
+case GetHomeData() when getHomeData != null:
+return getHomeData(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String token,  int idBusunit)?  getHomeData,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case GetHomeData() when getHomeData != null:
+return getHomeData(_that.token,_that.idBusunit);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String token,  int idBusunit)  getHomeData,}) {final _that = this;
+switch (_that) {
+case GetHomeData():
+return getHomeData(_that.token,_that.idBusunit);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String token,  int idBusunit)?  getHomeData,}) {final _that = this;
+switch (_that) {
+case GetHomeData() when getHomeData != null:
+return getHomeData(_that.token,_that.idBusunit);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$GetHomeDataCopyWith<$Res>
-    implements $HomeEventCopyWith<$Res> {
-  factory _$$GetHomeDataCopyWith(
-          _$GetHomeData value, $Res Function(_$GetHomeData) then) =
-      __$$GetHomeDataCopyWithImpl<$Res>;
-  @override
-  $Res call({String token, int idBusunit});
+
+
+class GetHomeData implements HomeEvent {
+  const GetHomeData({required this.token, required this.idBusunit});
+  
+
+@override final  String token;
+@override final  int idBusunit;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$GetHomeDataCopyWith<GetHomeData> get copyWith => _$GetHomeDataCopyWithImpl<GetHomeData>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetHomeData&&(identical(other.token, token) || other.token == token)&&(identical(other.idBusunit, idBusunit) || other.idBusunit == idBusunit));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,token,idBusunit);
+
+@override
+String toString() {
+  return 'HomeEvent.getHomeData(token: $token, idBusunit: $idBusunit)';
+}
+
+
 }
 
 /// @nodoc
-class __$$GetHomeDataCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
-    implements _$$GetHomeDataCopyWith<$Res> {
-  __$$GetHomeDataCopyWithImpl(
-      _$GetHomeData _value, $Res Function(_$GetHomeData) _then)
-      : super(_value, (v) => _then(v as _$GetHomeData));
+abstract mixin class $GetHomeDataCopyWith<$Res> implements $HomeEventCopyWith<$Res> {
+  factory $GetHomeDataCopyWith(GetHomeData value, $Res Function(GetHomeData) _then) = _$GetHomeDataCopyWithImpl;
+@override @useResult
+$Res call({
+ String token, int idBusunit
+});
 
-  @override
-  _$GetHomeData get _value => super._value as _$GetHomeData;
 
-  @override
-  $Res call({
-    Object? token = freezed,
-    Object? idBusunit = freezed,
-  }) {
-    return _then(_$GetHomeData(
-      token: token == freezed
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
-      idBusunit: idBusunit == freezed
-          ? _value.idBusunit
-          : idBusunit // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
+
+
 }
-
 /// @nodoc
+class _$GetHomeDataCopyWithImpl<$Res>
+    implements $GetHomeDataCopyWith<$Res> {
+  _$GetHomeDataCopyWithImpl(this._self, this._then);
 
-class _$GetHomeData implements GetHomeData {
-  const _$GetHomeData({required this.token, required this.idBusunit});
+  final GetHomeData _self;
+  final $Res Function(GetHomeData) _then;
 
-  @override
-  final String token;
-  @override
-  final int idBusunit;
-
-  @override
-  String toString() {
-    return 'HomeEvent.getHomeData(token: $token, idBusunit: $idBusunit)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GetHomeData &&
-            const DeepCollectionEquality().equals(other.token, token) &&
-            const DeepCollectionEquality().equals(other.idBusunit, idBusunit));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(token),
-      const DeepCollectionEquality().hash(idBusunit));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$GetHomeDataCopyWith<_$GetHomeData> get copyWith =>
-      __$$GetHomeDataCopyWithImpl<_$GetHomeData>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String token, int idBusunit) getHomeData,
-  }) {
-    return getHomeData(token, idBusunit);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String token, int idBusunit)? getHomeData,
-  }) {
-    return getHomeData?.call(token, idBusunit);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String token, int idBusunit)? getHomeData,
-    required TResult orElse(),
-  }) {
-    if (getHomeData != null) {
-      return getHomeData(token, idBusunit);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetHomeData value) getHomeData,
-  }) {
-    return getHomeData(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetHomeData value)? getHomeData,
-  }) {
-    return getHomeData?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetHomeData value)? getHomeData,
-    required TResult orElse(),
-  }) {
-    if (getHomeData != null) {
-      return getHomeData(this);
-    }
-    return orElse();
-  }
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? token = null,Object? idBusunit = null,}) {
+  return _then(GetHomeData(
+token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,idBusunit: null == idBusunit ? _self.idBusunit : idBusunit // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
 }
 
-abstract class GetHomeData implements HomeEvent {
-  const factory GetHomeData(
-      {required final String token,
-      required final int idBusunit}) = _$GetHomeData;
 
-  @override
-  String get token;
-  @override
-  int get idBusunit;
-  @override
-  @JsonKey(ignore: true)
-  _$$GetHomeDataCopyWith<_$GetHomeData> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$HomeState {
-  bool get isDataFetching => throw _privateConstructorUsedError;
-  bool get isDataFetchingFailed => throw _privateConstructorUsedError;
-  bool get isDataFetchingsuccess => throw _privateConstructorUsedError;
-  ErrorModel get error => throw _privateConstructorUsedError;
-  HomeDataModel get homeData => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $HomeStateCopyWith<HomeState> get copyWith =>
-      throw _privateConstructorUsedError;
+ bool get isDataFetching; bool get isDataFetchingFailed; bool get isDataFetchingsuccess; ErrorModel get error; HomeDataModel get homeData;
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$HomeStateCopyWith<HomeState> get copyWith => _$HomeStateCopyWithImpl<HomeState>(this as HomeState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeState&&(identical(other.isDataFetching, isDataFetching) || other.isDataFetching == isDataFetching)&&(identical(other.isDataFetchingFailed, isDataFetchingFailed) || other.isDataFetchingFailed == isDataFetchingFailed)&&(identical(other.isDataFetchingsuccess, isDataFetchingsuccess) || other.isDataFetchingsuccess == isDataFetchingsuccess)&&(identical(other.error, error) || other.error == error)&&(identical(other.homeData, homeData) || other.homeData == homeData));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isDataFetching,isDataFetchingFailed,isDataFetchingsuccess,error,homeData);
+
+@override
+String toString() {
+  return 'HomeState(isDataFetching: $isDataFetching, isDataFetchingFailed: $isDataFetchingFailed, isDataFetchingsuccess: $isDataFetchingsuccess, error: $error, homeData: $homeData)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $HomeStateCopyWith<$Res> {
-  factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
-      _$HomeStateCopyWithImpl<$Res>;
-  $Res call(
-      {bool isDataFetching,
-      bool isDataFetchingFailed,
-      bool isDataFetchingsuccess,
-      ErrorModel error,
-      HomeDataModel homeData});
+abstract mixin class $HomeStateCopyWith<$Res>  {
+  factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) _then) = _$HomeStateCopyWithImpl;
+@useResult
+$Res call({
+ bool isDataFetching, bool isDataFetchingFailed, bool isDataFetchingsuccess, ErrorModel error, HomeDataModel homeData
+});
 
-  $HomeDataModelCopyWith<$Res> get homeData;
+
+$HomeDataModelCopyWith<$Res> get homeData;
+
 }
-
 /// @nodoc
-class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
-  _$HomeStateCopyWithImpl(this._value, this._then);
+class _$HomeStateCopyWithImpl<$Res>
+    implements $HomeStateCopyWith<$Res> {
+  _$HomeStateCopyWithImpl(this._self, this._then);
 
-  final HomeState _value;
-  // ignore: unused_field
+  final HomeState _self;
   final $Res Function(HomeState) _then;
 
-  @override
-  $Res call({
-    Object? isDataFetching = freezed,
-    Object? isDataFetchingFailed = freezed,
-    Object? isDataFetchingsuccess = freezed,
-    Object? error = freezed,
-    Object? homeData = freezed,
-  }) {
-    return _then(_value.copyWith(
-      isDataFetching: isDataFetching == freezed
-          ? _value.isDataFetching
-          : isDataFetching // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isDataFetchingFailed: isDataFetchingFailed == freezed
-          ? _value.isDataFetchingFailed
-          : isDataFetchingFailed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isDataFetchingsuccess: isDataFetchingsuccess == freezed
-          ? _value.isDataFetchingsuccess
-          : isDataFetchingsuccess // ignore: cast_nullable_to_non_nullable
-              as bool,
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as ErrorModel,
-      homeData: homeData == freezed
-          ? _value.homeData
-          : homeData // ignore: cast_nullable_to_non_nullable
-              as HomeDataModel,
-    ));
-  }
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? isDataFetching = null,Object? isDataFetchingFailed = null,Object? isDataFetchingsuccess = null,Object? error = null,Object? homeData = null,}) {
+  return _then(_self.copyWith(
+isDataFetching: null == isDataFetching ? _self.isDataFetching : isDataFetching // ignore: cast_nullable_to_non_nullable
+as bool,isDataFetchingFailed: null == isDataFetchingFailed ? _self.isDataFetchingFailed : isDataFetchingFailed // ignore: cast_nullable_to_non_nullable
+as bool,isDataFetchingsuccess: null == isDataFetchingsuccess ? _self.isDataFetchingsuccess : isDataFetchingsuccess // ignore: cast_nullable_to_non_nullable
+as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as ErrorModel,homeData: null == homeData ? _self.homeData : homeData // ignore: cast_nullable_to_non_nullable
+as HomeDataModel,
+  ));
+}
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$HomeDataModelCopyWith<$Res> get homeData {
+  
+  return $HomeDataModelCopyWith<$Res>(_self.homeData, (value) {
+    return _then(_self.copyWith(homeData: value));
+  });
+}
+}
 
-  @override
-  $HomeDataModelCopyWith<$Res> get homeData {
-    return $HomeDataModelCopyWith<$Res>(_value.homeData, (value) {
-      return _then(_value.copyWith(homeData: value));
-    });
-  }
+
+/// Adds pattern-matching-related methods to [HomeState].
+extension HomeStatePatterns on HomeState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _HomeState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _HomeState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _HomeState value)  $default,){
+final _that = this;
+switch (_that) {
+case _HomeState():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _HomeState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _HomeState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isDataFetching,  bool isDataFetchingFailed,  bool isDataFetchingsuccess,  ErrorModel error,  HomeDataModel homeData)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _HomeState() when $default != null:
+return $default(_that.isDataFetching,_that.isDataFetchingFailed,_that.isDataFetchingsuccess,_that.error,_that.homeData);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isDataFetching,  bool isDataFetchingFailed,  bool isDataFetchingsuccess,  ErrorModel error,  HomeDataModel homeData)  $default,) {final _that = this;
+switch (_that) {
+case _HomeState():
+return $default(_that.isDataFetching,_that.isDataFetchingFailed,_that.isDataFetchingsuccess,_that.error,_that.homeData);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isDataFetching,  bool isDataFetchingFailed,  bool isDataFetchingsuccess,  ErrorModel error,  HomeDataModel homeData)?  $default,) {final _that = this;
+switch (_that) {
+case _HomeState() when $default != null:
+return $default(_that.isDataFetching,_that.isDataFetchingFailed,_that.isDataFetchingsuccess,_that.error,_that.homeData);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
-  factory _$$_HomeStateCopyWith(
-          _$_HomeState value, $Res Function(_$_HomeState) then) =
-      __$$_HomeStateCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {bool isDataFetching,
-      bool isDataFetchingFailed,
-      bool isDataFetchingsuccess,
-      ErrorModel error,
-      HomeDataModel homeData});
 
-  @override
-  $HomeDataModelCopyWith<$Res> get homeData;
+
+class _HomeState implements HomeState {
+  const _HomeState({required this.isDataFetching, required this.isDataFetchingFailed, required this.isDataFetchingsuccess, required this.error, required this.homeData});
+  
+
+@override final  bool isDataFetching;
+@override final  bool isDataFetchingFailed;
+@override final  bool isDataFetchingsuccess;
+@override final  ErrorModel error;
+@override final  HomeDataModel homeData;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$HomeStateCopyWith<_HomeState> get copyWith => __$HomeStateCopyWithImpl<_HomeState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeState&&(identical(other.isDataFetching, isDataFetching) || other.isDataFetching == isDataFetching)&&(identical(other.isDataFetchingFailed, isDataFetchingFailed) || other.isDataFetchingFailed == isDataFetchingFailed)&&(identical(other.isDataFetchingsuccess, isDataFetchingsuccess) || other.isDataFetchingsuccess == isDataFetchingsuccess)&&(identical(other.error, error) || other.error == error)&&(identical(other.homeData, homeData) || other.homeData == homeData));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isDataFetching,isDataFetchingFailed,isDataFetchingsuccess,error,homeData);
+
+@override
+String toString() {
+  return 'HomeState(isDataFetching: $isDataFetching, isDataFetchingFailed: $isDataFetchingFailed, isDataFetchingsuccess: $isDataFetchingsuccess, error: $error, homeData: $homeData)';
+}
+
+
 }
 
 /// @nodoc
-class __$$_HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
-    implements _$$_HomeStateCopyWith<$Res> {
-  __$$_HomeStateCopyWithImpl(
-      _$_HomeState _value, $Res Function(_$_HomeState) _then)
-      : super(_value, (v) => _then(v as _$_HomeState));
+abstract mixin class _$HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+  factory _$HomeStateCopyWith(_HomeState value, $Res Function(_HomeState) _then) = __$HomeStateCopyWithImpl;
+@override @useResult
+$Res call({
+ bool isDataFetching, bool isDataFetchingFailed, bool isDataFetchingsuccess, ErrorModel error, HomeDataModel homeData
+});
 
-  @override
-  _$_HomeState get _value => super._value as _$_HomeState;
 
-  @override
-  $Res call({
-    Object? isDataFetching = freezed,
-    Object? isDataFetchingFailed = freezed,
-    Object? isDataFetchingsuccess = freezed,
-    Object? error = freezed,
-    Object? homeData = freezed,
-  }) {
-    return _then(_$_HomeState(
-      isDataFetching: isDataFetching == freezed
-          ? _value.isDataFetching
-          : isDataFetching // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isDataFetchingFailed: isDataFetchingFailed == freezed
-          ? _value.isDataFetchingFailed
-          : isDataFetchingFailed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isDataFetchingsuccess: isDataFetchingsuccess == freezed
-          ? _value.isDataFetchingsuccess
-          : isDataFetchingsuccess // ignore: cast_nullable_to_non_nullable
-              as bool,
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as ErrorModel,
-      homeData: homeData == freezed
-          ? _value.homeData
-          : homeData // ignore: cast_nullable_to_non_nullable
-              as HomeDataModel,
-    ));
-  }
+@override $HomeDataModelCopyWith<$Res> get homeData;
+
 }
-
 /// @nodoc
+class __$HomeStateCopyWithImpl<$Res>
+    implements _$HomeStateCopyWith<$Res> {
+  __$HomeStateCopyWithImpl(this._self, this._then);
 
-class _$_HomeState implements _HomeState {
-  const _$_HomeState(
-      {required this.isDataFetching,
-      required this.isDataFetchingFailed,
-      required this.isDataFetchingsuccess,
-      required this.error,
-      required this.homeData});
+  final _HomeState _self;
+  final $Res Function(_HomeState) _then;
 
-  @override
-  final bool isDataFetching;
-  @override
-  final bool isDataFetchingFailed;
-  @override
-  final bool isDataFetchingsuccess;
-  @override
-  final ErrorModel error;
-  @override
-  final HomeDataModel homeData;
-
-  @override
-  String toString() {
-    return 'HomeState(isDataFetching: $isDataFetching, isDataFetchingFailed: $isDataFetchingFailed, isDataFetchingsuccess: $isDataFetchingsuccess, error: $error, homeData: $homeData)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_HomeState &&
-            const DeepCollectionEquality()
-                .equals(other.isDataFetching, isDataFetching) &&
-            const DeepCollectionEquality()
-                .equals(other.isDataFetchingFailed, isDataFetchingFailed) &&
-            const DeepCollectionEquality()
-                .equals(other.isDataFetchingsuccess, isDataFetchingsuccess) &&
-            const DeepCollectionEquality().equals(other.error, error) &&
-            const DeepCollectionEquality().equals(other.homeData, homeData));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(isDataFetching),
-      const DeepCollectionEquality().hash(isDataFetchingFailed),
-      const DeepCollectionEquality().hash(isDataFetchingsuccess),
-      const DeepCollectionEquality().hash(error),
-      const DeepCollectionEquality().hash(homeData));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
-      __$$_HomeStateCopyWithImpl<_$_HomeState>(this, _$identity);
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? isDataFetching = null,Object? isDataFetchingFailed = null,Object? isDataFetchingsuccess = null,Object? error = null,Object? homeData = null,}) {
+  return _then(_HomeState(
+isDataFetching: null == isDataFetching ? _self.isDataFetching : isDataFetching // ignore: cast_nullable_to_non_nullable
+as bool,isDataFetchingFailed: null == isDataFetchingFailed ? _self.isDataFetchingFailed : isDataFetchingFailed // ignore: cast_nullable_to_non_nullable
+as bool,isDataFetchingsuccess: null == isDataFetchingsuccess ? _self.isDataFetchingsuccess : isDataFetchingsuccess // ignore: cast_nullable_to_non_nullable
+as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as ErrorModel,homeData: null == homeData ? _self.homeData : homeData // ignore: cast_nullable_to_non_nullable
+as HomeDataModel,
+  ));
 }
 
-abstract class _HomeState implements HomeState {
-  const factory _HomeState(
-      {required final bool isDataFetching,
-      required final bool isDataFetchingFailed,
-      required final bool isDataFetchingsuccess,
-      required final ErrorModel error,
-      required final HomeDataModel homeData}) = _$_HomeState;
-
-  @override
-  bool get isDataFetching;
-  @override
-  bool get isDataFetchingFailed;
-  @override
-  bool get isDataFetchingsuccess;
-  @override
-  ErrorModel get error;
-  @override
-  HomeDataModel get homeData;
-  @override
-  @JsonKey(ignore: true)
-  _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
-      throw _privateConstructorUsedError;
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$HomeDataModelCopyWith<$Res> get homeData {
+  
+  return $HomeDataModelCopyWith<$Res>(_self.homeData, (value) {
+    return _then(_self.copyWith(homeData: value));
+  });
 }
+}
+
+// dart format on

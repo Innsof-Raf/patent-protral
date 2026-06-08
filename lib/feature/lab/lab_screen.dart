@@ -55,7 +55,8 @@ class LabScreen extends StatelessWidget {
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(boxShadow: [
-          BoxShadow(blurRadius: 1, color: AppColors.black.withOpacity(.25))
+          BoxShadow(
+              blurRadius: 1, color: AppColors.black.withValues(alpha: .25))
         ]),
         child: Row(
           children: [

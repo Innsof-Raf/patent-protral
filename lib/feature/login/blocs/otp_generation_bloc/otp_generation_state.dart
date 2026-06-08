@@ -1,7 +1,7 @@
 part of 'otp_generation_bloc.dart';
 
 @freezed
-class OtpGenerationState with _$OtpGenerationState {
+sealed class OtpGenerationState with _$OtpGenerationState {
   const factory OtpGenerationState(
       {required bool isOtpGenerating,
       required bool isOtpGenerationFailed,
@@ -13,6 +13,7 @@ class OtpGenerationState with _$OtpGenerationState {
       required ErrorModel error,
       required bool showPasswordSection,
       required String idOtp}) = _OtpGenerationState;
+
   factory OtpGenerationState.initial() => OtpGenerationState(
         isOtpGenerating: false,
         mobileNumber: '',
