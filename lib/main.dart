@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/add_document/bloc/add_document_bloc.dart';
+import 'package:patient_portal/feature/add_document/presentation/bloc/add_document_bloc.dart';
 import 'package:patient_portal/feature/add_member/blocs/inurance_bloc/insurance_bloc.dart';
 import 'package:patient_portal/feature/book_appointment/blocs/appointment_bloc.dart/appointment_bloc.dart';
 import 'package:patient_portal/feature/book_appointment/blocs/slot_bloc/slot_bloc.dart';
@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SearchSpecialityBloc()),
         BlocProvider(create: (context) => ReportBloc()),
         BlocProvider(create: (context) => DocumentsBloc()),
-        BlocProvider(create: (context) => AddDocumentBloc()),
+        BlocProvider(create: (context) => di.sl<AddDocumentBloc>()),
         BlocProvider<LoginWithPasswordBloc>(
           create: (context) => di.sl<LoginWithPasswordBloc>(),
         ),

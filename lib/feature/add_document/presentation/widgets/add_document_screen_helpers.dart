@@ -3,14 +3,14 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:patient_portal/feature/add_document/models/document_types_model/doument_type_model.dart';
+import 'package:patient_portal/feature/add_document/data/models/document_type_model.dart';
 import 'package:patient_portal/feature/profile/models/member/member_model.dart';
 
-import '../../../resources/app_colors.dart';
-import '../../../resources/app_text_styles.dart';
-import '../../../resources/common_widgets.dart/image_picker_tile.dart';
-import '../../../resources/dimens.dart';
-import '../add_document_screen.dart';
+import '../../../../resources/app_colors.dart';
+import '../../../../resources/app_text_styles.dart';
+import '../../../../resources/common_widgets.dart/image_picker_tile.dart';
+import '../../../../resources/dimens.dart';
+import '../pages/add_document_screen.dart';
 
 class AddDocumentScreenHelpers {
   static DropdownMenuItem<int> createMemberDropDownItem(

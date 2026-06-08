@@ -1,5 +1,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
+import 'package:patient_portal/feature/add_document/presentation/bloc/add_document_bloc.dart';
+import 'package:patient_portal/feature/add_document/data/datasources/add_document_remote_data_source.dart';
+import 'package:patient_portal/feature/add_document/data/repositories/add_document_repository_impl.dart';
+import 'package:patient_portal/feature/add_document/domain/repositories/add_document_repository.dart';
+import 'package:patient_portal/feature/add_document/domain/usecases/get_document_types_usecase.dart';
 import 'package:patient_portal/feature/doctors/data/datasources/doctor_remote_data_source.dart';
 import 'package:patient_portal/feature/doctors/data/repositories/doctor_repository_impl.dart';
 import 'package:patient_portal/feature/doctors/domain/repositories/doctor_repository.dart';
@@ -19,6 +24,23 @@ import 'package:patient_portal/feature/login/presentation/bloc/otp_verification_
 final sl = GetIt.instance;
 
 Future<void> init() async {
+  //! Features - Add document
+  // Bloc
+  sl.registerFactory(() => AddDocumentBloc(getDocumentTypesUseCase: sl()));
+
+  // Use cases
+  sl.registerLazySingleton(() => GetDocumentTypesUseCase(sl()));
+
+  // Repository
+  sl.registerLazySingleton<AddDocumentRepository>(
+    () => AddDocumentRepositoryImpl(remoteDataSource: sl()),
+  );
+
+  // Data sources
+  sl.registerLazySingleton<AddDocumentRemoteDataSource>(
+    () => AddDocumentRemoteDataSourceImpl(client: sl()),
+  );
+
   //! Features - Login
   // Bloc
   sl.registerFactory(() => OtpGenerationBloc(generateOtpUseCase: sl()));

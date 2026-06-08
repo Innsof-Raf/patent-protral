@@ -2,8 +2,8 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'generated/doument_type_model.freezed.dart';
-part 'generated/doument_type_model.g.dart';
+part 'generated/document_type_model.freezed.dart';
+part 'generated/document_type_model.g.dart';
 
 @freezed
 sealed class DocumentTypeModel with _$DocumentTypeModel {

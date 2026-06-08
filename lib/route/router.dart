@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/feature/add_document/add_document_screen.dart';
+import 'package:patient_portal/feature/add_document/presentation/pages/add_document_screen.dart';
 import 'package:patient_portal/feature/add_member/add_member_screen.dart';
 import 'package:patient_portal/feature/book_appointment/book_aapointment_screen.dart';
 import 'package:patient_portal/feature/cart/cart_screen.dart';

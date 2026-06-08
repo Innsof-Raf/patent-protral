@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_portal/feature/add_document/helpers/add_document_screen_helpers.dart';
+import 'package:patient_portal/feature/add_document/presentation/widgets/add_document_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 
-import '../../resources/app_text_styles.dart';
-import '../../resources/common_widgets.dart/common_appbar.dart';
-import 'bloc/add_document_bloc.dart';
+import '../../../../resources/app_text_styles.dart';
+import '../../../../resources/common_widgets.dart/common_appbar.dart';
+import '../bloc/add_document_bloc.dart';
 
 class AddDocumentScreen extends StatelessWidget {
   static DateTime? expireDate;

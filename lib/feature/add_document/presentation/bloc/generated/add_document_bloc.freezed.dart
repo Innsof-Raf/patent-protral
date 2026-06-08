@@ -265,7 +265,7 @@ as String,
 /// @nodoc
 mixin _$AddDocumentState {
 
- bool get isFetchingDocumentTypes; bool get isFetchingDocumentTypesFailed; bool get isFetchingDocumentTypesSucces; ErrorModel get error; List<DocumentTypeModel> get documentTypes;
+ bool get isFetchingDocumentTypes; bool get isFetchingDocumentTypesFailed; bool get isFetchingDocumentTypesSuccess; ErrorModel get error; List<DocumentTypeModel> get documentTypes;
 /// Create a copy of AddDocumentState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -276,16 +276,16 @@ $AddDocumentStateCopyWith<AddDocumentState> get copyWith => _$AddDocumentStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AddDocumentState&&(identical(other.isFetchingDocumentTypes, isFetchingDocumentTypes) || other.isFetchingDocumentTypes == isFetchingDocumentTypes)&&(identical(other.isFetchingDocumentTypesFailed, isFetchingDocumentTypesFailed) || other.isFetchingDocumentTypesFailed == isFetchingDocumentTypesFailed)&&(identical(other.isFetchingDocumentTypesSucces, isFetchingDocumentTypesSucces) || other.isFetchingDocumentTypesSucces == isFetchingDocumentTypesSucces)&&(identical(other.error, error) || other.error == error)&&const DeepCollectionEquality().equals(other.documentTypes, documentTypes));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AddDocumentState&&(identical(other.isFetchingDocumentTypes, isFetchingDocumentTypes) || other.isFetchingDocumentTypes == isFetchingDocumentTypes)&&(identical(other.isFetchingDocumentTypesFailed, isFetchingDocumentTypesFailed) || other.isFetchingDocumentTypesFailed == isFetchingDocumentTypesFailed)&&(identical(other.isFetchingDocumentTypesSuccess, isFetchingDocumentTypesSuccess) || other.isFetchingDocumentTypesSuccess == isFetchingDocumentTypesSuccess)&&(identical(other.error, error) || other.error == error)&&const DeepCollectionEquality().equals(other.documentTypes, documentTypes));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isFetchingDocumentTypes,isFetchingDocumentTypesFailed,isFetchingDocumentTypesSucces,error,const DeepCollectionEquality().hash(documentTypes));
+int get hashCode => Object.hash(runtimeType,isFetchingDocumentTypes,isFetchingDocumentTypesFailed,isFetchingDocumentTypesSuccess,error,const DeepCollectionEquality().hash(documentTypes));
 
 @override
 String toString() {
-  return 'AddDocumentState(isFetchingDocumentTypes: $isFetchingDocumentTypes, isFetchingDocumentTypesFailed: $isFetchingDocumentTypesFailed, isFetchingDocumentTypesSucces: $isFetchingDocumentTypesSucces, error: $error, documentTypes: $documentTypes)';
+  return 'AddDocumentState(isFetchingDocumentTypes: $isFetchingDocumentTypes, isFetchingDocumentTypesFailed: $isFetchingDocumentTypesFailed, isFetchingDocumentTypesSuccess: $isFetchingDocumentTypesSuccess, error: $error, documentTypes: $documentTypes)';
 }
 
 
@@ -296,7 +296,7 @@ abstract mixin class $AddDocumentStateCopyWith<$Res>  {
   factory $AddDocumentStateCopyWith(AddDocumentState value, $Res Function(AddDocumentState) _then) = _$AddDocumentStateCopyWithImpl;
 @useResult
 $Res call({
- bool isFetchingDocumentTypes, bool isFetchingDocumentTypesFailed, bool isFetchingDocumentTypesSucces, ErrorModel error, List<DocumentTypeModel> documentTypes
+ bool isFetchingDocumentTypes, bool isFetchingDocumentTypesFailed, bool isFetchingDocumentTypesSuccess, ErrorModel error, List<DocumentTypeModel> documentTypes
 });
 
 
@@ -313,11 +313,11 @@ class _$AddDocumentStateCopyWithImpl<$Res>
 
 /// Create a copy of AddDocumentState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isFetchingDocumentTypes = null,Object? isFetchingDocumentTypesFailed = null,Object? isFetchingDocumentTypesSucces = null,Object? error = null,Object? documentTypes = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isFetchingDocumentTypes = null,Object? isFetchingDocumentTypesFailed = null,Object? isFetchingDocumentTypesSuccess = null,Object? error = null,Object? documentTypes = null,}) {
   return _then(_self.copyWith(
 isFetchingDocumentTypes: null == isFetchingDocumentTypes ? _self.isFetchingDocumentTypes : isFetchingDocumentTypes // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingDocumentTypesFailed: null == isFetchingDocumentTypesFailed ? _self.isFetchingDocumentTypesFailed : isFetchingDocumentTypesFailed // ignore: cast_nullable_to_non_nullable
-as bool,isFetchingDocumentTypesSucces: null == isFetchingDocumentTypesSucces ? _self.isFetchingDocumentTypesSucces : isFetchingDocumentTypesSucces // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingDocumentTypesSuccess: null == isFetchingDocumentTypesSuccess ? _self.isFetchingDocumentTypesSuccess : isFetchingDocumentTypesSuccess // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,documentTypes: null == documentTypes ? _self.documentTypes : documentTypes // ignore: cast_nullable_to_non_nullable
 as List<DocumentTypeModel>,
@@ -402,10 +402,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isFetchingDocumentTypes,  bool isFetchingDocumentTypesFailed,  bool isFetchingDocumentTypesSucces,  ErrorModel error,  List<DocumentTypeModel> documentTypes)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isFetchingDocumentTypes,  bool isFetchingDocumentTypesFailed,  bool isFetchingDocumentTypesSuccess,  ErrorModel error,  List<DocumentTypeModel> documentTypes)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AddDocumentState() when $default != null:
-return $default(_that.isFetchingDocumentTypes,_that.isFetchingDocumentTypesFailed,_that.isFetchingDocumentTypesSucces,_that.error,_that.documentTypes);case _:
+return $default(_that.isFetchingDocumentTypes,_that.isFetchingDocumentTypesFailed,_that.isFetchingDocumentTypesSuccess,_that.error,_that.documentTypes);case _:
   return orElse();
 
 }
@@ -423,10 +423,10 @@ return $default(_that.isFetchingDocumentTypes,_that.isFetchingDocumentTypesFaile
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isFetchingDocumentTypes,  bool isFetchingDocumentTypesFailed,  bool isFetchingDocumentTypesSucces,  ErrorModel error,  List<DocumentTypeModel> documentTypes)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isFetchingDocumentTypes,  bool isFetchingDocumentTypesFailed,  bool isFetchingDocumentTypesSuccess,  ErrorModel error,  List<DocumentTypeModel> documentTypes)  $default,) {final _that = this;
 switch (_that) {
 case _AddDocumentState():
-return $default(_that.isFetchingDocumentTypes,_that.isFetchingDocumentTypesFailed,_that.isFetchingDocumentTypesSucces,_that.error,_that.documentTypes);}
+return $default(_that.isFetchingDocumentTypes,_that.isFetchingDocumentTypesFailed,_that.isFetchingDocumentTypesSuccess,_that.error,_that.documentTypes);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -440,10 +440,10 @@ return $default(_that.isFetchingDocumentTypes,_that.isFetchingDocumentTypesFaile
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isFetchingDocumentTypes,  bool isFetchingDocumentTypesFailed,  bool isFetchingDocumentTypesSucces,  ErrorModel error,  List<DocumentTypeModel> documentTypes)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isFetchingDocumentTypes,  bool isFetchingDocumentTypesFailed,  bool isFetchingDocumentTypesSuccess,  ErrorModel error,  List<DocumentTypeModel> documentTypes)?  $default,) {final _that = this;
 switch (_that) {
 case _AddDocumentState() when $default != null:
-return $default(_that.isFetchingDocumentTypes,_that.isFetchingDocumentTypesFailed,_that.isFetchingDocumentTypesSucces,_that.error,_that.documentTypes);case _:
+return $default(_that.isFetchingDocumentTypes,_that.isFetchingDocumentTypesFailed,_that.isFetchingDocumentTypesSuccess,_that.error,_that.documentTypes);case _:
   return null;
 
 }
@@ -455,12 +455,12 @@ return $default(_that.isFetchingDocumentTypes,_that.isFetchingDocumentTypesFaile
 
 
 class _AddDocumentState implements AddDocumentState {
-  const _AddDocumentState({required this.isFetchingDocumentTypes, required this.isFetchingDocumentTypesFailed, required this.isFetchingDocumentTypesSucces, required this.error, required final  List<DocumentTypeModel> documentTypes}): _documentTypes = documentTypes;
+  const _AddDocumentState({required this.isFetchingDocumentTypes, required this.isFetchingDocumentTypesFailed, required this.isFetchingDocumentTypesSuccess, required this.error, required final  List<DocumentTypeModel> documentTypes}): _documentTypes = documentTypes;
   
 
 @override final  bool isFetchingDocumentTypes;
 @override final  bool isFetchingDocumentTypesFailed;
-@override final  bool isFetchingDocumentTypesSucces;
+@override final  bool isFetchingDocumentTypesSuccess;
 @override final  ErrorModel error;
  final  List<DocumentTypeModel> _documentTypes;
 @override List<DocumentTypeModel> get documentTypes {
@@ -480,16 +480,16 @@ _$AddDocumentStateCopyWith<_AddDocumentState> get copyWith => __$AddDocumentStat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AddDocumentState&&(identical(other.isFetchingDocumentTypes, isFetchingDocumentTypes) || other.isFetchingDocumentTypes == isFetchingDocumentTypes)&&(identical(other.isFetchingDocumentTypesFailed, isFetchingDocumentTypesFailed) || other.isFetchingDocumentTypesFailed == isFetchingDocumentTypesFailed)&&(identical(other.isFetchingDocumentTypesSucces, isFetchingDocumentTypesSucces) || other.isFetchingDocumentTypesSucces == isFetchingDocumentTypesSucces)&&(identical(other.error, error) || other.error == error)&&const DeepCollectionEquality().equals(other._documentTypes, _documentTypes));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AddDocumentState&&(identical(other.isFetchingDocumentTypes, isFetchingDocumentTypes) || other.isFetchingDocumentTypes == isFetchingDocumentTypes)&&(identical(other.isFetchingDocumentTypesFailed, isFetchingDocumentTypesFailed) || other.isFetchingDocumentTypesFailed == isFetchingDocumentTypesFailed)&&(identical(other.isFetchingDocumentTypesSuccess, isFetchingDocumentTypesSuccess) || other.isFetchingDocumentTypesSuccess == isFetchingDocumentTypesSuccess)&&(identical(other.error, error) || other.error == error)&&const DeepCollectionEquality().equals(other._documentTypes, _documentTypes));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isFetchingDocumentTypes,isFetchingDocumentTypesFailed,isFetchingDocumentTypesSucces,error,const DeepCollectionEquality().hash(_documentTypes));
+int get hashCode => Object.hash(runtimeType,isFetchingDocumentTypes,isFetchingDocumentTypesFailed,isFetchingDocumentTypesSuccess,error,const DeepCollectionEquality().hash(_documentTypes));
 
 @override
 String toString() {
-  return 'AddDocumentState(isFetchingDocumentTypes: $isFetchingDocumentTypes, isFetchingDocumentTypesFailed: $isFetchingDocumentTypesFailed, isFetchingDocumentTypesSucces: $isFetchingDocumentTypesSucces, error: $error, documentTypes: $documentTypes)';
+  return 'AddDocumentState(isFetchingDocumentTypes: $isFetchingDocumentTypes, isFetchingDocumentTypesFailed: $isFetchingDocumentTypesFailed, isFetchingDocumentTypesSuccess: $isFetchingDocumentTypesSuccess, error: $error, documentTypes: $documentTypes)';
 }
 
 
@@ -500,7 +500,7 @@ abstract mixin class _$AddDocumentStateCopyWith<$Res> implements $AddDocumentSta
   factory _$AddDocumentStateCopyWith(_AddDocumentState value, $Res Function(_AddDocumentState) _then) = __$AddDocumentStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isFetchingDocumentTypes, bool isFetchingDocumentTypesFailed, bool isFetchingDocumentTypesSucces, ErrorModel error, List<DocumentTypeModel> documentTypes
+ bool isFetchingDocumentTypes, bool isFetchingDocumentTypesFailed, bool isFetchingDocumentTypesSuccess, ErrorModel error, List<DocumentTypeModel> documentTypes
 });
 
 
@@ -517,11 +517,11 @@ class __$AddDocumentStateCopyWithImpl<$Res>
 
 /// Create a copy of AddDocumentState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isFetchingDocumentTypes = null,Object? isFetchingDocumentTypesFailed = null,Object? isFetchingDocumentTypesSucces = null,Object? error = null,Object? documentTypes = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isFetchingDocumentTypes = null,Object? isFetchingDocumentTypesFailed = null,Object? isFetchingDocumentTypesSuccess = null,Object? error = null,Object? documentTypes = null,}) {
   return _then(_AddDocumentState(
 isFetchingDocumentTypes: null == isFetchingDocumentTypes ? _self.isFetchingDocumentTypes : isFetchingDocumentTypes // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingDocumentTypesFailed: null == isFetchingDocumentTypesFailed ? _self.isFetchingDocumentTypesFailed : isFetchingDocumentTypesFailed // ignore: cast_nullable_to_non_nullable
-as bool,isFetchingDocumentTypesSucces: null == isFetchingDocumentTypesSucces ? _self.isFetchingDocumentTypesSucces : isFetchingDocumentTypesSucces // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingDocumentTypesSuccess: null == isFetchingDocumentTypesSuccess ? _self.isFetchingDocumentTypesSuccess : isFetchingDocumentTypesSuccess // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,documentTypes: null == documentTypes ? _self._documentTypes : documentTypes // ignore: cast_nullable_to_non_nullable
 as List<DocumentTypeModel>,
