@@ -4,36 +4,36 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/add_document/bloc/add_document_bloc.dart';
 import 'package:patient_portal/feature/add_member/blocs/inurance_bloc/insurance_bloc.dart';
 import 'package:patient_portal/feature/book_appointment/blocs/appointment_bloc.dart/appointment_bloc.dart';
+import 'package:patient_portal/feature/book_appointment/blocs/slot_bloc/slot_bloc.dart';
 import 'package:patient_portal/feature/doctors/blocs/doctor/doctor_bloc.dart';
+import 'package:patient_portal/feature/doctors/blocs/search_doctor/search_doctor_bloc.dart';
+import 'package:patient_portal/feature/documents/bloc/documents_bloc.dart';
 import 'package:patient_portal/feature/home/bloc/home_bloc.dart';
 import 'package:patient_portal/feature/lab/blocs/items_bloc/items_bloc.dart';
-import 'package:patient_portal/feature/login/blocs/otp_generation_bloc/otp_generation_bloc.dart';
-import 'package:patient_portal/feature/login/blocs/otp_verification_bloc/otp_verification_bloc.dart';
+import 'package:patient_portal/feature/login/blocs/login_with_password_bloc/login_with_password_bloc.dart';
+import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc.dart';
+import 'package:patient_portal/feature/login/presentation/bloc/otp_verification_bloc.dart';
+import 'package:patient_portal/feature/members/blocs/member_serach_bloc/member_search_bloc.dart';
+import 'package:patient_portal/feature/my_appointments/bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
+import 'package:patient_portal/feature/report/bloc/report_bloc.dart';
 import 'package:patient_portal/feature/reports/bloc/reports_bloc.dart';
 import 'package:patient_portal/feature/set_password/bloc/change_password_bloc.dart';
+import 'package:patient_portal/feature/speciality/blocs/search_bloc/search_speciality_bloc_bloc.dart';
+import 'package:patient_portal/feature/speciality/blocs/speciality_bloc/speciality_bloc.dart';
+import 'package:patient_portal/injection_container.dart' as di;
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:patient_portal/route/route_constants.dart';
 import 'package:patient_portal/route/router.dart';
 
-import 'feature/book_appointment/blocs/slot_bloc/slot_bloc.dart';
-import 'feature/doctors/blocs/search_doctor/search_doctor_bloc.dart';
-import 'feature/documents/bloc/documents_bloc.dart';
-import 'feature/login/blocs/login_with_password_bloc/login_with_password_bloc.dart';
-import 'feature/members/blocs/member_serach_bloc/member_search_bloc.dart';
-import 'feature/my_appointments/bloc/my_appointments_bloc.dart';
-import 'feature/report/bloc/report_bloc.dart';
-import 'feature/speciality/blocs/search_bloc/search_speciality_bloc_bloc.dart';
-import 'feature/speciality/blocs/speciality_bloc/speciality_bloc.dart';
-
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]).then((value) => runApp(const MyApp()));
-  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -43,8 +43,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => OtpGenerationBloc()),
-        BlocProvider(create: (context) => OtpVerificationBloc()),
+        BlocProvider<OtpGenerationBloc>(
+          create: (context) => di.sl<OtpGenerationBloc>(),
+        ),
+        BlocProvider<OtpVerificationBloc>(
+          create: (context) => di.sl<OtpVerificationBloc>(),
+        ),
         BlocProvider(create: (context) => UserBloc()),
         BlocProvider(create: (context) => SpecialityBloc()),
         BlocProvider(create: (context) => DoctorBloc()),

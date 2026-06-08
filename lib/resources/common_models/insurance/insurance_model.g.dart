@@ -10,7 +10,7 @@ _InsuranceModel _$InsuranceModelFromJson(Map<String, dynamic> json) =>
     _InsuranceModel(
       idInsurance: (json['id_insurance'] as num).toInt(),
       insuranceName: json['ins_name'] as String,
-      img: json['Img'] as String?,
+      img: json['Img'] as String? ?? null,
     );
 
 Map<String, dynamic> _$InsuranceModelToJson(_InsuranceModel instance) =>

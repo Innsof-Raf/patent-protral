@@ -1,19 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/feature/login/helpers/login_screen_form_helpers.dart';
+import 'package:patient_portal/feature/login/helpers/login_screen_helpers.dart';
+import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc.dart';
+import 'package:patient_portal/resources/app_colors.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:patient_portal/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../resources/app_colors.dart';
-import '../../../resources/app_text_styles.dart';
-import '../blocs/otp_generation_bloc/otp_generation_bloc.dart';
-import '../helpers/login_screen_form_helpers.dart';
-import '../helpers/login_screen_helpers.dart';
-
-TextEditingController mobileNumerController = TextEditingController();
-
-class LoginOtpGenerationSection extends StatelessWidget {
+class LoginOtpGenerationSection extends StatefulWidget {
   const LoginOtpGenerationSection({super.key});
+
+  @override
+  State<LoginOtpGenerationSection> createState() =>
+      _LoginOtpGenerationSectionState();
+}
+
+class _LoginOtpGenerationSectionState extends State<LoginOtpGenerationSection> {
+  late TextEditingController mobileNumerController;
+
+  @override
+  void initState() {
+    super.initState();
+    mobileNumerController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    mobileNumerController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

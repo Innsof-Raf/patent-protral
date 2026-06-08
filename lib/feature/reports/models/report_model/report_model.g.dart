@@ -14,10 +14,10 @@ _ReportModel _$ReportModelFromJson(Map<String, dynamic> json) => _ReportModel(
   departmentName: json['speciality'] as String,
   appointmentDate: DateTime.parse(json['appmnt_dttm'] as String),
   appointmentTime: json['appmnt_time'] as String,
-  labPdfUrl: json['labreport_url'] as String?,
-  xRayPdfUrl: json['xrayreport_url'] as String?,
-  ussPdfUrl: json['ussreport_url'] as String?,
-  ctPdfUrl: json['ct_url'] as String?,
+  labPdfUrl: json['labreport_url'] as String? ?? null,
+  xRayPdfUrl: json['xrayreport_url'] as String? ?? null,
+  ussPdfUrl: json['ussreport_url'] as String? ?? null,
+  ctPdfUrl: json['ct_url'] as String? ?? null,
 );
 
 Map<String, dynamic> _$ReportModelToJson(_ReportModel instance) =>

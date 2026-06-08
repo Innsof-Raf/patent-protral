@@ -9,21 +9,21 @@ part of 'member_model.dart';
 _MemberModel _$MemberModelFromJson(Map<String, dynamic> json) => _MemberModel(
   id: (json['Id'] as num).toInt(),
   name: json['Name'] as String,
-  mobileNo: json['MobileNo'] as String?,
-  emailId: json['EmailID'] as String?,
+  mobileNo: json['MobileNo'] as String? ?? null,
+  emailId: json['EmailID'] as String? ?? null,
   age: json['Age'] as String,
   nationalId: json['SSN'] as String,
-  profileImage: json['Profile_Img'] as String?,
+  profileImage: json['Profile_Img'] as String? ?? null,
   isInsurance: json['Is_Insu'] as bool,
   isInsuranceExpired: json['Is_InsuExpired'] as bool,
   insuranceExpDttm: json['Insur_Exp'] == null
       ? null
       : DateTime.parse(json['Insur_Exp'] as String),
   dob: json['Dob'] == null ? null : DateTime.parse(json['Dob'] as String),
-  memberNo: json['member_no'] as String?,
-  insuranceName: json['insur_name'] as String?,
-  insuranceId: (json['insu_id'] as num?)?.toInt(),
-  gender: json['Gender'] as String?,
+  memberNo: json['member_no'] as String? ?? null,
+  insuranceName: json['insur_name'] as String? ?? null,
+  insuranceId: (json['insu_id'] as num?)?.toInt() ?? null,
+  gender: json['Gender'] as String? ?? null,
   memberDocs:
       (json['docs'] as List<dynamic>?)
           ?.map((e) => MmemberDocumentModel.fromJson(e as Map<String, dynamic>))

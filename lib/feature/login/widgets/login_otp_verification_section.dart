@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/login/blocs/otp_generation_bloc/otp_generation_bloc.dart';
-import 'package:patient_portal/feature/login/blocs/otp_verification_bloc/otp_verification_bloc.dart';
+import 'package:patient_portal/feature/login/helpers/login_screen_helpers.dart';
+import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc.dart';
+import 'package:patient_portal/feature/login/presentation/bloc/otp_verification_bloc.dart';
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
+import 'package:patient_portal/resources/app_colors.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
+import 'package:patient_portal/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/route/route_constants.dart';
 import 'package:pinput/pinput.dart';
-
-import '../../../resources/app_colors.dart';
-import '../../../resources/app_text_styles.dart';
-import '../../../resources/common_widgets.dart/common_error_alert.dart';
-import '../helpers/login_screen_helpers.dart';
 
 class LoginOtpVerificationSection extends StatelessWidget {
   const LoginOtpVerificationSection({super.key});
