@@ -8,6 +8,7 @@ import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc.dar
 import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc.dart';
 import 'package:patient_portal/feature/login/data/datasources/login_remote_data_source.dart';
 import 'package:patient_portal/feature/login/data/repositories/login_repository_impl.dart';
+import 'package:patient_portal/feature/login/blocs/login_with_password_bloc/login_with_password_bloc.dart';
 import 'package:patient_portal/feature/login/domain/repositories/login_repository.dart';
 import 'package:patient_portal/feature/login/domain/usecases/generate_otp_usecase.dart';
 import 'package:patient_portal/feature/login/domain/usecases/login_with_password_usecase.dart';
@@ -22,6 +23,9 @@ Future<void> init() async {
   // Bloc
   sl.registerFactory(() => OtpGenerationBloc(generateOtpUseCase: sl()));
   sl.registerFactory(() => OtpVerificationBloc(verifyOtpUseCase: sl()));
+  sl.registerFactory(
+    () => LoginWithPasswordBloc(loginWithPasswordUseCase: sl()),
+  );
 
   // Use cases
   sl.registerLazySingleton(() => GenerateOtpUseCase(sl()));

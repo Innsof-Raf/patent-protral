@@ -8,7 +8,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../resources/dimens.dart';
 import 'helpers/login_screen_helpers.dart';
-import 'widgets/Login_with_password_section.dart';
+import 'widgets/login_with_password_section.dart';
 import 'widgets/login_otp_generation_section.dart';
 
 List<String> bagroundImages = [
