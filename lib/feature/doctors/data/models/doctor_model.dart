@@ -19,7 +19,8 @@ sealed class DoctorModel with _$DoctorModel {
     @JsonKey(name: 'speciality') required String doctorSpecility,
     required String experience,
     required String branch,
-    @JsonKey(name: 'Language_Known') required List<LanguageKnownModel> languages,
+    @JsonKey(name: 'Language_Known')
+    required List<LanguageKnownModel> languages,
     @JsonKey(name: 'profileUrl') required String doctorImage,
     @JsonKey(name: 'cons_fee') required double consultationFee,
     @JsonKey(name: 'employee_bio') String? doctorBio,

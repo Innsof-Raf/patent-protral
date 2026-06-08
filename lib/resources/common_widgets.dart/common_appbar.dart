@@ -11,21 +11,16 @@ class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: AppColors.white,
-          statusBarIconBrightness: Brightness.dark),
+        statusBarColor: AppColors.white,
+        statusBarIconBrightness: Brightness.dark,
+      ),
       backgroundColor: AppColors.white,
       elevation: 1,
       titleSpacing: 0,
       automaticallyImplyLeading: false,
-      title: Text(
-        title,
-        style: AppTextStyles.largeSemiBoldRoboto,
-      ),
+      title: Text(title, style: AppTextStyles.largeSemiBoldRoboto),
       leading: IconButton(
-        icon: const Icon(
-          Icons.arrow_back_ios,
-          color: AppColors.textDark,
-        ),
+        icon: const Icon(Icons.arrow_back_ios, color: AppColors.textDark),
         onPressed: () {
           Navigator.of(context).pop();
         },

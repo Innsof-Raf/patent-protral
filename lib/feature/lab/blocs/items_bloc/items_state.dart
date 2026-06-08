@@ -15,13 +15,14 @@ sealed class ItemsState with _$ItemsState {
   }) = _ItemState;
 
   factory ItemsState.inoitial() => ItemsState(
-      isItemsFetching: false,
-      cartTotal: 0.0,
-      isItemsFetchingFailed: false,
-      isCartUpdatingFailed: false,
-      isCartUpdatingSucees: false,
-      isItemsFetchingSuccess: false,
-      error: ErrorModel(message: ''),
-      cart: [],
-      items: []);
+    isItemsFetching: false,
+    cartTotal: 0.0,
+    isItemsFetchingFailed: false,
+    isCartUpdatingFailed: false,
+    isCartUpdatingSucees: false,
+    isItemsFetchingSuccess: false,
+    error: ErrorModel(message: ''),
+    cart: [],
+    items: [],
+  );
 }

@@ -18,55 +18,66 @@ class BookAppointmentScreen extends StatelessWidget {
   final String doctorImage;
   final String doctorName;
   final int idDoctor;
-  const BookAppointmentScreen(
-      {super.key,
-      required this.appointmentId,
-      required this.doctorImage,
-      required this.doctorName,
-      required this.idDoctor});
+  const BookAppointmentScreen({
+    super.key,
+    required this.appointmentId,
+    required this.doctorImage,
+    required this.doctorName,
+    required this.idDoctor,
+  });
 
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<SlotBloc>().add(GetAvailableSlots(
+      context.read<SlotBloc>().add(
+        GetAvailableSlots(
           idDoctor: idDoctor,
           date: BookAppointmentScreenHelpers.selectedDateNotifier.value,
-          token: context.read<UserBloc>().state.user!.accessToken));
+          token: context.read<UserBloc>().state.user!.accessToken,
+        ),
+      );
     });
 
     return Scaffold(
       appBar: const BookAppointmentAppbar(),
       body: DefaultTabController(
-        initialIndex: BookAppointmentScreenHelpers.dateList
-            .indexOf(BookAppointmentScreenHelpers.selectedDateNotifier.value),
+        initialIndex: BookAppointmentScreenHelpers.dateList.indexOf(
+          BookAppointmentScreenHelpers.selectedDateNotifier.value,
+        ),
         length: BookAppointmentScreenHelpers.dateList.length,
         child: Column(
           children: [
             TabBar(
-                isScrollable: true,
-                onTap: (value) {
-                  if (BookAppointmentScreenHelpers.dateList[value] !=
-                      BookAppointmentScreenHelpers.selectedDateNotifier.value) {
-                    BookAppointmentScreenHelpers.selectedDateNotifier.value =
-                        BookAppointmentScreenHelpers.dateList[value];
-                    context.read<SlotBloc>().add(GetAvailableSlots(
-                        idDoctor: idDoctor,
-                        date: BookAppointmentScreenHelpers.dateList[value],
-                        token:
-                            context.read<UserBloc>().state.user!.accessToken));
-                  }
-                },
-                indicatorColor: AppColors.vilot,
-                indicatorWeight: 3,
-                tabs: BookAppointmentScreenHelpers.dateList
-                    .map((date) => ValueListenableBuilder(
-                        valueListenable:
-                            BookAppointmentScreenHelpers.selectedDateNotifier,
-                        builder: (context, value, child) => DateTab(
-                              date: date,
-                              isSelected: value == date ? true : false,
-                            )))
-                    .toList()),
+              isScrollable: true,
+              onTap: (value) {
+                if (BookAppointmentScreenHelpers.dateList[value] !=
+                    BookAppointmentScreenHelpers.selectedDateNotifier.value) {
+                  BookAppointmentScreenHelpers.selectedDateNotifier.value =
+                      BookAppointmentScreenHelpers.dateList[value];
+                  context.read<SlotBloc>().add(
+                    GetAvailableSlots(
+                      idDoctor: idDoctor,
+                      date: BookAppointmentScreenHelpers.dateList[value],
+                      token: context.read<UserBloc>().state.user!.accessToken,
+                    ),
+                  );
+                }
+              },
+              indicatorColor: AppColors.vilot,
+              indicatorWeight: 3,
+              tabs: BookAppointmentScreenHelpers.dateList
+                  .map(
+                    (date) => ValueListenableBuilder(
+                      valueListenable:
+                          BookAppointmentScreenHelpers.selectedDateNotifier,
+                      builder: (context, value, child) => DateTab(
+                        date: date,
+                        isSelected: value == date ? true : false,
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
             Container(
               height: 1,
               width: double.infinity,
@@ -89,14 +100,13 @@ class BookAppointmentScreen extends StatelessWidget {
                                   ? Column(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Image.asset(
-                                            'assets/gif_images/Ripple-0 2.gif',
-                                            width: 100,
-                                          )
-                                        ])
+                                        const SizedBox(height: 10),
+                                        Image.asset(
+                                          'assets/gif_images/Ripple-0 2.gif',
+                                          width: 100,
+                                        ),
+                                      ],
+                                    )
                                   : AppointmentSlotSection(shift: state.shift),
                               Container(
                                 height: 1,
@@ -106,9 +116,7 @@ class BookAppointmentScreen extends StatelessWidget {
                               Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
+                                  const SizedBox(height: 15),
                                   appointmentId == 0
                                       ? const MemberSelectionSection()
                                       : const SizedBox(),
@@ -125,9 +133,7 @@ class BookAppointmentScreen extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 15,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: BookAppointmentBottomNavigationBar(
           appointmentId: appointmentId,
           doctorImage: doctorImage,

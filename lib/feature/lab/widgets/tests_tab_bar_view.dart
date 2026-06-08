@@ -15,12 +15,13 @@ class TsetsTabBarView extends StatelessWidget {
       builder: (context, state) {
         if (state.isItemsFetching) {
           return LayoutBuilder(
-              builder: (context, constraints) => Center(
-                    child: Image.asset(
-                      'assets/gif_images/Ripple-0 2.gif',
-                      width: constraints.maxWidth * .3,
-                    ),
-                  ));
+            builder: (context, constraints) => Center(
+              child: Image.asset(
+                'assets/gif_images/Ripple-0 2.gif',
+                width: constraints.maxWidth * .3,
+              ),
+            ),
+          );
         } else if (state.isItemsFetchingFailed) {
           return Center(
             child: Text(
@@ -29,8 +30,9 @@ class TsetsTabBarView extends StatelessWidget {
             ),
           );
         } else {
-          List<ItemModel> tests =
-              state.items.where((item) => item.itemType == 'SERV').toList();
+          List<ItemModel> tests = state.items
+              .where((item) => item.itemType == 'SERV')
+              .toList();
           if (tests.isEmpty) {
             return const Center(
               child: Text(
@@ -43,10 +45,11 @@ class TsetsTabBarView extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               itemCount: tests.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: .9,
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10),
+                childAspectRatio: .9,
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+              ),
               itemBuilder: (context, index) =>
                   LabGridItemTile(item: tests[index]),
             );

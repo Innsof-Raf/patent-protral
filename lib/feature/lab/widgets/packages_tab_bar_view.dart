@@ -15,12 +15,13 @@ class PackagesTabBarView extends StatelessWidget {
       builder: (context, state) {
         if (state.isItemsFetching) {
           return LayoutBuilder(
-              builder: (context, constraints) => Center(
-                    child: Image.asset(
-                      'assets/gif_images/Ripple-0 2.gif',
-                      width: constraints.maxWidth * .3,
-                    ),
-                  ));
+            builder: (context, constraints) => Center(
+              child: Image.asset(
+                'assets/gif_images/Ripple-0 2.gif',
+                width: constraints.maxWidth * .3,
+              ),
+            ),
+          );
         } else if (state.isItemsFetchingFailed) {
           return Center(
             child: Text(
@@ -29,8 +30,9 @@ class PackagesTabBarView extends StatelessWidget {
             ),
           );
         } else {
-          List<ItemModel> packages =
-              state.items.where((item) => item.itemType == 'pkg').toList();
+          List<ItemModel> packages = state.items
+              .where((item) => item.itemType == 'pkg')
+              .toList();
           if (packages.isEmpty) {
             return const Center(
               child: Text(
@@ -43,13 +45,13 @@ class PackagesTabBarView extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               itemCount: packages.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: .73,
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10),
-              itemBuilder: (context, index) => LabGridItemTile(
-                item: packages[index],
+                childAspectRatio: .73,
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
               ),
+              itemBuilder: (context, index) =>
+                  LabGridItemTile(item: packages[index]),
             );
           }
         }

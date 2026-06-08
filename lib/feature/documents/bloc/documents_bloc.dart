@@ -13,23 +13,36 @@ class DocumentsBloc extends Bloc<DocumentsEvent, DocumentsState> {
   DocumentsBloc() : super(DocumentsState.initial()) {
     on<GetDocuments>((event, emit) async {
       if (event.memberId == 0) {
-        emit(state.copyWith(
+        emit(
+          state.copyWith(
             isFetching: true,
             isFetchingFailed: false,
             isFetchingSucces: false,
-            selectedMemberId: event.memberId));
+            selectedMemberId: event.memberId,
+          ),
+        );
         final Either<ErrorModel, List<DocumentModel>> documentsFetchingOptions =
             await DocumentServices.getDocuments(
-                memebrId: event.memberId,
-                mobileNumber: event.mobileNumber,
-                token: event.token);
+              memebrId: event.memberId,
+              mobileNumber: event.mobileNumber,
+              token: event.token,
+            );
         documentsFetchingOptions.fold(
-            (error) => emit(state.copyWith(
-                isFetching: false, isFetchingFailed: true, error: error)),
-            (documents) => emit(state.copyWith(
-                isFetching: false,
-                isFetchingSucces: true,
-                documents: documents)));
+          (error) => emit(
+            state.copyWith(
+              isFetching: false,
+              isFetchingFailed: true,
+              error: error,
+            ),
+          ),
+          (documents) => emit(
+            state.copyWith(
+              isFetching: false,
+              isFetchingSucces: true,
+              documents: documents,
+            ),
+          ),
+        );
       } else {
         emit(state.copyWith(selectedMemberId: event.memberId));
       }

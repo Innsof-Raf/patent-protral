@@ -16,8 +16,9 @@ class ReportsAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: AppColors.white,
-          statusBarIconBrightness: Brightness.dark),
+        statusBarColor: AppColors.white,
+        statusBarIconBrightness: Brightness.dark,
+      ),
       backgroundColor: AppColors.white,
       elevation: 1,
       centerTitle: false,
@@ -30,19 +31,24 @@ class ReportsAppBar extends StatelessWidget implements PreferredSizeWidget {
               return PopupMenuButton<int>(
                 initialValue: state.selectedMemberId,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 position: PopupMenuPosition.under,
                 splashRadius: 0,
                 padding: EdgeInsets.zero,
                 onSelected: ((value) {
-                  context.read<ReportsBloc>().add(GetReports(
+                  context.read<ReportsBloc>().add(
+                    GetReports(
                       memberId: value,
                       token: userState.user!.accessToken,
-                      mobileNumber: userState.user!.mobileNumber));
+                      mobileNumber: userState.user!.mobileNumber,
+                    ),
+                  );
                 }),
                 itemBuilder: (context) =>
                     ReportsAppbarHelpers.createPopupMenuItem(
-                        userState.user!.members),
+                      userState.user!.members,
+                    ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -62,16 +68,16 @@ class ReportsAppBar extends StatelessWidget implements PreferredSizeWidget {
                         },
                       ),
                     ),
-                    const SizedBox(
-                      width: 8,
-                    ),
+                    const SizedBox(width: 8),
                     Text(
                       state.selectedMemberId == 0
                           ? 'All'
                           : userState.user!.members
-                              .singleWhere((element) =>
-                                  element.id == state.selectedMemberId)
-                              .name,
+                                .singleWhere(
+                                  (element) =>
+                                      element.id == state.selectedMemberId,
+                                )
+                                .name,
                       style: AppTextStyles.largeSemiBoldRoboto,
                     ),
                     const Icon(
@@ -86,20 +92,21 @@ class ReportsAppBar extends StatelessWidget implements PreferredSizeWidget {
         },
       ),
       leading: TextButton(
-          style: TextButton.styleFrom(
-              padding: EdgeInsets.zero, minimumSize: const Size(0, 0)),
-          onPressed: () {
-            Scaffold.of(context).openDrawer();
-          },
-          child: SvgPicture.asset('assets/icons/drawer_icon.svg')),
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          minimumSize: const Size(0, 0),
+        ),
+        onPressed: () {
+          Scaffold.of(context).openDrawer();
+        },
+        child: SvgPicture.asset('assets/icons/drawer_icon.svg'),
+      ),
       actions: [
         IconButton(
-            splashRadius: 20,
-            onPressed: () {},
-            icon: const Icon(
-              Icons.search,
-              color: AppColors.textDark,
-            ))
+          splashRadius: 20,
+          onPressed: () {},
+          icon: const Icon(Icons.search, color: AppColors.textDark),
+        ),
       ],
     );
   }

@@ -27,10 +27,11 @@ class CartScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(10),
                   itemCount: state.cart.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: .9,
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10),
+                    childAspectRatio: .9,
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                  ),
                   itemBuilder: (context, index) =>
                       CartItemTile(item: state.cart[index]),
                 );
@@ -39,46 +40,56 @@ class CartScreen extends StatelessWidget {
       bottomNavigationBar: BlocBuilder<ItemsBloc, ItemsState>(
         builder: (context, state) {
           return Container(
-            decoration: BoxDecoration(color: AppColors.white, boxShadow: [
-              BoxShadow(
-                  blurRadius: 1, color: AppColors.black.withValues(alpha: .25))
-            ]),
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 1,
+                  color: AppColors.black.withValues(alpha: .25),
+                ),
+              ],
+            ),
             child: Row(
               children: [
                 Expanded(
-                    child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text(
-                      'Total',
-                      style: AppTextStyles.bodyLargeSemiBoldTextInter,
-                    ),
-                    Text(
-                      'QR ${state.cartTotal}',
-                      style: AppTextStyles.subHeaddingSemiBoldRoboto
-                          .copyWith(color: AppColors.lightGreen),
-                    ),
-                  ],
-                )),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text(
+                        'Total',
+                        style: AppTextStyles.bodyLargeSemiBoldTextInter,
+                      ),
+                      Text(
+                        'QR ${state.cartTotal}',
+                        style: AppTextStyles.subHeaddingSemiBoldRoboto.copyWith(
+                          color: AppColors.lightGreen,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 Expanded(
-                    child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero),
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    padding: const EdgeInsets.symmetric(vertical: 25),
-                    minimumSize: const Size(0, 0),
-                    foregroundColor: AppColors.white,
-                    backgroundColor: AppColors.vilot,
-                    elevation: 0,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero,
+                      ),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      padding: const EdgeInsets.symmetric(vertical: 25),
+                      minimumSize: const Size(0, 0),
+                      foregroundColor: AppColors.white,
+                      backgroundColor: AppColors.vilot,
+                      elevation: 0,
+                    ),
+                    child: Text(
+                      'CHECK OUT',
+                      style: AppTextStyles.largeBoldRoboto.copyWith(
+                        color: AppColors.white,
+                      ),
+                    ),
+                    onPressed: () {},
                   ),
-                  child: Text(
-                    'CHECK OUT',
-                    style: AppTextStyles.largeBoldRoboto
-                        .copyWith(color: AppColors.white),
-                  ),
-                  onPressed: () {},
-                ))
+                ),
               ],
             ),
           );

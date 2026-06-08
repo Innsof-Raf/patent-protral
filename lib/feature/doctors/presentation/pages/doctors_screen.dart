@@ -16,9 +16,9 @@ class DoctorsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context
-          .read<DoctorBloc>()
-          .add(GetAvailableDoctorsByDepartment(idspeciality: idSpecilaity));
+      context.read<DoctorBloc>().add(
+        GetAvailableDoctorsByDepartment(idspeciality: idSpecilaity),
+      );
     });
     TextEditingController searchController = TextEditingController();
     final formKey = GlobalKey<FormState>();
@@ -48,44 +48,51 @@ class DoctorsScreen extends StatelessWidget {
                         children: [
                           Dimens.constHeight,
                           Form(
-                              key: formKey,
-                              child: TextFormField(
-                                keyboardType: TextInputType.text,
-                                onChanged: (value) {
-                                  context.read<SearchDoctorBloc>().add(
-                                      SearchDoctor(
-                                          searchKey: value.toLowerCase(),
-                                          doctors: state.doctors));
-                                },
-                                controller: searchController,
-                                style: AppTextStyles.largeRobotoNormal
-                                    .copyWith(color: AppColors.textBluishDark),
-                                decoration: const InputDecoration(
-                                    suffixIcon: Icon(
-                                      Icons.search,
-                                      color: AppColors.textDark,
-                                    ),
-                                    hintStyle: AppTextStyles.largeRobotoNormal,
-                                    hintText: 'Search Here',
-                                    contentPadding: EdgeInsets.all(15)),
-                              )),
+                            key: formKey,
+                            child: TextFormField(
+                              keyboardType: TextInputType.text,
+                              onChanged: (value) {
+                                context.read<SearchDoctorBloc>().add(
+                                  SearchDoctor(
+                                    searchKey: value.toLowerCase(),
+                                    doctors: state.doctors,
+                                  ),
+                                );
+                              },
+                              controller: searchController,
+                              style: AppTextStyles.largeRobotoNormal.copyWith(
+                                color: AppColors.textBluishDark,
+                              ),
+                              decoration: const InputDecoration(
+                                suffixIcon: Icon(
+                                  Icons.search,
+                                  color: AppColors.textDark,
+                                ),
+                                hintStyle: AppTextStyles.largeRobotoNormal,
+                                hintText: 'Search Here',
+                                contentPadding: EdgeInsets.all(15),
+                              ),
+                            ),
+                          ),
                         ],
                       )
                     : const SizedBox();
               },
             ),
             Dimens.constHeight,
-            Expanded(child:
-                BlocBuilder<DoctorBloc, DoctorState>(builder: (context, state) {
-              return state.isDoctorsFetching
-                  ? LayoutBuilder(
-                      builder: (context, constraints) => Center(
+            Expanded(
+              child: BlocBuilder<DoctorBloc, DoctorState>(
+                builder: (context, state) {
+                  return state.isDoctorsFetching
+                      ? LayoutBuilder(
+                          builder: (context, constraints) => Center(
                             child: Image.asset(
                               'assets/gif_images/Ripple-0 2.gif',
                               width: constraints.maxWidth * .3,
                             ),
-                          ))
-                  : state.isDoctorsFetchingFailed
+                          ),
+                        )
+                      : state.isDoctorsFetchingFailed
                       ? Center(
                           child: Text(
                             state.error.message,
@@ -109,19 +116,17 @@ class DoctorsScreen extends StatelessWidget {
                                   )
                                 : ListView.separated(
                                     separatorBuilder: (context, index) =>
-                                        const SizedBox(
-                                      height: 10,
-                                    ),
+                                        const SizedBox(height: 10),
                                     itemCount: doctors.length,
                                     itemBuilder: (context, index) {
-                                      return DoctorTile(
-                                        doctor: doctors[index],
-                                      );
+                                      return DoctorTile(doctor: doctors[index]);
                                     },
                                   );
                           },
                         );
-            }))
+                },
+              ),
+            ),
           ],
         ),
       ),

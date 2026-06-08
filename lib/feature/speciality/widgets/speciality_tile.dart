@@ -13,24 +13,29 @@ class SpecilityTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      return OutlinedButton(
-        style: OutlinedButton.styleFrom(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return OutlinedButton(
+          style: OutlinedButton.styleFrom(
             padding: const EdgeInsets.all(3),
             foregroundColor: AppColors.textFormFIeldBagroundColor,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5),
-                side: const BorderSide(
-                  color: AppColors.textFormFIeldBagroundColor,
-                ))),
-        onPressed: () {
-          Navigator.of(context).pushNamed(RouteConstants.doctorsScreen,
-              arguments: {'id_speciality': speciality.idSpeciality});
-        },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            CachedNetworkImage(
+              borderRadius: BorderRadius.circular(5),
+              side: const BorderSide(
+                color: AppColors.textFormFIeldBagroundColor,
+              ),
+            ),
+          ),
+          onPressed: () {
+            Navigator.of(context).pushNamed(
+              RouteConstants.doctorsScreen,
+              arguments: {'id_speciality': speciality.idSpeciality},
+            );
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CachedNetworkImage(
                 imageUrl:
                     '${ConstantUrls.specilityImageUrl}/${speciality.idSpeciality}/${speciality.specialityImage}',
                 fadeInDuration: const Duration(seconds: 0),
@@ -43,20 +48,22 @@ class SpecilityTile extends StatelessWidget {
                 },
                 progressIndicatorBuilder: (context, url, progress) {
                   return const SizedBox();
-                }),
-            Container(
-              alignment: Alignment.center,
-              child: Text(
-                speciality.specialityName,
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: AppTextStyles.bodySemiBoldRoboto,
+                },
               ),
-            )
-          ],
-        ),
-      );
-    });
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  speciality.specialityName,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTextStyles.bodySemiBoldRoboto,
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

@@ -14,12 +14,13 @@ sealed class UserState with _$UserState {
   }) = _UserState;
 
   factory UserState.initial() => UserState(
-      user: null,
-      isMemberAdding: false,
-      isMemberAddingFailed: false,
-      isMemberAddingSucess: false,
-      isFetchingMemberDetail: false,
-      isMemberDetailFetchingFailed: false,
-      isMemberDetailFetchingSucess: false,
-      error: ErrorModel(message: ''));
+    user: null,
+    isMemberAdding: false,
+    isMemberAddingFailed: false,
+    isMemberAddingSucess: false,
+    isFetchingMemberDetail: false,
+    isMemberDetailFetchingFailed: false,
+    isMemberDetailFetchingSucess: false,
+    error: ErrorModel(message: ''),
+  );
 }

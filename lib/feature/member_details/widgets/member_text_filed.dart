@@ -13,19 +13,16 @@ class MemberTextFiled extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          title,
-          style: AppTextStyles.bodyTextRoboto,
-        ),
-        const SizedBox(
-          height: 4,
-        ),
+        Text(title, style: AppTextStyles.bodyTextRoboto),
+        const SizedBox(height: 4),
         Container(
           alignment: Alignment.centerLeft,
           padding: const EdgeInsets.all(15),
           decoration: BoxDecoration(
             border: Border.all(
-                width: 1, color: AppColors.textFormFIeldBagroundColor),
+              width: 1,
+              color: AppColors.textFormFIeldBagroundColor,
+            ),
             borderRadius: BorderRadius.circular(4),
           ),
           child: Text(

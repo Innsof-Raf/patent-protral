@@ -11,10 +11,10 @@ sealed class SpecialityState with _$SpecialityState {
   }) = _SpecialityState;
 
   factory SpecialityState.initial() => SpecialityState(
-        isFetching: false,
-        specialities: [],
-        error: ErrorModel(message: ''),
-        isFetchingError: false,
-        isFetchingSuccess: false,
-      );
+    isFetching: false,
+    specialities: [],
+    error: ErrorModel(message: ''),
+    isFetchingError: false,
+    isFetchingSuccess: false,
+  );
 }

@@ -16,11 +16,13 @@ class LoginWithPasswordBloc
   LoginWithPasswordBloc({required this.loginWithPasswordUseCase})
     : super(LoginWithPasswordState.initial()) {
     on<LoginWithPassword>((event, emit) async {
-      emit(state.copyWith(
-        isLogingin: true,
-        isLoginFailed: false,
-        isLoginSucces: false,
-      ));
+      emit(
+        state.copyWith(
+          isLogingin: true,
+          isLoginFailed: false,
+          isLoginSucces: false,
+        ),
+      );
 
       final result = await loginWithPasswordUseCase(
         LoginWithPasswordParams(

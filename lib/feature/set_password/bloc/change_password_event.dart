@@ -2,9 +2,10 @@ part of 'change_password_bloc.dart';
 
 @freezed
 sealed class ChangePasswordEvent with _$ChangePasswordEvent {
-  const factory ChangePasswordEvent.changePassword(
-      {required int idUser,
-      required String mobileNumber,
-      required String newPassword,
-      required String token}) = ChangePassword;
+  const factory ChangePasswordEvent.changePassword({
+    required int idUser,
+    required String mobileNumber,
+    required String newPassword,
+    required String token,
+  }) = ChangePassword;
 }

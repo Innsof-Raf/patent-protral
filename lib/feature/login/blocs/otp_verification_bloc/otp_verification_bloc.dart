@@ -13,18 +13,35 @@ class OtpVerificationBloc
     extends Bloc<OtpVerificationEvent, OtpVerificationState> {
   OtpVerificationBloc() : super(OtpVerificationState.initial()) {
     on<VerifyOtp>((event, emit) async {
-      emit(state.copyWith(
+      emit(
+        state.copyWith(
           isVerifying: true,
           isVerifyingFailed: false,
-          isVerifyingSuccess: false));
+          isVerifyingSuccess: false,
+        ),
+      );
       final Either<ErrorModel, UserModel> otpVerifyingOptions =
           await LoginOtpVerificationServices.validateOtp(
-              event.idOtp, event.mobileNumber, event.otp);
+            event.idOtp,
+            event.mobileNumber,
+            event.otp,
+          );
       otpVerifyingOptions.fold(
-          (error) => emit(state.copyWith(
-              isVerifying: false, isVerifyingFailed: true, error: error)),
-          (user) => emit(state.copyWith(
-              isVerifying: false, isVerifyingSuccess: true, user: user)));
+        (error) => emit(
+          state.copyWith(
+            isVerifying: false,
+            isVerifyingFailed: true,
+            error: error,
+          ),
+        ),
+        (user) => emit(
+          state.copyWith(
+            isVerifying: false,
+            isVerifyingSuccess: true,
+            user: user,
+          ),
+        ),
+      );
     });
   }
 }

@@ -11,9 +11,10 @@ sealed class SlotState with _$SlotState {
   }) = _SlotState;
 
   factory SlotState.initial() => SlotState(
-      isLoading: false,
-      isFetchingSuccses: false,
-      isFetchingError: false,
-      shift: const ShiftModel(shift: '', slots: []),
-      error: ErrorModel(message: ''));
+    isLoading: false,
+    isFetchingSuccses: false,
+    isFetchingError: false,
+    shift: const ShiftModel(shift: '', slots: []),
+    error: ErrorModel(message: ''),
+  );
 }

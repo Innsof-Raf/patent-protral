@@ -13,46 +13,68 @@ part 'generated/appointment_bloc.freezed.dart';
 class AppointmentBloc extends Bloc<AppointmentEvent, AppointmentState> {
   AppointmentBloc() : super(AppointmentState.initial()) {
     on<BookNewAppointment>((event, emit) async {
-      emit(state.copyWith(
+      emit(
+        state.copyWith(
           isLoading: true,
           isAppointmentSavingFailure: false,
-          isAppointmentSavingSuccses: false));
+          isAppointmentSavingSuccses: false,
+        ),
+      );
       final Either<ErrorModel, AppointmentModel> newApoointmentOptions =
           await AppointmentServices.bookAppointment(
-              idDoctor: event.idDoctor,
-              appointmentDateTime: event.appointmentDateTime,
-              mobileNo: event.mobileNo,
-              idMember: event.idMember,
-              token: event.token);
+            idDoctor: event.idDoctor,
+            appointmentDateTime: event.appointmentDateTime,
+            mobileNo: event.mobileNo,
+            idMember: event.idMember,
+            token: event.token,
+          );
       newApoointmentOptions.fold(
-          (error) => emit(state.copyWith(
-              isLoading: false,
-              isAppointmentSavingFailure: true,
-              error: error)),
-          (appointmentDetails) => emit(state.copyWith(
-              isLoading: false,
-              isAppointmentSavingSuccses: true,
-              appointmentDetails: appointmentDetails)));
+        (error) => emit(
+          state.copyWith(
+            isLoading: false,
+            isAppointmentSavingFailure: true,
+            error: error,
+          ),
+        ),
+        (appointmentDetails) => emit(
+          state.copyWith(
+            isLoading: false,
+            isAppointmentSavingSuccses: true,
+            appointmentDetails: appointmentDetails,
+          ),
+        ),
+      );
     });
     on<ResheduleAppointment>((event, emit) async {
-      emit(state.copyWith(
+      emit(
+        state.copyWith(
           isLoading: true,
           isAppointmentSavingFailure: false,
-          isAppointmentSavingSuccses: false));
+          isAppointmentSavingSuccses: false,
+        ),
+      );
       final Either<ErrorModel, AppointmentModel> resheduleAppointmentOptions =
           await AppointmentServices.resheduleAppointment(
-              appointmentDateTime: event.appointmentDateTime,
-              idAppointment: event.idAppointment,
-              token: event.token);
+            appointmentDateTime: event.appointmentDateTime,
+            idAppointment: event.idAppointment,
+            token: event.token,
+          );
       resheduleAppointmentOptions.fold(
-          (error) => emit(state.copyWith(
-              isLoading: false,
-              isAppointmentSavingFailure: true,
-              error: error)),
-          (appointmentDetails) => emit(state.copyWith(
-              isLoading: false,
-              isAppointmentSavingSuccses: true,
-              appointmentDetails: appointmentDetails)));
+        (error) => emit(
+          state.copyWith(
+            isLoading: false,
+            isAppointmentSavingFailure: true,
+            error: error,
+          ),
+        ),
+        (appointmentDetails) => emit(
+          state.copyWith(
+            isLoading: false,
+            isAppointmentSavingSuccses: true,
+            appointmentDetails: appointmentDetails,
+          ),
+        ),
+      );
     });
   }
 }

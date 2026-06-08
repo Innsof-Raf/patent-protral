@@ -13,23 +13,36 @@ part 'generated/reports_bloc.freezed.dart';
 class ReportsBloc extends Bloc<ReportsEvent, ReportsState> {
   ReportsBloc() : super(ReportsState.initial()) {
     on<GetReports>((event, emit) async {
-      emit(state.copyWith(
+      emit(
+        state.copyWith(
           selectedMemberId: event.memberId,
           isFetchingReports: true,
           isFetchingSuccess: false,
-          isFetchingFailed: false));
+          isFetchingFailed: false,
+        ),
+      );
       final Either<ErrorModel, List<ReportModel>> reportsFetchingOptions =
           await ReportsServices.getReports(
-              mobileNumber: event.mobileNumber,
-              memberId: event.memberId,
-              token: event.token);
+            mobileNumber: event.mobileNumber,
+            memberId: event.memberId,
+            token: event.token,
+          );
       reportsFetchingOptions.fold(
-          (error) => emit(state.copyWith(
-              isFetchingReports: false, isFetchingFailed: true, error: error)),
-          (reports) => emit(state.copyWith(
-              isFetchingReports: false,
-              isFetchingSuccess: true,
-              reports: reports)));
+        (error) => emit(
+          state.copyWith(
+            isFetchingReports: false,
+            isFetchingFailed: true,
+            error: error,
+          ),
+        ),
+        (reports) => emit(
+          state.copyWith(
+            isFetchingReports: false,
+            isFetchingSuccess: true,
+            reports: reports,
+          ),
+        ),
+      );
     });
   }
 }

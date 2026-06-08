@@ -20,14 +20,13 @@ class SlotServices {
       final Map data = {
         "CONTENT":
             "{\"id_doctor\":$idDoctor,\"shift_dt\":\"${DateFormat('yyyy-MM-dd').format(date)}\"}",
-        "TYPE": "PP0003"
+        "TYPE": "PP0003",
       };
       http.Response response = await http.post(
-          Uri.parse(ConstantUrls.serviceUrl),
-          body: jsonEncode(data),
-          headers: {
-            'Content-type': 'application/json',
-          });
+        Uri.parse(ConstantUrls.serviceUrl),
+        body: jsonEncode(data),
+        headers: {'Content-type': 'application/json'},
+      );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -39,8 +38,9 @@ class SlotServices {
     } on SocketException {
       return Left(ErrorModel(message: ConstantMessages.noNetworkErrorMessage));
     } on TimeoutException {
-      return Left(ErrorModel(
-          message: ConstantMessages.connectionTimeOutFailureMessage));
+      return Left(
+        ErrorModel(message: ConstantMessages.connectionTimeOutFailureMessage),
+      );
     } catch (e) {
       return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
     }

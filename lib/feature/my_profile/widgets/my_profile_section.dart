@@ -42,13 +42,14 @@ class MyProfileSection extends StatelessWidget {
                             return child;
                           }
                           return Center(
-                              child: LinearProgressIndicator(
-                            color: AppColors.vilot,
-                            value: loadingProgress.expectedTotalBytes != null
-                                ? loadingProgress.cumulativeBytesLoaded /
-                                    loadingProgress.expectedTotalBytes!
-                                : null,
-                          ));
+                            child: LinearProgressIndicator(
+                              color: AppColors.vilot,
+                              value: loadingProgress.expectedTotalBytes != null
+                                  ? loadingProgress.cumulativeBytesLoaded /
+                                        loadingProgress.expectedTotalBytes!
+                                  : null,
+                            ),
+                          );
                         },
                       ),
                       Positioned(
@@ -58,7 +59,9 @@ class MyProfileSection extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.all(3),
                           decoration: const BoxDecoration(
-                              color: AppColors.white, shape: BoxShape.circle),
+                            color: AppColors.white,
+                            shape: BoxShape.circle,
+                          ),
                           child: SvgPicture.asset(
                             "assets/images/Female.svg",
                             height: 12,
@@ -79,10 +82,14 @@ class MyProfileSection extends StatelessWidget {
                   "Anzil Alphones",
                   style: AppTextStyles.subHeaddingSemiBoldRoboto,
                 ),
-                Text("Age : 32  | National ID : 08923739 ",
-                    style: AppTextStyles.subHeadingInter),
-                Text("anzilalphonse@gmail.com",
-                    style: AppTextStyles.subHeadingInter2),
+                Text(
+                  "Age : 32  | National ID : 08923739 ",
+                  style: AppTextStyles.subHeadingInter,
+                ),
+                Text(
+                  "anzilalphonse@gmail.com",
+                  style: AppTextStyles.subHeadingInter2,
+                ),
               ],
             ),
           ],
@@ -90,14 +97,16 @@ class MyProfileSection extends StatelessWidget {
         const SizedBox(height: 5),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-              elevation: 0,
-              backgroundColor: AppColors.vilot,
-              foregroundColor: AppColors.white),
+            elevation: 0,
+            backgroundColor: AppColors.vilot,
+            foregroundColor: AppColors.white,
+          ),
           onPressed: () {},
           child: Text(
             "EDIT PROFILE",
-            style: AppTextStyles.bodyLargeRobotoBold
-                .copyWith(color: AppColors.white),
+            style: AppTextStyles.bodyLargeRobotoBold.copyWith(
+              color: AppColors.white,
+            ),
           ),
         ),
       ],

@@ -18,26 +18,21 @@ class MemberSection extends StatelessWidget {
             const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Members",
-                  style: AppTextStyles.subHeaddingSemiBoldRoboto,
-                ),
-                Text(
-                  "Found 23 members",
-                  style: AppTextStyles.bodyTextRoboto,
-                )
+                Text("Members", style: AppTextStyles.subHeaddingSemiBoldRoboto),
+                Text("Found 23 members", style: AppTextStyles.bodyTextRoboto),
               ],
             ),
             ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    shape: const CircleBorder(),
-                    elevation: 0,
-                    backgroundColor: AppColors.dividerGrayColor,
-                    padding: const EdgeInsets.all(12),
-                    minimumSize: const Size(0, 0)),
-                onPressed: () {},
-                child:
-                    SvgPicture.asset('assets/icons/key_board_arrow_right.svg')),
+              style: ElevatedButton.styleFrom(
+                shape: const CircleBorder(),
+                elevation: 0,
+                backgroundColor: AppColors.dividerGrayColor,
+                padding: const EdgeInsets.all(12),
+                minimumSize: const Size(0, 0),
+              ),
+              onPressed: () {},
+              child: SvgPicture.asset('assets/icons/key_board_arrow_right.svg'),
+            ),
           ],
         ),
       ],

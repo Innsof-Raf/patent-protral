@@ -10,33 +10,32 @@ import '../models/slot_model/slot_model.dart';
 class SlotTile extends StatelessWidget {
   final bool isSelected;
   final SlotModel slot;
-  const SlotTile({
-    super.key,
-    required this.isSelected,
-    required this.slot,
-  });
+  const SlotTile({super.key, required this.isSelected, required this.slot});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-          elevation: 0,
-          backgroundColor: !slot.isBooked
-              ? isSelected
+        elevation: 0,
+        backgroundColor: !slot.isBooked
+            ? isSelected
                   ? AppColors.vilot
                   : AppColors.white
-              : AppColors.disabledBagroundColor,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5),
-              side: BorderSide(
-                  width: .5,
-                  color: !slot.isBooked
-                      ? isSelected
-                          ? AppColors.vilot
-                          : AppColors.borderColor
-                      : AppColors.disabledBagroundColor)),
-          minimumSize: const Size(0, 0),
-          padding: const EdgeInsets.all(10)),
+            : AppColors.disabledBagroundColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+          side: BorderSide(
+            width: .5,
+            color: !slot.isBooked
+                ? isSelected
+                      ? AppColors.vilot
+                      : AppColors.borderColor
+                : AppColors.disabledBagroundColor,
+          ),
+        ),
+        minimumSize: const Size(0, 0),
+        padding: const EdgeInsets.all(10),
+      ),
       onPressed: () {
         if (!slot.isBooked) {
           if (slot.appdttm ==
@@ -51,12 +50,13 @@ class SlotTile extends StatelessWidget {
       child: Text(
         DateFormat.jm().format(slot.appdttm),
         style: AppTextStyles.bodySemiBoldRoboto.copyWith(
-            color: !slot.isBooked
-                ? isSelected
+          color: !slot.isBooked
+              ? isSelected
                     ? AppColors.dividerGrayColor
                     : AppColors.textDark
-                : AppColors.disabledTextColor,
-            fontSize: 10),
+              : AppColors.disabledTextColor,
+          fontSize: 10,
+        ),
       ),
     );
   }

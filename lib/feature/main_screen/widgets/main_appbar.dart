@@ -16,19 +16,20 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       titleSpacing: 0,
       systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: AppColors.white,
-          statusBarIconBrightness: Brightness.dark),
-      leading: TextButton(
-          style: TextButton.styleFrom(
-              padding: EdgeInsets.zero, minimumSize: const Size(0, 0)),
-          onPressed: () {
-            Scaffold.of(context).openDrawer();
-          },
-          child: SvgPicture.asset('assets/icons/drawer_icon.svg')),
-      title: Text(
-        title,
-        style: AppTextStyles.largeSemiBoldRoboto,
+        statusBarColor: AppColors.white,
+        statusBarIconBrightness: Brightness.dark,
       ),
+      leading: TextButton(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          minimumSize: const Size(0, 0),
+        ),
+        onPressed: () {
+          Scaffold.of(context).openDrawer();
+        },
+        child: SvgPicture.asset('assets/icons/drawer_icon.svg'),
+      ),
+      title: Text(title, style: AppTextStyles.largeSemiBoldRoboto),
     );
   }
 

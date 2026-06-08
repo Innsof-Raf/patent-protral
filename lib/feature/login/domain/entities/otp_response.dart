@@ -4,10 +4,7 @@ class OtpResponse extends Equatable {
   final bool showPasswordSection;
   final String otp;
 
-  const OtpResponse({
-    required this.showPasswordSection,
-    required this.otp,
-  });
+  const OtpResponse({required this.showPasswordSection, required this.otp});
 
   @override
   List<Object?> get props => [showPasswordSection, otp];

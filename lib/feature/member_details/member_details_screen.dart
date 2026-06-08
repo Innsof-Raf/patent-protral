@@ -29,12 +29,13 @@ class MemberDetailsScreen extends StatelessWidget {
         builder: (context, state) {
           if (state.isFetchingMemberDetail) {
             return LayoutBuilder(
-                builder: (context, constraints) => Center(
-                      child: Image.asset(
-                        'assets/gif_images/Ripple-0 2.gif',
-                        width: constraints.maxWidth * .3,
-                      ),
-                    ));
+              builder: (context, constraints) => Center(
+                child: Image.asset(
+                  'assets/gif_images/Ripple-0 2.gif',
+                  width: constraints.maxWidth * .3,
+                ),
+              ),
+            );
           } else if (state.isMemberDetailFetchingFailed) {
             return Center(
               child: Text(
@@ -43,8 +44,9 @@ class MemberDetailsScreen extends StatelessWidget {
               ),
             );
           } else {
-            final MemberModel member = state.user!.members
-                .singleWhere((element) => element.id == memberId);
+            final MemberModel member = state.user!.members.singleWhere(
+              (element) => element.id == memberId,
+            );
 
             return Container(
               padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -56,9 +58,7 @@ class MemberDetailsScreen extends StatelessWidget {
                     image: member.profileImage,
                     title: member.name,
                   ),
-                  const SizedBox(
-                    height: 23,
-                  ),
+                  const SizedBox(height: 23),
                   MemberPersonalDetailsSection(
                     dob: member.dob,
                     email: member.emailId,
@@ -71,14 +71,10 @@ class MemberDetailsScreen extends StatelessWidget {
                           memberNo: member.memberNo ?? '',
                           expireDate: member.insuranceExpDttm,
                         )
-                      : const SizedBox(
-                          height: 21,
-                        ),
+                      : const SizedBox(height: 21),
                   member.memberDocs.isEmpty
                       ? const SizedBox()
-                      : MemberDocumentsSection(
-                          documents: member.memberDocs,
-                        ),
+                      : MemberDocumentsSection(documents: member.memberDocs),
                 ],
               ),
             );
@@ -89,38 +85,47 @@ class MemberDetailsScreen extends StatelessWidget {
       floatingActionButton: Container(
         margin: const EdgeInsets.symmetric(horizontal: 15),
         width: double.infinity,
-        decoration: BoxDecoration(boxShadow: [
-          BoxShadow(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
               blurRadius: 1,
               color: AppColors.black.withValues(alpha: .25),
-              offset: const Offset(0, 0))
-        ]),
+              offset: const Offset(0, 0),
+            ),
+          ],
+        ),
         child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6)),
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                elevation: 0,
-                backgroundColor: AppColors.vilot,
-                foregroundColor: AppColors.white,
-                padding: const EdgeInsets.symmetric(vertical: 15)),
-            onPressed: () {
-              InsuranceHelpers.insuranceCheackBoxNotifier.value = true;
-              Navigator.of(context)
-                  .pushNamed(RouteConstants.addMemberScreen, arguments: {
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(6),
+            ),
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            elevation: 0,
+            backgroundColor: AppColors.vilot,
+            foregroundColor: AppColors.white,
+            padding: const EdgeInsets.symmetric(vertical: 15),
+          ),
+          onPressed: () {
+            InsuranceHelpers.insuranceCheackBoxNotifier.value = true;
+            Navigator.of(context).pushNamed(
+              RouteConstants.addMemberScreen,
+              arguments: {
                 'member': context
                     .read<UserBloc>()
                     .state
                     .user!
                     .members
-                    .singleWhere((member) => member.id == memberId)
-              });
-            },
-            child: Text(
-              "Edit Insurance Details",
-              style: AppTextStyles.largeSemiBoldRoboto
-                  .copyWith(color: AppColors.white),
-            )),
+                    .singleWhere((member) => member.id == memberId),
+              },
+            );
+          },
+          child: Text(
+            "Edit Insurance Details",
+            style: AppTextStyles.largeSemiBoldRoboto.copyWith(
+              color: AppColors.white,
+            ),
+          ),
+        ),
       ),
     );
   }

@@ -7,7 +7,7 @@ import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 import '../../../resources/common_helpers/inurance_validation_helpers.dart';
 import '../../../resources/common_widgets.dart/rounded_cheack_box.dart';
-import '../../add_member/blocs/inurance_bloc/insurance_bloc.dart';
+import '../../add_member/presentation/bloc/add_member_bloc.dart';
 import '../../profile/bloc/user_bloc.dart';
 import '../helpers/eidt_member_insurance_helpers.dart';
 
@@ -26,8 +26,8 @@ class EditMemberInsuranceSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<InsuranceBloc>().add(
-        FeatchInsurance(
+      context.read<AddMemberBloc>().add(
+        FetchInsurances(
           token: context.read<UserBloc>().state.user!.accessToken,
         ),
       );

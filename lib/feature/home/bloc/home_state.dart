@@ -11,14 +11,16 @@ sealed class HomeState with _$HomeState {
   }) = _HomeState;
 
   factory HomeState.initial() => HomeState(
-      isDataFetching: false,
-      isDataFetchingFailed: false,
-      isDataFetchingsuccess: false,
-      error: ErrorModel(message: ''),
-      homeData: const HomeDataModel(
-          ads: [],
-          topSpecialities: [],
-          topInsurances: [],
-          topPackages: [],
-          notificationCount: 0));
+    isDataFetching: false,
+    isDataFetchingFailed: false,
+    isDataFetchingsuccess: false,
+    error: ErrorModel(message: ''),
+    homeData: const HomeDataModel(
+      ads: [],
+      topSpecialities: [],
+      topInsurances: [],
+      topPackages: [],
+      notificationCount: 0,
+    ),
+  );
 }

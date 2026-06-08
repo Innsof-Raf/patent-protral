@@ -1,9 +1,7 @@
 import 'package:patient_portal/feature/set_password/widgets/set_password_section.dart';
 
 class ChangePasswordFormHelpers {
-  static String? validatePassword(
-    String? value,
-  ) {
+  static String? validatePassword(String? value) {
     if (value == null || value == '') {
       return 'Please enter your password';
     } else if (value.length >= 4) {
@@ -13,9 +11,7 @@ class ChangePasswordFormHelpers {
     }
   }
 
-  static String? validateConfirmPassword(
-    String? value,
-  ) {
+  static String? validateConfirmPassword(String? value) {
     if (value == null || value == '') {
       return 'Please enter your password';
     } else if (SetPasswordSection.newPasswordController.text == value) {

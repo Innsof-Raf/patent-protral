@@ -5,7 +5,8 @@ import '../../../resources/app_text_styles.dart';
 
 class ReportsAppbarHelpers {
   static List<PopupMenuItem<int>> createPopupMenuItem(
-      List<MemberModel> members) {
+    List<MemberModel> members,
+  ) {
     List<PopupMenuItem<int>> popupMenuItems = [
       const PopupMenuItem(
         value: 0,
@@ -16,19 +17,21 @@ class ReportsAppbarHelpers {
           overflow: TextOverflow.ellipsis,
           style: AppTextStyles.bodyLargeRobotoSemiBold,
         ),
-      )
+      ),
     ];
     for (MemberModel member in members) {
-      popupMenuItems.add(PopupMenuItem(
-        value: member.id,
-        height: 30,
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: Text(
-          member.name,
-          overflow: TextOverflow.ellipsis,
-          style: AppTextStyles.bodyLargeRobotoSemiBold,
+      popupMenuItems.add(
+        PopupMenuItem(
+          value: member.id,
+          height: 30,
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Text(
+            member.name,
+            overflow: TextOverflow.ellipsis,
+            style: AppTextStyles.bodyLargeRobotoSemiBold,
+          ),
         ),
-      ));
+      );
     }
     return popupMenuItems;
   }

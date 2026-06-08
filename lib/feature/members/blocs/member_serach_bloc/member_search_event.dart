@@ -2,7 +2,8 @@ part of 'member_search_bloc.dart';
 
 @freezed
 sealed class MemberSearchEvent with _$MemberSearchEvent {
-  const factory MemberSearchEvent.searchMember(
-      {required List<MemberModel> members,
-      required String searchKey}) = SearchMember;
+  const factory MemberSearchEvent.searchMember({
+    required List<MemberModel> members,
+    required String searchKey,
+  }) = SearchMember;
 }

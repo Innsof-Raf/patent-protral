@@ -17,31 +17,27 @@ class AppointmentSlotSection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: Dimens.constPadding),
       child: shift.slots.isEmpty
-          ? Column(mainAxisSize: MainAxisSize.min, children: const [
-              SizedBox(
-                height: 15,
-              ),
-              Text('No Slots  Available',
-                  style: AppTextStyles.bodyLargeRobotoSemiBold),
-              SizedBox(
-                height: 15,
-              ),
-            ])
+          ? Column(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                SizedBox(height: 15),
+                Text(
+                  'No Slots  Available',
+                  style: AppTextStyles.bodyLargeRobotoSemiBold,
+                ),
+                SizedBox(height: 15),
+              ],
+            )
           : Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                const SizedBox(
-                  height: 15,
-                ),
+                const SizedBox(height: 15),
                 const Text(
                   'Available Time',
                   style: AppTextStyles.subHeaddingSemiBoldRoboto,
                 ),
-                Text(
-                  shift.shift,
-                  style: AppTextStyles.bodyTextRoboto,
-                ),
+                Text(shift.shift, style: AppTextStyles.bodyTextRoboto),
                 ValueListenableBuilder(
                   valueListenable:
                       BookAppointmentScreenHelpers.selectedSlotNotifier,
@@ -49,16 +45,18 @@ class AppointmentSlotSection extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            childAspectRatio: 2.2),
+                          crossAxisCount: 4,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: 2.2,
+                        ),
                     itemCount: shift.slots.length,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) => SlotTile(
-                      isSelected:
-                          shift.slots[index].appdttm == value ? true : false,
+                      isSelected: shift.slots[index].appdttm == value
+                          ? true
+                          : false,
                       slot: shift.slots[index],
                     ),
                   ),

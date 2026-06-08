@@ -18,16 +18,17 @@ sealed class MyAppointmentsState with _$MyAppointmentsState {
   }) = _MyAppointmentState;
 
   factory MyAppointmentsState.initial() => MyAppointmentsState(
-      monthTimeLineListOfConsulted: [],
-      monthTimeLineListOfNotConsulted: [],
-      myConsultedAppointments: [],
-      myNotConsultedAppointments: [],
-      error: ErrorModel(message: ''),
-      isAppointmentsCancelationFailed: false,
-      isAppointmentsCancelationSuccess: false,
-      monthTimeLineList: [],
-      isAppointmentsFetching: false,
-      isAppointmentsFetchingFailed: false,
-      isAppointmentsFetchingSuccess: false,
-      myAppointments: []);
+    monthTimeLineListOfConsulted: [],
+    monthTimeLineListOfNotConsulted: [],
+    myConsultedAppointments: [],
+    myNotConsultedAppointments: [],
+    error: ErrorModel(message: ''),
+    isAppointmentsCancelationFailed: false,
+    isAppointmentsCancelationSuccess: false,
+    monthTimeLineList: [],
+    isAppointmentsFetching: false,
+    isAppointmentsFetchingFailed: false,
+    isAppointmentsFetchingSuccess: false,
+    myAppointments: [],
+  );
 }

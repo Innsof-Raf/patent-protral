@@ -12,22 +12,35 @@ part 'generated/home_bloc.freezed.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeState.initial()) {
     on<GetHomeData>((event, emit) async {
-      emit(state.copyWith(
-        isDataFetching: true,
-        isDataFetchingFailed: false,
-        isDataFetchingsuccess: false,
-      ));
+      emit(
+        state.copyWith(
+          isDataFetching: true,
+          isDataFetchingFailed: false,
+          isDataFetchingsuccess: false,
+        ),
+      );
       Either<ErrorModel, HomeDataModel> homeDataFetchingOptions =
           await HomeServices.getHomeData(
-              token: event.token, idBusunit: event.idBusunit);
+            token: event.token,
+            idBusunit: event.idBusunit,
+          );
 
       homeDataFetchingOptions.fold(
-          (error) => emit(state.copyWith(
-              isDataFetching: false, error: error, isDataFetchingFailed: true)),
-          (homeData) => emit(state.copyWith(
-              isDataFetching: false,
-              isDataFetchingsuccess: true,
-              homeData: homeData)));
+        (error) => emit(
+          state.copyWith(
+            isDataFetching: false,
+            error: error,
+            isDataFetchingFailed: true,
+          ),
+        ),
+        (homeData) => emit(
+          state.copyWith(
+            isDataFetching: false,
+            isDataFetchingsuccess: true,
+            homeData: homeData,
+          ),
+        ),
+      );
     });
   }
 }

@@ -22,15 +22,16 @@ class AppointmentServices {
       final Map data = {
         "CONTENT":
             "{\"id\":0,\"id_employee\":$idDoctor,\"id_busunit\":1,\"appmnt_mode\":\"walk-in\",\"appmnt_dttm\":\"$appointmentDateTime\",\"id_customer\":$idMember,\"mobile_no\":\"$mobileNo\"}",
-        "TYPE": "PP0008"
+        "TYPE": "PP0008",
       };
       http.Response response = await http.post(
-          Uri.parse(ConstantUrls.serviceUrl),
-          body: jsonEncode(data),
-          headers: {
-            HttpHeaders.authorizationHeader: 'Bearer $token',
-            'Content-type': 'application/json',
-          });
+        Uri.parse(ConstantUrls.serviceUrl),
+        body: jsonEncode(data),
+        headers: {
+          HttpHeaders.authorizationHeader: 'Bearer $token',
+          'Content-type': 'application/json',
+        },
+      );
       if (response.statusCode == 200 || response.statusCode == 201) {
         final Map<String, dynamic> responseData = jsonDecode(response.body);
         if (responseData["status"] == "1") {
@@ -44,8 +45,9 @@ class AppointmentServices {
         return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
       }
     } on TimeoutException {
-      return Left(ErrorModel(
-          message: ConstantMessages.connectionTimeOutFailureMessage));
+      return Left(
+        ErrorModel(message: ConstantMessages.connectionTimeOutFailureMessage),
+      );
     } on SocketException {
       return Left(ErrorModel(message: ConstantMessages.noNetworkErrorMessage));
     } catch (e) {
@@ -53,23 +55,25 @@ class AppointmentServices {
     }
   }
 
-  static Future<Either<ErrorModel, AppointmentModel>> resheduleAppointment(
-      {required DateTime appointmentDateTime,
-      required int idAppointment,
-      required String token}) async {
+  static Future<Either<ErrorModel, AppointmentModel>> resheduleAppointment({
+    required DateTime appointmentDateTime,
+    required int idAppointment,
+    required String token,
+  }) async {
     try {
       final Map data = {
         "CONTENT":
             "{\"id_appnmt\":$idAppointment,\"appmnt_dttm\":\"$appointmentDateTime\"}",
-        "TYPE": "PP0028"
+        "TYPE": "PP0028",
       };
       http.Response response = await http.post(
-          Uri.parse(ConstantUrls.serviceUrl),
-          body: jsonEncode(data),
-          headers: {
-            HttpHeaders.authorizationHeader: 'Bearer $token',
-            'Content-type': 'application/json',
-          });
+        Uri.parse(ConstantUrls.serviceUrl),
+        body: jsonEncode(data),
+        headers: {
+          HttpHeaders.authorizationHeader: 'Bearer $token',
+          'Content-type': 'application/json',
+        },
+      );
       if (response.statusCode == 200 || response.statusCode == 201) {
         final Map<String, dynamic> responseData = jsonDecode(response.body);
         if (responseData["status"] == 1) {
@@ -78,14 +82,16 @@ class AppointmentServices {
           return Right(AppointmentModel.fromJson(appointmentResponse));
         } else {
           return Left(
-              ErrorModel(message: ConstantMessages.serverFailureMessage));
+            ErrorModel(message: ConstantMessages.serverFailureMessage),
+          );
         }
       } else {
         return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
       }
     } on TimeoutException {
-      return Left(ErrorModel(
-          message: ConstantMessages.connectionTimeOutFailureMessage));
+      return Left(
+        ErrorModel(message: ConstantMessages.connectionTimeOutFailureMessage),
+      );
     } on SocketException {
       return Left(ErrorModel(message: ConstantMessages.noNetworkErrorMessage));
     } catch (e) {

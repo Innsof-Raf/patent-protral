@@ -10,17 +10,9 @@ class UnorderdListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const CircleAvatar(
-          radius: 1.5,
-          backgroundColor: AppColors.textDark,
-        ),
-        const SizedBox(
-          width: 3,
-        ),
-        Text(
-          title,
-          style: AppTextStyles.bodyXSmallRobotoNormal,
-        )
+        const CircleAvatar(radius: 1.5, backgroundColor: AppColors.textDark),
+        const SizedBox(width: 3),
+        Text(title, style: AppTextStyles.bodyXSmallRobotoNormal),
       ],
     );
   }

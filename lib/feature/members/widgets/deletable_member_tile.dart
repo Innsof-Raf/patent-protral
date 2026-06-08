@@ -20,14 +20,15 @@ class DeletableMemberTile extends StatelessWidget {
         final isSelected = state.selectedMebersList.contains(member.id);
         return OutlinedButton(
           onLongPress: () {
-            context
-                .read<DeleteMemberBloc>()
-                .add(UpdateSelectedMemberList(memberId: member.id));
+            context.read<DeleteMemberBloc>().add(
+              UpdateSelectedMemberList(memberId: member.id),
+            );
           },
           style: OutlinedButton.styleFrom(
             side: const BorderSide(width: .5, color: AppColors.borderColor),
-            backgroundColor:
-                isSelected ? AppColors.selectionColor : AppColors.white,
+            backgroundColor: isSelected
+                ? AppColors.selectionColor
+                : AppColors.white,
             foregroundColor: AppColors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
@@ -37,29 +38,35 @@ class DeletableMemberTile extends StatelessWidget {
           ),
           onPressed: () {
             if (isSelected || state.selectedMebersList.isNotEmpty) {
-              context
-                  .read<DeleteMemberBloc>()
-                  .add(UpdateSelectedMemberList(memberId: member.id));
+              context.read<DeleteMemberBloc>().add(
+                UpdateSelectedMemberList(memberId: member.id),
+              );
             } else {
-              Navigator.of(context).pushNamed(RouteConstants.memberDetailsScreen,
-                  arguments: {'member_id': member.id});
+              Navigator.of(context).pushNamed(
+                RouteConstants.memberDetailsScreen,
+                arguments: {'member_id': member.id},
+              );
             }
           },
           child: Row(
             children: [
               CircleAvatar(
                 radius: 18,
-                backgroundColor:
-                    member.profileImage == null ? AppColors.orange : null,
+                backgroundColor: member.profileImage == null
+                    ? AppColors.orange
+                    : null,
                 backgroundImage: member.profileImage != null
                     ? NetworkImage(
-                        '${ConstantUrls.memberImageUrl}/${member.id}/${member.profileImage}')
+                        '${ConstantUrls.memberImageUrl}/${member.id}/${member.profileImage}',
+                      )
                     : null,
                 child: member.profileImage == null
                     ? Text(
                         member.name[0],
-                        style: AppTextStyles.subHeaddingSemiBoldRoboto
-                            .copyWith(fontSize: 18, color: AppColors.white),
+                        style: AppTextStyles.subHeaddingSemiBoldRoboto.copyWith(
+                          fontSize: 18,
+                          color: AppColors.white,
+                        ),
                       )
                     : null,
               ),
@@ -70,23 +77,24 @@ class DeletableMemberTile extends StatelessWidget {
                 children: [
                   Text(
                     member.name,
-                    style: AppTextStyles.bodyLargeRobotoSemiBold
-                        .copyWith(fontSize: 12, color: AppColors.textLight),
+                    style: AppTextStyles.bodyLargeRobotoSemiBold.copyWith(
+                      fontSize: 12,
+                      color: AppColors.textLight,
+                    ),
                   ),
-                  const SizedBox(
-                    height: 4,
+                  const SizedBox(height: 4),
+                  Text(
+                    member.age,
+                    style: AppTextStyles.bodyTextInter.copyWith(
+                      color: AppColors.textLight,
+                    ),
                   ),
-                  Text(member.age,
-                      style: AppTextStyles.bodyTextInter
-                          .copyWith(color: AppColors.textLight)),
                 ],
               ),
               const Spacer(),
               member.isInsurance && !member.isInsuranceExpired
-                  ? SvgPicture.asset(
-                      'assets/icons/insurance_cart_icon.svg',
-                    )
-                  : const SizedBox()
+                  ? SvgPicture.asset('assets/icons/insurance_cart_icon.svg')
+                  : const SizedBox(),
             ],
           ),
         );

@@ -8,8 +8,9 @@ import 'package:patient_portal/resources/constant_messages.dart';
 import 'package:patient_portal/resources/error_model.dart';
 
 class ReportServices {
-  static Future<Either<ErrorModel, Uint8List>> downloadReport(
-      {required String url}) async {
+  static Future<Either<ErrorModel, Uint8List>> downloadReport({
+    required String url,
+  }) async {
     try {
       final Uint8List list = await http.readBytes(Uri.parse(url));
 
@@ -22,26 +23,27 @@ class ReportServices {
       return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
     }
   }
-//   Future<String> downloadDocument(String documentUrl, String fileName, String documentFormat) async {
-//    try {
-//      var response = await http.get(Uri.parse(documentUrl));
-//      Directory generalDownloadDir = await Directory('/storage/emulated/0/Download');
-//      if (!Directory(generalDownloadDir.path).existsSync()) {
-//        Directory(generalDownloadDir.path).createSync(recursive: true);
-//      }
-//      File file =  File("${generalDownloadDir.path}/$fileName${documentFormat}");
-//      file.writeAsBytesSync(response.bodyBytes, flush: true);
-//      showLongToast("Successfully downloaded..");
-//      setState(() {
-//        isDownloading = false;
-//      });
-//      return file.path;
-//    } catch (e, s) {
-//      print("LoadPDF Error--> Error:-$e stackTrace:-$s");
-//      setState(() {
-//        isDownloading = false;
-//      });
-//      return "null";
-//    }
-//  }
+
+  //   Future<String> downloadDocument(String documentUrl, String fileName, String documentFormat) async {
+  //    try {
+  //      var response = await http.get(Uri.parse(documentUrl));
+  //      Directory generalDownloadDir = await Directory('/storage/emulated/0/Download');
+  //      if (!Directory(generalDownloadDir.path).existsSync()) {
+  //        Directory(generalDownloadDir.path).createSync(recursive: true);
+  //      }
+  //      File file =  File("${generalDownloadDir.path}/$fileName${documentFormat}");
+  //      file.writeAsBytesSync(response.bodyBytes, flush: true);
+  //      showLongToast("Successfully downloaded..");
+  //      setState(() {
+  //        isDownloading = false;
+  //      });
+  //      return file.path;
+  //    } catch (e, s) {
+  //      print("LoadPDF Error--> Error:-$e stackTrace:-$s");
+  //      setState(() {
+  //        isDownloading = false;
+  //      });
+  //      return "null";
+  //    }
+  //  }
 }

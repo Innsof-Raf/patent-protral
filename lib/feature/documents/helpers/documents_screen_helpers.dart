@@ -14,7 +14,8 @@ import 'package:http/http.dart' as http;
 
 class DocumentsScreenHelpers {
   static List<PopupMenuItem<int>> createPopupMenuItem(
-      List<MemberModel> members) {
+    List<MemberModel> members,
+  ) {
     List<PopupMenuItem<int>> popupMenuItems = [
       const PopupMenuItem(
         value: 0,
@@ -25,45 +26,51 @@ class DocumentsScreenHelpers {
           overflow: TextOverflow.ellipsis,
           style: AppTextStyles.bodyLargeRobotoSemiBold,
         ),
-      )
+      ),
     ];
     for (MemberModel member in members) {
-      popupMenuItems.add(PopupMenuItem(
-        value: member.id,
-        height: 30,
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: Text(
-          member.name,
-          overflow: TextOverflow.ellipsis,
-          style: AppTextStyles.bodyLargeRobotoSemiBold,
+      popupMenuItems.add(
+        PopupMenuItem(
+          value: member.id,
+          height: 30,
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Text(
+            member.name,
+            overflow: TextOverflow.ellipsis,
+            style: AppTextStyles.bodyLargeRobotoSemiBold,
+          ),
         ),
-      ));
+      );
     }
     return popupMenuItems;
   }
 
-  static Future<Either<ErrorModel, String>> uploadDocument(
-      {required String documentName,
-      required String documentpath,
-      required DateTime? expireDate,
-      required String token,
-      required int memberId}) async {
+  static Future<Either<ErrorModel, String>> uploadDocument({
+    required String documentName,
+    required String documentpath,
+    required DateTime? expireDate,
+    required String token,
+    required int memberId,
+  }) async {
     try {
       var headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': 'Bearer $token'
+        'Authorization': 'Bearer $token',
       };
       var request = http.MultipartRequest(
-          'POST', Uri.parse(ConstantUrls.uploadDocumentUrl));
+        'POST',
+        Uri.parse(ConstantUrls.uploadDocumentUrl),
+      );
       request.fields.addAll({
         'saveRequest':
             '{"content":"{\'seq_no\':0,\'id_customer\':$memberId,\'id_document\':\'\',\'expiry_dt\':\'${expireDate ?? ''}\',\'doc_path\':\'$documentpath\',\'doc_name\':\'$documentName\',\'doc_ext\':\'{Ext}\',\'isself\':true}","type":"PP0025"}',
         'PathIdentifier': 'PatientProfileImage',
-        'FolderIdentifier': '$memberId\\selfdoc'
+        'FolderIdentifier': '$memberId\\selfdoc',
       });
-      request.files
-          .add(await http.MultipartFile.fromPath('uploads', documentpath));
+      request.files.add(
+        await http.MultipartFile.fromPath('uploads', documentpath),
+      );
       request.headers.addAll(headers);
 
       http.StreamedResponse response = await request.send();
@@ -78,8 +85,9 @@ class DocumentsScreenHelpers {
     } on SocketException {
       return Left(ErrorModel(message: ConstantMessages.noNetworkErrorMessage));
     } on TimeoutException {
-      return Left(ErrorModel(
-          message: ConstantMessages.connectionTimeOutFailureMessage));
+      return Left(
+        ErrorModel(message: ConstantMessages.connectionTimeOutFailureMessage),
+      );
     } catch (e) {
       return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
     }

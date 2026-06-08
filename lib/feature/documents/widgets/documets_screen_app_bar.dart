@@ -16,8 +16,9 @@ class DocumentsScreenAppBar extends StatelessWidget
   Widget build(BuildContext context) {
     return AppBar(
       systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: AppColors.white,
-          statusBarIconBrightness: Brightness.dark),
+        statusBarColor: AppColors.white,
+        statusBarIconBrightness: Brightness.dark,
+      ),
       backgroundColor: AppColors.white,
       elevation: 1,
       centerTitle: false,
@@ -30,20 +31,28 @@ class DocumentsScreenAppBar extends StatelessWidget
               return PopupMenuButton<int>(
                 initialValue: 0,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 position: PopupMenuPosition.under,
                 splashRadius: 0,
                 padding: EdgeInsets.zero,
                 onSelected: ((value) {
-                  context.read<DocumentsBloc>().add(GetDocuments(
+                  context.read<DocumentsBloc>().add(
+                    GetDocuments(
                       memberId: value,
-                      mobileNumber:
-                          context.read<UserBloc>().state.user!.mobileNumber,
-                      token: context.read<UserBloc>().state.user!.accessToken));
+                      mobileNumber: context
+                          .read<UserBloc>()
+                          .state
+                          .user!
+                          .mobileNumber,
+                      token: context.read<UserBloc>().state.user!.accessToken,
+                    ),
+                  );
                 }),
                 itemBuilder: (context) =>
                     DocumentsScreenHelpers.createPopupMenuItem(
-                        userState.user!.members),
+                      userState.user!.members,
+                    ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -63,16 +72,16 @@ class DocumentsScreenAppBar extends StatelessWidget
                         },
                       ),
                     ),
-                    const SizedBox(
-                      width: 8,
-                    ),
+                    const SizedBox(width: 8),
                     Text(
                       state.selectedMemberId == 0
                           ? 'All'
                           : userState.user!.members
-                              .singleWhere((element) =>
-                                  element.id == state.selectedMemberId)
-                              .name,
+                                .singleWhere(
+                                  (element) =>
+                                      element.id == state.selectedMemberId,
+                                )
+                                .name,
                       style: AppTextStyles.largeSemiBoldRoboto,
                     ),
                     const Icon(
@@ -87,13 +96,11 @@ class DocumentsScreenAppBar extends StatelessWidget
         },
       ),
       leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            color: AppColors.textDark,
-          )),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: const Icon(Icons.arrow_back_ios, color: AppColors.textDark),
+      ),
     );
   }
 

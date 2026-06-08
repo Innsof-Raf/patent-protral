@@ -14,72 +14,70 @@ class DoctorDetailScreen extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-              child: Container(
-                  padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                  width: double.infinity,
-                  color: AppColors.vilot,
-                  child: LayoutBuilder(
-                    builder: (context, constraints) => Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        Positioned(
-                          bottom: -constraints.maxWidth * .08,
-                          left: 0,
-                          right: 0,
-                          child: Row(
+            child: Container(
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+              width: double.infinity,
+              color: AppColors.vilot,
+              child: LayoutBuilder(
+                builder: (context, constraints) => Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Positioned(
+                      bottom: -constraints.maxWidth * .08,
+                      left: 0,
+                      right: 0,
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(6),
+                            child: Image.network(
+                              'https://www.pinoytechnoguide.com/wp-content/uploads/2021/10/vivo-X70-sample-picture-person-normal-768x576.jpg',
+                              width: constraints.maxWidth * .24,
+                              height: constraints.maxWidth * .24,
+                              fit: BoxFit.fill,
+                              alignment: Alignment.centerLeft,
+                              errorBuilder: (context, error, stackTrace) {
+                                return CircleAvatar();
+                              },
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(6),
-                                child: Image.network(
-                                  'https://www.pinoytechnoguide.com/wp-content/uploads/2021/10/vivo-X70-sample-picture-person-normal-768x576.jpg',
-                                  width: constraints.maxWidth * .24,
-                                  height: constraints.maxWidth * .24,
-                                  fit: BoxFit.fill,
-                                  alignment: Alignment.centerLeft,
-                                  errorBuilder: (context, error, stackTrace) {
-                                    return CircleAvatar();
-                                  },
-                                ),
+                              SizedBox(
+                                height:
+                                    constraints.maxWidth * .23 -
+                                    constraints.maxWidth * .08,
+                                child: Column(children: []),
                               ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  SizedBox(
-                                    height: constraints.maxWidth * .23 -
-                                        constraints.maxWidth * .08,
-                                    child: Column(
-                                      children: [],
-                                    ),
-                                  ),
-                                  Container(
-                                    height: constraints.maxWidth * .08,
-                                  )
-                                ],
-                              )
+                              Container(height: constraints.maxWidth * .08),
                             ],
                           ),
+                        ],
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Dr.Manu James',
+                          style: AppTextStyles.xXXLargeBobotoSemiBold,
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Dr.Manu James',
-                              style: AppTextStyles.xXXLargeBobotoSemiBold,
-                            ),
-                            Text(
-                              'Internal Medicine',
-                              style: AppTextStyles.largeRobotoNormal
-                                  .copyWith(color: AppColors.white),
-                            ),
-                          ],
+                        Text(
+                          'Internal Medicine',
+                          style: AppTextStyles.largeRobotoNormal.copyWith(
+                            color: AppColors.white,
+                          ),
                         ),
                       ],
                     ),
-                  ))),
-          Expanded(flex: 4, child: SizedBox())
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Expanded(flex: 4, child: SizedBox()),
         ],
       ),
     );

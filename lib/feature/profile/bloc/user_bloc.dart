@@ -18,96 +18,150 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<StoreUserDetails>((event, emit) {
       emit(state.copyWith(user: event.user));
     });
-    on<ChangeMemberAddingSateToInitial>((event, emit) => emit(state.copyWith(
+    on<ChangeMemberAddingSateToInitial>(
+      (event, emit) => emit(
+        state.copyWith(
           isMemberAddingFailed: false,
           isMemberAddingSucess: false,
-        )));
+        ),
+      ),
+    );
     on<AddMember>((event, emit) async {
-      emit(state.copyWith(
-        isMemberAdding: true,
-        isMemberAddingFailed: false,
-        isMemberAddingSucess: false,
-      ));
+      emit(
+        state.copyWith(
+          isMemberAdding: true,
+          isMemberAddingFailed: false,
+          isMemberAddingSucess: false,
+        ),
+      );
 
       final Either<ErrorModel, MemberModel> memberAddingOptions =
           await MemberServices.addMember(
-              user: state.user!,
-              patientName: event.patientName,
-              nationalId: event.nationalId,
-              email: event.email,
-              gender: event.gender,
-              idInsurance: event.idInsurance,
-              memberNumber: event.memberNumber,
-              expireDate: event.expireDate,
-              otherInsuranceName: event.otherInsuranceName,
-              dob: event.dob,
-              profileImage: event.profileImage);
+            user: state.user!,
+            patientName: event.patientName,
+            nationalId: event.nationalId,
+            email: event.email,
+            gender: event.gender,
+            idInsurance: event.idInsurance,
+            memberNumber: event.memberNumber,
+            expireDate: event.expireDate,
+            otherInsuranceName: event.otherInsuranceName,
+            dob: event.dob,
+            profileImage: event.profileImage,
+          );
       memberAddingOptions.fold(
-          (error) => emit(state.copyWith(
-              isMemberAdding: false,
-              isMemberAddingFailed: true,
-              error: error)), (newMember) {
-        List<MemberModel> members = List.from(state.user!.members);
-        members.add(newMember);
-        return emit(state.copyWith(
+        (error) => emit(
+          state.copyWith(
             isMemberAdding: false,
-            isMemberAddingSucess: true,
-            user: state.user!.copyWith(members: members)));
-      });
+            isMemberAddingFailed: true,
+            error: error,
+          ),
+        ),
+        (newMember) {
+          List<MemberModel> members = List.from(state.user!.members);
+          members.add(newMember);
+          return emit(
+            state.copyWith(
+              isMemberAdding: false,
+              isMemberAddingSucess: true,
+              user: state.user!.copyWith(members: members),
+            ),
+          );
+        },
+      );
     });
     on<ChangememberInsuranceDetails>((event, emit) async {
-      emit(state.copyWith(
-        isMemberAdding: true,
-        isMemberAddingFailed: false,
-        isMemberAddingSucess: false,
-      ));
+      emit(
+        state.copyWith(
+          isMemberAdding: true,
+          isMemberAddingFailed: false,
+          isMemberAddingSucess: false,
+        ),
+      );
       final Either<ErrorModel, MemberModel> memberInsuranceEditingOptions =
           await MemberServices.changeMemberInsuranceDetails(
-              memberId: event.memberId,
-              idInsurance: event.idInsurance,
-              insuranceName: event.insuranceName,
-              memberNumber: event.memberNumber,
-              expireDate: event.expireDate,
-              token: state.user!.accessToken);
+            memberId: event.memberId,
+            idInsurance: event.idInsurance,
+            insuranceName: event.insuranceName,
+            memberNumber: event.memberNumber,
+            expireDate: event.expireDate,
+            token: state.user!.accessToken,
+          );
       memberInsuranceEditingOptions.fold(
-          (error) => emit(state.copyWith(
-              isMemberAdding: false,
-              isMemberAddingFailed: true,
-              error: error)), (memberDetail) {
-        List<MemberModel> members = List.from(state.user!.members);
-        int currentMemberIndex =
-            members.indexWhere((member) => member.id == event.memberId);
-        members[currentMemberIndex] = memberDetail;
-        return emit(state.copyWith(
+        (error) => emit(
+          state.copyWith(
             isMemberAdding: false,
-            isMemberAddingSucess: true,
-            user: state.user!.copyWith(members: members)));
-      });
+            isMemberAddingFailed: true,
+            error: error,
+          ),
+        ),
+        (memberDetail) {
+          List<MemberModel> members = List.from(state.user!.members);
+          int currentMemberIndex = members.indexWhere(
+            (member) => member.id == event.memberId,
+          );
+          members[currentMemberIndex] = memberDetail;
+          return emit(
+            state.copyWith(
+              isMemberAdding: false,
+              isMemberAddingSucess: true,
+              user: state.user!.copyWith(members: members),
+            ),
+          );
+        },
+      );
     });
     on<GetMemberDetail>((event, emit) async {
-      emit(state.copyWith(
-        isFetchingMemberDetail: true,
-        isMemberDetailFetchingFailed: false,
-        isMemberDetailFetchingSucess: false,
-      ));
+      emit(
+        state.copyWith(
+          isFetchingMemberDetail: true,
+          isMemberDetailFetchingFailed: false,
+          isMemberDetailFetchingSucess: false,
+        ),
+      );
       final Either<ErrorModel, MemberModel> memberDetailFetchingOptions =
           await MemberServices.getMemberDetail(
-              memberId: event.memberId, token: state.user!.accessToken);
+            memberId: event.memberId,
+            token: state.user!.accessToken,
+          );
       memberDetailFetchingOptions.fold(
-          (error) => emit(state.copyWith(
-              isFetchingMemberDetail: false,
-              isMemberDetailFetchingFailed: true,
-              error: error)), (memberDetail) {
-        List<MemberModel> members = List.from(state.user!.members);
-        final int cureentMemberIndex = members.indexWhere(
-          (member) => member.id == event.memberId,
-        );
-        members[cureentMemberIndex] = memberDetail;
-        return emit(state.copyWith(
+        (error) => emit(
+          state.copyWith(
             isFetchingMemberDetail: false,
-            isMemberDetailFetchingSucess: true,
-            user: state.user!.copyWith(members: members)));
-      });
+            isMemberDetailFetchingFailed: true,
+            error: error,
+          ),
+        ),
+        (memberDetail) {
+          List<MemberModel> members = List.from(state.user!.members);
+          final int cureentMemberIndex = members.indexWhere(
+            (member) => member.id == event.memberId,
+          );
+          members[cureentMemberIndex] = memberDetail;
+          return emit(
+            state.copyWith(
+              isFetchingMemberDetail: false,
+              isMemberDetailFetchingSucess: true,
+              user: state.user!.copyWith(members: members),
+            ),
+          );
+        },
+      );
+    });
+    on<AddMemberToLocal>((event, emit) {
+      if (state.user != null) {
+        final members = List<MemberModel>.from(state.user!.members)
+          ..add(event.member);
+        emit(state.copyWith(user: state.user!.copyWith(members: members)));
+      }
+    });
+    on<UpdateMemberInLocal>((event, emit) {
+      if (state.user != null) {
+        final members = state.user!.members
+            .map((m) => m.id == event.member.id ? event.member : m)
+            .toList();
+        emit(state.copyWith(user: state.user!.copyWith(members: members)));
+      }
     });
     on<LogOut>((event, emit) {
       emit(state.copyWith(user: null));

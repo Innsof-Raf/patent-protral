@@ -9,23 +9,24 @@ class MyAppointmentsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    appointments.sort((appointment1, appointment2) => appointment1
-        .appointmentDateTime
-        .compareTo(appointment2.appointmentDateTime));
+    appointments.sort(
+      (appointment1, appointment2) => appointment1.appointmentDateTime
+          .compareTo(appointment2.appointmentDateTime),
+    );
     return Flexible(
-        child: ListView.separated(
-            physics: const NeverScrollableScrollPhysics(),
-            padding: const EdgeInsets.only(top: 9),
-            shrinkWrap: true,
-            itemBuilder: (context, index) => MyAppointmentTile(
-                  isCounselted: appointments[index]
-                      .appointmentDateTime
-                      .isBefore(DateTime.now()),
-                  appointment: appointments[index],
-                ),
-            separatorBuilder: (context, index) => const SizedBox(
-                  height: 9,
-                ),
-            itemCount: appointments.length));
+      child: ListView.separated(
+        physics: const NeverScrollableScrollPhysics(),
+        padding: const EdgeInsets.only(top: 9),
+        shrinkWrap: true,
+        itemBuilder: (context, index) => MyAppointmentTile(
+          isCounselted: appointments[index].appointmentDateTime.isBefore(
+            DateTime.now(),
+          ),
+          appointment: appointments[index],
+        ),
+        separatorBuilder: (context, index) => const SizedBox(height: 9),
+        itemCount: appointments.length,
+      ),
+    );
   }
 }

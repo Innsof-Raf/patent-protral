@@ -9,14 +9,13 @@ part 'generated/home_data_model.g.dart';
 
 @freezed
 sealed class HomeDataModel with _$HomeDataModel {
-  const factory HomeDataModel(
-      {@JsonKey(name: 'ad_banner') required List<AdBannerModel> ads,
-      @JsonKey(name: 'speciality')
-      required List<SpecialityModel> topSpecialities,
-      @JsonKey(name: 'insurance') required List<InsuranceModel> topInsurances,
-      @JsonKey(name: 'package_banner') required List<AdBannerModel> topPackages,
-      @JsonKey(name: 'notification_count')
-      required int notificationCount}) = _HomeDataModel;
+  const factory HomeDataModel({
+    @JsonKey(name: 'ad_banner') required List<AdBannerModel> ads,
+    @JsonKey(name: 'speciality') required List<SpecialityModel> topSpecialities,
+    @JsonKey(name: 'insurance') required List<InsuranceModel> topInsurances,
+    @JsonKey(name: 'package_banner') required List<AdBannerModel> topPackages,
+    @JsonKey(name: 'notification_count') required int notificationCount,
+  }) = _HomeDataModel;
 
   factory HomeDataModel.fromJson(Map<String, dynamic> json) =>
       _$HomeDataModelFromJson(json);

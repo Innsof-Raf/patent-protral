@@ -12,10 +12,11 @@ sealed class DocumentsState with _$DocumentsState {
   }) = _DocumentsState;
 
   factory DocumentsState.initial() => DocumentsState(
-      documents: [],
-      selectedMemberId: 0,
-      isFetching: false,
-      error: ErrorModel(message: ''),
-      isFetchingFailed: false,
-      isFetchingSucces: false);
+    documents: [],
+    selectedMemberId: 0,
+    isFetching: false,
+    error: ErrorModel(message: ''),
+    isFetchingFailed: false,
+    isFetchingSucces: false,
+  );
 }

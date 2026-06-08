@@ -14,22 +14,36 @@ part 'generated/speciality_bloc.freezed.dart';
 class SpecialityBloc extends Bloc<SpecialityEvent, SpecialityState> {
   SpecialityBloc() : super(SpecialityState.initial()) {
     on<FetchSpecialities>((event, emit) async {
-      emit(state.copyWith(
+      emit(
+        state.copyWith(
           isFetching: true,
           specialities: [],
           error: ErrorModel(message: ''),
           isFetchingError: false,
-          isFetchingSuccess: false));
+          isFetchingSuccess: false,
+        ),
+      );
       Either<ErrorModel, List<SpecialityModel>> speclityOptions =
           await SpecialityServices.fetchSpecialities(
-              token: event.token, idBusUnit: event.idBusUnit);
+            token: event.token,
+            idBusUnit: event.idBusUnit,
+          );
       speclityOptions.fold(
-          (failure) => emit(state.copyWith(
-              isFetching: false, isFetchingError: true, error: failure)),
-          (sucsess) => emit(state.copyWith(
-              isFetching: false,
-              isFetchingSuccess: true,
-              specialities: sucsess)));
+        (failure) => emit(
+          state.copyWith(
+            isFetching: false,
+            isFetchingError: true,
+            error: failure,
+          ),
+        ),
+        (sucsess) => emit(
+          state.copyWith(
+            isFetching: false,
+            isFetchingSuccess: true,
+            specialities: sucsess,
+          ),
+        ),
+      );
     });
   }
 }

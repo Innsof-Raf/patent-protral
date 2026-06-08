@@ -17,9 +17,12 @@ class SpecilityScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<SpecialityBloc>().add(FetchSpecialities(
+      context.read<SpecialityBloc>().add(
+        FetchSpecialities(
           token: context.read<UserBloc>().state.user!.accessToken,
-          idBusUnit: 3));
+          idBusUnit: 3,
+        ),
+      );
     });
     final formKey = GlobalKey<FormState>();
     TextEditingController searchController = TextEditingController();
@@ -53,90 +56,98 @@ class SpecilityScreen extends StatelessWidget {
                               keyboardType: TextInputType.text,
                               onChanged: (value) {
                                 context.read<SearchSpecialityBloc>().add(
-                                    SearchSpeciality(
-                                        searchKey: value.toLowerCase(),
-                                        specialities: state.specialities));
+                                  SearchSpeciality(
+                                    searchKey: value.toLowerCase(),
+                                    specialities: state.specialities,
+                                  ),
+                                );
                               },
                               controller: searchController,
-                              style: AppTextStyles.largeRobotoNormal
-                                  .copyWith(color: AppColors.textBluishDark),
+                              style: AppTextStyles.largeRobotoNormal.copyWith(
+                                color: AppColors.textBluishDark,
+                              ),
                               decoration: const InputDecoration(
-                                  suffixIcon: Icon(
-                                    Icons.search,
-                                    color: AppColors.textDark,
-                                  ),
-                                  hintStyle: AppTextStyles.largeRobotoNormal,
-                                  hintText: 'Search Here',
-                                  contentPadding: EdgeInsets.all(15)),
+                                suffixIcon: Icon(
+                                  Icons.search,
+                                  color: AppColors.textDark,
+                                ),
+                                hintStyle: AppTextStyles.largeRobotoNormal,
+                                hintText: 'Search Here',
+                                contentPadding: EdgeInsets.all(15),
+                              ),
                             ),
                           ],
-                        ))
+                        ),
+                      )
                     : const SizedBox();
               },
             ),
             Dimens.constHeight,
             Expanded(
-                child: LayoutBuilder(
-                    builder: (context, constraints) =>
-                        BlocBuilder<SpecialityBloc, SpecialityState>(
-                          builder: (context, state) {
-                            if (state.isFetching) {
-                              return Center(
-                                child: Image.asset(
-                                  'assets/gif_images/Ripple-0 2.gif',
-                                  width: constraints.maxHeight * .3,
-                                ),
-                              );
-                            } else if (state.isFetchingError) {
-                              return Center(
-                                child: Text(
-                                  state.error.message,
-                                  style: AppTextStyles.largeRobotoNormal,
-                                ),
-                              );
-                            } else {
-                              return BlocBuilder<SearchSpecialityBloc,
-                                  SearchSpecialityBlocState>(
-                                builder: (searchContext, searchState) {
-                                  List<SpecialityModel> specialities = [];
-                                  if (searchController.text.isNotEmpty) {
-                                    specialities = searchState.searchResult;
-                                  } else {
-                                    specialities = state.specialities;
-                                  }
-                                  return specialities.isEmpty
-                                      ? const Center(
-                                          child: Text(
-                                            'No Specialities Found',
-                                            style:
-                                                AppTextStyles.largeRobotoNormal,
+              child: LayoutBuilder(
+                builder: (context, constraints) =>
+                    BlocBuilder<SpecialityBloc, SpecialityState>(
+                      builder: (context, state) {
+                        if (state.isFetching) {
+                          return Center(
+                            child: Image.asset(
+                              'assets/gif_images/Ripple-0 2.gif',
+                              width: constraints.maxHeight * .3,
+                            ),
+                          );
+                        } else if (state.isFetchingError) {
+                          return Center(
+                            child: Text(
+                              state.error.message,
+                              style: AppTextStyles.largeRobotoNormal,
+                            ),
+                          );
+                        } else {
+                          return BlocBuilder<
+                            SearchSpecialityBloc,
+                            SearchSpecialityBlocState
+                          >(
+                            builder: (searchContext, searchState) {
+                              List<SpecialityModel> specialities = [];
+                              if (searchController.text.isNotEmpty) {
+                                specialities = searchState.searchResult;
+                              } else {
+                                specialities = state.specialities;
+                              }
+                              return specialities.isEmpty
+                                  ? const Center(
+                                      child: Text(
+                                        'No Specialities Found',
+                                        style: AppTextStyles.largeRobotoNormal,
+                                      ),
+                                    )
+                                  : GridView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: specialities.length,
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                            childAspectRatio: 1.5,
+                                            crossAxisSpacing: 10,
+                                            mainAxisSpacing: 10,
+                                            crossAxisCount:
+                                                constraints.maxWidth < 280
+                                                ? 3
+                                                : constraints.maxWidth < 700
+                                                ? 4
+                                                : 5,
                                           ),
-                                        )
-                                      : GridView.builder(
-                                          shrinkWrap: true,
-                                          itemCount: specialities.length,
-                                          gridDelegate:
-                                              SliverGridDelegateWithFixedCrossAxisCount(
-                                                  childAspectRatio: 1.5,
-                                                  crossAxisSpacing: 10,
-                                                  mainAxisSpacing: 10,
-                                                  crossAxisCount: constraints
-                                                              .maxWidth <
-                                                          280
-                                                      ? 3
-                                                      : constraints.maxWidth <
-                                                              700
-                                                          ? 4
-                                                          : 5),
-                                          itemBuilder: (context, index) =>
-                                              SpecilityTile(
-                                                speciality: specialities[index],
-                                              ));
-                                },
-                              );
-                            }
-                          },
-                        )))
+                                      itemBuilder: (context, index) =>
+                                          SpecilityTile(
+                                            speciality: specialities[index],
+                                          ),
+                                    );
+                            },
+                          );
+                        }
+                      },
+                    ),
+              ),
+            ),
           ],
         ),
       ),

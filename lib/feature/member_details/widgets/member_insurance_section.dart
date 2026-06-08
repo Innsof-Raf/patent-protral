@@ -11,11 +11,12 @@ class MemberInsuranceSection extends StatelessWidget {
   final String memberNo;
   final DateTime? expireDate;
 
-  const MemberInsuranceSection(
-      {super.key,
-      required this.insuranceName,
-      required this.memberNo,
-      this.expireDate});
+  const MemberInsuranceSection({
+    super.key,
+    required this.insuranceName,
+    required this.memberNo,
+    this.expireDate,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,33 +26,24 @@ class MemberInsuranceSection extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(
-              height: 27,
-            ),
+            const SizedBox(height: 27),
             RoundedCheackBoxTile(
               isSelected: true,
               onChanged: () {},
               title: 'I have insurance',
             ),
-            const SizedBox(
-              height: 22,
-            ),
+            const SizedBox(height: 22),
             MemberTextFiled(title: 'Insuance', value: insuranceName),
-            const SizedBox(
-              height: 8,
-            ),
+            const SizedBox(height: 8),
             MemberTextFiled(title: 'Member ID', value: memberNo),
-            const SizedBox(
-              height: 8,
-            ),
+            const SizedBox(height: 8),
             MemberTextFiled(
-                title: 'Expire date',
-                value: expireDate != null
-                    ? DateFormat('dd-MM-yyyy').format(expireDate!)
-                    : ''),
-            const SizedBox(
-              height: 21,
-            )
+              title: 'Expire date',
+              value: expireDate != null
+                  ? DateFormat('dd-MM-yyyy').format(expireDate!)
+                  : '',
+            ),
+            const SizedBox(height: 21),
           ],
         );
       },

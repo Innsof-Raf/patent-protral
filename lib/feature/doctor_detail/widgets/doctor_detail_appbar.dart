@@ -12,22 +12,21 @@ class DoctorDetailScreenAppbar extends StatelessWidget
   Widget build(BuildContext context) {
     return AppBar(
       systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: AppColors.vilot,
-          statusBarIconBrightness: Brightness.light),
+        statusBarColor: AppColors.vilot,
+        statusBarIconBrightness: Brightness.light,
+      ),
       backgroundColor: AppColors.vilot,
       elevation: 0,
       titleSpacing: 0,
       automaticallyImplyLeading: false,
       title: Text(
         'Doctor',
-        style:
-            AppTextStyles.largeSemiBoldRoboto.copyWith(color: AppColors.white),
-      ),
-      leading: IconButton(
-        icon: const Icon(
-          Icons.arrow_back_ios,
+        style: AppTextStyles.largeSemiBoldRoboto.copyWith(
           color: AppColors.white,
         ),
+      ),
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back_ios, color: AppColors.white),
         onPressed: () {
           Navigator.of(context).pop();
         },

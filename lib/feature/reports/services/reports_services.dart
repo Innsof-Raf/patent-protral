@@ -12,22 +12,24 @@ import 'package:http/http.dart' as http;
 import '../../../resources/urls.dart';
 
 class ReportsServices {
-  static Future<Either<ErrorModel, List<ReportModel>>> getReports(
-      {required int memberId,
-      required String token,
-      required String mobileNumber}) async {
+  static Future<Either<ErrorModel, List<ReportModel>>> getReports({
+    required int memberId,
+    required String token,
+    required String mobileNumber,
+  }) async {
     try {
       final Map<String, dynamic> data = {
         "CONTENT": "{\"id_customer\":\"1299\",\"mobile_no\":\"9659858387\"}",
-        "TYPE": "PP0016"
+        "TYPE": "PP0016",
       };
       http.Response response = await http.post(
-          Uri.parse(ConstantUrls.serviceUrl),
-          body: jsonEncode(data),
-          headers: {
-            'Content-type': 'application/json',
-            HttpHeaders.authorizationHeader: 'Bearer $token',
-          });
+        Uri.parse(ConstantUrls.serviceUrl),
+        body: jsonEncode(data),
+        headers: {
+          'Content-type': 'application/json',
+          HttpHeaders.authorizationHeader: 'Bearer $token',
+        },
+      );
       if (response.statusCode == 200 || response.statusCode == 201) {
         final List responseList = jsonDecode(response.body);
         List<ReportModel> conseltationsList = [];
@@ -42,8 +44,9 @@ class ReportsServices {
     } on SocketException {
       return Left(ErrorModel(message: ConstantMessages.noNetworkErrorMessage));
     } on TimeoutException {
-      return Left(ErrorModel(
-          message: ConstantMessages.connectionTimeOutFailureMessage));
+      return Left(
+        ErrorModel(message: ConstantMessages.connectionTimeOutFailureMessage),
+      );
     } catch (e) {
       return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
     }

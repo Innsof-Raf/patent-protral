@@ -26,46 +26,53 @@ class TestReportButton extends StatelessWidget {
     return url != null
         ? ElevatedButton(
             style: ElevatedButton.styleFrom(
-                elevation: 0,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 22),
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                minimumSize: const Size(0, 0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4),
-                )),
+              elevation: 0,
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 22),
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              minimumSize: const Size(0, 0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
             onPressed: () {
               context.read<ReportBloc>().add(const ClearReport());
-              Navigator.of(context)
-                  .pushNamed(RouteConstants.reportScreen, arguments: {
-                'pdf_url': '${ConstantUrls.baseUrl}$url',
-                'consulted_date_time': consultedDateTime,
-                'doctor_name': doctorName,
-              });
+              Navigator.of(context).pushNamed(
+                RouteConstants.reportScreen,
+                arguments: {
+                  'pdf_url': '${ConstantUrls.baseUrl}$url',
+                  'consulted_date_time': consultedDateTime,
+                  'doctor_name': doctorName,
+                },
+              );
             },
             child: Text(
               title,
-              style: AppTextStyles.bodyTextBoldRoboto
-                  .copyWith(color: AppColors.white),
+              style: AppTextStyles.bodyTextBoldRoboto.copyWith(
+                color: AppColors.white,
+              ),
             ),
           )
         : OutlinedButton(
             style: OutlinedButton.styleFrom(
-                elevation: 0,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 22),
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                minimumSize: const Size(0, 0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                side: BorderSide(
-                    width: .5, color: AppColors.vilot.withValues(alpha: .3))),
+              elevation: 0,
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 22),
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              minimumSize: const Size(0, 0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
+              side: BorderSide(
+                width: .5,
+                color: AppColors.vilot.withValues(alpha: .3),
+              ),
+            ),
             onPressed: () {},
             child: Text(
               title,
-              style: AppTextStyles.bodyTextBoldRoboto
-                  .copyWith(color: AppColors.vilot.withValues(alpha: .3)),
-            ));
+              style: AppTextStyles.bodyTextBoldRoboto.copyWith(
+                color: AppColors.vilot.withValues(alpha: .3),
+              ),
+            ),
+          );
   }
 }

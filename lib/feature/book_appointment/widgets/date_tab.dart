@@ -16,18 +16,15 @@ class DateTab extends StatelessWidget {
         Text(
           DateFormat('dd').format(date),
           style: AppTextStyles.extraLargeRobotoSemiBold.copyWith(
-              color: isSelected ? AppColors.vilot : AppColors.textDark),
+            color: isSelected ? AppColors.vilot : AppColors.textDark,
+          ),
         ),
-        const SizedBox(
-          height: 7,
-        ),
+        const SizedBox(height: 7),
         Text(
           DateFormat('EEE').format(date).toUpperCase(),
           style: AppTextStyles.bodyTextRoboto,
         ),
-        const SizedBox(
-          height: 7,
-        ),
+        const SizedBox(height: 7),
       ],
     );
   }

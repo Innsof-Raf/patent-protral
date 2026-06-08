@@ -7,9 +7,7 @@ import '../../../resources/app_text_styles.dart';
 import '../../profile/bloc/user_bloc.dart';
 
 class DrawerProfileTile extends StatelessWidget {
-  const DrawerProfileTile({
-    super.key,
-  });
+  const DrawerProfileTile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +15,7 @@ class DrawerProfileTile extends StatelessWidget {
       builder: (context, state) {
         return Row(
           children: [
-            const SizedBox(
-              width: 32,
-            ),
+            const SizedBox(width: 32),
             Padding(
               padding: const EdgeInsets.only(bottom: 7),
               child: Stack(
@@ -29,13 +25,15 @@ class DrawerProfileTile extends StatelessWidget {
                     height: 62,
                     width: 62,
                     decoration: BoxDecoration(
-                        color: AppColors.white,
-                        border: Border.all(width: 2, color: AppColors.white),
-                        shape: BoxShape.circle,
-                        image: const DecorationImage(
-                            image: AssetImage(
+                      color: AppColors.white,
+                      border: Border.all(width: 2, color: AppColors.white),
+                      shape: BoxShape.circle,
+                      image: const DecorationImage(
+                        image: AssetImage(
                           'assets/images/member_default_profile_image.png',
-                        ))),
+                        ),
+                      ),
+                    ),
                   ),
                   Positioned(
                     bottom: -7,
@@ -44,7 +42,9 @@ class DrawerProfileTile extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(3),
                       decoration: const BoxDecoration(
-                          color: AppColors.white, shape: BoxShape.circle),
+                        color: AppColors.white,
+                        shape: BoxShape.circle,
+                      ),
                       child: SvgPicture.asset(
                         "assets/icons/female_gender_icon.svg",
                         height: 12,
@@ -55,37 +55,37 @@ class DrawerProfileTile extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(
-              width: 12,
-            ),
+            const SizedBox(width: 12),
             Expanded(
-                child: Padding(
-              padding: const EdgeInsets.only(bottom: 7),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    "Anzil Alphones",
-                    style: AppTextStyles.subHeaddingSemiBoldRoboto
-                        .copyWith(color: AppColors.white),
-                  ),
-                  Text(
-                    "Age : 32  | National ID : 08923739 ",
-                    style: AppTextStyles.bodySmallInterNormal
-                        .copyWith(color: AppColors.borderColor),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "anzilalphonse@gmail.com",
-                    style: AppTextStyles.bodyTextInterSemibold
-                        .copyWith(color: AppColors.white),
-                  ),
-                ],
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 7),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "Anzil Alphones",
+                      style: AppTextStyles.subHeaddingSemiBoldRoboto.copyWith(
+                        color: AppColors.white,
+                      ),
+                    ),
+                    Text(
+                      "Age : 32  | National ID : 08923739 ",
+                      style: AppTextStyles.bodySmallInterNormal.copyWith(
+                        color: AppColors.borderColor,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      "anzilalphonse@gmail.com",
+                      style: AppTextStyles.bodyTextInterSemibold.copyWith(
+                        color: AppColors.white,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ))
+            ),
           ],
         );
       },

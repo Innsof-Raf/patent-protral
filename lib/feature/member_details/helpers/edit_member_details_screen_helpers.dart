@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../resources/app_colors.dart';
 
 class EditMemberDetailsScreenHelpers {
-  static Future<DateTime?> getDob(
-      {required DateTime initialDate, required BuildContext context}) async {
+  static Future<DateTime?> getDob({
+    required DateTime initialDate,
+    required BuildContext context,
+  }) async {
     DateTime? selectedDate;
     selectedDate = await showDatePicker(
       context: context,
@@ -12,11 +14,13 @@ class EditMemberDetailsScreenHelpers {
       firstDate: DateTime(1940),
       lastDate: DateTime.now(),
       builder: (context, child) => Theme(
-          data: Theme.of(context).copyWith(
-              textButtonTheme: TextButtonThemeData(
-                  style:
-                      TextButton.styleFrom(foregroundColor: AppColors.vilot))),
-          child: child!),
+        data: Theme.of(context).copyWith(
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(foregroundColor: AppColors.vilot),
+          ),
+        ),
+        child: child!,
+      ),
     );
     return selectedDate;
   }

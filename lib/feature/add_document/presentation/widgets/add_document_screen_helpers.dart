@@ -13,19 +13,18 @@ import '../../../../resources/dimens.dart';
 import '../pages/add_document_screen.dart';
 
 class AddDocumentScreenHelpers {
-  static DropdownMenuItem<int> createMemberDropDownItem(
-      {required MemberModel member}) {
+  static DropdownMenuItem<int> createMemberDropDownItem({
+    required MemberModel member,
+  }) {
     return DropdownMenuItem(
       value: member.id,
-      child: Text(
-        member.name,
-        style: AppTextStyles.textFormFieldStyle,
-      ),
+      child: Text(member.name, style: AppTextStyles.textFormFieldStyle),
     );
   }
 
-  static DropdownMenuItem<int> createDocumentTypeDropDownItem(
-      {required DocumentTypeModel document}) {
+  static DropdownMenuItem<int> createDocumentTypeDropDownItem({
+    required DocumentTypeModel document,
+  }) {
     return DropdownMenuItem(
       value: document.idDocument,
       child: Text(
@@ -35,8 +34,10 @@ class AddDocumentScreenHelpers {
     );
   }
 
-  static Future<DateTime?> getExpireDate(
-      {required DateTime initialDate, required BuildContext context}) async {
+  static Future<DateTime?> getExpireDate({
+    required DateTime initialDate,
+    required BuildContext context,
+  }) async {
     DateTime? selectedDate;
     selectedDate = await showDatePicker(
       context: context,
@@ -44,11 +45,13 @@ class AddDocumentScreenHelpers {
       firstDate: DateTime.now().add(const Duration(days: 1)),
       lastDate: DateTime(2050),
       builder: (context, child) => Theme(
-          data: Theme.of(context).copyWith(
-              textButtonTheme: TextButtonThemeData(
-                  style:
-                      TextButton.styleFrom(foregroundColor: AppColors.vilot))),
-          child: child!),
+        data: Theme.of(context).copyWith(
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(foregroundColor: AppColors.vilot),
+          ),
+        ),
+        child: child!,
+      ),
     );
     return selectedDate;
   }
@@ -62,21 +65,17 @@ class AddDocumentScreenHelpers {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
-              'Document',
-              style: AppTextStyles.largeSemiBoldRoboto,
-            ),
-            const SizedBox(
-              height: 15,
-            ),
+            const Text('Document', style: AppTextStyles.largeSemiBoldRoboto),
+            const SizedBox(height: 15),
             Row(
               children: [
                 ImagePickerTile(
                   title: 'Camera',
                   iconPath: 'assets/icons/camera_icon.svg',
                   onPressed: () async {
-                    final image = await ImagePicker()
-                        .pickImage(source: ImageSource.camera);
+                    final image = await ImagePicker().pickImage(
+                      source: ImageSource.camera,
+                    );
                     if (image != null && context.mounted) {
                       AddDocumentScreen.selectedDocument = File(image.path);
                       AddDocumentScreen.documentNameController.text =
@@ -85,20 +84,20 @@ class AddDocumentScreenHelpers {
                     }
                   },
                 ),
-                const SizedBox(
-                  width: 15,
-                ),
+                const SizedBox(width: 15),
                 ImagePickerTile(
                   title: 'Files',
                   iconPath: 'assets/icons/folder_icon.svg',
                   onPressed: () async {
                     final value = await FilePicker.pickFiles(
-                        type: FileType.custom,
-                        allowMultiple: false,
-                        allowedExtensions: ['jpg', 'png', 'pdf']);
+                      type: FileType.custom,
+                      allowMultiple: false,
+                      allowedExtensions: ['jpg', 'png', 'pdf'],
+                    );
                     if (value != null) {
-                      AddDocumentScreen.selectedDocument =
-                          File(value.files[0].path!);
+                      AddDocumentScreen.selectedDocument = File(
+                        value.files[0].path!,
+                      );
                       AddDocumentScreen.documentNameController.text =
                           value.files[0].name;
                     }
@@ -106,9 +105,9 @@ class AddDocumentScreenHelpers {
                       Navigator.pop(context);
                     }
                   },
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

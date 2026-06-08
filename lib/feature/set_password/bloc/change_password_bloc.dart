@@ -12,25 +12,35 @@ class ChangePasswordBloc
     extends Bloc<ChangePasswordEvent, ChangePasswordState> {
   ChangePasswordBloc() : super(ChangePasswordState.initial()) {
     on<ChangePassword>((event, emit) async {
-      emit(state.copyWith(
+      emit(
+        state.copyWith(
           isPasswordChnaging: true,
           isPasswordChangingFailed: false,
-          isPasswordChangingSucces: false));
+          isPasswordChangingSucces: false,
+        ),
+      );
       final Either<ErrorModel, Map> changePasswordOptions =
           await ChangePasswordServices.changePassword(
-              idUser: event.idUser,
-              mobileNumber: event.mobileNumber,
-              newPassword: event.newPassword,
-              token: event.token);
+            idUser: event.idUser,
+            mobileNumber: event.mobileNumber,
+            newPassword: event.newPassword,
+            token: event.token,
+          );
       changePasswordOptions.fold(
-          (error) => emit(state.copyWith(
-              isPasswordChnaging: false,
-              isPasswordChangingFailed: true,
-              error: error)),
-          (succes) => emit(state.copyWith(
-                isPasswordChnaging: false,
-                isPasswordChangingSucces: true,
-              )));
+        (error) => emit(
+          state.copyWith(
+            isPasswordChnaging: false,
+            isPasswordChangingFailed: true,
+            error: error,
+          ),
+        ),
+        (succes) => emit(
+          state.copyWith(
+            isPasswordChnaging: false,
+            isPasswordChangingSucces: true,
+          ),
+        ),
+      );
     });
   }
 }

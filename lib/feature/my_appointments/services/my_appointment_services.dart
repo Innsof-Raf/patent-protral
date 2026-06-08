@@ -12,22 +12,23 @@ import 'package:http/http.dart' as http;
 
 class MyAppointmentServices {
   static Future<Either<ErrorModel, List<MyAppointmentModel>>>
-      getMyAppointments({
+  getMyAppointments({
     required String mobileNumber,
     required String token,
   }) async {
     try {
       final Map data = {
         "CONTENT": "{\"mobile_no\":\"$mobileNumber\"}",
-        "TYPE": "PP0015"
+        "TYPE": "PP0015",
       };
       http.Response response = await http.post(
-          Uri.parse(ConstantUrls.serviceUrl),
-          body: jsonEncode(data),
-          headers: {
-            HttpHeaders.authorizationHeader: 'Bearer $token',
-            'Content-type': 'application/json',
-          });
+        Uri.parse(ConstantUrls.serviceUrl),
+        body: jsonEncode(data),
+        headers: {
+          HttpHeaders.authorizationHeader: 'Bearer $token',
+          'Content-type': 'application/json',
+        },
+      );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final List responseData = jsonDecode(response.body);
@@ -43,8 +44,9 @@ class MyAppointmentServices {
     } on SocketException {
       return Left(ErrorModel(message: ConstantMessages.noNetworkErrorMessage));
     } on TimeoutException {
-      return Left(ErrorModel(
-          message: ConstantMessages.connectionTimeOutFailureMessage));
+      return Left(
+        ErrorModel(message: ConstantMessages.connectionTimeOutFailureMessage),
+      );
     } catch (e) {
       return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
     }
@@ -57,15 +59,16 @@ class MyAppointmentServices {
     try {
       final Map data = {
         "CONTENT": "{\"id_appointment\":$appointmentId}",
-        "TYPE": "PP0019"
+        "TYPE": "PP0019",
       };
       http.Response response = await http.post(
-          Uri.parse(ConstantUrls.serviceUrl),
-          body: jsonEncode(data),
-          headers: {
-            HttpHeaders.authorizationHeader: 'Bearer $token',
-            'Content-type': 'application/json',
-          });
+        Uri.parse(ConstantUrls.serviceUrl),
+        body: jsonEncode(data),
+        headers: {
+          HttpHeaders.authorizationHeader: 'Bearer $token',
+          'Content-type': 'application/json',
+        },
+      );
       if (response.statusCode == 200 || response.statusCode == 201) {
         final responseData = jsonDecode(response.body);
 
@@ -81,8 +84,9 @@ class MyAppointmentServices {
     } on SocketException {
       return Left(ErrorModel(message: ConstantMessages.noNetworkErrorMessage));
     } on TimeoutException {
-      return Left(ErrorModel(
-          message: ConstantMessages.connectionTimeOutFailureMessage));
+      return Left(
+        ErrorModel(message: ConstantMessages.connectionTimeOutFailureMessage),
+      );
     } catch (e) {
       return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
     }

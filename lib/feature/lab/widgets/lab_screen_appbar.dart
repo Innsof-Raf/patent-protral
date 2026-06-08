@@ -11,8 +11,9 @@ class LabScreenAppbar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: AppColors.white,
-          statusBarIconBrightness: Brightness.dark),
+        statusBarColor: AppColors.white,
+        statusBarIconBrightness: Brightness.dark,
+      ),
       backgroundColor: AppColors.white,
       elevation: 0,
       titleSpacing: 0,
@@ -22,21 +23,16 @@ class LabScreenAppbar extends StatelessWidget implements PreferredSizeWidget {
         style: AppTextStyles.largeSemiBoldRoboto,
       ),
       leading: IconButton(
-        icon: const Icon(
-          Icons.arrow_back_ios,
-          color: AppColors.textDark,
-        ),
+        icon: const Icon(Icons.arrow_back_ios, color: AppColors.textDark),
         onPressed: () {
           Navigator.pop(context);
         },
       ),
       actions: [
         IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.search,
-              color: AppColors.textDark,
-            ))
+          onPressed: () {},
+          icon: const Icon(Icons.search, color: AppColors.textDark),
+        ),
       ],
     );
   }

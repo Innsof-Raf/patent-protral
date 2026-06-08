@@ -1,5 +1,1 @@
-
-enum CartItemTypes {
-  package,
-  test,
-}
+enum CartItemTypes { package, test }

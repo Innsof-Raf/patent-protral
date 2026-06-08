@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_portal/feature/add_member/blocs/inurance_bloc/insurance_bloc.dart';
+import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
 import 'package:patient_portal/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/resources/constant_messages.dart';
@@ -48,25 +48,25 @@ class InsuranceFormSection extends StatelessWidget {
       InsuranceHelpers.selectedInsuranceNotifer.value = null;
     }
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<InsuranceBloc>().add(
-        FeatchInsurance(
+      context.read<AddMemberBloc>().add(
+        FetchInsurances(
           token: context.read<UserBloc>().state.user!.accessToken,
         ),
       );
     });
 
-    return BlocConsumer<InsuranceBloc, InsuranceState>(
+    return BlocConsumer<AddMemberBloc, AddMemberState>(
       listener: (context, state) {
-        if (state.isInsuranceFecthingFailed &&
-            !state.isInsuranceFechingSuccess) {
+        if (state.isInsuranceFetchingFailed &&
+            !state.isInsuranceFetchingSuccess) {
           InsuranceHelpers.insuranceCheackBoxNotifier.value = false;
           InsuranceHelpers.showInsuranceFetrchingFailedSnakBar(
             context: context,
             contant: '${state.error.message} \n Can\'t add insurance right now',
           );
         }
-        if (state.isInsuranceFechingSuccess &&
-            !state.isInsuranceFecthingFailed &&
+        if (state.isInsuranceFetchingSuccess &&
+            !state.isInsuranceFetchingFailed &&
             state.insurances.isEmpty) {
           InsuranceHelpers.insuranceCheackBoxNotifier.value = false;
           InsuranceHelpers.showInsuranceFetrchingFailedSnakBar(

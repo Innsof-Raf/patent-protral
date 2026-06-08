@@ -5,6 +5,13 @@ import 'package:patient_portal/feature/add_document/data/datasources/add_documen
 import 'package:patient_portal/feature/add_document/data/repositories/add_document_repository_impl.dart';
 import 'package:patient_portal/feature/add_document/domain/repositories/add_document_repository.dart';
 import 'package:patient_portal/feature/add_document/domain/usecases/get_document_types_usecase.dart';
+import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
+import 'package:patient_portal/feature/add_member/data/datasources/add_member_remote_data_source.dart';
+import 'package:patient_portal/feature/add_member/data/repositories/add_member_repository_impl.dart';
+import 'package:patient_portal/feature/add_member/domain/repositories/add_member_repository.dart';
+import 'package:patient_portal/feature/add_member/domain/usecases/get_insurances_usecase.dart';
+import 'package:patient_portal/feature/add_member/domain/usecases/add_member_usecase.dart';
+import 'package:patient_portal/feature/add_member/domain/usecases/update_insurance_usecase.dart';
 import 'package:patient_portal/feature/doctors/data/datasources/doctor_remote_data_source.dart';
 import 'package:patient_portal/feature/doctors/data/repositories/doctor_repository_impl.dart';
 import 'package:patient_portal/feature/doctors/domain/repositories/doctor_repository.dart';
@@ -80,6 +87,31 @@ Future<void> init() async {
   // Data sources
   sl.registerLazySingleton<DoctorRemoteDataSource>(
     () => DoctorRemoteDataSourceImpl(client: sl()),
+  );
+
+  //! Features - Add Member / Insurance
+  // Bloc
+  sl.registerFactory(
+    () => AddMemberBloc(
+      getInsurancesUseCase: sl(),
+      addMemberUseCase: sl(),
+      updateInsuranceUseCase: sl(),
+    ),
+  );
+
+  // Use cases
+  sl.registerLazySingleton(() => GetInsurancesUseCase(sl()));
+  sl.registerLazySingleton(() => AddMemberUseCase(sl()));
+  sl.registerLazySingleton(() => UpdateInsuranceUseCase(sl()));
+
+  // Repository
+  sl.registerLazySingleton<AddMemberRepository>(
+    () => AddMemberRepositoryImpl(remoteDataSource: sl()),
+  );
+
+  // Data sources
+  sl.registerLazySingleton<AddMemberRemoteDataSource>(
+    () => AddMemberRemoteDataSourceImpl(client: sl()),
   );
 
   //! External
