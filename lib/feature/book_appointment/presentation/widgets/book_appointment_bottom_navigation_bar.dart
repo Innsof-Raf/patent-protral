@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/bloc/appointment_bloc/appointment_bloc.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/bloc/slot_bloc/slot_bloc.dart';
 import 'package:patient_portal/feature/my_appointments/data/models/my_appointment_model.dart';
+import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
@@ -80,25 +81,32 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                             null;
                         context.read<MyAppointmentsBloc>().add(
                           StoreBokkedApoointment(
-                            appointment: MyAppointmentModel(
-                              appointmentDateTime:
-                                  state.appointmentDetails!.appointmentDateTime,
-                              branch: state.appointmentDetails!.branch,
-                              busunitName:
-                                  state.appointmentDetails!.busunitName,
-                              departName: state.appointmentDetails!.deptName,
-                              doctorId: state.appointmentDetails!.doctorId,
-                              doctorName: state.appointmentDetails!.doctorName,
-                              email: state.appointmentDetails!.email,
-                              id: state.appointmentDetails!.id,
-                              idDoctor: state.appointmentDetails!.idDoctor,
-                              memberId: state.appointmentDetails!.idMember,
-                              memberName: state.appointmentDetails!.memberName,
-                              mobileNumber: state.appointmentDetails!.mobileNo,
-                              profileUrl: state.appointmentDetails!.doctorImage,
-                              speciality:
-                                  state.appointmentDetails!.doctorSpecility,
-                              isCanceling: false,
+                            params: MyAppointmentsParams.storeBokkedApoointment(
+                              appointment: MyAppointmentModel(
+                                appointmentDateTime: state
+                                    .appointmentDetails!
+                                    .appointmentDateTime,
+                                branch: state.appointmentDetails!.branch,
+                                busunitName:
+                                    state.appointmentDetails!.busunitName,
+                                departName: state.appointmentDetails!.deptName,
+                                doctorId: state.appointmentDetails!.doctorId,
+                                doctorName:
+                                    state.appointmentDetails!.doctorName,
+                                email: state.appointmentDetails!.email,
+                                id: state.appointmentDetails!.id,
+                                idDoctor: state.appointmentDetails!.idDoctor,
+                                memberId: state.appointmentDetails!.idMember,
+                                memberName:
+                                    state.appointmentDetails!.memberName,
+                                mobileNumber:
+                                    state.appointmentDetails!.mobileNo,
+                                profileUrl:
+                                    state.appointmentDetails!.doctorImage,
+                                speciality:
+                                    state.appointmentDetails!.doctorSpecility,
+                                isCanceling: false,
+                              ),
                             ),
                           ),
                         );
@@ -163,9 +171,13 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                         );
                         context.read<MyAppointmentsBloc>().add(
                           ChangeResheduledAppointmentDetails(
-                            appointment: selectedAppointment,
-                            cureentSlot:
-                                state.appointmentDetails!.appointmentDateTime,
+                            params:
+                                MyAppointmentsParams.changeResheduledAppointmentDetails(
+                                  appointment: selectedAppointment,
+                                  cureentSlot: state
+                                      .appointmentDetails!
+                                      .appointmentDateTime,
+                                ),
                           ),
                         );
                       });

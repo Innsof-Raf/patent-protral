@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/my_appointments/data/datasources/my_appointment_services.dart';
 import 'package:patient_portal/feature/my_appointments/data/models/my_appointment_model.dart';
+import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
 import 'package:patient_portal/resources/error_model.dart';
 
 part 'generated/my_appointments_bloc.freezed.dart';
@@ -25,8 +26,8 @@ class MyAppointmentsBloc
       final Either<ErrorModel, List<MyAppointmentModel>>
       myAppointmentsFetchingOptions =
           await MyAppointmentServices.getMyAppointments(
-            mobileNumber: event.mobileNumber,
-            token: event.token,
+            mobileNumber: event.params.mobileNumber,
+            token: event.params.token,
           );
       myAppointmentsFetchingOptions.fold(
         (error) => emit(
@@ -111,23 +112,23 @@ class MyAppointmentsBloc
       List<DateTime> monthTimeLineListOfNotConsulted = [];
       List<MyAppointmentModel> notConsultedAppointments = [];
       final int currentAppointmentIndex = myAppointments.indexOf(
-        event.appointment,
+        event.params.appointment,
       );
       myAppointments[currentAppointmentIndex] = MyAppointmentModel(
-        id: event.appointment.id,
-        memberId: event.appointment.memberId,
-        memberName: event.appointment.memberName,
-        email: event.appointment.email,
-        mobileNumber: event.appointment.mobileNumber,
-        departName: event.appointment.departName,
-        doctorId: event.appointment.doctorId,
-        doctorName: event.appointment.departName,
-        speciality: event.appointment.speciality,
-        branch: event.appointment.branch,
-        profileUrl: event.appointment.profileUrl,
-        busunitName: event.appointment.busunitName,
-        appointmentDateTime: event.cureentSlot,
-        idDoctor: event.appointment.idDoctor,
+        id: event.params.appointment.id,
+        memberId: event.params.appointment.memberId,
+        memberName: event.params.appointment.memberName,
+        email: event.params.appointment.email,
+        mobileNumber: event.params.appointment.mobileNumber,
+        departName: event.params.appointment.departName,
+        doctorId: event.params.appointment.doctorId,
+        doctorName: event.params.appointment.departName,
+        speciality: event.params.appointment.speciality,
+        branch: event.params.appointment.branch,
+        profileUrl: event.params.appointment.profileUrl,
+        busunitName: event.params.appointment.busunitName,
+        appointmentDateTime: event.params.cureentSlot,
+        idDoctor: event.params.appointment.idDoctor,
       );
       for (MyAppointmentModel appointment in myAppointments) {
         if (!monthTimeLineList.contains(
@@ -178,7 +179,7 @@ class MyAppointmentsBloc
           isAppointmentsCancelationFailed: false,
           isAppointmentsCancelationSuccess: false,
           myAppointments: state.myAppointments.map((appointment) {
-            if (appointment.id == event.idAppointment) {
+            if (appointment.id == event.params.idAppointment) {
               return appointment.copyWith(isCanceling: true);
             } else {
               return appointment;
@@ -188,8 +189,8 @@ class MyAppointmentsBloc
       );
       final Either<ErrorModel, Map> appointmentCancelationOptions =
           await MyAppointmentServices.cancelAppointment(
-            appointmentId: event.idAppointment,
-            token: event.token,
+            appointmentId: event.params.idAppointment,
+            token: event.params.token,
           );
       appointmentCancelationOptions.fold(
         (error) => emit(
@@ -204,7 +205,7 @@ class MyAppointmentsBloc
           List<DateTime> monthTimeLineListOfNotConsulted = [];
           List<MyAppointmentModel> notConsultedAppointments = [];
           myAppointments.removeWhere(
-            (appointment) => appointment.id == event.idAppointment,
+            (appointment) => appointment.id == event.params.idAppointment,
           );
           for (MyAppointmentModel appointment in myAppointments) {
             if (!monthTimeLineList.contains(
@@ -265,9 +266,11 @@ class MyAppointmentsBloc
       List<DateTime> monthTimeLineListOfNotConsulted = List.from(
         state.monthTimeLineListOfNotConsulted,
       );
-      if (event.appointment.appointmentDateTime.isAfter(DateTime.now())) {
-        myAppointments.add(event.appointment);
-        myNotConsultedAppointments.add(event.appointment);
+      if (event.params.appointment.appointmentDateTime.isAfter(
+        DateTime.now(),
+      )) {
+        myAppointments.add(event.params.appointment);
+        myNotConsultedAppointments.add(event.params.appointment);
         myAppointments.sort(
           (a, b) => a.appointmentDateTime.compareTo(b.appointmentDateTime),
         );
@@ -276,28 +279,28 @@ class MyAppointmentsBloc
         );
         if (!monthList.contains(
           DateTime(
-            event.appointment.appointmentDateTime.year,
-            event.appointment.appointmentDateTime.month,
+            event.params.appointment.appointmentDateTime.year,
+            event.params.appointment.appointmentDateTime.month,
           ),
         )) {
           monthList.add(
             DateTime(
-              event.appointment.appointmentDateTime.year,
-              event.appointment.appointmentDateTime.month,
+              event.params.appointment.appointmentDateTime.year,
+              event.params.appointment.appointmentDateTime.month,
             ),
           );
           monthTimeLineListOfNotConsulted.add(
             DateTime(
-              event.appointment.appointmentDateTime.year,
-              event.appointment.appointmentDateTime.month,
+              event.params.appointment.appointmentDateTime.year,
+              event.params.appointment.appointmentDateTime.month,
             ),
           );
           monthList.sort((a, b) => a.compareTo(b));
           monthTimeLineListOfNotConsulted.sort((a, b) => a.compareTo(b));
         }
       } else {
-        myAppointments.add(event.appointment);
-        myConsultedAppointments.add(event.appointment);
+        myAppointments.add(event.params.appointment);
+        myConsultedAppointments.add(event.params.appointment);
         myAppointments.sort(
           (a, b) => a.appointmentDateTime.compareTo(b.appointmentDateTime),
         );
@@ -306,20 +309,20 @@ class MyAppointmentsBloc
         );
         if (!monthList.contains(
           DateTime(
-            event.appointment.appointmentDateTime.year,
-            event.appointment.appointmentDateTime.month,
+            event.params.appointment.appointmentDateTime.year,
+            event.params.appointment.appointmentDateTime.month,
           ),
         )) {
           monthList.add(
             DateTime(
-              event.appointment.appointmentDateTime.year,
-              event.appointment.appointmentDateTime.month,
+              event.params.appointment.appointmentDateTime.year,
+              event.params.appointment.appointmentDateTime.month,
             ),
           );
           monthTimeLineListOfConsulted.add(
             DateTime(
-              event.appointment.appointmentDateTime.year,
-              event.appointment.appointmentDateTime.month,
+              event.params.appointment.appointmentDateTime.year,
+              event.params.appointment.appointmentDateTime.month,
             ),
           );
           monthList.sort((a, b) => a.compareTo(b));
@@ -338,4 +341,35 @@ class MyAppointmentsBloc
       );
     });
   }
+}
+
+extension _MyAppointmentsParamsX on MyAppointmentsParams {
+  String get token => maybeWhen(
+    getMyAppointments: (token, mobileNumber) => token,
+    cancelAppointment: (idAppointment, token) => token,
+    orElse: () => throw Exception('Invalid token params'),
+  );
+
+  String get mobileNumber => maybeWhen(
+    getMyAppointments: (token, mobileNumber) => mobileNumber,
+    orElse: () => throw Exception('Invalid mobile number params'),
+  );
+
+  MyAppointmentModel get appointment => maybeWhen(
+    storeBokkedApoointment: (appointment) => appointment,
+    changeResheduledAppointmentDetails: (appointment, cureentSlot) =>
+        appointment,
+    orElse: () => throw Exception('Invalid appointment params'),
+  );
+
+  DateTime get cureentSlot => maybeWhen(
+    changeResheduledAppointmentDetails: (appointment, cureentSlot) =>
+        cureentSlot,
+    orElse: () => throw Exception('Invalid slot params'),
+  );
+
+  int get idAppointment => maybeWhen(
+    cancelAppointment: (idAppointment, token) => idAppointment,
+    orElse: () => throw Exception('Invalid appointment id params'),
+  );
 }

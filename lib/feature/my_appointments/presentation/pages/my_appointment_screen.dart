@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/helpers/my_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/widgets/appointments_tabbar_view.dart';
@@ -18,8 +19,10 @@ class MyAppointmentScreen extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<MyAppointmentsBloc>().add(
         GetMyAppointments(
-          token: context.read<UserBloc>().state.user!.accessToken,
-          mobileNumber: context.read<UserBloc>().state.user!.mobileNumber,
+          params: MyAppointmentsParams.getMyAppointments(
+            token: context.read<UserBloc>().state.user!.accessToken,
+            mobileNumber: context.read<UserBloc>().state.user!.mobileNumber,
+          ),
         ),
       );
     });

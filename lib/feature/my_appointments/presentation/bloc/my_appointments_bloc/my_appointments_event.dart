@@ -3,21 +3,18 @@ part of 'my_appointments_bloc.dart';
 @freezed
 sealed class MyAppointmentsEvent with _$MyAppointmentsEvent {
   const factory MyAppointmentsEvent.getMyAppointments({
-    required String token,
-    required String mobileNumber,
+    required MyAppointmentsParams params,
   }) = GetMyAppointments;
 
   const factory MyAppointmentsEvent.storeBokkedApoointment({
-    required MyAppointmentModel appointment,
+    required MyAppointmentsParams params,
   }) = StoreBokkedApoointment;
 
   const factory MyAppointmentsEvent.changeResheduledAppointmentDetails({
-    required MyAppointmentModel appointment,
-    required DateTime cureentSlot,
+    required MyAppointmentsParams params,
   }) = ChangeResheduledAppointmentDetails;
 
   const factory MyAppointmentsEvent.cancelAppointment({
-    required int idAppointment,
-    required String token,
+    required MyAppointmentsParams params,
   }) = CancelAppointment;
 }

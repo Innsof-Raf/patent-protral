@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
 import 'package:patient_portal/feature/profile/models/member/member_model.dart';
@@ -149,8 +150,10 @@ class CancelBookingPopUp extends StatelessWidget {
                   Navigator.pop(context);
                   context.read<MyAppointmentsBloc>().add(
                     CancelAppointment(
-                      idAppointment: appointmentId,
-                      token: context.read<UserBloc>().state.user!.accessToken,
+                      params: MyAppointmentsParams.cancelAppointment(
+                        idAppointment: appointmentId,
+                        token: context.read<UserBloc>().state.user!.accessToken,
+                      ),
                     ),
                   );
                 },
