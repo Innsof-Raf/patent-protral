@@ -53,6 +53,9 @@ import 'package:patient_portal/feature/login/domain/usecases/login_with_password
 import 'package:patient_portal/feature/login/domain/usecases/verify_otp_usecase.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_verification_bloc/otp_verification_bloc.dart';
+import 'package:patient_portal/feature/member_details/presentation/bloc/member_detail_bloc.dart';
+import 'package:patient_portal/feature/members/presentation/bloc/delete_member_bloc/delete_member_bloc.dart';
+import 'package:patient_portal/feature/members/presentation/bloc/member_search_bloc/member_search_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -220,6 +223,15 @@ Future<void> init() async {
   sl.registerLazySingleton<LabRemoteDataSource>(
     () => LabRemoteDataSourceImpl(client: sl()),
   );
+
+  //! Features - Members
+  // Bloc
+  sl.registerFactory(() => DeleteMemberBloc());
+  sl.registerFactory(() => MemberSearchBloc());
+
+  //! Features - Member Details
+  // Bloc
+  sl.registerFactory(() => MemberDetailBloc());
 
   //! External
   sl.registerLazySingleton(() => http.Client());
