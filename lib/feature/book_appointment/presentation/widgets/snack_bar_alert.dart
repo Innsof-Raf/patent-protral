@@ -7,4 +7,3 @@ class SnackBarAlert extends SnackBar {
     return Container();
   }
 }
-

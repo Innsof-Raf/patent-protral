@@ -1,8 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../member/member_model.dart';
+import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 
 part 'generated/user_model.freezed.dart';
 part 'generated/user_model.g.dart';

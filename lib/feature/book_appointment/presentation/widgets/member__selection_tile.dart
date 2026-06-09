@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'book_appointment_screen_helpers.dart';
-import 'package:patient_portal/feature/profile/models/member/member_model.dart';
+import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:patient_portal/resources/dimens.dart';

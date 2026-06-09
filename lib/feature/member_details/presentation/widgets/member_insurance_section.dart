@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_text_filed.dart';
-import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
+import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/resources/common_widgets.dart/rounded_cheack_box.dart';
 
 class MemberInsuranceSection extends StatelessWidget {

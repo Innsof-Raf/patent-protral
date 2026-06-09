@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:patient_portal/feature/login/data/models/otp_response_model.dart';
-import 'package:patient_portal/feature/profile/models/user/user_model.dart';
+import 'package:patient_portal/feature/profile/data/models/user_model.dart';
 import 'package:patient_portal/resources/urls.dart';
 
 abstract class LoginRemoteDataSource {

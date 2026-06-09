@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:patient_portal/feature/add_member/domain/usecases/params/params.dart';
-import 'package:patient_portal/feature/profile/models/member/member_model.dart';
+import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/resources/common_models/insurance/insurance_model.dart';
 import 'package:patient_portal/resources/urls.dart';
 

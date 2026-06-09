@@ -3,7 +3,7 @@ import 'package:patient_portal/core/error/failures.dart';
 import 'package:patient_portal/core/usecases/usecase.dart';
 import 'package:patient_portal/feature/login/domain/repositories/login_repository.dart';
 import 'package:patient_portal/feature/login/domain/usecases/params/login_params.dart';
-import 'package:patient_portal/feature/profile/models/user/user_model.dart';
+import 'package:patient_portal/feature/profile/data/models/user_model.dart';
 
 class LoginWithPasswordUseCase implements UseCase<UserModel, LoginParams> {
   final LoginRepository repository;

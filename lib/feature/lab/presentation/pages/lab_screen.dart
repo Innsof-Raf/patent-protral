@@ -5,7 +5,7 @@ import 'package:patient_portal/feature/lab/presentation/widgets/lab_screen_appba
 import 'package:patient_portal/feature/lab/presentation/widgets/lab_tab_bar.dart';
 import 'package:patient_portal/feature/lab/presentation/widgets/packages_tab_bar_view.dart';
 import 'package:patient_portal/feature/lab/presentation/widgets/tests_tab_bar_view.dart';
-import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
+import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:patient_portal/route/route_constants.dart';

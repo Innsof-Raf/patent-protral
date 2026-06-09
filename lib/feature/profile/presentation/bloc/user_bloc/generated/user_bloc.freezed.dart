@@ -140,16 +140,16 @@ return logOut(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( UserModel user)?  storeUserDetails,TResult Function( String patientName,  String nationalId,  String? email,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber,  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)?  addMember,TResult Function( int idInsurance,  int memberId,  String? insuranceName,  String memberNumber,  DateTime expireDate)?  changememberInsuranceDetails,TResult Function()?  changeMemberAddingSateToInitial,TResult Function( int memberId)?  getMemberDetail,TResult Function( MemberModel member)?  addMemberToLocal,TResult Function( MemberModel member)?  updateMemberInLocal,TResult Function()?  logOut,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( ProfileParams params)?  storeUserDetails,TResult Function( ProfileParams params)?  addMember,TResult Function( ProfileParams params)?  changememberInsuranceDetails,TResult Function()?  changeMemberAddingSateToInitial,TResult Function( ProfileParams params)?  getMemberDetail,TResult Function( ProfileParams params)?  addMemberToLocal,TResult Function( ProfileParams params)?  updateMemberInLocal,TResult Function()?  logOut,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case StoreUserDetails() when storeUserDetails != null:
-return storeUserDetails(_that.user);case AddMember() when addMember != null:
-return addMember(_that.patientName,_that.nationalId,_that.email,_that.gender,_that.dob,_that.idInsurance,_that.memberNumber,_that.profileImage,_that.expireDate,_that.otherInsuranceName);case ChangememberInsuranceDetails() when changememberInsuranceDetails != null:
-return changememberInsuranceDetails(_that.idInsurance,_that.memberId,_that.insuranceName,_that.memberNumber,_that.expireDate);case ChangeMemberAddingSateToInitial() when changeMemberAddingSateToInitial != null:
+return storeUserDetails(_that.params);case AddMember() when addMember != null:
+return addMember(_that.params);case ChangememberInsuranceDetails() when changememberInsuranceDetails != null:
+return changememberInsuranceDetails(_that.params);case ChangeMemberAddingSateToInitial() when changeMemberAddingSateToInitial != null:
 return changeMemberAddingSateToInitial();case GetMemberDetail() when getMemberDetail != null:
-return getMemberDetail(_that.memberId);case AddMemberToLocal() when addMemberToLocal != null:
-return addMemberToLocal(_that.member);case UpdateMemberInLocal() when updateMemberInLocal != null:
-return updateMemberInLocal(_that.member);case LogOut() when logOut != null:
+return getMemberDetail(_that.params);case AddMemberToLocal() when addMemberToLocal != null:
+return addMemberToLocal(_that.params);case UpdateMemberInLocal() when updateMemberInLocal != null:
+return updateMemberInLocal(_that.params);case LogOut() when logOut != null:
 return logOut();case _:
   return orElse();
 
@@ -168,16 +168,16 @@ return logOut();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( UserModel user)  storeUserDetails,required TResult Function( String patientName,  String nationalId,  String? email,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber,  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)  addMember,required TResult Function( int idInsurance,  int memberId,  String? insuranceName,  String memberNumber,  DateTime expireDate)  changememberInsuranceDetails,required TResult Function()  changeMemberAddingSateToInitial,required TResult Function( int memberId)  getMemberDetail,required TResult Function( MemberModel member)  addMemberToLocal,required TResult Function( MemberModel member)  updateMemberInLocal,required TResult Function()  logOut,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( ProfileParams params)  storeUserDetails,required TResult Function( ProfileParams params)  addMember,required TResult Function( ProfileParams params)  changememberInsuranceDetails,required TResult Function()  changeMemberAddingSateToInitial,required TResult Function( ProfileParams params)  getMemberDetail,required TResult Function( ProfileParams params)  addMemberToLocal,required TResult Function( ProfileParams params)  updateMemberInLocal,required TResult Function()  logOut,}) {final _that = this;
 switch (_that) {
 case StoreUserDetails():
-return storeUserDetails(_that.user);case AddMember():
-return addMember(_that.patientName,_that.nationalId,_that.email,_that.gender,_that.dob,_that.idInsurance,_that.memberNumber,_that.profileImage,_that.expireDate,_that.otherInsuranceName);case ChangememberInsuranceDetails():
-return changememberInsuranceDetails(_that.idInsurance,_that.memberId,_that.insuranceName,_that.memberNumber,_that.expireDate);case ChangeMemberAddingSateToInitial():
+return storeUserDetails(_that.params);case AddMember():
+return addMember(_that.params);case ChangememberInsuranceDetails():
+return changememberInsuranceDetails(_that.params);case ChangeMemberAddingSateToInitial():
 return changeMemberAddingSateToInitial();case GetMemberDetail():
-return getMemberDetail(_that.memberId);case AddMemberToLocal():
-return addMemberToLocal(_that.member);case UpdateMemberInLocal():
-return updateMemberInLocal(_that.member);case LogOut():
+return getMemberDetail(_that.params);case AddMemberToLocal():
+return addMemberToLocal(_that.params);case UpdateMemberInLocal():
+return updateMemberInLocal(_that.params);case LogOut():
 return logOut();case _:
   throw StateError('Unexpected subclass');
 
@@ -195,16 +195,16 @@ return logOut();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( UserModel user)?  storeUserDetails,TResult? Function( String patientName,  String nationalId,  String? email,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber,  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)?  addMember,TResult? Function( int idInsurance,  int memberId,  String? insuranceName,  String memberNumber,  DateTime expireDate)?  changememberInsuranceDetails,TResult? Function()?  changeMemberAddingSateToInitial,TResult? Function( int memberId)?  getMemberDetail,TResult? Function( MemberModel member)?  addMemberToLocal,TResult? Function( MemberModel member)?  updateMemberInLocal,TResult? Function()?  logOut,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( ProfileParams params)?  storeUserDetails,TResult? Function( ProfileParams params)?  addMember,TResult? Function( ProfileParams params)?  changememberInsuranceDetails,TResult? Function()?  changeMemberAddingSateToInitial,TResult? Function( ProfileParams params)?  getMemberDetail,TResult? Function( ProfileParams params)?  addMemberToLocal,TResult? Function( ProfileParams params)?  updateMemberInLocal,TResult? Function()?  logOut,}) {final _that = this;
 switch (_that) {
 case StoreUserDetails() when storeUserDetails != null:
-return storeUserDetails(_that.user);case AddMember() when addMember != null:
-return addMember(_that.patientName,_that.nationalId,_that.email,_that.gender,_that.dob,_that.idInsurance,_that.memberNumber,_that.profileImage,_that.expireDate,_that.otherInsuranceName);case ChangememberInsuranceDetails() when changememberInsuranceDetails != null:
-return changememberInsuranceDetails(_that.idInsurance,_that.memberId,_that.insuranceName,_that.memberNumber,_that.expireDate);case ChangeMemberAddingSateToInitial() when changeMemberAddingSateToInitial != null:
+return storeUserDetails(_that.params);case AddMember() when addMember != null:
+return addMember(_that.params);case ChangememberInsuranceDetails() when changememberInsuranceDetails != null:
+return changememberInsuranceDetails(_that.params);case ChangeMemberAddingSateToInitial() when changeMemberAddingSateToInitial != null:
 return changeMemberAddingSateToInitial();case GetMemberDetail() when getMemberDetail != null:
-return getMemberDetail(_that.memberId);case AddMemberToLocal() when addMemberToLocal != null:
-return addMemberToLocal(_that.member);case UpdateMemberInLocal() when updateMemberInLocal != null:
-return updateMemberInLocal(_that.member);case LogOut() when logOut != null:
+return getMemberDetail(_that.params);case AddMemberToLocal() when addMemberToLocal != null:
+return addMemberToLocal(_that.params);case UpdateMemberInLocal() when updateMemberInLocal != null:
+return updateMemberInLocal(_that.params);case LogOut() when logOut != null:
 return logOut();case _:
   return null;
 
@@ -217,10 +217,10 @@ return logOut();case _:
 
 
 class StoreUserDetails implements UserEvent {
-  const StoreUserDetails({required this.user});
+  const StoreUserDetails({required this.params});
   
 
- final  UserModel user;
+ final  ProfileParams params;
 
 /// Create a copy of UserEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -232,16 +232,16 @@ $StoreUserDetailsCopyWith<StoreUserDetails> get copyWith => _$StoreUserDetailsCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is StoreUserDetails&&(identical(other.user, user) || other.user == user));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StoreUserDetails&&(identical(other.params, params) || other.params == params));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,user);
+int get hashCode => Object.hash(runtimeType,params);
 
 @override
 String toString() {
-  return 'UserEvent.storeUserDetails(user: $user)';
+  return 'UserEvent.storeUserDetails(params: $params)';
 }
 
 
@@ -252,11 +252,11 @@ abstract mixin class $StoreUserDetailsCopyWith<$Res> implements $UserEventCopyWi
   factory $StoreUserDetailsCopyWith(StoreUserDetails value, $Res Function(StoreUserDetails) _then) = _$StoreUserDetailsCopyWithImpl;
 @useResult
 $Res call({
- UserModel user
+ ProfileParams params
 });
 
 
-$UserModelCopyWith<$Res> get user;
+$ProfileParamsCopyWith<$Res> get params;
 
 }
 /// @nodoc
@@ -269,10 +269,10 @@ class _$StoreUserDetailsCopyWithImpl<$Res>
 
 /// Create a copy of UserEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? user = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? params = null,}) {
   return _then(StoreUserDetails(
-user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as UserModel,
+params: null == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
+as ProfileParams,
   ));
 }
 
@@ -280,10 +280,10 @@ as UserModel,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$UserModelCopyWith<$Res> get user {
+$ProfileParamsCopyWith<$Res> get params {
   
-  return $UserModelCopyWith<$Res>(_self.user, (value) {
-    return _then(_self.copyWith(user: value));
+  return $ProfileParamsCopyWith<$Res>(_self.params, (value) {
+    return _then(_self.copyWith(params: value));
   });
 }
 }
@@ -292,19 +292,10 @@ $UserModelCopyWith<$Res> get user {
 
 
 class AddMember implements UserEvent {
-  const AddMember({required this.patientName, required this.nationalId, this.email, required this.gender, required this.dob, this.idInsurance, this.memberNumber, this.profileImage, this.expireDate, this.otherInsuranceName});
+  const AddMember({required this.params});
   
 
- final  String patientName;
- final  String nationalId;
- final  String? email;
- final  String gender;
- final  DateTime dob;
- final  int? idInsurance;
- final  String? memberNumber;
- final  File? profileImage;
- final  DateTime? expireDate;
- final  String? otherInsuranceName;
+ final  ProfileParams params;
 
 /// Create a copy of UserEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -316,16 +307,16 @@ $AddMemberCopyWith<AddMember> get copyWith => _$AddMemberCopyWithImpl<AddMember>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AddMember&&(identical(other.patientName, patientName) || other.patientName == patientName)&&(identical(other.nationalId, nationalId) || other.nationalId == nationalId)&&(identical(other.email, email) || other.email == email)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.dob, dob) || other.dob == dob)&&(identical(other.idInsurance, idInsurance) || other.idInsurance == idInsurance)&&(identical(other.memberNumber, memberNumber) || other.memberNumber == memberNumber)&&(identical(other.profileImage, profileImage) || other.profileImage == profileImage)&&(identical(other.expireDate, expireDate) || other.expireDate == expireDate)&&(identical(other.otherInsuranceName, otherInsuranceName) || other.otherInsuranceName == otherInsuranceName));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AddMember&&(identical(other.params, params) || other.params == params));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,patientName,nationalId,email,gender,dob,idInsurance,memberNumber,profileImage,expireDate,otherInsuranceName);
+int get hashCode => Object.hash(runtimeType,params);
 
 @override
 String toString() {
-  return 'UserEvent.addMember(patientName: $patientName, nationalId: $nationalId, email: $email, gender: $gender, dob: $dob, idInsurance: $idInsurance, memberNumber: $memberNumber, profileImage: $profileImage, expireDate: $expireDate, otherInsuranceName: $otherInsuranceName)';
+  return 'UserEvent.addMember(params: $params)';
 }
 
 
@@ -336,11 +327,11 @@ abstract mixin class $AddMemberCopyWith<$Res> implements $UserEventCopyWith<$Res
   factory $AddMemberCopyWith(AddMember value, $Res Function(AddMember) _then) = _$AddMemberCopyWithImpl;
 @useResult
 $Res call({
- String patientName, String nationalId, String? email, String gender, DateTime dob, int? idInsurance, String? memberNumber, File? profileImage, DateTime? expireDate, String? otherInsuranceName
+ ProfileParams params
 });
 
 
-
+$ProfileParamsCopyWith<$Res> get params;
 
 }
 /// @nodoc
@@ -353,37 +344,33 @@ class _$AddMemberCopyWithImpl<$Res>
 
 /// Create a copy of UserEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? patientName = null,Object? nationalId = null,Object? email = freezed,Object? gender = null,Object? dob = null,Object? idInsurance = freezed,Object? memberNumber = freezed,Object? profileImage = freezed,Object? expireDate = freezed,Object? otherInsuranceName = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? params = null,}) {
   return _then(AddMember(
-patientName: null == patientName ? _self.patientName : patientName // ignore: cast_nullable_to_non_nullable
-as String,nationalId: null == nationalId ? _self.nationalId : nationalId // ignore: cast_nullable_to_non_nullable
-as String,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as String?,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
-as String,dob: null == dob ? _self.dob : dob // ignore: cast_nullable_to_non_nullable
-as DateTime,idInsurance: freezed == idInsurance ? _self.idInsurance : idInsurance // ignore: cast_nullable_to_non_nullable
-as int?,memberNumber: freezed == memberNumber ? _self.memberNumber : memberNumber // ignore: cast_nullable_to_non_nullable
-as String?,profileImage: freezed == profileImage ? _self.profileImage : profileImage // ignore: cast_nullable_to_non_nullable
-as File?,expireDate: freezed == expireDate ? _self.expireDate : expireDate // ignore: cast_nullable_to_non_nullable
-as DateTime?,otherInsuranceName: freezed == otherInsuranceName ? _self.otherInsuranceName : otherInsuranceName // ignore: cast_nullable_to_non_nullable
-as String?,
+params: null == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
+as ProfileParams,
   ));
 }
 
-
+/// Create a copy of UserEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProfileParamsCopyWith<$Res> get params {
+  
+  return $ProfileParamsCopyWith<$Res>(_self.params, (value) {
+    return _then(_self.copyWith(params: value));
+  });
+}
 }
 
 /// @nodoc
 
 
 class ChangememberInsuranceDetails implements UserEvent {
-  const ChangememberInsuranceDetails({required this.idInsurance, required this.memberId, required this.insuranceName, required this.memberNumber, required this.expireDate});
+  const ChangememberInsuranceDetails({required this.params});
   
 
- final  int idInsurance;
- final  int memberId;
- final  String? insuranceName;
- final  String memberNumber;
- final  DateTime expireDate;
+ final  ProfileParams params;
 
 /// Create a copy of UserEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -395,16 +382,16 @@ $ChangememberInsuranceDetailsCopyWith<ChangememberInsuranceDetails> get copyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangememberInsuranceDetails&&(identical(other.idInsurance, idInsurance) || other.idInsurance == idInsurance)&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.insuranceName, insuranceName) || other.insuranceName == insuranceName)&&(identical(other.memberNumber, memberNumber) || other.memberNumber == memberNumber)&&(identical(other.expireDate, expireDate) || other.expireDate == expireDate));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangememberInsuranceDetails&&(identical(other.params, params) || other.params == params));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,idInsurance,memberId,insuranceName,memberNumber,expireDate);
+int get hashCode => Object.hash(runtimeType,params);
 
 @override
 String toString() {
-  return 'UserEvent.changememberInsuranceDetails(idInsurance: $idInsurance, memberId: $memberId, insuranceName: $insuranceName, memberNumber: $memberNumber, expireDate: $expireDate)';
+  return 'UserEvent.changememberInsuranceDetails(params: $params)';
 }
 
 
@@ -415,11 +402,11 @@ abstract mixin class $ChangememberInsuranceDetailsCopyWith<$Res> implements $Use
   factory $ChangememberInsuranceDetailsCopyWith(ChangememberInsuranceDetails value, $Res Function(ChangememberInsuranceDetails) _then) = _$ChangememberInsuranceDetailsCopyWithImpl;
 @useResult
 $Res call({
- int idInsurance, int memberId, String? insuranceName, String memberNumber, DateTime expireDate
+ ProfileParams params
 });
 
 
-
+$ProfileParamsCopyWith<$Res> get params;
 
 }
 /// @nodoc
@@ -432,18 +419,23 @@ class _$ChangememberInsuranceDetailsCopyWithImpl<$Res>
 
 /// Create a copy of UserEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? idInsurance = null,Object? memberId = null,Object? insuranceName = freezed,Object? memberNumber = null,Object? expireDate = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? params = null,}) {
   return _then(ChangememberInsuranceDetails(
-idInsurance: null == idInsurance ? _self.idInsurance : idInsurance // ignore: cast_nullable_to_non_nullable
-as int,memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
-as int,insuranceName: freezed == insuranceName ? _self.insuranceName : insuranceName // ignore: cast_nullable_to_non_nullable
-as String?,memberNumber: null == memberNumber ? _self.memberNumber : memberNumber // ignore: cast_nullable_to_non_nullable
-as String,expireDate: null == expireDate ? _self.expireDate : expireDate // ignore: cast_nullable_to_non_nullable
-as DateTime,
+params: null == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
+as ProfileParams,
   ));
 }
 
-
+/// Create a copy of UserEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProfileParamsCopyWith<$Res> get params {
+  
+  return $ProfileParamsCopyWith<$Res>(_self.params, (value) {
+    return _then(_self.copyWith(params: value));
+  });
+}
 }
 
 /// @nodoc
@@ -482,10 +474,10 @@ String toString() {
 
 
 class GetMemberDetail implements UserEvent {
-  const GetMemberDetail({required this.memberId});
+  const GetMemberDetail({required this.params});
   
 
- final  int memberId;
+ final  ProfileParams params;
 
 /// Create a copy of UserEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -497,16 +489,16 @@ $GetMemberDetailCopyWith<GetMemberDetail> get copyWith => _$GetMemberDetailCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetMemberDetail&&(identical(other.memberId, memberId) || other.memberId == memberId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetMemberDetail&&(identical(other.params, params) || other.params == params));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,memberId);
+int get hashCode => Object.hash(runtimeType,params);
 
 @override
 String toString() {
-  return 'UserEvent.getMemberDetail(memberId: $memberId)';
+  return 'UserEvent.getMemberDetail(params: $params)';
 }
 
 
@@ -517,11 +509,11 @@ abstract mixin class $GetMemberDetailCopyWith<$Res> implements $UserEventCopyWit
   factory $GetMemberDetailCopyWith(GetMemberDetail value, $Res Function(GetMemberDetail) _then) = _$GetMemberDetailCopyWithImpl;
 @useResult
 $Res call({
- int memberId
+ ProfileParams params
 });
 
 
-
+$ProfileParamsCopyWith<$Res> get params;
 
 }
 /// @nodoc
@@ -534,24 +526,33 @@ class _$GetMemberDetailCopyWithImpl<$Res>
 
 /// Create a copy of UserEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? memberId = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? params = null,}) {
   return _then(GetMemberDetail(
-memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
-as int,
+params: null == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
+as ProfileParams,
   ));
 }
 
-
+/// Create a copy of UserEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProfileParamsCopyWith<$Res> get params {
+  
+  return $ProfileParamsCopyWith<$Res>(_self.params, (value) {
+    return _then(_self.copyWith(params: value));
+  });
+}
 }
 
 /// @nodoc
 
 
 class AddMemberToLocal implements UserEvent {
-  const AddMemberToLocal(this.member);
+  const AddMemberToLocal({required this.params});
   
 
- final  MemberModel member;
+ final  ProfileParams params;
 
 /// Create a copy of UserEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -563,16 +564,16 @@ $AddMemberToLocalCopyWith<AddMemberToLocal> get copyWith => _$AddMemberToLocalCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AddMemberToLocal&&(identical(other.member, member) || other.member == member));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AddMemberToLocal&&(identical(other.params, params) || other.params == params));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,member);
+int get hashCode => Object.hash(runtimeType,params);
 
 @override
 String toString() {
-  return 'UserEvent.addMemberToLocal(member: $member)';
+  return 'UserEvent.addMemberToLocal(params: $params)';
 }
 
 
@@ -583,11 +584,11 @@ abstract mixin class $AddMemberToLocalCopyWith<$Res> implements $UserEventCopyWi
   factory $AddMemberToLocalCopyWith(AddMemberToLocal value, $Res Function(AddMemberToLocal) _then) = _$AddMemberToLocalCopyWithImpl;
 @useResult
 $Res call({
- MemberModel member
+ ProfileParams params
 });
 
 
-$MemberModelCopyWith<$Res> get member;
+$ProfileParamsCopyWith<$Res> get params;
 
 }
 /// @nodoc
@@ -600,10 +601,10 @@ class _$AddMemberToLocalCopyWithImpl<$Res>
 
 /// Create a copy of UserEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? member = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? params = null,}) {
   return _then(AddMemberToLocal(
-null == member ? _self.member : member // ignore: cast_nullable_to_non_nullable
-as MemberModel,
+params: null == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
+as ProfileParams,
   ));
 }
 
@@ -611,10 +612,10 @@ as MemberModel,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$MemberModelCopyWith<$Res> get member {
+$ProfileParamsCopyWith<$Res> get params {
   
-  return $MemberModelCopyWith<$Res>(_self.member, (value) {
-    return _then(_self.copyWith(member: value));
+  return $ProfileParamsCopyWith<$Res>(_self.params, (value) {
+    return _then(_self.copyWith(params: value));
   });
 }
 }
@@ -623,10 +624,10 @@ $MemberModelCopyWith<$Res> get member {
 
 
 class UpdateMemberInLocal implements UserEvent {
-  const UpdateMemberInLocal(this.member);
+  const UpdateMemberInLocal({required this.params});
   
 
- final  MemberModel member;
+ final  ProfileParams params;
 
 /// Create a copy of UserEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -638,16 +639,16 @@ $UpdateMemberInLocalCopyWith<UpdateMemberInLocal> get copyWith => _$UpdateMember
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateMemberInLocal&&(identical(other.member, member) || other.member == member));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateMemberInLocal&&(identical(other.params, params) || other.params == params));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,member);
+int get hashCode => Object.hash(runtimeType,params);
 
 @override
 String toString() {
-  return 'UserEvent.updateMemberInLocal(member: $member)';
+  return 'UserEvent.updateMemberInLocal(params: $params)';
 }
 
 
@@ -658,11 +659,11 @@ abstract mixin class $UpdateMemberInLocalCopyWith<$Res> implements $UserEventCop
   factory $UpdateMemberInLocalCopyWith(UpdateMemberInLocal value, $Res Function(UpdateMemberInLocal) _then) = _$UpdateMemberInLocalCopyWithImpl;
 @useResult
 $Res call({
- MemberModel member
+ ProfileParams params
 });
 
 
-$MemberModelCopyWith<$Res> get member;
+$ProfileParamsCopyWith<$Res> get params;
 
 }
 /// @nodoc
@@ -675,10 +676,10 @@ class _$UpdateMemberInLocalCopyWithImpl<$Res>
 
 /// Create a copy of UserEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? member = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? params = null,}) {
   return _then(UpdateMemberInLocal(
-null == member ? _self.member : member // ignore: cast_nullable_to_non_nullable
-as MemberModel,
+params: null == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
+as ProfileParams,
   ));
 }
 
@@ -686,10 +687,10 @@ as MemberModel,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$MemberModelCopyWith<$Res> get member {
+$ProfileParamsCopyWith<$Res> get params {
   
-  return $MemberModelCopyWith<$Res>(_self.member, (value) {
-    return _then(_self.copyWith(member: value));
+  return $ProfileParamsCopyWith<$Res>(_self.params, (value) {
+    return _then(_self.copyWith(params: value));
   });
 }
 }

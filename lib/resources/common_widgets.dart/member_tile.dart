@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:patient_portal/feature/profile/models/member/member_model.dart';
+import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/route/route_constants.dart';
 
 import '../app_colors.dart';

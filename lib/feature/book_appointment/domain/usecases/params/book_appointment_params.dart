@@ -24,4 +24,3 @@ sealed class BookAppointmentParams with _$BookAppointmentParams {
     required String token,
   }) = _RescheduleAppointmentParams;
 }
-

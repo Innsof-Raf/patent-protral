@@ -57,6 +57,13 @@ import 'package:patient_portal/feature/member_details/presentation/bloc/member_d
 import 'package:patient_portal/feature/members/presentation/bloc/delete_member_bloc/delete_member_bloc.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/member_search_bloc/member_search_bloc.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
+import 'package:patient_portal/feature/profile/data/datasources/profile_remote_data_source.dart';
+import 'package:patient_portal/feature/profile/data/repositories/profile_repository_impl.dart';
+import 'package:patient_portal/feature/profile/domain/repositories/profile_repository.dart';
+import 'package:patient_portal/feature/profile/domain/usecases/add_profile_member_usecase.dart';
+import 'package:patient_portal/feature/profile/domain/usecases/change_member_insurance_details_usecase.dart';
+import 'package:patient_portal/feature/profile/domain/usecases/get_member_detail_usecase.dart';
+import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -237,6 +244,31 @@ Future<void> init() async {
   //! Features - My Appointments
   // Bloc
   sl.registerFactory(() => MyAppointmentsBloc());
+
+  //! Features - Profile
+  // Bloc
+  sl.registerFactory(
+    () => UserBloc(
+      addProfileMemberUseCase: sl(),
+      changeMemberInsuranceDetailsUseCase: sl(),
+      getMemberDetailUseCase: sl(),
+    ),
+  );
+
+  // Use cases
+  sl.registerLazySingleton(() => AddProfileMemberUseCase(sl()));
+  sl.registerLazySingleton(() => ChangeMemberInsuranceDetailsUseCase(sl()));
+  sl.registerLazySingleton(() => GetMemberDetailUseCase(sl()));
+
+  // Repository
+  sl.registerLazySingleton<ProfileRepository>(
+    () => ProfileRepositoryImpl(remoteDataSource: sl()),
+  );
+
+  // Data sources
+  sl.registerLazySingleton<ProfileRemoteDataSource>(
+    () => ProfileRemoteDataSourceImpl(),
+  );
 
   //! External
   sl.registerLazySingleton(() => http.Client());

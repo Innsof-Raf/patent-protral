@@ -5,7 +5,7 @@ import 'package:patient_portal/core/error/failures.dart';
 import 'package:patient_portal/feature/login/data/datasources/login_remote_data_source.dart';
 import 'package:patient_portal/feature/login/domain/entities/otp_response.dart';
 import 'package:patient_portal/feature/login/domain/repositories/login_repository.dart';
-import 'package:patient_portal/feature/profile/models/user/user_model.dart';
+import 'package:patient_portal/feature/profile/data/models/user_model.dart';
 import 'package:patient_portal/resources/constant_messages.dart';
 
 class LoginRepositoryImpl implements LoginRepository {

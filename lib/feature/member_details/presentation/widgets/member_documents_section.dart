@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/feature/profile/models/member_document_model/member_document_model.dart';
+import 'package:patient_portal/feature/profile/data/models/member_document_model.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 

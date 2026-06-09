@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
+import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/set_password/bloc/change_password_bloc.dart';
 import 'package:patient_portal/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/resources/common_widgets.dart/succes_dailog.dart';

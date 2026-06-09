@@ -4,8 +4,9 @@ import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_b
 import 'package:patient_portal/feature/add_member/presentation/widgets/add_member_screen_helpers.dart';
 import 'package:patient_portal/feature/add_member/presentation/widgets/member_details_section.dart';
 import 'package:patient_portal/feature/add_member/presentation/widgets/profile_image_section.dart';
-import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
-import 'package:patient_portal/feature/profile/models/member/member_model.dart';
+import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
+import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
+import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:patient_portal/resources/common_helpers/insurance_helpers.dart';
@@ -52,10 +53,20 @@ class AddMemberScreen extends StatelessWidget {
             );
           } else if (state.isMemberAddingSuccess) {
             if (member == null) {
-              context.read<UserBloc>().add(AddMemberToLocal(state.newMember!));
+              context.read<UserBloc>().add(
+                AddMemberToLocal(
+                  params: ProfileParams.addMemberToLocal(
+                    member: state.newMember!,
+                  ),
+                ),
+              );
             } else {
               context.read<UserBloc>().add(
-                UpdateMemberInLocal(state.newMember!),
+                UpdateMemberInLocal(
+                  params: ProfileParams.updateMemberInLocal(
+                    member: state.newMember!,
+                  ),
+                ),
               );
             }
             showDialog(

@@ -4,7 +4,7 @@ import 'package:patient_portal/feature/documents/data/models/documents_model/doc
 import 'package:patient_portal/feature/documents/presentation/bloc/documents_bloc/documents_bloc.dart';
 import 'package:patient_portal/feature/documents/presentation/widgets/documets_screen_app_bar.dart';
 import 'package:patient_portal/feature/documents/presentation/widgets/documents_tile.dart';
-import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
+import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:patient_portal/route/route_constants.dart';

@@ -16,14 +16,12 @@ class RescheduleAppointmentUseCase
     return params.when(
       getAvailableSlots: (_, __, ___) => throw UnimplementedError(),
       bookAppointment: (_, __, ___, ____, _____) => throw UnimplementedError(),
-      rescheduleAppointment:
-          (appointmentDateTime, idAppointment, token) =>
-              repository.rescheduleAppointment(
-                appointmentDateTime: appointmentDateTime,
-                idAppointment: idAppointment,
-                token: token,
-              ),
+      rescheduleAppointment: (appointmentDateTime, idAppointment, token) =>
+          repository.rescheduleAppointment(
+            appointmentDateTime: appointmentDateTime,
+            idAppointment: idAppointment,
+            token: token,
+          ),
     );
   }
 }
-

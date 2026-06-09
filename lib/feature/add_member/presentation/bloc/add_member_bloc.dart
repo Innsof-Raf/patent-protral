@@ -4,7 +4,7 @@ import 'package:patient_portal/feature/add_member/domain/usecases/add_member_use
 import 'package:patient_portal/feature/add_member/domain/usecases/get_insurances_usecase.dart';
 import 'package:patient_portal/feature/add_member/domain/usecases/update_insurance_usecase.dart';
 import 'package:patient_portal/feature/add_member/domain/usecases/params/params.dart';
-import 'package:patient_portal/feature/profile/models/member/member_model.dart';
+import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/resources/common_models/insurance/insurance_model.dart';
 import 'package:patient_portal/resources/error_model.dart';
 

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
+import 'package:patient_portal/resources/app_colors.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
+import 'package:patient_portal/resources/common_widgets.dart/member_tile.dart';
 import 'package:patient_portal/route/route_constants.dart';
-
-import '../../../resources/app_colors.dart';
-import '../../../resources/app_text_styles.dart';
-import '../../../resources/common_widgets.dart/member_tile.dart';
-import '../bloc/user_bloc.dart';
 
 class MemberSection extends StatelessWidget {
   const MemberSection({super.key});

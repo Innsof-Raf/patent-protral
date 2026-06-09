@@ -3,7 +3,7 @@ import 'package:patient_portal/feature/my_profile/presentation/widgets/member_se
 import 'package:patient_portal/feature/my_profile/presentation/widgets/my_profile_app_bar.dart';
 import 'package:patient_portal/feature/my_profile/presentation/widgets/my_profile_section.dart';
 import 'package:patient_portal/feature/my_profile/presentation/widgets/quick_menus_section.dart';
-import 'package:patient_portal/feature/profile/models/member/member_model.dart';
+import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/common_widgets.dart/member_tile.dart';
 import 'package:patient_portal/resources/dimens.dart';

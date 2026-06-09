@@ -17,8 +17,8 @@ import 'package:patient_portal/feature/member_details/presentation/pages/member_
 import 'package:patient_portal/feature/members/presentation/pages/members_screen.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/pages/my_appointment_screen.dart';
 import 'package:patient_portal/feature/notification/presentation/pages/notification_screen.dart';
-import 'package:patient_portal/feature/profile/models/member/member_model.dart';
-import 'package:patient_portal/feature/profile/profile_screen.dart';
+import 'package:patient_portal/feature/profile/data/models/member_model.dart';
+import 'package:patient_portal/feature/profile/presentation/pages/profile_screen.dart';
 import 'package:patient_portal/feature/report/report_screen.dart';
 import 'package:patient_portal/feature/reports/reports_screen.dart';
 import 'package:patient_portal/feature/set_password/set_password_screen.dart';

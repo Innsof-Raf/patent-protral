@@ -5,8 +5,9 @@ import 'package:patient_portal/feature/member_details/presentation/widgets/membe
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_insurance_section.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_personal_details_section.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_profile_image_section.dart';
-import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
-import 'package:patient_portal/feature/profile/models/member/member_model.dart';
+import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
+import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
+import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:patient_portal/resources/common_helpers/insurance_helpers.dart';
@@ -20,7 +21,11 @@ class MemberDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<UserBloc>().add(GetMemberDetail(memberId: memberId));
+      context.read<UserBloc>().add(
+        GetMemberDetail(
+          params: ProfileParams.getMemberDetail(memberId: memberId),
+        ),
+      );
     });
 
     return Scaffold(

@@ -4,7 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:patient_portal/feature/add_document/data/models/document_type_model.dart';
-import 'package:patient_portal/feature/profile/models/member/member_model.dart';
+import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 
 import '../../../../resources/app_colors.dart';
 import '../../../../resources/app_text_styles.dart';
