@@ -75,6 +75,12 @@ import 'package:patient_portal/feature/set_password/data/repositories/set_passwo
 import 'package:patient_portal/feature/set_password/domain/repositories/set_password_repository.dart';
 import 'package:patient_portal/feature/set_password/domain/usecases/change_password_usecase.dart';
 import 'package:patient_portal/feature/set_password/presentation/bloc/change_password_bloc/change_password_bloc.dart';
+import 'package:patient_portal/feature/speciality/data/datasources/speciality_remote_data_source.dart';
+import 'package:patient_portal/feature/speciality/data/repositories/speciality_repository_impl.dart';
+import 'package:patient_portal/feature/speciality/domain/repositories/speciality_repository.dart';
+import 'package:patient_portal/feature/speciality/domain/usecases/fetch_specialities_usecase.dart';
+import 'package:patient_portal/feature/speciality/domain/usecases/search_specialities_usecase.dart';
+import 'package:patient_portal/feature/speciality/presentation/bloc/speciality_bloc/speciality_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -316,6 +322,29 @@ Future<void> init() async {
   // Data sources
   sl.registerLazySingleton<SetPasswordRemoteDataSource>(
     () => SetPasswordRemoteDataSourceImpl(),
+  );
+
+  //! Features - Speciality
+  // Bloc
+  sl.registerFactory(
+    () => SpecialityBloc(
+      fetchSpecialitiesUseCase: sl(),
+      searchSpecialitiesUseCase: sl(),
+    ),
+  );
+
+  // Use cases
+  sl.registerLazySingleton(() => FetchSpecialitiesUseCase(sl()));
+  sl.registerLazySingleton(() => SearchSpecialitiesUseCase(sl()));
+
+  // Repository
+  sl.registerLazySingleton<SpecialityRepository>(
+    () => SpecialityRepositoryImpl(remoteDataSource: sl()),
+  );
+
+  // Data sources
+  sl.registerLazySingleton<SpecialityRemoteDataSource>(
+    () => SpecialityRemoteDataSourceImpl(),
   );
 
   //! External

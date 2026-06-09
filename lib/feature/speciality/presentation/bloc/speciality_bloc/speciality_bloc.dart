@@ -1,18 +1,24 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../../resources/error_model.dart';
-import '../../model/speciality_model.dart';
-import '../../service/speciality_services.dart';
+import 'package:patient_portal/feature/speciality/data/models/speciality_model.dart';
+import 'package:patient_portal/feature/speciality/domain/usecases/fetch_specialities_usecase.dart';
+import 'package:patient_portal/feature/speciality/domain/usecases/params/speciality_params.dart';
+import 'package:patient_portal/feature/speciality/domain/usecases/search_specialities_usecase.dart';
+import 'package:patient_portal/resources/error_model.dart';
 
 part 'speciality_event.dart';
 part 'speciality_state.dart';
 part 'generated/speciality_bloc.freezed.dart';
 
 class SpecialityBloc extends Bloc<SpecialityEvent, SpecialityState> {
-  SpecialityBloc() : super(SpecialityState.initial()) {
+  final FetchSpecialitiesUseCase fetchSpecialitiesUseCase;
+  final SearchSpecialitiesUseCase searchSpecialitiesUseCase;
+
+  SpecialityBloc({
+    required this.fetchSpecialitiesUseCase,
+    required this.searchSpecialitiesUseCase,
+  }) : super(SpecialityState.initial()) {
     on<FetchSpecialities>((event, emit) async {
       emit(
         state.copyWith(
@@ -24,10 +30,7 @@ class SpecialityBloc extends Bloc<SpecialityEvent, SpecialityState> {
         ),
       );
       Either<ErrorModel, List<SpecialityModel>> speclityOptions =
-          await SpecialityServices.fetchSpecialities(
-            token: event.token,
-            idBusUnit: event.idBusUnit,
-          );
+          await fetchSpecialitiesUseCase(event.params);
       speclityOptions.fold(
         (failure) => emit(
           state.copyWith(
@@ -44,6 +47,10 @@ class SpecialityBloc extends Bloc<SpecialityEvent, SpecialityState> {
           ),
         ),
       );
+    });
+    on<SearchSpecialities>((event, emit) async {
+      final searchResult = await searchSpecialitiesUseCase(event.params);
+      emit(state.copyWith(searchResult: searchResult));
     });
   }
 }

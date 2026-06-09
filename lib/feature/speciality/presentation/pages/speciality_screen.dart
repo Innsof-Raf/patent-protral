@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/feature/speciality/model/speciality_model.dart';
-
+import 'package:patient_portal/feature/speciality/data/models/speciality_model.dart';
+import 'package:patient_portal/feature/speciality/domain/usecases/params/speciality_params.dart';
+import 'package:patient_portal/feature/speciality/presentation/bloc/speciality_bloc/speciality_bloc.dart';
+import 'package:patient_portal/feature/speciality/presentation/widgets/speciality_tile.dart';
+import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:patient_portal/resources/dimens.dart';
-
-import '../../resources/app_colors.dart';
-import 'blocs/search_bloc/search_speciality_bloc_bloc.dart';
-import 'blocs/speciality_bloc/speciality_bloc.dart';
-import 'widgets/speciality_tile.dart';
 
 class SpecilityScreen extends StatelessWidget {
   const SpecilityScreen({super.key});
@@ -19,8 +17,10 @@ class SpecilityScreen extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<SpecialityBloc>().add(
         FetchSpecialities(
-          token: context.read<UserBloc>().state.user!.accessToken,
-          idBusUnit: 3,
+          params: SpecialityParams.fetchSpecialities(
+            token: context.read<UserBloc>().state.user!.accessToken,
+            idBusUnit: 3,
+          ),
         ),
       );
     });
@@ -55,10 +55,12 @@ class SpecilityScreen extends StatelessWidget {
                             TextFormField(
                               keyboardType: TextInputType.text,
                               onChanged: (value) {
-                                context.read<SearchSpecialityBloc>().add(
-                                  SearchSpeciality(
-                                    searchKey: value.toLowerCase(),
-                                    specialities: state.specialities,
+                                context.read<SpecialityBloc>().add(
+                                  SearchSpecialities(
+                                    params: SpecialityParams.searchSpecialities(
+                                      searchKey: value,
+                                      specialities: state.specialities,
+                                    ),
                                   ),
                                 );
                               },
@@ -103,46 +105,39 @@ class SpecilityScreen extends StatelessWidget {
                             ),
                           );
                         } else {
-                          return BlocBuilder<
-                            SearchSpecialityBloc,
-                            SearchSpecialityBlocState
-                          >(
-                            builder: (searchContext, searchState) {
-                              List<SpecialityModel> specialities = [];
-                              if (searchController.text.isNotEmpty) {
-                                specialities = searchState.searchResult;
-                              } else {
-                                specialities = state.specialities;
-                              }
-                              return specialities.isEmpty
-                                  ? const Center(
-                                      child: Text(
-                                        'No Specialities Found',
-                                        style: AppTextStyles.largeRobotoNormal,
+                          List<SpecialityModel> specialities = [];
+                          if (searchController.text.isNotEmpty) {
+                            specialities = state.searchResult;
+                          } else {
+                            specialities = state.specialities;
+                          }
+                          return specialities.isEmpty
+                              ? const Center(
+                                  child: Text(
+                                    'No Specialities Found',
+                                    style: AppTextStyles.largeRobotoNormal,
+                                  ),
+                                )
+                              : GridView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: specialities.length,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                        childAspectRatio: 1.5,
+                                        crossAxisSpacing: 10,
+                                        mainAxisSpacing: 10,
+                                        crossAxisCount:
+                                            constraints.maxWidth < 280
+                                            ? 3
+                                            : constraints.maxWidth < 700
+                                            ? 4
+                                            : 5,
                                       ),
-                                    )
-                                  : GridView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: specialities.length,
-                                      gridDelegate:
-                                          SliverGridDelegateWithFixedCrossAxisCount(
-                                            childAspectRatio: 1.5,
-                                            crossAxisSpacing: 10,
-                                            mainAxisSpacing: 10,
-                                            crossAxisCount:
-                                                constraints.maxWidth < 280
-                                                ? 3
-                                                : constraints.maxWidth < 700
-                                                ? 4
-                                                : 5,
-                                          ),
-                                      itemBuilder: (context, index) =>
-                                          SpecilityTile(
-                                            speciality: specialities[index],
-                                          ),
-                                    );
-                            },
-                          );
+                                  itemBuilder: (context, index) =>
+                                      SpecilityTile(
+                                        speciality: specialities[index],
+                                      ),
+                                );
                         }
                       },
                     ),
