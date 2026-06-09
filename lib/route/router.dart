@@ -16,7 +16,7 @@ import 'package:patient_portal/feature/medical_insurances/presentation/pages/med
 import 'package:patient_portal/feature/member_details/presentation/pages/member_details_screen.dart';
 import 'package:patient_portal/feature/members/presentation/pages/members_screen.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/pages/my_appointment_screen.dart';
-import 'package:patient_portal/feature/notification/notification_screen.dart';
+import 'package:patient_portal/feature/notification/presentation/pages/notification_screen.dart';
 import 'package:patient_portal/feature/profile/models/member/member_model.dart';
 import 'package:patient_portal/feature/profile/profile_screen.dart';
 import 'package:patient_portal/feature/report/report_screen.dart';
