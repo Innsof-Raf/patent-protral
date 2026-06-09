@@ -7,7 +7,8 @@ import 'package:patient_portal/feature/doctor_detail/presentation/pages/doctor_d
 import 'package:patient_portal/feature/documents/presentation/pages/documents_screen.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/pages/edit_profile_details_screen.dart';
 import 'package:patient_portal/feature/home/presentation/pages/home_screen.dart';
-import 'package:patient_portal/feature/lab/lab_screen.dart';
+import 'package:patient_portal/feature/lab/presentation/pages/lab_item_detail_screen.dart';
+import 'package:patient_portal/feature/lab/presentation/pages/lab_screen.dart';
 import 'package:patient_portal/feature/main_screen/main_screen.dart';
 import 'package:patient_portal/feature/medical_insurances/medical_insurance_screen.dart';
 import 'package:patient_portal/feature/member_details/member_details_screen.dart';
@@ -21,7 +22,6 @@ import 'package:patient_portal/feature/speciality/speciality_screen.dart';
 import 'package:patient_portal/route/route_constants.dart';
 
 import '../feature/doctors/presentation/pages/doctors_screen.dart';
-import '../feature/lab_item_detail/lab_item_detail_screen.dart';
 import '../feature/login/login_screen.dart';
 import '../feature/report/report_screen.dart';
 import '../feature/set_password/set_password_screen.dart';

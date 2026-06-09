@@ -36,6 +36,14 @@ import 'package:patient_portal/feature/home/data/repositories/home_repository_im
 import 'package:patient_portal/feature/home/domain/repositories/home_repository.dart';
 import 'package:patient_portal/feature/home/domain/usecases/get_home_data_usecase.dart';
 import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
+import 'package:patient_portal/feature/lab/data/datasources/lab_remote_data_source.dart';
+import 'package:patient_portal/feature/lab/data/repositories/lab_repository_impl.dart';
+import 'package:patient_portal/feature/lab/domain/repositories/lab_repository.dart';
+import 'package:patient_portal/feature/lab/domain/usecases/get_item_detail_usecase.dart';
+import 'package:patient_portal/feature/lab/domain/usecases/get_items_usecase.dart';
+import 'package:patient_portal/feature/lab/domain/usecases/get_packages_usecase.dart';
+import 'package:patient_portal/feature/lab/domain/usecases/update_item_in_cart_usecase.dart';
+import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/login_with_password_bloc/login_with_password_bloc.dart';
 import 'package:patient_portal/feature/login/data/datasources/login_remote_data_source.dart';
 import 'package:patient_portal/feature/login/data/repositories/login_repository_impl.dart';
@@ -189,6 +197,28 @@ Future<void> init() async {
   // Data sources
   sl.registerLazySingleton<HomeRemoteDataSource>(
     () => HomeRemoteDataSourceImpl(client: sl()),
+  );
+
+  //! Features - Lab
+  // Bloc
+  sl.registerFactory(
+    () => ItemsBloc(getItemsUseCase: sl(), updateItemInCartUseCase: sl()),
+  );
+
+  // Use cases
+  sl.registerLazySingleton(() => GetItemsUseCase(sl()));
+  sl.registerLazySingleton(() => UpdateItemInCartUseCase(sl()));
+  sl.registerLazySingleton(() => GetItemDetailUseCase(sl()));
+  sl.registerLazySingleton(() => GetPackagesUseCase(sl()));
+
+  // Repository
+  sl.registerLazySingleton<LabRepository>(
+    () => LabRepositoryImpl(remoteDataSource: sl()),
+  );
+
+  // Data sources
+  sl.registerLazySingleton<LabRemoteDataSource>(
+    () => LabRemoteDataSourceImpl(client: sl()),
   );
 
   //! External

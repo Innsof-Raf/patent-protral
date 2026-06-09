@@ -1,17 +1,23 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:patient_portal/feature/lab/service/item_services.dart';
+import 'package:patient_portal/feature/lab/data/models/item_model.dart';
+import 'package:patient_portal/feature/lab/domain/usecases/get_items_usecase.dart';
+import 'package:patient_portal/feature/lab/domain/usecases/params/lab_params.dart';
+import 'package:patient_portal/feature/lab/domain/usecases/update_item_in_cart_usecase.dart';
 import 'package:patient_portal/resources/error_model.dart';
-
-import '../../models/item_model/item_model.dart';
 
 part 'items_event.dart';
 part 'items_state.dart';
 part 'generated/items_bloc.freezed.dart';
 
 class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
-  ItemsBloc() : super(ItemsState.inoitial()) {
+  final GetItemsUseCase getItemsUseCase;
+  final UpdateItemInCartUseCase updateItemInCartUseCase;
+
+  ItemsBloc({
+    required this.getItemsUseCase,
+    required this.updateItemInCartUseCase,
+  }) : super(ItemsState.inoitial()) {
     on<GetItems>((event, emit) async {
       emit(
         state.copyWith(
@@ -20,14 +26,15 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
           isItemsFetchingSuccess: false,
         ),
       );
-      final Either<ErrorModel, List<ItemModel>> getitemsOptions =
-          await ItemServices.getItems(token: event.token);
-      getitemsOptions.fold(
-        (error) => emit(
+      final result = await getItemsUseCase(
+        LabParams.getItems(token: event.token),
+      );
+      result.fold(
+        (failure) => emit(
           state.copyWith(
             isItemsFetching: false,
             isItemsFetchingFailed: true,
-            error: error,
+            error: ErrorModel(message: failure.message),
           ),
         ),
         (items) {
@@ -70,15 +77,17 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
           }).toList(),
         ),
       );
-      final cartUpadtingOptions = await ItemServices.updateItemInCart(
-        idUser: event.idUser,
-        idItem: event.idItem,
-        token: event.token,
+      final result = await updateItemInCartUseCase(
+        LabParams.updateItemInCart(
+          idUser: event.idUser,
+          idItem: event.idItem,
+          token: event.token,
+        ),
       );
-      cartUpadtingOptions.fold(
-        (error) => emit(
+      result.fold(
+        (failure) => emit(
           state.copyWith(
-            error: error,
+            error: ErrorModel(message: failure.message),
             isCartUpdatingFailed: true,
             items: state.items.map((item) {
               if (event.idItem == item.idItem) {

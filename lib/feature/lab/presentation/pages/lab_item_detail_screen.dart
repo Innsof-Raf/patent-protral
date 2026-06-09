@@ -1,15 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/lab/blocs/items_bloc/items_bloc.dart';
-import 'package:patient_portal/feature/lab/models/item_model/item_model.dart';
+import 'package:patient_portal/feature/lab/data/models/item_model.dart';
+import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
+import 'package:patient_portal/resources/app_colors.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:patient_portal/resources/common_widgets.dart/common_appbar.dart';
-
-import '../../resources/app_colors.dart';
-import '../../resources/app_text_styles.dart';
-import '../../resources/dimens.dart';
-import '../../resources/urls.dart';
+import 'package:patient_portal/resources/dimens.dart';
+import 'package:patient_portal/resources/urls.dart';
 
 class LabItemDetailScreen extends StatelessWidget {
   final int idItem;

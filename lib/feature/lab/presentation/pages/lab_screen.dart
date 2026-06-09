@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/lab/blocs/items_bloc/items_bloc.dart';
+import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
+import 'package:patient_portal/feature/lab/presentation/widgets/lab_screen_appbar.dart';
+import 'package:patient_portal/feature/lab/presentation/widgets/lab_tab_bar.dart';
+import 'package:patient_portal/feature/lab/presentation/widgets/packages_tab_bar_view.dart';
+import 'package:patient_portal/feature/lab/presentation/widgets/tests_tab_bar_view.dart';
+import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
+import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:patient_portal/route/route_constants.dart';
-
-import '../../resources/app_colors.dart';
-import '../profile/bloc/user_bloc.dart';
-import 'widgets/lab_screen_appbar.dart';
-import 'widgets/lab_tab_bar.dart';
-import 'widgets/packages_tab_bar_view.dart';
-import 'widgets/tests_tab_bar_view.dart';
 
 class LabScreen extends StatelessWidget {
   const LabScreen({super.key});

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/lab/models/item_model/item_model.dart';
+import 'package:patient_portal/feature/lab/data/models/item_model.dart';
+import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
+import 'package:patient_portal/feature/lab/presentation/widgets/lab_grid_item_tile.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
 
-import '../../../resources/app_text_styles.dart';
-import '../blocs/items_bloc/items_bloc.dart';
-import 'lab_grid_item_tile.dart';
-
-class PackagesTabBarView extends StatelessWidget {
-  const PackagesTabBarView({super.key});
+class TsetsTabBarView extends StatelessWidget {
+  const TsetsTabBarView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,28 +29,28 @@ class PackagesTabBarView extends StatelessWidget {
             ),
           );
         } else {
-          List<ItemModel> packages = state.items
-              .where((item) => item.itemType == 'pkg')
+          List<ItemModel> tests = state.items
+              .where((item) => item.itemType == 'SERV')
               .toList();
-          if (packages.isEmpty) {
+          if (tests.isEmpty) {
             return const Center(
               child: Text(
-                'No packages available right now',
+                'No tests available right now',
                 style: AppTextStyles.largeRobotoNormal,
               ),
             );
           } else {
             return GridView.builder(
               padding: const EdgeInsets.all(10),
-              itemCount: packages.length,
+              itemCount: tests.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                childAspectRatio: .73,
+                childAspectRatio: .9,
                 crossAxisCount: 2,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
               ),
               itemBuilder: (context, index) =>
-                  LabGridItemTile(item: packages[index]),
+                  LabGridItemTile(item: tests[index]),
             );
           }
         }
