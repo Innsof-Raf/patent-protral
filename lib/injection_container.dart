@@ -64,9 +64,8 @@ import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_
 import 'package:patient_portal/feature/reports/data/datasources/reports_remote_data_source.dart';
 import 'package:patient_portal/feature/reports/data/repositories/reports_repository_impl.dart';
 import 'package:patient_portal/feature/reports/domain/repositories/reports_repository.dart';
-import 'package:patient_portal/feature/reports/domain/usecases/download_report_usecase.dart';
-import 'package:patient_portal/feature/reports/domain/usecases/get_reports_usecase.dart';
-import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc/reports_bloc.dart';
+import 'package:patient_portal/feature/reports/domain/usecases/reports_usecase.dart';
+import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
 import 'package:patient_portal/feature/set_password/data/datasources/set_password_remote_data_source.dart';
 import 'package:patient_portal/feature/set_password/data/repositories/set_password_repository_impl.dart';
 import 'package:patient_portal/feature/set_password/domain/repositories/set_password_repository.dart';
@@ -286,13 +285,10 @@ Future<void> init() async {
 
   //! Features - Reports
   // Bloc
-  sl.registerFactory(
-    () => ReportsBloc(getReportsUseCase: sl(), downloadReportUseCase: sl()),
-  );
+  sl.registerFactory(() => ReportsBloc(reportsUseCase: sl()));
 
   // Use cases
-  sl.registerLazySingleton(() => GetReportsUseCase(sl()));
-  sl.registerLazySingleton(() => DownloadReportUseCase(sl()));
+  sl.registerLazySingleton(() => ReportsUseCase(sl()));
 
   // Repository
   sl.registerLazySingleton<ReportsRepository>(

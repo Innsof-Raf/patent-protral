@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:patient_portal/feature/reports/data/models/report_file_model.dart';
 import 'package:patient_portal/feature/reports/data/models/report_model.dart';
 import 'package:patient_portal/feature/reports/domain/usecases/params/reports_params.dart';
 import 'package:patient_portal/resources/constant_messages.dart';
@@ -16,7 +16,9 @@ abstract class ReportsRemoteDataSource {
     ReportsParams params,
   );
 
-  Future<Either<ErrorModel, Uint8List>> downloadReport(ReportsParams params);
+  Future<Either<ErrorModel, ReportFileModel>> downloadReport(
+    ReportsParams params,
+  );
 }
 
 class ReportsRemoteDataSourceImpl implements ReportsRemoteDataSource {
@@ -64,7 +66,7 @@ class ReportsRemoteDataSourceImpl implements ReportsRemoteDataSource {
   }
 
   @override
-  Future<Either<ErrorModel, Uint8List>> downloadReport(
+  Future<Either<ErrorModel, ReportFileModel>> downloadReport(
     ReportsParams params,
   ) async {
     final downloadReportParams = params.maybeMap(
@@ -72,11 +74,9 @@ class ReportsRemoteDataSourceImpl implements ReportsRemoteDataSource {
       orElse: () => throw Exception('Invalid report download params'),
     );
     try {
-      final Uint8List list = await http.readBytes(
-        Uri.parse(downloadReportParams.url),
-      );
+      final bytes = await http.readBytes(Uri.parse(downloadReportParams.url));
 
-      return Right(list);
+      return Right(ReportFileModel(bytes: bytes));
     } on SocketException {
       return Left(ErrorModel(message: ConstantMessages.noNetworkErrorMessage));
     } on TimeoutException {

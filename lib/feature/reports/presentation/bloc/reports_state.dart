@@ -6,7 +6,7 @@ sealed class ReportsState with _$ReportsState {
     required bool isFetchingReports,
     required bool isFetchingFailed,
     required bool isFetchingSuccess,
-    required Uint8List? report,
+    required ReportFileModel? report,
     required bool isRepoertSaving,
     required bool isReportSavingFailed,
     required bool isReportSavingSucces,

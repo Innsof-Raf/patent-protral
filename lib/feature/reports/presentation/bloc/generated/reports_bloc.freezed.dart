@@ -12,17 +12,11 @@ part of '../reports_bloc.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$ReportsEvent implements DiagnosticableTreeMixin {
+mixin _$ReportsEvent {
 
 
 
 
-@override
-void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
-    ..add(DiagnosticsProperty('type', 'ReportsEvent'))
-    ;
-}
 
 @override
 bool operator ==(Object other) {
@@ -34,7 +28,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+String toString() {
   return 'ReportsEvent()';
 }
 
@@ -186,7 +180,7 @@ return clearReport();case _:
 /// @nodoc
 
 
-class GetReports with DiagnosticableTreeMixin implements ReportsEvent {
+class GetReports implements ReportsEvent {
   const GetReports({required this.params});
   
 
@@ -199,12 +193,6 @@ class GetReports with DiagnosticableTreeMixin implements ReportsEvent {
 $GetReportsCopyWith<GetReports> get copyWith => _$GetReportsCopyWithImpl<GetReports>(this, _$identity);
 
 
-@override
-void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
-    ..add(DiagnosticsProperty('type', 'ReportsEvent.getReports'))
-    ..add(DiagnosticsProperty('params', params));
-}
 
 @override
 bool operator ==(Object other) {
@@ -216,7 +204,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,params);
 
 @override
-String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+String toString() {
   return 'ReportsEvent.getReports(params: $params)';
 }
 
@@ -267,7 +255,7 @@ $ReportsParamsCopyWith<$Res> get params {
 /// @nodoc
 
 
-class StroeRport with DiagnosticableTreeMixin implements ReportsEvent {
+class StroeRport implements ReportsEvent {
   const StroeRport({required this.params});
   
 
@@ -280,12 +268,6 @@ class StroeRport with DiagnosticableTreeMixin implements ReportsEvent {
 $StroeRportCopyWith<StroeRport> get copyWith => _$StroeRportCopyWithImpl<StroeRport>(this, _$identity);
 
 
-@override
-void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
-    ..add(DiagnosticsProperty('type', 'ReportsEvent.stroeRport'))
-    ..add(DiagnosticsProperty('params', params));
-}
 
 @override
 bool operator ==(Object other) {
@@ -297,7 +279,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,params);
 
 @override
-String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+String toString() {
   return 'ReportsEvent.stroeRport(params: $params)';
 }
 
@@ -348,7 +330,7 @@ $ReportsParamsCopyWith<$Res> get params {
 /// @nodoc
 
 
-class ClearReport with DiagnosticableTreeMixin implements ReportsEvent {
+class ClearReport implements ReportsEvent {
   const ClearReport();
   
 
@@ -356,12 +338,6 @@ class ClearReport with DiagnosticableTreeMixin implements ReportsEvent {
 
 
 
-@override
-void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
-    ..add(DiagnosticsProperty('type', 'ReportsEvent.clearReport'))
-    ;
-}
 
 @override
 bool operator ==(Object other) {
@@ -373,7 +349,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+String toString() {
   return 'ReportsEvent.clearReport()';
 }
 
@@ -384,9 +360,9 @@ String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
 
 
 /// @nodoc
-mixin _$ReportsState implements DiagnosticableTreeMixin {
+mixin _$ReportsState {
 
- bool get isFetchingReports; bool get isFetchingFailed; bool get isFetchingSuccess; Uint8List? get report; bool get isRepoertSaving; bool get isReportSavingFailed; bool get isReportSavingSucces; ErrorModel get error; int get selectedMemberId; List<ReportModel> get reports;
+ bool get isFetchingReports; bool get isFetchingFailed; bool get isFetchingSuccess; ReportFileModel? get report; bool get isRepoertSaving; bool get isReportSavingFailed; bool get isReportSavingSucces; ErrorModel get error; int get selectedMemberId; List<ReportModel> get reports;
 /// Create a copy of ReportsState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -394,24 +370,18 @@ mixin _$ReportsState implements DiagnosticableTreeMixin {
 $ReportsStateCopyWith<ReportsState> get copyWith => _$ReportsStateCopyWithImpl<ReportsState>(this as ReportsState, _$identity);
 
 
-@override
-void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
-    ..add(DiagnosticsProperty('type', 'ReportsState'))
-    ..add(DiagnosticsProperty('isFetchingReports', isFetchingReports))..add(DiagnosticsProperty('isFetchingFailed', isFetchingFailed))..add(DiagnosticsProperty('isFetchingSuccess', isFetchingSuccess))..add(DiagnosticsProperty('report', report))..add(DiagnosticsProperty('isRepoertSaving', isRepoertSaving))..add(DiagnosticsProperty('isReportSavingFailed', isReportSavingFailed))..add(DiagnosticsProperty('isReportSavingSucces', isReportSavingSucces))..add(DiagnosticsProperty('error', error))..add(DiagnosticsProperty('selectedMemberId', selectedMemberId))..add(DiagnosticsProperty('reports', reports));
-}
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReportsState&&(identical(other.isFetchingReports, isFetchingReports) || other.isFetchingReports == isFetchingReports)&&(identical(other.isFetchingFailed, isFetchingFailed) || other.isFetchingFailed == isFetchingFailed)&&(identical(other.isFetchingSuccess, isFetchingSuccess) || other.isFetchingSuccess == isFetchingSuccess)&&const DeepCollectionEquality().equals(other.report, report)&&(identical(other.isRepoertSaving, isRepoertSaving) || other.isRepoertSaving == isRepoertSaving)&&(identical(other.isReportSavingFailed, isReportSavingFailed) || other.isReportSavingFailed == isReportSavingFailed)&&(identical(other.isReportSavingSucces, isReportSavingSucces) || other.isReportSavingSucces == isReportSavingSucces)&&(identical(other.error, error) || other.error == error)&&(identical(other.selectedMemberId, selectedMemberId) || other.selectedMemberId == selectedMemberId)&&const DeepCollectionEquality().equals(other.reports, reports));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReportsState&&(identical(other.isFetchingReports, isFetchingReports) || other.isFetchingReports == isFetchingReports)&&(identical(other.isFetchingFailed, isFetchingFailed) || other.isFetchingFailed == isFetchingFailed)&&(identical(other.isFetchingSuccess, isFetchingSuccess) || other.isFetchingSuccess == isFetchingSuccess)&&(identical(other.report, report) || other.report == report)&&(identical(other.isRepoertSaving, isRepoertSaving) || other.isRepoertSaving == isRepoertSaving)&&(identical(other.isReportSavingFailed, isReportSavingFailed) || other.isReportSavingFailed == isReportSavingFailed)&&(identical(other.isReportSavingSucces, isReportSavingSucces) || other.isReportSavingSucces == isReportSavingSucces)&&(identical(other.error, error) || other.error == error)&&(identical(other.selectedMemberId, selectedMemberId) || other.selectedMemberId == selectedMemberId)&&const DeepCollectionEquality().equals(other.reports, reports));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isFetchingReports,isFetchingFailed,isFetchingSuccess,const DeepCollectionEquality().hash(report),isRepoertSaving,isReportSavingFailed,isReportSavingSucces,error,selectedMemberId,const DeepCollectionEquality().hash(reports));
+int get hashCode => Object.hash(runtimeType,isFetchingReports,isFetchingFailed,isFetchingSuccess,report,isRepoertSaving,isReportSavingFailed,isReportSavingSucces,error,selectedMemberId,const DeepCollectionEquality().hash(reports));
 
 @override
-String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+String toString() {
   return 'ReportsState(isFetchingReports: $isFetchingReports, isFetchingFailed: $isFetchingFailed, isFetchingSuccess: $isFetchingSuccess, report: $report, isRepoertSaving: $isRepoertSaving, isReportSavingFailed: $isReportSavingFailed, isReportSavingSucces: $isReportSavingSucces, error: $error, selectedMemberId: $selectedMemberId, reports: $reports)';
 }
 
@@ -423,7 +393,7 @@ abstract mixin class $ReportsStateCopyWith<$Res>  {
   factory $ReportsStateCopyWith(ReportsState value, $Res Function(ReportsState) _then) = _$ReportsStateCopyWithImpl;
 @useResult
 $Res call({
- bool isFetchingReports, bool isFetchingFailed, bool isFetchingSuccess, Uint8List? report, bool isRepoertSaving, bool isReportSavingFailed, bool isReportSavingSucces, ErrorModel error, int selectedMemberId, List<ReportModel> reports
+ bool isFetchingReports, bool isFetchingFailed, bool isFetchingSuccess, ReportFileModel? report, bool isRepoertSaving, bool isReportSavingFailed, bool isReportSavingSucces, ErrorModel error, int selectedMemberId, List<ReportModel> reports
 });
 
 
@@ -446,7 +416,7 @@ isFetchingReports: null == isFetchingReports ? _self.isFetchingReports : isFetch
 as bool,isFetchingFailed: null == isFetchingFailed ? _self.isFetchingFailed : isFetchingFailed // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingSuccess: null == isFetchingSuccess ? _self.isFetchingSuccess : isFetchingSuccess // ignore: cast_nullable_to_non_nullable
 as bool,report: freezed == report ? _self.report : report // ignore: cast_nullable_to_non_nullable
-as Uint8List?,isRepoertSaving: null == isRepoertSaving ? _self.isRepoertSaving : isRepoertSaving // ignore: cast_nullable_to_non_nullable
+as ReportFileModel?,isRepoertSaving: null == isRepoertSaving ? _self.isRepoertSaving : isRepoertSaving // ignore: cast_nullable_to_non_nullable
 as bool,isReportSavingFailed: null == isReportSavingFailed ? _self.isReportSavingFailed : isReportSavingFailed // ignore: cast_nullable_to_non_nullable
 as bool,isReportSavingSucces: null == isReportSavingSucces ? _self.isReportSavingSucces : isReportSavingSucces // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
@@ -534,7 +504,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isFetchingReports,  bool isFetchingFailed,  bool isFetchingSuccess,  Uint8List? report,  bool isRepoertSaving,  bool isReportSavingFailed,  bool isReportSavingSucces,  ErrorModel error,  int selectedMemberId,  List<ReportModel> reports)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isFetchingReports,  bool isFetchingFailed,  bool isFetchingSuccess,  ReportFileModel? report,  bool isRepoertSaving,  bool isReportSavingFailed,  bool isReportSavingSucces,  ErrorModel error,  int selectedMemberId,  List<ReportModel> reports)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ReportsState() when $default != null:
 return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingSuccess,_that.report,_that.isRepoertSaving,_that.isReportSavingFailed,_that.isReportSavingSucces,_that.error,_that.selectedMemberId,_that.reports);case _:
@@ -555,7 +525,7 @@ return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingS
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isFetchingReports,  bool isFetchingFailed,  bool isFetchingSuccess,  Uint8List? report,  bool isRepoertSaving,  bool isReportSavingFailed,  bool isReportSavingSucces,  ErrorModel error,  int selectedMemberId,  List<ReportModel> reports)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isFetchingReports,  bool isFetchingFailed,  bool isFetchingSuccess,  ReportFileModel? report,  bool isRepoertSaving,  bool isReportSavingFailed,  bool isReportSavingSucces,  ErrorModel error,  int selectedMemberId,  List<ReportModel> reports)  $default,) {final _that = this;
 switch (_that) {
 case _ReportsState():
 return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingSuccess,_that.report,_that.isRepoertSaving,_that.isReportSavingFailed,_that.isReportSavingSucces,_that.error,_that.selectedMemberId,_that.reports);}
@@ -572,7 +542,7 @@ return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingS
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isFetchingReports,  bool isFetchingFailed,  bool isFetchingSuccess,  Uint8List? report,  bool isRepoertSaving,  bool isReportSavingFailed,  bool isReportSavingSucces,  ErrorModel error,  int selectedMemberId,  List<ReportModel> reports)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isFetchingReports,  bool isFetchingFailed,  bool isFetchingSuccess,  ReportFileModel? report,  bool isRepoertSaving,  bool isReportSavingFailed,  bool isReportSavingSucces,  ErrorModel error,  int selectedMemberId,  List<ReportModel> reports)?  $default,) {final _that = this;
 switch (_that) {
 case _ReportsState() when $default != null:
 return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingSuccess,_that.report,_that.isRepoertSaving,_that.isReportSavingFailed,_that.isReportSavingSucces,_that.error,_that.selectedMemberId,_that.reports);case _:
@@ -586,14 +556,14 @@ return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingS
 /// @nodoc
 
 
-class _ReportsState with DiagnosticableTreeMixin implements ReportsState {
+class _ReportsState implements ReportsState {
   const _ReportsState({required this.isFetchingReports, required this.isFetchingFailed, required this.isFetchingSuccess, required this.report, required this.isRepoertSaving, required this.isReportSavingFailed, required this.isReportSavingSucces, required this.error, required this.selectedMemberId, required final  List<ReportModel> reports}): _reports = reports;
   
 
 @override final  bool isFetchingReports;
 @override final  bool isFetchingFailed;
 @override final  bool isFetchingSuccess;
-@override final  Uint8List? report;
+@override final  ReportFileModel? report;
 @override final  bool isRepoertSaving;
 @override final  bool isReportSavingFailed;
 @override final  bool isReportSavingSucces;
@@ -614,24 +584,18 @@ class _ReportsState with DiagnosticableTreeMixin implements ReportsState {
 _$ReportsStateCopyWith<_ReportsState> get copyWith => __$ReportsStateCopyWithImpl<_ReportsState>(this, _$identity);
 
 
-@override
-void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
-    ..add(DiagnosticsProperty('type', 'ReportsState'))
-    ..add(DiagnosticsProperty('isFetchingReports', isFetchingReports))..add(DiagnosticsProperty('isFetchingFailed', isFetchingFailed))..add(DiagnosticsProperty('isFetchingSuccess', isFetchingSuccess))..add(DiagnosticsProperty('report', report))..add(DiagnosticsProperty('isRepoertSaving', isRepoertSaving))..add(DiagnosticsProperty('isReportSavingFailed', isReportSavingFailed))..add(DiagnosticsProperty('isReportSavingSucces', isReportSavingSucces))..add(DiagnosticsProperty('error', error))..add(DiagnosticsProperty('selectedMemberId', selectedMemberId))..add(DiagnosticsProperty('reports', reports));
-}
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ReportsState&&(identical(other.isFetchingReports, isFetchingReports) || other.isFetchingReports == isFetchingReports)&&(identical(other.isFetchingFailed, isFetchingFailed) || other.isFetchingFailed == isFetchingFailed)&&(identical(other.isFetchingSuccess, isFetchingSuccess) || other.isFetchingSuccess == isFetchingSuccess)&&const DeepCollectionEquality().equals(other.report, report)&&(identical(other.isRepoertSaving, isRepoertSaving) || other.isRepoertSaving == isRepoertSaving)&&(identical(other.isReportSavingFailed, isReportSavingFailed) || other.isReportSavingFailed == isReportSavingFailed)&&(identical(other.isReportSavingSucces, isReportSavingSucces) || other.isReportSavingSucces == isReportSavingSucces)&&(identical(other.error, error) || other.error == error)&&(identical(other.selectedMemberId, selectedMemberId) || other.selectedMemberId == selectedMemberId)&&const DeepCollectionEquality().equals(other._reports, _reports));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ReportsState&&(identical(other.isFetchingReports, isFetchingReports) || other.isFetchingReports == isFetchingReports)&&(identical(other.isFetchingFailed, isFetchingFailed) || other.isFetchingFailed == isFetchingFailed)&&(identical(other.isFetchingSuccess, isFetchingSuccess) || other.isFetchingSuccess == isFetchingSuccess)&&(identical(other.report, report) || other.report == report)&&(identical(other.isRepoertSaving, isRepoertSaving) || other.isRepoertSaving == isRepoertSaving)&&(identical(other.isReportSavingFailed, isReportSavingFailed) || other.isReportSavingFailed == isReportSavingFailed)&&(identical(other.isReportSavingSucces, isReportSavingSucces) || other.isReportSavingSucces == isReportSavingSucces)&&(identical(other.error, error) || other.error == error)&&(identical(other.selectedMemberId, selectedMemberId) || other.selectedMemberId == selectedMemberId)&&const DeepCollectionEquality().equals(other._reports, _reports));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isFetchingReports,isFetchingFailed,isFetchingSuccess,const DeepCollectionEquality().hash(report),isRepoertSaving,isReportSavingFailed,isReportSavingSucces,error,selectedMemberId,const DeepCollectionEquality().hash(_reports));
+int get hashCode => Object.hash(runtimeType,isFetchingReports,isFetchingFailed,isFetchingSuccess,report,isRepoertSaving,isReportSavingFailed,isReportSavingSucces,error,selectedMemberId,const DeepCollectionEquality().hash(_reports));
 
 @override
-String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+String toString() {
   return 'ReportsState(isFetchingReports: $isFetchingReports, isFetchingFailed: $isFetchingFailed, isFetchingSuccess: $isFetchingSuccess, report: $report, isRepoertSaving: $isRepoertSaving, isReportSavingFailed: $isReportSavingFailed, isReportSavingSucces: $isReportSavingSucces, error: $error, selectedMemberId: $selectedMemberId, reports: $reports)';
 }
 
@@ -643,7 +607,7 @@ abstract mixin class _$ReportsStateCopyWith<$Res> implements $ReportsStateCopyWi
   factory _$ReportsStateCopyWith(_ReportsState value, $Res Function(_ReportsState) _then) = __$ReportsStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isFetchingReports, bool isFetchingFailed, bool isFetchingSuccess, Uint8List? report, bool isRepoertSaving, bool isReportSavingFailed, bool isReportSavingSucces, ErrorModel error, int selectedMemberId, List<ReportModel> reports
+ bool isFetchingReports, bool isFetchingFailed, bool isFetchingSuccess, ReportFileModel? report, bool isRepoertSaving, bool isReportSavingFailed, bool isReportSavingSucces, ErrorModel error, int selectedMemberId, List<ReportModel> reports
 });
 
 
@@ -666,7 +630,7 @@ isFetchingReports: null == isFetchingReports ? _self.isFetchingReports : isFetch
 as bool,isFetchingFailed: null == isFetchingFailed ? _self.isFetchingFailed : isFetchingFailed // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingSuccess: null == isFetchingSuccess ? _self.isFetchingSuccess : isFetchingSuccess // ignore: cast_nullable_to_non_nullable
 as bool,report: freezed == report ? _self.report : report // ignore: cast_nullable_to_non_nullable
-as Uint8List?,isRepoertSaving: null == isRepoertSaving ? _self.isRepoertSaving : isRepoertSaving // ignore: cast_nullable_to_non_nullable
+as ReportFileModel?,isRepoertSaving: null == isRepoertSaving ? _self.isRepoertSaving : isRepoertSaving // ignore: cast_nullable_to_non_nullable
 as bool,isReportSavingFailed: null == isReportSavingFailed ? _self.isReportSavingFailed : isReportSavingFailed // ignore: cast_nullable_to_non_nullable
 as bool,isReportSavingSucces: null == isReportSavingSucces ? _self.isReportSavingSucces : isReportSavingSucces // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable

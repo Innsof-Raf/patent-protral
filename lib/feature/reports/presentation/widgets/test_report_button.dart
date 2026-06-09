@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc/reports_bloc.dart';
+import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:patient_portal/resources/urls.dart';

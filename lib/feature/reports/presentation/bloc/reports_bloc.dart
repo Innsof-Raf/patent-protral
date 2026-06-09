@@ -1,11 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/feature/reports/data/models/report_file_model.dart';
 import 'package:patient_portal/feature/reports/data/models/report_model.dart';
-import 'package:patient_portal/feature/reports/domain/usecases/download_report_usecase.dart';
-import 'package:patient_portal/feature/reports/domain/usecases/get_reports_usecase.dart';
 import 'package:patient_portal/feature/reports/domain/usecases/params/reports_params.dart';
+import 'package:patient_portal/feature/reports/domain/usecases/reports_usecase.dart';
 import 'package:patient_portal/resources/error_model.dart';
 
 part 'reports_event.dart';
@@ -13,13 +12,9 @@ part 'reports_state.dart';
 part 'generated/reports_bloc.freezed.dart';
 
 class ReportsBloc extends Bloc<ReportsEvent, ReportsState> {
-  final GetReportsUseCase getReportsUseCase;
-  final DownloadReportUseCase downloadReportUseCase;
+  final ReportsUseCase reportsUseCase;
 
-  ReportsBloc({
-    required this.getReportsUseCase,
-    required this.downloadReportUseCase,
-  }) : super(ReportsState.initial()) {
+  ReportsBloc({required this.reportsUseCase}) : super(ReportsState.initial()) {
     on<GetReports>((event, emit) async {
       final getReportsParams = event.params.maybeMap(
         getReports: (value) => value,
@@ -34,7 +29,7 @@ class ReportsBloc extends Bloc<ReportsEvent, ReportsState> {
         ),
       );
       final Either<ErrorModel, List<ReportModel>> reportsFetchingOptions =
-          await getReportsUseCase(event.params);
+          await reportsUseCase.getReports(event.params);
       reportsFetchingOptions.fold(
         (error) => emit(
           state.copyWith(
@@ -60,8 +55,8 @@ class ReportsBloc extends Bloc<ReportsEvent, ReportsState> {
           isReportSavingSucces: false,
         ),
       );
-      final Either<ErrorModel, Uint8List> reportSavingResponses =
-          await downloadReportUseCase(event.params);
+      final Either<ErrorModel, ReportFileModel> reportSavingResponses =
+          await reportsUseCase.downloadReport(event.params);
       reportSavingResponses.fold(
         (error) => emit(
           state.copyWith(
