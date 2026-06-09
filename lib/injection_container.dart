@@ -16,10 +16,7 @@ import 'package:patient_portal/feature/book_appointment/data/datasources/book_ap
 import 'package:patient_portal/feature/book_appointment/data/repositories/book_appointment_repository_impl.dart';
 import 'package:patient_portal/feature/book_appointment/domain/repositories/book_appointment_repository.dart';
 import 'package:patient_portal/feature/book_appointment/domain/usecases/book_appointment_usecase.dart';
-import 'package:patient_portal/feature/book_appointment/domain/usecases/get_available_slots_usecase.dart';
-import 'package:patient_portal/feature/book_appointment/domain/usecases/reschedule_appointment_usecase.dart';
-import 'package:patient_portal/feature/book_appointment/presentation/bloc/appointment_bloc/appointment_bloc.dart';
-import 'package:patient_portal/feature/book_appointment/presentation/bloc/slot_bloc/slot_bloc.dart';
+import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
 import 'package:patient_portal/feature/doctors/data/datasources/doctor_remote_data_source.dart';
 import 'package:patient_portal/feature/doctors/data/repositories/doctor_repository_impl.dart';
 import 'package:patient_portal/feature/doctors/domain/repositories/doctor_repository.dart';
@@ -171,12 +168,12 @@ Future<void> init() async {
   //! Features - Book Appointment
   // Bloc
   sl.registerFactory(
-    () => AppointmentBloc(
+    () => BookAppointmentBloc(
       bookAppointmentUseCase: sl(),
       rescheduleAppointmentUseCase: sl(),
+      getAvailableSlotsUseCase: sl(),
     ),
   );
-  sl.registerFactory(() => SlotBloc(getAvailableSlotsUseCase: sl()));
 
   // Use cases
   sl.registerLazySingleton(() => BookAppointmentUseCase(sl()));

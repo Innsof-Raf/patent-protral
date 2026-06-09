@@ -3,8 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/add_document/presentation/bloc/add_document_bloc.dart';
 import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
-import 'package:patient_portal/feature/book_appointment/presentation/bloc/appointment_bloc/appointment_bloc.dart';
-import 'package:patient_portal/feature/book_appointment/presentation/bloc/slot_bloc/slot_bloc.dart';
+import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
 import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc/doctor_bloc.dart';
 import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc/search_doctor_bloc.dart';
 import 'package:patient_portal/feature/documents/presentation/bloc/documents_bloc/documents_bloc.dart';
@@ -57,8 +56,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => di.sl<SpecialityBloc>()),
         BlocProvider(create: (context) => di.sl<HomeBloc>()),
         BlocProvider(create: (context) => di.sl<AddMemberBloc>()),
-        BlocProvider(create: (context) => di.sl<SlotBloc>()),
-        BlocProvider(create: (context) => di.sl<AppointmentBloc>()),
+        BlocProvider(create: (context) => di.sl<BookAppointmentBloc>()),
         BlocProvider(create: (context) => di.sl<MemberSearchBloc>()),
         BlocProvider(create: (context) => di.sl<DeleteMemberBloc>()),
         BlocProvider(create: (context) => di.sl<MemberDetailBloc>()),

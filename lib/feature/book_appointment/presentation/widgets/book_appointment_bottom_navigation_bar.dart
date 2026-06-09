@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/book_appointment/presentation/bloc/appointment_bloc/appointment_bloc.dart';
-import 'package:patient_portal/feature/book_appointment/presentation/bloc/slot_bloc/slot_bloc.dart';
+import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
 import 'package:patient_portal/feature/my_appointments/data/models/my_appointment_model.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
@@ -29,11 +28,11 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SlotBloc, SlotState>(
+    return BlocBuilder<BookAppointmentBloc, BookAppointmentState>(
       builder: (context, state) {
         return state.isFetchingError
             ? const SizedBox()
-            : BlocConsumer<AppointmentBloc, AppointmentState>(
+            : BlocConsumer<BookAppointmentBloc, BookAppointmentState>(
                 listener: (context, state) {
                   if (state.isAppointmentSavingFailure &&
                       !state.isAppointmentSavingSuccses) {
@@ -110,7 +109,7 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                             ),
                           ),
                         );
-                        context.read<SlotBloc>().add(
+                        context.read<BookAppointmentBloc>().add(
                           ChangeBookedSlotState(
                             slotTime:
                                 state.appointmentDetails!.appointmentDateTime,
@@ -162,7 +161,7 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                               (appointment) => appointment.id == appointmentId,
                             );
 
-                        context.read<SlotBloc>().add(
+                        context.read<BookAppointmentBloc>().add(
                           ChangeResheduledSlotState(
                             oldSlot: selectedAppointment.appointmentDateTime,
                             currentSlot:
@@ -210,7 +209,7 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                         padding: const EdgeInsets.all(15),
                       ),
                       onPressed: () {
-                        if (!state.isLoading) {
+                        if (!state.isAppointmentLoading) {
                           if (appointmentId == 0) {
                             BookAppointmentScreenHelpers.bookAppointment(
                               context: context,
@@ -229,7 +228,7 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                           }
                         }
                       },
-                      child: state.isLoading
+                      child: state.isAppointmentLoading
                           ? const CircularProgressIndicator(
                               color: AppColors.white,
                             )

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_portal/feature/book_appointment/presentation/bloc/appointment_bloc/appointment_bloc.dart';
+import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/resources/app_colors.dart';
@@ -148,7 +148,7 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
                 AlertActiveElevatedButton(
                   onPressed: () {
                     if (appointmentId == 0) {
-                      context.read<AppointmentBloc>().add(
+                      context.read<BookAppointmentBloc>().add(
                         BookNewAppointment(
                           appointmentDateTime: appintmentDateTime,
                           idDoctor: idDoctor,
@@ -166,7 +166,7 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
                         ),
                       );
                     } else {
-                      context.read<AppointmentBloc>().add(
+                      context.read<BookAppointmentBloc>().add(
                         ResheduleAppointment(
                           idAppointment: appointmentId,
                           appointmentDateTime: appintmentDateTime,

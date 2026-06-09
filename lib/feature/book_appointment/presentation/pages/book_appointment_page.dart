@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/book_appointment/presentation/bloc/slot_bloc/slot_bloc.dart';
+import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/date_tab.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -28,7 +28,7 @@ class BookAppointmentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<SlotBloc>().add(
+      context.read<BookAppointmentBloc>().add(
         GetAvailableSlots(
           idDoctor: idDoctor,
           date: BookAppointmentScreenHelpers.selectedDateNotifier.value,
@@ -53,7 +53,7 @@ class BookAppointmentScreen extends StatelessWidget {
                     BookAppointmentScreenHelpers.selectedDateNotifier.value) {
                   BookAppointmentScreenHelpers.selectedDateNotifier.value =
                       BookAppointmentScreenHelpers.dateList[value];
-                  context.read<SlotBloc>().add(
+                  context.read<BookAppointmentBloc>().add(
                     GetAvailableSlots(
                       idDoctor: idDoctor,
                       date: BookAppointmentScreenHelpers.dateList[value],
@@ -82,7 +82,7 @@ class BookAppointmentScreen extends StatelessWidget {
               width: double.infinity,
               color: AppColors.dividerGrayColor,
             ),
-            BlocBuilder<SlotBloc, SlotState>(
+            BlocBuilder<BookAppointmentBloc, BookAppointmentState>(
               builder: (context, state) {
                 return Expanded(
                   child: state.isFetchingError
@@ -95,7 +95,7 @@ class BookAppointmentScreen extends StatelessWidget {
                       : SingleChildScrollView(
                           child: Column(
                             children: [
-                              state.isLoading
+                              state.isSlotLoading
                                   ? Column(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
