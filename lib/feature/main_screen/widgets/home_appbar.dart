@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:patient_portal/route/route_constants.dart';
 
 import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
-import '../../home/bloc/home_bloc.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});

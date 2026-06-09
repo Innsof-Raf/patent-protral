@@ -8,7 +8,7 @@ import 'package:patient_portal/feature/book_appointment/presentation/bloc/slot_b
 import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc/doctor_bloc.dart';
 import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc/search_doctor_bloc.dart';
 import 'package:patient_portal/feature/documents/presentation/bloc/documents_bloc/documents_bloc.dart';
-import 'package:patient_portal/feature/home/bloc/home_bloc.dart';
+import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:patient_portal/feature/lab/blocs/items_bloc/items_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/login_with_password_bloc/login_with_password_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(create: (context) => UserBloc()),
         BlocProvider(create: (context) => SpecialityBloc()),
-        BlocProvider(create: (context) => HomeBloc()),
+        BlocProvider(create: (context) => di.sl<HomeBloc>()),
         BlocProvider(create: (context) => di.sl<AddMemberBloc>()),
         BlocProvider(create: (context) => di.sl<SlotBloc>()),
         BlocProvider(create: (context) => di.sl<AppointmentBloc>()),

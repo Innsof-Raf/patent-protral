@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
 
 import '../../resources/common_widgets.dart/common_appbar.dart';
-import '../home/bloc/home_bloc.dart';
 import 'widgets/medical_insurance_widget.dart';
 
 class MedicalInsurancesScreen extends StatelessWidget {

@@ -1,8 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:patient_portal/feature/home/models/home_data_model.dart/home_data_model.dart';
-import 'package:patient_portal/feature/home/services/home_services.dart';
+import 'package:patient_portal/feature/home/data/models/home_data_model.dart';
+import 'package:patient_portal/feature/home/domain/usecases/get_home_data_usecase.dart';
+import 'package:patient_portal/feature/home/domain/usecases/params/home_params.dart';
 import 'package:patient_portal/resources/error_model.dart';
 
 part 'home_event.dart';
@@ -10,7 +10,9 @@ part 'home_state.dart';
 part 'generated/home_bloc.freezed.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc() : super(HomeState.initial()) {
+  final GetHomeDataUseCase getHomeDataUseCase;
+
+  HomeBloc({required this.getHomeDataUseCase}) : super(HomeState.initial()) {
     on<GetHomeData>((event, emit) async {
       emit(
         state.copyWith(
@@ -19,17 +21,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           isDataFetchingsuccess: false,
         ),
       );
-      Either<ErrorModel, HomeDataModel> homeDataFetchingOptions =
-          await HomeServices.getHomeData(
-            token: event.token,
-            idBusunit: event.idBusunit,
-          );
+      final result = await getHomeDataUseCase(
+        HomeParams.getHomeData(token: event.token, idBusunit: event.idBusunit),
+      );
 
-      homeDataFetchingOptions.fold(
-        (error) => emit(
+      result.fold(
+        (failure) => emit(
           state.copyWith(
             isDataFetching: false,
-            error: error,
+            error: ErrorModel(message: failure.message),
             isDataFetchingFailed: true,
           ),
         ),

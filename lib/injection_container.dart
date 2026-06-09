@@ -31,6 +31,11 @@ import 'package:patient_portal/feature/documents/data/repositories/documents_rep
 import 'package:patient_portal/feature/documents/domain/repositories/documents_repository.dart';
 import 'package:patient_portal/feature/documents/domain/usecases/get_documents_usecase.dart';
 import 'package:patient_portal/feature/documents/presentation/bloc/documents_bloc/documents_bloc.dart';
+import 'package:patient_portal/feature/home/data/datasources/home_remote_data_source.dart';
+import 'package:patient_portal/feature/home/data/repositories/home_repository_impl.dart';
+import 'package:patient_portal/feature/home/domain/repositories/home_repository.dart';
+import 'package:patient_portal/feature/home/domain/usecases/get_home_data_usecase.dart';
+import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/login_with_password_bloc/login_with_password_bloc.dart';
 import 'package:patient_portal/feature/login/data/datasources/login_remote_data_source.dart';
 import 'package:patient_portal/feature/login/data/repositories/login_repository_impl.dart';
@@ -167,6 +172,23 @@ Future<void> init() async {
   // Data sources
   sl.registerLazySingleton<DocumentsRemoteDataSource>(
     () => DocumentsRemoteDataSourceImpl(client: sl()),
+  );
+
+  //! Features - Home
+  // Bloc
+  sl.registerFactory(() => HomeBloc(getHomeDataUseCase: sl()));
+
+  // Use cases
+  sl.registerLazySingleton(() => GetHomeDataUseCase(sl()));
+
+  // Repository
+  sl.registerLazySingleton<HomeRepository>(
+    () => HomeRepositoryImpl(remoteDataSource: sl()),
+  );
+
+  // Data sources
+  sl.registerLazySingleton<HomeRemoteDataSource>(
+    () => HomeRemoteDataSourceImpl(client: sl()),
   );
 
   //! External

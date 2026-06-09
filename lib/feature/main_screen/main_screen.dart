@@ -6,11 +6,11 @@ import 'package:patient_portal/feature/main_screen/widgets/home_appbar.dart';
 import 'package:patient_portal/feature/main_screen/widgets/main_appbar.dart';
 import 'package:patient_portal/feature/main_screen/widgets/profile_app_bar.dart';
 import 'package:patient_portal/feature/main_screen/widgets/reports_app_bar.dart';
+import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
+import 'package:patient_portal/feature/home/presentation/pages/home_screen.dart';
 import 'package:patient_portal/feature/profile/profile_screen.dart';
 import 'package:patient_portal/feature/speciality/speciality_screen.dart';
 
-import '../home/bloc/home_bloc.dart';
-import '../home/home_screen.dart';
 import '../my_appointments/my_appointment_screen.dart';
 import '../profile/bloc/user_bloc.dart';
 import '../profile/models/user/user_model.dart';

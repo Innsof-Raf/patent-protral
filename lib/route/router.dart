@@ -6,7 +6,7 @@ import 'package:patient_portal/feature/cart/presentation/pages/cart_screen.dart'
 import 'package:patient_portal/feature/doctor_detail/presentation/pages/doctor_detail_screen.dart';
 import 'package:patient_portal/feature/documents/presentation/pages/documents_screen.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/pages/edit_profile_details_screen.dart';
-import 'package:patient_portal/feature/home/home_screen.dart';
+import 'package:patient_portal/feature/home/presentation/pages/home_screen.dart';
 import 'package:patient_portal/feature/lab/lab_screen.dart';
 import 'package:patient_portal/feature/main_screen/main_screen.dart';
 import 'package:patient_portal/feature/medical_insurances/medical_insurance_screen.dart';
