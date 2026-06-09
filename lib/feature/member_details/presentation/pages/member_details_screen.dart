@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_screen_appbar.dart';
+import 'package:patient_portal/feature/member_details/presentation/widgets/member_documents_section.dart';
+import 'package:patient_portal/feature/member_details/presentation/widgets/member_insurance_section.dart';
+import 'package:patient_portal/feature/member_details/presentation/widgets/member_personal_details_section.dart';
+import 'package:patient_portal/feature/member_details/presentation/widgets/member_profile_image_section.dart';
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
 import 'package:patient_portal/feature/profile/models/member/member_model.dart';
+import 'package:patient_portal/resources/app_colors.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
+import 'package:patient_portal/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/route/route_constants.dart';
-
-import '../../resources/app_colors.dart';
-import '../../resources/app_text_styles.dart';
-import '../../resources/common_helpers/insurance_helpers.dart';
-import 'widgets/member_details_screen_appbar.dart';
-import 'widgets/member_documents_section.dart';
-import 'widgets/member_insurance_section.dart';
-import 'widgets/member_personal_details_section.dart';
-import 'widgets/member_profile_image_section.dart';
 
 class MemberDetailsScreen extends StatelessWidget {
   final int memberId;
+
   const MemberDetailsScreen({super.key, required this.memberId});
 
   @override
@@ -73,7 +73,7 @@ class MemberDetailsScreen extends StatelessWidget {
                         )
                       : const SizedBox(height: 21),
                   member.memberDocs.isEmpty
-                      ? const SizedBox()
+                      ? const SizedBox.shrink()
                       : MemberDocumentsSection(documents: member.memberDocs),
                 ],
               ),

@@ -13,7 +13,7 @@ import 'package:patient_portal/feature/lab/presentation/pages/lab_screen.dart';
 import 'package:patient_portal/feature/login/presentation/pages/login_screen.dart';
 import 'package:patient_portal/feature/main_screen/presentation/pages/main_screen.dart';
 import 'package:patient_portal/feature/medical_insurances/presentation/pages/medical_insurance_screen.dart';
-import 'package:patient_portal/feature/member_details/member_details_screen.dart';
+import 'package:patient_portal/feature/member_details/presentation/pages/member_details_screen.dart';
 import 'package:patient_portal/feature/members/members_screen.dart';
 import 'package:patient_portal/feature/my_appointments/my_appointment_screen.dart';
 import 'package:patient_portal/feature/notification/notification_screen.dart';

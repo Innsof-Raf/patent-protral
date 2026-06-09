@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_portal/feature/member_details/widgets/member_text_filed.dart';
+import 'package:patient_portal/feature/member_details/presentation/widgets/member_text_filed.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:patient_portal/resources/common_widgets.dart/radio_button.dart';
 

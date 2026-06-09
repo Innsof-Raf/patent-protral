@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-
-import '../../../resources/app_colors.dart';
-import '../../../resources/app_text_styles.dart';
-import '../../../resources/common_helpers/inurance_validation_helpers.dart';
-import '../../../resources/common_widgets.dart/rounded_cheack_box.dart';
-import '../../add_member/presentation/bloc/add_member_bloc.dart';
-import '../../profile/bloc/user_bloc.dart';
-import '../helpers/eidt_member_insurance_helpers.dart';
+import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
+import 'package:patient_portal/feature/member_details/presentation/helpers/eidt_member_insurance_helpers.dart';
+import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
+import 'package:patient_portal/resources/app_colors.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
+import 'package:patient_portal/resources/common_helpers/inurance_validation_helpers.dart';
+import 'package:patient_portal/resources/common_widgets.dart/rounded_cheack_box.dart';
 
 class EditMemberInsuranceSection extends StatelessWidget {
   static DateTime? expireDate;
