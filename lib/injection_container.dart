@@ -70,7 +70,7 @@ import 'package:patient_portal/feature/set_password/data/datasources/set_passwor
 import 'package:patient_portal/feature/set_password/data/repositories/set_password_repository_impl.dart';
 import 'package:patient_portal/feature/set_password/domain/repositories/set_password_repository.dart';
 import 'package:patient_portal/feature/set_password/domain/usecases/change_password_usecase.dart';
-import 'package:patient_portal/feature/set_password/presentation/bloc/change_password_bloc/change_password_bloc.dart';
+import 'package:patient_portal/feature/set_password/presentation/bloc/change_password_bloc.dart';
 import 'package:patient_portal/feature/speciality/data/datasources/speciality_remote_data_source.dart';
 import 'package:patient_portal/feature/speciality/data/repositories/speciality_repository_impl.dart';
 import 'package:patient_portal/feature/speciality/domain/repositories/speciality_repository.dart';

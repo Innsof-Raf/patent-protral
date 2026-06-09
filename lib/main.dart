@@ -18,7 +18,7 @@ import 'package:patient_portal/feature/members/presentation/bloc/member_search_b
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
-import 'package:patient_portal/feature/set_password/presentation/bloc/change_password_bloc/change_password_bloc.dart';
+import 'package:patient_portal/feature/set_password/presentation/bloc/change_password_bloc.dart';
 import 'package:patient_portal/feature/speciality/presentation/bloc/speciality_bloc/speciality_bloc.dart';
 import 'package:patient_portal/injection_container.dart' as di;
 import 'package:patient_portal/resources/app_colors.dart';

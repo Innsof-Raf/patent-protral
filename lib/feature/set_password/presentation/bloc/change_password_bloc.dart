@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/feature/set_password/data/models/change_password_response_model.dart';
 import 'package:patient_portal/feature/set_password/domain/usecases/change_password_usecase.dart';
 import 'package:patient_portal/feature/set_password/domain/usecases/params/set_password_params.dart';
 import 'package:patient_portal/resources/error_model.dart';
@@ -23,8 +24,8 @@ class ChangePasswordBloc
           isPasswordChangingSucces: false,
         ),
       );
-      final Either<ErrorModel, Map> changePasswordOptions =
-          await changePasswordUseCase(event.params);
+      final Either<ErrorModel, ChangePasswordResponseModel>
+      changePasswordOptions = await changePasswordUseCase(event.params);
       changePasswordOptions.fold(
         (error) => emit(
           state.copyWith(

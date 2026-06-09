@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/set_password/domain/usecases/params/set_password_params.dart';
-import 'package:patient_portal/feature/set_password/presentation/bloc/change_password_bloc/change_password_bloc.dart';
+import 'package:patient_portal/feature/set_password/presentation/bloc/change_password_bloc.dart';
 import 'package:patient_portal/feature/set_password/presentation/widgets/set_password_section.dart';
 import 'package:patient_portal/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/resources/common_widgets.dart/succes_dailog.dart';
