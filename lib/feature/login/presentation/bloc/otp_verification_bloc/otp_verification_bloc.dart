@@ -5,7 +5,7 @@ import 'package:patient_portal/feature/login/domain/usecases/verify_otp_usecase.
 import 'package:patient_portal/feature/profile/models/user/user_model.dart';
 import 'package:patient_portal/resources/error_model.dart';
 
-part 'generated/otp_verification_bloc.freezed.dart';
+part '../generated/otp_verification_bloc.freezed.dart';
 part 'otp_verification_event.dart';
 part 'otp_verification_state.dart';
 

@@ -22,7 +22,7 @@ import 'package:patient_portal/feature/speciality/speciality_screen.dart';
 import 'package:patient_portal/route/route_constants.dart';
 
 import '../feature/doctors/presentation/pages/doctors_screen.dart';
-import '../feature/login/login_screen.dart';
+import '../feature/login/presentation/pages/login_screen.dart';
 import '../feature/report/report_screen.dart';
 import '../feature/set_password/set_password_screen.dart';
 

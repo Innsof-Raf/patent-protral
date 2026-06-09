@@ -4,7 +4,7 @@ import 'package:patient_portal/route/route_constants.dart';
 
 import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
-import '../../login/helpers/login_screen_helpers.dart';
+import '../../login/presentation/helpers/login_screen_helpers.dart';
 
 class LogOutTile extends StatelessWidget {
   const LogOutTile({super.key});

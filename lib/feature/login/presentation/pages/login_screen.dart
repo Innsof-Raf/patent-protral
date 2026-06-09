@@ -1,15 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:patient_portal/feature/login/widgets/login_otp_verification_section.dart';
+import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
+import 'package:patient_portal/feature/login/presentation/widgets/login_otp_generation_section.dart';
+import 'package:patient_portal/feature/login/presentation/widgets/login_otp_verification_section.dart';
+import 'package:patient_portal/feature/login/presentation/widgets/login_with_password_section.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
+import 'package:patient_portal/resources/dimens.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-import '../../resources/dimens.dart';
-import 'helpers/login_screen_helpers.dart';
-import 'widgets/login_with_password_section.dart';
-import 'widgets/login_otp_generation_section.dart';
 
 List<String> bagroundImages = [
   'assets/images/login_baground_image.png',
