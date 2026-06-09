@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/feature/main_screen/helpers/main_screen_helpers.dart';
+import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
+import 'package:patient_portal/feature/main_screen/presentation/widgets/app_drawer_tile.dart';
+import 'package:patient_portal/feature/main_screen/presentation/widgets/drawer_logout_tile.dart';
+import 'package:patient_portal/feature/main_screen/presentation/widgets/drawer_profile_tile.dart';
+import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/route/route_constants.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import '../../../resources/app_colors.dart';
-import 'app_drawer_tile.dart';
-import 'drawer_logout_tile.dart';
-import 'drawer_profile_tile.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});

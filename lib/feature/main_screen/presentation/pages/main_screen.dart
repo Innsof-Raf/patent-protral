@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/main_screen/helpers/main_screen_helpers.dart';
-import 'package:patient_portal/feature/main_screen/widgets/bottom_navigation_bar_widget.dart';
-import 'package:patient_portal/feature/main_screen/widgets/home_appbar.dart';
-import 'package:patient_portal/feature/main_screen/widgets/main_appbar.dart';
-import 'package:patient_portal/feature/main_screen/widgets/profile_app_bar.dart';
-import 'package:patient_portal/feature/main_screen/widgets/reports_app_bar.dart';
 import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:patient_portal/feature/home/presentation/pages/home_screen.dart';
+import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
+import 'package:patient_portal/feature/main_screen/presentation/widgets/app_drawer.dart';
+import 'package:patient_portal/feature/main_screen/presentation/widgets/bottom_navigation_bar_widget.dart';
+import 'package:patient_portal/feature/main_screen/presentation/widgets/home_appbar.dart';
+import 'package:patient_portal/feature/main_screen/presentation/widgets/main_appbar.dart';
+import 'package:patient_portal/feature/main_screen/presentation/widgets/profile_app_bar.dart';
+import 'package:patient_portal/feature/main_screen/presentation/widgets/reports_app_bar.dart';
+import 'package:patient_portal/feature/my_appointments/my_appointment_screen.dart';
+import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
+import 'package:patient_portal/feature/profile/models/user/user_model.dart';
 import 'package:patient_portal/feature/profile/profile_screen.dart';
+import 'package:patient_portal/feature/reports/reports_screen.dart';
 import 'package:patient_portal/feature/speciality/speciality_screen.dart';
-
-import '../my_appointments/my_appointment_screen.dart';
-import '../profile/bloc/user_bloc.dart';
-import '../profile/models/user/user_model.dart';
-import '../reports/reports_screen.dart';
-import 'widgets/app_drawer.dart';
 
 List<Widget> screens = const [
   HomeScreen(),
@@ -53,9 +52,7 @@ class MainScreen extends StatelessWidget {
         body: PopScope(
           canPop: value == 0,
           onPopInvokedWithResult: (didPop, result) {
-            if (didPop) {
-              return;
-            }
+            if (didPop) return;
             MainScreenHelpers.mainScreenNotifier.value = 0;
           },
           child: screens[value],

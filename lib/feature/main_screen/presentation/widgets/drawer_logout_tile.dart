@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
+import 'package:patient_portal/resources/app_colors.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:patient_portal/route/route_constants.dart';
-
-import '../../../resources/app_colors.dart';
-import '../../../resources/app_text_styles.dart';
-import '../../login/presentation/helpers/login_screen_helpers.dart';
 
 class LogOutTile extends StatelessWidget {
   const LogOutTile({super.key});

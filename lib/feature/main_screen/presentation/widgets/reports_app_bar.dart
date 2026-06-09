@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
+import 'package:patient_portal/feature/reports/bloc/reports_bloc.dart';
 import 'package:patient_portal/feature/reports/helpers/reports_appbar_helpers.dart';
-
-import '../../../resources/app_colors.dart';
-import '../../../resources/app_text_styles.dart';
-import '../../profile/bloc/user_bloc.dart';
-import '../../reports/bloc/reports_bloc.dart';
+import 'package:patient_portal/resources/app_colors.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
 
 class ReportsAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ReportsAppBar({super.key});

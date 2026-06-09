@@ -4,12 +4,14 @@ import 'package:patient_portal/feature/add_member/presentation/pages/add_member_
 import 'package:patient_portal/feature/book_appointment/presentation/pages/book_appointment_page.dart';
 import 'package:patient_portal/feature/cart/presentation/pages/cart_screen.dart';
 import 'package:patient_portal/feature/doctor_detail/presentation/pages/doctor_detail_screen.dart';
+import 'package:patient_portal/feature/doctors/presentation/pages/doctors_screen.dart';
 import 'package:patient_portal/feature/documents/presentation/pages/documents_screen.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/pages/edit_profile_details_screen.dart';
 import 'package:patient_portal/feature/home/presentation/pages/home_screen.dart';
 import 'package:patient_portal/feature/lab/presentation/pages/lab_item_detail_screen.dart';
 import 'package:patient_portal/feature/lab/presentation/pages/lab_screen.dart';
-import 'package:patient_portal/feature/main_screen/main_screen.dart';
+import 'package:patient_portal/feature/login/presentation/pages/login_screen.dart';
+import 'package:patient_portal/feature/main_screen/presentation/pages/main_screen.dart';
 import 'package:patient_portal/feature/medical_insurances/medical_insurance_screen.dart';
 import 'package:patient_portal/feature/member_details/member_details_screen.dart';
 import 'package:patient_portal/feature/members/members_screen.dart';
@@ -17,17 +19,15 @@ import 'package:patient_portal/feature/my_appointments/my_appointment_screen.dar
 import 'package:patient_portal/feature/notification/notification_screen.dart';
 import 'package:patient_portal/feature/profile/models/member/member_model.dart';
 import 'package:patient_portal/feature/profile/profile_screen.dart';
+import 'package:patient_portal/feature/report/report_screen.dart';
 import 'package:patient_portal/feature/reports/reports_screen.dart';
+import 'package:patient_portal/feature/set_password/set_password_screen.dart';
 import 'package:patient_portal/feature/speciality/speciality_screen.dart';
 import 'package:patient_portal/route/route_constants.dart';
 
-import '../feature/doctors/presentation/pages/doctors_screen.dart';
-import '../feature/login/presentation/pages/login_screen.dart';
-import '../feature/report/report_screen.dart';
-import '../feature/set_password/set_password_screen.dart';
-
 class Approuter {
   static Duration trasitionDuration() => const Duration(milliseconds: 300);
+
   static Widget trasition(
     BuildContext context,
     Animation<double> animation,

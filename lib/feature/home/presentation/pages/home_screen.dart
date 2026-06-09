@@ -8,7 +8,7 @@ import 'package:patient_portal/feature/home/presentation/widgets/ad_banner.dart'
 import 'package:patient_portal/feature/home/presentation/widgets/arrow_forward_button.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/documents_tile.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/members_tile.dart';
-import 'package:patient_portal/feature/main_screen/helpers/main_screen_helpers.dart';
+import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
 import 'package:patient_portal/feature/speciality/widgets/speciality_tile.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
