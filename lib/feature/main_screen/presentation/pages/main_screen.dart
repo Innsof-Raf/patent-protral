@@ -13,7 +13,7 @@ import 'package:patient_portal/feature/my_appointments/presentation/pages/my_app
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/profile/data/models/user_model.dart';
 import 'package:patient_portal/feature/profile/presentation/pages/profile_screen.dart';
-import 'package:patient_portal/feature/reports/reports_screen.dart';
+import 'package:patient_portal/feature/reports/presentation/pages/reports_screen.dart';
 import 'package:patient_portal/feature/speciality/speciality_screen.dart';
 
 List<Widget> screens = const [

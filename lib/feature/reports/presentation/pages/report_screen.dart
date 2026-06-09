@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/feature/reports/domain/usecases/params/reports_params.dart';
+import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc/reports_bloc.dart';
+import 'package:patient_portal/feature/reports/presentation/widgets/report_app_bar.dart';
 import 'package:patient_portal/resources/app_colors.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-
-import '../../resources/app_text_styles.dart';
-import 'bloc/report_bloc.dart';
-import 'widgets/report_app_bar.dart';
 
 class ReportScreen extends StatelessWidget {
   static PdfViewerController pdfController = PdfViewerController();
@@ -23,7 +23,9 @@ class ReportScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<ReportBloc>().add(StroeRport(url: pdfUrl));
+      context.read<ReportsBloc>().add(
+        StroeRport(params: ReportsParams.downloadReport(url: pdfUrl)),
+      );
     });
     return Scaffold(
       backgroundColor: AppColors.lightGray,
@@ -32,7 +34,7 @@ class ReportScreen extends StatelessWidget {
         consultaionDateTime: consultedDateTime,
         documentUrl: pdfUrl,
       ),
-      body: BlocBuilder<ReportBloc, ReportState>(
+      body: BlocBuilder<ReportsBloc, ReportsState>(
         builder: (context, state) {
           return state.isRepoertSaving
               ? LayoutBuilder(

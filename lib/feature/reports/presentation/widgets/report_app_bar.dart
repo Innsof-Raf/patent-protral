@@ -3,11 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc/reports_bloc.dart';
+import 'package:patient_portal/resources/app_colors.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:share_plus/share_plus.dart';
-
-import '../../../resources/app_colors.dart';
-import '../../../resources/app_text_styles.dart';
-import '../bloc/report_bloc.dart';
 
 class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String doctorName;
@@ -67,12 +66,12 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
         },
       ),
       actions: [
-        BlocBuilder<ReportBloc, ReportState>(
+        BlocBuilder<ReportsBloc, ReportsState>(
           builder: (context, state) {
             return state.isRepoertSaving ||
                     state.isReportSavingFailed ||
                     state.report == null
-                ? const SizedBox()
+                ? const SizedBox.shrink()
                 : IconButton(
                     splashRadius: 20,
                     onPressed: () async {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patient_portal/feature/profile/data/models/member_model.dart';
-
-import '../../../resources/app_text_styles.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
 
 class ReportsAppbarHelpers {
   static List<PopupMenuItem<int>> createPopupMenuItem(

@@ -64,6 +64,12 @@ import 'package:patient_portal/feature/profile/domain/usecases/add_profile_membe
 import 'package:patient_portal/feature/profile/domain/usecases/change_member_insurance_details_usecase.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/get_member_detail_usecase.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
+import 'package:patient_portal/feature/reports/data/datasources/reports_remote_data_source.dart';
+import 'package:patient_portal/feature/reports/data/repositories/reports_repository_impl.dart';
+import 'package:patient_portal/feature/reports/domain/repositories/reports_repository.dart';
+import 'package:patient_portal/feature/reports/domain/usecases/download_report_usecase.dart';
+import 'package:patient_portal/feature/reports/domain/usecases/get_reports_usecase.dart';
+import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc/reports_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -268,6 +274,26 @@ Future<void> init() async {
   // Data sources
   sl.registerLazySingleton<ProfileRemoteDataSource>(
     () => ProfileRemoteDataSourceImpl(),
+  );
+
+  //! Features - Reports
+  // Bloc
+  sl.registerFactory(
+    () => ReportsBloc(getReportsUseCase: sl(), downloadReportUseCase: sl()),
+  );
+
+  // Use cases
+  sl.registerLazySingleton(() => GetReportsUseCase(sl()));
+  sl.registerLazySingleton(() => DownloadReportUseCase(sl()));
+
+  // Repository
+  sl.registerLazySingleton<ReportsRepository>(
+    () => ReportsRepositoryImpl(remoteDataSource: sl()),
+  );
+
+  // Data sources
+  sl.registerLazySingleton<ReportsRemoteDataSource>(
+    () => ReportsRemoteDataSourceImpl(),
   );
 
   //! External
