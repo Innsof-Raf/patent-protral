@@ -2,11 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '../../../resources/app_colors.dart';
-import '../../../resources/app_text_styles.dart';
-import '../../../resources/common_widgets.dart/image_picker_tile.dart';
-import '../../../resources/dimens.dart';
+import 'package:patient_portal/resources/app_colors.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
+import 'package:patient_portal/resources/common_widgets.dart/image_picker_tile.dart';
+import 'package:patient_portal/resources/dimens.dart';
 
 class EditProfileDetailScreenHelpers {
   static Future<DateTime?> getDob({
