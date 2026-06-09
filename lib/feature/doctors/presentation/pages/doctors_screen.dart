@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
-import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc.dart';
-import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc.dart';
+import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc/doctor_bloc.dart';
+import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc/search_doctor_bloc.dart';
 import 'package:patient_portal/feature/doctors/presentation/widgets/doctor_tile.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:patient_portal/feature/book_appointment/helpers/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
@@ -9,6 +8,8 @@ import 'package:patient_portal/resources/dimens.dart';
 import 'package:patient_portal/resources/helpers.dart';
 import 'package:patient_portal/resources/urls.dart';
 import 'package:patient_portal/route/route_constants.dart';
+
+import '../../../book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 
 class DoctorTile extends StatelessWidget {
   final Doctor doctor;

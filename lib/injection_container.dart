@@ -1,32 +1,40 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
-import 'package:patient_portal/feature/add_document/presentation/bloc/add_document_bloc.dart';
 import 'package:patient_portal/feature/add_document/data/datasources/add_document_remote_data_source.dart';
 import 'package:patient_portal/feature/add_document/data/repositories/add_document_repository_impl.dart';
 import 'package:patient_portal/feature/add_document/domain/repositories/add_document_repository.dart';
 import 'package:patient_portal/feature/add_document/domain/usecases/get_document_types_usecase.dart';
-import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
+import 'package:patient_portal/feature/add_document/presentation/bloc/add_document_bloc.dart';
 import 'package:patient_portal/feature/add_member/data/datasources/add_member_remote_data_source.dart';
 import 'package:patient_portal/feature/add_member/data/repositories/add_member_repository_impl.dart';
 import 'package:patient_portal/feature/add_member/domain/repositories/add_member_repository.dart';
-import 'package:patient_portal/feature/add_member/domain/usecases/get_insurances_usecase.dart';
 import 'package:patient_portal/feature/add_member/domain/usecases/add_member_usecase.dart';
+import 'package:patient_portal/feature/add_member/domain/usecases/get_insurances_usecase.dart';
 import 'package:patient_portal/feature/add_member/domain/usecases/update_insurance_usecase.dart';
+import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
+import 'package:patient_portal/feature/book_appointment/data/datasources/book_appointment_remote_data_source.dart';
+import 'package:patient_portal/feature/book_appointment/data/repositories/book_appointment_repository_impl.dart';
+import 'package:patient_portal/feature/book_appointment/domain/repositories/book_appointment_repository.dart';
+import 'package:patient_portal/feature/book_appointment/domain/usecases/book_appointment_usecase.dart';
+import 'package:patient_portal/feature/book_appointment/domain/usecases/get_available_slots_usecase.dart';
+import 'package:patient_portal/feature/book_appointment/domain/usecases/reschedule_appointment_usecase.dart';
+import 'package:patient_portal/feature/book_appointment/presentation/bloc/appointment_bloc/appointment_bloc.dart';
+import 'package:patient_portal/feature/book_appointment/presentation/bloc/slot_bloc/slot_bloc.dart';
 import 'package:patient_portal/feature/doctors/data/datasources/doctor_remote_data_source.dart';
 import 'package:patient_portal/feature/doctors/data/repositories/doctor_repository_impl.dart';
 import 'package:patient_portal/feature/doctors/domain/repositories/doctor_repository.dart';
 import 'package:patient_portal/feature/doctors/domain/usecases/get_available_doctors_usecase.dart';
-import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc.dart';
-import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc.dart';
+import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc/doctor_bloc.dart';
+import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc/search_doctor_bloc.dart';
+import 'package:patient_portal/feature/login/blocs/login_with_password_bloc/login_with_password_bloc.dart';
 import 'package:patient_portal/feature/login/data/datasources/login_remote_data_source.dart';
 import 'package:patient_portal/feature/login/data/repositories/login_repository_impl.dart';
-import 'package:patient_portal/feature/login/blocs/login_with_password_bloc/login_with_password_bloc.dart';
 import 'package:patient_portal/feature/login/domain/repositories/login_repository.dart';
 import 'package:patient_portal/feature/login/domain/usecases/generate_otp_usecase.dart';
 import 'package:patient_portal/feature/login/domain/usecases/login_with_password_usecase.dart';
 import 'package:patient_portal/feature/login/domain/usecases/verify_otp_usecase.dart';
-import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc.dart';
-import 'package:patient_portal/feature/login/presentation/bloc/otp_verification_bloc.dart';
+import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
+import 'package:patient_portal/feature/login/presentation/bloc/otp_verification_bloc/otp_verification_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -112,6 +120,31 @@ Future<void> init() async {
   // Data sources
   sl.registerLazySingleton<AddMemberRemoteDataSource>(
     () => AddMemberRemoteDataSourceImpl(client: sl()),
+  );
+
+  //! Features - Book Appointment
+  // Bloc
+  sl.registerFactory(
+    () => AppointmentBloc(
+      bookAppointmentUseCase: sl(),
+      rescheduleAppointmentUseCase: sl(),
+    ),
+  );
+  sl.registerFactory(() => SlotBloc(getAvailableSlotsUseCase: sl()));
+
+  // Use cases
+  sl.registerLazySingleton(() => BookAppointmentUseCase(sl()));
+  sl.registerLazySingleton(() => RescheduleAppointmentUseCase(sl()));
+  sl.registerLazySingleton(() => GetAvailableSlotsUseCase(sl()));
+
+  // Repository
+  sl.registerLazySingleton<BookAppointmentRepository>(
+    () => BookAppointmentRepositoryImpl(remoteDataSource: sl()),
+  );
+
+  // Data sources
+  sl.registerLazySingleton<BookAppointmentRemoteDataSource>(
+    () => BookAppointmentRemoteDataSourceImpl(client: sl()),
   );
 
   //! External

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/my_appointments/bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
 import 'package:patient_portal/route/route_constants.dart';
@@ -13,7 +14,6 @@ import '../../../resources/common_widgets.dart/active_outlined_button.dart';
 import '../../../resources/dimens.dart';
 import '../../../resources/helpers.dart';
 import '../../../resources/urls.dart';
-import '../../book_appointment/helpers/book_appointment_screen_helpers.dart';
 import '../models/my_appointment_model.dart';
 import 'cancel_booking_popup.dart';
 

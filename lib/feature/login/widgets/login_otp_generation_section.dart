@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/login/helpers/login_screen_form_helpers.dart';
 import 'package:patient_portal/feature/login/helpers/login_screen_helpers.dart';
-import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc.dart';
+import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:patient_portal/resources/common_widgets.dart/common_error_alert.dart';

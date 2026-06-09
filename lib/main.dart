@@ -3,16 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/add_document/presentation/bloc/add_document_bloc.dart';
 import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
-import 'package:patient_portal/feature/book_appointment/blocs/appointment_bloc.dart/appointment_bloc.dart';
-import 'package:patient_portal/feature/book_appointment/blocs/slot_bloc/slot_bloc.dart';
-import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc.dart';
-import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc.dart';
+import 'package:patient_portal/feature/book_appointment/presentation/bloc/appointment_bloc/appointment_bloc.dart';
+import 'package:patient_portal/feature/book_appointment/presentation/bloc/slot_bloc/slot_bloc.dart';
+import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc/doctor_bloc.dart';
+import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc/search_doctor_bloc.dart';
 import 'package:patient_portal/feature/documents/bloc/documents_bloc.dart';
 import 'package:patient_portal/feature/home/bloc/home_bloc.dart';
 import 'package:patient_portal/feature/lab/blocs/items_bloc/items_bloc.dart';
 import 'package:patient_portal/feature/login/blocs/login_with_password_bloc/login_with_password_bloc.dart';
-import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc.dart';
-import 'package:patient_portal/feature/login/presentation/bloc/otp_verification_bloc.dart';
+import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
+import 'package:patient_portal/feature/login/presentation/bloc/otp_verification_bloc/otp_verification_bloc.dart';
 import 'package:patient_portal/feature/members/blocs/member_serach_bloc/member_search_bloc.dart';
 import 'package:patient_portal/feature/my_appointments/bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
@@ -57,8 +57,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SpecialityBloc()),
         BlocProvider(create: (context) => HomeBloc()),
         BlocProvider(create: (context) => di.sl<AddMemberBloc>()),
-        BlocProvider(create: (context) => SlotBloc()),
-        BlocProvider(create: (context) => AppointmentBloc()),
+        BlocProvider(create: (context) => di.sl<SlotBloc>()),
+        BlocProvider(create: (context) => di.sl<AppointmentBloc>()),
         BlocProvider(create: (context) => MemberSearchBloc()),
         BlocProvider(create: (context) => MyAppointmentsBloc()),
         BlocProvider(create: (context) => ItemsBloc()),
