@@ -11,6 +11,7 @@ import 'package:patient_portal/resources/dimens.dart';
 
 class DoctorsScreen extends StatelessWidget {
   final int idSpecilaity;
+
   const DoctorsScreen({super.key, required this.idSpecilaity});
 
   @override
@@ -76,7 +77,7 @@ class DoctorsScreen extends StatelessWidget {
                           ),
                         ],
                       )
-                    : const SizedBox();
+                    : const SizedBox.shrink();
               },
             ),
             Dimens.constHeight,

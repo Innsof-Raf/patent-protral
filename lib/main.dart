@@ -10,7 +10,7 @@ import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_b
 import 'package:patient_portal/feature/documents/bloc/documents_bloc.dart';
 import 'package:patient_portal/feature/home/bloc/home_bloc.dart';
 import 'package:patient_portal/feature/lab/blocs/items_bloc/items_bloc.dart';
-import 'package:patient_portal/feature/login/blocs/login_with_password_bloc/login_with_password_bloc.dart';
+import 'package:patient_portal/feature/login/presentation/bloc/login_with_password_bloc/login_with_password_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_verification_bloc/otp_verification_bloc.dart';
 import 'package:patient_portal/feature/members/blocs/member_serach_bloc/member_search_bloc.dart';

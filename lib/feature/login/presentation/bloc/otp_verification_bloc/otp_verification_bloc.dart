@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/feature/login/domain/usecases/params/login_params.dart';
 import 'package:patient_portal/feature/login/domain/usecases/verify_otp_usecase.dart';
 import 'package:patient_portal/feature/profile/models/user/user_model.dart';
 import 'package:patient_portal/resources/error_model.dart';
@@ -24,7 +25,7 @@ class OtpVerificationBloc
       );
 
       final result = await verifyOtpUseCase(
-        VerifyOtpParams(
+        LoginParams.verifyOtp(
           idOtp: event.idOtp,
           mobileNumber: event.mobileNumber,
           otp: event.otp,

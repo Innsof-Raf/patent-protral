@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/login/domain/usecases/login_with_password_usecase.dart';
-
-import '../../../../resources/error_model.dart';
-import '../../../profile/models/user/user_model.dart';
+import 'package:patient_portal/feature/login/domain/usecases/params/login_params.dart';
+import 'package:patient_portal/feature/profile/models/user/user_model.dart';
+import 'package:patient_portal/resources/error_model.dart';
 
 part 'login_with_password_event.dart';
 part 'login_with_password_state.dart';
@@ -25,7 +25,7 @@ class LoginWithPasswordBloc
       );
 
       final result = await loginWithPasswordUseCase(
-        LoginWithPasswordParams(
+        LoginParams.loginWithPassword(
           mobileNumber: event.mobileNumber,
           password: event.password,
         ),

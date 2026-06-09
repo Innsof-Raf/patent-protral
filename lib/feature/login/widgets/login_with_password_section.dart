@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../resources/app_colors.dart';
 import '../../../resources/app_text_styles.dart';
 import '../../../resources/common_widgets.dart/common_error_alert.dart';
-import '../blocs/login_with_password_bloc/login_with_password_bloc.dart';
+import '../presentation/bloc/login_with_password_bloc/login_with_password_bloc.dart';
 import '../helpers/login_screen_helpers.dart';
 
 class LoginWithPasswordSection extends StatelessWidget {

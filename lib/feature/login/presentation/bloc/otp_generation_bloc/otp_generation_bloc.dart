@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/login/domain/usecases/generate_otp_usecase.dart';
+import 'package:patient_portal/feature/login/domain/usecases/params/login_params.dart';
 import 'package:patient_portal/resources/error_model.dart';
 
 part 'generated/otp_generation_bloc.freezed.dart';
@@ -25,7 +26,9 @@ class OtpGenerationBloc extends Bloc<OtpGenerationEvent, OtpGenerationState> {
         ),
       );
 
-      final result = await generateOtpUseCase(event.mobileNumber);
+      final result = await generateOtpUseCase(
+        LoginParams.generateOtp(mobileNumber: event.mobileNumber),
+      );
 
       result.fold(
         (failure) => emit(
@@ -57,7 +60,9 @@ class OtpGenerationBloc extends Bloc<OtpGenerationEvent, OtpGenerationState> {
         ),
       );
 
-      final result = await generateOtpUseCase(state.mobileNumber);
+      final result = await generateOtpUseCase(
+        LoginParams.generateOtp(mobileNumber: state.mobileNumber),
+      );
 
       result.fold(
         (failure) => emit(

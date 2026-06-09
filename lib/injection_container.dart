@@ -26,7 +26,7 @@ import 'package:patient_portal/feature/doctors/domain/repositories/doctor_reposi
 import 'package:patient_portal/feature/doctors/domain/usecases/get_available_doctors_usecase.dart';
 import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc/doctor_bloc.dart';
 import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc/search_doctor_bloc.dart';
-import 'package:patient_portal/feature/login/blocs/login_with_password_bloc/login_with_password_bloc.dart';
+import 'package:patient_portal/feature/login/presentation/bloc/login_with_password_bloc/login_with_password_bloc.dart';
 import 'package:patient_portal/feature/login/data/datasources/login_remote_data_source.dart';
 import 'package:patient_portal/feature/login/data/repositories/login_repository_impl.dart';
 import 'package:patient_portal/feature/login/domain/repositories/login_repository.dart';
