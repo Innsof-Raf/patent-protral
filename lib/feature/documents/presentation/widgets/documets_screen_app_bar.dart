@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/documents/helpers/documents_screen_helpers.dart';
-
-import '../../../resources/app_colors.dart';
-import '../../../resources/app_text_styles.dart';
-import '../../profile/bloc/user_bloc.dart';
-import '../bloc/documents_bloc.dart';
+import 'package:patient_portal/feature/documents/presentation/bloc/documents_bloc/documents_bloc.dart';
+import 'package:patient_portal/feature/documents/presentation/helpers/documents_screen_helpers.dart';
+import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
+import 'package:patient_portal/resources/app_colors.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
 
 class DocumentsScreenAppBar extends StatelessWidget
     implements PreferredSizeWidget {

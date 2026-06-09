@@ -4,13 +4,12 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-
-import '../../../resources/app_text_styles.dart';
-import '../../../resources/constant_messages.dart';
-import '../../../resources/error_model.dart';
-import '../../../resources/urls.dart';
-import '../../profile/models/member/member_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:patient_portal/feature/profile/models/member/member_model.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
+import 'package:patient_portal/resources/constant_messages.dart';
+import 'package:patient_portal/resources/error_model.dart';
+import 'package:patient_portal/resources/urls.dart';
 
 class DocumentsScreenHelpers {
   static List<PopupMenuItem<int>> createPopupMenuItem(

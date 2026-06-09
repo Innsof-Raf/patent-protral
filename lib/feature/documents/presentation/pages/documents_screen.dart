@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/documents/bloc/documents_bloc.dart';
-import 'package:patient_portal/feature/documents/models/documents_model/document_model.dart';
+import 'package:patient_portal/feature/documents/data/models/documents_model/document_model.dart';
+import 'package:patient_portal/feature/documents/presentation/bloc/documents_bloc/documents_bloc.dart';
+import 'package:patient_portal/feature/documents/presentation/widgets/documets_screen_app_bar.dart';
+import 'package:patient_portal/feature/documents/presentation/widgets/documents_tile.dart';
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
+import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:patient_portal/route/route_constants.dart';
-
-import '../../resources/app_colors.dart';
-import 'widgets/documents_tile.dart';
-import 'widgets/documets_screen_app_bar.dart';
 
 class DocumentsScreen extends StatelessWidget {
   const DocumentsScreen({super.key});
@@ -72,9 +71,9 @@ class DocumentsScreen extends StatelessWidget {
                   left: 10,
                   bottom: 55,
                 ),
-                itemCount: state.documents.length,
+                itemCount: documents.length,
                 itemBuilder: (context, index) =>
-                    DocumentTile(document: state.documents[index]),
+                    DocumentTile(document: documents[index]),
               );
             }
           }

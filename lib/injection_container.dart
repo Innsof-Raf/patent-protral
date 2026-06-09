@@ -26,6 +26,11 @@ import 'package:patient_portal/feature/doctors/domain/repositories/doctor_reposi
 import 'package:patient_portal/feature/doctors/domain/usecases/get_available_doctors_usecase.dart';
 import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc/doctor_bloc.dart';
 import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc/search_doctor_bloc.dart';
+import 'package:patient_portal/feature/documents/data/datasources/documents_remote_data_source.dart';
+import 'package:patient_portal/feature/documents/data/repositories/documents_repository_impl.dart';
+import 'package:patient_portal/feature/documents/domain/repositories/documents_repository.dart';
+import 'package:patient_portal/feature/documents/domain/usecases/get_documents_usecase.dart';
+import 'package:patient_portal/feature/documents/presentation/bloc/documents_bloc/documents_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/login_with_password_bloc/login_with_password_bloc.dart';
 import 'package:patient_portal/feature/login/data/datasources/login_remote_data_source.dart';
 import 'package:patient_portal/feature/login/data/repositories/login_repository_impl.dart';
@@ -145,6 +150,23 @@ Future<void> init() async {
   // Data sources
   sl.registerLazySingleton<BookAppointmentRemoteDataSource>(
     () => BookAppointmentRemoteDataSourceImpl(client: sl()),
+  );
+
+  //! Features - Documents
+  // Bloc
+  sl.registerFactory(() => DocumentsBloc(getDocumentsUseCase: sl()));
+
+  // Use cases
+  sl.registerLazySingleton(() => GetDocumentsUseCase(sl()));
+
+  // Repository
+  sl.registerLazySingleton<DocumentsRepository>(
+    () => DocumentsRepositoryImpl(remoteDataSource: sl()),
+  );
+
+  // Data sources
+  sl.registerLazySingleton<DocumentsRemoteDataSource>(
+    () => DocumentsRemoteDataSourceImpl(client: sl()),
   );
 
   //! External
