@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ChangePasswordEvent {
 
- int get idUser; String get mobileNumber; String get newPassword; String get token;
+ SetPasswordParams get params;
 /// Create a copy of ChangePasswordEvent
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ChangePasswordEventCopyWith<ChangePasswordEvent> get copyWith => _$ChangePasswo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePasswordEvent&&(identical(other.idUser, idUser) || other.idUser == idUser)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.newPassword, newPassword) || other.newPassword == newPassword)&&(identical(other.token, token) || other.token == token));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePasswordEvent&&(identical(other.params, params) || other.params == params));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,idUser,mobileNumber,newPassword,token);
+int get hashCode => Object.hash(runtimeType,params);
 
 @override
 String toString() {
-  return 'ChangePasswordEvent(idUser: $idUser, mobileNumber: $mobileNumber, newPassword: $newPassword, token: $token)';
+  return 'ChangePasswordEvent(params: $params)';
 }
 
 
@@ -45,11 +45,11 @@ abstract mixin class $ChangePasswordEventCopyWith<$Res>  {
   factory $ChangePasswordEventCopyWith(ChangePasswordEvent value, $Res Function(ChangePasswordEvent) _then) = _$ChangePasswordEventCopyWithImpl;
 @useResult
 $Res call({
- int idUser, String mobileNumber, String newPassword, String token
+ SetPasswordParams params
 });
 
 
-
+$SetPasswordParamsCopyWith<$Res> get params;
 
 }
 /// @nodoc
@@ -62,16 +62,22 @@ class _$ChangePasswordEventCopyWithImpl<$Res>
 
 /// Create a copy of ChangePasswordEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? idUser = null,Object? mobileNumber = null,Object? newPassword = null,Object? token = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? params = null,}) {
   return _then(_self.copyWith(
-idUser: null == idUser ? _self.idUser : idUser // ignore: cast_nullable_to_non_nullable
-as int,mobileNumber: null == mobileNumber ? _self.mobileNumber : mobileNumber // ignore: cast_nullable_to_non_nullable
-as String,newPassword: null == newPassword ? _self.newPassword : newPassword // ignore: cast_nullable_to_non_nullable
-as String,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
-as String,
+params: null == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
+as SetPasswordParams,
   ));
 }
-
+/// Create a copy of ChangePasswordEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SetPasswordParamsCopyWith<$Res> get params {
+  
+  return $SetPasswordParamsCopyWith<$Res>(_self.params, (value) {
+    return _then(_self.copyWith(params: value));
+  });
+}
 }
 
 
@@ -150,10 +156,10 @@ return changePassword(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int idUser,  String mobileNumber,  String newPassword,  String token)?  changePassword,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( SetPasswordParams params)?  changePassword,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case ChangePassword() when changePassword != null:
-return changePassword(_that.idUser,_that.mobileNumber,_that.newPassword,_that.token);case _:
+return changePassword(_that.params);case _:
   return orElse();
 
 }
@@ -171,10 +177,10 @@ return changePassword(_that.idUser,_that.mobileNumber,_that.newPassword,_that.to
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int idUser,  String mobileNumber,  String newPassword,  String token)  changePassword,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( SetPasswordParams params)  changePassword,}) {final _that = this;
 switch (_that) {
 case ChangePassword():
-return changePassword(_that.idUser,_that.mobileNumber,_that.newPassword,_that.token);}
+return changePassword(_that.params);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -188,10 +194,10 @@ return changePassword(_that.idUser,_that.mobileNumber,_that.newPassword,_that.to
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int idUser,  String mobileNumber,  String newPassword,  String token)?  changePassword,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( SetPasswordParams params)?  changePassword,}) {final _that = this;
 switch (_that) {
 case ChangePassword() when changePassword != null:
-return changePassword(_that.idUser,_that.mobileNumber,_that.newPassword,_that.token);case _:
+return changePassword(_that.params);case _:
   return null;
 
 }
@@ -203,13 +209,10 @@ return changePassword(_that.idUser,_that.mobileNumber,_that.newPassword,_that.to
 
 
 class ChangePassword implements ChangePasswordEvent {
-  const ChangePassword({required this.idUser, required this.mobileNumber, required this.newPassword, required this.token});
+  const ChangePassword({required this.params});
   
 
-@override final  int idUser;
-@override final  String mobileNumber;
-@override final  String newPassword;
-@override final  String token;
+@override final  SetPasswordParams params;
 
 /// Create a copy of ChangePasswordEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -221,16 +224,16 @@ $ChangePasswordCopyWith<ChangePassword> get copyWith => _$ChangePasswordCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePassword&&(identical(other.idUser, idUser) || other.idUser == idUser)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.newPassword, newPassword) || other.newPassword == newPassword)&&(identical(other.token, token) || other.token == token));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePassword&&(identical(other.params, params) || other.params == params));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,idUser,mobileNumber,newPassword,token);
+int get hashCode => Object.hash(runtimeType,params);
 
 @override
 String toString() {
-  return 'ChangePasswordEvent.changePassword(idUser: $idUser, mobileNumber: $mobileNumber, newPassword: $newPassword, token: $token)';
+  return 'ChangePasswordEvent.changePassword(params: $params)';
 }
 
 
@@ -241,11 +244,11 @@ abstract mixin class $ChangePasswordCopyWith<$Res> implements $ChangePasswordEve
   factory $ChangePasswordCopyWith(ChangePassword value, $Res Function(ChangePassword) _then) = _$ChangePasswordCopyWithImpl;
 @override @useResult
 $Res call({
- int idUser, String mobileNumber, String newPassword, String token
+ SetPasswordParams params
 });
 
 
-
+@override $SetPasswordParamsCopyWith<$Res> get params;
 
 }
 /// @nodoc
@@ -258,17 +261,23 @@ class _$ChangePasswordCopyWithImpl<$Res>
 
 /// Create a copy of ChangePasswordEvent
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? idUser = null,Object? mobileNumber = null,Object? newPassword = null,Object? token = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? params = null,}) {
   return _then(ChangePassword(
-idUser: null == idUser ? _self.idUser : idUser // ignore: cast_nullable_to_non_nullable
-as int,mobileNumber: null == mobileNumber ? _self.mobileNumber : mobileNumber // ignore: cast_nullable_to_non_nullable
-as String,newPassword: null == newPassword ? _self.newPassword : newPassword // ignore: cast_nullable_to_non_nullable
-as String,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
-as String,
+params: null == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
+as SetPasswordParams,
   ));
 }
 
-
+/// Create a copy of ChangePasswordEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SetPasswordParamsCopyWith<$Res> get params {
+  
+  return $SetPasswordParamsCopyWith<$Res>(_self.params, (value) {
+    return _then(_self.copyWith(params: value));
+  });
+}
 }
 
 /// @nodoc

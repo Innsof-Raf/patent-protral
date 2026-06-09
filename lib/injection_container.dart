@@ -70,6 +70,11 @@ import 'package:patient_portal/feature/reports/domain/repositories/reports_repos
 import 'package:patient_portal/feature/reports/domain/usecases/download_report_usecase.dart';
 import 'package:patient_portal/feature/reports/domain/usecases/get_reports_usecase.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc/reports_bloc.dart';
+import 'package:patient_portal/feature/set_password/data/datasources/set_password_remote_data_source.dart';
+import 'package:patient_portal/feature/set_password/data/repositories/set_password_repository_impl.dart';
+import 'package:patient_portal/feature/set_password/domain/repositories/set_password_repository.dart';
+import 'package:patient_portal/feature/set_password/domain/usecases/change_password_usecase.dart';
+import 'package:patient_portal/feature/set_password/presentation/bloc/change_password_bloc/change_password_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -294,6 +299,23 @@ Future<void> init() async {
   // Data sources
   sl.registerLazySingleton<ReportsRemoteDataSource>(
     () => ReportsRemoteDataSourceImpl(),
+  );
+
+  //! Features - Set Password
+  // Bloc
+  sl.registerFactory(() => ChangePasswordBloc(changePasswordUseCase: sl()));
+
+  // Use cases
+  sl.registerLazySingleton(() => ChangePasswordUseCase(sl()));
+
+  // Repository
+  sl.registerLazySingleton<SetPasswordRepository>(
+    () => SetPasswordRepositoryImpl(remoteDataSource: sl()),
+  );
+
+  // Data sources
+  sl.registerLazySingleton<SetPasswordRemoteDataSource>(
+    () => SetPasswordRemoteDataSourceImpl(),
   );
 
   //! External

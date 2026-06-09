@@ -21,7 +21,7 @@ import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/feature/profile/presentation/pages/profile_screen.dart';
 import 'package:patient_portal/feature/reports/presentation/pages/reports_screen.dart';
 import 'package:patient_portal/feature/reports/presentation/pages/report_screen.dart';
-import 'package:patient_portal/feature/set_password/set_password_screen.dart';
+import 'package:patient_portal/feature/set_password/presentation/pages/set_password_screen.dart';
 import 'package:patient_portal/feature/speciality/speciality_screen.dart';
 import 'package:patient_portal/route/route_constants.dart';
 

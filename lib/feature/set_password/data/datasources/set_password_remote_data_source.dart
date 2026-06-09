@@ -4,21 +4,28 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
-import '../../../resources/constant_messages.dart';
-import '../../../resources/error_model.dart';
-import '../../../resources/urls.dart';
+import 'package:patient_portal/feature/set_password/domain/usecases/params/set_password_params.dart';
+import 'package:patient_portal/resources/constant_messages.dart';
+import 'package:patient_portal/resources/error_model.dart';
+import 'package:patient_portal/resources/urls.dart';
 
-class ChangePasswordServices {
-  static Future<Either<ErrorModel, Map>> changePassword({
-    required int idUser,
-    required String mobileNumber,
-    required String newPassword,
-    required String token,
-  }) async {
+abstract class SetPasswordRemoteDataSource {
+  Future<Either<ErrorModel, Map>> changePassword(SetPasswordParams params);
+}
+
+class SetPasswordRemoteDataSourceImpl implements SetPasswordRemoteDataSource {
+  @override
+  Future<Either<ErrorModel, Map>> changePassword(
+    SetPasswordParams params,
+  ) async {
     try {
+      final changePasswordParams = params.maybeMap(
+        changePassword: (value) => value,
+        orElse: () => throw Exception('Invalid change password params'),
+      );
       final data = {
         "CONTENT":
-            "{\"id_user\":$idUser,\"mobile_no\":\"$mobileNumber\",\"pwd\":\"$newPassword\"}",
+            "{\"id_user\":${changePasswordParams.idUser},\"mobile_no\":\"${changePasswordParams.mobileNumber}\",\"pwd\":\"${changePasswordParams.newPassword}\"}",
         "TYPE": "PP0036",
       };
 
@@ -27,7 +34,7 @@ class ChangePasswordServices {
         body: jsonEncode(data),
         headers: {
           'Content-type': 'application/json',
-          'Authorization': 'Bearer $token',
+          'Authorization': 'Bearer ${changePasswordParams.token}',
         },
       );
       if (response.statusCode == 200 || response.statusCode == 201) {

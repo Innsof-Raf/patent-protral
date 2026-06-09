@@ -19,7 +19,7 @@ import 'package:patient_portal/feature/members/presentation/bloc/member_search_b
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc/reports_bloc.dart';
-import 'package:patient_portal/feature/set_password/bloc/change_password_bloc.dart';
+import 'package:patient_portal/feature/set_password/presentation/bloc/change_password_bloc/change_password_bloc.dart';
 import 'package:patient_portal/feature/speciality/blocs/search_bloc/search_speciality_bloc_bloc.dart';
 import 'package:patient_portal/feature/speciality/blocs/speciality_bloc/speciality_bloc.dart';
 import 'package:patient_portal/injection_container.dart' as di;
@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => di.sl<MyAppointmentsBloc>()),
         BlocProvider(create: (context) => di.sl<ItemsBloc>()),
         BlocProvider(create: (context) => di.sl<ReportsBloc>()),
-        BlocProvider(create: (context) => ChangePasswordBloc()),
+        BlocProvider(create: (context) => di.sl<ChangePasswordBloc>()),
         BlocProvider(create: (context) => SearchSpecialityBloc()),
         BlocProvider(create: (context) => di.sl<DocumentsBloc>()),
         BlocProvider(create: (context) => di.sl<AddDocumentBloc>()),

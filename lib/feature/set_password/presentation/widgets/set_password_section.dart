@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/feature/set_password/helpers/change_password_form_helpers.dart';
+import 'package:patient_portal/feature/set_password/presentation/helpers/change_password_form_helpers.dart';
 
-import '../../../resources/app_text_styles.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
 
 class SetPasswordSection extends StatelessWidget {
   const SetPasswordSection({super.key});

@@ -1,4 +1,4 @@
-import 'package:patient_portal/feature/set_password/widgets/set_password_section.dart';
+import 'package:patient_portal/feature/set_password/presentation/widgets/set_password_section.dart';
 
 class ChangePasswordFormHelpers {
   static String? validatePassword(String? value) {

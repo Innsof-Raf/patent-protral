@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/feature/set_password/bloc/change_password_bloc.dart';
+import 'package:patient_portal/feature/set_password/domain/usecases/params/set_password_params.dart';
+import 'package:patient_portal/feature/set_password/presentation/bloc/change_password_bloc/change_password_bloc.dart';
+import 'package:patient_portal/feature/set_password/presentation/widgets/set_password_section.dart';
 import 'package:patient_portal/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/resources/common_widgets.dart/succes_dailog.dart';
 
-import '../../resources/app_colors.dart';
-import '../../resources/app_text_styles.dart';
-import '../../resources/common_widgets.dart/common_error_alert.dart';
-import '../../resources/dimens.dart';
-import '../../route/route_constants.dart';
-import 'widgets/set_password_section.dart';
+import 'package:patient_portal/resources/app_colors.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
+import 'package:patient_portal/resources/common_widgets.dart/common_error_alert.dart';
+import 'package:patient_portal/resources/dimens.dart';
+import 'package:patient_portal/route/route_constants.dart';
 
 class SetPasswordScreen extends StatelessWidget {
   const SetPasswordScreen({super.key});
@@ -116,15 +117,17 @@ class SetPasswordScreen extends StatelessWidget {
                     !state.isPasswordChnaging) {
                   context.read<ChangePasswordBloc>().add(
                     ChangePassword(
-                      idUser: context.read<UserBloc>().state.user!.id,
-                      mobileNumber: context
-                          .read<UserBloc>()
-                          .state
-                          .user!
-                          .mobileNumber,
-                      newPassword:
-                          SetPasswordSection.newPasswordController.text,
-                      token: context.read<UserBloc>().state.user!.accessToken,
+                      params: SetPasswordParams.changePassword(
+                        idUser: context.read<UserBloc>().state.user!.id,
+                        mobileNumber: context
+                            .read<UserBloc>()
+                            .state
+                            .user!
+                            .mobileNumber,
+                        newPassword:
+                            SetPasswordSection.newPasswordController.text,
+                        token: context.read<UserBloc>().state.user!.accessToken,
+                      ),
                     ),
                   );
                 }
