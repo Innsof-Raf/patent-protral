@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import '../../../resources/app_colors.dart';
-import '../../../resources/app_text_styles.dart';
+import 'package:patient_portal/resources/app_colors.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
 
 class MedicalInsuranceAppBar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -25,9 +24,7 @@ class MedicalInsuranceAppBar extends StatelessWidget
       ),
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios, color: AppColors.textDark),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
+        onPressed: () => Navigator.of(context).pop(),
       ),
     );
   }
