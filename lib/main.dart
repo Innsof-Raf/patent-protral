@@ -16,7 +16,7 @@ import 'package:patient_portal/feature/login/presentation/bloc/otp_verification_
 import 'package:patient_portal/feature/member_details/presentation/bloc/member_detail_bloc.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/delete_member_bloc/delete_member_bloc.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/member_search_bloc/member_search_bloc.dart';
-import 'package:patient_portal/feature/my_appointments/bloc/my_appointments_bloc.dart';
+import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
 import 'package:patient_portal/feature/report/bloc/report_bloc.dart';
 import 'package:patient_portal/feature/reports/bloc/reports_bloc.dart';
@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => di.sl<MemberSearchBloc>()),
         BlocProvider(create: (context) => di.sl<DeleteMemberBloc>()),
         BlocProvider(create: (context) => di.sl<MemberDetailBloc>()),
-        BlocProvider(create: (context) => MyAppointmentsBloc()),
+        BlocProvider(create: (context) => di.sl<MyAppointmentsBloc>()),
         BlocProvider(create: (context) => di.sl<ItemsBloc>()),
         BlocProvider(create: (context) => ReportsBloc()),
         BlocProvider(create: (context) => ChangePasswordBloc()),

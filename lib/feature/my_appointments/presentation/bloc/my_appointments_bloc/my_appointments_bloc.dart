@@ -1,14 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/feature/my_appointments/data/datasources/my_appointment_services.dart';
+import 'package:patient_portal/feature/my_appointments/data/models/my_appointment_model.dart';
 import 'package:patient_portal/resources/error_model.dart';
 
-import '../models/my_appointment_model.dart';
-import '../services/my_appointment_services.dart';
-
+part 'generated/my_appointments_bloc.freezed.dart';
 part 'my_appointments_event.dart';
 part 'my_appointments_state.dart';
-part 'generated/my_appointments_bloc.freezed.dart';
 
 class MyAppointmentsBloc
     extends Bloc<MyAppointmentsEvent, MyAppointmentsState> {

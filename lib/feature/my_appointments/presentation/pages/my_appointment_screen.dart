@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/my_appointments/bloc/my_appointments_bloc.dart';
-import 'package:patient_portal/feature/my_appointments/helpers/my_appointment_screen_helpers.dart';
+import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
+import 'package:patient_portal/feature/my_appointments/presentation/helpers/my_appointment_screen_helpers.dart';
+import 'package:patient_portal/feature/my_appointments/presentation/widgets/appointments_tabbar_view.dart';
+import 'package:patient_portal/feature/my_appointments/presentation/widgets/my_appointment_screen_tab_bar.dart';
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
 import 'package:patient_portal/resources/app_colors.dart';
-
-import '../../resources/app_text_styles.dart';
-import '../../resources/common_widgets.dart/succes_dailog.dart';
-import 'widgets/appointments_tabbar_view.dart';
-import 'widgets/my_appointment_screen_tab_bar.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
+import 'package:patient_portal/resources/common_widgets.dart/succes_dailog.dart';
 
 class MyAppointmentScreen extends StatelessWidget {
   const MyAppointmentScreen({super.key});

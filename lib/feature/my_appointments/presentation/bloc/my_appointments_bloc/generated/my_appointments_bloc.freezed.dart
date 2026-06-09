@@ -87,10 +87,7 @@ case GetMyAppointments():
 return getMyAppointments(_that);case StoreBokkedApoointment():
 return storeBokkedApoointment(_that);case ChangeResheduledAppointmentDetails():
 return changeResheduledAppointmentDetails(_that);case CancelAppointment():
-return cancelAppointment(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return cancelAppointment(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -158,10 +155,7 @@ case GetMyAppointments():
 return getMyAppointments(_that.token,_that.mobileNumber);case StoreBokkedApoointment():
 return storeBokkedApoointment(_that.appointment);case ChangeResheduledAppointmentDetails():
 return changeResheduledAppointmentDetails(_that.appointment,_that.cureentSlot);case CancelAppointment():
-return cancelAppointment(_that.idAppointment,_that.token);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return cancelAppointment(_that.idAppointment,_that.token);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///

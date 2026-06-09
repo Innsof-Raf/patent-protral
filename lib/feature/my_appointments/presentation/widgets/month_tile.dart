@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../resources/app_colors.dart';
+import 'package:patient_portal/resources/app_colors.dart';
 
 class MonthTile extends StatelessWidget {
   final DateTime month;

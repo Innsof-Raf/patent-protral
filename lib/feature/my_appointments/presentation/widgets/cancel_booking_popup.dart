@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_portal/feature/my_appointments/bloc/my_appointments_bloc.dart';
+import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
-
-import '../../../resources/app_colors.dart';
-import '../../../resources/app_text_styles.dart';
-import '../../../resources/urls.dart';
-import '../../profile/models/member/member_model.dart';
+import 'package:patient_portal/feature/profile/models/member/member_model.dart';
+import 'package:patient_portal/resources/app_colors.dart';
+import 'package:patient_portal/resources/app_text_styles.dart';
+import 'package:patient_portal/resources/urls.dart';
 
 class CancelBookingPopUp extends StatelessWidget {
   final int appointmentId;

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/feature/my_appointments/data/models/my_appointment_model.dart';
 
-import '../models/my_appointment_model.dart';
 import 'month_tile.dart';
 import 'my_appointments_list_view.dart';
 
-class ConsultedAppointmentsTabbarView extends StatelessWidget {
+class AppointmentsTabbarView extends StatelessWidget {
   final List<DateTime> monthTimeLineList;
   final List<MyAppointmentModel> appointments;
-  const ConsultedAppointmentsTabbarView({
+
+  const AppointmentsTabbarView({
     super.key,
     required this.monthTimeLineList,
     required this.appointments,
@@ -36,7 +37,7 @@ class ConsultedAppointmentsTabbarView extends StatelessWidget {
         ],
       ),
       shrinkWrap: true,
-      padding: const EdgeInsets.symmetric(vertical: 9),
+      padding: const EdgeInsets.only(top: 9, bottom: 89),
     );
   }
 }

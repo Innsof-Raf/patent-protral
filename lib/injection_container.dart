@@ -56,6 +56,7 @@ import 'package:patient_portal/feature/login/presentation/bloc/otp_verification_
 import 'package:patient_portal/feature/member_details/presentation/bloc/member_detail_bloc.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/delete_member_bloc/delete_member_bloc.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/member_search_bloc/member_search_bloc.dart';
+import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -232,6 +233,10 @@ Future<void> init() async {
   //! Features - Member Details
   // Bloc
   sl.registerFactory(() => MemberDetailBloc());
+
+  //! Features - My Appointments
+  // Bloc
+  sl.registerFactory(() => MyAppointmentsBloc());
 
   //! External
   sl.registerLazySingleton(() => http.Client());

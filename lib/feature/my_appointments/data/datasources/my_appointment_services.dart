@@ -3,12 +3,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-
-import '../../../resources/constant_messages.dart';
-import '../../../resources/error_model.dart';
-import '../../../resources/urls.dart';
-import '../models/my_appointment_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:patient_portal/feature/my_appointments/data/models/my_appointment_model.dart';
+import 'package:patient_portal/resources/constant_messages.dart';
+import 'package:patient_portal/resources/error_model.dart';
+import 'package:patient_portal/resources/urls.dart';
 
 class MyAppointmentServices {
   static Future<Either<ErrorModel, List<MyAppointmentModel>>>
