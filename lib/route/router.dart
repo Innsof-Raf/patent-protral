@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:patient_portal/feature/add_document/presentation/pages/add_document_screen.dart';
 import 'package:patient_portal/feature/add_member/presentation/pages/add_member_screen.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/pages/book_appointment_page.dart';
-import 'package:patient_portal/feature/cart/cart_screen.dart';
+import 'package:patient_portal/feature/cart/presentation/pages/cart_screen.dart';
 import 'package:patient_portal/feature/doctor_detail/doctor_detail_screen.dart';
 import 'package:patient_portal/feature/documents/documents_screen.dart';
 import 'package:patient_portal/feature/edit_profile_details/edit_profile_details_screen.dart';
