@@ -1,6 +1,6 @@
 class ConstantUrls {
   static const String cloudUrl = 'http://185.52.54.42:8081';
-  static const String baseUrl = 'http://localhost:5000';
+  static const String baseUrl = 'http://localhost:5237';
   static const String serviceUrl = '$baseUrl/api/apm/Service';
   static const String specilityImageUrl = '$baseUrl/uploads/department';
   static const String doctorImageUrl = '$baseUrl/uploads/employee';

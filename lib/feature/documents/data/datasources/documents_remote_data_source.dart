@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'package:patient_portal/feature/documents/data/models/documents_model/document_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 
@@ -13,7 +11,7 @@ abstract class DocumentsRemoteDataSource {
 }
 
 class DocumentsRemoteDataSourceImpl implements DocumentsRemoteDataSource {
-  final http.Client client;
+  final Dio client;
 
   DocumentsRemoteDataSourceImpl({required this.client});
 
@@ -30,16 +28,18 @@ class DocumentsRemoteDataSourceImpl implements DocumentsRemoteDataSource {
     };
 
     final response = await client.post(
-      Uri.parse(ConstantUrls.serviceUrl),
-      body: jsonEncode(data),
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $token',
-      },
+      ConstantUrls.serviceUrl,
+      data: data,
+      options: Options(
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      ),
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final List<dynamic> responseData = jsonDecode(response.body);
+      final List<dynamic> responseData = response.data;
       return responseData
           .map((raw) => DocumentModel.fromJson(raw as Map<String, dynamic>))
           .toList();

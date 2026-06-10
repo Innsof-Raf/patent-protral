@@ -3,13 +3,16 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
+import 'package:patient_portal/core/injection_container.dart';
 import 'package:patient_portal/feature/my_appointments/data/models/my_appointment_model.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
 import 'package:patient_portal/core/resources/error_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 
 class MyAppointmentServices {
+  static final Dio _dio = sl<Dio>();
+
   static Future<Either<ErrorModel, List<MyAppointmentModel>>>
   getMyAppointments({
     required String mobileNumber,
@@ -17,20 +20,22 @@ class MyAppointmentServices {
   }) async {
     try {
       final Map data = {
-        "CONTENT": "{\"mobile_no\":\"$mobileNumber\"}",
+        "CONTENT": jsonEncode({"mobile_no": mobileNumber}),
         "TYPE": "PP0015",
       };
-      http.Response response = await http.post(
-        Uri.parse(ConstantUrls.serviceUrl),
-        body: jsonEncode(data),
-        headers: {
-          HttpHeaders.authorizationHeader: 'Bearer $token',
-          'Content-type': 'application/json',
-        },
+      final response = await _dio.post(
+        ConstantUrls.serviceUrl,
+        data: data,
+        options: Options(
+          headers: {
+            HttpHeaders.authorizationHeader: 'Bearer $token',
+            'Content-Type': 'application/json',
+          },
+        ),
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final List responseData = jsonDecode(response.body);
+        final List responseData = response.data;
 
         List<MyAppointmentModel> myAppointmentsList = [];
         for (final appoints in responseData) {
@@ -40,12 +45,18 @@ class MyAppointmentServices {
       } else {
         return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
       }
-    } on SocketException {
-      return Left(ErrorModel(message: ConstantMessages.noNetworkErrorMessage));
-    } on TimeoutException {
-      return Left(
-        ErrorModel(message: ConstantMessages.connectionTimeOutFailureMessage),
-      );
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.connectionTimeout ||
+          e.type == DioExceptionType.receiveTimeout) {
+        return Left(
+          ErrorModel(message: ConstantMessages.connectionTimeOutFailureMessage),
+        );
+      } else if (e.error is SocketException) {
+        return Left(
+          ErrorModel(message: ConstantMessages.noNetworkErrorMessage),
+        );
+      }
+      return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
     } catch (e) {
       return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
     }
@@ -57,19 +68,21 @@ class MyAppointmentServices {
   }) async {
     try {
       final Map data = {
-        "CONTENT": "{\"id_appointment\":$appointmentId}",
+        "CONTENT": jsonEncode({"id_appointment": appointmentId}),
         "TYPE": "PP0019",
       };
-      http.Response response = await http.post(
-        Uri.parse(ConstantUrls.serviceUrl),
-        body: jsonEncode(data),
-        headers: {
-          HttpHeaders.authorizationHeader: 'Bearer $token',
-          'Content-type': 'application/json',
-        },
+      final response = await _dio.post(
+        ConstantUrls.serviceUrl,
+        data: data,
+        options: Options(
+          headers: {
+            HttpHeaders.authorizationHeader: 'Bearer $token',
+            'Content-Type': 'application/json',
+          },
+        ),
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final responseData = jsonDecode(response.body);
+        final responseData = response.data;
 
         if (responseData["STATUS"] == 1 &&
             responseData["message"] == "canceld") {
@@ -80,12 +93,18 @@ class MyAppointmentServices {
       } else {
         return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
       }
-    } on SocketException {
-      return Left(ErrorModel(message: ConstantMessages.noNetworkErrorMessage));
-    } on TimeoutException {
-      return Left(
-        ErrorModel(message: ConstantMessages.connectionTimeOutFailureMessage),
-      );
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.connectionTimeout ||
+          e.type == DioExceptionType.receiveTimeout) {
+        return Left(
+          ErrorModel(message: ConstantMessages.connectionTimeOutFailureMessage),
+        );
+      } else if (e.error is SocketException) {
+        return Left(
+          ErrorModel(message: ConstantMessages.noNetworkErrorMessage),
+        );
+      }
+      return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
     } catch (e) {
       return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
     }

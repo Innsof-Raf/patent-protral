@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'package:patient_portal/feature/login/data/models/otp_response_model.dart';
 import 'package:patient_portal/feature/profile/data/models/user_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -19,7 +17,7 @@ abstract class LoginRemoteDataSource {
 }
 
 class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
-  final http.Client client;
+  final Dio client;
 
   LoginRemoteDataSourceImpl({required this.client});
 
@@ -28,13 +26,13 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
     final data = {'MobileNo': mobileNumber};
 
     final response = await client.post(
-      Uri.parse(ConstantUrls.otpGenerationUrl),
-      body: jsonEncode(data),
-      headers: {'Content-type': 'application/json'},
+      ConstantUrls.otpGenerationUrl,
+      data: data,
+      options: Options(headers: {'Content-Type': 'application/json'}),
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      return OtpResponseModel.fromJson(jsonDecode(response.body));
+      return OtpResponseModel.fromJson(response.data);
     } else {
       throw Exception('Server Failure');
     }
@@ -53,13 +51,13 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
     };
 
     final response = await client.post(
-      Uri.parse(ConstantUrls.otpVerificationUrl),
-      body: jsonEncode(data),
-      headers: {'Content-type': 'application/json'},
+      ConstantUrls.otpVerificationUrl,
+      data: data,
+      options: Options(headers: {'Content-Type': 'application/json'}),
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      return UserModel.fromJson(jsonDecode(response.body));
+      return UserModel.fromJson(response.data);
     } else {
       throw Exception('Server Failure');
     }
@@ -76,13 +74,13 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
     };
 
     final response = await client.post(
-      Uri.parse(ConstantUrls.loginWithPasswordUrl),
-      body: jsonEncode(data),
-      headers: {'Content-type': 'application/json'},
+      ConstantUrls.loginWithPasswordUrl,
+      data: data,
+      options: Options(headers: {'Content-Type': 'application/json'}),
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final responseData = jsonDecode(response.body);
+      final responseData = response.data;
       if (responseData['isAuth']) {
         return UserModel.fromJson(responseData['user']);
       } else {

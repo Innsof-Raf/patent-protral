@@ -1,8 +1,7 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/feature/book_appointment/data/models/shift_model.dart';
 import 'package:patient_portal/core/resources/common_models/appointment_model.dart/appointment_model.dart';
@@ -32,7 +31,7 @@ abstract class BookAppointmentRemoteDataSource {
 
 class BookAppointmentRemoteDataSourceImpl
     implements BookAppointmentRemoteDataSource {
-  final http.Client client;
+  final Dio client;
 
   BookAppointmentRemoteDataSourceImpl({required this.client});
 
@@ -43,20 +42,20 @@ class BookAppointmentRemoteDataSourceImpl
     required String token,
   }) async {
     final Map data = {
-      "CONTENT": jsonEncode({
+      "CONTENT": {
         "id_doctor": idDoctor,
         "shift_dt": DateFormat('yyyy-MM-dd').format(date),
-      }),
+      },
       "TYPE": "PP0003",
     };
     final response = await client.post(
-      Uri.parse(ConstantUrls.serviceUrl),
-      body: jsonEncode(data),
-      headers: {'Content-type': 'application/json'},
+      ConstantUrls.serviceUrl,
+      data: data,
+      options: Options(headers: {'Content-Type': 'application/json'}),
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final Map<String, dynamic> responseData = jsonDecode(response.body);
+      final Map<String, dynamic> responseData = response.data;
       return ShiftModel.fromJson(responseData);
     } else {
       throw Exception('Server Failure');
@@ -72,7 +71,7 @@ class BookAppointmentRemoteDataSourceImpl
     required String token,
   }) async {
     final Map data = {
-      "CONTENT": jsonEncode({
+      "CONTENT": {
         "id": 0,
         "id_employee": idDoctor,
         "id_busunit": 1,
@@ -80,20 +79,22 @@ class BookAppointmentRemoteDataSourceImpl
         "appmnt_dttm": appointmentDateTime.toString(),
         "id_customer": idMember,
         "mobile_no": mobileNo,
-      }),
+      },
       "TYPE": "PP0008",
     };
     final response = await client.post(
-      Uri.parse(ConstantUrls.serviceUrl),
-      body: jsonEncode(data),
-      headers: {
-        HttpHeaders.authorizationHeader: 'Bearer $token',
-        'Content-type': 'application/json',
-      },
+      ConstantUrls.serviceUrl,
+      data: data,
+      options: Options(
+        headers: {
+          HttpHeaders.authorizationHeader: 'Bearer $token',
+          'Content-Type': 'application/json',
+        },
+      ),
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final Map<String, dynamic> responseData = jsonDecode(response.body);
+      final Map<String, dynamic> responseData = response.data;
       if (responseData["status"] == "1") {
         return AppointmentModel.fromJson(responseData["data"]);
       } else {
@@ -111,23 +112,25 @@ class BookAppointmentRemoteDataSourceImpl
     required String token,
   }) async {
     final Map data = {
-      "CONTENT": jsonEncode({
+      "CONTENT": {
         "id_appnmt": idAppointment,
         "appmnt_dttm": appointmentDateTime.toString(),
-      }),
+      },
       "TYPE": "PP0028",
     };
     final response = await client.post(
-      Uri.parse(ConstantUrls.serviceUrl),
-      body: jsonEncode(data),
-      headers: {
-        HttpHeaders.authorizationHeader: 'Bearer $token',
-        'Content-type': 'application/json',
-      },
+      ConstantUrls.serviceUrl,
+      data: data,
+      options: Options(
+        headers: {
+          HttpHeaders.authorizationHeader: 'Bearer $token',
+          'Content-Type': 'application/json',
+        },
+      ),
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final Map<String, dynamic> responseData = jsonDecode(response.body);
+      final Map<String, dynamic> responseData = response.data;
       if (responseData["status"] == 1) {
         return AppointmentModel.fromJson(responseData["data"]);
       } else {

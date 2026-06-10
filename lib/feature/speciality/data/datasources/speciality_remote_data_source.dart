@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:dartz/dartz.dart';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'package:patient_portal/feature/speciality/data/models/speciality_model.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/params/speciality_params.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
@@ -16,6 +17,10 @@ abstract class SpecialityRemoteDataSource {
 }
 
 class SpecialityRemoteDataSourceImpl implements SpecialityRemoteDataSource {
+  final Dio client;
+
+  SpecialityRemoteDataSourceImpl({required this.client});
+
   @override
   Future<Either<ErrorModel, List<SpecialityModel>>> fetchSpecialities(
     SpecialityParams params,
@@ -26,38 +31,45 @@ class SpecialityRemoteDataSourceImpl implements SpecialityRemoteDataSource {
     );
     try {
       final Map<String, dynamic> data = {
-        "CONTENT": "{\"id_busunit\":${fetchParams.idBusUnit}}",
+        "CONTENT": jsonEncode({"id_busunit": fetchParams.idBusUnit}),
         "TYPE": "PP0013",
       };
 
-      http.Response response = await http.post(
-        Uri.parse(ConstantUrls.serviceUrl),
-        headers: {
-          'Content-type': 'application/json',
-          'Authorization': 'Bearer ${fetchParams.token}',
-        },
-        body: jsonEncode(data),
+      final response = await client.post(
+        ConstantUrls.serviceUrl,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ${fetchParams.token}',
+          },
+        ),
+        data: data,
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final List<dynamic> data = jsonDecode(response.body);
+        final List<dynamic> responseData = response.data;
         List<SpecialityModel> specilaities = [];
-        for (final raw in data) {
+        for (final raw in responseData) {
           specilaities.add(SpecialityModel.fromJson(raw));
         }
         return Right(specilaities);
       } else {
         return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
       }
-    } on SocketException {
-      return Left(ErrorModel(message: ConstantMessages.noNetworkErrorMessage));
-    } on TimeoutException {
-      return Left(
-        ErrorModel(message: ConstantMessages.connectionTimeOutFailureMessage),
-      );
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.connectionTimeout ||
+          e.type == DioExceptionType.receiveTimeout) {
+        return Left(
+          ErrorModel(message: ConstantMessages.connectionTimeOutFailureMessage),
+        );
+      } else if (e.error is SocketException) {
+        return Left(
+          ErrorModel(message: ConstantMessages.noNetworkErrorMessage),
+        );
+      }
+      return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
     } catch (e) {
       return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
     }
   }
-
 }

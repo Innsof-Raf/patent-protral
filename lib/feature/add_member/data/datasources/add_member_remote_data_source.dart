@@ -1,6 +1,5 @@
 import 'dart:async';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'package:patient_portal/feature/add_member/domain/usecases/params/params.dart';
 import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/core/resources/common_models/insurance/insurance_model.dart';
@@ -13,7 +12,7 @@ abstract class AddMemberRemoteDataSource {
 }
 
 class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
-  final http.Client client;
+  final Dio client;
 
   AddMemberRemoteDataSourceImpl({required this.client});
 
@@ -24,16 +23,18 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
     final data = {"TYPE": "PP0024"};
 
     final response = await client.post(
-      Uri.parse(ConstantUrls.serviceUrl),
-      body: jsonEncode(data),
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $token',
-      },
+      ConstantUrls.serviceUrl,
+      data: data,
+      options: Options(
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      ),
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final List<dynamic> responseData = jsonDecode(response.body);
+      final List<dynamic> responseData = response.data;
       return responseData
           .map((raw) => InsuranceModel.fromJson(raw as Map<String, dynamic>))
           .toList();
@@ -46,11 +47,6 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
   Future<MemberModel> addMember(AddMemberParams params) async {
     return params.maybeMap(
       addMember: (p) async {
-        var request = http.MultipartRequest(
-          'POST',
-          Uri.parse(ConstantUrls.addMember),
-        );
-
         final contentMap = {
           "id_customer": 0,
           "customer_name": p.patientName,
@@ -66,26 +62,34 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
           "profile_image": p.profileImage != null ? "profile.png" : null,
         };
 
-        request.fields.addAll({
-          'saveRequest': jsonEncode({
-            "CONTENT": jsonEncode(contentMap),
+        FormData formData = FormData.fromMap({
+          'saveRequest': {
+            "CONTENT": contentMap,
             "TYPE": "PP0018",
-          }),
+          },
           'PathIdentifier': 'PatientProfileImage',
           'removeProfilePic': 'false',
         });
 
         if (p.profileImage != null) {
-          request.files.add(
-            await http.MultipartFile.fromPath('uploads', p.profileImage!.path),
+          formData.files.add(
+            MapEntry(
+              'uploads',
+              await MultipartFile.fromFile(
+                p.profileImage!.path,
+                filename: 'profile.png',
+              ),
+            ),
           );
         }
 
-        http.StreamedResponse response = await request.send();
+        final response = await client.post(
+          ConstantUrls.addMember,
+          data: formData,
+        );
 
         if (response.statusCode == 200) {
-          final responses = await response.stream.bytesToString();
-          final responseData = jsonDecode(responses);
+          final responseData = response.data;
 
           if (responseData['status'] == true) {
             return MemberModel.fromJson(responseData['patient_detail']);
@@ -108,26 +112,28 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
     return params.maybeMap(
       updateInsurance: (p) async {
         final Map data = {
-          "CONTENT": jsonEncode({
+          "CONTENT": {
             "id_customer": p.memberId,
             "id_insurance": p.idInsurance,
             "insurance_name": p.idInsurance == 0 ? p.insuranceName : null,
             "expire_date": p.expireDate.toString(),
             "member_number": p.memberNumber,
-          }),
+          },
           "TYPE": "PP0035",
         };
-        http.Response response = await client.post(
-          Uri.parse(ConstantUrls.serviceUrl),
-          body: jsonEncode(data),
-          headers: {
-            'Content-type': 'application/json',
-            'Authorization': 'Bearer ${p.token}',
-          },
+        final response = await client.post(
+          ConstantUrls.serviceUrl,
+          data: data,
+          options: Options(
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ${p.token}',
+            },
+          ),
         );
 
         if (response.statusCode == 200 || response.statusCode == 201) {
-          final Map<String, dynamic> responseData = jsonDecode(response.body);
+          final Map<String, dynamic> responseData = response.data;
           return MemberModel.fromJson(responseData['customer_detail']);
         } else {
           throw Exception('Server Failure');

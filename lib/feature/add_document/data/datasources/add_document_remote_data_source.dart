@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'package:patient_portal/feature/add_document/data/models/document_type_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 
@@ -9,7 +7,7 @@ abstract class AddDocumentRemoteDataSource {
 }
 
 class AddDocumentRemoteDataSourceImpl implements AddDocumentRemoteDataSource {
-  final http.Client client;
+  final Dio client;
 
   AddDocumentRemoteDataSourceImpl({required this.client});
 
@@ -20,16 +18,18 @@ class AddDocumentRemoteDataSourceImpl implements AddDocumentRemoteDataSource {
     final data = {'CONTENT': '', 'TYPE': 'PP0026'};
 
     final response = await client.post(
-      Uri.parse(ConstantUrls.serviceUrl),
-      body: jsonEncode(data),
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $token',
-      },
+      ConstantUrls.serviceUrl,
+      data: data,
+      options: Options(
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      ),
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final List<dynamic> responseData = jsonDecode(response.body);
+      final List<dynamic> responseData = response.data;
       return responseData
           .map((raw) => DocumentTypeModel.fromJson(raw as Map<String, dynamic>))
           .toList();

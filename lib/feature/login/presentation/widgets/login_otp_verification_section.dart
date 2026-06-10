@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
+import 'package:patient_portal/core/route/route_constants.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_verification_bloc/otp_verification_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
-import 'package:patient_portal/core/route/route_constants.dart';
 import 'package:pinput/pinput.dart';
 
 class LoginOtpVerificationSection extends StatelessWidget {
@@ -134,7 +134,10 @@ class LoginOtpVerificationSection extends StatelessWidget {
                                 );
                               }
                             },
-                            child: const Icon(Icons.done),
+                            child: const Icon(
+                              Icons.done,
+                              color: AppColors.white,
+                            ),
                           ),
                         );
                 },
@@ -214,7 +217,7 @@ class LoginOtpVerificationSection extends StatelessWidget {
                         ),
                       ),
                     )
-                  : const SizedBox(),
+                  : const SizedBox.shrink(),
             ],
           ),
         ],

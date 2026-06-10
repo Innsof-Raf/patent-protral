@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'package:patient_portal/feature/reports/data/models/report_file_model.dart';
 import 'package:patient_portal/feature/reports/data/models/report_model.dart';
 import 'package:patient_portal/feature/reports/domain/usecases/params/reports_params.dart';
@@ -22,6 +23,10 @@ abstract class ReportsRemoteDataSource {
 }
 
 class ReportsRemoteDataSourceImpl implements ReportsRemoteDataSource {
+  final Dio client;
+
+  ReportsRemoteDataSourceImpl({required this.client});
+
   @override
   Future<Either<ErrorModel, List<ReportModel>>> getReports(
     ReportsParams params,
@@ -32,19 +37,24 @@ class ReportsRemoteDataSourceImpl implements ReportsRemoteDataSource {
     );
     try {
       final Map<String, dynamic> data = {
-        "CONTENT": "{\"id_customer\":\"1299\",\"mobile_no\":\"9659858387\"}",
+        "CONTENT": jsonEncode({
+          "id_customer": "1299",
+          "mobile_no": "9659858387",
+        }),
         "TYPE": "PP0016",
       };
-      http.Response response = await http.post(
-        Uri.parse(ConstantUrls.serviceUrl),
-        body: jsonEncode(data),
-        headers: {
-          'Content-type': 'application/json',
-          HttpHeaders.authorizationHeader: 'Bearer ${getReportsParams.token}',
-        },
+      final response = await client.post(
+        ConstantUrls.serviceUrl,
+        data: data,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            HttpHeaders.authorizationHeader: 'Bearer ${getReportsParams.token}',
+          },
+        ),
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final List responseList = jsonDecode(response.body);
+        final List responseList = response.data;
         List<ReportModel> conseltationsList = [];
         for (final raw in responseList) {
           conseltationsList.add(ReportModel.fromJson(raw));
@@ -54,12 +64,18 @@ class ReportsRemoteDataSourceImpl implements ReportsRemoteDataSource {
       } else {
         return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
       }
-    } on SocketException {
-      return Left(ErrorModel(message: ConstantMessages.noNetworkErrorMessage));
-    } on TimeoutException {
-      return Left(
-        ErrorModel(message: ConstantMessages.connectionTimeOutFailureMessage),
-      );
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.connectionTimeout ||
+          e.type == DioExceptionType.receiveTimeout) {
+        return Left(
+          ErrorModel(message: ConstantMessages.connectionTimeOutFailureMessage),
+        );
+      } else if (e.error is SocketException) {
+        return Left(
+          ErrorModel(message: ConstantMessages.noNetworkErrorMessage),
+        );
+      }
+      return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
     } catch (e) {
       return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
     }
@@ -74,13 +90,26 @@ class ReportsRemoteDataSourceImpl implements ReportsRemoteDataSource {
       orElse: () => throw Exception('Invalid report download params'),
     );
     try {
-      final bytes = await http.readBytes(Uri.parse(downloadReportParams.url));
+      final response = await client.get<Uint8List>(
+        downloadReportParams.url,
+        options: Options(responseType: ResponseType.bytes),
+      );
 
-      return Right(ReportFileModel(bytes: bytes));
-    } on SocketException {
-      return Left(ErrorModel(message: ConstantMessages.noNetworkErrorMessage));
-    } on TimeoutException {
-      return Left(ErrorModel(message: ConstantMessages.tokenExpiredMessage));
+      if (response.data != null) {
+        return Right(ReportFileModel(bytes: response.data!));
+      } else {
+        return Left(ErrorModel(message: 'Failed to download report'));
+      }
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.connectionTimeout ||
+          e.type == DioExceptionType.receiveTimeout) {
+        return Left(ErrorModel(message: ConstantMessages.tokenExpiredMessage));
+      } else if (e.error is SocketException) {
+        return Left(
+          ErrorModel(message: ConstantMessages.noNetworkErrorMessage),
+        );
+      }
+      return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
     } catch (e) {
       return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
     }

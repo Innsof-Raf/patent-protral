@@ -1,5 +1,6 @@
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
-import 'package:http/http.dart' as http;
 import 'package:patient_portal/feature/add_document/data/datasources/add_document_remote_data_source.dart';
 import 'package:patient_portal/feature/add_document/data/repositories/add_document_repository_impl.dart';
 import 'package:patient_portal/feature/add_document/domain/repositories/add_document_repository.dart';
@@ -41,23 +42,23 @@ import 'package:patient_portal/feature/lab/domain/usecases/get_items_usecase.dar
 import 'package:patient_portal/feature/lab/domain/usecases/get_packages_usecase.dart';
 import 'package:patient_portal/feature/lab/domain/usecases/update_item_in_cart_usecase.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
-import 'package:patient_portal/feature/login/presentation/bloc/login_with_password_bloc/login_with_password_bloc.dart';
 import 'package:patient_portal/feature/login/data/datasources/login_remote_data_source.dart';
 import 'package:patient_portal/feature/login/data/repositories/login_repository_impl.dart';
 import 'package:patient_portal/feature/login/domain/repositories/login_repository.dart';
 import 'package:patient_portal/feature/login/domain/usecases/generate_otp_usecase.dart';
 import 'package:patient_portal/feature/login/domain/usecases/login_with_password_usecase.dart';
 import 'package:patient_portal/feature/login/domain/usecases/verify_otp_usecase.dart';
+import 'package:patient_portal/feature/login/presentation/bloc/login_with_password_bloc/login_with_password_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_verification_bloc/otp_verification_bloc.dart';
 import 'package:patient_portal/feature/member_details/presentation/bloc/member_detail_bloc.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/delete_member_bloc/delete_member_bloc.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/member_search_bloc/member_search_bloc.dart';
-import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/my_appointments/data/repositories/my_appointments_repository_impl.dart';
 import 'package:patient_portal/feature/my_appointments/domain/repositories/my_appointments_repository.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/cancel_appointment_usecase.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/get_my_appointments_usecase.dart';
+import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/profile/data/datasources/profile_remote_data_source.dart';
 import 'package:patient_portal/feature/profile/data/repositories/profile_repository_impl.dart';
 import 'package:patient_portal/feature/profile/domain/repositories/profile_repository.dart';
@@ -81,6 +82,7 @@ import 'package:patient_portal/feature/speciality/domain/repositories/speciality
 import 'package:patient_portal/feature/speciality/domain/usecases/fetch_specialities_usecase.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/search_specialities_usecase.dart';
 import 'package:patient_portal/feature/speciality/presentation/bloc/speciality_bloc/speciality_bloc.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 final sl = GetIt.instance;
 
@@ -298,7 +300,7 @@ Future<void> init() async {
 
   // Data sources
   sl.registerLazySingleton<ProfileRemoteDataSource>(
-    () => ProfileRemoteDataSourceImpl(),
+    () => ProfileRemoteDataSourceImpl(client: sl()),
   );
 
   //! Features - Reports
@@ -315,7 +317,7 @@ Future<void> init() async {
 
   // Data sources
   sl.registerLazySingleton<ReportsRemoteDataSource>(
-    () => ReportsRemoteDataSourceImpl(),
+    () => ReportsRemoteDataSourceImpl(client: sl()),
   );
 
   //! Features - Set Password
@@ -332,7 +334,7 @@ Future<void> init() async {
 
   // Data sources
   sl.registerLazySingleton<SetPasswordRemoteDataSource>(
-    () => SetPasswordRemoteDataSourceImpl(),
+    () => SetPasswordRemoteDataSourceImpl(client: sl()),
   );
 
   //! Features - Speciality
@@ -355,9 +357,45 @@ Future<void> init() async {
 
   // Data sources
   sl.registerLazySingleton<SpecialityRemoteDataSource>(
-    () => SpecialityRemoteDataSourceImpl(),
+    () => SpecialityRemoteDataSourceImpl(client: sl()),
   );
 
   //! External
-  sl.registerLazySingleton(() => http.Client());
+  sl.registerLazySingleton<Dio>(
+    () =>
+        Dio(
+            BaseOptions(
+              connectTimeout: const Duration(seconds: 10),
+              receiveTimeout: const Duration(seconds: 10),
+            ),
+          )
+          ..interceptors.add(
+            InterceptorsWrapper(
+              onResponse: (response, handler) {
+                if (kDebugMode) {
+                  print("Dio Response Status: ${response.statusCode}");
+                }
+                return handler.next(response);
+              },
+              onError: (DioException e, handler) {
+                if (kDebugMode) {
+                  print("Dio Error Status: ${e.response?.statusCode}");
+                }
+                return handler.next(e);
+              },
+            ),
+          )
+          ..interceptors.add(
+            PrettyDioLogger(
+              requestHeader: true,
+              requestBody: true,
+              responseBody: true,
+              responseHeader: true,
+              error: true,
+              compact: true,
+              request: true,
+              maxWidth: 90,
+            ),
+          ),
+  );
 }

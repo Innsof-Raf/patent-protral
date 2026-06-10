@@ -2,8 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
+import 'package:dio/dio.dart';
 import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -15,6 +14,10 @@ abstract class ProfileRemoteDataSource {
 }
 
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
+  final Dio client;
+
+  ProfileRemoteDataSourceImpl({required this.client});
+
   @override
   Future<MemberModel> addMember(ProfileParams params) async {
     return params.maybeMap(
@@ -27,29 +30,48 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
 
   Future<MemberModel> _addMember(AddMemberParams p) async {
     try {
-      var request = http.MultipartRequest(
-        'POST',
-        Uri.parse(ConstantUrls.addMember),
-      );
-      request.fields.addAll({
-        'saveRequest':
-            '{"CONTENT":"{\\"id_customer\\":0,\\"customer_name\\":\\"${p.patientName}\\",\\"mobile_no\\":\\"${p.user!.mobileNumber}\\",\\"national_id\\":\\"${p.nationalId}\\",\\"email_id\\":${p.email != null ? '\\"${p.email}\\"' : null},\\"dob\\":\\"${p.dob}\\",\\"gender\\":\\"${p.gender}\\",\\"id_insurance\\":${p.idInsurance},\\"member_no\\":${p.memberNumber != null ? '\\"${p.memberNumber}\\"' : null},\\"expiry_dt\\":${p.expireDate != null ? '\\"${p.expireDate}\\"' : null},\\"others\\":${p.otherInsuranceName != null ? '\\"${p.otherInsuranceName!.toUpperCase()}\\"' : null},\\"profile_image\\":${p.profileImage != null ? '\\"profile.png\\"' : null}}","TYPE":"PP0018"}',
+      final content = {
+        "id_customer": 0,
+        "customer_name": p.patientName,
+        "mobile_no": p.user!.mobileNumber,
+        "national_id": p.nationalId,
+        "email_id": p.email,
+        "dob": p.dob,
+        "gender": p.gender,
+        "id_insurance": p.idInsurance,
+        "member_no": p.memberNumber,
+        "expiry_dt": p.expireDate,
+        "others": p.otherInsuranceName?.toUpperCase(),
+        "profile_image": p.profileImage != null ? "profile.png" : null,
+      };
+
+      final saveRequest = {
+        "CONTENT": jsonEncode(content),
+        "TYPE": "PP0018",
+      };
+
+      FormData formData = FormData.fromMap({
+        'saveRequest': jsonEncode(saveRequest),
         'PathIdentifier': 'PatientProfileImage',
         'removeProfilePic': 'false',
       });
 
       if (p.profileImage != null) {
-        request.files.add(
-          await MultipartFile.fromPath('uploads', p.profileImage!.path),
+        formData.files.add(
+          MapEntry(
+            'uploads',
+            await MultipartFile.fromFile(
+              p.profileImage!.path,
+              filename: 'profile.png',
+            ),
+          ),
         );
       }
 
-      http.StreamedResponse response = await request.send();
+      final response = await client.post(ConstantUrls.addMember, data: formData);
 
       if (response.statusCode == 200) {
-        final responses = await response.stream.bytesToString();
-
-        final responseData = jsonDecode(responses);
+        final responseData = response.data;
 
         if (responseData['status'] == true) {
           return MemberModel.fromJson(responseData['patient_detail']);
@@ -59,10 +81,13 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       } else {
         throw Exception('Server Failure');
       }
-    } on SocketException {
-      throw Exception('No Network');
-    } on TimeoutException {
-      throw Exception('Connection Timeout');
+    } on DioException catch (e) {
+      if (e.error is SocketException) {
+        throw Exception('No Network');
+      } else if (e.type == DioExceptionType.connectionTimeout) {
+        throw Exception('Connection Timeout');
+      }
+      throw Exception(e.message ?? 'Server Failure');
     } catch (e) {
       throw Exception(e.toString());
     }
@@ -83,30 +108,41 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     ChangeMemberInsuranceDetailsParams p,
   ) async {
     try {
+      final content = {
+        "id_customer": p.memberId,
+        "id_insurance": p.idInsurance,
+        "insurance_name": p.idInsurance == 0 ? p.memberNumber : null,
+        "expire_date": p.expireDate,
+        "member_number": p.memberNumber,
+      };
       final Map data = {
-        "CONTENT":
-            "{\"id_customer\":${p.memberId},\"id_insurance\":${p.idInsurance},\"insurance_name\":${p.idInsurance == 0 ? "\"${p.memberNumber}\"" : null},\"expire_date\":\"${p.expireDate}\",\"member_number\":\"${p.memberNumber}\"}",
+        "CONTENT": jsonEncode(content),
         "TYPE": "PP0035",
       };
-      http.Response response = await http.post(
-        Uri.parse(ConstantUrls.serviceUrl),
-        body: jsonEncode(data),
-        headers: {
-          'Content-type': 'application/json',
-          'Authorization': 'Bearer ${p.token!}',
-        },
+      final response = await client.post(
+        ConstantUrls.serviceUrl,
+        data: data,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ${p.token!}',
+          },
+        ),
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final Map<String, dynamic> responseData = jsonDecode(response.body);
+        final Map<String, dynamic> responseData = response.data;
         return MemberModel.fromJson(responseData['customer_detail']);
       } else {
         throw Exception('Server Failure');
       }
-    } on SocketException {
-      throw Exception('No Network');
-    } on TimeoutException {
-      throw Exception('Connection Timeout');
+    } on DioException catch (e) {
+      if (e.error is SocketException) {
+        throw Exception('No Network');
+      } else if (e.type == DioExceptionType.connectionTimeout) {
+        throw Exception('Connection Timeout');
+      }
+      throw Exception(e.message ?? 'Server Failure');
     } catch (e) {
       throw Exception(e.toString());
     }
@@ -125,32 +161,34 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
   Future<MemberModel> _getMemberDetail(GetMemberDetailParams p) async {
     try {
       final Map data = {
-        "CONTENT": "{\"id_customer\":${p.memberId}}",
+        "CONTENT": jsonEncode({"id_customer": p.memberId}),
         "TYPE": "PP0034",
       };
-      http.Response response = await http.post(
-        Uri.parse(ConstantUrls.serviceUrl),
-        body: jsonEncode(data),
-        headers: {
-          'Content-type': 'application/json',
-          'Authorization': 'Bearer ${p.token!}',
-        },
+      final response = await client.post(
+        ConstantUrls.serviceUrl,
+        data: data,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ${p.token!}',
+          },
+        ),
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final Map<String, dynamic> responseData = jsonDecode(response.body);
+        final Map<String, dynamic> responseData = response.data;
         return MemberModel.fromJson(responseData);
       } else {
         throw Exception('Server Failure');
       }
-    } on SocketException {
-      throw Exception('No Network');
-    } on TimeoutException {
-      throw Exception('Connection Timeout');
+    } on DioException catch (e) {
+      if (e.error is SocketException) {
+        throw Exception('No Network');
+      } else if (e.type == DioExceptionType.connectionTimeout) {
+        throw Exception('Connection Timeout');
+      }
+      throw Exception(e.message ?? 'Server Failure');
     } catch (e) {
       throw Exception(e.toString());
     }
   }
-
-  // static Future<Either<ErrorModel, List>> uploadMemberDocuments(
-  //     {required List doucuments}) {}
 }
