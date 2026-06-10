@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:patient_portal/feature/lab/data/models/item_model.dart';
 import 'package:patient_portal/feature/lab/data/models/package_model.dart';
-import 'package:patient_portal/resources/urls.dart';
+import 'package:patient_portal/core/resources/urls.dart';
 
 abstract class LabRemoteDataSource {
   Future<List<ItemModel>> getItems({required String token});

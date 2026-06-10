@@ -10,11 +10,11 @@ import 'package:patient_portal/feature/home/presentation/widgets/documents_tile.
 import 'package:patient_portal/feature/home/presentation/widgets/members_tile.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
 import 'package:patient_portal/feature/speciality/presentation/widgets/speciality_tile.dart';
-import 'package:patient_portal/resources/app_colors.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
-import 'package:patient_portal/resources/dimens.dart';
-import 'package:patient_portal/resources/urls.dart';
-import 'package:patient_portal/route/route_constants.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/dimens.dart';
+import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/core/route/route_constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeScreen extends StatelessWidget {

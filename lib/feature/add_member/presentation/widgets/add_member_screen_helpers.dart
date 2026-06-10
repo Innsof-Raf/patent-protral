@@ -7,13 +7,13 @@ import 'package:patient_portal/feature/add_member/domain/usecases/params/params.
 import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
 import 'package:patient_portal/feature/add_member/presentation/widgets/member_details_section.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/resources/app_colors.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
-import 'package:patient_portal/resources/common_helpers/gender_form_helpers.dart';
-import 'package:patient_portal/resources/common_helpers/insurance_helpers.dart';
-import 'package:patient_portal/resources/common_widgets.dart/image_picker_tile.dart';
-import 'package:patient_portal/resources/common_widgets.dart/insurance_form_scetion.dart';
-import 'package:patient_portal/resources/dimens.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/gender_form_helpers.dart';
+import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/image_picker_tile.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/insurance_form_scetion.dart';
+import 'package:patient_portal/core/resources/dimens.dart';
 
 class AddMemberScreenHelpers {
   static Future<DateTime?> getDob({

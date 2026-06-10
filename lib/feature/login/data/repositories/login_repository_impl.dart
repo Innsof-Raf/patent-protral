@@ -7,7 +7,7 @@ import 'package:patient_portal/feature/login/data/datasources/login_remote_data_
 import 'package:patient_portal/feature/login/domain/entities/otp_response.dart';
 import 'package:patient_portal/feature/login/domain/repositories/login_repository.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
-import 'package:patient_portal/resources/constant_messages.dart';
+import 'package:patient_portal/core/resources/constant_messages.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
   final LoginRemoteDataSource remoteDataSource;

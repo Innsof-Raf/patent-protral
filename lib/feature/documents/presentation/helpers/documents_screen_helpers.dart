@@ -6,10 +6,10 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
-import 'package:patient_portal/resources/constant_messages.dart';
-import 'package:patient_portal/resources/error_model.dart';
-import 'package:patient_portal/resources/urls.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/constant_messages.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
+import 'package:patient_portal/core/resources/urls.dart';
 
 class DocumentsScreenHelpers {
   static List<PopupMenuItem<int>> createPopupMenuItem(List<Member> members) {

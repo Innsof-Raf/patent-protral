@@ -20,11 +20,11 @@ import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
 import 'package:patient_portal/feature/set_password/presentation/bloc/change_password_bloc.dart';
 import 'package:patient_portal/feature/speciality/presentation/bloc/speciality_bloc/speciality_bloc.dart';
-import 'package:patient_portal/injection_container.dart' as di;
-import 'package:patient_portal/resources/app_colors.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
-import 'package:patient_portal/route/route_constants.dart';
-import 'package:patient_portal/route/router.dart';
+import 'package:patient_portal/core/injection_container.dart' as di;
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/route/route_constants.dart';
+import 'package:patient_portal/core/route/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

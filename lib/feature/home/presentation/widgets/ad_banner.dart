@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/feature/home/data/models/ad_banner_model.dart';
-import 'package:patient_portal/resources/urls.dart';
+import 'package:patient_portal/core/resources/urls.dart';
 
 class AdBanner extends StatelessWidget {
   final AdBannerModel adBanner;

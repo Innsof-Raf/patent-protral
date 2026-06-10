@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:patient_portal/injection_container.dart' as di;
+import 'package:patient_portal/core/injection_container.dart' as di;
 import 'package:patient_portal/main.dart';
 
 void main() {

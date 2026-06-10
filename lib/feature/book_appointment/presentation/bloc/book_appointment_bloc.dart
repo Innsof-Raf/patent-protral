@@ -6,8 +6,8 @@ import 'package:patient_portal/feature/book_appointment/data/models/shift_model.
 import 'package:patient_portal/feature/book_appointment/data/models/slot_model.dart';
 import 'package:patient_portal/feature/book_appointment/domain/usecases/book_appointment_usecase.dart';
 import 'package:patient_portal/feature/book_appointment/domain/usecases/params/book_appointment_params.dart';
-import 'package:patient_portal/resources/common_models/appointment_model.dart/appointment_model.dart';
-import 'package:patient_portal/resources/error_model.dart';
+import 'package:patient_portal/core/resources/common_models/appointment_model.dart/appointment_model.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
 
 part 'book_appointment_event.dart';
 part 'book_appointment_state.dart';

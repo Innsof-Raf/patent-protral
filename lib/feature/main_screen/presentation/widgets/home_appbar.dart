@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
-import 'package:patient_portal/route/route_constants.dart';
+import 'package:patient_portal/core/route/route_constants.dart';
 
-import 'package:patient_portal/resources/app_colors.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});

@@ -3,11 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/helpers/edit_profile_detail_screen_helpers.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/helpers/edit_profile_details_form_validation_helpers.dart';
-import 'package:patient_portal/resources/app_colors.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
-import 'package:patient_portal/resources/common_helpers/gender_form_helpers.dart';
-import 'package:patient_portal/resources/common_widgets.dart/radio_button.dart';
-import 'package:patient_portal/resources/dimens.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/gender_form_helpers.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/radio_button.dart';
+import 'package:patient_portal/core/resources/dimens.dart';
 
 class EditProfileDetailsSection extends StatelessWidget {
   const EditProfileDetailsSection({super.key});

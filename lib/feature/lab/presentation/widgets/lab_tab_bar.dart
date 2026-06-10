@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class LabTabBar extends StatelessWidget {
   final String title;

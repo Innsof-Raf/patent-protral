@@ -5,10 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:patient_portal/feature/lab/data/models/item_model.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/resources/app_colors.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
-import 'package:patient_portal/resources/urls.dart';
-import 'package:patient_portal/route/route_constants.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/core/route/route_constants.dart';
 
 class LabGridItemTile extends StatelessWidget {
   final ItemModel item;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/resources/app_colors.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class MyAppointmentScreenTabBar extends StatelessWidget {
   final bool isSelected;

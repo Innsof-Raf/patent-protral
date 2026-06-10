@@ -4,7 +4,7 @@ import 'package:patient_portal/core/usecases/usecase.dart';
 import 'package:patient_portal/feature/book_appointment/data/models/shift_model.dart';
 import 'package:patient_portal/feature/book_appointment/domain/repositories/book_appointment_repository.dart';
 import 'package:patient_portal/feature/book_appointment/domain/usecases/params/book_appointment_params.dart';
-import 'package:patient_portal/resources/common_models/appointment_model.dart/appointment_model.dart';
+import 'package:patient_portal/core/resources/common_models/appointment_model.dart/appointment_model.dart';
 
 class BookAppointmentUseCase
     implements UseCase<AppointmentModel, BookAppointmentParams> {

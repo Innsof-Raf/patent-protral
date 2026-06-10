@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:patient_portal/resources/error_model.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
 
 part 'member_detail_event.dart';
 part 'member_detail_state.dart';

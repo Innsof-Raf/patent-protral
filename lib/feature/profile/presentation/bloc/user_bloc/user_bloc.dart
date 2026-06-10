@@ -8,7 +8,7 @@ import 'package:patient_portal/feature/profile/domain/usecases/add_profile_membe
 import 'package:patient_portal/feature/profile/domain/usecases/change_member_insurance_details_usecase.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/get_member_detail_usecase.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
-import 'package:patient_portal/resources/error_model.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
 
 part 'user_event.dart';
 part 'user_state.dart';

@@ -5,7 +5,7 @@ import 'package:patient_portal/feature/speciality/data/models/speciality_model.d
 import 'package:patient_portal/feature/speciality/domain/usecases/fetch_specialities_usecase.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/params/speciality_params.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/search_specialities_usecase.dart';
-import 'package:patient_portal/resources/error_model.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
 
 part 'speciality_event.dart';
 part 'speciality_state.dart';

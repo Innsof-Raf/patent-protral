@@ -4,9 +4,9 @@ import 'package:patient_portal/feature/my_profile/presentation/widgets/my_profil
 import 'package:patient_portal/feature/my_profile/presentation/widgets/my_profile_section.dart';
 import 'package:patient_portal/feature/my_profile/presentation/widgets/quick_menus_section.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
-import 'package:patient_portal/resources/app_colors.dart';
-import 'package:patient_portal/resources/common_widgets.dart/member_tile.dart';
-import 'package:patient_portal/resources/dimens.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/member_tile.dart';
+import 'package:patient_portal/core/resources/dimens.dart';
 
 class MyProfileScreen extends StatelessWidget {
   const MyProfileScreen({super.key});

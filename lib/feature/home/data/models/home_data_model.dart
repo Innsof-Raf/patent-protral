@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/home/data/models/ad_banner_model.dart';
 import 'package:patient_portal/feature/speciality/data/models/speciality_model.dart';
-import 'package:patient_portal/resources/common_models/insurance/insurance_model.dart';
+import 'package:patient_portal/core/resources/common_models/insurance/insurance_model.dart';
 
 part 'generated/home_data_model.freezed.dart';
 part 'generated/home_data_model.g.dart';

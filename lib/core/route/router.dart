@@ -23,7 +23,7 @@ import 'package:patient_portal/feature/reports/presentation/pages/report_screen.
 import 'package:patient_portal/feature/reports/presentation/pages/reports_screen.dart';
 import 'package:patient_portal/feature/set_password/presentation/pages/set_password_screen.dart';
 import 'package:patient_portal/feature/speciality/presentation/pages/speciality_screen.dart';
-import 'package:patient_portal/route/route_constants.dart';
+import 'package:patient_portal/core/route/route_constants.dart';
 
 class Approuter {
   static Duration trasitionDuration() => const Duration(milliseconds: 300);

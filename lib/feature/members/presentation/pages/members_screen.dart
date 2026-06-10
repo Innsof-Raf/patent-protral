@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/member_search_bloc/member_search_bloc.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/resources/app_colors.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
-import 'package:patient_portal/resources/common_helpers/insurance_helpers.dart';
-import 'package:patient_portal/resources/common_widgets.dart/common_appbar.dart';
-import 'package:patient_portal/resources/common_widgets.dart/member_tile.dart';
-import 'package:patient_portal/resources/dimens.dart';
-import 'package:patient_portal/route/route_constants.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/member_tile.dart';
+import 'package:patient_portal/core/resources/dimens.dart';
+import 'package:patient_portal/core/route/route_constants.dart';
 
 class MembersScreen extends StatelessWidget {
   const MembersScreen({super.key});

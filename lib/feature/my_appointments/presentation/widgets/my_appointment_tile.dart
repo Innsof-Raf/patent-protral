@@ -6,14 +6,14 @@ import 'package:patient_portal/feature/book_appointment/presentation/widgets/boo
 import 'package:patient_portal/feature/my_appointments/data/models/my_appointment_model.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/resources/app_colors.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
-import 'package:patient_portal/resources/common_widgets.dart/active_button.dart';
-import 'package:patient_portal/resources/common_widgets.dart/active_outlined_button.dart';
-import 'package:patient_portal/resources/dimens.dart';
-import 'package:patient_portal/resources/helpers.dart';
-import 'package:patient_portal/resources/urls.dart';
-import 'package:patient_portal/route/route_constants.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_outlined_button.dart';
+import 'package:patient_portal/core/resources/dimens.dart';
+import 'package:patient_portal/core/resources/helpers.dart';
+import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/core/route/route_constants.dart';
 
 import 'cancel_booking_popup.dart';
 

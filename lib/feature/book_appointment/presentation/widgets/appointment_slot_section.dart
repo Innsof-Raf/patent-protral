@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/book_appointment/data/models/shift_model.dart';
 
-import 'package:patient_portal/resources/app_text_styles.dart';
-import 'package:patient_portal/resources/dimens.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/dimens.dart';
 
 import 'slot_tile.dart';
 

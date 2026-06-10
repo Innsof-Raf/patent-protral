@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:patient_portal/feature/add_document/data/models/document_type_model.dart';
-import 'package:patient_portal/resources/urls.dart';
+import 'package:patient_portal/core/resources/urls.dart';
 
 abstract class AddDocumentRemoteDataSource {
   Future<List<DocumentTypeModel>> getDocumentTypes({required String token});

@@ -5,8 +5,8 @@ import 'package:patient_portal/feature/add_member/domain/usecases/get_insurances
 import 'package:patient_portal/feature/add_member/domain/usecases/update_insurance_usecase.dart';
 import 'package:patient_portal/feature/add_member/domain/usecases/params/params.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
-import 'package:patient_portal/resources/common_models/insurance/insurance_model.dart';
-import 'package:patient_portal/resources/error_model.dart';
+import 'package:patient_portal/core/resources/common_models/insurance/insurance_model.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
 
 part 'add_member_event.dart';
 part 'add_member_state.dart';

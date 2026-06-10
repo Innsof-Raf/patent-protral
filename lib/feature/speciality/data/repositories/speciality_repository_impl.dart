@@ -3,7 +3,7 @@ import 'package:patient_portal/feature/speciality/data/datasources/speciality_re
 import 'package:patient_portal/feature/speciality/data/models/speciality_model.dart';
 import 'package:patient_portal/feature/speciality/domain/repositories/speciality_repository.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/params/speciality_params.dart';
-import 'package:patient_portal/resources/error_model.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
 
 class SpecialityRepositoryImpl implements SpecialityRepository {
   final SpecialityRemoteDataSource remoteDataSource;

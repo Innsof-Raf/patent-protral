@@ -4,8 +4,8 @@ import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_a
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/date_tab.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/resources/app_colors.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 import '../widgets/appointment_slot_section.dart';
 import '../widgets/book_appointment_appbar.dart';

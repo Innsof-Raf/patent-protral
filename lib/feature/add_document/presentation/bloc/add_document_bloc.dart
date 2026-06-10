@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/add_document/domain/usecases/get_document_types_usecase.dart';
 import 'package:patient_portal/feature/add_document/domain/usecases/params/add_document_params.dart';
 import 'package:patient_portal/feature/add_document/data/models/document_type_model.dart';
-import 'package:patient_portal/resources/error_model.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
 
 part 'add_document_event.dart';
 part 'add_document_state.dart';

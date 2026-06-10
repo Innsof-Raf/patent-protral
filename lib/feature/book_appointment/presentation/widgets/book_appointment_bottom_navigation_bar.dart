@@ -4,11 +4,11 @@ import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_a
 import 'package:patient_portal/feature/my_appointments/data/models/my_appointment_model.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
-import 'package:patient_portal/resources/app_colors.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
-import 'package:patient_portal/resources/common_widgets.dart/common_error_alert.dart';
-import 'package:patient_portal/resources/common_widgets.dart/succes_dailog.dart';
-import 'package:patient_portal/route/route_constants.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/succes_dailog.dart';
+import 'package:patient_portal/core/route/route_constants.dart';
 
 import 'book_appointment_screen_helpers.dart';
 

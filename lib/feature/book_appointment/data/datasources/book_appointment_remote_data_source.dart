@@ -5,8 +5,8 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:patient_portal/feature/book_appointment/data/models/shift_model.dart';
-import 'package:patient_portal/resources/common_models/appointment_model.dart/appointment_model.dart';
-import 'package:patient_portal/resources/urls.dart';
+import 'package:patient_portal/core/resources/common_models/appointment_model.dart/appointment_model.dart';
+import 'package:patient_portal/core/resources/urls.dart';
 
 abstract class BookAppointmentRemoteDataSource {
   Future<ShiftModel> getAvailableSlots({

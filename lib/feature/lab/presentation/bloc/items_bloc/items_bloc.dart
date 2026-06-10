@@ -4,7 +4,7 @@ import 'package:patient_portal/feature/lab/data/models/item_model.dart';
 import 'package:patient_portal/feature/lab/domain/usecases/get_items_usecase.dart';
 import 'package:patient_portal/feature/lab/domain/usecases/params/lab_params.dart';
 import 'package:patient_portal/feature/lab/domain/usecases/update_item_in_cart_usecase.dart';
-import 'package:patient_portal/resources/error_model.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
 
 part 'items_event.dart';
 part 'items_state.dart';

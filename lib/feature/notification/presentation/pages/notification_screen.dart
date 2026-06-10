@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patient_portal/feature/notification/presentation/widgets/notification_widget.dart';
-import 'package:patient_portal/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 
 class Notificationscreen extends StatelessWidget {
   const Notificationscreen({super.key});

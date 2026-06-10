@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:patient_portal/resources/app_colors.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
-import 'package:patient_portal/resources/common_helpers/gender_form_helpers.dart';
-import 'package:patient_portal/resources/common_helpers/member_form_validation_helpers.dart';
-import 'package:patient_portal/resources/common_widgets.dart/radio_button.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/gender_form_helpers.dart';
+import 'package:patient_portal/core/resources/common_helpers/member_form_validation_helpers.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/radio_button.dart';
 
 class EditmemberDetailSection extends StatelessWidget {
   static DateTime dob = DateTime.now();

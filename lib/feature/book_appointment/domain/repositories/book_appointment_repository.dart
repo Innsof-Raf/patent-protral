@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:patient_portal/core/error/failures.dart';
 import 'package:patient_portal/feature/book_appointment/data/models/shift_model.dart';
-import 'package:patient_portal/resources/common_models/appointment_model.dart/appointment_model.dart';
+import 'package:patient_portal/core/resources/common_models/appointment_model.dart/appointment_model.dart';
 
 abstract class BookAppointmentRepository {
   Future<Either<Failure, ShiftModel>> getAvailableSlots({

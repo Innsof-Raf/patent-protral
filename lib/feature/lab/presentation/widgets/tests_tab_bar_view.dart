@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/lab/data/models/item_model.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
 import 'package:patient_portal/feature/lab/presentation/widgets/lab_grid_item_tile.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class TsetsTabBarView extends StatelessWidget {
   const TsetsTabBarView({super.key});

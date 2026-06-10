@@ -5,7 +5,7 @@ import 'package:patient_portal/core/error/failures.dart';
 import 'package:patient_portal/feature/book_appointment/data/datasources/book_appointment_remote_data_source.dart';
 import 'package:patient_portal/feature/book_appointment/data/models/shift_model.dart';
 import 'package:patient_portal/feature/book_appointment/domain/repositories/book_appointment_repository.dart';
-import 'package:patient_portal/resources/common_models/appointment_model.dart/appointment_model.dart';
+import 'package:patient_portal/core/resources/common_models/appointment_model.dart/appointment_model.dart';
 
 class BookAppointmentRepositoryImpl implements BookAppointmentRepository {
   final BookAppointmentRemoteDataSource remoteDataSource;

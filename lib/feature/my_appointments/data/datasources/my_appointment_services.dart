@@ -5,9 +5,9 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'package:patient_portal/feature/my_appointments/data/models/my_appointment_model.dart';
-import 'package:patient_portal/resources/constant_messages.dart';
-import 'package:patient_portal/resources/error_model.dart';
-import 'package:patient_portal/resources/urls.dart';
+import 'package:patient_portal/core/resources/constant_messages.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
+import 'package:patient_portal/core/resources/urls.dart';
 
 class MyAppointmentServices {
   static Future<Either<ErrorModel, List<MyAppointmentModel>>>

@@ -7,9 +7,9 @@ import 'package:http/http.dart' as http;
 import 'package:patient_portal/feature/reports/data/models/report_file_model.dart';
 import 'package:patient_portal/feature/reports/data/models/report_model.dart';
 import 'package:patient_portal/feature/reports/domain/usecases/params/reports_params.dart';
-import 'package:patient_portal/resources/constant_messages.dart';
-import 'package:patient_portal/resources/error_model.dart';
-import 'package:patient_portal/resources/urls.dart';
+import 'package:patient_portal/core/resources/constant_messages.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
+import 'package:patient_portal/core/resources/urls.dart';
 
 abstract class ReportsRemoteDataSource {
   Future<Either<ErrorModel, List<ReportModel>>> getReports(

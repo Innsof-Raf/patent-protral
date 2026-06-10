@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:patient_portal/resources/urls.dart';
+import 'package:patient_portal/core/resources/urls.dart';
 
 class MedicalInsuranceWidget extends StatelessWidget {
   final int idInsurance;

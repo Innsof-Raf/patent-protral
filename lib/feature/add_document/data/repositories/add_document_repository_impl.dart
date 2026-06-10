@@ -6,7 +6,7 @@ import 'package:patient_portal/core/error/failures.dart';
 import 'package:patient_portal/feature/add_document/data/datasources/add_document_remote_data_source.dart';
 import 'package:patient_portal/feature/add_document/domain/repositories/add_document_repository.dart';
 import 'package:patient_portal/feature/add_document/data/models/document_type_model.dart';
-import 'package:patient_portal/resources/constant_messages.dart';
+import 'package:patient_portal/core/resources/constant_messages.dart';
 
 class AddDocumentRepositoryImpl implements AddDocumentRepository {
   final AddDocumentRemoteDataSource remoteDataSource;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
 
-import 'package:patient_portal/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   const BottomNavigationBarWidget({super.key});

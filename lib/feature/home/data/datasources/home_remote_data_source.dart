@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:patient_portal/feature/home/data/models/home_data_model.dart';
-import 'package:patient_portal/resources/urls.dart';
+import 'package:patient_portal/core/resources/urls.dart';
 
 abstract class HomeRemoteDataSource {
   Future<HomeDataModel> getHomeData({

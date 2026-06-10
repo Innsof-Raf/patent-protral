@@ -4,7 +4,7 @@ import 'package:patient_portal/feature/add_member/data/datasources/add_member_re
 import 'package:patient_portal/feature/add_member/domain/repositories/add_member_repository.dart';
 import 'package:patient_portal/feature/add_member/domain/usecases/params/params.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
-import 'package:patient_portal/resources/common_models/insurance/insurance_model.dart';
+import 'package:patient_portal/core/resources/common_models/insurance/insurance_model.dart';
 
 class AddMemberRepositoryImpl implements AddMemberRepository {
   final AddMemberRemoteDataSource remoteDataSource;

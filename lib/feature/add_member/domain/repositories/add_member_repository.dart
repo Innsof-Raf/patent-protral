@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:patient_portal/core/error/failures.dart';
 import 'package:patient_portal/feature/add_member/domain/usecases/params/params.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
-import 'package:patient_portal/resources/common_models/insurance/insurance_model.dart';
+import 'package:patient_portal/core/resources/common_models/insurance/insurance_model.dart';
 
 abstract class AddMemberRepository {
   Future<Either<Failure, List<InsuranceModel>>> getInsuranceTypes({

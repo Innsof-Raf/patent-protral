@@ -7,7 +7,7 @@ import 'package:patient_portal/feature/lab/data/datasources/lab_remote_data_sour
 import 'package:patient_portal/feature/lab/data/models/item_model.dart';
 import 'package:patient_portal/feature/lab/data/models/package_model.dart';
 import 'package:patient_portal/feature/lab/domain/repositories/lab_repository.dart';
-import 'package:patient_portal/resources/constant_messages.dart';
+import 'package:patient_portal/core/resources/constant_messages.dart';
 
 class LabRepositoryImpl implements LabRepository {
   final LabRemoteDataSource remoteDataSource;

@@ -7,15 +7,15 @@ import 'package:patient_portal/feature/add_member/presentation/widgets/profile_i
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/resources/app_colors.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
-import 'package:patient_portal/resources/common_helpers/insurance_helpers.dart';
-import 'package:patient_portal/resources/common_widgets.dart/common_appbar.dart';
-import 'package:patient_portal/resources/common_widgets.dart/common_error_alert.dart';
-import 'package:patient_portal/resources/common_widgets.dart/insurance_form_scetion.dart';
-import 'package:patient_portal/resources/common_widgets.dart/rounded_cheack_box.dart';
-import 'package:patient_portal/resources/common_widgets.dart/succes_dailog.dart';
-import 'package:patient_portal/resources/dimens.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/insurance_form_scetion.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/rounded_cheack_box.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/succes_dailog.dart';
+import 'package:patient_portal/core/resources/dimens.dart';
 
 class AddMemberScreen extends StatelessWidget {
   final Member? member;

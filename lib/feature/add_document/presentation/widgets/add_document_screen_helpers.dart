@@ -6,10 +6,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:patient_portal/feature/add_document/data/models/document_type_model.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 
-import '../../../../resources/app_colors.dart';
-import '../../../../resources/app_text_styles.dart';
-import '../../../../resources/common_widgets.dart/image_picker_tile.dart';
-import '../../../../resources/dimens.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/image_picker_tile.dart';
+import 'package:patient_portal/core/resources/dimens.dart';
 import '../pages/add_document_screen.dart';
 
 class AddDocumentScreenHelpers {

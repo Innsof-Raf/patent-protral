@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
 
 class EditMemberDetailsScreenHelpers {
   static Future<DateTime?> getDob({

@@ -4,14 +4,14 @@ import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_
 import 'package:patient_portal/feature/set_password/domain/usecases/params/set_password_params.dart';
 import 'package:patient_portal/feature/set_password/presentation/bloc/change_password_bloc.dart';
 import 'package:patient_portal/feature/set_password/presentation/widgets/set_password_section.dart';
-import 'package:patient_portal/resources/common_widgets.dart/common_appbar.dart';
-import 'package:patient_portal/resources/common_widgets.dart/succes_dailog.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/succes_dailog.dart';
 
-import 'package:patient_portal/resources/app_colors.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
-import 'package:patient_portal/resources/common_widgets.dart/common_error_alert.dart';
-import 'package:patient_portal/resources/dimens.dart';
-import 'package:patient_portal/route/route_constants.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
+import 'package:patient_portal/core/resources/dimens.dart';
+import 'package:patient_portal/core/route/route_constants.dart';
 
 class SetPasswordScreen extends StatelessWidget {
   const SetPasswordScreen({super.key});

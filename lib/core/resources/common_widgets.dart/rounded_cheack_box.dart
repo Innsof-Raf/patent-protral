@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/resources/dimens.dart';
+import 'package:patient_portal/core/resources/dimens.dart';
 
 import '../app_colors.dart';
 import '../app_text_styles.dart';

@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/set_password/data/models/change_password_response_model.dart';
 import 'package:patient_portal/feature/set_password/domain/usecases/change_password_usecase.dart';
 import 'package:patient_portal/feature/set_password/domain/usecases/params/set_password_params.dart';
-import 'package:patient_portal/resources/error_model.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
 
 part 'change_password_event.dart';
 part 'change_password_state.dart';

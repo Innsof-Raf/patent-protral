@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/my_appointments/data/datasources/my_appointment_services.dart';
 import 'package:patient_portal/feature/my_appointments/data/models/my_appointment_model.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
-import 'package:patient_portal/resources/error_model.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
 
 part 'generated/my_appointments_bloc.freezed.dart';
 part 'my_appointments_event.dart';

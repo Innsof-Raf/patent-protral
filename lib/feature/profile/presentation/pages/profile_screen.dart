@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:patient_portal/feature/my_profile/presentation/widgets/member_section.dart';
 import 'package:patient_portal/feature/profile/presentation/widgets/my_profile_section.dart';
 import 'package:patient_portal/feature/profile/presentation/widgets/quick_menus_section.dart';
-import 'package:patient_portal/resources/app_colors.dart';
-import 'package:patient_portal/resources/dimens.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/dimens.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

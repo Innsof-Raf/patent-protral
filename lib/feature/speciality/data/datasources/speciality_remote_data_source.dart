@@ -5,9 +5,9 @@ import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'package:patient_portal/feature/speciality/data/models/speciality_model.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/params/speciality_params.dart';
-import 'package:patient_portal/resources/constant_messages.dart';
-import 'package:patient_portal/resources/error_model.dart';
-import 'package:patient_portal/resources/urls.dart';
+import 'package:patient_portal/core/resources/constant_messages.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
+import 'package:patient_portal/core/resources/urls.dart';
 
 abstract class SpecialityRemoteDataSource {
   Future<Either<ErrorModel, List<SpecialityModel>>> fetchSpecialities(

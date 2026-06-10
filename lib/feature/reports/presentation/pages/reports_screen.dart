@@ -5,7 +5,7 @@ import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_
 import 'package:patient_portal/feature/reports/domain/usecases/params/reports_params.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
 import 'package:patient_portal/feature/reports/presentation/widgets/report_tile.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class ReportsScreen extends StatelessWidget {
   const ReportsScreen({super.key});

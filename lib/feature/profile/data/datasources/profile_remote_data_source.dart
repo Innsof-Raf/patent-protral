@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
-import 'package:patient_portal/resources/urls.dart';
+import 'package:patient_portal/core/resources/urls.dart';
 
 abstract class ProfileRemoteDataSource {
   Future<MemberModel> addMember(ProfileParams params);

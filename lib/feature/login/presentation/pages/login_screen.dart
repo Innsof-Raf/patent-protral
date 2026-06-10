@@ -5,9 +5,9 @@ import 'package:patient_portal/feature/login/presentation/helpers/login_screen_h
 import 'package:patient_portal/feature/login/presentation/widgets/login_otp_generation_section.dart';
 import 'package:patient_portal/feature/login/presentation/widgets/login_otp_verification_section.dart';
 import 'package:patient_portal/feature/login/presentation/widgets/login_with_password_section.dart';
-import 'package:patient_portal/resources/app_colors.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
-import 'package:patient_portal/resources/dimens.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/dimens.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 List<String> bagroundImages = [

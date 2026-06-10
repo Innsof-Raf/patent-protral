@@ -5,9 +5,9 @@ import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/resources/app_colors.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
-import 'package:patient_portal/resources/urls.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/urls.dart';
 
 class CancelBookingPopUp extends StatelessWidget {
   final int appointmentId;

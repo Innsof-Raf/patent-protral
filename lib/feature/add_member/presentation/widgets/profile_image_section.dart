@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../resources/app_colors.dart';
-import '../../../../resources/app_text_styles.dart';
-import '../../../../resources/common_widgets.dart/default_profile_image.dart';
-import '../../../../resources/dimens.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/default_profile_image.dart';
+import 'package:patient_portal/core/resources/dimens.dart';
 import 'add_member_screen_helpers.dart';
 
 class ProfileImageSection extends StatelessWidget {
