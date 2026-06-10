@@ -4,8 +4,8 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:patient_portal/core/error/failures.dart';
 import 'package:patient_portal/feature/lab/data/datasources/lab_remote_data_source.dart';
-import 'package:patient_portal/feature/lab/data/models/item_model.dart';
-import 'package:patient_portal/feature/lab/data/models/package_model.dart';
+import 'package:patient_portal/feature/lab/domain/entities/item_model.dart';
+import 'package:patient_portal/feature/lab/domain/entities/package_model.dart';
 import 'package:patient_portal/feature/lab/domain/repositories/lab_repository.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
 
@@ -19,7 +19,8 @@ class LabRepositoryImpl implements LabRepository {
     required String token,
   }) async {
     try {
-      return Right(await remoteDataSource.getItems(token: token));
+      final items = await remoteDataSource.getItems(token: token);
+      return Right(items.map((item) => item.toEntity()).toList());
     } on SocketException {
       return const Left(NetworkFailure(ConstantMessages.noNetworkErrorMessage));
     } on TimeoutException {
@@ -62,9 +63,11 @@ class LabRepositoryImpl implements LabRepository {
     required String token,
   }) async {
     try {
-      return Right(
-        await remoteDataSource.getItemDetail(idItem: idItem, token: token),
+      final item = await remoteDataSource.getItemDetail(
+        idItem: idItem,
+        token: token,
       );
+      return Right(item.toEntity());
     } on SocketException {
       return const Left(NetworkFailure(ConstantMessages.noNetworkErrorMessage));
     } on TimeoutException {
@@ -81,7 +84,8 @@ class LabRepositoryImpl implements LabRepository {
     required String token,
   }) async {
     try {
-      return Right(await remoteDataSource.getPackages(token: token));
+      final packages = await remoteDataSource.getPackages(token: token);
+      return Right(packages.map((package) => package.toEntity()).toList());
     } on SocketException {
       return const Left(NetworkFailure(ConstantMessages.noNetworkErrorMessage));
     } on TimeoutException {

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:patient_portal/core/error/failures.dart';
-import 'package:patient_portal/feature/lab/data/models/item_model.dart';
-import 'package:patient_portal/feature/lab/data/models/package_model.dart';
+import 'package:patient_portal/feature/lab/domain/entities/item_model.dart';
+import 'package:patient_portal/feature/lab/domain/entities/package_model.dart';
 
 abstract class LabRepository {
   Future<Either<Failure, List<ItemModel>>> getItems({required String token});

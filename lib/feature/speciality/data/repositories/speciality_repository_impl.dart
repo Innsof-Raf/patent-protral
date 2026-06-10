@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:patient_portal/feature/speciality/data/datasources/speciality_remote_data_source.dart';
-import 'package:patient_portal/feature/speciality/data/models/speciality_model.dart';
+import 'package:patient_portal/feature/speciality/domain/entities/speciality_model.dart';
 import 'package:patient_portal/feature/speciality/domain/repositories/speciality_repository.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/params/speciality_params.dart';
 import 'package:patient_portal/core/resources/error_model.dart';
@@ -13,12 +13,28 @@ class SpecialityRepositoryImpl implements SpecialityRepository {
   @override
   Future<Either<ErrorModel, List<SpecialityModel>>> fetchSpecialities(
     SpecialityParams params,
-  ) {
-    return remoteDataSource.fetchSpecialities(params);
+  ) async {
+    final result = await remoteDataSource.fetchSpecialities(params);
+    return result.map(
+      (specialities) =>
+          specialities.map((speciality) => speciality.toEntity()).toList(),
+    );
   }
 
   @override
   Future<List<SpecialityModel>> searchSpecialities(SpecialityParams params) {
-    return remoteDataSource.searchSpecialities(params);
+    final searchParams = params.maybeMap(
+      searchSpecialities: (value) => value,
+      orElse: () => throw Exception('Invalid speciality search params'),
+    );
+    final searchKey = searchParams.searchKey.toLowerCase();
+    return Future.value(
+      searchParams.specialities
+          .where(
+            (speciality) =>
+                speciality.specialityName.toLowerCase().contains(searchKey),
+          )
+          .toList(),
+    );
   }
 }

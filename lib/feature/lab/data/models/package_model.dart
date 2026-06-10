@@ -1,17 +1,33 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/feature/lab/domain/entities/package.dart';
 
-part 'generated/package_model.freezed.dart';
-part 'generated/package_model.g.dart';
+class PackageModel {
+  final int id;
+  final String pkgName;
+  final double pkgPrice;
+  final String pkgImage;
 
-@freezed
-sealed class PackageModel with _$PackageModel {
-  const factory PackageModel({
-    required int id,
-    @JsonKey(name: 'pkg_name') required String pkgName,
-    @JsonKey(name: 'pkg_price') required double pkgPrice,
-    @JsonKey(name: 'pkg_img') required String pkgImage,
-  }) = _PackageModel;
+  const PackageModel({
+    required this.id,
+    required this.pkgName,
+    required this.pkgPrice,
+    required this.pkgImage,
+  });
 
-  factory PackageModel.fromJson(Map<String, dynamic> json) =>
-      _$PackageModelFromJson(json);
+  factory PackageModel.fromJson(Map<String, dynamic> json) {
+    return PackageModel(
+      id: json['id'] as int,
+      pkgName: json['pkg_name'] as String,
+      pkgPrice: (json['pkg_price'] as num).toDouble(),
+      pkgImage: json['pkg_img'] as String,
+    );
+  }
+
+  Package toEntity() {
+    return Package(
+      id: id,
+      pkgName: pkgName,
+      pkgPrice: pkgPrice,
+      pkgImage: pkgImage,
+    );
+  }
 }

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:patient_portal/core/error/failures.dart';
 import 'package:patient_portal/feature/book_appointment/data/datasources/book_appointment_remote_data_source.dart';
-import 'package:patient_portal/feature/book_appointment/data/models/shift_model.dart';
+import 'package:patient_portal/feature/book_appointment/domain/entities/shift.dart';
 import 'package:patient_portal/feature/book_appointment/domain/repositories/book_appointment_repository.dart';
 import 'package:patient_portal/core/resources/common_models/appointment_model.dart/appointment_model.dart';
 
@@ -13,7 +13,7 @@ class BookAppointmentRepositoryImpl implements BookAppointmentRepository {
   BookAppointmentRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<Failure, ShiftModel>> getAvailableSlots({
+  Future<Either<Failure, Shift>> getAvailableSlots({
     required DateTime date,
     required int idDoctor,
     required String token,
@@ -24,7 +24,7 @@ class BookAppointmentRepositoryImpl implements BookAppointmentRepository {
         idDoctor: idDoctor,
         token: token,
       );
-      return Right(result);
+      return Right(result.toEntity());
     } on SocketException {
       return const Left(NetworkFailure('No Internet Connection'));
     } catch (e) {

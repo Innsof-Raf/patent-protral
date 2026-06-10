@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:patient_portal/core/error/failures.dart';
 import 'package:patient_portal/feature/home/data/datasources/home_remote_data_source.dart';
-import 'package:patient_portal/feature/home/data/models/home_data_model.dart';
+import 'package:patient_portal/feature/home/domain/entities/home_data_model.dart';
 import 'package:patient_portal/feature/home/domain/repositories/home_repository.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
 
@@ -23,7 +23,7 @@ class HomeRepositoryImpl implements HomeRepository {
         token: token,
         idBusunit: idBusunit,
       );
-      return Right(homeData);
+      return Right(homeData.toEntity());
     } on SocketException {
       return const Left(NetworkFailure(ConstantMessages.noNetworkErrorMessage));
     } on TimeoutException {

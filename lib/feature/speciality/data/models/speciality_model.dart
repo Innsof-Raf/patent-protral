@@ -1,19 +1,33 @@
-// ignore_for_file: invalid_annotation_target
+import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+class SpecialityModel {
+  final int idSpeciality;
+  final String specialityId;
+  final String specialityName;
+  final String? specialityImage;
 
-part 'generated/speciality_model.freezed.dart';
-part 'generated/speciality_model.g.dart';
+  const SpecialityModel({
+    required this.idSpeciality,
+    required this.specialityId,
+    required this.specialityName,
+    required this.specialityImage,
+  });
 
-@freezed
-sealed class SpecialityModel with _$SpecialityModel {
-  const factory SpecialityModel({
-    @JsonKey(name: 'id_dept') required int idSpeciality,
-    @JsonKey(name: 'dept_id') required String specialityId,
-    @JsonKey(name: 'dept_name') required String specialityName,
-    @JsonKey(name: 'dept_img') required String? specialityImage,
-  }) = _SpecilityModel;
+  factory SpecialityModel.fromJson(Map<String, dynamic> json) {
+    return SpecialityModel(
+      idSpeciality: json['id_dept'] as int,
+      specialityId: json['dept_id'] as String,
+      specialityName: json['dept_name'] as String,
+      specialityImage: json['dept_img'] as String?,
+    );
+  }
 
-  factory SpecialityModel.fromJson(Map<String, dynamic> json) =>
-      _$SpecialityModelFromJson(json);
+  Speciality toEntity() {
+    return Speciality(
+      idSpeciality: idSpeciality,
+      specialityId: specialityId,
+      specialityName: specialityName,
+      specialityImage: specialityImage,
+    );
+  }
 }

@@ -1,18 +1,37 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/feature/documents/domain/entities/document.dart';
 
-part 'generated/document_model.freezed.dart';
-part 'generated/document_model.g.dart';
+class DocumentModel {
+  final int docId;
+  final int memberId;
+  final DateTime expireDate;
+  final String docName;
+  final String docType;
 
-@freezed
-sealed class DocumentModel with _$DocumentModel {
-  const factory DocumentModel({
-    @JsonKey(name: 'doc_id') required int docId,
-    @JsonKey(name: 'id_customer') required int memberId,
-    @JsonKey(name: 'expire_date') required DateTime expireDate,
-    @JsonKey(name: 'doc_name') required String docName,
-    @JsonKey(name: 'doc_type') required String docType,
-  }) = _DocumentsModel;
+  const DocumentModel({
+    required this.docId,
+    required this.memberId,
+    required this.expireDate,
+    required this.docName,
+    required this.docType,
+  });
 
-  factory DocumentModel.fromJson(Map<String, dynamic> json) =>
-      _$DocumentModelFromJson(json);
+  factory DocumentModel.fromJson(Map<String, dynamic> json) {
+    return DocumentModel(
+      docId: json['doc_id'] as int,
+      memberId: json['id_customer'] as int,
+      expireDate: DateTime.parse(json['expire_date'] as String),
+      docName: json['doc_name'] as String,
+      docType: json['doc_type'] as String,
+    );
+  }
+
+  Document toEntity() {
+    return Document(
+      docId: docId,
+      memberId: memberId,
+      expireDate: expireDate,
+      docName: docName,
+      docType: docType,
+    );
+  }
 }

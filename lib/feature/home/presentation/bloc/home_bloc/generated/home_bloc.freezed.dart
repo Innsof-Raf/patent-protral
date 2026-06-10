@@ -303,7 +303,7 @@ $Res call({
 });
 
 
-$HomeDataModelCopyWith<$Res> get homeData;
+
 
 }
 /// @nodoc
@@ -326,16 +326,7 @@ as ErrorModel,homeData: null == homeData ? _self.homeData : homeData // ignore: 
 as HomeDataModel,
   ));
 }
-/// Create a copy of HomeState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$HomeDataModelCopyWith<$Res> get homeData {
-  
-  return $HomeDataModelCopyWith<$Res>(_self.homeData, (value) {
-    return _then(_self.copyWith(homeData: value));
-  });
-}
+
 }
 
 
@@ -510,7 +501,7 @@ $Res call({
 });
 
 
-@override $HomeDataModelCopyWith<$Res> get homeData;
+
 
 }
 /// @nodoc
@@ -534,16 +525,7 @@ as HomeDataModel,
   ));
 }
 
-/// Create a copy of HomeState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$HomeDataModelCopyWith<$Res> get homeData {
-  
-  return $HomeDataModelCopyWith<$Res>(_self.homeData, (value) {
-    return _then(_self.copyWith(homeData: value));
-  });
-}
+
 }
 
 // dart format on

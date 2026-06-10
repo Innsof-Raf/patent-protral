@@ -294,7 +294,7 @@ $Res call({
 });
 
 
-$MyAppointmentModelCopyWith<$Res> get appointment;
+
 
 }
 /// @nodoc
@@ -314,16 +314,7 @@ as MyAppointmentModel,
   ));
 }
 
-/// Create a copy of MyAppointmentsParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$MyAppointmentModelCopyWith<$Res> get appointment {
-  
-  return $MyAppointmentModelCopyWith<$Res>(_self.appointment, (value) {
-    return _then(_self.copyWith(appointment: value));
-  });
-}
+
 }
 
 /// @nodoc
@@ -370,7 +361,7 @@ $Res call({
 });
 
 
-$MyAppointmentModelCopyWith<$Res> get appointment;
+
 
 }
 /// @nodoc
@@ -391,16 +382,7 @@ as DateTime,
   ));
 }
 
-/// Create a copy of MyAppointmentsParams
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$MyAppointmentModelCopyWith<$Res> get appointment {
-  
-  return $MyAppointmentModelCopyWith<$Res>(_self.appointment, (value) {
-    return _then(_self.copyWith(appointment: value));
-  });
-}
+
 }
 
 /// @nodoc

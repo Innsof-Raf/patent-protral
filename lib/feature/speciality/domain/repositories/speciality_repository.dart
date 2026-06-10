@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:patient_portal/feature/speciality/data/models/speciality_model.dart';
+import 'package:patient_portal/feature/speciality/domain/entities/speciality_model.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/params/speciality_params.dart';
 import 'package:patient_portal/core/resources/error_model.dart';
 

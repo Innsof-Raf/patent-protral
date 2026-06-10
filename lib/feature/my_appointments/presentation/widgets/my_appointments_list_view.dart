@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/feature/my_appointments/data/models/my_appointment_model.dart';
+import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment_model.dart';
 
 import 'my_appointment_tile.dart';
 

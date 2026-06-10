@@ -1,19 +1,33 @@
-// ignore_for_file: invalid_annotation_target
+import 'package:patient_portal/feature/book_appointment/domain/entities/slot.dart';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+class SlotModel {
+  final String id;
+  final String label;
+  final DateTime appdttm;
+  final bool isBooked;
 
-part 'generated/slot_model.freezed.dart';
-part 'generated/slot_model.g.dart';
+  const SlotModel({
+    required this.id,
+    required this.label,
+    required this.appdttm,
+    required this.isBooked,
+  });
 
-@freezed
-sealed class SlotModel with _$SlotModel {
-  const factory SlotModel({
-    @JsonKey(name: "id") required String id,
-    @JsonKey(name: "label") required String label,
-    @JsonKey(name: "appdttm") required DateTime appdttm,
-    @JsonKey(name: "booked") required bool isBooked,
-  }) = _SlotModel;
+  factory SlotModel.fromJson(Map<String, dynamic> json) {
+    return SlotModel(
+      id: json['id'] as String,
+      label: json['label'] as String,
+      appdttm: DateTime.parse(json['appdttm'] as String),
+      isBooked: json['booked'] as bool,
+    );
+  }
 
-  factory SlotModel.fromJson(Map<String, dynamic> json) =>
-      _$SlotModelFromJson(json);
+  Slot toEntity() {
+    return Slot(
+      id: id,
+      label: label,
+      appdttm: appdttm,
+      isBooked: isBooked,
+    );
+  }
 }

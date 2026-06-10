@@ -13,8 +13,6 @@ abstract class SpecialityRemoteDataSource {
   Future<Either<ErrorModel, List<SpecialityModel>>> fetchSpecialities(
     SpecialityParams params,
   );
-
-  Future<List<SpecialityModel>> searchSpecialities(SpecialityParams params);
 }
 
 class SpecialityRemoteDataSourceImpl implements SpecialityRemoteDataSource {
@@ -62,20 +60,4 @@ class SpecialityRemoteDataSourceImpl implements SpecialityRemoteDataSource {
     }
   }
 
-  @override
-  Future<List<SpecialityModel>> searchSpecialities(
-    SpecialityParams params,
-  ) async {
-    final searchParams = params.maybeMap(
-      searchSpecialities: (value) => value,
-      orElse: () => throw Exception('Invalid speciality search params'),
-    );
-    final searchKey = searchParams.searchKey.toLowerCase();
-    return searchParams.specialities
-        .where(
-          (speciality) =>
-              speciality.specialityName.toLowerCase().contains(searchKey),
-        )
-        .toList();
-  }
 }

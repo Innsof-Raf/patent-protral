@@ -54,6 +54,10 @@ import 'package:patient_portal/feature/member_details/presentation/bloc/member_d
 import 'package:patient_portal/feature/members/presentation/bloc/delete_member_bloc/delete_member_bloc.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/member_search_bloc/member_search_bloc.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
+import 'package:patient_portal/feature/my_appointments/data/repositories/my_appointments_repository_impl.dart';
+import 'package:patient_portal/feature/my_appointments/domain/repositories/my_appointments_repository.dart';
+import 'package:patient_portal/feature/my_appointments/domain/usecases/cancel_appointment_usecase.dart';
+import 'package:patient_portal/feature/my_appointments/domain/usecases/get_my_appointments_usecase.dart';
 import 'package:patient_portal/feature/profile/data/datasources/profile_remote_data_source.dart';
 import 'package:patient_portal/feature/profile/data/repositories/profile_repository_impl.dart';
 import 'package:patient_portal/feature/profile/domain/repositories/profile_repository.dart';
@@ -256,7 +260,21 @@ Future<void> init() async {
 
   //! Features - My Appointments
   // Bloc
-  sl.registerFactory(() => MyAppointmentsBloc());
+  sl.registerFactory(
+    () => MyAppointmentsBloc(
+      getMyAppointmentsUseCase: sl(),
+      cancelAppointmentUseCase: sl(),
+    ),
+  );
+
+  // Use cases
+  sl.registerLazySingleton(() => GetMyAppointmentsUseCase(sl()));
+  sl.registerLazySingleton(() => CancelAppointmentUseCase(sl()));
+
+  // Repository
+  sl.registerLazySingleton<MyAppointmentsRepository>(
+    () => MyAppointmentsRepositoryImpl(),
+  );
 
   //! Features - Profile
   // Bloc

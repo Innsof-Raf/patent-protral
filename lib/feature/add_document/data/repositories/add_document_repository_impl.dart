@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:patient_portal/core/error/failures.dart';
 import 'package:patient_portal/feature/add_document/data/datasources/add_document_remote_data_source.dart';
 import 'package:patient_portal/feature/add_document/domain/repositories/add_document_repository.dart';
-import 'package:patient_portal/feature/add_document/data/models/document_type_model.dart';
+import 'package:patient_portal/feature/add_document/domain/entities/document_type_model.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
 
 class AddDocumentRepositoryImpl implements AddDocumentRepository {
@@ -21,7 +21,7 @@ class AddDocumentRepositoryImpl implements AddDocumentRepository {
       final documentTypes = await remoteDataSource.getDocumentTypes(
         token: token,
       );
-      return Right(documentTypes);
+      return Right(documentTypes.map((type) => type.toEntity()).toList());
     } on SocketException {
       return const Left(NetworkFailure(ConstantMessages.noNetworkErrorMessage));
     } on TimeoutException {

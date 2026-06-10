@@ -1,21 +1,48 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/feature/lab/domain/entities/item.dart';
 
-part 'generated/item_model.freezed.dart';
-part 'generated/item_model.g.dart';
+class ItemModel {
+  final int idItem;
+  final String itemNmae;
+  final double itemPrice;
+  final String itemImg;
+  final String itemShortDesc;
+  final String itemType;
+  final bool isCart;
+  final bool isChangingCartStatus;
 
-@freezed
-sealed class ItemModel with _$ItemModel {
-  const factory ItemModel({
-    @JsonKey(name: 'id_item') required int idItem,
-    @JsonKey(name: 'item_name') required String itemNmae,
-    @JsonKey(name: 'item_price') required double itemPrice,
-    @JsonKey(name: 'item_img') required String itemImg,
-    @JsonKey(name: 'item_shortdescr') required String itemShortDesc,
-    @JsonKey(name: 'item_Type') required String itemType,
-    @JsonKey(name: 'is_cart') required bool isCart,
-    @Default(false) isChangingCartStatus,
-  }) = _ItemModel;
+  const ItemModel({
+    required this.idItem,
+    required this.itemNmae,
+    required this.itemPrice,
+    required this.itemImg,
+    required this.itemShortDesc,
+    required this.itemType,
+    required this.isCart,
+    this.isChangingCartStatus = false,
+  });
 
-  factory ItemModel.fromJson(Map<String, dynamic> json) =>
-      _$ItemModelFromJson(json);
+  factory ItemModel.fromJson(Map<String, dynamic> json) {
+    return ItemModel(
+      idItem: json['id_item'] as int,
+      itemNmae: json['item_name'] as String,
+      itemPrice: (json['item_price'] as num).toDouble(),
+      itemImg: json['item_img'] as String,
+      itemShortDesc: json['item_shortdescr'] as String,
+      itemType: json['item_Type'] as String,
+      isCart: json['is_cart'] as bool,
+    );
+  }
+
+  Item toEntity() {
+    return Item(
+      idItem: idItem,
+      itemNmae: itemNmae,
+      itemPrice: itemPrice,
+      itemImg: itemImg,
+      itemShortDesc: itemShortDesc,
+      itemType: itemType,
+      isCart: isCart,
+      isChangingCartStatus: isChangingCartStatus,
+    );
+  }
 }

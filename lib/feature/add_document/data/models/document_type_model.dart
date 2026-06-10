@@ -1,17 +1,25 @@
-// ignore_for_file: invalid_annotation_target
+import 'package:patient_portal/feature/add_document/domain/entities/document_type.dart';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+class DocumentTypeModel {
+  final int idDocument;
+  final String documentType;
 
-part 'generated/document_type_model.freezed.dart';
-part 'generated/document_type_model.g.dart';
+  const DocumentTypeModel({
+    required this.idDocument,
+    required this.documentType,
+  });
 
-@freezed
-sealed class DocumentTypeModel with _$DocumentTypeModel {
-  const factory DocumentTypeModel({
-    @JsonKey(name: 'id_document') required int idDocument,
-    @JsonKey(name: 'document_name') required String documentType,
-  }) = _DocumentTypeModel;
+  factory DocumentTypeModel.fromJson(Map<String, dynamic> json) {
+    return DocumentTypeModel(
+      idDocument: json['id_document'] as int,
+      documentType: json['document_name'] as String,
+    );
+  }
 
-  factory DocumentTypeModel.fromJson(Map<String, dynamic> json) =>
-      _$DocumentTypeModelFromJson(json);
+  DocumentType toEntity() {
+    return DocumentType(
+      idDocument: idDocument,
+      documentType: documentType,
+    );
+  }
 }

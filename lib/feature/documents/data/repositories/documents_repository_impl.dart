@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:patient_portal/core/error/failures.dart';
 import 'package:patient_portal/feature/documents/data/datasources/documents_remote_data_source.dart';
-import 'package:patient_portal/feature/documents/data/models/documents_model/document_model.dart';
+import 'package:patient_portal/feature/documents/domain/entities/documents_model/document_model.dart';
 import 'package:patient_portal/feature/documents/domain/repositories/documents_repository.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
 
@@ -25,7 +25,7 @@ class DocumentsRepositoryImpl implements DocumentsRepository {
         mobileNumber: mobileNumber,
         token: token,
       );
-      return Right(documents);
+      return Right(documents.map((document) => document.toEntity()).toList());
     } on SocketException {
       return const Left(NetworkFailure(ConstantMessages.noNetworkErrorMessage));
     } on TimeoutException {

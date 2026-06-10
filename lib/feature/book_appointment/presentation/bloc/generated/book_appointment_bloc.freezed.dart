@@ -575,7 +575,7 @@ $Res call({
 });
 
 
-$AppointmentModelCopyWith<$Res>? get appointmentDetails;$ShiftModelCopyWith<$Res> get shift;
+$AppointmentModelCopyWith<$Res>? get appointmentDetails;
 
 }
 /// @nodoc
@@ -613,15 +613,6 @@ $AppointmentModelCopyWith<$Res>? get appointmentDetails {
 
   return $AppointmentModelCopyWith<$Res>(_self.appointmentDetails!, (value) {
     return _then(_self.copyWith(appointmentDetails: value));
-  });
-}/// Create a copy of BookAppointmentState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ShiftModelCopyWith<$Res> get shift {
-  
-  return $ShiftModelCopyWith<$Res>(_self.shift, (value) {
-    return _then(_self.copyWith(shift: value));
   });
 }
 }
@@ -802,7 +793,7 @@ $Res call({
 });
 
 
-@override $AppointmentModelCopyWith<$Res>? get appointmentDetails;@override $ShiftModelCopyWith<$Res> get shift;
+@override $AppointmentModelCopyWith<$Res>? get appointmentDetails;
 
 }
 /// @nodoc
@@ -841,15 +832,6 @@ $AppointmentModelCopyWith<$Res>? get appointmentDetails {
 
   return $AppointmentModelCopyWith<$Res>(_self.appointmentDetails!, (value) {
     return _then(_self.copyWith(appointmentDetails: value));
-  });
-}/// Create a copy of BookAppointmentState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ShiftModelCopyWith<$Res> get shift {
-  
-  return $ShiftModelCopyWith<$Res>(_self.shift, (value) {
-    return _then(_self.copyWith(shift: value));
   });
 }
 }

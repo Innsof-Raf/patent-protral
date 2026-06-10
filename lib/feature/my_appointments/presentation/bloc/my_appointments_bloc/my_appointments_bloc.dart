@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:patient_portal/feature/my_appointments/data/datasources/my_appointment_services.dart';
-import 'package:patient_portal/feature/my_appointments/data/models/my_appointment_model.dart';
+import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment_model.dart';
+import 'package:patient_portal/feature/my_appointments/domain/usecases/cancel_appointment_usecase.dart';
+import 'package:patient_portal/feature/my_appointments/domain/usecases/get_my_appointments_usecase.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
 import 'package:patient_portal/core/resources/error_model.dart';
 
@@ -12,7 +13,13 @@ part 'my_appointments_state.dart';
 
 class MyAppointmentsBloc
     extends Bloc<MyAppointmentsEvent, MyAppointmentsState> {
-  MyAppointmentsBloc() : super(MyAppointmentsState.initial()) {
+  final GetMyAppointmentsUseCase getMyAppointmentsUseCase;
+  final CancelAppointmentUseCase cancelAppointmentUseCase;
+
+  MyAppointmentsBloc({
+    required this.getMyAppointmentsUseCase,
+    required this.cancelAppointmentUseCase,
+  }) : super(MyAppointmentsState.initial()) {
     on<GetMyAppointments>((event, emit) async {
       emit(
         state.copyWith(
@@ -25,7 +32,7 @@ class MyAppointmentsBloc
       );
       final Either<ErrorModel, List<MyAppointmentModel>>
       myAppointmentsFetchingOptions =
-          await MyAppointmentServices.getMyAppointments(
+          await getMyAppointmentsUseCase(
             mobileNumber: event.params.mobileNumber,
             token: event.params.token,
           );
@@ -188,7 +195,7 @@ class MyAppointmentsBloc
         ),
       );
       final Either<ErrorModel, Map> appointmentCancelationOptions =
-          await MyAppointmentServices.cancelAppointment(
+          await cancelAppointmentUseCase(
             appointmentId: event.params.idAppointment,
             token: event.params.token,
           );

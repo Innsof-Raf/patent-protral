@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:patient_portal/core/error/failures.dart';
 import 'package:patient_portal/core/usecases/usecase.dart';
-import 'package:patient_portal/feature/home/data/models/home_data_model.dart';
+import 'package:patient_portal/feature/home/domain/entities/home_data_model.dart';
 import 'package:patient_portal/feature/home/domain/repositories/home_repository.dart';
 import 'package:patient_portal/feature/home/domain/usecases/params/home_params.dart';
 
