@@ -131,7 +131,7 @@ return updateMemberInLocal(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( UserModel user)?  storeUserDetails,TResult Function( UserModel? user,  String patientName,  String nationalId,  String? email,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber,  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)?  addMember,TResult Function( String? token,  int idInsurance,  int memberId,  String? insuranceName,  String memberNumber,  DateTime expireDate)?  changeMemberInsuranceDetails,TResult Function( int memberId,  String? token)?  getMemberDetail,TResult Function( MemberModel member)?  addMemberToLocal,TResult Function( MemberModel member)?  updateMemberInLocal,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( User user)?  storeUserDetails,TResult Function( User? user,  String patientName,  String nationalId,  String? email,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber,  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)?  addMember,TResult Function( String? token,  int idInsurance,  int memberId,  String? insuranceName,  String memberNumber,  DateTime expireDate)?  changeMemberInsuranceDetails,TResult Function( int memberId,  String? token)?  getMemberDetail,TResult Function( Member member)?  addMemberToLocal,TResult Function( Member member)?  updateMemberInLocal,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case StoreUserDetailsParams() when storeUserDetails != null:
 return storeUserDetails(_that.user);case AddMemberParams() when addMember != null:
@@ -157,7 +157,7 @@ return updateMemberInLocal(_that.member);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( UserModel user)  storeUserDetails,required TResult Function( UserModel? user,  String patientName,  String nationalId,  String? email,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber,  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)  addMember,required TResult Function( String? token,  int idInsurance,  int memberId,  String? insuranceName,  String memberNumber,  DateTime expireDate)  changeMemberInsuranceDetails,required TResult Function( int memberId,  String? token)  getMemberDetail,required TResult Function( MemberModel member)  addMemberToLocal,required TResult Function( MemberModel member)  updateMemberInLocal,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( User user)  storeUserDetails,required TResult Function( User? user,  String patientName,  String nationalId,  String? email,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber,  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)  addMember,required TResult Function( String? token,  int idInsurance,  int memberId,  String? insuranceName,  String memberNumber,  DateTime expireDate)  changeMemberInsuranceDetails,required TResult Function( int memberId,  String? token)  getMemberDetail,required TResult Function( Member member)  addMemberToLocal,required TResult Function( Member member)  updateMemberInLocal,}) {final _that = this;
 switch (_that) {
 case StoreUserDetailsParams():
 return storeUserDetails(_that.user);case AddMemberParams():
@@ -179,7 +179,7 @@ return updateMemberInLocal(_that.member);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( UserModel user)?  storeUserDetails,TResult? Function( UserModel? user,  String patientName,  String nationalId,  String? email,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber,  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)?  addMember,TResult? Function( String? token,  int idInsurance,  int memberId,  String? insuranceName,  String memberNumber,  DateTime expireDate)?  changeMemberInsuranceDetails,TResult? Function( int memberId,  String? token)?  getMemberDetail,TResult? Function( MemberModel member)?  addMemberToLocal,TResult? Function( MemberModel member)?  updateMemberInLocal,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( User user)?  storeUserDetails,TResult? Function( User? user,  String patientName,  String nationalId,  String? email,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber,  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)?  addMember,TResult? Function( String? token,  int idInsurance,  int memberId,  String? insuranceName,  String memberNumber,  DateTime expireDate)?  changeMemberInsuranceDetails,TResult? Function( int memberId,  String? token)?  getMemberDetail,TResult? Function( Member member)?  addMemberToLocal,TResult? Function( Member member)?  updateMemberInLocal,}) {final _that = this;
 switch (_that) {
 case StoreUserDetailsParams() when storeUserDetails != null:
 return storeUserDetails(_that.user);case AddMemberParams() when addMember != null:
@@ -202,7 +202,7 @@ class StoreUserDetailsParams implements ProfileParams {
   const StoreUserDetailsParams({required this.user});
   
 
- final  UserModel user;
+ final  User user;
 
 /// Create a copy of ProfileParams
 /// with the given fields replaced by the non-null parameter values.
@@ -234,11 +234,11 @@ abstract mixin class $StoreUserDetailsParamsCopyWith<$Res> implements $ProfilePa
   factory $StoreUserDetailsParamsCopyWith(StoreUserDetailsParams value, $Res Function(StoreUserDetailsParams) _then) = _$StoreUserDetailsParamsCopyWithImpl;
 @useResult
 $Res call({
- UserModel user
+ User user
 });
 
 
-$UserModelCopyWith<$Res> get user;
+$UserCopyWith<$Res> get user;
 
 }
 /// @nodoc
@@ -254,7 +254,7 @@ class _$StoreUserDetailsParamsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? user = null,}) {
   return _then(StoreUserDetailsParams(
 user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as UserModel,
+as User,
   ));
 }
 
@@ -262,9 +262,9 @@ as UserModel,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$UserModelCopyWith<$Res> get user {
+$UserCopyWith<$Res> get user {
   
-  return $UserModelCopyWith<$Res>(_self.user, (value) {
+  return $UserCopyWith<$Res>(_self.user, (value) {
     return _then(_self.copyWith(user: value));
   });
 }
@@ -277,7 +277,7 @@ class AddMemberParams implements ProfileParams {
   const AddMemberParams({this.user, required this.patientName, required this.nationalId, this.email, required this.gender, required this.dob, this.idInsurance, this.memberNumber, this.profileImage, this.expireDate, this.otherInsuranceName});
   
 
- final  UserModel? user;
+ final  User? user;
  final  String patientName;
  final  String nationalId;
  final  String? email;
@@ -319,11 +319,11 @@ abstract mixin class $AddMemberParamsCopyWith<$Res> implements $ProfileParamsCop
   factory $AddMemberParamsCopyWith(AddMemberParams value, $Res Function(AddMemberParams) _then) = _$AddMemberParamsCopyWithImpl;
 @useResult
 $Res call({
- UserModel? user, String patientName, String nationalId, String? email, String gender, DateTime dob, int? idInsurance, String? memberNumber, File? profileImage, DateTime? expireDate, String? otherInsuranceName
+ User? user, String patientName, String nationalId, String? email, String gender, DateTime dob, int? idInsurance, String? memberNumber, File? profileImage, DateTime? expireDate, String? otherInsuranceName
 });
 
 
-$UserModelCopyWith<$Res>? get user;
+$UserCopyWith<$Res>? get user;
 
 }
 /// @nodoc
@@ -339,7 +339,7 @@ class _$AddMemberParamsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? user = freezed,Object? patientName = null,Object? nationalId = null,Object? email = freezed,Object? gender = null,Object? dob = null,Object? idInsurance = freezed,Object? memberNumber = freezed,Object? profileImage = freezed,Object? expireDate = freezed,Object? otherInsuranceName = freezed,}) {
   return _then(AddMemberParams(
 user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as UserModel?,patientName: null == patientName ? _self.patientName : patientName // ignore: cast_nullable_to_non_nullable
+as User?,patientName: null == patientName ? _self.patientName : patientName // ignore: cast_nullable_to_non_nullable
 as String,nationalId: null == nationalId ? _self.nationalId : nationalId // ignore: cast_nullable_to_non_nullable
 as String,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String?,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
@@ -357,12 +357,12 @@ as String?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$UserModelCopyWith<$Res>? get user {
+$UserCopyWith<$Res>? get user {
     if (_self.user == null) {
     return null;
   }
 
-  return $UserModelCopyWith<$Res>(_self.user!, (value) {
+  return $UserCopyWith<$Res>(_self.user!, (value) {
     return _then(_self.copyWith(user: value));
   });
 }
@@ -519,7 +519,7 @@ class AddMemberToLocalParams implements ProfileParams {
   const AddMemberToLocalParams({required this.member});
   
 
- final  MemberModel member;
+ final  Member member;
 
 /// Create a copy of ProfileParams
 /// with the given fields replaced by the non-null parameter values.
@@ -551,11 +551,11 @@ abstract mixin class $AddMemberToLocalParamsCopyWith<$Res> implements $ProfilePa
   factory $AddMemberToLocalParamsCopyWith(AddMemberToLocalParams value, $Res Function(AddMemberToLocalParams) _then) = _$AddMemberToLocalParamsCopyWithImpl;
 @useResult
 $Res call({
- MemberModel member
+ Member member
 });
 
 
-$MemberModelCopyWith<$Res> get member;
+$MemberCopyWith<$Res> get member;
 
 }
 /// @nodoc
@@ -571,7 +571,7 @@ class _$AddMemberToLocalParamsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? member = null,}) {
   return _then(AddMemberToLocalParams(
 member: null == member ? _self.member : member // ignore: cast_nullable_to_non_nullable
-as MemberModel,
+as Member,
   ));
 }
 
@@ -579,9 +579,9 @@ as MemberModel,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$MemberModelCopyWith<$Res> get member {
+$MemberCopyWith<$Res> get member {
   
-  return $MemberModelCopyWith<$Res>(_self.member, (value) {
+  return $MemberCopyWith<$Res>(_self.member, (value) {
     return _then(_self.copyWith(member: value));
   });
 }
@@ -594,7 +594,7 @@ class UpdateMemberInLocalParams implements ProfileParams {
   const UpdateMemberInLocalParams({required this.member});
   
 
- final  MemberModel member;
+ final  Member member;
 
 /// Create a copy of ProfileParams
 /// with the given fields replaced by the non-null parameter values.
@@ -626,11 +626,11 @@ abstract mixin class $UpdateMemberInLocalParamsCopyWith<$Res> implements $Profil
   factory $UpdateMemberInLocalParamsCopyWith(UpdateMemberInLocalParams value, $Res Function(UpdateMemberInLocalParams) _then) = _$UpdateMemberInLocalParamsCopyWithImpl;
 @useResult
 $Res call({
- MemberModel member
+ Member member
 });
 
 
-$MemberModelCopyWith<$Res> get member;
+$MemberCopyWith<$Res> get member;
 
 }
 /// @nodoc
@@ -646,7 +646,7 @@ class _$UpdateMemberInLocalParamsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? member = null,}) {
   return _then(UpdateMemberInLocalParams(
 member: null == member ? _self.member : member // ignore: cast_nullable_to_non_nullable
-as MemberModel,
+as Member,
   ));
 }
 
@@ -654,9 +654,9 @@ as MemberModel,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$MemberModelCopyWith<$Res> get member {
+$MemberCopyWith<$Res> get member {
   
-  return $MemberModelCopyWith<$Res>(_self.member, (value) {
+  return $MemberCopyWith<$Res>(_self.member, (value) {
     return _then(_self.copyWith(member: value));
   });
 }

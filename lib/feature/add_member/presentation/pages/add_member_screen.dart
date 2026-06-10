@@ -4,9 +4,9 @@ import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_b
 import 'package:patient_portal/feature/add_member/presentation/widgets/add_member_screen_helpers.dart';
 import 'package:patient_portal/feature/add_member/presentation/widgets/member_details_section.dart';
 import 'package:patient_portal/feature/add_member/presentation/widgets/profile_image_section.dart';
+import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:patient_portal/resources/common_helpers/insurance_helpers.dart';
@@ -18,7 +18,7 @@ import 'package:patient_portal/resources/common_widgets.dart/succes_dailog.dart'
 import 'package:patient_portal/resources/dimens.dart';
 
 class AddMemberScreen extends StatelessWidget {
-  final MemberModel? member;
+  final Member? member;
   const AddMemberScreen({super.key, this.member});
 
   @override

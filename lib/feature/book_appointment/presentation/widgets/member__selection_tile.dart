@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'book_appointment_screen_helpers.dart';
-import 'package:patient_portal/feature/profile/data/models/member_model.dart';
+import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:patient_portal/resources/dimens.dart';
 import 'package:patient_portal/resources/urls.dart';
 
 class MemberSelectionTile extends StatelessWidget {
-  final MemberModel member;
+  final Member member;
   final bool isSelected;
   const MemberSelectionTile({
     super.key,

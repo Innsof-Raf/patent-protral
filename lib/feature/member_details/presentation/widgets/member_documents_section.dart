@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/feature/profile/data/models/member_document_model.dart';
+import 'package:patient_portal/feature/profile/domain/entities/member_document.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 
 class MemberDocumentsSection extends StatelessWidget {
-  final List<MmemberDocumentModel> documents;
+  final List<MemberDocument> documents;
 
   const MemberDocumentsSection({super.key, required this.documents});
 

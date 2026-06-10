@@ -6,8 +6,8 @@ sealed class LoginWithPasswordState with _$LoginWithPasswordState {
     required bool isLogingin,
     required bool isLoginFailed,
     required bool isLoginSucces,
+    User? user,
     required ErrorModel error,
-    required UserModel? user,
   }) = _LoginWithPasswordState;
 
   factory LoginWithPasswordState.initial() => LoginWithPasswordState(
@@ -15,6 +15,5 @@ sealed class LoginWithPasswordState with _$LoginWithPasswordState {
     isLoginFailed: false,
     isLoginSucces: false,
     error: ErrorModel(message: ''),
-    user: null,
   );
 }

@@ -5,9 +5,9 @@ import 'package:patient_portal/feature/member_details/presentation/widgets/membe
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_insurance_section.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_personal_details_section.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_profile_image_section.dart';
+import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:patient_portal/resources/common_helpers/insurance_helpers.dart';
@@ -49,7 +49,7 @@ class MemberDetailsScreen extends StatelessWidget {
               ),
             );
           } else {
-            final MemberModel member = state.user!.members.singleWhere(
+            final Member member = state.user!.members.singleWhere(
               (element) => element.id == memberId,
             );
 

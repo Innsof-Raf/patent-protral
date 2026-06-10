@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/feature/profile/data/models/member_model.dart';
+import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 
 class ReportsAppbarHelpers {
-  static List<PopupMenuItem<int>> createPopupMenuItem(
-    List<MemberModel> members,
-  ) {
+  static List<PopupMenuItem<int>> createPopupMenuItem(List<Member> members) {
     List<PopupMenuItem<int>> popupMenuItems = [
       const PopupMenuItem(
         value: 0,
@@ -18,7 +16,7 @@ class ReportsAppbarHelpers {
         ),
       ),
     ];
-    for (MemberModel member in members) {
+    for (Member member in members) {
       popupMenuItems.add(
         PopupMenuItem(
           value: member.id,

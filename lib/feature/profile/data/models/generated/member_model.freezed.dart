@@ -218,8 +218,8 @@ return $default(_that.id,_that.name,_that.mobileNo,_that.emailId,_that.age,_that
 /// @nodoc
 @JsonSerializable()
 
-class _MemberModel implements MemberModel {
-  const _MemberModel({@JsonKey(name: "Id") required this.id, @JsonKey(name: "Name") required this.name, @JsonKey(name: "MobileNo") this.mobileNo = null, @JsonKey(name: "EmailID") this.emailId = null, @JsonKey(name: "Age") required this.age, @JsonKey(name: "SSN") required this.nationalId, @JsonKey(name: "Profile_Img") this.profileImage = null, @JsonKey(name: "Is_Insu") required this.isInsurance, @JsonKey(name: "Is_InsuExpired") required this.isInsuranceExpired, @JsonKey(name: "Insur_Exp") this.insuranceExpDttm = null, @JsonKey(name: "Dob") this.dob = null, @JsonKey(name: "member_no") this.memberNo = null, @JsonKey(name: "insur_name") this.insuranceName = null, @JsonKey(name: "insu_id") this.insuranceId = null, @JsonKey(name: "Gender") this.gender = null, @JsonKey(name: 'docs') final  List<MmemberDocumentModel> memberDocs = const [], this.isSelected = false}): _memberDocs = memberDocs;
+class _MemberModel extends MemberModel {
+  const _MemberModel({@JsonKey(name: "Id") required this.id, @JsonKey(name: "Name") required this.name, @JsonKey(name: "MobileNo") this.mobileNo = null, @JsonKey(name: "EmailID") this.emailId = null, @JsonKey(name: "Age") required this.age, @JsonKey(name: "SSN") required this.nationalId, @JsonKey(name: "Profile_Img") this.profileImage = null, @JsonKey(name: "Is_Insu") required this.isInsurance, @JsonKey(name: "Is_InsuExpired") required this.isInsuranceExpired, @JsonKey(name: "Insur_Exp") this.insuranceExpDttm = null, @JsonKey(name: "Dob") this.dob = null, @JsonKey(name: "member_no") this.memberNo = null, @JsonKey(name: "insur_name") this.insuranceName = null, @JsonKey(name: "insu_id") this.insuranceId = null, @JsonKey(name: "Gender") this.gender = null, @JsonKey(name: 'docs') final  List<MmemberDocumentModel> memberDocs = const [], this.isSelected = false}): _memberDocs = memberDocs,super._();
   factory _MemberModel.fromJson(Map<String, dynamic> json) => _$MemberModelFromJson(json);
 
 @override@JsonKey(name: "Id") final  int id;

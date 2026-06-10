@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of '../otp_verification_bloc/otp_verification_bloc.dart';
+part of '../otp_verification_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -271,7 +271,7 @@ as String,
 /// @nodoc
 mixin _$OtpVerificationState {
 
- bool get isVerifying; bool get isVerifyingFailed; bool get isVerifyingSuccess; ErrorModel get error; UserModel? get user;
+ bool get isVerifying; bool get isVerifyingFailed; bool get isVerifyingSuccess; User? get user; ErrorModel get error;
 /// Create a copy of OtpVerificationState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -282,16 +282,16 @@ $OtpVerificationStateCopyWith<OtpVerificationState> get copyWith => _$OtpVerific
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OtpVerificationState&&(identical(other.isVerifying, isVerifying) || other.isVerifying == isVerifying)&&(identical(other.isVerifyingFailed, isVerifyingFailed) || other.isVerifyingFailed == isVerifyingFailed)&&(identical(other.isVerifyingSuccess, isVerifyingSuccess) || other.isVerifyingSuccess == isVerifyingSuccess)&&(identical(other.error, error) || other.error == error)&&(identical(other.user, user) || other.user == user));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OtpVerificationState&&(identical(other.isVerifying, isVerifying) || other.isVerifying == isVerifying)&&(identical(other.isVerifyingFailed, isVerifyingFailed) || other.isVerifyingFailed == isVerifyingFailed)&&(identical(other.isVerifyingSuccess, isVerifyingSuccess) || other.isVerifyingSuccess == isVerifyingSuccess)&&(identical(other.user, user) || other.user == user)&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isVerifying,isVerifyingFailed,isVerifyingSuccess,error,user);
+int get hashCode => Object.hash(runtimeType,isVerifying,isVerifyingFailed,isVerifyingSuccess,user,error);
 
 @override
 String toString() {
-  return 'OtpVerificationState(isVerifying: $isVerifying, isVerifyingFailed: $isVerifyingFailed, isVerifyingSuccess: $isVerifyingSuccess, error: $error, user: $user)';
+  return 'OtpVerificationState(isVerifying: $isVerifying, isVerifyingFailed: $isVerifyingFailed, isVerifyingSuccess: $isVerifyingSuccess, user: $user, error: $error)';
 }
 
 
@@ -302,11 +302,11 @@ abstract mixin class $OtpVerificationStateCopyWith<$Res>  {
   factory $OtpVerificationStateCopyWith(OtpVerificationState value, $Res Function(OtpVerificationState) _then) = _$OtpVerificationStateCopyWithImpl;
 @useResult
 $Res call({
- bool isVerifying, bool isVerifyingFailed, bool isVerifyingSuccess, ErrorModel error, UserModel? user
+ bool isVerifying, bool isVerifyingFailed, bool isVerifyingSuccess, User? user, ErrorModel error
 });
 
 
-$UserModelCopyWith<$Res>? get user;
+$UserCopyWith<$Res>? get user;
 
 }
 /// @nodoc
@@ -319,26 +319,26 @@ class _$OtpVerificationStateCopyWithImpl<$Res>
 
 /// Create a copy of OtpVerificationState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isVerifying = null,Object? isVerifyingFailed = null,Object? isVerifyingSuccess = null,Object? error = null,Object? user = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isVerifying = null,Object? isVerifyingFailed = null,Object? isVerifyingSuccess = null,Object? user = freezed,Object? error = null,}) {
   return _then(_self.copyWith(
 isVerifying: null == isVerifying ? _self.isVerifying : isVerifying // ignore: cast_nullable_to_non_nullable
 as bool,isVerifyingFailed: null == isVerifyingFailed ? _self.isVerifyingFailed : isVerifyingFailed // ignore: cast_nullable_to_non_nullable
 as bool,isVerifyingSuccess: null == isVerifyingSuccess ? _self.isVerifyingSuccess : isVerifyingSuccess // ignore: cast_nullable_to_non_nullable
-as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
-as ErrorModel,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as UserModel?,
+as bool,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as User?,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as ErrorModel,
   ));
 }
 /// Create a copy of OtpVerificationState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$UserModelCopyWith<$Res>? get user {
+$UserCopyWith<$Res>? get user {
     if (_self.user == null) {
     return null;
   }
 
-  return $UserModelCopyWith<$Res>(_self.user!, (value) {
+  return $UserCopyWith<$Res>(_self.user!, (value) {
     return _then(_self.copyWith(user: value));
   });
 }
@@ -420,10 +420,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isVerifying,  bool isVerifyingFailed,  bool isVerifyingSuccess,  ErrorModel error,  UserModel? user)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isVerifying,  bool isVerifyingFailed,  bool isVerifyingSuccess,  User? user,  ErrorModel error)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _OtpVerificationState() when $default != null:
-return $default(_that.isVerifying,_that.isVerifyingFailed,_that.isVerifyingSuccess,_that.error,_that.user);case _:
+return $default(_that.isVerifying,_that.isVerifyingFailed,_that.isVerifyingSuccess,_that.user,_that.error);case _:
   return orElse();
 
 }
@@ -441,10 +441,10 @@ return $default(_that.isVerifying,_that.isVerifyingFailed,_that.isVerifyingSucce
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isVerifying,  bool isVerifyingFailed,  bool isVerifyingSuccess,  ErrorModel error,  UserModel? user)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isVerifying,  bool isVerifyingFailed,  bool isVerifyingSuccess,  User? user,  ErrorModel error)  $default,) {final _that = this;
 switch (_that) {
 case _OtpVerificationState():
-return $default(_that.isVerifying,_that.isVerifyingFailed,_that.isVerifyingSuccess,_that.error,_that.user);}
+return $default(_that.isVerifying,_that.isVerifyingFailed,_that.isVerifyingSuccess,_that.user,_that.error);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -458,10 +458,10 @@ return $default(_that.isVerifying,_that.isVerifyingFailed,_that.isVerifyingSucce
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isVerifying,  bool isVerifyingFailed,  bool isVerifyingSuccess,  ErrorModel error,  UserModel? user)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isVerifying,  bool isVerifyingFailed,  bool isVerifyingSuccess,  User? user,  ErrorModel error)?  $default,) {final _that = this;
 switch (_that) {
 case _OtpVerificationState() when $default != null:
-return $default(_that.isVerifying,_that.isVerifyingFailed,_that.isVerifyingSuccess,_that.error,_that.user);case _:
+return $default(_that.isVerifying,_that.isVerifyingFailed,_that.isVerifyingSuccess,_that.user,_that.error);case _:
   return null;
 
 }
@@ -473,14 +473,14 @@ return $default(_that.isVerifying,_that.isVerifyingFailed,_that.isVerifyingSucce
 
 
 class _OtpVerificationState implements OtpVerificationState {
-  const _OtpVerificationState({required this.isVerifying, required this.isVerifyingFailed, required this.isVerifyingSuccess, required this.error, required this.user});
+  const _OtpVerificationState({required this.isVerifying, required this.isVerifyingFailed, required this.isVerifyingSuccess, this.user, required this.error});
   
 
 @override final  bool isVerifying;
 @override final  bool isVerifyingFailed;
 @override final  bool isVerifyingSuccess;
+@override final  User? user;
 @override final  ErrorModel error;
-@override final  UserModel? user;
 
 /// Create a copy of OtpVerificationState
 /// with the given fields replaced by the non-null parameter values.
@@ -492,16 +492,16 @@ _$OtpVerificationStateCopyWith<_OtpVerificationState> get copyWith => __$OtpVeri
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OtpVerificationState&&(identical(other.isVerifying, isVerifying) || other.isVerifying == isVerifying)&&(identical(other.isVerifyingFailed, isVerifyingFailed) || other.isVerifyingFailed == isVerifyingFailed)&&(identical(other.isVerifyingSuccess, isVerifyingSuccess) || other.isVerifyingSuccess == isVerifyingSuccess)&&(identical(other.error, error) || other.error == error)&&(identical(other.user, user) || other.user == user));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OtpVerificationState&&(identical(other.isVerifying, isVerifying) || other.isVerifying == isVerifying)&&(identical(other.isVerifyingFailed, isVerifyingFailed) || other.isVerifyingFailed == isVerifyingFailed)&&(identical(other.isVerifyingSuccess, isVerifyingSuccess) || other.isVerifyingSuccess == isVerifyingSuccess)&&(identical(other.user, user) || other.user == user)&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isVerifying,isVerifyingFailed,isVerifyingSuccess,error,user);
+int get hashCode => Object.hash(runtimeType,isVerifying,isVerifyingFailed,isVerifyingSuccess,user,error);
 
 @override
 String toString() {
-  return 'OtpVerificationState(isVerifying: $isVerifying, isVerifyingFailed: $isVerifyingFailed, isVerifyingSuccess: $isVerifyingSuccess, error: $error, user: $user)';
+  return 'OtpVerificationState(isVerifying: $isVerifying, isVerifyingFailed: $isVerifyingFailed, isVerifyingSuccess: $isVerifyingSuccess, user: $user, error: $error)';
 }
 
 
@@ -512,11 +512,11 @@ abstract mixin class _$OtpVerificationStateCopyWith<$Res> implements $OtpVerific
   factory _$OtpVerificationStateCopyWith(_OtpVerificationState value, $Res Function(_OtpVerificationState) _then) = __$OtpVerificationStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isVerifying, bool isVerifyingFailed, bool isVerifyingSuccess, ErrorModel error, UserModel? user
+ bool isVerifying, bool isVerifyingFailed, bool isVerifyingSuccess, User? user, ErrorModel error
 });
 
 
-@override $UserModelCopyWith<$Res>? get user;
+@override $UserCopyWith<$Res>? get user;
 
 }
 /// @nodoc
@@ -529,14 +529,14 @@ class __$OtpVerificationStateCopyWithImpl<$Res>
 
 /// Create a copy of OtpVerificationState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isVerifying = null,Object? isVerifyingFailed = null,Object? isVerifyingSuccess = null,Object? error = null,Object? user = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isVerifying = null,Object? isVerifyingFailed = null,Object? isVerifyingSuccess = null,Object? user = freezed,Object? error = null,}) {
   return _then(_OtpVerificationState(
 isVerifying: null == isVerifying ? _self.isVerifying : isVerifying // ignore: cast_nullable_to_non_nullable
 as bool,isVerifyingFailed: null == isVerifyingFailed ? _self.isVerifyingFailed : isVerifyingFailed // ignore: cast_nullable_to_non_nullable
 as bool,isVerifyingSuccess: null == isVerifyingSuccess ? _self.isVerifyingSuccess : isVerifyingSuccess // ignore: cast_nullable_to_non_nullable
-as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
-as ErrorModel,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as UserModel?,
+as bool,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as User?,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as ErrorModel,
   ));
 }
 
@@ -544,12 +544,12 @@ as UserModel?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$UserModelCopyWith<$Res>? get user {
+$UserCopyWith<$Res>? get user {
     if (_self.user == null) {
     return null;
   }
 
-  return $UserModelCopyWith<$Res>(_self.user!, (value) {
+  return $UserCopyWith<$Res>(_self.user!, (value) {
     return _then(_self.copyWith(user: value));
   });
 }

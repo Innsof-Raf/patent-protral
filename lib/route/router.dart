@@ -17,10 +17,10 @@ import 'package:patient_portal/feature/member_details/presentation/pages/member_
 import 'package:patient_portal/feature/members/presentation/pages/members_screen.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/pages/my_appointment_screen.dart';
 import 'package:patient_portal/feature/notification/presentation/pages/notification_screen.dart';
-import 'package:patient_portal/feature/profile/data/models/member_model.dart';
+import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/presentation/pages/profile_screen.dart';
-import 'package:patient_portal/feature/reports/presentation/pages/reports_screen.dart';
 import 'package:patient_portal/feature/reports/presentation/pages/report_screen.dart';
+import 'package:patient_portal/feature/reports/presentation/pages/reports_screen.dart';
 import 'package:patient_portal/feature/set_password/presentation/pages/set_password_screen.dart';
 import 'package:patient_portal/feature/speciality/presentation/pages/speciality_screen.dart';
 import 'package:patient_portal/route/route_constants.dart';
@@ -46,7 +46,7 @@ class Approuter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RouteConstants.addMemberScreen:
-        MemberModel? member;
+        Member? member;
         if (settings.arguments != null) {
           final Map arguments = settings.arguments as Map;
           member = arguments['member'];

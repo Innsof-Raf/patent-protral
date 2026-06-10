@@ -3,7 +3,7 @@ part of 'user_bloc.dart';
 @freezed
 sealed class UserState with _$UserState {
   const factory UserState({
-    required UserModel? user,
+    required User? user,
     required bool isMemberAdding,
     required bool isMemberAddingFailed,
     required bool isMemberAddingSucess,

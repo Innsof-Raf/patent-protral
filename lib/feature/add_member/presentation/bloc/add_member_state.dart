@@ -10,7 +10,7 @@ sealed class AddMemberState with _$AddMemberState {
     required bool isMemberAdding,
     required bool isMemberAddingFailed,
     required bool isMemberAddingSuccess,
-    MemberModel? newMember,
+    Member? newMember,
     required ErrorModel error,
   }) = _AddMemberState;
 

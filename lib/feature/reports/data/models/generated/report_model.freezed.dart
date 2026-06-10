@@ -212,8 +212,8 @@ return $default(_that.idConseltation,_that.id,_that.memberId,_that.doctorName,_t
 /// @nodoc
 @JsonSerializable()
 
-class _ReportModel implements ReportModel {
-  const _ReportModel({@JsonKey(name: "id_cons") required this.idConseltation, @JsonKey(name: "id") required this.id, @JsonKey(name: "ID_CUSTOMER") required this.memberId, @JsonKey(name: "employee_name") required this.doctorName, @JsonKey(name: "speciality") required this.departmentName, @JsonKey(name: "appmnt_dttm") required this.appointmentDate, @JsonKey(name: "appmnt_time") required this.appointmentTime, @JsonKey(name: "labreport_url") this.labPdfUrl = null, @JsonKey(name: "xrayreport_url") this.xRayPdfUrl = null, @JsonKey(name: "ussreport_url") this.ussPdfUrl = null, @JsonKey(name: "ct_url") this.ctPdfUrl = null});
+class _ReportModel extends ReportModel {
+  const _ReportModel({@JsonKey(name: "id_cons") required this.idConseltation, @JsonKey(name: "id") required this.id, @JsonKey(name: "ID_CUSTOMER") required this.memberId, @JsonKey(name: "employee_name") required this.doctorName, @JsonKey(name: "speciality") required this.departmentName, @JsonKey(name: "appmnt_dttm") required this.appointmentDate, @JsonKey(name: "appmnt_time") required this.appointmentTime, @JsonKey(name: "labreport_url") this.labPdfUrl = null, @JsonKey(name: "xrayreport_url") this.xRayPdfUrl = null, @JsonKey(name: "ussreport_url") this.ussPdfUrl = null, @JsonKey(name: "ct_url") this.ctPdfUrl = null}): super._();
   factory _ReportModel.fromJson(Map<String, dynamic> json) => _$ReportModelFromJson(json);
 
 @override@JsonKey(name: "id_cons") final  int idConseltation;

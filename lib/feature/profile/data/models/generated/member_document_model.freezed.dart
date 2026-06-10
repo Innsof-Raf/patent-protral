@@ -205,8 +205,8 @@ return $default(_that.idDocument,_that.docName,_that.expDate,_that.seqNo);case _
 /// @nodoc
 @JsonSerializable()
 
-class _MmemberDocumentModel implements MmemberDocumentModel {
-  const _MmemberDocumentModel({@JsonKey(name: 'ID_Document') required this.idDocument, @JsonKey(name: 'Doc_Name') required this.docName, @JsonKey(name: 'Expiry_Dt') required this.expDate, @JsonKey(name: 'Seq_No') required this.seqNo});
+class _MmemberDocumentModel extends MmemberDocumentModel {
+  const _MmemberDocumentModel({@JsonKey(name: 'ID_Document') required this.idDocument, @JsonKey(name: 'Doc_Name') required this.docName, @JsonKey(name: 'Expiry_Dt') required this.expDate, @JsonKey(name: 'Seq_No') required this.seqNo}): super._();
   factory _MmemberDocumentModel.fromJson(Map<String, dynamic> json) => _$MmemberDocumentModelFromJson(json);
 
 @override@JsonKey(name: 'ID_Document') final  int idDocument;

@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MemberSearchEvent {
 
- List<MemberModel> get members; String get searchKey;
+ List<Member> get members; String get searchKey;
 /// Create a copy of MemberSearchEvent
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $MemberSearchEventCopyWith<$Res>  {
   factory $MemberSearchEventCopyWith(MemberSearchEvent value, $Res Function(MemberSearchEvent) _then) = _$MemberSearchEventCopyWithImpl;
 @useResult
 $Res call({
- List<MemberModel> members, String searchKey
+ List<Member> members, String searchKey
 });
 
 
@@ -65,7 +65,7 @@ class _$MemberSearchEventCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? members = null,Object? searchKey = null,}) {
   return _then(_self.copyWith(
 members: null == members ? _self.members : members // ignore: cast_nullable_to_non_nullable
-as List<MemberModel>,searchKey: null == searchKey ? _self.searchKey : searchKey // ignore: cast_nullable_to_non_nullable
+as List<Member>,searchKey: null == searchKey ? _self.searchKey : searchKey // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -148,7 +148,7 @@ return searchMember(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( List<MemberModel> members,  String searchKey)?  searchMember,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( List<Member> members,  String searchKey)?  searchMember,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case SearchMember() when searchMember != null:
 return searchMember(_that.members,_that.searchKey);case _:
@@ -169,7 +169,7 @@ return searchMember(_that.members,_that.searchKey);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( List<MemberModel> members,  String searchKey)  searchMember,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( List<Member> members,  String searchKey)  searchMember,}) {final _that = this;
 switch (_that) {
 case SearchMember():
 return searchMember(_that.members,_that.searchKey);}
@@ -186,7 +186,7 @@ return searchMember(_that.members,_that.searchKey);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( List<MemberModel> members,  String searchKey)?  searchMember,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( List<Member> members,  String searchKey)?  searchMember,}) {final _that = this;
 switch (_that) {
 case SearchMember() when searchMember != null:
 return searchMember(_that.members,_that.searchKey);case _:
@@ -201,11 +201,11 @@ return searchMember(_that.members,_that.searchKey);case _:
 
 
 class SearchMember implements MemberSearchEvent {
-  const SearchMember({required final  List<MemberModel> members, required this.searchKey}): _members = members;
+  const SearchMember({required final  List<Member> members, required this.searchKey}): _members = members;
   
 
- final  List<MemberModel> _members;
-@override List<MemberModel> get members {
+ final  List<Member> _members;
+@override List<Member> get members {
   if (_members is EqualUnmodifiableListView) return _members;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_members);
@@ -243,7 +243,7 @@ abstract mixin class $SearchMemberCopyWith<$Res> implements $MemberSearchEventCo
   factory $SearchMemberCopyWith(SearchMember value, $Res Function(SearchMember) _then) = _$SearchMemberCopyWithImpl;
 @override @useResult
 $Res call({
- List<MemberModel> members, String searchKey
+ List<Member> members, String searchKey
 });
 
 
@@ -263,7 +263,7 @@ class _$SearchMemberCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? members = null,Object? searchKey = null,}) {
   return _then(SearchMember(
 members: null == members ? _self._members : members // ignore: cast_nullable_to_non_nullable
-as List<MemberModel>,searchKey: null == searchKey ? _self.searchKey : searchKey // ignore: cast_nullable_to_non_nullable
+as List<Member>,searchKey: null == searchKey ? _self.searchKey : searchKey // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -274,7 +274,7 @@ as String,
 /// @nodoc
 mixin _$MemberSearchState {
 
- List<MemberModel> get searchResultMembers;
+ List<Member> get searchResultMembers;
 /// Create a copy of MemberSearchState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -305,7 +305,7 @@ abstract mixin class $MemberSearchStateCopyWith<$Res>  {
   factory $MemberSearchStateCopyWith(MemberSearchState value, $Res Function(MemberSearchState) _then) = _$MemberSearchStateCopyWithImpl;
 @useResult
 $Res call({
- List<MemberModel> searchResultMembers
+ List<Member> searchResultMembers
 });
 
 
@@ -325,7 +325,7 @@ class _$MemberSearchStateCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? searchResultMembers = null,}) {
   return _then(_self.copyWith(
 searchResultMembers: null == searchResultMembers ? _self.searchResultMembers : searchResultMembers // ignore: cast_nullable_to_non_nullable
-as List<MemberModel>,
+as List<Member>,
   ));
 }
 
@@ -407,7 +407,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<MemberModel> searchResultMembers)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<Member> searchResultMembers)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MemberSearchState() when $default != null:
 return $default(_that.searchResultMembers);case _:
@@ -428,7 +428,7 @@ return $default(_that.searchResultMembers);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<MemberModel> searchResultMembers)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<Member> searchResultMembers)  $default,) {final _that = this;
 switch (_that) {
 case _MemberSearchState():
 return $default(_that.searchResultMembers);}
@@ -445,7 +445,7 @@ return $default(_that.searchResultMembers);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<MemberModel> searchResultMembers)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<Member> searchResultMembers)?  $default,) {final _that = this;
 switch (_that) {
 case _MemberSearchState() when $default != null:
 return $default(_that.searchResultMembers);case _:
@@ -460,11 +460,11 @@ return $default(_that.searchResultMembers);case _:
 
 
 class _MemberSearchState implements MemberSearchState {
-  const _MemberSearchState({required final  List<MemberModel> searchResultMembers}): _searchResultMembers = searchResultMembers;
+  const _MemberSearchState({required final  List<Member> searchResultMembers}): _searchResultMembers = searchResultMembers;
   
 
- final  List<MemberModel> _searchResultMembers;
-@override List<MemberModel> get searchResultMembers {
+ final  List<Member> _searchResultMembers;
+@override List<Member> get searchResultMembers {
   if (_searchResultMembers is EqualUnmodifiableListView) return _searchResultMembers;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_searchResultMembers);
@@ -501,7 +501,7 @@ abstract mixin class _$MemberSearchStateCopyWith<$Res> implements $MemberSearchS
   factory _$MemberSearchStateCopyWith(_MemberSearchState value, $Res Function(_MemberSearchState) _then) = __$MemberSearchStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<MemberModel> searchResultMembers
+ List<Member> searchResultMembers
 });
 
 
@@ -521,7 +521,7 @@ class __$MemberSearchStateCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? searchResultMembers = null,}) {
   return _then(_MemberSearchState(
 searchResultMembers: null == searchResultMembers ? _self._searchResultMembers : searchResultMembers // ignore: cast_nullable_to_non_nullable
-as List<MemberModel>,
+as List<Member>,
   ));
 }
 

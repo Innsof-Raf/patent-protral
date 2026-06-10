@@ -2,8 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/core/error/failures.dart';
-import 'package:patient_portal/feature/profile/data/models/member_model.dart';
-import 'package:patient_portal/feature/profile/data/models/user_model.dart';
+import 'package:patient_portal/feature/profile/domain/entities/member.dart';
+import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/add_profile_member_usecase.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/change_member_insurance_details_usecase.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/get_member_detail_usecase.dart';
@@ -44,7 +44,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         ),
       );
 
-      final Either<Failure, MemberModel> memberAddingOptions =
+      final Either<Failure, Member> memberAddingOptions =
           await addProfileMemberUseCase(
             event.params.copyWithAddUser(state.user!),
           );
@@ -57,7 +57,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           ),
         ),
         (newMember) {
-          List<MemberModel> members = List.from(state.user!.members);
+          List<Member> members = List.from(state.user!.members);
           members.add(newMember);
           return emit(
             state.copyWith(
@@ -77,7 +77,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           isMemberAddingSucess: false,
         ),
       );
-      final Either<Failure, MemberModel> memberInsuranceEditingOptions =
+      final Either<Failure, Member> memberInsuranceEditingOptions =
           await changeMemberInsuranceDetailsUseCase(
             event.params.copyWithToken(state.user!.accessToken),
           );
@@ -90,7 +90,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           ),
         ),
         (memberDetail) {
-          List<MemberModel> members = List.from(state.user!.members);
+          List<Member> members = List.from(state.user!.members);
           int currentMemberIndex = members.indexWhere(
             (member) => member.id == event.params.memberId,
           );
@@ -113,7 +113,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           isMemberDetailFetchingSucess: false,
         ),
       );
-      final Either<Failure, MemberModel> memberDetailFetchingOptions =
+      final Either<Failure, Member> memberDetailFetchingOptions =
           await getMemberDetailUseCase(
             event.params.copyWithToken(state.user!.accessToken),
           );
@@ -126,7 +126,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           ),
         ),
         (memberDetail) {
-          List<MemberModel> members = List.from(state.user!.members);
+          List<Member> members = List.from(state.user!.members);
           final int cureentMemberIndex = members.indexWhere(
             (member) => member.id == event.params.memberId,
           );
@@ -143,7 +143,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     });
     on<AddMemberToLocal>((event, emit) {
       if (state.user != null) {
-        final members = List<MemberModel>.from(state.user!.members)
+        final members = List<Member>.from(state.user!.members)
           ..add(event.params.member);
         emit(state.copyWith(user: state.user!.copyWith(members: members)));
       }
@@ -165,7 +165,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 }
 
 extension _ProfileParamsX on ProfileParams {
-  ProfileParams copyWithAddUser(UserModel user) {
+  ProfileParams copyWithAddUser(User user) {
     return maybeMap(
       addMember: (p) => ProfileParams.addMember(
         user: user,
@@ -201,7 +201,7 @@ extension _ProfileParamsX on ProfileParams {
     );
   }
 
-  UserModel get user => maybeWhen(
+  User get user => maybeWhen(
     storeUserDetails: (user) => user,
     orElse: () => throw Exception('Invalid user params'),
   );
@@ -220,7 +220,7 @@ extension _ProfileParamsX on ProfileParams {
     orElse: () => throw Exception('Invalid member id params'),
   );
 
-  MemberModel get member => maybeWhen(
+  Member get member => maybeWhen(
     addMemberToLocal: (member) => member,
     updateMemberInLocal: (member) => member,
     orElse: () => throw Exception('Invalid member params'),

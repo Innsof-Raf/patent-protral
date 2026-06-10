@@ -6,13 +6,13 @@ sealed class ReportsState with _$ReportsState {
     required bool isFetchingReports,
     required bool isFetchingFailed,
     required bool isFetchingSuccess,
-    required ReportFileModel? report,
+    required ReportFile? report,
     required bool isRepoertSaving,
     required bool isReportSavingFailed,
     required bool isReportSavingSucces,
     required ErrorModel error,
     required int selectedMemberId,
-    required List<ReportModel> reports,
+    required List<Report> reports,
   }) = _ReportsState;
 
   factory ReportsState.initial() => ReportsState(

@@ -1,18 +1,18 @@
 import 'dart:io';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:patient_portal/feature/profile/data/models/member_model.dart';
-import 'package:patient_portal/feature/profile/data/models/user_model.dart';
+import 'package:patient_portal/feature/profile/domain/entities/member.dart';
+import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 
 part 'generated/profile_params.freezed.dart';
 
 @freezed
 sealed class ProfileParams with _$ProfileParams {
-  const factory ProfileParams.storeUserDetails({required UserModel user}) =
+  const factory ProfileParams.storeUserDetails({required User user}) =
       StoreUserDetailsParams;
 
   const factory ProfileParams.addMember({
-    UserModel? user,
+    User? user,
     required String patientName,
     required String nationalId,
     String? email,
@@ -39,10 +39,9 @@ sealed class ProfileParams with _$ProfileParams {
     String? token,
   }) = GetMemberDetailParams;
 
-  const factory ProfileParams.addMemberToLocal({required MemberModel member}) =
+  const factory ProfileParams.addMemberToLocal({required Member member}) =
       AddMemberToLocalParams;
 
-  const factory ProfileParams.updateMemberInLocal({
-    required MemberModel member,
-  }) = UpdateMemberInLocalParams;
+  const factory ProfileParams.updateMemberInLocal({required Member member}) =
+      UpdateMemberInLocalParams;
 }

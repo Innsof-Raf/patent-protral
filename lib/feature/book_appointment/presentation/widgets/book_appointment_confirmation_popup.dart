@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
+import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 import 'package:patient_portal/resources/urls.dart';
@@ -18,7 +18,7 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
   final String doctorName;
   final int idDoctor;
   final String doctorImage;
-  final MemberModel member;
+  final Member member;
 
   const BookAppoitmentConfirmationPopUp({
     super.key,

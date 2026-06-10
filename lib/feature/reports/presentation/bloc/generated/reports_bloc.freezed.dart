@@ -362,7 +362,7 @@ String toString() {
 /// @nodoc
 mixin _$ReportsState {
 
- bool get isFetchingReports; bool get isFetchingFailed; bool get isFetchingSuccess; ReportFileModel? get report; bool get isRepoertSaving; bool get isReportSavingFailed; bool get isReportSavingSucces; ErrorModel get error; int get selectedMemberId; List<ReportModel> get reports;
+ bool get isFetchingReports; bool get isFetchingFailed; bool get isFetchingSuccess; ReportFile? get report; bool get isRepoertSaving; bool get isReportSavingFailed; bool get isReportSavingSucces; ErrorModel get error; int get selectedMemberId; List<Report> get reports;
 /// Create a copy of ReportsState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -393,11 +393,11 @@ abstract mixin class $ReportsStateCopyWith<$Res>  {
   factory $ReportsStateCopyWith(ReportsState value, $Res Function(ReportsState) _then) = _$ReportsStateCopyWithImpl;
 @useResult
 $Res call({
- bool isFetchingReports, bool isFetchingFailed, bool isFetchingSuccess, ReportFileModel? report, bool isRepoertSaving, bool isReportSavingFailed, bool isReportSavingSucces, ErrorModel error, int selectedMemberId, List<ReportModel> reports
+ bool isFetchingReports, bool isFetchingFailed, bool isFetchingSuccess, ReportFile? report, bool isRepoertSaving, bool isReportSavingFailed, bool isReportSavingSucces, ErrorModel error, int selectedMemberId, List<Report> reports
 });
 
 
-
+$ReportFileCopyWith<$Res>? get report;
 
 }
 /// @nodoc
@@ -416,16 +416,28 @@ isFetchingReports: null == isFetchingReports ? _self.isFetchingReports : isFetch
 as bool,isFetchingFailed: null == isFetchingFailed ? _self.isFetchingFailed : isFetchingFailed // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingSuccess: null == isFetchingSuccess ? _self.isFetchingSuccess : isFetchingSuccess // ignore: cast_nullable_to_non_nullable
 as bool,report: freezed == report ? _self.report : report // ignore: cast_nullable_to_non_nullable
-as ReportFileModel?,isRepoertSaving: null == isRepoertSaving ? _self.isRepoertSaving : isRepoertSaving // ignore: cast_nullable_to_non_nullable
+as ReportFile?,isRepoertSaving: null == isRepoertSaving ? _self.isRepoertSaving : isRepoertSaving // ignore: cast_nullable_to_non_nullable
 as bool,isReportSavingFailed: null == isReportSavingFailed ? _self.isReportSavingFailed : isReportSavingFailed // ignore: cast_nullable_to_non_nullable
 as bool,isReportSavingSucces: null == isReportSavingSucces ? _self.isReportSavingSucces : isReportSavingSucces // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,selectedMemberId: null == selectedMemberId ? _self.selectedMemberId : selectedMemberId // ignore: cast_nullable_to_non_nullable
 as int,reports: null == reports ? _self.reports : reports // ignore: cast_nullable_to_non_nullable
-as List<ReportModel>,
+as List<Report>,
   ));
 }
+/// Create a copy of ReportsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ReportFileCopyWith<$Res>? get report {
+    if (_self.report == null) {
+    return null;
+  }
 
+  return $ReportFileCopyWith<$Res>(_self.report!, (value) {
+    return _then(_self.copyWith(report: value));
+  });
+}
 }
 
 
@@ -504,7 +516,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isFetchingReports,  bool isFetchingFailed,  bool isFetchingSuccess,  ReportFileModel? report,  bool isRepoertSaving,  bool isReportSavingFailed,  bool isReportSavingSucces,  ErrorModel error,  int selectedMemberId,  List<ReportModel> reports)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isFetchingReports,  bool isFetchingFailed,  bool isFetchingSuccess,  ReportFile? report,  bool isRepoertSaving,  bool isReportSavingFailed,  bool isReportSavingSucces,  ErrorModel error,  int selectedMemberId,  List<Report> reports)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ReportsState() when $default != null:
 return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingSuccess,_that.report,_that.isRepoertSaving,_that.isReportSavingFailed,_that.isReportSavingSucces,_that.error,_that.selectedMemberId,_that.reports);case _:
@@ -525,7 +537,7 @@ return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingS
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isFetchingReports,  bool isFetchingFailed,  bool isFetchingSuccess,  ReportFileModel? report,  bool isRepoertSaving,  bool isReportSavingFailed,  bool isReportSavingSucces,  ErrorModel error,  int selectedMemberId,  List<ReportModel> reports)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isFetchingReports,  bool isFetchingFailed,  bool isFetchingSuccess,  ReportFile? report,  bool isRepoertSaving,  bool isReportSavingFailed,  bool isReportSavingSucces,  ErrorModel error,  int selectedMemberId,  List<Report> reports)  $default,) {final _that = this;
 switch (_that) {
 case _ReportsState():
 return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingSuccess,_that.report,_that.isRepoertSaving,_that.isReportSavingFailed,_that.isReportSavingSucces,_that.error,_that.selectedMemberId,_that.reports);}
@@ -542,7 +554,7 @@ return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingS
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isFetchingReports,  bool isFetchingFailed,  bool isFetchingSuccess,  ReportFileModel? report,  bool isRepoertSaving,  bool isReportSavingFailed,  bool isReportSavingSucces,  ErrorModel error,  int selectedMemberId,  List<ReportModel> reports)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isFetchingReports,  bool isFetchingFailed,  bool isFetchingSuccess,  ReportFile? report,  bool isRepoertSaving,  bool isReportSavingFailed,  bool isReportSavingSucces,  ErrorModel error,  int selectedMemberId,  List<Report> reports)?  $default,) {final _that = this;
 switch (_that) {
 case _ReportsState() when $default != null:
 return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingSuccess,_that.report,_that.isRepoertSaving,_that.isReportSavingFailed,_that.isReportSavingSucces,_that.error,_that.selectedMemberId,_that.reports);case _:
@@ -557,20 +569,20 @@ return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingS
 
 
 class _ReportsState implements ReportsState {
-  const _ReportsState({required this.isFetchingReports, required this.isFetchingFailed, required this.isFetchingSuccess, required this.report, required this.isRepoertSaving, required this.isReportSavingFailed, required this.isReportSavingSucces, required this.error, required this.selectedMemberId, required final  List<ReportModel> reports}): _reports = reports;
+  const _ReportsState({required this.isFetchingReports, required this.isFetchingFailed, required this.isFetchingSuccess, required this.report, required this.isRepoertSaving, required this.isReportSavingFailed, required this.isReportSavingSucces, required this.error, required this.selectedMemberId, required final  List<Report> reports}): _reports = reports;
   
 
 @override final  bool isFetchingReports;
 @override final  bool isFetchingFailed;
 @override final  bool isFetchingSuccess;
-@override final  ReportFileModel? report;
+@override final  ReportFile? report;
 @override final  bool isRepoertSaving;
 @override final  bool isReportSavingFailed;
 @override final  bool isReportSavingSucces;
 @override final  ErrorModel error;
 @override final  int selectedMemberId;
- final  List<ReportModel> _reports;
-@override List<ReportModel> get reports {
+ final  List<Report> _reports;
+@override List<Report> get reports {
   if (_reports is EqualUnmodifiableListView) return _reports;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_reports);
@@ -607,11 +619,11 @@ abstract mixin class _$ReportsStateCopyWith<$Res> implements $ReportsStateCopyWi
   factory _$ReportsStateCopyWith(_ReportsState value, $Res Function(_ReportsState) _then) = __$ReportsStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isFetchingReports, bool isFetchingFailed, bool isFetchingSuccess, ReportFileModel? report, bool isRepoertSaving, bool isReportSavingFailed, bool isReportSavingSucces, ErrorModel error, int selectedMemberId, List<ReportModel> reports
+ bool isFetchingReports, bool isFetchingFailed, bool isFetchingSuccess, ReportFile? report, bool isRepoertSaving, bool isReportSavingFailed, bool isReportSavingSucces, ErrorModel error, int selectedMemberId, List<Report> reports
 });
 
 
-
+@override $ReportFileCopyWith<$Res>? get report;
 
 }
 /// @nodoc
@@ -630,17 +642,29 @@ isFetchingReports: null == isFetchingReports ? _self.isFetchingReports : isFetch
 as bool,isFetchingFailed: null == isFetchingFailed ? _self.isFetchingFailed : isFetchingFailed // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingSuccess: null == isFetchingSuccess ? _self.isFetchingSuccess : isFetchingSuccess // ignore: cast_nullable_to_non_nullable
 as bool,report: freezed == report ? _self.report : report // ignore: cast_nullable_to_non_nullable
-as ReportFileModel?,isRepoertSaving: null == isRepoertSaving ? _self.isRepoertSaving : isRepoertSaving // ignore: cast_nullable_to_non_nullable
+as ReportFile?,isRepoertSaving: null == isRepoertSaving ? _self.isRepoertSaving : isRepoertSaving // ignore: cast_nullable_to_non_nullable
 as bool,isReportSavingFailed: null == isReportSavingFailed ? _self.isReportSavingFailed : isReportSavingFailed // ignore: cast_nullable_to_non_nullable
 as bool,isReportSavingSucces: null == isReportSavingSucces ? _self.isReportSavingSucces : isReportSavingSucces // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,selectedMemberId: null == selectedMemberId ? _self.selectedMemberId : selectedMemberId // ignore: cast_nullable_to_non_nullable
 as int,reports: null == reports ? _self._reports : reports // ignore: cast_nullable_to_non_nullable
-as List<ReportModel>,
+as List<Report>,
   ));
 }
 
+/// Create a copy of ReportsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ReportFileCopyWith<$Res>? get report {
+    if (_self.report == null) {
+    return null;
+  }
 
+  return $ReportFileCopyWith<$Res>(_self.report!, (value) {
+    return _then(_self.copyWith(report: value));
+  });
+}
 }
 
 // dart format on

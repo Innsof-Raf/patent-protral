@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:patient_portal/feature/profile/data/models/member_model.dart';
+import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/route/route_constants.dart';
 
 import '../app_colors.dart';
@@ -9,7 +9,7 @@ import '../dimens.dart';
 import '../urls.dart';
 
 class MemberTile extends StatelessWidget {
-  final MemberModel member;
+  final Member member;
   const MemberTile({super.key, required this.member});
 
   @override

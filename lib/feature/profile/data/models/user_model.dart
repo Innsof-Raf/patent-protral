@@ -2,12 +2,15 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/profile/data/models/member_model.dart';
+import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 
 part 'generated/user_model.freezed.dart';
 part 'generated/user_model.g.dart';
 
 @freezed
 sealed class UserModel with _$UserModel {
+  const UserModel._();
+
   const factory UserModel({
     @JsonKey(name: 'Id') required int id,
     @JsonKey(name: 'FirstName') required String firstName,
@@ -21,4 +24,17 @@ sealed class UserModel with _$UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
+
+  User toEntity() {
+    return User(
+      id: id,
+      firstName: firstName,
+      lastName: lastName,
+      userName: userName,
+      mobileNumber: mobileNumber,
+      emailId: emailId,
+      accessToken: accessToken,
+      members: members.map((e) => e.toEntity()).toList(),
+    );
+  }
 }

@@ -209,8 +209,8 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mob
 /// @nodoc
 @JsonSerializable()
 
-class _UserModel implements UserModel {
-  const _UserModel({@JsonKey(name: 'Id') required this.id, @JsonKey(name: 'FirstName') required this.firstName, @JsonKey(name: 'LastName') required this.lastName, @JsonKey(name: 'Username') required this.userName, @JsonKey(name: 'MobileNo') required this.mobileNumber, @JsonKey(name: 'EmailID') required this.emailId, @JsonKey(name: 'accessToken') required this.accessToken, @JsonKey(name: 'Members') required final  List<MemberModel> members}): _members = members;
+class _UserModel extends UserModel {
+  const _UserModel({@JsonKey(name: 'Id') required this.id, @JsonKey(name: 'FirstName') required this.firstName, @JsonKey(name: 'LastName') required this.lastName, @JsonKey(name: 'Username') required this.userName, @JsonKey(name: 'MobileNo') required this.mobileNumber, @JsonKey(name: 'EmailID') required this.emailId, @JsonKey(name: 'accessToken') required this.accessToken, @JsonKey(name: 'Members') required final  List<MemberModel> members}): _members = members,super._();
   factory _UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
 @override@JsonKey(name: 'Id') final  int id;

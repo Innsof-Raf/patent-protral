@@ -1,10 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/feature/reports/domain/entities/report.dart';
 
 part 'generated/report_model.freezed.dart';
 part 'generated/report_model.g.dart';
 
 @freezed
 sealed class ReportModel with _$ReportModel {
+  const ReportModel._();
+
   const factory ReportModel({
     @JsonKey(name: "id_cons") required int idConseltation,
     @JsonKey(name: "id") required int id,
@@ -21,4 +24,20 @@ sealed class ReportModel with _$ReportModel {
 
   factory ReportModel.fromJson(Map<String, dynamic> json) =>
       _$ReportModelFromJson(json);
+
+  Report toEntity() {
+    return Report(
+      idConseltation: idConseltation,
+      id: id,
+      memberId: memberId,
+      doctorName: doctorName,
+      departmentName: departmentName,
+      appointmentDate: appointmentDate,
+      appointmentTime: appointmentTime,
+      labPdfUrl: labPdfUrl,
+      xRayPdfUrl: xRayPdfUrl,
+      ussPdfUrl: ussPdfUrl,
+      ctPdfUrl: ctPdfUrl,
+    );
+  }
 }

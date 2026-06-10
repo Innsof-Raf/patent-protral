@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_portal/feature/reports/data/models/report_model.dart';
-
+import 'package:patient_portal/feature/reports/domain/entities/report.dart';
 import 'package:patient_portal/resources/app_colors.dart';
 import 'package:patient_portal/resources/app_text_styles.dart';
 import 'test_report_button.dart';
 
 class MyReportTile extends StatelessWidget {
-  final ReportModel report;
+  final Report report;
   const MyReportTile({super.key, required this.report});
 
   @override

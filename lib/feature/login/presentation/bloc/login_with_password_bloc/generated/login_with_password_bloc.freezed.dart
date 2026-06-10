@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of '../login_with_password_bloc/login_with_password_bloc.dart';
+part of '../login_with_password_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -268,7 +268,7 @@ as String,
 /// @nodoc
 mixin _$LoginWithPasswordState {
 
- bool get isLogingin; bool get isLoginFailed; bool get isLoginSucces; ErrorModel get error; UserModel? get user;
+ bool get isLogingin; bool get isLoginFailed; bool get isLoginSucces; User? get user; ErrorModel get error;
 /// Create a copy of LoginWithPasswordState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -279,16 +279,16 @@ $LoginWithPasswordStateCopyWith<LoginWithPasswordState> get copyWith => _$LoginW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginWithPasswordState&&(identical(other.isLogingin, isLogingin) || other.isLogingin == isLogingin)&&(identical(other.isLoginFailed, isLoginFailed) || other.isLoginFailed == isLoginFailed)&&(identical(other.isLoginSucces, isLoginSucces) || other.isLoginSucces == isLoginSucces)&&(identical(other.error, error) || other.error == error)&&(identical(other.user, user) || other.user == user));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginWithPasswordState&&(identical(other.isLogingin, isLogingin) || other.isLogingin == isLogingin)&&(identical(other.isLoginFailed, isLoginFailed) || other.isLoginFailed == isLoginFailed)&&(identical(other.isLoginSucces, isLoginSucces) || other.isLoginSucces == isLoginSucces)&&(identical(other.user, user) || other.user == user)&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLogingin,isLoginFailed,isLoginSucces,error,user);
+int get hashCode => Object.hash(runtimeType,isLogingin,isLoginFailed,isLoginSucces,user,error);
 
 @override
 String toString() {
-  return 'LoginWithPasswordState(isLogingin: $isLogingin, isLoginFailed: $isLoginFailed, isLoginSucces: $isLoginSucces, error: $error, user: $user)';
+  return 'LoginWithPasswordState(isLogingin: $isLogingin, isLoginFailed: $isLoginFailed, isLoginSucces: $isLoginSucces, user: $user, error: $error)';
 }
 
 
@@ -299,11 +299,11 @@ abstract mixin class $LoginWithPasswordStateCopyWith<$Res>  {
   factory $LoginWithPasswordStateCopyWith(LoginWithPasswordState value, $Res Function(LoginWithPasswordState) _then) = _$LoginWithPasswordStateCopyWithImpl;
 @useResult
 $Res call({
- bool isLogingin, bool isLoginFailed, bool isLoginSucces, ErrorModel error, UserModel? user
+ bool isLogingin, bool isLoginFailed, bool isLoginSucces, User? user, ErrorModel error
 });
 
 
-$UserModelCopyWith<$Res>? get user;
+$UserCopyWith<$Res>? get user;
 
 }
 /// @nodoc
@@ -316,26 +316,26 @@ class _$LoginWithPasswordStateCopyWithImpl<$Res>
 
 /// Create a copy of LoginWithPasswordState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isLogingin = null,Object? isLoginFailed = null,Object? isLoginSucces = null,Object? error = null,Object? user = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isLogingin = null,Object? isLoginFailed = null,Object? isLoginSucces = null,Object? user = freezed,Object? error = null,}) {
   return _then(_self.copyWith(
 isLogingin: null == isLogingin ? _self.isLogingin : isLogingin // ignore: cast_nullable_to_non_nullable
 as bool,isLoginFailed: null == isLoginFailed ? _self.isLoginFailed : isLoginFailed // ignore: cast_nullable_to_non_nullable
 as bool,isLoginSucces: null == isLoginSucces ? _self.isLoginSucces : isLoginSucces // ignore: cast_nullable_to_non_nullable
-as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
-as ErrorModel,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as UserModel?,
+as bool,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as User?,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as ErrorModel,
   ));
 }
 /// Create a copy of LoginWithPasswordState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$UserModelCopyWith<$Res>? get user {
+$UserCopyWith<$Res>? get user {
     if (_self.user == null) {
     return null;
   }
 
-  return $UserModelCopyWith<$Res>(_self.user!, (value) {
+  return $UserCopyWith<$Res>(_self.user!, (value) {
     return _then(_self.copyWith(user: value));
   });
 }
@@ -417,10 +417,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLogingin,  bool isLoginFailed,  bool isLoginSucces,  ErrorModel error,  UserModel? user)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLogingin,  bool isLoginFailed,  bool isLoginSucces,  User? user,  ErrorModel error)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LoginWithPasswordState() when $default != null:
-return $default(_that.isLogingin,_that.isLoginFailed,_that.isLoginSucces,_that.error,_that.user);case _:
+return $default(_that.isLogingin,_that.isLoginFailed,_that.isLoginSucces,_that.user,_that.error);case _:
   return orElse();
 
 }
@@ -438,10 +438,10 @@ return $default(_that.isLogingin,_that.isLoginFailed,_that.isLoginSucces,_that.e
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLogingin,  bool isLoginFailed,  bool isLoginSucces,  ErrorModel error,  UserModel? user)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLogingin,  bool isLoginFailed,  bool isLoginSucces,  User? user,  ErrorModel error)  $default,) {final _that = this;
 switch (_that) {
 case _LoginWithPasswordState():
-return $default(_that.isLogingin,_that.isLoginFailed,_that.isLoginSucces,_that.error,_that.user);}
+return $default(_that.isLogingin,_that.isLoginFailed,_that.isLoginSucces,_that.user,_that.error);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -455,10 +455,10 @@ return $default(_that.isLogingin,_that.isLoginFailed,_that.isLoginSucces,_that.e
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLogingin,  bool isLoginFailed,  bool isLoginSucces,  ErrorModel error,  UserModel? user)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLogingin,  bool isLoginFailed,  bool isLoginSucces,  User? user,  ErrorModel error)?  $default,) {final _that = this;
 switch (_that) {
 case _LoginWithPasswordState() when $default != null:
-return $default(_that.isLogingin,_that.isLoginFailed,_that.isLoginSucces,_that.error,_that.user);case _:
+return $default(_that.isLogingin,_that.isLoginFailed,_that.isLoginSucces,_that.user,_that.error);case _:
   return null;
 
 }
@@ -470,14 +470,14 @@ return $default(_that.isLogingin,_that.isLoginFailed,_that.isLoginSucces,_that.e
 
 
 class _LoginWithPasswordState implements LoginWithPasswordState {
-  const _LoginWithPasswordState({required this.isLogingin, required this.isLoginFailed, required this.isLoginSucces, required this.error, required this.user});
+  const _LoginWithPasswordState({required this.isLogingin, required this.isLoginFailed, required this.isLoginSucces, this.user, required this.error});
   
 
 @override final  bool isLogingin;
 @override final  bool isLoginFailed;
 @override final  bool isLoginSucces;
+@override final  User? user;
 @override final  ErrorModel error;
-@override final  UserModel? user;
 
 /// Create a copy of LoginWithPasswordState
 /// with the given fields replaced by the non-null parameter values.
@@ -489,16 +489,16 @@ _$LoginWithPasswordStateCopyWith<_LoginWithPasswordState> get copyWith => __$Log
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginWithPasswordState&&(identical(other.isLogingin, isLogingin) || other.isLogingin == isLogingin)&&(identical(other.isLoginFailed, isLoginFailed) || other.isLoginFailed == isLoginFailed)&&(identical(other.isLoginSucces, isLoginSucces) || other.isLoginSucces == isLoginSucces)&&(identical(other.error, error) || other.error == error)&&(identical(other.user, user) || other.user == user));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginWithPasswordState&&(identical(other.isLogingin, isLogingin) || other.isLogingin == isLogingin)&&(identical(other.isLoginFailed, isLoginFailed) || other.isLoginFailed == isLoginFailed)&&(identical(other.isLoginSucces, isLoginSucces) || other.isLoginSucces == isLoginSucces)&&(identical(other.user, user) || other.user == user)&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLogingin,isLoginFailed,isLoginSucces,error,user);
+int get hashCode => Object.hash(runtimeType,isLogingin,isLoginFailed,isLoginSucces,user,error);
 
 @override
 String toString() {
-  return 'LoginWithPasswordState(isLogingin: $isLogingin, isLoginFailed: $isLoginFailed, isLoginSucces: $isLoginSucces, error: $error, user: $user)';
+  return 'LoginWithPasswordState(isLogingin: $isLogingin, isLoginFailed: $isLoginFailed, isLoginSucces: $isLoginSucces, user: $user, error: $error)';
 }
 
 
@@ -509,11 +509,11 @@ abstract mixin class _$LoginWithPasswordStateCopyWith<$Res> implements $LoginWit
   factory _$LoginWithPasswordStateCopyWith(_LoginWithPasswordState value, $Res Function(_LoginWithPasswordState) _then) = __$LoginWithPasswordStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isLogingin, bool isLoginFailed, bool isLoginSucces, ErrorModel error, UserModel? user
+ bool isLogingin, bool isLoginFailed, bool isLoginSucces, User? user, ErrorModel error
 });
 
 
-@override $UserModelCopyWith<$Res>? get user;
+@override $UserCopyWith<$Res>? get user;
 
 }
 /// @nodoc
@@ -526,14 +526,14 @@ class __$LoginWithPasswordStateCopyWithImpl<$Res>
 
 /// Create a copy of LoginWithPasswordState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isLogingin = null,Object? isLoginFailed = null,Object? isLoginSucces = null,Object? error = null,Object? user = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isLogingin = null,Object? isLoginFailed = null,Object? isLoginSucces = null,Object? user = freezed,Object? error = null,}) {
   return _then(_LoginWithPasswordState(
 isLogingin: null == isLogingin ? _self.isLogingin : isLogingin // ignore: cast_nullable_to_non_nullable
 as bool,isLoginFailed: null == isLoginFailed ? _self.isLoginFailed : isLoginFailed // ignore: cast_nullable_to_non_nullable
 as bool,isLoginSucces: null == isLoginSucces ? _self.isLoginSucces : isLoginSucces // ignore: cast_nullable_to_non_nullable
-as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
-as ErrorModel,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as UserModel?,
+as bool,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as User?,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as ErrorModel,
   ));
 }
 
@@ -541,12 +541,12 @@ as UserModel?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$UserModelCopyWith<$Res>? get user {
+$UserCopyWith<$Res>? get user {
     if (_self.user == null) {
     return null;
   }
 
-  return $UserModelCopyWith<$Res>(_self.user!, (value) {
+  return $UserCopyWith<$Res>(_self.user!, (value) {
     return _then(_self.copyWith(user: value));
   });
 }

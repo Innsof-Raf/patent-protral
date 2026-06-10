@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:patient_portal/feature/reports/data/datasources/reports_remote_data_source.dart';
-import 'package:patient_portal/feature/reports/data/models/report_file_model.dart';
-import 'package:patient_portal/feature/reports/data/models/report_model.dart';
+import 'package:patient_portal/feature/reports/domain/entities/report.dart';
+import 'package:patient_portal/feature/reports/domain/entities/report_file.dart';
 import 'package:patient_portal/feature/reports/domain/repositories/reports_repository.dart';
 import 'package:patient_portal/feature/reports/domain/usecases/params/reports_params.dart';
 import 'package:patient_portal/resources/error_model.dart';
@@ -12,16 +12,20 @@ class ReportsRepositoryImpl implements ReportsRepository {
   ReportsRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<ErrorModel, List<ReportModel>>> getReports(
+  Future<Either<ErrorModel, List<Report>>> getReports(
     ReportsParams params,
-  ) {
-    return remoteDataSource.getReports(params);
+  ) async {
+    final result = await remoteDataSource.getReports(params);
+    return result.map(
+      (models) => models.map((model) => model.toEntity()).toList(),
+    );
   }
 
   @override
-  Future<Either<ErrorModel, ReportFileModel>> downloadReport(
+  Future<Either<ErrorModel, ReportFile>> downloadReport(
     ReportsParams params,
-  ) {
-    return remoteDataSource.downloadReport(params);
+  ) async {
+    final result = await remoteDataSource.downloadReport(params);
+    return result.map((model) => model.toEntity());
   }
 }

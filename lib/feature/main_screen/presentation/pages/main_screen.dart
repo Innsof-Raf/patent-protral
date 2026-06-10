@@ -10,8 +10,8 @@ import 'package:patient_portal/feature/main_screen/presentation/widgets/main_app
 import 'package:patient_portal/feature/main_screen/presentation/widgets/profile_app_bar.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/reports_app_bar.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/pages/my_appointment_screen.dart';
+import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/feature/profile/data/models/user_model.dart';
 import 'package:patient_portal/feature/profile/presentation/pages/profile_screen.dart';
 import 'package:patient_portal/feature/reports/presentation/pages/reports_screen.dart';
 import 'package:patient_portal/feature/speciality/presentation/pages/speciality_screen.dart';
@@ -37,7 +37,7 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final UserModel user = context.read<UserBloc>().state.user!;
+      final User user = context.read<UserBloc>().state.user!;
       context.read<HomeBloc>().add(
         GetHomeData(token: user.accessToken, idBusunit: 3),
       );

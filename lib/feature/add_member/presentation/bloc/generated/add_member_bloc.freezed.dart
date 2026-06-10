@@ -396,7 +396,7 @@ $AddMemberParamsCopyWith<$Res> get params {
 /// @nodoc
 mixin _$AddMemberState {
 
- bool get isFetchingInsurances; bool get isInsuranceFetchingFailed; bool get isInsuranceFetchingSuccess; List<InsuranceModel> get insurances; bool get isMemberAdding; bool get isMemberAddingFailed; bool get isMemberAddingSuccess; MemberModel? get newMember; ErrorModel get error;
+ bool get isFetchingInsurances; bool get isInsuranceFetchingFailed; bool get isInsuranceFetchingSuccess; List<InsuranceModel> get insurances; bool get isMemberAdding; bool get isMemberAddingFailed; bool get isMemberAddingSuccess; Member? get newMember; ErrorModel get error;
 /// Create a copy of AddMemberState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -427,11 +427,11 @@ abstract mixin class $AddMemberStateCopyWith<$Res>  {
   factory $AddMemberStateCopyWith(AddMemberState value, $Res Function(AddMemberState) _then) = _$AddMemberStateCopyWithImpl;
 @useResult
 $Res call({
- bool isFetchingInsurances, bool isInsuranceFetchingFailed, bool isInsuranceFetchingSuccess, List<InsuranceModel> insurances, bool isMemberAdding, bool isMemberAddingFailed, bool isMemberAddingSuccess, MemberModel? newMember, ErrorModel error
+ bool isFetchingInsurances, bool isInsuranceFetchingFailed, bool isInsuranceFetchingSuccess, List<InsuranceModel> insurances, bool isMemberAdding, bool isMemberAddingFailed, bool isMemberAddingSuccess, Member? newMember, ErrorModel error
 });
 
 
-$MemberModelCopyWith<$Res>? get newMember;
+$MemberCopyWith<$Res>? get newMember;
 
 }
 /// @nodoc
@@ -454,7 +454,7 @@ as List<InsuranceModel>,isMemberAdding: null == isMemberAdding ? _self.isMemberA
 as bool,isMemberAddingFailed: null == isMemberAddingFailed ? _self.isMemberAddingFailed : isMemberAddingFailed // ignore: cast_nullable_to_non_nullable
 as bool,isMemberAddingSuccess: null == isMemberAddingSuccess ? _self.isMemberAddingSuccess : isMemberAddingSuccess // ignore: cast_nullable_to_non_nullable
 as bool,newMember: freezed == newMember ? _self.newMember : newMember // ignore: cast_nullable_to_non_nullable
-as MemberModel?,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as Member?,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,
   ));
 }
@@ -462,12 +462,12 @@ as ErrorModel,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$MemberModelCopyWith<$Res>? get newMember {
+$MemberCopyWith<$Res>? get newMember {
     if (_self.newMember == null) {
     return null;
   }
 
-  return $MemberModelCopyWith<$Res>(_self.newMember!, (value) {
+  return $MemberCopyWith<$Res>(_self.newMember!, (value) {
     return _then(_self.copyWith(newMember: value));
   });
 }
@@ -549,7 +549,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isFetchingInsurances,  bool isInsuranceFetchingFailed,  bool isInsuranceFetchingSuccess,  List<InsuranceModel> insurances,  bool isMemberAdding,  bool isMemberAddingFailed,  bool isMemberAddingSuccess,  MemberModel? newMember,  ErrorModel error)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isFetchingInsurances,  bool isInsuranceFetchingFailed,  bool isInsuranceFetchingSuccess,  List<InsuranceModel> insurances,  bool isMemberAdding,  bool isMemberAddingFailed,  bool isMemberAddingSuccess,  Member? newMember,  ErrorModel error)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AddMemberState() when $default != null:
 return $default(_that.isFetchingInsurances,_that.isInsuranceFetchingFailed,_that.isInsuranceFetchingSuccess,_that.insurances,_that.isMemberAdding,_that.isMemberAddingFailed,_that.isMemberAddingSuccess,_that.newMember,_that.error);case _:
@@ -570,7 +570,7 @@ return $default(_that.isFetchingInsurances,_that.isInsuranceFetchingFailed,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isFetchingInsurances,  bool isInsuranceFetchingFailed,  bool isInsuranceFetchingSuccess,  List<InsuranceModel> insurances,  bool isMemberAdding,  bool isMemberAddingFailed,  bool isMemberAddingSuccess,  MemberModel? newMember,  ErrorModel error)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isFetchingInsurances,  bool isInsuranceFetchingFailed,  bool isInsuranceFetchingSuccess,  List<InsuranceModel> insurances,  bool isMemberAdding,  bool isMemberAddingFailed,  bool isMemberAddingSuccess,  Member? newMember,  ErrorModel error)  $default,) {final _that = this;
 switch (_that) {
 case _AddMemberState():
 return $default(_that.isFetchingInsurances,_that.isInsuranceFetchingFailed,_that.isInsuranceFetchingSuccess,_that.insurances,_that.isMemberAdding,_that.isMemberAddingFailed,_that.isMemberAddingSuccess,_that.newMember,_that.error);}
@@ -587,7 +587,7 @@ return $default(_that.isFetchingInsurances,_that.isInsuranceFetchingFailed,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isFetchingInsurances,  bool isInsuranceFetchingFailed,  bool isInsuranceFetchingSuccess,  List<InsuranceModel> insurances,  bool isMemberAdding,  bool isMemberAddingFailed,  bool isMemberAddingSuccess,  MemberModel? newMember,  ErrorModel error)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isFetchingInsurances,  bool isInsuranceFetchingFailed,  bool isInsuranceFetchingSuccess,  List<InsuranceModel> insurances,  bool isMemberAdding,  bool isMemberAddingFailed,  bool isMemberAddingSuccess,  Member? newMember,  ErrorModel error)?  $default,) {final _that = this;
 switch (_that) {
 case _AddMemberState() when $default != null:
 return $default(_that.isFetchingInsurances,_that.isInsuranceFetchingFailed,_that.isInsuranceFetchingSuccess,_that.insurances,_that.isMemberAdding,_that.isMemberAddingFailed,_that.isMemberAddingSuccess,_that.newMember,_that.error);case _:
@@ -618,7 +618,7 @@ class _AddMemberState implements AddMemberState {
 @override final  bool isMemberAdding;
 @override final  bool isMemberAddingFailed;
 @override final  bool isMemberAddingSuccess;
-@override final  MemberModel? newMember;
+@override final  Member? newMember;
 @override final  ErrorModel error;
 
 /// Create a copy of AddMemberState
@@ -651,11 +651,11 @@ abstract mixin class _$AddMemberStateCopyWith<$Res> implements $AddMemberStateCo
   factory _$AddMemberStateCopyWith(_AddMemberState value, $Res Function(_AddMemberState) _then) = __$AddMemberStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isFetchingInsurances, bool isInsuranceFetchingFailed, bool isInsuranceFetchingSuccess, List<InsuranceModel> insurances, bool isMemberAdding, bool isMemberAddingFailed, bool isMemberAddingSuccess, MemberModel? newMember, ErrorModel error
+ bool isFetchingInsurances, bool isInsuranceFetchingFailed, bool isInsuranceFetchingSuccess, List<InsuranceModel> insurances, bool isMemberAdding, bool isMemberAddingFailed, bool isMemberAddingSuccess, Member? newMember, ErrorModel error
 });
 
 
-@override $MemberModelCopyWith<$Res>? get newMember;
+@override $MemberCopyWith<$Res>? get newMember;
 
 }
 /// @nodoc
@@ -678,7 +678,7 @@ as List<InsuranceModel>,isMemberAdding: null == isMemberAdding ? _self.isMemberA
 as bool,isMemberAddingFailed: null == isMemberAddingFailed ? _self.isMemberAddingFailed : isMemberAddingFailed // ignore: cast_nullable_to_non_nullable
 as bool,isMemberAddingSuccess: null == isMemberAddingSuccess ? _self.isMemberAddingSuccess : isMemberAddingSuccess // ignore: cast_nullable_to_non_nullable
 as bool,newMember: freezed == newMember ? _self.newMember : newMember // ignore: cast_nullable_to_non_nullable
-as MemberModel?,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as Member?,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,
   ));
 }
@@ -687,12 +687,12 @@ as ErrorModel,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$MemberModelCopyWith<$Res>? get newMember {
+$MemberCopyWith<$Res>? get newMember {
     if (_self.newMember == null) {
     return null;
   }
 
-  return $MemberModelCopyWith<$Res>(_self.newMember!, (value) {
+  return $MemberCopyWith<$Res>(_self.newMember!, (value) {
     return _then(_self.copyWith(newMember: value));
   });
 }
