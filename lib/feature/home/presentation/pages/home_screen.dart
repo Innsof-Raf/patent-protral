@@ -2,6 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/dimens.dart';
+import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/core/route/route_constants.dart';
 import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:patient_portal/feature/home/presentation/helpers/home_helpers.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/ad_banner.dart';
@@ -10,11 +15,6 @@ import 'package:patient_portal/feature/home/presentation/widgets/documents_tile.
 import 'package:patient_portal/feature/home/presentation/widgets/members_tile.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
 import 'package:patient_portal/feature/speciality/presentation/widgets/speciality_tile.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
-import 'package:patient_portal/core/resources/dimens.dart';
-import 'package:patient_portal/core/resources/urls.dart';
-import 'package:patient_portal/core/route/route_constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -111,7 +111,7 @@ class HomeScreen extends StatelessWidget {
                                           crossAxisCount: 4,
                                         ),
                                     itemBuilder: (context, index) =>
-                                        SpecilityTile(
+                                        SpecialityTile(
                                           speciality: state
                                               .homeData
                                               .topSpecialities[index],

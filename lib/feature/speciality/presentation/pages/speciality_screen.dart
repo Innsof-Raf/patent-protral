@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/dimens.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/params/speciality_params.dart';
 import 'package:patient_portal/feature/speciality/presentation/bloc/speciality_bloc/speciality_bloc.dart';
 import 'package:patient_portal/feature/speciality/presentation/widgets/speciality_tile.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
-import 'package:patient_portal/core/resources/dimens.dart';
 
-class SpecilityScreen extends StatelessWidget {
-  const SpecilityScreen({super.key});
+class SpecialityScreen extends StatelessWidget {
+  const SpecialityScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +134,7 @@ class SpecilityScreen extends StatelessWidget {
                                             : 5,
                                       ),
                                   itemBuilder: (context, index) =>
-                                      SpecilityTile(
+                                      SpecialityTile(
                                         speciality: specialities[index],
                                       ),
                                 );

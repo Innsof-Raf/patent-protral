@@ -1,14 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/route_constants.dart';
+import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
 
-class SpecilityTile extends StatelessWidget {
+class SpecialityTile extends StatelessWidget {
   final Speciality speciality;
-  const SpecilityTile({super.key, required this.speciality});
+  const SpecialityTile({super.key, required this.speciality});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class SpecilityTile extends StatelessWidget {
             children: [
               CachedNetworkImage(
                 imageUrl:
-                    '${ConstantUrls.specilityImageUrl}/${speciality.idSpeciality}/${speciality.specialityImage}',
+                    '${ConstantUrls.specialityImageUrl}/${speciality.idSpeciality}/${speciality.specialityImage}',
                 fadeInDuration: const Duration(seconds: 0),
                 height: constraints.maxHeight * .39,
                 errorWidget: (context, url, error) {

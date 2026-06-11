@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
-import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
-import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
-import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/succes_dailog.dart';
 import 'package:patient_portal/core/route/route_constants.dart';
+import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
+import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
+import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
+import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 
 import 'book_appointment_screen_helpers.dart';
 
@@ -103,7 +103,7 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                                 profileUrl:
                                     state.appointmentDetails!.doctorImage,
                                 speciality:
-                                    state.appointmentDetails!.doctorSpecility,
+                                    state.appointmentDetails!.doctorSpeciality,
                                 isCanceling: false,
                               ),
                             ),

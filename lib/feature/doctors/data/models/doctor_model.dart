@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
+
 import '../../domain/entities/doctor.dart';
 import 'language_known_model.dart';
 
@@ -11,21 +12,35 @@ sealed class DoctorModel with _$DoctorModel {
   const DoctorModel._();
 
   const factory DoctorModel({
-    @JsonKey(name: 'employee_id') required String doctorId,
+    @JsonKey(name: 'employee_id', fromJson: stringFromJson)
+    required String doctorId,
     @JsonKey(name: 'id_employee', fromJson: intFromJson) required int idDoctor,
     @JsonKey(name: 'id_busunit', fromJson: intFromJson) required int idBusUnit,
-    @JsonKey(name: 'busunit_name') required String busUnitName,
-    @JsonKey(name: 'employee_name') required String doctorName,
-    @JsonKey(name: 'dept_name') required String departmentName,
-    @JsonKey(name: 'speciality') required String doctorSpecility,
-    required String experience,
-    required String branch,
-    @JsonKey(name: 'Language_Known')
+    @JsonKey(name: 'busunit_name', fromJson: stringFromJson)
+    required String busUnitName,
+    @JsonKey(name: 'employee_name', fromJson: stringFromJson)
+    required String doctorName,
+    @JsonKey(name: 'dept_name', fromJson: stringFromJson)
+    required String departmentName,
+    @JsonKey(
+      name: 'speciality',
+      readValue: _readDoctorSpeciality,
+      fromJson: stringFromJson,
+    )
+    required String doctorSpeciality,
+    @JsonKey(fromJson: stringFromJson) required String experience,
+    @JsonKey(fromJson: stringFromJson) required String branch,
+    @JsonKey(name: 'Language_Known', fromJson: _languagesFromJson)
     required List<LanguageKnownModel> languages,
-    @JsonKey(name: 'profileUrl') required String doctorImage,
+    @JsonKey(name: 'profileUrl', fromJson: stringFromJson)
+    required String doctorImage,
     @JsonKey(name: 'cons_fee', fromJson: doubleFromJson)
     required double consultationFee,
-    @JsonKey(name: 'employee_bio') String? doctorBio,
+    @JsonKey(name: 'online_cons_fee', fromJson: doubleFromJson)
+    required double onlineConsultationFee,
+    @JsonKey(name: 'isOnline', fromJson: boolFromJson) required bool isOnline,
+    @JsonKey(name: 'employee_bio', fromJson: _nullableStringFromJson)
+    String? doctorBio,
   }) = _DoctorModel;
 
   factory DoctorModel.fromJson(Map<String, dynamic> json) =>
@@ -39,13 +54,28 @@ sealed class DoctorModel with _$DoctorModel {
       busUnitName: busUnitName,
       doctorName: doctorName,
       departmentName: departmentName,
-      doctorSpecility: doctorSpecility,
+      doctorSpeciality: doctorSpeciality,
       experience: experience,
       branch: branch,
       knownLanguages: languages.map((e) => e.lng).toList(),
       doctorImage: doctorImage,
       consultationFee: consultationFee,
+      onlineConsultationFee: onlineConsultationFee,
+      isOnline: isOnline,
       doctorBio: doctorBio,
     );
   }
 }
+
+Object? _readDoctorSpeciality(Map json, String key) =>
+    json['speciality'] ?? json['dept_name'];
+
+List<LanguageKnownModel> _languagesFromJson(Object? value) {
+  if (value is! List) return const [];
+  return value
+      .whereType<Map<String, dynamic>>()
+      .map(LanguageKnownModel.fromJson)
+      .toList();
+}
+
+String? _nullableStringFromJson(Object? value) => value?.toString();

@@ -20,6 +20,7 @@ sealed class HomeState with _$HomeState {
       topSpecialities: [],
       topInsurances: [],
       topPackages: [],
+      topDoctors: [],
       notificationCount: 0,
     ),
   );

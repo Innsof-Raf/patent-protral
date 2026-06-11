@@ -19,7 +19,7 @@ import 'package:patient_portal/feature/speciality/presentation/pages/speciality_
 List<Widget> screens = const [
   HomeScreen(),
   MyAppointmentScreen(),
-  SpecilityScreen(),
+  SpecialityScreen(),
   ReportsScreen(),
   ProfileScreen(),
 ];

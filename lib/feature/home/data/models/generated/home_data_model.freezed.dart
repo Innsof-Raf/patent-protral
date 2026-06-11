@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$HomeDataModel {
 
-@JsonKey(name: 'ad_banner') List<AdBannerModel> get ads;@JsonKey(name: 'speciality') List<SpecialityModel> get topSpecialities;@JsonKey(name: 'insurance') List<InsuranceModel> get topInsurances;@JsonKey(name: 'package_banner') List<AdBannerModel> get topPackages;@JsonKey(name: 'notification_count') int get notificationCount;
+@JsonKey(name: 'ad_banner') List<AdBannerModel> get ads;@JsonKey(name: 'speciality') List<SpecialityModel> get topSpecialities;@JsonKey(name: 'insurance') List<InsuranceModel> get topInsurances;@JsonKey(name: 'package_banner') List<AdBannerModel> get topPackages;@JsonKey(name: 'doctors') List<DoctorModel> get topDoctors;@JsonKey(name: 'notification_count') int get notificationCount;
 /// Create a copy of HomeDataModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $HomeDataModelCopyWith<HomeDataModel> get copyWith => _$HomeDataModelCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeDataModel&&const DeepCollectionEquality().equals(other.ads, ads)&&const DeepCollectionEquality().equals(other.topSpecialities, topSpecialities)&&const DeepCollectionEquality().equals(other.topInsurances, topInsurances)&&const DeepCollectionEquality().equals(other.topPackages, topPackages)&&(identical(other.notificationCount, notificationCount) || other.notificationCount == notificationCount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeDataModel&&const DeepCollectionEquality().equals(other.ads, ads)&&const DeepCollectionEquality().equals(other.topSpecialities, topSpecialities)&&const DeepCollectionEquality().equals(other.topInsurances, topInsurances)&&const DeepCollectionEquality().equals(other.topPackages, topPackages)&&const DeepCollectionEquality().equals(other.topDoctors, topDoctors)&&(identical(other.notificationCount, notificationCount) || other.notificationCount == notificationCount));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(ads),const DeepCollectionEquality().hash(topSpecialities),const DeepCollectionEquality().hash(topInsurances),const DeepCollectionEquality().hash(topPackages),notificationCount);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(ads),const DeepCollectionEquality().hash(topSpecialities),const DeepCollectionEquality().hash(topInsurances),const DeepCollectionEquality().hash(topPackages),const DeepCollectionEquality().hash(topDoctors),notificationCount);
 
 @override
 String toString() {
-  return 'HomeDataModel(ads: $ads, topSpecialities: $topSpecialities, topInsurances: $topInsurances, topPackages: $topPackages, notificationCount: $notificationCount)';
+  return 'HomeDataModel(ads: $ads, topSpecialities: $topSpecialities, topInsurances: $topInsurances, topPackages: $topPackages, topDoctors: $topDoctors, notificationCount: $notificationCount)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $HomeDataModelCopyWith<$Res>  {
   factory $HomeDataModelCopyWith(HomeDataModel value, $Res Function(HomeDataModel) _then) = _$HomeDataModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'ad_banner') List<AdBannerModel> ads,@JsonKey(name: 'speciality') List<SpecialityModel> topSpecialities,@JsonKey(name: 'insurance') List<InsuranceModel> topInsurances,@JsonKey(name: 'package_banner') List<AdBannerModel> topPackages,@JsonKey(name: 'notification_count') int notificationCount
+@JsonKey(name: 'ad_banner') List<AdBannerModel> ads,@JsonKey(name: 'speciality') List<SpecialityModel> topSpecialities,@JsonKey(name: 'insurance') List<InsuranceModel> topInsurances,@JsonKey(name: 'package_banner') List<AdBannerModel> topPackages,@JsonKey(name: 'doctors') List<DoctorModel> topDoctors,@JsonKey(name: 'notification_count') int notificationCount
 });
 
 
@@ -65,13 +65,14 @@ class _$HomeDataModelCopyWithImpl<$Res>
 
 /// Create a copy of HomeDataModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? ads = null,Object? topSpecialities = null,Object? topInsurances = null,Object? topPackages = null,Object? notificationCount = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? ads = null,Object? topSpecialities = null,Object? topInsurances = null,Object? topPackages = null,Object? topDoctors = null,Object? notificationCount = null,}) {
   return _then(_self.copyWith(
 ads: null == ads ? _self.ads : ads // ignore: cast_nullable_to_non_nullable
 as List<AdBannerModel>,topSpecialities: null == topSpecialities ? _self.topSpecialities : topSpecialities // ignore: cast_nullable_to_non_nullable
 as List<SpecialityModel>,topInsurances: null == topInsurances ? _self.topInsurances : topInsurances // ignore: cast_nullable_to_non_nullable
 as List<InsuranceModel>,topPackages: null == topPackages ? _self.topPackages : topPackages // ignore: cast_nullable_to_non_nullable
-as List<AdBannerModel>,notificationCount: null == notificationCount ? _self.notificationCount : notificationCount // ignore: cast_nullable_to_non_nullable
+as List<AdBannerModel>,topDoctors: null == topDoctors ? _self.topDoctors : topDoctors // ignore: cast_nullable_to_non_nullable
+as List<DoctorModel>,notificationCount: null == notificationCount ? _self.notificationCount : notificationCount // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -154,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'ad_banner')  List<AdBannerModel> ads, @JsonKey(name: 'speciality')  List<SpecialityModel> topSpecialities, @JsonKey(name: 'insurance')  List<InsuranceModel> topInsurances, @JsonKey(name: 'package_banner')  List<AdBannerModel> topPackages, @JsonKey(name: 'notification_count')  int notificationCount)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'ad_banner')  List<AdBannerModel> ads, @JsonKey(name: 'speciality')  List<SpecialityModel> topSpecialities, @JsonKey(name: 'insurance')  List<InsuranceModel> topInsurances, @JsonKey(name: 'package_banner')  List<AdBannerModel> topPackages, @JsonKey(name: 'doctors')  List<DoctorModel> topDoctors, @JsonKey(name: 'notification_count')  int notificationCount)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _HomeDataModel() when $default != null:
-return $default(_that.ads,_that.topSpecialities,_that.topInsurances,_that.topPackages,_that.notificationCount);case _:
+return $default(_that.ads,_that.topSpecialities,_that.topInsurances,_that.topPackages,_that.topDoctors,_that.notificationCount);case _:
   return orElse();
 
 }
@@ -175,10 +176,10 @@ return $default(_that.ads,_that.topSpecialities,_that.topInsurances,_that.topPac
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'ad_banner')  List<AdBannerModel> ads, @JsonKey(name: 'speciality')  List<SpecialityModel> topSpecialities, @JsonKey(name: 'insurance')  List<InsuranceModel> topInsurances, @JsonKey(name: 'package_banner')  List<AdBannerModel> topPackages, @JsonKey(name: 'notification_count')  int notificationCount)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'ad_banner')  List<AdBannerModel> ads, @JsonKey(name: 'speciality')  List<SpecialityModel> topSpecialities, @JsonKey(name: 'insurance')  List<InsuranceModel> topInsurances, @JsonKey(name: 'package_banner')  List<AdBannerModel> topPackages, @JsonKey(name: 'doctors')  List<DoctorModel> topDoctors, @JsonKey(name: 'notification_count')  int notificationCount)  $default,) {final _that = this;
 switch (_that) {
 case _HomeDataModel():
-return $default(_that.ads,_that.topSpecialities,_that.topInsurances,_that.topPackages,_that.notificationCount);}
+return $default(_that.ads,_that.topSpecialities,_that.topInsurances,_that.topPackages,_that.topDoctors,_that.notificationCount);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -192,10 +193,10 @@ return $default(_that.ads,_that.topSpecialities,_that.topInsurances,_that.topPac
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'ad_banner')  List<AdBannerModel> ads, @JsonKey(name: 'speciality')  List<SpecialityModel> topSpecialities, @JsonKey(name: 'insurance')  List<InsuranceModel> topInsurances, @JsonKey(name: 'package_banner')  List<AdBannerModel> topPackages, @JsonKey(name: 'notification_count')  int notificationCount)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'ad_banner')  List<AdBannerModel> ads, @JsonKey(name: 'speciality')  List<SpecialityModel> topSpecialities, @JsonKey(name: 'insurance')  List<InsuranceModel> topInsurances, @JsonKey(name: 'package_banner')  List<AdBannerModel> topPackages, @JsonKey(name: 'doctors')  List<DoctorModel> topDoctors, @JsonKey(name: 'notification_count')  int notificationCount)?  $default,) {final _that = this;
 switch (_that) {
 case _HomeDataModel() when $default != null:
-return $default(_that.ads,_that.topSpecialities,_that.topInsurances,_that.topPackages,_that.notificationCount);case _:
+return $default(_that.ads,_that.topSpecialities,_that.topInsurances,_that.topPackages,_that.topDoctors,_that.notificationCount);case _:
   return null;
 
 }
@@ -207,7 +208,7 @@ return $default(_that.ads,_that.topSpecialities,_that.topInsurances,_that.topPac
 @JsonSerializable()
 
 class _HomeDataModel extends HomeDataModel {
-  const _HomeDataModel({@JsonKey(name: 'ad_banner') required final  List<AdBannerModel> ads, @JsonKey(name: 'speciality') required final  List<SpecialityModel> topSpecialities, @JsonKey(name: 'insurance') required final  List<InsuranceModel> topInsurances, @JsonKey(name: 'package_banner') required final  List<AdBannerModel> topPackages, @JsonKey(name: 'notification_count') required this.notificationCount}): _ads = ads,_topSpecialities = topSpecialities,_topInsurances = topInsurances,_topPackages = topPackages,super._();
+  const _HomeDataModel({@JsonKey(name: 'ad_banner') required final  List<AdBannerModel> ads, @JsonKey(name: 'speciality') required final  List<SpecialityModel> topSpecialities, @JsonKey(name: 'insurance') required final  List<InsuranceModel> topInsurances, @JsonKey(name: 'package_banner') required final  List<AdBannerModel> topPackages, @JsonKey(name: 'doctors') required final  List<DoctorModel> topDoctors, @JsonKey(name: 'notification_count') required this.notificationCount}): _ads = ads,_topSpecialities = topSpecialities,_topInsurances = topInsurances,_topPackages = topPackages,_topDoctors = topDoctors,super._();
   factory _HomeDataModel.fromJson(Map<String, dynamic> json) => _$HomeDataModelFromJson(json);
 
  final  List<AdBannerModel> _ads;
@@ -238,6 +239,13 @@ class _HomeDataModel extends HomeDataModel {
   return EqualUnmodifiableListView(_topPackages);
 }
 
+ final  List<DoctorModel> _topDoctors;
+@override@JsonKey(name: 'doctors') List<DoctorModel> get topDoctors {
+  if (_topDoctors is EqualUnmodifiableListView) return _topDoctors;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_topDoctors);
+}
+
 @override@JsonKey(name: 'notification_count') final  int notificationCount;
 
 /// Create a copy of HomeDataModel
@@ -253,16 +261,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeDataModel&&const DeepCollectionEquality().equals(other._ads, _ads)&&const DeepCollectionEquality().equals(other._topSpecialities, _topSpecialities)&&const DeepCollectionEquality().equals(other._topInsurances, _topInsurances)&&const DeepCollectionEquality().equals(other._topPackages, _topPackages)&&(identical(other.notificationCount, notificationCount) || other.notificationCount == notificationCount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeDataModel&&const DeepCollectionEquality().equals(other._ads, _ads)&&const DeepCollectionEquality().equals(other._topSpecialities, _topSpecialities)&&const DeepCollectionEquality().equals(other._topInsurances, _topInsurances)&&const DeepCollectionEquality().equals(other._topPackages, _topPackages)&&const DeepCollectionEquality().equals(other._topDoctors, _topDoctors)&&(identical(other.notificationCount, notificationCount) || other.notificationCount == notificationCount));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_ads),const DeepCollectionEquality().hash(_topSpecialities),const DeepCollectionEquality().hash(_topInsurances),const DeepCollectionEquality().hash(_topPackages),notificationCount);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_ads),const DeepCollectionEquality().hash(_topSpecialities),const DeepCollectionEquality().hash(_topInsurances),const DeepCollectionEquality().hash(_topPackages),const DeepCollectionEquality().hash(_topDoctors),notificationCount);
 
 @override
 String toString() {
-  return 'HomeDataModel(ads: $ads, topSpecialities: $topSpecialities, topInsurances: $topInsurances, topPackages: $topPackages, notificationCount: $notificationCount)';
+  return 'HomeDataModel(ads: $ads, topSpecialities: $topSpecialities, topInsurances: $topInsurances, topPackages: $topPackages, topDoctors: $topDoctors, notificationCount: $notificationCount)';
 }
 
 
@@ -273,7 +281,7 @@ abstract mixin class _$HomeDataModelCopyWith<$Res> implements $HomeDataModelCopy
   factory _$HomeDataModelCopyWith(_HomeDataModel value, $Res Function(_HomeDataModel) _then) = __$HomeDataModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'ad_banner') List<AdBannerModel> ads,@JsonKey(name: 'speciality') List<SpecialityModel> topSpecialities,@JsonKey(name: 'insurance') List<InsuranceModel> topInsurances,@JsonKey(name: 'package_banner') List<AdBannerModel> topPackages,@JsonKey(name: 'notification_count') int notificationCount
+@JsonKey(name: 'ad_banner') List<AdBannerModel> ads,@JsonKey(name: 'speciality') List<SpecialityModel> topSpecialities,@JsonKey(name: 'insurance') List<InsuranceModel> topInsurances,@JsonKey(name: 'package_banner') List<AdBannerModel> topPackages,@JsonKey(name: 'doctors') List<DoctorModel> topDoctors,@JsonKey(name: 'notification_count') int notificationCount
 });
 
 
@@ -290,13 +298,14 @@ class __$HomeDataModelCopyWithImpl<$Res>
 
 /// Create a copy of HomeDataModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? ads = null,Object? topSpecialities = null,Object? topInsurances = null,Object? topPackages = null,Object? notificationCount = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? ads = null,Object? topSpecialities = null,Object? topInsurances = null,Object? topPackages = null,Object? topDoctors = null,Object? notificationCount = null,}) {
   return _then(_HomeDataModel(
 ads: null == ads ? _self._ads : ads // ignore: cast_nullable_to_non_nullable
 as List<AdBannerModel>,topSpecialities: null == topSpecialities ? _self._topSpecialities : topSpecialities // ignore: cast_nullable_to_non_nullable
 as List<SpecialityModel>,topInsurances: null == topInsurances ? _self._topInsurances : topInsurances // ignore: cast_nullable_to_non_nullable
 as List<InsuranceModel>,topPackages: null == topPackages ? _self._topPackages : topPackages // ignore: cast_nullable_to_non_nullable
-as List<AdBannerModel>,notificationCount: null == notificationCount ? _self.notificationCount : notificationCount // ignore: cast_nullable_to_non_nullable
+as List<AdBannerModel>,topDoctors: null == topDoctors ? _self._topDoctors : topDoctors // ignore: cast_nullable_to_non_nullable
+as List<DoctorModel>,notificationCount: null == notificationCount ? _self.notificationCount : notificationCount // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }

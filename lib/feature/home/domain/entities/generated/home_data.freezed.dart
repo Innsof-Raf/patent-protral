@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$HomeData {
 
- List<AdBanner> get ads; List<Speciality> get topSpecialities; List<InsuranceModel> get topInsurances; List<AdBanner> get topPackages; int get notificationCount;
+ List<AdBanner> get ads; List<Speciality> get topSpecialities; List<InsuranceModel> get topInsurances; List<AdBanner> get topPackages; List<Doctor> get topDoctors; int get notificationCount;
 /// Create a copy of HomeData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $HomeDataCopyWith<HomeData> get copyWith => _$HomeDataCopyWithImpl<HomeData>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeData&&const DeepCollectionEquality().equals(other.ads, ads)&&const DeepCollectionEquality().equals(other.topSpecialities, topSpecialities)&&const DeepCollectionEquality().equals(other.topInsurances, topInsurances)&&const DeepCollectionEquality().equals(other.topPackages, topPackages)&&(identical(other.notificationCount, notificationCount) || other.notificationCount == notificationCount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeData&&const DeepCollectionEquality().equals(other.ads, ads)&&const DeepCollectionEquality().equals(other.topSpecialities, topSpecialities)&&const DeepCollectionEquality().equals(other.topInsurances, topInsurances)&&const DeepCollectionEquality().equals(other.topPackages, topPackages)&&const DeepCollectionEquality().equals(other.topDoctors, topDoctors)&&(identical(other.notificationCount, notificationCount) || other.notificationCount == notificationCount));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(ads),const DeepCollectionEquality().hash(topSpecialities),const DeepCollectionEquality().hash(topInsurances),const DeepCollectionEquality().hash(topPackages),notificationCount);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(ads),const DeepCollectionEquality().hash(topSpecialities),const DeepCollectionEquality().hash(topInsurances),const DeepCollectionEquality().hash(topPackages),const DeepCollectionEquality().hash(topDoctors),notificationCount);
 
 @override
 String toString() {
-  return 'HomeData(ads: $ads, topSpecialities: $topSpecialities, topInsurances: $topInsurances, topPackages: $topPackages, notificationCount: $notificationCount)';
+  return 'HomeData(ads: $ads, topSpecialities: $topSpecialities, topInsurances: $topInsurances, topPackages: $topPackages, topDoctors: $topDoctors, notificationCount: $notificationCount)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $HomeDataCopyWith<$Res>  {
   factory $HomeDataCopyWith(HomeData value, $Res Function(HomeData) _then) = _$HomeDataCopyWithImpl;
 @useResult
 $Res call({
- List<AdBanner> ads, List<Speciality> topSpecialities, List<InsuranceModel> topInsurances, List<AdBanner> topPackages, int notificationCount
+ List<AdBanner> ads, List<Speciality> topSpecialities, List<InsuranceModel> topInsurances, List<AdBanner> topPackages, List<Doctor> topDoctors, int notificationCount
 });
 
 
@@ -62,13 +62,14 @@ class _$HomeDataCopyWithImpl<$Res>
 
 /// Create a copy of HomeData
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? ads = null,Object? topSpecialities = null,Object? topInsurances = null,Object? topPackages = null,Object? notificationCount = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? ads = null,Object? topSpecialities = null,Object? topInsurances = null,Object? topPackages = null,Object? topDoctors = null,Object? notificationCount = null,}) {
   return _then(_self.copyWith(
 ads: null == ads ? _self.ads : ads // ignore: cast_nullable_to_non_nullable
 as List<AdBanner>,topSpecialities: null == topSpecialities ? _self.topSpecialities : topSpecialities // ignore: cast_nullable_to_non_nullable
 as List<Speciality>,topInsurances: null == topInsurances ? _self.topInsurances : topInsurances // ignore: cast_nullable_to_non_nullable
 as List<InsuranceModel>,topPackages: null == topPackages ? _self.topPackages : topPackages // ignore: cast_nullable_to_non_nullable
-as List<AdBanner>,notificationCount: null == notificationCount ? _self.notificationCount : notificationCount // ignore: cast_nullable_to_non_nullable
+as List<AdBanner>,topDoctors: null == topDoctors ? _self.topDoctors : topDoctors // ignore: cast_nullable_to_non_nullable
+as List<Doctor>,notificationCount: null == notificationCount ? _self.notificationCount : notificationCount // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -151,10 +152,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<AdBanner> ads,  List<Speciality> topSpecialities,  List<InsuranceModel> topInsurances,  List<AdBanner> topPackages,  int notificationCount)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<AdBanner> ads,  List<Speciality> topSpecialities,  List<InsuranceModel> topInsurances,  List<AdBanner> topPackages,  List<Doctor> topDoctors,  int notificationCount)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _HomeData() when $default != null:
-return $default(_that.ads,_that.topSpecialities,_that.topInsurances,_that.topPackages,_that.notificationCount);case _:
+return $default(_that.ads,_that.topSpecialities,_that.topInsurances,_that.topPackages,_that.topDoctors,_that.notificationCount);case _:
   return orElse();
 
 }
@@ -172,10 +173,10 @@ return $default(_that.ads,_that.topSpecialities,_that.topInsurances,_that.topPac
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<AdBanner> ads,  List<Speciality> topSpecialities,  List<InsuranceModel> topInsurances,  List<AdBanner> topPackages,  int notificationCount)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<AdBanner> ads,  List<Speciality> topSpecialities,  List<InsuranceModel> topInsurances,  List<AdBanner> topPackages,  List<Doctor> topDoctors,  int notificationCount)  $default,) {final _that = this;
 switch (_that) {
 case _HomeData():
-return $default(_that.ads,_that.topSpecialities,_that.topInsurances,_that.topPackages,_that.notificationCount);}
+return $default(_that.ads,_that.topSpecialities,_that.topInsurances,_that.topPackages,_that.topDoctors,_that.notificationCount);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -189,10 +190,10 @@ return $default(_that.ads,_that.topSpecialities,_that.topInsurances,_that.topPac
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<AdBanner> ads,  List<Speciality> topSpecialities,  List<InsuranceModel> topInsurances,  List<AdBanner> topPackages,  int notificationCount)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<AdBanner> ads,  List<Speciality> topSpecialities,  List<InsuranceModel> topInsurances,  List<AdBanner> topPackages,  List<Doctor> topDoctors,  int notificationCount)?  $default,) {final _that = this;
 switch (_that) {
 case _HomeData() when $default != null:
-return $default(_that.ads,_that.topSpecialities,_that.topInsurances,_that.topPackages,_that.notificationCount);case _:
+return $default(_that.ads,_that.topSpecialities,_that.topInsurances,_that.topPackages,_that.topDoctors,_that.notificationCount);case _:
   return null;
 
 }
@@ -204,7 +205,7 @@ return $default(_that.ads,_that.topSpecialities,_that.topInsurances,_that.topPac
 
 
 class _HomeData implements HomeData {
-  const _HomeData({required final  List<AdBanner> ads, required final  List<Speciality> topSpecialities, required final  List<InsuranceModel> topInsurances, required final  List<AdBanner> topPackages, required this.notificationCount}): _ads = ads,_topSpecialities = topSpecialities,_topInsurances = topInsurances,_topPackages = topPackages;
+  const _HomeData({required final  List<AdBanner> ads, required final  List<Speciality> topSpecialities, required final  List<InsuranceModel> topInsurances, required final  List<AdBanner> topPackages, required final  List<Doctor> topDoctors, required this.notificationCount}): _ads = ads,_topSpecialities = topSpecialities,_topInsurances = topInsurances,_topPackages = topPackages,_topDoctors = topDoctors;
   
 
  final  List<AdBanner> _ads;
@@ -235,6 +236,13 @@ class _HomeData implements HomeData {
   return EqualUnmodifiableListView(_topPackages);
 }
 
+ final  List<Doctor> _topDoctors;
+@override List<Doctor> get topDoctors {
+  if (_topDoctors is EqualUnmodifiableListView) return _topDoctors;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_topDoctors);
+}
+
 @override final  int notificationCount;
 
 /// Create a copy of HomeData
@@ -247,16 +255,16 @@ _$HomeDataCopyWith<_HomeData> get copyWith => __$HomeDataCopyWithImpl<_HomeData>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeData&&const DeepCollectionEquality().equals(other._ads, _ads)&&const DeepCollectionEquality().equals(other._topSpecialities, _topSpecialities)&&const DeepCollectionEquality().equals(other._topInsurances, _topInsurances)&&const DeepCollectionEquality().equals(other._topPackages, _topPackages)&&(identical(other.notificationCount, notificationCount) || other.notificationCount == notificationCount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeData&&const DeepCollectionEquality().equals(other._ads, _ads)&&const DeepCollectionEquality().equals(other._topSpecialities, _topSpecialities)&&const DeepCollectionEquality().equals(other._topInsurances, _topInsurances)&&const DeepCollectionEquality().equals(other._topPackages, _topPackages)&&const DeepCollectionEquality().equals(other._topDoctors, _topDoctors)&&(identical(other.notificationCount, notificationCount) || other.notificationCount == notificationCount));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_ads),const DeepCollectionEquality().hash(_topSpecialities),const DeepCollectionEquality().hash(_topInsurances),const DeepCollectionEquality().hash(_topPackages),notificationCount);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_ads),const DeepCollectionEquality().hash(_topSpecialities),const DeepCollectionEquality().hash(_topInsurances),const DeepCollectionEquality().hash(_topPackages),const DeepCollectionEquality().hash(_topDoctors),notificationCount);
 
 @override
 String toString() {
-  return 'HomeData(ads: $ads, topSpecialities: $topSpecialities, topInsurances: $topInsurances, topPackages: $topPackages, notificationCount: $notificationCount)';
+  return 'HomeData(ads: $ads, topSpecialities: $topSpecialities, topInsurances: $topInsurances, topPackages: $topPackages, topDoctors: $topDoctors, notificationCount: $notificationCount)';
 }
 
 
@@ -267,7 +275,7 @@ abstract mixin class _$HomeDataCopyWith<$Res> implements $HomeDataCopyWith<$Res>
   factory _$HomeDataCopyWith(_HomeData value, $Res Function(_HomeData) _then) = __$HomeDataCopyWithImpl;
 @override @useResult
 $Res call({
- List<AdBanner> ads, List<Speciality> topSpecialities, List<InsuranceModel> topInsurances, List<AdBanner> topPackages, int notificationCount
+ List<AdBanner> ads, List<Speciality> topSpecialities, List<InsuranceModel> topInsurances, List<AdBanner> topPackages, List<Doctor> topDoctors, int notificationCount
 });
 
 
@@ -284,13 +292,14 @@ class __$HomeDataCopyWithImpl<$Res>
 
 /// Create a copy of HomeData
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? ads = null,Object? topSpecialities = null,Object? topInsurances = null,Object? topPackages = null,Object? notificationCount = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? ads = null,Object? topSpecialities = null,Object? topInsurances = null,Object? topPackages = null,Object? topDoctors = null,Object? notificationCount = null,}) {
   return _then(_HomeData(
 ads: null == ads ? _self._ads : ads // ignore: cast_nullable_to_non_nullable
 as List<AdBanner>,topSpecialities: null == topSpecialities ? _self._topSpecialities : topSpecialities // ignore: cast_nullable_to_non_nullable
 as List<Speciality>,topInsurances: null == topInsurances ? _self._topInsurances : topInsurances // ignore: cast_nullable_to_non_nullable
 as List<InsuranceModel>,topPackages: null == topPackages ? _self._topPackages : topPackages // ignore: cast_nullable_to_non_nullable
-as List<AdBanner>,notificationCount: null == notificationCount ? _self.notificationCount : notificationCount // ignore: cast_nullable_to_non_nullable
+as List<AdBanner>,topDoctors: null == topDoctors ? _self._topDoctors : topDoctors // ignore: cast_nullable_to_non_nullable
+as List<Doctor>,notificationCount: null == notificationCount ? _self.notificationCount : notificationCount // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }

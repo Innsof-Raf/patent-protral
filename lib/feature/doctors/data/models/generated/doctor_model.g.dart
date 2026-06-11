@@ -7,21 +7,21 @@ part of '../doctor_model.dart';
 // **************************************************************************
 
 _DoctorModel _$DoctorModelFromJson(Map<String, dynamic> json) => _DoctorModel(
-  doctorId: json['employee_id'] as String,
+  doctorId: stringFromJson(json['employee_id']),
   idDoctor: intFromJson(json['id_employee']),
   idBusUnit: intFromJson(json['id_busunit']),
-  busUnitName: json['busunit_name'] as String,
-  doctorName: json['employee_name'] as String,
-  departmentName: json['dept_name'] as String,
-  doctorSpecility: json['speciality'] as String,
-  experience: json['experience'] as String,
-  branch: json['branch'] as String,
-  languages: (json['Language_Known'] as List<dynamic>)
-      .map((e) => LanguageKnownModel.fromJson(e as Map<String, dynamic>))
-      .toList(),
-  doctorImage: json['profileUrl'] as String,
+  busUnitName: stringFromJson(json['busunit_name']),
+  doctorName: stringFromJson(json['employee_name']),
+  departmentName: stringFromJson(json['dept_name']),
+  doctorSpeciality: stringFromJson(_readDoctorSpeciality(json, 'speciality')),
+  experience: stringFromJson(json['experience']),
+  branch: stringFromJson(json['branch']),
+  languages: _languagesFromJson(json['Language_Known']),
+  doctorImage: stringFromJson(json['profileUrl']),
   consultationFee: doubleFromJson(json['cons_fee']),
-  doctorBio: json['employee_bio'] as String?,
+  onlineConsultationFee: doubleFromJson(json['online_cons_fee']),
+  isOnline: boolFromJson(json['isOnline']),
+  doctorBio: _nullableStringFromJson(json['employee_bio']),
 );
 
 Map<String, dynamic> _$DoctorModelToJson(_DoctorModel instance) =>
@@ -32,11 +32,13 @@ Map<String, dynamic> _$DoctorModelToJson(_DoctorModel instance) =>
       'busunit_name': instance.busUnitName,
       'employee_name': instance.doctorName,
       'dept_name': instance.departmentName,
-      'speciality': instance.doctorSpecility,
+      'speciality': instance.doctorSpeciality,
       'experience': instance.experience,
       'branch': instance.branch,
       'Language_Known': instance.languages,
       'profileUrl': instance.doctorImage,
       'cons_fee': instance.consultationFee,
+      'online_cons_fee': instance.onlineConsultationFee,
+      'isOnline': instance.isOnline,
       'employee_bio': instance.doctorBio,
     };

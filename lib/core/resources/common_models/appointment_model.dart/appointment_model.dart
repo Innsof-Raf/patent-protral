@@ -18,7 +18,7 @@ sealed class AppointmentModel with _$AppointmentModel {
     required int idDoctor,
     @JsonKey(readValue: _readDoctorName, fromJson: stringFromJson)
     required String doctorName,
-    @Default('') @JsonKey(name: "speciality") String doctorSpecility,
+    @Default('') @JsonKey(name: "speciality") String doctorSpeciality,
     @JsonKey(readValue: _readDoctorImage, fromJson: stringFromJson)
     required String doctorImage,
     @JsonKey(name: "Appmnt_Dttm") required DateTime appointmentDateTime,
@@ -28,7 +28,8 @@ sealed class AppointmentModel with _$AppointmentModel {
     @Default('') @JsonKey(name: "dept_name") String deptName,
     @JsonKey(readValue: _readEmail, fromJson: stringFromJson)
     required String email,
-    @Default('') @JsonKey(name: "employee_id", fromJson: stringFromJson)
+    @Default('')
+    @JsonKey(name: "employee_id", fromJson: stringFromJson)
     String doctorId,
     @JsonKey(readValue: _readMobileNo, fromJson: stringFromJson)
     required String mobileNo,

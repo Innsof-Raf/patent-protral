@@ -5,7 +5,7 @@ class ConstantUrls {
     defaultValue: 'http://192.168.1.2:5237',
   );
   static const String serviceUrl = '$baseUrl/api/Apm/service';
-  static const String specilityImageUrl = '$baseUrl/uploads/department';
+  static const String specialityImageUrl = '$baseUrl/uploads/department';
   static const String doctorImageUrl = '$baseUrl/uploads/employee';
   static const String memberImageUrl = '$baseUrl/uploads/patient';
   static const String bannerImageUrl = '$baseUrl/uploads/banner';
