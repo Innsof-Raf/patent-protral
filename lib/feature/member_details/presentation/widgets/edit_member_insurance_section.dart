@@ -110,7 +110,7 @@ class _EditMemberInsuranceSectionState
                             ],
                           ),
                         )
-                      : const SizedBox();
+                      : const SizedBox.shrink();
                 },
               ),
               const SizedBox(height: 10),
