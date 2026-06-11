@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 
@@ -12,7 +13,7 @@ sealed class UserModel with _$UserModel {
   const UserModel._();
 
   const factory UserModel({
-    @JsonKey(name: 'Id') required int id,
+    @JsonKey(name: 'Id', fromJson: intFromJson) required int id,
     @Default('') @JsonKey(name: 'FirstName') String firstName,
     @Default('') @JsonKey(name: 'LastName') String lastName,
     @Default('') @JsonKey(name: 'Username') String userName,
@@ -21,7 +22,7 @@ sealed class UserModel with _$UserModel {
     @JsonKey(name: 'accessToken') required String accessToken,
     @Default('') @JsonKey(name: 'FCM_Token') String fcmToken,
     @Default([]) @JsonKey(name: 'Members') List<MemberModel> members,
-    @Default(0) @JsonKey(name: 'IdMember') int idMember,
+    @Default(0) @JsonKey(name: 'IdMember', fromJson: intFromJson) int idMember,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

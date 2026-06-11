@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -45,11 +46,11 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
         "profile_image": p.profileImage != null ? "profile.png" : null,
       };
 
-      final saveRequest = {"CONTENT": jsonEncode(content), "TYPE": "PP0018"};
+      final saveRequest = serviceRequest(type: 'HMS0035', content: content);
 
       FormData formData = FormData.fromMap({
         'saveRequest': jsonEncode(saveRequest),
-        'PathIdentifier': 'PatientProfileImage',
+        'pathidentifier': 'PatientProfileImage',
         'removeProfilePic': 'false',
       });
 
@@ -115,7 +116,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
         "expire_date": p.expireDate,
         "member_number": p.memberNumber,
       };
-      final Map data = {"CONTENT": jsonEncode(content), "TYPE": "PP0035"};
+      final data = serviceRequest(type: 'PP0035', content: content);
       final response = await client.post(
         ConstantUrls.serviceUrl,
         data: data,
@@ -157,10 +158,10 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
 
   Future<MemberModel> _getMemberDetail(GetMemberDetailParams p) async {
     try {
-      final Map data = {
-        "CONTENT": jsonEncode({"id_customer": p.memberId}),
-        "TYPE": "PP0034",
-      };
+      final data = serviceRequest(
+        type: 'HMS0034',
+        content: {"id_customer": p.memberId},
+      );
       final response = await client.post(
         ConstantUrls.serviceUrl,
         data: data,
@@ -172,7 +173,9 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
         ),
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final Map<String, dynamic> responseData = response.data;
+        final Map<String, dynamic> responseData = decodeResponseData(
+          response.data,
+        );
         return MemberModel.fromJson(responseData);
       } else {
         throw Exception('Server Failure');

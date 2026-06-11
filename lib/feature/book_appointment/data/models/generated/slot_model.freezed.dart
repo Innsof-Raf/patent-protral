@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SlotModel {
 
- String get id; String get label; DateTime get appdttm;@JsonKey(name: 'booked') bool get isBooked;
+@JsonKey(fromJson: stringFromJson) String get id;@JsonKey(readValue: _readLabel, fromJson: stringFromJson) String get label; DateTime get appdttm;@JsonKey(name: 'booked', fromJson: boolFromJson) bool get isBooked;
 /// Create a copy of SlotModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $SlotModelCopyWith<$Res>  {
   factory $SlotModelCopyWith(SlotModel value, $Res Function(SlotModel) _then) = _$SlotModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String label, DateTime appdttm,@JsonKey(name: 'booked') bool isBooked
+@JsonKey(fromJson: stringFromJson) String id,@JsonKey(readValue: _readLabel, fromJson: stringFromJson) String label, DateTime appdttm,@JsonKey(name: 'booked', fromJson: boolFromJson) bool isBooked
 });
 
 
@@ -153,7 +153,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String label,  DateTime appdttm, @JsonKey(name: 'booked')  bool isBooked)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(fromJson: stringFromJson)  String id, @JsonKey(readValue: _readLabel, fromJson: stringFromJson)  String label,  DateTime appdttm, @JsonKey(name: 'booked', fromJson: boolFromJson)  bool isBooked)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SlotModel() when $default != null:
 return $default(_that.id,_that.label,_that.appdttm,_that.isBooked);case _:
@@ -174,7 +174,7 @@ return $default(_that.id,_that.label,_that.appdttm,_that.isBooked);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String label,  DateTime appdttm, @JsonKey(name: 'booked')  bool isBooked)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(fromJson: stringFromJson)  String id, @JsonKey(readValue: _readLabel, fromJson: stringFromJson)  String label,  DateTime appdttm, @JsonKey(name: 'booked', fromJson: boolFromJson)  bool isBooked)  $default,) {final _that = this;
 switch (_that) {
 case _SlotModel():
 return $default(_that.id,_that.label,_that.appdttm,_that.isBooked);}
@@ -191,7 +191,7 @@ return $default(_that.id,_that.label,_that.appdttm,_that.isBooked);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String label,  DateTime appdttm, @JsonKey(name: 'booked')  bool isBooked)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(fromJson: stringFromJson)  String id, @JsonKey(readValue: _readLabel, fromJson: stringFromJson)  String label,  DateTime appdttm, @JsonKey(name: 'booked', fromJson: boolFromJson)  bool isBooked)?  $default,) {final _that = this;
 switch (_that) {
 case _SlotModel() when $default != null:
 return $default(_that.id,_that.label,_that.appdttm,_that.isBooked);case _:
@@ -206,13 +206,13 @@ return $default(_that.id,_that.label,_that.appdttm,_that.isBooked);case _:
 @JsonSerializable()
 
 class _SlotModel extends SlotModel {
-  const _SlotModel({required this.id, required this.label, required this.appdttm, @JsonKey(name: 'booked') required this.isBooked}): super._();
+  const _SlotModel({@JsonKey(fromJson: stringFromJson) this.id = '', @JsonKey(readValue: _readLabel, fromJson: stringFromJson) required this.label, required this.appdttm, @JsonKey(name: 'booked', fromJson: boolFromJson) this.isBooked = false}): super._();
   factory _SlotModel.fromJson(Map<String, dynamic> json) => _$SlotModelFromJson(json);
 
-@override final  String id;
-@override final  String label;
+@override@JsonKey(fromJson: stringFromJson) final  String id;
+@override@JsonKey(readValue: _readLabel, fromJson: stringFromJson) final  String label;
 @override final  DateTime appdttm;
-@override@JsonKey(name: 'booked') final  bool isBooked;
+@override@JsonKey(name: 'booked', fromJson: boolFromJson) final  bool isBooked;
 
 /// Create a copy of SlotModel
 /// with the given fields replaced by the non-null parameter values.
@@ -247,7 +247,7 @@ abstract mixin class _$SlotModelCopyWith<$Res> implements $SlotModelCopyWith<$Re
   factory _$SlotModelCopyWith(_SlotModel value, $Res Function(_SlotModel) _then) = __$SlotModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String label, DateTime appdttm,@JsonKey(name: 'booked') bool isBooked
+@JsonKey(fromJson: stringFromJson) String id,@JsonKey(readValue: _readLabel, fromJson: stringFromJson) String label, DateTime appdttm,@JsonKey(name: 'booked', fromJson: boolFromJson) bool isBooked
 });
 
 

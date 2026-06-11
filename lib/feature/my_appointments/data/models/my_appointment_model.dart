@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
 
 part 'generated/my_appointment_model.freezed.dart';
@@ -9,20 +10,25 @@ sealed class MyAppointmentModel with _$MyAppointmentModel {
   const MyAppointmentModel._();
 
   const factory MyAppointmentModel({
-    @JsonKey(name: 'Id') required int id,
-    @JsonKey(name: 'id_customer') required int memberId,
-    @JsonKey(name: 'customer_name') required String memberName,
-    required String email,
-    @JsonKey(name: 'mobile_no') required String mobileNumber,
-    @JsonKey(name: 'dept_name') required String departName,
-    @JsonKey(name: 'employee_id') required String doctorId,
-    @JsonKey(name: 'employee_name') required String doctorName,
-    required String speciality,
-    required String branch,
-    @JsonKey(name: 'profileurl') required String profileUrl,
-    @JsonKey(name: 'busunit_name') required String busunitName,
+    @JsonKey(readValue: _readId, fromJson: intFromJson) required int id,
+    @JsonKey(readValue: _readMemberId, fromJson: intFromJson)
+    required int memberId,
+    @JsonKey(readValue: _readMemberName, fromJson: stringFromJson)
+    required String memberName,
+    @Default('') @JsonKey(fromJson: stringFromJson) String email,
+    @JsonKey(readValue: _readMobileNumber, fromJson: stringFromJson)
+    required String mobileNumber,
+    @Default('') @JsonKey(name: 'dept_name') String departName,
+    @Default('') @JsonKey(name: 'employee_id', fromJson: stringFromJson)
+    String doctorId,
+    @Default('') @JsonKey(name: 'employee_name') String doctorName,
+    @Default('') String speciality,
+    @Default('') String branch,
+    @Default('') @JsonKey(name: 'profileurl') String profileUrl,
+    @Default('') @JsonKey(name: 'busunit_name') String busunitName,
     @JsonKey(name: 'Appmnt_Dttm') required DateTime appointmentDateTime,
-    @JsonKey(name: 'id_employee') required int idDoctor,
+    @Default(0) @JsonKey(name: 'id_employee', fromJson: intFromJson)
+    int idDoctor,
     @Default(false) bool isCanceling,
   }) = _MyAppointmentModel;
 
@@ -47,3 +53,12 @@ sealed class MyAppointmentModel with _$MyAppointmentModel {
     isCanceling: isCanceling,
   );
 }
+
+Object? _readId(Map json, String key) =>
+    json['Id'] ?? json['id'] ?? json['id_cons'] ?? json['app_id'];
+Object? _readMemberId(Map json, String key) =>
+    json['id_customer'] ?? json['ID_CUSTOMER'];
+Object? _readMemberName(Map json, String key) =>
+    json['customer_name'] ?? json['Customer_Name'];
+Object? _readMobileNumber(Map json, String key) =>
+    json['mobile_no'] ?? json['Mobile_No'] ?? json['Patient_MobileNo'];

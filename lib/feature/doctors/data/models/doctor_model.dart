@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/core/resources/api_helpers.dart';
 import '../../domain/entities/doctor.dart';
 import 'language_known_model.dart';
 
@@ -11,8 +12,8 @@ sealed class DoctorModel with _$DoctorModel {
 
   const factory DoctorModel({
     @JsonKey(name: 'employee_id') required String doctorId,
-    @JsonKey(name: 'id_employee') required int idDoctor,
-    @JsonKey(name: 'id_busunit') required int idBusUnit,
+    @JsonKey(name: 'id_employee', fromJson: intFromJson) required int idDoctor,
+    @JsonKey(name: 'id_busunit', fromJson: intFromJson) required int idBusUnit,
     @JsonKey(name: 'busunit_name') required String busUnitName,
     @JsonKey(name: 'employee_name') required String doctorName,
     @JsonKey(name: 'dept_name') required String departmentName,
@@ -22,7 +23,8 @@ sealed class DoctorModel with _$DoctorModel {
     @JsonKey(name: 'Language_Known')
     required List<LanguageKnownModel> languages,
     @JsonKey(name: 'profileUrl') required String doctorImage,
-    @JsonKey(name: 'cons_fee') required double consultationFee,
+    @JsonKey(name: 'cons_fee', fromJson: doubleFromJson)
+    required double consultationFee,
     @JsonKey(name: 'employee_bio') String? doctorBio,
   }) = _DoctorModel;
 

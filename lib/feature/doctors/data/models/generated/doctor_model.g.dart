@@ -8,8 +8,8 @@ part of '../doctor_model.dart';
 
 _DoctorModel _$DoctorModelFromJson(Map<String, dynamic> json) => _DoctorModel(
   doctorId: json['employee_id'] as String,
-  idDoctor: (json['id_employee'] as num).toInt(),
-  idBusUnit: (json['id_busunit'] as num).toInt(),
+  idDoctor: intFromJson(json['id_employee']),
+  idBusUnit: intFromJson(json['id_busunit']),
   busUnitName: json['busunit_name'] as String,
   doctorName: json['employee_name'] as String,
   departmentName: json['dept_name'] as String,
@@ -20,7 +20,7 @@ _DoctorModel _$DoctorModelFromJson(Map<String, dynamic> json) => _DoctorModel(
       .map((e) => LanguageKnownModel.fromJson(e as Map<String, dynamic>))
       .toList(),
   doctorImage: json['profileUrl'] as String,
-  consultationFee: (json['cons_fee'] as num).toDouble(),
+  consultationFee: doubleFromJson(json['cons_fee']),
   doctorBio: json['employee_bio'] as String?,
 );
 

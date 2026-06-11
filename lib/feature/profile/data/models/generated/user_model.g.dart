@@ -7,7 +7,7 @@ part of '../user_model.dart';
 // **************************************************************************
 
 _UserModel _$UserModelFromJson(Map<String, dynamic> json) => _UserModel(
-  id: (json['Id'] as num).toInt(),
+  id: intFromJson(json['Id']),
   firstName: json['FirstName'] as String? ?? '',
   lastName: json['LastName'] as String? ?? '',
   userName: json['Username'] as String? ?? '',
@@ -20,7 +20,7 @@ _UserModel _$UserModelFromJson(Map<String, dynamic> json) => _UserModel(
           ?.map((e) => MemberModel.fromJson(e as Map<String, dynamic>))
           .toList() ??
       const [],
-  idMember: (json['IdMember'] as num?)?.toInt() ?? 0,
+  idMember: json['IdMember'] == null ? 0 : intFromJson(json['IdMember']),
 );
 
 Map<String, dynamic> _$UserModelToJson(_UserModel instance) =>

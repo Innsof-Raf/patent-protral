@@ -1,6 +1,5 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/home/data/models/home_data_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 
@@ -21,10 +20,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     required String token,
     required int idBusunit,
   }) async {
-    final Map<String, dynamic> data = {
-      "CONTENT": "{\"section\":1,\"lang\":\"EN\",\"id_busunit\":$idBusunit}",
-      "TYPE": "PP0032",
-    };
+    final data = serviceRequest(type: 'PP0038', content: {'id_client': 1});
 
     final response = await client.post(
       ConstantUrls.serviceUrl,
@@ -38,10 +34,19 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final responseData = response.data is String
-          ? jsonDecode(response.data as String)
-          : response.data;
-      return HomeDataModel.fromJson(responseData);
+      final responseData = decodeResponseData(response.data);
+      if (responseData is Map<String, dynamic> &&
+          responseData.containsKey('banner') &&
+          !responseData.containsKey('ad_banner')) {
+        return HomeDataModel.fromJson({
+          'ad_banner': responseData['banner'],
+          'speciality': const [],
+          'insurance': const [],
+          'package_banner': const [],
+          'notification_count': 0,
+        });
+      }
+      return HomeDataModel.fromJson(responseData as Map<String, dynamic>);
     }
 
     throw Exception('Server Failure');

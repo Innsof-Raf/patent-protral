@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/add_document/data/models/document_type_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 
@@ -15,7 +16,7 @@ class AddDocumentRemoteDataSourceImpl implements AddDocumentRemoteDataSource {
   Future<List<DocumentTypeModel>> getDocumentTypes({
     required String token,
   }) async {
-    final data = {'CONTENT': '', 'TYPE': 'PP0026'};
+    final data = serviceRequest(type: 'PP0026');
 
     final response = await client.post(
       ConstantUrls.serviceUrl,
@@ -29,7 +30,7 @@ class AddDocumentRemoteDataSourceImpl implements AddDocumentRemoteDataSource {
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final List<dynamic> responseData = response.data;
+      final List<dynamic> responseData = decodeResponseData(response.data);
       return responseData
           .map((raw) => DocumentTypeModel.fromJson(raw as Map<String, dynamic>))
           .toList();

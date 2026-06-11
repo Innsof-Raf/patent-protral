@@ -1,6 +1,5 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/lab/data/models/item_model.dart';
 import 'package:patient_portal/feature/lab/data/models/package_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -26,7 +25,7 @@ class LabRemoteDataSourceImpl implements LabRemoteDataSource {
 
   @override
   Future<List<ItemModel>> getItems({required String token}) async {
-    final data = {"CONTENT": "{\"id_bus_unit\":1}", "TYPE": "PP0029"};
+    final data = serviceRequest(type: 'PP0029', content: {"id_bus_unit": 1});
     final response = await client.post(
       ConstantUrls.serviceUrl,
       data: data,
@@ -39,9 +38,7 @@ class LabRemoteDataSourceImpl implements LabRemoteDataSource {
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final List<dynamic> responseData = response.data is String
-          ? jsonDecode(response.data as String) as List<dynamic>
-          : response.data as List<dynamic>;
+      final List<dynamic> responseData = decodeResponseData(response.data);
       return responseData
           .map((raw) => ItemModel.fromJson(raw as Map<String, dynamic>))
           .toList();
@@ -56,10 +53,10 @@ class LabRemoteDataSourceImpl implements LabRemoteDataSource {
     required int idItem,
     required String token,
   }) async {
-    final data = {
-      "CONTENT": "{\"id_item\":$idItem,\"id_user\":$idUser}",
-      "TYPE": "PP0037",
-    };
+    final data = serviceRequest(
+      type: 'PP0037',
+      content: {"id_item": idItem, "id_user": idUser},
+    );
     final response = await client.post(
       ConstantUrls.serviceUrl,
       data: data,
@@ -72,9 +69,7 @@ class LabRemoteDataSourceImpl implements LabRemoteDataSource {
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      return response.data is String
-          ? jsonDecode(response.data as String) as Map<String, dynamic>
-          : response.data as Map<String, dynamic>;
+      return decodeResponseData(response.data) as Map<String, dynamic>;
     }
 
     throw Exception('Server Failure');
@@ -85,7 +80,7 @@ class LabRemoteDataSourceImpl implements LabRemoteDataSource {
     required int idItem,
     required String token,
   }) async {
-    final data = {"CONTENT": "{\"id_item\":$idItem}", "TYPE": "PP0037"};
+    final data = serviceRequest(type: 'PP0037', content: {"id_item": idItem});
     final response = await client.post(
       ConstantUrls.serviceUrl,
       data: data,
@@ -98,9 +93,7 @@ class LabRemoteDataSourceImpl implements LabRemoteDataSource {
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final responseData = response.data is String
-          ? jsonDecode(response.data as String) as Map<String, dynamic>
-          : response.data as Map<String, dynamic>;
+      final responseData = decodeResponseData(response.data);
       return ItemModel.fromJson(responseData);
     }
 
@@ -109,7 +102,7 @@ class LabRemoteDataSourceImpl implements LabRemoteDataSource {
 
   @override
   Future<List<PackageModel>> getPackages({required String token}) async {
-    final data = {"CONTENT": "{\"id_bus_unit\":1}", "TYPE": "PP0029"};
+    final data = serviceRequest(type: 'PP0029', content: {"id_bus_unit": 1});
     final response = await client.post(
       ConstantUrls.serviceUrl,
       data: data,
@@ -122,9 +115,7 @@ class LabRemoteDataSourceImpl implements LabRemoteDataSource {
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final List<dynamic> responseData = response.data is String
-          ? jsonDecode(response.data as String) as List<dynamic>
-          : response.data as List<dynamic>;
+      final List<dynamic> responseData = decodeResponseData(response.data);
       return responseData
           .map((raw) => PackageModel.fromJson(raw as Map<String, dynamic>))
           .toList();

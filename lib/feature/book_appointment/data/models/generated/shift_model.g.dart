@@ -7,10 +7,12 @@ part of '../shift_model.dart';
 // **************************************************************************
 
 _ShiftModel _$ShiftModelFromJson(Map<String, dynamic> json) => _ShiftModel(
-  slots: (json['slots'] as List<dynamic>)
-      .map((e) => SlotModel.fromJson(e as Map<String, dynamic>))
-      .toList(),
-  shift: json['shift_detail'] as String,
+  slots:
+      (json['slots'] as List<dynamic>?)
+          ?.map((e) => SlotModel.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const [],
+  shift: json['shift_detail'] as String? ?? '',
 );
 
 Map<String, dynamic> _$ShiftModelToJson(_ShiftModel instance) =>

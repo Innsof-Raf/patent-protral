@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MyAppointmentModel {
 
-@JsonKey(name: 'Id') int get id;@JsonKey(name: 'id_customer') int get memberId;@JsonKey(name: 'customer_name') String get memberName; String get email;@JsonKey(name: 'mobile_no') String get mobileNumber;@JsonKey(name: 'dept_name') String get departName;@JsonKey(name: 'employee_id') String get doctorId;@JsonKey(name: 'employee_name') String get doctorName; String get speciality; String get branch;@JsonKey(name: 'profileurl') String get profileUrl;@JsonKey(name: 'busunit_name') String get busunitName;@JsonKey(name: 'Appmnt_Dttm') DateTime get appointmentDateTime;@JsonKey(name: 'id_employee') int get idDoctor; bool get isCanceling;
+@JsonKey(readValue: _readId, fromJson: intFromJson) int get id;@JsonKey(readValue: _readMemberId, fromJson: intFromJson) int get memberId;@JsonKey(readValue: _readMemberName, fromJson: stringFromJson) String get memberName;@JsonKey(fromJson: stringFromJson) String get email;@JsonKey(readValue: _readMobileNumber, fromJson: stringFromJson) String get mobileNumber;@JsonKey(name: 'dept_name') String get departName;@JsonKey(name: 'employee_id', fromJson: stringFromJson) String get doctorId;@JsonKey(name: 'employee_name') String get doctorName; String get speciality; String get branch;@JsonKey(name: 'profileurl') String get profileUrl;@JsonKey(name: 'busunit_name') String get busunitName;@JsonKey(name: 'Appmnt_Dttm') DateTime get appointmentDateTime;@JsonKey(name: 'id_employee', fromJson: intFromJson) int get idDoctor; bool get isCanceling;
 /// Create a copy of MyAppointmentModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $MyAppointmentModelCopyWith<$Res>  {
   factory $MyAppointmentModelCopyWith(MyAppointmentModel value, $Res Function(MyAppointmentModel) _then) = _$MyAppointmentModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'Id') int id,@JsonKey(name: 'id_customer') int memberId,@JsonKey(name: 'customer_name') String memberName, String email,@JsonKey(name: 'mobile_no') String mobileNumber,@JsonKey(name: 'dept_name') String departName,@JsonKey(name: 'employee_id') String doctorId,@JsonKey(name: 'employee_name') String doctorName, String speciality, String branch,@JsonKey(name: 'profileurl') String profileUrl,@JsonKey(name: 'busunit_name') String busunitName,@JsonKey(name: 'Appmnt_Dttm') DateTime appointmentDateTime,@JsonKey(name: 'id_employee') int idDoctor, bool isCanceling
+@JsonKey(readValue: _readId, fromJson: intFromJson) int id,@JsonKey(readValue: _readMemberId, fromJson: intFromJson) int memberId,@JsonKey(readValue: _readMemberName, fromJson: stringFromJson) String memberName,@JsonKey(fromJson: stringFromJson) String email,@JsonKey(readValue: _readMobileNumber, fromJson: stringFromJson) String mobileNumber,@JsonKey(name: 'dept_name') String departName,@JsonKey(name: 'employee_id', fromJson: stringFromJson) String doctorId,@JsonKey(name: 'employee_name') String doctorName, String speciality, String branch,@JsonKey(name: 'profileurl') String profileUrl,@JsonKey(name: 'busunit_name') String busunitName,@JsonKey(name: 'Appmnt_Dttm') DateTime appointmentDateTime,@JsonKey(name: 'id_employee', fromJson: intFromJson) int idDoctor, bool isCanceling
 });
 
 
@@ -164,7 +164,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'Id')  int id, @JsonKey(name: 'id_customer')  int memberId, @JsonKey(name: 'customer_name')  String memberName,  String email, @JsonKey(name: 'mobile_no')  String mobileNumber, @JsonKey(name: 'dept_name')  String departName, @JsonKey(name: 'employee_id')  String doctorId, @JsonKey(name: 'employee_name')  String doctorName,  String speciality,  String branch, @JsonKey(name: 'profileurl')  String profileUrl, @JsonKey(name: 'busunit_name')  String busunitName, @JsonKey(name: 'Appmnt_Dttm')  DateTime appointmentDateTime, @JsonKey(name: 'id_employee')  int idDoctor,  bool isCanceling)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(readValue: _readId, fromJson: intFromJson)  int id, @JsonKey(readValue: _readMemberId, fromJson: intFromJson)  int memberId, @JsonKey(readValue: _readMemberName, fromJson: stringFromJson)  String memberName, @JsonKey(fromJson: stringFromJson)  String email, @JsonKey(readValue: _readMobileNumber, fromJson: stringFromJson)  String mobileNumber, @JsonKey(name: 'dept_name')  String departName, @JsonKey(name: 'employee_id', fromJson: stringFromJson)  String doctorId, @JsonKey(name: 'employee_name')  String doctorName,  String speciality,  String branch, @JsonKey(name: 'profileurl')  String profileUrl, @JsonKey(name: 'busunit_name')  String busunitName, @JsonKey(name: 'Appmnt_Dttm')  DateTime appointmentDateTime, @JsonKey(name: 'id_employee', fromJson: intFromJson)  int idDoctor,  bool isCanceling)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MyAppointmentModel() when $default != null:
 return $default(_that.id,_that.memberId,_that.memberName,_that.email,_that.mobileNumber,_that.departName,_that.doctorId,_that.doctorName,_that.speciality,_that.branch,_that.profileUrl,_that.busunitName,_that.appointmentDateTime,_that.idDoctor,_that.isCanceling);case _:
@@ -185,7 +185,7 @@ return $default(_that.id,_that.memberId,_that.memberName,_that.email,_that.mobil
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'Id')  int id, @JsonKey(name: 'id_customer')  int memberId, @JsonKey(name: 'customer_name')  String memberName,  String email, @JsonKey(name: 'mobile_no')  String mobileNumber, @JsonKey(name: 'dept_name')  String departName, @JsonKey(name: 'employee_id')  String doctorId, @JsonKey(name: 'employee_name')  String doctorName,  String speciality,  String branch, @JsonKey(name: 'profileurl')  String profileUrl, @JsonKey(name: 'busunit_name')  String busunitName, @JsonKey(name: 'Appmnt_Dttm')  DateTime appointmentDateTime, @JsonKey(name: 'id_employee')  int idDoctor,  bool isCanceling)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(readValue: _readId, fromJson: intFromJson)  int id, @JsonKey(readValue: _readMemberId, fromJson: intFromJson)  int memberId, @JsonKey(readValue: _readMemberName, fromJson: stringFromJson)  String memberName, @JsonKey(fromJson: stringFromJson)  String email, @JsonKey(readValue: _readMobileNumber, fromJson: stringFromJson)  String mobileNumber, @JsonKey(name: 'dept_name')  String departName, @JsonKey(name: 'employee_id', fromJson: stringFromJson)  String doctorId, @JsonKey(name: 'employee_name')  String doctorName,  String speciality,  String branch, @JsonKey(name: 'profileurl')  String profileUrl, @JsonKey(name: 'busunit_name')  String busunitName, @JsonKey(name: 'Appmnt_Dttm')  DateTime appointmentDateTime, @JsonKey(name: 'id_employee', fromJson: intFromJson)  int idDoctor,  bool isCanceling)  $default,) {final _that = this;
 switch (_that) {
 case _MyAppointmentModel():
 return $default(_that.id,_that.memberId,_that.memberName,_that.email,_that.mobileNumber,_that.departName,_that.doctorId,_that.doctorName,_that.speciality,_that.branch,_that.profileUrl,_that.busunitName,_that.appointmentDateTime,_that.idDoctor,_that.isCanceling);}
@@ -202,7 +202,7 @@ return $default(_that.id,_that.memberId,_that.memberName,_that.email,_that.mobil
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'Id')  int id, @JsonKey(name: 'id_customer')  int memberId, @JsonKey(name: 'customer_name')  String memberName,  String email, @JsonKey(name: 'mobile_no')  String mobileNumber, @JsonKey(name: 'dept_name')  String departName, @JsonKey(name: 'employee_id')  String doctorId, @JsonKey(name: 'employee_name')  String doctorName,  String speciality,  String branch, @JsonKey(name: 'profileurl')  String profileUrl, @JsonKey(name: 'busunit_name')  String busunitName, @JsonKey(name: 'Appmnt_Dttm')  DateTime appointmentDateTime, @JsonKey(name: 'id_employee')  int idDoctor,  bool isCanceling)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(readValue: _readId, fromJson: intFromJson)  int id, @JsonKey(readValue: _readMemberId, fromJson: intFromJson)  int memberId, @JsonKey(readValue: _readMemberName, fromJson: stringFromJson)  String memberName, @JsonKey(fromJson: stringFromJson)  String email, @JsonKey(readValue: _readMobileNumber, fromJson: stringFromJson)  String mobileNumber, @JsonKey(name: 'dept_name')  String departName, @JsonKey(name: 'employee_id', fromJson: stringFromJson)  String doctorId, @JsonKey(name: 'employee_name')  String doctorName,  String speciality,  String branch, @JsonKey(name: 'profileurl')  String profileUrl, @JsonKey(name: 'busunit_name')  String busunitName, @JsonKey(name: 'Appmnt_Dttm')  DateTime appointmentDateTime, @JsonKey(name: 'id_employee', fromJson: intFromJson)  int idDoctor,  bool isCanceling)?  $default,) {final _that = this;
 switch (_that) {
 case _MyAppointmentModel() when $default != null:
 return $default(_that.id,_that.memberId,_that.memberName,_that.email,_that.mobileNumber,_that.departName,_that.doctorId,_that.doctorName,_that.speciality,_that.branch,_that.profileUrl,_that.busunitName,_that.appointmentDateTime,_that.idDoctor,_that.isCanceling);case _:
@@ -217,23 +217,23 @@ return $default(_that.id,_that.memberId,_that.memberName,_that.email,_that.mobil
 @JsonSerializable()
 
 class _MyAppointmentModel extends MyAppointmentModel {
-  const _MyAppointmentModel({@JsonKey(name: 'Id') required this.id, @JsonKey(name: 'id_customer') required this.memberId, @JsonKey(name: 'customer_name') required this.memberName, required this.email, @JsonKey(name: 'mobile_no') required this.mobileNumber, @JsonKey(name: 'dept_name') required this.departName, @JsonKey(name: 'employee_id') required this.doctorId, @JsonKey(name: 'employee_name') required this.doctorName, required this.speciality, required this.branch, @JsonKey(name: 'profileurl') required this.profileUrl, @JsonKey(name: 'busunit_name') required this.busunitName, @JsonKey(name: 'Appmnt_Dttm') required this.appointmentDateTime, @JsonKey(name: 'id_employee') required this.idDoctor, this.isCanceling = false}): super._();
+  const _MyAppointmentModel({@JsonKey(readValue: _readId, fromJson: intFromJson) required this.id, @JsonKey(readValue: _readMemberId, fromJson: intFromJson) required this.memberId, @JsonKey(readValue: _readMemberName, fromJson: stringFromJson) required this.memberName, @JsonKey(fromJson: stringFromJson) this.email = '', @JsonKey(readValue: _readMobileNumber, fromJson: stringFromJson) required this.mobileNumber, @JsonKey(name: 'dept_name') this.departName = '', @JsonKey(name: 'employee_id', fromJson: stringFromJson) this.doctorId = '', @JsonKey(name: 'employee_name') this.doctorName = '', this.speciality = '', this.branch = '', @JsonKey(name: 'profileurl') this.profileUrl = '', @JsonKey(name: 'busunit_name') this.busunitName = '', @JsonKey(name: 'Appmnt_Dttm') required this.appointmentDateTime, @JsonKey(name: 'id_employee', fromJson: intFromJson) this.idDoctor = 0, this.isCanceling = false}): super._();
   factory _MyAppointmentModel.fromJson(Map<String, dynamic> json) => _$MyAppointmentModelFromJson(json);
 
-@override@JsonKey(name: 'Id') final  int id;
-@override@JsonKey(name: 'id_customer') final  int memberId;
-@override@JsonKey(name: 'customer_name') final  String memberName;
-@override final  String email;
-@override@JsonKey(name: 'mobile_no') final  String mobileNumber;
+@override@JsonKey(readValue: _readId, fromJson: intFromJson) final  int id;
+@override@JsonKey(readValue: _readMemberId, fromJson: intFromJson) final  int memberId;
+@override@JsonKey(readValue: _readMemberName, fromJson: stringFromJson) final  String memberName;
+@override@JsonKey(fromJson: stringFromJson) final  String email;
+@override@JsonKey(readValue: _readMobileNumber, fromJson: stringFromJson) final  String mobileNumber;
 @override@JsonKey(name: 'dept_name') final  String departName;
-@override@JsonKey(name: 'employee_id') final  String doctorId;
+@override@JsonKey(name: 'employee_id', fromJson: stringFromJson) final  String doctorId;
 @override@JsonKey(name: 'employee_name') final  String doctorName;
-@override final  String speciality;
-@override final  String branch;
+@override@JsonKey() final  String speciality;
+@override@JsonKey() final  String branch;
 @override@JsonKey(name: 'profileurl') final  String profileUrl;
 @override@JsonKey(name: 'busunit_name') final  String busunitName;
 @override@JsonKey(name: 'Appmnt_Dttm') final  DateTime appointmentDateTime;
-@override@JsonKey(name: 'id_employee') final  int idDoctor;
+@override@JsonKey(name: 'id_employee', fromJson: intFromJson) final  int idDoctor;
 @override@JsonKey() final  bool isCanceling;
 
 /// Create a copy of MyAppointmentModel
@@ -269,7 +269,7 @@ abstract mixin class _$MyAppointmentModelCopyWith<$Res> implements $MyAppointmen
   factory _$MyAppointmentModelCopyWith(_MyAppointmentModel value, $Res Function(_MyAppointmentModel) _then) = __$MyAppointmentModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'Id') int id,@JsonKey(name: 'id_customer') int memberId,@JsonKey(name: 'customer_name') String memberName, String email,@JsonKey(name: 'mobile_no') String mobileNumber,@JsonKey(name: 'dept_name') String departName,@JsonKey(name: 'employee_id') String doctorId,@JsonKey(name: 'employee_name') String doctorName, String speciality, String branch,@JsonKey(name: 'profileurl') String profileUrl,@JsonKey(name: 'busunit_name') String busunitName,@JsonKey(name: 'Appmnt_Dttm') DateTime appointmentDateTime,@JsonKey(name: 'id_employee') int idDoctor, bool isCanceling
+@JsonKey(readValue: _readId, fromJson: intFromJson) int id,@JsonKey(readValue: _readMemberId, fromJson: intFromJson) int memberId,@JsonKey(readValue: _readMemberName, fromJson: stringFromJson) String memberName,@JsonKey(fromJson: stringFromJson) String email,@JsonKey(readValue: _readMobileNumber, fromJson: stringFromJson) String mobileNumber,@JsonKey(name: 'dept_name') String departName,@JsonKey(name: 'employee_id', fromJson: stringFromJson) String doctorId,@JsonKey(name: 'employee_name') String doctorName, String speciality, String branch,@JsonKey(name: 'profileurl') String profileUrl,@JsonKey(name: 'busunit_name') String busunitName,@JsonKey(name: 'Appmnt_Dttm') DateTime appointmentDateTime,@JsonKey(name: 'id_employee', fromJson: intFromJson) int idDoctor, bool isCanceling
 });
 
 

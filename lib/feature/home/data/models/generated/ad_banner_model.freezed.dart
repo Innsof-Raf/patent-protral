@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AdBannerModel {
 
-@JsonKey(name: 'Image_nm') String? get imageName;@JsonKey(name: 'url') String? get url;@JsonKey(name: 'id_primary') int get idPrimary;@JsonKey(name: 'banner_type') String get bannerType;
+@JsonKey(readValue: _readImageName) String? get imageName;@JsonKey(name: 'url') String? get url;@JsonKey(readValue: _readIdPrimary, fromJson: intFromJson) int get idPrimary;@JsonKey(readValue: _readBannerType, fromJson: stringFromJson) String get bannerType;
 /// Create a copy of AdBannerModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $AdBannerModelCopyWith<$Res>  {
   factory $AdBannerModelCopyWith(AdBannerModel value, $Res Function(AdBannerModel) _then) = _$AdBannerModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'Image_nm') String? imageName,@JsonKey(name: 'url') String? url,@JsonKey(name: 'id_primary') int idPrimary,@JsonKey(name: 'banner_type') String bannerType
+@JsonKey(readValue: _readImageName) String? imageName,@JsonKey(name: 'url') String? url,@JsonKey(readValue: _readIdPrimary, fromJson: intFromJson) int idPrimary,@JsonKey(readValue: _readBannerType, fromJson: stringFromJson) String bannerType
 });
 
 
@@ -153,7 +153,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'Image_nm')  String? imageName, @JsonKey(name: 'url')  String? url, @JsonKey(name: 'id_primary')  int idPrimary, @JsonKey(name: 'banner_type')  String bannerType)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(readValue: _readImageName)  String? imageName, @JsonKey(name: 'url')  String? url, @JsonKey(readValue: _readIdPrimary, fromJson: intFromJson)  int idPrimary, @JsonKey(readValue: _readBannerType, fromJson: stringFromJson)  String bannerType)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AdBannerModel() when $default != null:
 return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType);case _:
@@ -174,7 +174,7 @@ return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType);case
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'Image_nm')  String? imageName, @JsonKey(name: 'url')  String? url, @JsonKey(name: 'id_primary')  int idPrimary, @JsonKey(name: 'banner_type')  String bannerType)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(readValue: _readImageName)  String? imageName, @JsonKey(name: 'url')  String? url, @JsonKey(readValue: _readIdPrimary, fromJson: intFromJson)  int idPrimary, @JsonKey(readValue: _readBannerType, fromJson: stringFromJson)  String bannerType)  $default,) {final _that = this;
 switch (_that) {
 case _AdBannerModel():
 return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType);}
@@ -191,7 +191,7 @@ return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'Image_nm')  String? imageName, @JsonKey(name: 'url')  String? url, @JsonKey(name: 'id_primary')  int idPrimary, @JsonKey(name: 'banner_type')  String bannerType)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(readValue: _readImageName)  String? imageName, @JsonKey(name: 'url')  String? url, @JsonKey(readValue: _readIdPrimary, fromJson: intFromJson)  int idPrimary, @JsonKey(readValue: _readBannerType, fromJson: stringFromJson)  String bannerType)?  $default,) {final _that = this;
 switch (_that) {
 case _AdBannerModel() when $default != null:
 return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType);case _:
@@ -206,13 +206,13 @@ return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType);case
 @JsonSerializable()
 
 class _AdBannerModel extends AdBannerModel {
-  const _AdBannerModel({@JsonKey(name: 'Image_nm') required this.imageName, @JsonKey(name: 'url') required this.url, @JsonKey(name: 'id_primary') required this.idPrimary, @JsonKey(name: 'banner_type') required this.bannerType}): super._();
+  const _AdBannerModel({@JsonKey(readValue: _readImageName) required this.imageName, @JsonKey(name: 'url') required this.url, @JsonKey(readValue: _readIdPrimary, fromJson: intFromJson) required this.idPrimary, @JsonKey(readValue: _readBannerType, fromJson: stringFromJson) required this.bannerType}): super._();
   factory _AdBannerModel.fromJson(Map<String, dynamic> json) => _$AdBannerModelFromJson(json);
 
-@override@JsonKey(name: 'Image_nm') final  String? imageName;
+@override@JsonKey(readValue: _readImageName) final  String? imageName;
 @override@JsonKey(name: 'url') final  String? url;
-@override@JsonKey(name: 'id_primary') final  int idPrimary;
-@override@JsonKey(name: 'banner_type') final  String bannerType;
+@override@JsonKey(readValue: _readIdPrimary, fromJson: intFromJson) final  int idPrimary;
+@override@JsonKey(readValue: _readBannerType, fromJson: stringFromJson) final  String bannerType;
 
 /// Create a copy of AdBannerModel
 /// with the given fields replaced by the non-null parameter values.
@@ -247,7 +247,7 @@ abstract mixin class _$AdBannerModelCopyWith<$Res> implements $AdBannerModelCopy
   factory _$AdBannerModelCopyWith(_AdBannerModel value, $Res Function(_AdBannerModel) _then) = __$AdBannerModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'Image_nm') String? imageName,@JsonKey(name: 'url') String? url,@JsonKey(name: 'id_primary') int idPrimary,@JsonKey(name: 'banner_type') String bannerType
+@JsonKey(readValue: _readImageName) String? imageName,@JsonKey(name: 'url') String? url,@JsonKey(readValue: _readIdPrimary, fromJson: intFromJson) int idPrimary,@JsonKey(readValue: _readBannerType, fromJson: stringFromJson) String bannerType
 });
 
 

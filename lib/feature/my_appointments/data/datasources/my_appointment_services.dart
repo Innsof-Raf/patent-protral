@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:patient_portal/core/injection_container.dart';
+import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/my_appointments/data/models/my_appointment_model.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
 import 'package:patient_portal/core/resources/error_model.dart';
@@ -19,10 +19,10 @@ class MyAppointmentServices {
     required String token,
   }) async {
     try {
-      final Map data = {
-        "CONTENT": jsonEncode({"mobile_no": mobileNumber}),
-        "TYPE": "PP0015",
-      };
+      final data = serviceRequest(
+        type: 'PP0016',
+        content: {"mobile_no": mobileNumber, "status": "ALL"},
+      );
       final response = await _dio.post(
         ConstantUrls.serviceUrl,
         data: data,
@@ -35,7 +35,7 @@ class MyAppointmentServices {
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final List responseData = response.data;
+        final List responseData = decodeResponseData(response.data);
 
         List<MyAppointmentModel> myAppointmentsList = [];
         for (final appoints in responseData) {
@@ -67,10 +67,10 @@ class MyAppointmentServices {
     required String token,
   }) async {
     try {
-      final Map data = {
-        "CONTENT": jsonEncode({"id_appointment": appointmentId}),
-        "TYPE": "PP0019",
-      };
+      final data = serviceRequest(
+        type: 'HMS0089',
+        content: {"id_appmnt": appointmentId},
+      );
       final response = await _dio.post(
         ConstantUrls.serviceUrl,
         data: data,
@@ -82,10 +82,11 @@ class MyAppointmentServices {
         ),
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final responseData = response.data;
+        final responseData = decodeResponseData(response.data);
 
-        if (responseData["STATUS"] == 1 &&
-            responseData["message"] == "canceld") {
+        if (responseData["status"] == true ||
+            responseData["STATUS"] == 1 ||
+            responseData["status"] == 1) {
           return Right(responseData);
         } else {
           return Left(ErrorModel(message: 'Appointment Cancelled Failed'));

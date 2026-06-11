@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/injection_container.dart';
+import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
@@ -53,10 +55,23 @@ class DocumentsScreenHelpers {
   }) async {
     try {
       FormData formData = FormData.fromMap({
-        'saveRequest':
-            '{"content":"{\'seq_no\':0,\'id_customer\':$memberId,\'id_document\':\'\',\'expiry_dt\':\'${expireDate ?? ''}\',\'doc_path\':\'$documentpath\',\'doc_name\':\'$documentName\',\'doc_ext\':\'{Ext}\',\'isself\':true}","type":"PP0025"}',
-        'PathIdentifier': 'PatientProfileImage',
-        'FolderIdentifier': '$memberId\\selfdoc',
+        'saveRequest': jsonEncode(
+          serviceRequest(
+            type: 'PP0025',
+            content: {
+              'seq_no': 0,
+              'id_customer': memberId,
+              'id_document': '',
+              'expiry_dt': expireDate?.toIso8601String() ?? '',
+              'doc_path': documentpath,
+              'doc_name': documentName,
+              'doc_ext': '{Ext}',
+              'isself': true,
+            },
+          ),
+        ),
+        'pathidentifier': 'PatientProfileImage',
+        'folderidentifier': '$memberId\\selfdoc',
       });
 
       formData.files.add(
@@ -68,7 +83,6 @@ class DocumentsScreenHelpers {
         data: formData,
         options: Options(
           headers: {
-            'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Authorization': 'Bearer $token',
           },

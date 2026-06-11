@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
 
 part 'generated/speciality_model.freezed.dart';
@@ -9,8 +10,8 @@ sealed class SpecialityModel with _$SpecialityModel {
   const SpecialityModel._();
 
   const factory SpecialityModel({
-    @JsonKey(name: 'id_dept') required int idSpeciality,
-    @JsonKey(name: 'dept_id') required String specialityId,
+    @JsonKey(name: 'id_dept', fromJson: intFromJson) required int idSpeciality,
+    @Default('') @JsonKey(name: 'dept_id') String specialityId,
     @JsonKey(name: 'dept_name') required String specialityName,
     @JsonKey(name: 'dept_img') required String? specialityImage,
   }) = _SpecialityModel;

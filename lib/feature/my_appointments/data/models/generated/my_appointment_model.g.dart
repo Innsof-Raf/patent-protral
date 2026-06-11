@@ -8,30 +8,34 @@ part of '../my_appointment_model.dart';
 
 _MyAppointmentModel _$MyAppointmentModelFromJson(Map<String, dynamic> json) =>
     _MyAppointmentModel(
-      id: (json['Id'] as num).toInt(),
-      memberId: (json['id_customer'] as num).toInt(),
-      memberName: json['customer_name'] as String,
-      email: json['email'] as String,
-      mobileNumber: json['mobile_no'] as String,
-      departName: json['dept_name'] as String,
-      doctorId: json['employee_id'] as String,
-      doctorName: json['employee_name'] as String,
-      speciality: json['speciality'] as String,
-      branch: json['branch'] as String,
-      profileUrl: json['profileurl'] as String,
-      busunitName: json['busunit_name'] as String,
+      id: intFromJson(_readId(json, 'id')),
+      memberId: intFromJson(_readMemberId(json, 'memberId')),
+      memberName: stringFromJson(_readMemberName(json, 'memberName')),
+      email: json['email'] == null ? '' : stringFromJson(json['email']),
+      mobileNumber: stringFromJson(_readMobileNumber(json, 'mobileNumber')),
+      departName: json['dept_name'] as String? ?? '',
+      doctorId: json['employee_id'] == null
+          ? ''
+          : stringFromJson(json['employee_id']),
+      doctorName: json['employee_name'] as String? ?? '',
+      speciality: json['speciality'] as String? ?? '',
+      branch: json['branch'] as String? ?? '',
+      profileUrl: json['profileurl'] as String? ?? '',
+      busunitName: json['busunit_name'] as String? ?? '',
       appointmentDateTime: DateTime.parse(json['Appmnt_Dttm'] as String),
-      idDoctor: (json['id_employee'] as num).toInt(),
+      idDoctor: json['id_employee'] == null
+          ? 0
+          : intFromJson(json['id_employee']),
       isCanceling: json['isCanceling'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$MyAppointmentModelToJson(_MyAppointmentModel instance) =>
     <String, dynamic>{
-      'Id': instance.id,
-      'id_customer': instance.memberId,
-      'customer_name': instance.memberName,
+      'id': instance.id,
+      'memberId': instance.memberId,
+      'memberName': instance.memberName,
       'email': instance.email,
-      'mobile_no': instance.mobileNumber,
+      'mobileNumber': instance.mobileNumber,
       'dept_name': instance.departName,
       'employee_id': instance.doctorId,
       'employee_name': instance.doctorName,

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/doctors/data/models/doctor_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 
@@ -13,7 +14,7 @@ class DoctorRemoteDataSourceImpl implements DoctorRemoteDataSource {
 
   @override
   Future<List<DoctorModel>> getAvailableDoctors(int specialityId) async {
-    final Map<String, dynamic> data = {"CONTENT": "{}", "TYPE": "PP0001"};
+    final data = serviceRequest(type: 'PP0001');
 
     final response = await client.post(
       ConstantUrls.serviceUrl,
@@ -22,11 +23,12 @@ class DoctorRemoteDataSourceImpl implements DoctorRemoteDataSource {
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final List<dynamic> responseData = response.data;
+      final List<dynamic> responseData = decodeResponseData(response.data);
       List<DoctorModel> doctorsList = [];
       for (final raw in responseData) {
-        if (raw['id_dept'] == specialityId) {
-          doctorsList.add(DoctorModel.fromJson(raw));
+        final doctor = raw as Map<String, dynamic>;
+        if (intFromJson(doctor['id_dept']) == specialityId) {
+          doctorsList.add(DoctorModel.fromJson(doctor));
         }
       }
       return doctorsList;

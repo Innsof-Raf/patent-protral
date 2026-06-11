@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DoctorModel {
 
-@JsonKey(name: 'employee_id') String get doctorId;@JsonKey(name: 'id_employee') int get idDoctor;@JsonKey(name: 'id_busunit') int get idBusUnit;@JsonKey(name: 'busunit_name') String get busUnitName;@JsonKey(name: 'employee_name') String get doctorName;@JsonKey(name: 'dept_name') String get departmentName;@JsonKey(name: 'speciality') String get doctorSpecility; String get experience; String get branch;@JsonKey(name: 'Language_Known') List<LanguageKnownModel> get languages;@JsonKey(name: 'profileUrl') String get doctorImage;@JsonKey(name: 'cons_fee') double get consultationFee;@JsonKey(name: 'employee_bio') String? get doctorBio;
+@JsonKey(name: 'employee_id') String get doctorId;@JsonKey(name: 'id_employee', fromJson: intFromJson) int get idDoctor;@JsonKey(name: 'id_busunit', fromJson: intFromJson) int get idBusUnit;@JsonKey(name: 'busunit_name') String get busUnitName;@JsonKey(name: 'employee_name') String get doctorName;@JsonKey(name: 'dept_name') String get departmentName;@JsonKey(name: 'speciality') String get doctorSpecility; String get experience; String get branch;@JsonKey(name: 'Language_Known') List<LanguageKnownModel> get languages;@JsonKey(name: 'profileUrl') String get doctorImage;@JsonKey(name: 'cons_fee', fromJson: doubleFromJson) double get consultationFee;@JsonKey(name: 'employee_bio') String? get doctorBio;
 /// Create a copy of DoctorModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $DoctorModelCopyWith<$Res>  {
   factory $DoctorModelCopyWith(DoctorModel value, $Res Function(DoctorModel) _then) = _$DoctorModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'employee_id') String doctorId,@JsonKey(name: 'id_employee') int idDoctor,@JsonKey(name: 'id_busunit') int idBusUnit,@JsonKey(name: 'busunit_name') String busUnitName,@JsonKey(name: 'employee_name') String doctorName,@JsonKey(name: 'dept_name') String departmentName,@JsonKey(name: 'speciality') String doctorSpecility, String experience, String branch,@JsonKey(name: 'Language_Known') List<LanguageKnownModel> languages,@JsonKey(name: 'profileUrl') String doctorImage,@JsonKey(name: 'cons_fee') double consultationFee,@JsonKey(name: 'employee_bio') String? doctorBio
+@JsonKey(name: 'employee_id') String doctorId,@JsonKey(name: 'id_employee', fromJson: intFromJson) int idDoctor,@JsonKey(name: 'id_busunit', fromJson: intFromJson) int idBusUnit,@JsonKey(name: 'busunit_name') String busUnitName,@JsonKey(name: 'employee_name') String doctorName,@JsonKey(name: 'dept_name') String departmentName,@JsonKey(name: 'speciality') String doctorSpecility, String experience, String branch,@JsonKey(name: 'Language_Known') List<LanguageKnownModel> languages,@JsonKey(name: 'profileUrl') String doctorImage,@JsonKey(name: 'cons_fee', fromJson: doubleFromJson) double consultationFee,@JsonKey(name: 'employee_bio') String? doctorBio
 });
 
 
@@ -162,7 +162,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'employee_id')  String doctorId, @JsonKey(name: 'id_employee')  int idDoctor, @JsonKey(name: 'id_busunit')  int idBusUnit, @JsonKey(name: 'busunit_name')  String busUnitName, @JsonKey(name: 'employee_name')  String doctorName, @JsonKey(name: 'dept_name')  String departmentName, @JsonKey(name: 'speciality')  String doctorSpecility,  String experience,  String branch, @JsonKey(name: 'Language_Known')  List<LanguageKnownModel> languages, @JsonKey(name: 'profileUrl')  String doctorImage, @JsonKey(name: 'cons_fee')  double consultationFee, @JsonKey(name: 'employee_bio')  String? doctorBio)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'employee_id')  String doctorId, @JsonKey(name: 'id_employee', fromJson: intFromJson)  int idDoctor, @JsonKey(name: 'id_busunit', fromJson: intFromJson)  int idBusUnit, @JsonKey(name: 'busunit_name')  String busUnitName, @JsonKey(name: 'employee_name')  String doctorName, @JsonKey(name: 'dept_name')  String departmentName, @JsonKey(name: 'speciality')  String doctorSpecility,  String experience,  String branch, @JsonKey(name: 'Language_Known')  List<LanguageKnownModel> languages, @JsonKey(name: 'profileUrl')  String doctorImage, @JsonKey(name: 'cons_fee', fromJson: doubleFromJson)  double consultationFee, @JsonKey(name: 'employee_bio')  String? doctorBio)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DoctorModel() when $default != null:
 return $default(_that.doctorId,_that.idDoctor,_that.idBusUnit,_that.busUnitName,_that.doctorName,_that.departmentName,_that.doctorSpecility,_that.experience,_that.branch,_that.languages,_that.doctorImage,_that.consultationFee,_that.doctorBio);case _:
@@ -183,7 +183,7 @@ return $default(_that.doctorId,_that.idDoctor,_that.idBusUnit,_that.busUnitName,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'employee_id')  String doctorId, @JsonKey(name: 'id_employee')  int idDoctor, @JsonKey(name: 'id_busunit')  int idBusUnit, @JsonKey(name: 'busunit_name')  String busUnitName, @JsonKey(name: 'employee_name')  String doctorName, @JsonKey(name: 'dept_name')  String departmentName, @JsonKey(name: 'speciality')  String doctorSpecility,  String experience,  String branch, @JsonKey(name: 'Language_Known')  List<LanguageKnownModel> languages, @JsonKey(name: 'profileUrl')  String doctorImage, @JsonKey(name: 'cons_fee')  double consultationFee, @JsonKey(name: 'employee_bio')  String? doctorBio)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'employee_id')  String doctorId, @JsonKey(name: 'id_employee', fromJson: intFromJson)  int idDoctor, @JsonKey(name: 'id_busunit', fromJson: intFromJson)  int idBusUnit, @JsonKey(name: 'busunit_name')  String busUnitName, @JsonKey(name: 'employee_name')  String doctorName, @JsonKey(name: 'dept_name')  String departmentName, @JsonKey(name: 'speciality')  String doctorSpecility,  String experience,  String branch, @JsonKey(name: 'Language_Known')  List<LanguageKnownModel> languages, @JsonKey(name: 'profileUrl')  String doctorImage, @JsonKey(name: 'cons_fee', fromJson: doubleFromJson)  double consultationFee, @JsonKey(name: 'employee_bio')  String? doctorBio)  $default,) {final _that = this;
 switch (_that) {
 case _DoctorModel():
 return $default(_that.doctorId,_that.idDoctor,_that.idBusUnit,_that.busUnitName,_that.doctorName,_that.departmentName,_that.doctorSpecility,_that.experience,_that.branch,_that.languages,_that.doctorImage,_that.consultationFee,_that.doctorBio);}
@@ -200,7 +200,7 @@ return $default(_that.doctorId,_that.idDoctor,_that.idBusUnit,_that.busUnitName,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'employee_id')  String doctorId, @JsonKey(name: 'id_employee')  int idDoctor, @JsonKey(name: 'id_busunit')  int idBusUnit, @JsonKey(name: 'busunit_name')  String busUnitName, @JsonKey(name: 'employee_name')  String doctorName, @JsonKey(name: 'dept_name')  String departmentName, @JsonKey(name: 'speciality')  String doctorSpecility,  String experience,  String branch, @JsonKey(name: 'Language_Known')  List<LanguageKnownModel> languages, @JsonKey(name: 'profileUrl')  String doctorImage, @JsonKey(name: 'cons_fee')  double consultationFee, @JsonKey(name: 'employee_bio')  String? doctorBio)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'employee_id')  String doctorId, @JsonKey(name: 'id_employee', fromJson: intFromJson)  int idDoctor, @JsonKey(name: 'id_busunit', fromJson: intFromJson)  int idBusUnit, @JsonKey(name: 'busunit_name')  String busUnitName, @JsonKey(name: 'employee_name')  String doctorName, @JsonKey(name: 'dept_name')  String departmentName, @JsonKey(name: 'speciality')  String doctorSpecility,  String experience,  String branch, @JsonKey(name: 'Language_Known')  List<LanguageKnownModel> languages, @JsonKey(name: 'profileUrl')  String doctorImage, @JsonKey(name: 'cons_fee', fromJson: doubleFromJson)  double consultationFee, @JsonKey(name: 'employee_bio')  String? doctorBio)?  $default,) {final _that = this;
 switch (_that) {
 case _DoctorModel() when $default != null:
 return $default(_that.doctorId,_that.idDoctor,_that.idBusUnit,_that.busUnitName,_that.doctorName,_that.departmentName,_that.doctorSpecility,_that.experience,_that.branch,_that.languages,_that.doctorImage,_that.consultationFee,_that.doctorBio);case _:
@@ -215,12 +215,12 @@ return $default(_that.doctorId,_that.idDoctor,_that.idBusUnit,_that.busUnitName,
 @JsonSerializable()
 
 class _DoctorModel extends DoctorModel {
-  const _DoctorModel({@JsonKey(name: 'employee_id') required this.doctorId, @JsonKey(name: 'id_employee') required this.idDoctor, @JsonKey(name: 'id_busunit') required this.idBusUnit, @JsonKey(name: 'busunit_name') required this.busUnitName, @JsonKey(name: 'employee_name') required this.doctorName, @JsonKey(name: 'dept_name') required this.departmentName, @JsonKey(name: 'speciality') required this.doctorSpecility, required this.experience, required this.branch, @JsonKey(name: 'Language_Known') required final  List<LanguageKnownModel> languages, @JsonKey(name: 'profileUrl') required this.doctorImage, @JsonKey(name: 'cons_fee') required this.consultationFee, @JsonKey(name: 'employee_bio') this.doctorBio}): _languages = languages,super._();
+  const _DoctorModel({@JsonKey(name: 'employee_id') required this.doctorId, @JsonKey(name: 'id_employee', fromJson: intFromJson) required this.idDoctor, @JsonKey(name: 'id_busunit', fromJson: intFromJson) required this.idBusUnit, @JsonKey(name: 'busunit_name') required this.busUnitName, @JsonKey(name: 'employee_name') required this.doctorName, @JsonKey(name: 'dept_name') required this.departmentName, @JsonKey(name: 'speciality') required this.doctorSpecility, required this.experience, required this.branch, @JsonKey(name: 'Language_Known') required final  List<LanguageKnownModel> languages, @JsonKey(name: 'profileUrl') required this.doctorImage, @JsonKey(name: 'cons_fee', fromJson: doubleFromJson) required this.consultationFee, @JsonKey(name: 'employee_bio') this.doctorBio}): _languages = languages,super._();
   factory _DoctorModel.fromJson(Map<String, dynamic> json) => _$DoctorModelFromJson(json);
 
 @override@JsonKey(name: 'employee_id') final  String doctorId;
-@override@JsonKey(name: 'id_employee') final  int idDoctor;
-@override@JsonKey(name: 'id_busunit') final  int idBusUnit;
+@override@JsonKey(name: 'id_employee', fromJson: intFromJson) final  int idDoctor;
+@override@JsonKey(name: 'id_busunit', fromJson: intFromJson) final  int idBusUnit;
 @override@JsonKey(name: 'busunit_name') final  String busUnitName;
 @override@JsonKey(name: 'employee_name') final  String doctorName;
 @override@JsonKey(name: 'dept_name') final  String departmentName;
@@ -235,7 +235,7 @@ class _DoctorModel extends DoctorModel {
 }
 
 @override@JsonKey(name: 'profileUrl') final  String doctorImage;
-@override@JsonKey(name: 'cons_fee') final  double consultationFee;
+@override@JsonKey(name: 'cons_fee', fromJson: doubleFromJson) final  double consultationFee;
 @override@JsonKey(name: 'employee_bio') final  String? doctorBio;
 
 /// Create a copy of DoctorModel
@@ -271,7 +271,7 @@ abstract mixin class _$DoctorModelCopyWith<$Res> implements $DoctorModelCopyWith
   factory _$DoctorModelCopyWith(_DoctorModel value, $Res Function(_DoctorModel) _then) = __$DoctorModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'employee_id') String doctorId,@JsonKey(name: 'id_employee') int idDoctor,@JsonKey(name: 'id_busunit') int idBusUnit,@JsonKey(name: 'busunit_name') String busUnitName,@JsonKey(name: 'employee_name') String doctorName,@JsonKey(name: 'dept_name') String departmentName,@JsonKey(name: 'speciality') String doctorSpecility, String experience, String branch,@JsonKey(name: 'Language_Known') List<LanguageKnownModel> languages,@JsonKey(name: 'profileUrl') String doctorImage,@JsonKey(name: 'cons_fee') double consultationFee,@JsonKey(name: 'employee_bio') String? doctorBio
+@JsonKey(name: 'employee_id') String doctorId,@JsonKey(name: 'id_employee', fromJson: intFromJson) int idDoctor,@JsonKey(name: 'id_busunit', fromJson: intFromJson) int idBusUnit,@JsonKey(name: 'busunit_name') String busUnitName,@JsonKey(name: 'employee_name') String doctorName,@JsonKey(name: 'dept_name') String departmentName,@JsonKey(name: 'speciality') String doctorSpecility, String experience, String branch,@JsonKey(name: 'Language_Known') List<LanguageKnownModel> languages,@JsonKey(name: 'profileUrl') String doctorImage,@JsonKey(name: 'cons_fee', fromJson: doubleFromJson) double consultationFee,@JsonKey(name: 'employee_bio') String? doctorBio
 });
 
 

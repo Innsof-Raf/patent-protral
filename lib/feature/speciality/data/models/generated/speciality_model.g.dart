@@ -8,8 +8,8 @@ part of '../speciality_model.dart';
 
 _SpecialityModel _$SpecialityModelFromJson(Map<String, dynamic> json) =>
     _SpecialityModel(
-      idSpeciality: (json['id_dept'] as num).toInt(),
-      specialityId: json['dept_id'] as String,
+      idSpeciality: intFromJson(json['id_dept']),
+      specialityId: json['dept_id'] as String? ?? '',
       specialityName: json['dept_name'] as String,
       specialityImage: json['dept_img'] as String?,
     );

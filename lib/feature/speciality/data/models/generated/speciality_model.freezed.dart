@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SpecialityModel {
 
-@JsonKey(name: 'id_dept') int get idSpeciality;@JsonKey(name: 'dept_id') String get specialityId;@JsonKey(name: 'dept_name') String get specialityName;@JsonKey(name: 'dept_img') String? get specialityImage;
+@JsonKey(name: 'id_dept', fromJson: intFromJson) int get idSpeciality;@JsonKey(name: 'dept_id') String get specialityId;@JsonKey(name: 'dept_name') String get specialityName;@JsonKey(name: 'dept_img') String? get specialityImage;
 /// Create a copy of SpecialityModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $SpecialityModelCopyWith<$Res>  {
   factory $SpecialityModelCopyWith(SpecialityModel value, $Res Function(SpecialityModel) _then) = _$SpecialityModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'id_dept') int idSpeciality,@JsonKey(name: 'dept_id') String specialityId,@JsonKey(name: 'dept_name') String specialityName,@JsonKey(name: 'dept_img') String? specialityImage
+@JsonKey(name: 'id_dept', fromJson: intFromJson) int idSpeciality,@JsonKey(name: 'dept_id') String specialityId,@JsonKey(name: 'dept_name') String specialityName,@JsonKey(name: 'dept_img') String? specialityImage
 });
 
 
@@ -153,7 +153,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_dept')  int idSpeciality, @JsonKey(name: 'dept_id')  String specialityId, @JsonKey(name: 'dept_name')  String specialityName, @JsonKey(name: 'dept_img')  String? specialityImage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_dept', fromJson: intFromJson)  int idSpeciality, @JsonKey(name: 'dept_id')  String specialityId, @JsonKey(name: 'dept_name')  String specialityName, @JsonKey(name: 'dept_img')  String? specialityImage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SpecialityModel() when $default != null:
 return $default(_that.idSpeciality,_that.specialityId,_that.specialityName,_that.specialityImage);case _:
@@ -174,7 +174,7 @@ return $default(_that.idSpeciality,_that.specialityId,_that.specialityName,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_dept')  int idSpeciality, @JsonKey(name: 'dept_id')  String specialityId, @JsonKey(name: 'dept_name')  String specialityName, @JsonKey(name: 'dept_img')  String? specialityImage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_dept', fromJson: intFromJson)  int idSpeciality, @JsonKey(name: 'dept_id')  String specialityId, @JsonKey(name: 'dept_name')  String specialityName, @JsonKey(name: 'dept_img')  String? specialityImage)  $default,) {final _that = this;
 switch (_that) {
 case _SpecialityModel():
 return $default(_that.idSpeciality,_that.specialityId,_that.specialityName,_that.specialityImage);}
@@ -191,7 +191,7 @@ return $default(_that.idSpeciality,_that.specialityId,_that.specialityName,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id_dept')  int idSpeciality, @JsonKey(name: 'dept_id')  String specialityId, @JsonKey(name: 'dept_name')  String specialityName, @JsonKey(name: 'dept_img')  String? specialityImage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id_dept', fromJson: intFromJson)  int idSpeciality, @JsonKey(name: 'dept_id')  String specialityId, @JsonKey(name: 'dept_name')  String specialityName, @JsonKey(name: 'dept_img')  String? specialityImage)?  $default,) {final _that = this;
 switch (_that) {
 case _SpecialityModel() when $default != null:
 return $default(_that.idSpeciality,_that.specialityId,_that.specialityName,_that.specialityImage);case _:
@@ -206,10 +206,10 @@ return $default(_that.idSpeciality,_that.specialityId,_that.specialityName,_that
 @JsonSerializable()
 
 class _SpecialityModel extends SpecialityModel {
-  const _SpecialityModel({@JsonKey(name: 'id_dept') required this.idSpeciality, @JsonKey(name: 'dept_id') required this.specialityId, @JsonKey(name: 'dept_name') required this.specialityName, @JsonKey(name: 'dept_img') required this.specialityImage}): super._();
+  const _SpecialityModel({@JsonKey(name: 'id_dept', fromJson: intFromJson) required this.idSpeciality, @JsonKey(name: 'dept_id') this.specialityId = '', @JsonKey(name: 'dept_name') required this.specialityName, @JsonKey(name: 'dept_img') required this.specialityImage}): super._();
   factory _SpecialityModel.fromJson(Map<String, dynamic> json) => _$SpecialityModelFromJson(json);
 
-@override@JsonKey(name: 'id_dept') final  int idSpeciality;
+@override@JsonKey(name: 'id_dept', fromJson: intFromJson) final  int idSpeciality;
 @override@JsonKey(name: 'dept_id') final  String specialityId;
 @override@JsonKey(name: 'dept_name') final  String specialityName;
 @override@JsonKey(name: 'dept_img') final  String? specialityImage;
@@ -247,7 +247,7 @@ abstract mixin class _$SpecialityModelCopyWith<$Res> implements $SpecialityModel
   factory _$SpecialityModelCopyWith(_SpecialityModel value, $Res Function(_SpecialityModel) _then) = __$SpecialityModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'id_dept') int idSpeciality,@JsonKey(name: 'dept_id') String specialityId,@JsonKey(name: 'dept_name') String specialityName,@JsonKey(name: 'dept_img') String? specialityImage
+@JsonKey(name: 'id_dept', fromJson: intFromJson) int idSpeciality,@JsonKey(name: 'dept_id') String specialityId,@JsonKey(name: 'dept_name') String specialityName,@JsonKey(name: 'dept_img') String? specialityImage
 });
 
 

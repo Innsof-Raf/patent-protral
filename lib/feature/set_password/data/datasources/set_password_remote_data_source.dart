@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/set_password/data/models/change_password_response_model.dart';
 import 'package:patient_portal/feature/set_password/domain/usecases/params/set_password_params.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
@@ -29,11 +30,14 @@ class SetPasswordRemoteDataSourceImpl implements SetPasswordRemoteDataSource {
         changePassword: (value) => value,
         orElse: () => throw Exception('Invalid change password params'),
       );
-      final data = {
-        "CONTENT":
-            "{\"id_user\":${changePasswordParams.idUser},\"mobile_no\":\"${changePasswordParams.mobileNumber}\",\"pwd\":\"${changePasswordParams.newPassword}\"}",
-        "TYPE": "PP0036",
-      };
+      final data = serviceRequest(
+        type: 'PP0036',
+        content: {
+          "id_user": changePasswordParams.idUser,
+          "mobile_no": changePasswordParams.mobileNumber,
+          "pwd": changePasswordParams.newPassword,
+        },
+      );
 
       final response = await client.post(
         ConstantUrls.serviceUrl,
@@ -46,7 +50,9 @@ class SetPasswordRemoteDataSourceImpl implements SetPasswordRemoteDataSource {
         ),
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final Map<String, dynamic> responseData = response.data;
+        final Map<String, dynamic> responseData = decodeResponseData(
+          response.data,
+        );
         final changePasswordResponse = ChangePasswordResponseModel.fromJson(
           responseData,
         );

@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/add_member/domain/usecases/params/params.dart';
 import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/core/resources/common_models/insurance/insurance_model.dart';
@@ -20,7 +22,7 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
   Future<List<InsuranceModel>> getInsuranceTypes({
     required String token,
   }) async {
-    final data = {"TYPE": "PP0024"};
+    final data = serviceRequest(type: 'PP0024');
 
     final response = await client.post(
       ConstantUrls.serviceUrl,
@@ -63,8 +65,10 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
         };
 
         FormData formData = FormData.fromMap({
-          'saveRequest': {"CONTENT": contentMap, "TYPE": "PP0018"},
-          'PathIdentifier': 'PatientProfileImage',
+          'saveRequest': jsonEncode(
+            serviceRequest(type: 'HMS0035', content: contentMap),
+          ),
+          'pathidentifier': 'PatientProfileImage',
           'removeProfilePic': 'false',
         });
 
@@ -108,16 +112,16 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
   Future<MemberModel> updateInsurance(AddMemberParams params) async {
     return params.maybeMap(
       updateInsurance: (p) async {
-        final Map data = {
-          "CONTENT": {
+        final data = serviceRequest(
+          type: 'PP0035',
+          content: {
             "id_customer": p.memberId,
             "id_insurance": p.idInsurance,
             "insurance_name": p.idInsurance == 0 ? p.insuranceName : null,
             "expire_date": p.expireDate.toString(),
             "member_number": p.memberNumber,
           },
-          "TYPE": "PP0035",
-        };
+        );
         final response = await client.post(
           ConstantUrls.serviceUrl,
           data: data,
@@ -130,7 +134,9 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
         );
 
         if (response.statusCode == 200 || response.statusCode == 201) {
-          final Map<String, dynamic> responseData = response.data;
+          final Map<String, dynamic> responseData = decodeResponseData(
+            response.data,
+          );
           return MemberModel.fromJson(responseData['customer_detail']);
         } else {
           throw Exception('Server Failure');

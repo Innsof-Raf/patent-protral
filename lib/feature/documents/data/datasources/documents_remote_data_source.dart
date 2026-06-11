@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/documents/data/models/documents_model/document_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 
@@ -21,11 +22,10 @@ class DocumentsRemoteDataSourceImpl implements DocumentsRemoteDataSource {
     required String mobileNumber,
     required String token,
   }) async {
-    final data = {
-      "CONTENT":
-          "{\"id_customer\":$memberId,\"mobile_number\":\"$mobileNumber\"}",
-      "TYPE": "PP0027",
-    };
+    final data = serviceRequest(
+      type: 'PP0027',
+      content: {"id_customer": memberId, "mobile_number": mobileNumber},
+    );
 
     final response = await client.post(
       ConstantUrls.serviceUrl,
@@ -39,7 +39,7 @@ class DocumentsRemoteDataSourceImpl implements DocumentsRemoteDataSource {
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final List<dynamic> responseData = response.data;
+      final List<dynamic> responseData = decodeResponseData(response.data);
       return responseData
           .map((raw) => DocumentModel.fromJson(raw as Map<String, dynamic>))
           .toList();

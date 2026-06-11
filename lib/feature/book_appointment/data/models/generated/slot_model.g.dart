@@ -7,10 +7,10 @@ part of '../slot_model.dart';
 // **************************************************************************
 
 _SlotModel _$SlotModelFromJson(Map<String, dynamic> json) => _SlotModel(
-  id: json['id'] as String,
-  label: json['label'] as String,
+  id: json['id'] == null ? '' : stringFromJson(json['id']),
+  label: stringFromJson(_readLabel(json, 'label')),
   appdttm: DateTime.parse(json['appdttm'] as String),
-  isBooked: json['booked'] as bool,
+  isBooked: json['booked'] == null ? false : boolFromJson(json['booked']),
 );
 
 Map<String, dynamic> _$SlotModelToJson(_SlotModel instance) =>

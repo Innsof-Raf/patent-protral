@@ -1,10 +1,10 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_helpers.dart';
+import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/login/data/models/otp_response_model.dart';
 import 'package:patient_portal/feature/profile/data/models/user_model.dart';
-import 'package:patient_portal/core/resources/urls.dart';
 
 abstract class LoginRemoteDataSource {
   Future<OtpResponseModel> generateOtp(String mobileNumber);
@@ -26,7 +26,7 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
 
   @override
   Future<OtpResponseModel> generateOtp(String mobileNumber) async {
-    final data = {'MobileNo': mobileNumber};
+    final data = {'mobileNo': mobileNumber};
 
     final response = await client.post(
       ConstantUrls.otpGenerationUrl,
@@ -48,9 +48,8 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
     required String otp,
   }) async {
     final Map<String, dynamic> data = {
-      'id_otp': idOtp,
-      'MobileNo': mobileNumber,
-      'OTP': otp,
+      'mobileNo': mobileNumber,
+      'otp': otp,
     };
     //final String jsonData = jsonEncode(data);
     log(
@@ -64,7 +63,7 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      return UserModel.fromJson(response.data);
+      return UserModel.fromJson(decodeResponseData(response.data));
     } else {
       throw Exception('Server Failure');
     }
@@ -76,8 +75,8 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
     required String password,
   }) async {
     final Map<String, dynamic> data = {
-      'Username': mobileNumber,
-      'Password': password,
+      'username': mobileNumber,
+      'password': password,
     };
 
     final response = await client.post(
@@ -87,12 +86,11 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final responseData = response.data;
-      if (responseData['isAuth']) {
-        return UserModel.fromJson(responseData['user']);
-      } else {
-        throw Exception(responseData['errorMsg'] ?? 'Authentication failed');
+      final responseData = decodeResponseData(response.data);
+      if (responseData['accessToken'] != null) {
+        return UserModel.fromJson(responseData);
       }
+      throw Exception(responseData['message'] ?? 'Authentication failed');
     } else {
       throw Exception('Server Failure');
     }

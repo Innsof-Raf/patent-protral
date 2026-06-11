@@ -10,8 +10,8 @@ sealed class ShiftModel with _$ShiftModel {
   const ShiftModel._();
 
   const factory ShiftModel({
-    required List<SlotModel> slots,
-    @JsonKey(name: 'shift_detail') required String shift,
+    @Default([]) List<SlotModel> slots,
+    @Default('') @JsonKey(name: 'shift_detail') String shift,
   }) = _ShiftModel;
 
   factory ShiftModel.fromJson(Map<String, dynamic> json) =>

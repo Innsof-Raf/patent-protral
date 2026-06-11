@@ -204,11 +204,11 @@ return $default(_that.slots,_that.shift);case _:
 @JsonSerializable()
 
 class _ShiftModel extends ShiftModel {
-  const _ShiftModel({required final  List<SlotModel> slots, @JsonKey(name: 'shift_detail') required this.shift}): _slots = slots,super._();
+  const _ShiftModel({final  List<SlotModel> slots = const [], @JsonKey(name: 'shift_detail') this.shift = ''}): _slots = slots,super._();
   factory _ShiftModel.fromJson(Map<String, dynamic> json) => _$ShiftModelFromJson(json);
 
  final  List<SlotModel> _slots;
-@override List<SlotModel> get slots {
+@override@JsonKey() List<SlotModel> get slots {
   if (_slots is EqualUnmodifiableListView) return _slots;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_slots);

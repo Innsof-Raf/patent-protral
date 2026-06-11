@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/home/domain/entities/ad_banner.dart';
 
 part 'generated/ad_banner_model.freezed.dart';
@@ -9,10 +10,12 @@ sealed class AdBannerModel with _$AdBannerModel {
   const AdBannerModel._();
 
   const factory AdBannerModel({
-    @JsonKey(name: 'Image_nm') required String? imageName,
+    @JsonKey(readValue: _readImageName) required String? imageName,
     @JsonKey(name: 'url') required String? url,
-    @JsonKey(name: 'id_primary') required int idPrimary,
-    @JsonKey(name: 'banner_type') required String bannerType,
+    @JsonKey(readValue: _readIdPrimary, fromJson: intFromJson)
+    required int idPrimary,
+    @JsonKey(readValue: _readBannerType, fromJson: stringFromJson)
+    required String bannerType,
   }) = _AdBannerModel;
 
   factory AdBannerModel.fromJson(Map<String, dynamic> json) =>
@@ -25,3 +28,10 @@ sealed class AdBannerModel with _$AdBannerModel {
     bannerType: bannerType,
   );
 }
+
+Object? _readImageName(Map json, String key) =>
+    json['Image_nm'] ?? json['image_nm'] ?? json['imageName'];
+Object? _readIdPrimary(Map json, String key) =>
+    json['id_primary'] ?? json['id'];
+Object? _readBannerType(Map json, String key) =>
+    json['banner_type'] ?? json['content_type'];

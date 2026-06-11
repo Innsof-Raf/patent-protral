@@ -1,9 +1,9 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/speciality/data/models/speciality_model.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/params/speciality_params.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
@@ -30,10 +30,7 @@ class SpecialityRemoteDataSourceImpl implements SpecialityRemoteDataSource {
       orElse: () => throw Exception('Invalid speciality fetch params'),
     );
     try {
-      final Map<String, dynamic> data = {
-        "CONTENT": jsonEncode({"id_busunit": fetchParams.idBusUnit}),
-        "TYPE": "PP0013",
-      };
+      final data = serviceRequest(type: 'PP0013');
 
       final response = await client.post(
         ConstantUrls.serviceUrl,
@@ -47,7 +44,7 @@ class SpecialityRemoteDataSourceImpl implements SpecialityRemoteDataSource {
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final List<dynamic> responseData = response.data;
+        final List<dynamic> responseData = decodeResponseData(response.data);
         List<SpecialityModel> specilaities = [];
         for (final raw in responseData) {
           specilaities.add(SpecialityModel.fromJson(raw));

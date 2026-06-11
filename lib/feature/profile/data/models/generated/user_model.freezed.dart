@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserModel {
 
-@JsonKey(name: 'Id') int get id;@JsonKey(name: 'FirstName') String get firstName;@JsonKey(name: 'LastName') String get lastName;@JsonKey(name: 'Username') String get userName;@JsonKey(name: 'MobileNo') String get mobileNumber;@JsonKey(name: 'EmailID') String get emailId;@JsonKey(name: 'accessToken') String get accessToken;@JsonKey(name: 'FCM_Token') String get fcmToken;@JsonKey(name: 'Members') List<MemberModel> get members;@JsonKey(name: 'IdMember') int get idMember;
+@JsonKey(name: 'Id', fromJson: intFromJson) int get id;@JsonKey(name: 'FirstName') String get firstName;@JsonKey(name: 'LastName') String get lastName;@JsonKey(name: 'Username') String get userName;@JsonKey(name: 'MobileNo') String get mobileNumber;@JsonKey(name: 'EmailID') String get emailId;@JsonKey(name: 'accessToken') String get accessToken;@JsonKey(name: 'FCM_Token') String get fcmToken;@JsonKey(name: 'Members') List<MemberModel> get members;@JsonKey(name: 'IdMember', fromJson: intFromJson) int get idMember;
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $UserModelCopyWith<$Res>  {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) _then) = _$UserModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'Id') int id,@JsonKey(name: 'FirstName') String firstName,@JsonKey(name: 'LastName') String lastName,@JsonKey(name: 'Username') String userName,@JsonKey(name: 'MobileNo') String mobileNumber,@JsonKey(name: 'EmailID') String emailId,@JsonKey(name: 'accessToken') String accessToken,@JsonKey(name: 'FCM_Token') String fcmToken,@JsonKey(name: 'Members') List<MemberModel> members,@JsonKey(name: 'IdMember') int idMember
+@JsonKey(name: 'Id', fromJson: intFromJson) int id,@JsonKey(name: 'FirstName') String firstName,@JsonKey(name: 'LastName') String lastName,@JsonKey(name: 'Username') String userName,@JsonKey(name: 'MobileNo') String mobileNumber,@JsonKey(name: 'EmailID') String emailId,@JsonKey(name: 'accessToken') String accessToken,@JsonKey(name: 'FCM_Token') String fcmToken,@JsonKey(name: 'Members') List<MemberModel> members,@JsonKey(name: 'IdMember', fromJson: intFromJson) int idMember
 });
 
 
@@ -159,7 +159,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'Id')  int id, @JsonKey(name: 'FirstName')  String firstName, @JsonKey(name: 'LastName')  String lastName, @JsonKey(name: 'Username')  String userName, @JsonKey(name: 'MobileNo')  String mobileNumber, @JsonKey(name: 'EmailID')  String emailId, @JsonKey(name: 'accessToken')  String accessToken, @JsonKey(name: 'FCM_Token')  String fcmToken, @JsonKey(name: 'Members')  List<MemberModel> members, @JsonKey(name: 'IdMember')  int idMember)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'Id', fromJson: intFromJson)  int id, @JsonKey(name: 'FirstName')  String firstName, @JsonKey(name: 'LastName')  String lastName, @JsonKey(name: 'Username')  String userName, @JsonKey(name: 'MobileNo')  String mobileNumber, @JsonKey(name: 'EmailID')  String emailId, @JsonKey(name: 'accessToken')  String accessToken, @JsonKey(name: 'FCM_Token')  String fcmToken, @JsonKey(name: 'Members')  List<MemberModel> members, @JsonKey(name: 'IdMember', fromJson: intFromJson)  int idMember)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
 return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mobileNumber,_that.emailId,_that.accessToken,_that.fcmToken,_that.members,_that.idMember);case _:
@@ -180,7 +180,7 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mob
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'Id')  int id, @JsonKey(name: 'FirstName')  String firstName, @JsonKey(name: 'LastName')  String lastName, @JsonKey(name: 'Username')  String userName, @JsonKey(name: 'MobileNo')  String mobileNumber, @JsonKey(name: 'EmailID')  String emailId, @JsonKey(name: 'accessToken')  String accessToken, @JsonKey(name: 'FCM_Token')  String fcmToken, @JsonKey(name: 'Members')  List<MemberModel> members, @JsonKey(name: 'IdMember')  int idMember)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'Id', fromJson: intFromJson)  int id, @JsonKey(name: 'FirstName')  String firstName, @JsonKey(name: 'LastName')  String lastName, @JsonKey(name: 'Username')  String userName, @JsonKey(name: 'MobileNo')  String mobileNumber, @JsonKey(name: 'EmailID')  String emailId, @JsonKey(name: 'accessToken')  String accessToken, @JsonKey(name: 'FCM_Token')  String fcmToken, @JsonKey(name: 'Members')  List<MemberModel> members, @JsonKey(name: 'IdMember', fromJson: intFromJson)  int idMember)  $default,) {final _that = this;
 switch (_that) {
 case _UserModel():
 return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mobileNumber,_that.emailId,_that.accessToken,_that.fcmToken,_that.members,_that.idMember);}
@@ -197,7 +197,7 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mob
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'Id')  int id, @JsonKey(name: 'FirstName')  String firstName, @JsonKey(name: 'LastName')  String lastName, @JsonKey(name: 'Username')  String userName, @JsonKey(name: 'MobileNo')  String mobileNumber, @JsonKey(name: 'EmailID')  String emailId, @JsonKey(name: 'accessToken')  String accessToken, @JsonKey(name: 'FCM_Token')  String fcmToken, @JsonKey(name: 'Members')  List<MemberModel> members, @JsonKey(name: 'IdMember')  int idMember)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'Id', fromJson: intFromJson)  int id, @JsonKey(name: 'FirstName')  String firstName, @JsonKey(name: 'LastName')  String lastName, @JsonKey(name: 'Username')  String userName, @JsonKey(name: 'MobileNo')  String mobileNumber, @JsonKey(name: 'EmailID')  String emailId, @JsonKey(name: 'accessToken')  String accessToken, @JsonKey(name: 'FCM_Token')  String fcmToken, @JsonKey(name: 'Members')  List<MemberModel> members, @JsonKey(name: 'IdMember', fromJson: intFromJson)  int idMember)?  $default,) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
 return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mobileNumber,_that.emailId,_that.accessToken,_that.fcmToken,_that.members,_that.idMember);case _:
@@ -212,10 +212,10 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mob
 @JsonSerializable()
 
 class _UserModel extends UserModel {
-  const _UserModel({@JsonKey(name: 'Id') required this.id, @JsonKey(name: 'FirstName') this.firstName = '', @JsonKey(name: 'LastName') this.lastName = '', @JsonKey(name: 'Username') this.userName = '', @JsonKey(name: 'MobileNo') this.mobileNumber = '', @JsonKey(name: 'EmailID') this.emailId = '', @JsonKey(name: 'accessToken') required this.accessToken, @JsonKey(name: 'FCM_Token') this.fcmToken = '', @JsonKey(name: 'Members') final  List<MemberModel> members = const [], @JsonKey(name: 'IdMember') this.idMember = 0}): _members = members,super._();
+  const _UserModel({@JsonKey(name: 'Id', fromJson: intFromJson) required this.id, @JsonKey(name: 'FirstName') this.firstName = '', @JsonKey(name: 'LastName') this.lastName = '', @JsonKey(name: 'Username') this.userName = '', @JsonKey(name: 'MobileNo') this.mobileNumber = '', @JsonKey(name: 'EmailID') this.emailId = '', @JsonKey(name: 'accessToken') required this.accessToken, @JsonKey(name: 'FCM_Token') this.fcmToken = '', @JsonKey(name: 'Members') final  List<MemberModel> members = const [], @JsonKey(name: 'IdMember', fromJson: intFromJson) this.idMember = 0}): _members = members,super._();
   factory _UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
-@override@JsonKey(name: 'Id') final  int id;
+@override@JsonKey(name: 'Id', fromJson: intFromJson) final  int id;
 @override@JsonKey(name: 'FirstName') final  String firstName;
 @override@JsonKey(name: 'LastName') final  String lastName;
 @override@JsonKey(name: 'Username') final  String userName;
@@ -230,7 +230,7 @@ class _UserModel extends UserModel {
   return EqualUnmodifiableListView(_members);
 }
 
-@override@JsonKey(name: 'IdMember') final  int idMember;
+@override@JsonKey(name: 'IdMember', fromJson: intFromJson) final  int idMember;
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
@@ -265,7 +265,7 @@ abstract mixin class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Re
   factory _$UserModelCopyWith(_UserModel value, $Res Function(_UserModel) _then) = __$UserModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'Id') int id,@JsonKey(name: 'FirstName') String firstName,@JsonKey(name: 'LastName') String lastName,@JsonKey(name: 'Username') String userName,@JsonKey(name: 'MobileNo') String mobileNumber,@JsonKey(name: 'EmailID') String emailId,@JsonKey(name: 'accessToken') String accessToken,@JsonKey(name: 'FCM_Token') String fcmToken,@JsonKey(name: 'Members') List<MemberModel> members,@JsonKey(name: 'IdMember') int idMember
+@JsonKey(name: 'Id', fromJson: intFromJson) int id,@JsonKey(name: 'FirstName') String firstName,@JsonKey(name: 'LastName') String lastName,@JsonKey(name: 'Username') String userName,@JsonKey(name: 'MobileNo') String mobileNumber,@JsonKey(name: 'EmailID') String emailId,@JsonKey(name: 'accessToken') String accessToken,@JsonKey(name: 'FCM_Token') String fcmToken,@JsonKey(name: 'Members') List<MemberModel> members,@JsonKey(name: 'IdMember', fromJson: intFromJson) int idMember
 });
 
 

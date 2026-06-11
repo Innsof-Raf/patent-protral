@@ -8,16 +8,16 @@ part of '../ad_banner_model.dart';
 
 _AdBannerModel _$AdBannerModelFromJson(Map<String, dynamic> json) =>
     _AdBannerModel(
-      imageName: json['Image_nm'] as String?,
+      imageName: _readImageName(json, 'imageName') as String?,
       url: json['url'] as String?,
-      idPrimary: (json['id_primary'] as num).toInt(),
-      bannerType: json['banner_type'] as String,
+      idPrimary: intFromJson(_readIdPrimary(json, 'idPrimary')),
+      bannerType: stringFromJson(_readBannerType(json, 'bannerType')),
     );
 
 Map<String, dynamic> _$AdBannerModelToJson(_AdBannerModel instance) =>
     <String, dynamic>{
-      'Image_nm': instance.imageName,
+      'imageName': instance.imageName,
       'url': instance.url,
-      'id_primary': instance.idPrimary,
-      'banner_type': instance.bannerType,
+      'idPrimary': instance.idPrimary,
+      'bannerType': instance.bannerType,
     };

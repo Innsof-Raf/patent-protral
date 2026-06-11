@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/reports/data/models/report_file_model.dart';
 import 'package:patient_portal/feature/reports/data/models/report_model.dart';
 import 'package:patient_portal/feature/reports/domain/usecases/params/reports_params.dart';
@@ -36,13 +36,14 @@ class ReportsRemoteDataSourceImpl implements ReportsRemoteDataSource {
       orElse: () => throw Exception('Invalid reports params'),
     );
     try {
-      final Map<String, dynamic> data = {
-        "CONTENT": jsonEncode({
-          "id_customer": "1299",
-          "mobile_no": "9659858387",
-        }),
-        "TYPE": "PP0016",
-      };
+      final data = serviceRequest(
+        type: 'PP0016',
+        content: {
+          "id_customer": getReportsParams.memberId,
+          "mobile_no": getReportsParams.mobileNumber,
+          "status": "ALL",
+        },
+      );
       final response = await client.post(
         ConstantUrls.serviceUrl,
         data: data,
@@ -54,7 +55,7 @@ class ReportsRemoteDataSourceImpl implements ReportsRemoteDataSource {
         ),
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final List responseList = response.data;
+        final List responseList = decodeResponseData(response.data);
         List<ReportModel> conseltationsList = [];
         for (final raw in responseList) {
           conseltationsList.add(ReportModel.fromJson(raw));
