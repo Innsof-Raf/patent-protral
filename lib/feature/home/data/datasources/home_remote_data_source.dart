@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'package:patient_portal/feature/home/data/models/home_data_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 
@@ -12,7 +12,7 @@ abstract class HomeRemoteDataSource {
 }
 
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
-  final http.Client client;
+  final Dio client;
 
   HomeRemoteDataSourceImpl({required this.client});
 
@@ -27,16 +27,20 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     };
 
     final response = await client.post(
-      Uri.parse(ConstantUrls.serviceUrl),
-      headers: {
-        'Content-type': 'application/json',
-        'Authorization': 'Bearer $token',
-      },
-      body: jsonEncode(data),
+      ConstantUrls.serviceUrl,
+      data: data,
+      options: Options(
+        headers: {
+          'Content-type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      ),
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final responseData = jsonDecode(response.body);
+      final responseData = response.data is String
+          ? jsonDecode(response.data as String)
+          : response.data;
       return HomeDataModel.fromJson(responseData);
     }
 

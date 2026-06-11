@@ -8,15 +8,19 @@ part of '../user_model.dart';
 
 _UserModel _$UserModelFromJson(Map<String, dynamic> json) => _UserModel(
   id: (json['Id'] as num).toInt(),
-  firstName: json['FirstName'] as String,
-  lastName: json['LastName'] as String,
-  userName: json['Username'] as String,
-  mobileNumber: json['MobileNo'] as String,
-  emailId: json['EmailID'] as String,
+  firstName: json['FirstName'] as String? ?? '',
+  lastName: json['LastName'] as String? ?? '',
+  userName: json['Username'] as String? ?? '',
+  mobileNumber: json['MobileNo'] as String? ?? '',
+  emailId: json['EmailID'] as String? ?? '',
   accessToken: json['accessToken'] as String,
-  members: (json['Members'] as List<dynamic>)
-      .map((e) => MemberModel.fromJson(e as Map<String, dynamic>))
-      .toList(),
+  fcmToken: json['FCM_Token'] as String? ?? '',
+  members:
+      (json['Members'] as List<dynamic>?)
+          ?.map((e) => MemberModel.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const [],
+  idMember: (json['IdMember'] as num?)?.toInt() ?? 0,
 );
 
 Map<String, dynamic> _$UserModelToJson(_UserModel instance) =>
@@ -28,5 +32,7 @@ Map<String, dynamic> _$UserModelToJson(_UserModel instance) =>
       'MobileNo': instance.mobileNumber,
       'EmailID': instance.emailId,
       'accessToken': instance.accessToken,
+      'FCM_Token': instance.fcmToken,
       'Members': instance.members,
+      'IdMember': instance.idMember,
     };

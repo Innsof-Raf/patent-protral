@@ -53,7 +53,10 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
       'OTP': otp,
     };
     //final String jsonData = jsonEncode(data);
-    log('OTP Verification Request Data: $data' ,name: 'LoginRemoteDataSourceImpl.verifyOtp');
+    log(
+      'OTP Verification Request Data: $data',
+      name: 'LoginRemoteDataSourceImpl.verifyOtp',
+    );
     final response = await client.post(
       ConstantUrls.otpVerificationUrl,
       data: data,
