@@ -135,7 +135,7 @@ class LoginOtpVerificationSection extends StatelessWidget {
                               }
                             },
                             child: const Icon(
-                              Icons.done,
+                              Icons.arrow_forward_ios_rounded,
                               color: AppColors.white,
                             ),
                           ),
