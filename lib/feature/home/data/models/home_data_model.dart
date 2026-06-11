@@ -20,7 +20,7 @@ sealed class HomeDataModel with _$HomeDataModel {
   }) = _HomeDataModel;
 
   factory HomeDataModel.fromJson(Map<String, dynamic> json) =>
-      _$HomeDataModelFromJson(json);
+      _$HomeDataModelFromJson(_normalizeHomeDataJson(json));
 
   HomeData toEntity() => HomeData(
     ads: ads.map((item) => item.toEntity()).toList(),
@@ -29,4 +29,15 @@ sealed class HomeDataModel with _$HomeDataModel {
     topPackages: topPackages.map((item) => item.toEntity()).toList(),
     notificationCount: notificationCount,
   );
+}
+
+Map<String, dynamic> _normalizeHomeDataJson(Map<String, dynamic> json) {
+  return {
+    ...json,
+    'ad_banner': json['ad_banner'] ?? json['banner'] ?? const [],
+    'speciality': json['speciality'] ?? const [],
+    'insurance': json['insurance'] ?? const [],
+    'package_banner': json['package_banner'] ?? const [],
+    'notification_count': json['notification_count'] ?? 0,
+  };
 }

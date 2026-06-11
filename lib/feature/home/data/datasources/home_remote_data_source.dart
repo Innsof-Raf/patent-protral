@@ -35,17 +35,6 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       final responseData = decodeResponseData(response.data);
-      if (responseData is Map<String, dynamic> &&
-          responseData.containsKey('banner') &&
-          !responseData.containsKey('ad_banner')) {
-        return HomeDataModel.fromJson({
-          'ad_banner': responseData['banner'],
-          'speciality': const [],
-          'insurance': const [],
-          'package_banner': const [],
-          'notification_count': 0,
-        });
-      }
       return HomeDataModel.fromJson(responseData as Map<String, dynamic>);
     }
 
