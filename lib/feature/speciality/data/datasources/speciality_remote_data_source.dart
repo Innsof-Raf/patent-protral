@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/speciality/data/models/speciality_model.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/params/speciality_params.dart';
@@ -17,7 +18,7 @@ abstract class SpecialityRemoteDataSource {
 }
 
 class SpecialityRemoteDataSourceImpl implements SpecialityRemoteDataSource {
-  final Dio client;
+  final ApiAgent client;
 
   SpecialityRemoteDataSourceImpl({required this.client});
 
@@ -33,14 +34,9 @@ class SpecialityRemoteDataSourceImpl implements SpecialityRemoteDataSource {
       final data = serviceRequest(type: 'PP0013');
 
       final response = await client.post(
-        ConstantUrls.serviceUrl,
-        options: Options(
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ${fetchParams.token}',
-          },
-        ),
-        data: data,
+        url: ConstantUrls.serviceUrl,
+        body: data,
+        token: fetchParams.token,
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {

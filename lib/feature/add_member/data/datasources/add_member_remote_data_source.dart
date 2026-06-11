@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/add_member/domain/usecases/params/params.dart';
 import 'package:patient_portal/feature/profile/data/models/member_model.dart';
@@ -14,7 +15,7 @@ abstract class AddMemberRemoteDataSource {
 }
 
 class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
-  final Dio client;
+  final ApiAgent client;
 
   AddMemberRemoteDataSourceImpl({required this.client});
 
@@ -25,14 +26,9 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
     final data = serviceRequest(type: 'PP0024');
 
     final response = await client.post(
-      ConstantUrls.serviceUrl,
-      data: data,
-      options: Options(
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token',
-        },
-      ),
+      url: ConstantUrls.serviceUrl,
+      body: data,
+      token: token,
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -85,8 +81,9 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
         }
 
         final response = await client.post(
-          ConstantUrls.addMember,
-          data: formData,
+          url: ConstantUrls.addMember,
+          body: formData,
+          token: p.accessToken,
         );
 
         if (response.statusCode == 200) {
@@ -123,14 +120,9 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
           },
         );
         final response = await client.post(
-          ConstantUrls.serviceUrl,
-          data: data,
-          options: Options(
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer ${p.token}',
-            },
-          ),
+          url: ConstantUrls.serviceUrl,
+          body: data,
+          token: p.token,
         );
 
         if (response.statusCode == 200 || response.statusCode == 201) {

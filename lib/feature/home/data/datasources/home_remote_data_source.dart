@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/home/data/models/home_data_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -11,7 +11,7 @@ abstract class HomeRemoteDataSource {
 }
 
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
-  final Dio client;
+  final ApiAgent client;
 
   HomeRemoteDataSourceImpl({required this.client});
 
@@ -23,14 +23,9 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     final data = serviceRequest(type: 'PP0038', content: {'id_client': 1});
 
     final response = await client.post(
-      ConstantUrls.serviceUrl,
-      data: data,
-      options: Options(
-        headers: {
-          'Content-type': 'application/json',
-          'Authorization': 'Bearer $token',
-        },
-      ),
+      url: ConstantUrls.serviceUrl,
+      body: data,
+      token: token,
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {

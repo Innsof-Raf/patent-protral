@@ -6,6 +6,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/injection_container.dart';
+import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
@@ -14,7 +15,7 @@ import 'package:patient_portal/core/resources/error_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 
 class DocumentsScreenHelpers {
-  static final Dio _dio = sl<Dio>();
+  static final ApiAgent _apiAgent = sl<ApiAgent>();
 
   static List<PopupMenuItem<int>> createPopupMenuItem(List<Member> members) {
     List<PopupMenuItem<int>> popupMenuItems = [
@@ -78,15 +79,10 @@ class DocumentsScreenHelpers {
         MapEntry('uploads', await MultipartFile.fromFile(documentpath)),
       );
 
-      final response = await _dio.post(
-        ConstantUrls.uploadDocumentUrl,
-        data: formData,
-        options: Options(
-          headers: {
-            'Accept': 'application/json',
-            'Authorization': 'Bearer $token',
-          },
-        ),
+      final response = await _apiAgent.post(
+        url: ConstantUrls.uploadDocumentUrl,
+        body: formData,
+        token: token,
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {

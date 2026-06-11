@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/login/data/models/otp_response_model.dart';
@@ -20,7 +20,7 @@ abstract class LoginRemoteDataSource {
 }
 
 class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
-  final Dio client;
+  final ApiAgent client;
 
   LoginRemoteDataSourceImpl({required this.client});
 
@@ -29,9 +29,8 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
     final data = {'mobileNo': mobileNumber};
 
     final response = await client.post(
-      ConstantUrls.otpGenerationUrl,
-      data: data,
-      options: Options(headers: {'Content-Type': 'application/json'}),
+      url: ConstantUrls.otpGenerationUrl,
+      body: data,
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -47,19 +46,15 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
     required String mobileNumber,
     required String otp,
   }) async {
-    final Map<String, dynamic> data = {
-      'mobileNo': mobileNumber,
-      'otp': otp,
-    };
+    final Map<String, dynamic> data = {'mobileNo': mobileNumber, 'otp': otp};
     //final String jsonData = jsonEncode(data);
     log(
       'OTP Verification Request Data: $data',
       name: 'LoginRemoteDataSourceImpl.verifyOtp',
     );
     final response = await client.post(
-      ConstantUrls.otpVerificationUrl,
-      data: data,
-      options: Options(headers: {'Content-Type': 'application/json'}),
+      url: ConstantUrls.otpVerificationUrl,
+      body: data,
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -80,9 +75,8 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
     };
 
     final response = await client.post(
-      ConstantUrls.loginWithPasswordUrl,
-      data: data,
-      options: Options(headers: {'Content-Type': 'application/json'}),
+      url: ConstantUrls.loginWithPasswordUrl,
+      body: data,
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {

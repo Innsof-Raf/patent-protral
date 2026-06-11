@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/set_password/data/models/change_password_response_model.dart';
 import 'package:patient_portal/feature/set_password/domain/usecases/params/set_password_params.dart';
@@ -17,7 +18,7 @@ abstract class SetPasswordRemoteDataSource {
 }
 
 class SetPasswordRemoteDataSourceImpl implements SetPasswordRemoteDataSource {
-  final Dio client;
+  final ApiAgent client;
 
   SetPasswordRemoteDataSourceImpl({required this.client});
 
@@ -40,14 +41,9 @@ class SetPasswordRemoteDataSourceImpl implements SetPasswordRemoteDataSource {
       );
 
       final response = await client.post(
-        ConstantUrls.serviceUrl,
-        data: data,
-        options: Options(
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ${changePasswordParams.token}',
-          },
-        ),
+        url: ConstantUrls.serviceUrl,
+        body: data,
+        token: changePasswordParams.token,
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
         final Map<String, dynamic> responseData = decodeResponseData(

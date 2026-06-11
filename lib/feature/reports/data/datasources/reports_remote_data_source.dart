@@ -4,6 +4,7 @@ import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/reports/data/models/report_file_model.dart';
 import 'package:patient_portal/feature/reports/data/models/report_model.dart';
@@ -23,7 +24,7 @@ abstract class ReportsRemoteDataSource {
 }
 
 class ReportsRemoteDataSourceImpl implements ReportsRemoteDataSource {
-  final Dio client;
+  final ApiAgent client;
 
   ReportsRemoteDataSourceImpl({required this.client});
 
@@ -45,14 +46,9 @@ class ReportsRemoteDataSourceImpl implements ReportsRemoteDataSource {
         },
       );
       final response = await client.post(
-        ConstantUrls.serviceUrl,
-        data: data,
-        options: Options(
-          headers: {
-            'Content-Type': 'application/json',
-            HttpHeaders.authorizationHeader: 'Bearer ${getReportsParams.token}',
-          },
-        ),
+        url: ConstantUrls.serviceUrl,
+        body: data,
+        token: getReportsParams.token,
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
         final List responseList = decodeResponseData(response.data);
@@ -92,8 +88,8 @@ class ReportsRemoteDataSourceImpl implements ReportsRemoteDataSource {
     );
     try {
       final response = await client.get<Uint8List>(
-        downloadReportParams.url,
-        options: Options(responseType: ResponseType.bytes),
+        url: downloadReportParams.url,
+        responseType: ResponseType.bytes,
       );
 
       if (response.data != null) {

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:patient_portal/core/injection_container.dart';
+import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/my_appointments/data/models/my_appointment_model.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
@@ -11,7 +12,7 @@ import 'package:patient_portal/core/resources/error_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 
 class MyAppointmentServices {
-  static final Dio _dio = sl<Dio>();
+  static final ApiAgent _apiAgent = sl<ApiAgent>();
 
   static Future<Either<ErrorModel, List<MyAppointmentModel>>>
   getMyAppointments({
@@ -23,15 +24,10 @@ class MyAppointmentServices {
         type: 'PP0016',
         content: {"mobile_no": mobileNumber, "status": "ALL"},
       );
-      final response = await _dio.post(
-        ConstantUrls.serviceUrl,
-        data: data,
-        options: Options(
-          headers: {
-            HttpHeaders.authorizationHeader: 'Bearer $token',
-            'Content-Type': 'application/json',
-          },
-        ),
+      final response = await _apiAgent.post(
+        url: ConstantUrls.serviceUrl,
+        body: data,
+        token: token,
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -71,15 +67,10 @@ class MyAppointmentServices {
         type: 'HMS0089',
         content: {"id_appmnt": appointmentId},
       );
-      final response = await _dio.post(
-        ConstantUrls.serviceUrl,
-        data: data,
-        options: Options(
-          headers: {
-            HttpHeaders.authorizationHeader: 'Bearer $token',
-            'Content-Type': 'application/json',
-          },
-        ),
+      final response = await _apiAgent.post(
+        url: ConstantUrls.serviceUrl,
+        body: data,
+        token: token,
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
         final responseData = decodeResponseData(response.data);

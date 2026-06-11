@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
@@ -15,7 +16,7 @@ abstract class ProfileRemoteDataSource {
 }
 
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
-  final Dio client;
+  final ApiAgent client;
 
   ProfileRemoteDataSourceImpl({required this.client});
 
@@ -67,8 +68,9 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       }
 
       final response = await client.post(
-        ConstantUrls.addMember,
-        data: formData,
+        url: ConstantUrls.addMember,
+        body: formData,
+        token: p.user?.accessToken,
       );
 
       if (response.statusCode == 200) {
@@ -118,14 +120,9 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       };
       final data = serviceRequest(type: 'PP0035', content: content);
       final response = await client.post(
-        ConstantUrls.serviceUrl,
-        data: data,
-        options: Options(
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ${p.token!}',
-          },
-        ),
+        url: ConstantUrls.serviceUrl,
+        body: data,
+        token: p.token,
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -163,14 +160,9 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
         content: {"id_customer": p.memberId},
       );
       final response = await client.post(
-        ConstantUrls.serviceUrl,
-        data: data,
-        options: Options(
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ${p.token!}',
-          },
-        ),
+        url: ConstantUrls.serviceUrl,
+        body: data,
+        token: p.token,
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
         final Map<String, dynamic> responseData = decodeResponseData(

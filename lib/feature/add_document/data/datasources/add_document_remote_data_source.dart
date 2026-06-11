@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/add_document/data/models/document_type_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -8,7 +8,7 @@ abstract class AddDocumentRemoteDataSource {
 }
 
 class AddDocumentRemoteDataSourceImpl implements AddDocumentRemoteDataSource {
-  final Dio client;
+  final ApiAgent client;
 
   AddDocumentRemoteDataSourceImpl({required this.client});
 
@@ -19,14 +19,9 @@ class AddDocumentRemoteDataSourceImpl implements AddDocumentRemoteDataSource {
     final data = serviceRequest(type: 'PP0026');
 
     final response = await client.post(
-      ConstantUrls.serviceUrl,
-      data: data,
-      options: Options(
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token',
-        },
-      ),
+      url: ConstantUrls.serviceUrl,
+      body: data,
+      token: token,
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {

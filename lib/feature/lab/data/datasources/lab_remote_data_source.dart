@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/lab/data/models/item_model.dart';
 import 'package:patient_portal/feature/lab/data/models/package_model.dart';
@@ -19,7 +19,7 @@ abstract class LabRemoteDataSource {
 }
 
 class LabRemoteDataSourceImpl implements LabRemoteDataSource {
-  final Dio client;
+  final ApiAgent client;
 
   LabRemoteDataSourceImpl({required this.client});
 
@@ -27,14 +27,9 @@ class LabRemoteDataSourceImpl implements LabRemoteDataSource {
   Future<List<ItemModel>> getItems({required String token}) async {
     final data = serviceRequest(type: 'PP0029', content: {"id_bus_unit": 1});
     final response = await client.post(
-      ConstantUrls.serviceUrl,
-      data: data,
-      options: Options(
-        headers: {
-          'Authorization': 'Bearer $token',
-          'Content-type': 'application/json',
-        },
-      ),
+      url: ConstantUrls.serviceUrl,
+      body: data,
+      token: token,
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -58,14 +53,9 @@ class LabRemoteDataSourceImpl implements LabRemoteDataSource {
       content: {"id_item": idItem, "id_user": idUser},
     );
     final response = await client.post(
-      ConstantUrls.serviceUrl,
-      data: data,
-      options: Options(
-        headers: {
-          'Content-type': 'application/json',
-          'Authorization': 'Bearer $token',
-        },
-      ),
+      url: ConstantUrls.serviceUrl,
+      body: data,
+      token: token,
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -82,14 +72,9 @@ class LabRemoteDataSourceImpl implements LabRemoteDataSource {
   }) async {
     final data = serviceRequest(type: 'PP0037', content: {"id_item": idItem});
     final response = await client.post(
-      ConstantUrls.serviceUrl,
-      data: data,
-      options: Options(
-        headers: {
-          'Content-type': 'application/json',
-          'Authorization': 'Bearer $token',
-        },
-      ),
+      url: ConstantUrls.serviceUrl,
+      body: data,
+      token: token,
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -104,14 +89,9 @@ class LabRemoteDataSourceImpl implements LabRemoteDataSource {
   Future<List<PackageModel>> getPackages({required String token}) async {
     final data = serviceRequest(type: 'PP0029', content: {"id_bus_unit": 1});
     final response = await client.post(
-      ConstantUrls.serviceUrl,
-      data: data,
-      options: Options(
-        headers: {
-          'Authorization': 'Bearer $token',
-          'Content-type': 'application/json',
-        },
-      ),
+      url: ConstantUrls.serviceUrl,
+      body: data,
+      token: token,
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {

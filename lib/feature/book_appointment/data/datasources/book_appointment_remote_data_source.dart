@@ -1,8 +1,7 @@
 import 'dart:async';
-import 'dart:io';
 
-import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/book_appointment/data/models/shift_model.dart';
 import 'package:patient_portal/core/resources/common_models/appointment_model.dart/appointment_model.dart';
@@ -32,7 +31,7 @@ abstract class BookAppointmentRemoteDataSource {
 
 class BookAppointmentRemoteDataSourceImpl
     implements BookAppointmentRemoteDataSource {
-  final Dio client;
+  final ApiAgent client;
 
   BookAppointmentRemoteDataSourceImpl({required this.client});
 
@@ -50,9 +49,8 @@ class BookAppointmentRemoteDataSourceImpl
       },
     );
     final response = await client.post(
-      ConstantUrls.serviceUrl,
-      data: data,
-      options: Options(headers: {'Content-Type': 'application/json'}),
+      url: ConstantUrls.serviceUrl,
+      body: data,
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -89,14 +87,9 @@ class BookAppointmentRemoteDataSourceImpl
       },
     );
     final response = await client.post(
-      ConstantUrls.serviceUrl,
-      data: data,
-      options: Options(
-        headers: {
-          HttpHeaders.authorizationHeader: 'Bearer $token',
-          'Content-Type': 'application/json',
-        },
-      ),
+      url: ConstantUrls.serviceUrl,
+      body: data,
+      token: token,
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -137,14 +130,9 @@ class BookAppointmentRemoteDataSourceImpl
       },
     );
     final response = await client.post(
-      ConstantUrls.serviceUrl,
-      data: data,
-      options: Options(
-        headers: {
-          HttpHeaders.authorizationHeader: 'Bearer $token',
-          'Content-Type': 'application/json',
-        },
-      ),
+      url: ConstantUrls.serviceUrl,
+      body: data,
+      token: token,
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
