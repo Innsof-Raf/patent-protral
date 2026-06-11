@@ -12,9 +12,7 @@ class GetDocumentTypesUseCase
   GetDocumentTypesUseCase(this.repository);
 
   @override
-  Future<Either<Failure, List<DocumentType>>> call(
-    AddDocumentParams params,
-  ) {
+  Future<Either<Failure, List<DocumentType>>> call(AddDocumentParams params) {
     return params.when(
       getDocumentTypes: (token) => repository.getDocumentTypes(token: token),
     );

@@ -11,16 +11,19 @@ part of '../shift_model.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$ShiftModel {
 
- List<SlotModel> get slots; String get shift;
+ List<SlotModel> get slots;@JsonKey(name: 'shift_detail') String get shift;
 /// Create a copy of ShiftModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $ShiftModelCopyWith<ShiftModel> get copyWith => _$ShiftModelCopyWithImpl<ShiftModel>(this as ShiftModel, _$identity);
 
+  /// Serializes this ShiftModel to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +31,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is ShiftModel&&const DeepCollectionEquality().equals(other.slots, slots)&&(identical(other.shift, shift) || other.shift == shift));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(slots),shift);
 
@@ -45,7 +48,7 @@ abstract mixin class $ShiftModelCopyWith<$Res>  {
   factory $ShiftModelCopyWith(ShiftModel value, $Res Function(ShiftModel) _then) = _$ShiftModelCopyWithImpl;
 @useResult
 $Res call({
- List<SlotModel> slots, String shift
+ List<SlotModel> slots,@JsonKey(name: 'shift_detail') String shift
 });
 
 
@@ -148,7 +151,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<SlotModel> slots,  String shift)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<SlotModel> slots, @JsonKey(name: 'shift_detail')  String shift)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ShiftModel() when $default != null:
 return $default(_that.slots,_that.shift);case _:
@@ -169,7 +172,7 @@ return $default(_that.slots,_that.shift);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<SlotModel> slots,  String shift)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<SlotModel> slots, @JsonKey(name: 'shift_detail')  String shift)  $default,) {final _that = this;
 switch (_that) {
 case _ShiftModel():
 return $default(_that.slots,_that.shift);}
@@ -186,7 +189,7 @@ return $default(_that.slots,_that.shift);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<SlotModel> slots,  String shift)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<SlotModel> slots, @JsonKey(name: 'shift_detail')  String shift)?  $default,) {final _that = this;
 switch (_that) {
 case _ShiftModel() when $default != null:
 return $default(_that.slots,_that.shift);case _:
@@ -198,11 +201,11 @@ return $default(_that.slots,_that.shift);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _ShiftModel extends ShiftModel {
-  const _ShiftModel({required final  List<SlotModel> slots, required this.shift}): _slots = slots,super._();
-  
+  const _ShiftModel({required final  List<SlotModel> slots, @JsonKey(name: 'shift_detail') required this.shift}): _slots = slots,super._();
+  factory _ShiftModel.fromJson(Map<String, dynamic> json) => _$ShiftModelFromJson(json);
 
  final  List<SlotModel> _slots;
 @override List<SlotModel> get slots {
@@ -211,7 +214,7 @@ class _ShiftModel extends ShiftModel {
   return EqualUnmodifiableListView(_slots);
 }
 
-@override final  String shift;
+@override@JsonKey(name: 'shift_detail') final  String shift;
 
 /// Create a copy of ShiftModel
 /// with the given fields replaced by the non-null parameter values.
@@ -219,14 +222,17 @@ class _ShiftModel extends ShiftModel {
 @pragma('vm:prefer-inline')
 _$ShiftModelCopyWith<_ShiftModel> get copyWith => __$ShiftModelCopyWithImpl<_ShiftModel>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$ShiftModelToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _ShiftModel&&const DeepCollectionEquality().equals(other._slots, _slots)&&(identical(other.shift, shift) || other.shift == shift));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_slots),shift);
 
@@ -243,7 +249,7 @@ abstract mixin class _$ShiftModelCopyWith<$Res> implements $ShiftModelCopyWith<$
   factory _$ShiftModelCopyWith(_ShiftModel value, $Res Function(_ShiftModel) _then) = __$ShiftModelCopyWithImpl;
 @override @useResult
 $Res call({
- List<SlotModel> slots, String shift
+ List<SlotModel> slots,@JsonKey(name: 'shift_detail') String shift
 });
 
 

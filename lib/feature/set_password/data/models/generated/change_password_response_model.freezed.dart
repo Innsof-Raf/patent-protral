@@ -11,16 +11,19 @@ part of '../change_password_response_model.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$ChangePasswordResponseModel {
 
- bool get status;
+@JsonKey(fromJson: _statusFromJson) bool get status;
 /// Create a copy of ChangePasswordResponseModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $ChangePasswordResponseModelCopyWith<ChangePasswordResponseModel> get copyWith => _$ChangePasswordResponseModelCopyWithImpl<ChangePasswordResponseModel>(this as ChangePasswordResponseModel, _$identity);
 
+  /// Serializes this ChangePasswordResponseModel to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +31,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePasswordResponseModel&&(identical(other.status, status) || other.status == status));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,status);
 
@@ -45,7 +48,7 @@ abstract mixin class $ChangePasswordResponseModelCopyWith<$Res>  {
   factory $ChangePasswordResponseModelCopyWith(ChangePasswordResponseModel value, $Res Function(ChangePasswordResponseModel) _then) = _$ChangePasswordResponseModelCopyWithImpl;
 @useResult
 $Res call({
- bool status
+@JsonKey(fromJson: _statusFromJson) bool status
 });
 
 
@@ -147,7 +150,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool status)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(fromJson: _statusFromJson)  bool status)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ChangePasswordResponseModel() when $default != null:
 return $default(_that.status);case _:
@@ -168,7 +171,7 @@ return $default(_that.status);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool status)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(fromJson: _statusFromJson)  bool status)  $default,) {final _that = this;
 switch (_that) {
 case _ChangePasswordResponseModel():
 return $default(_that.status);}
@@ -185,7 +188,7 @@ return $default(_that.status);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool status)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(fromJson: _statusFromJson)  bool status)?  $default,) {final _that = this;
 switch (_that) {
 case _ChangePasswordResponseModel() when $default != null:
 return $default(_that.status);case _:
@@ -197,13 +200,13 @@ return $default(_that.status);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _ChangePasswordResponseModel extends ChangePasswordResponseModel {
-  const _ChangePasswordResponseModel({required this.status}): super._();
-  
+  const _ChangePasswordResponseModel({@JsonKey(fromJson: _statusFromJson) required this.status}): super._();
+  factory _ChangePasswordResponseModel.fromJson(Map<String, dynamic> json) => _$ChangePasswordResponseModelFromJson(json);
 
-@override final  bool status;
+@override@JsonKey(fromJson: _statusFromJson) final  bool status;
 
 /// Create a copy of ChangePasswordResponseModel
 /// with the given fields replaced by the non-null parameter values.
@@ -211,14 +214,17 @@ class _ChangePasswordResponseModel extends ChangePasswordResponseModel {
 @pragma('vm:prefer-inline')
 _$ChangePasswordResponseModelCopyWith<_ChangePasswordResponseModel> get copyWith => __$ChangePasswordResponseModelCopyWithImpl<_ChangePasswordResponseModel>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$ChangePasswordResponseModelToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChangePasswordResponseModel&&(identical(other.status, status) || other.status == status));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,status);
 
@@ -235,7 +241,7 @@ abstract mixin class _$ChangePasswordResponseModelCopyWith<$Res> implements $Cha
   factory _$ChangePasswordResponseModelCopyWith(_ChangePasswordResponseModel value, $Res Function(_ChangePasswordResponseModel) _then) = __$ChangePasswordResponseModelCopyWithImpl;
 @override @useResult
 $Res call({
- bool status
+@JsonKey(fromJson: _statusFromJson) bool status
 });
 
 

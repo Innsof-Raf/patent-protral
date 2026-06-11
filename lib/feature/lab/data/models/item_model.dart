@@ -2,42 +2,34 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/lab/domain/entities/item.dart';
 
 part 'generated/item_model.freezed.dart';
+part 'generated/item_model.g.dart';
 
 @freezed
 sealed class ItemModel with _$ItemModel {
   const ItemModel._();
 
   const factory ItemModel({
-    required int idItem,
-    required String itemNmae,
-    required double itemPrice,
-    required String itemImg,
-    required String itemShortDesc,
-    required String itemType,
-    required bool isCart,
+    @JsonKey(name: 'id_item') required int idItem,
+    @JsonKey(name: 'item_name') required String itemNmae,
+    @JsonKey(name: 'item_price') required double itemPrice,
+    @JsonKey(name: 'item_img') required String itemImg,
+    @JsonKey(name: 'item_shortdescr') required String itemShortDesc,
+    @JsonKey(name: 'item_Type') required String itemType,
+    @JsonKey(name: 'is_cart') required bool isCart,
     @Default(false) bool isChangingCartStatus,
   }) = _ItemModel;
 
-  factory ItemModel.fromJson(Map<String, dynamic> json) {
-    return ItemModel(
-      idItem: json['id_item'] as int,
-      itemNmae: json['item_name'] as String,
-      itemPrice: (json['item_price'] as num).toDouble(),
-      itemImg: json['item_img'] as String,
-      itemShortDesc: json['item_shortdescr'] as String,
-      itemType: json['item_Type'] as String,
-      isCart: json['is_cart'] as bool,
-    );
-  }
+  factory ItemModel.fromJson(Map<String, dynamic> json) =>
+      _$ItemModelFromJson(json);
 
   Item toEntity() => Item(
-        idItem: idItem,
-        itemNmae: itemNmae,
-        itemPrice: itemPrice,
-        itemImg: itemImg,
-        itemShortDesc: itemShortDesc,
-        itemType: itemType,
-        isCart: isCart,
-        isChangingCartStatus: isChangingCartStatus,
-      );
+    idItem: idItem,
+    itemNmae: itemNmae,
+    itemPrice: itemPrice,
+    itemImg: itemImg,
+    itemShortDesc: itemShortDesc,
+    itemType: itemType,
+    isCart: isCart,
+    isChangingCartStatus: isChangingCartStatus,
+  );
 }

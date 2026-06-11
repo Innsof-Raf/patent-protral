@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:patient_portal/feature/login/data/models/otp_response_model.dart';
 import 'package:patient_portal/feature/profile/data/models/user_model.dart';
@@ -49,7 +52,8 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
       'MobileNo': mobileNumber,
       'OTP': otp,
     };
-
+    //final String jsonData = jsonEncode(data);
+    log('OTP Verification Request Data: $data' ,name: 'LoginRemoteDataSourceImpl.verifyOtp');
     final response = await client.post(
       ConstantUrls.otpVerificationUrl,
       data: data,

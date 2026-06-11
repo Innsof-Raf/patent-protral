@@ -5,8 +5,7 @@ import 'package:patient_portal/feature/documents/domain/entities/document.dart';
 import 'package:patient_portal/feature/documents/domain/repositories/documents_repository.dart';
 import 'package:patient_portal/feature/documents/domain/usecases/params/documents_params.dart';
 
-class GetDocumentsUseCase
-    implements UseCase<List<Document>, DocumentsParams> {
+class GetDocumentsUseCase implements UseCase<List<Document>, DocumentsParams> {
   final DocumentsRepository repository;
 
   GetDocumentsUseCase(this.repository);

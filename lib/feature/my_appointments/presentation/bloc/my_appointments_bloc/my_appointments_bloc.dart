@@ -31,11 +31,10 @@ class MyAppointmentsBloc
         ),
       );
       final Either<ErrorModel, List<MyAppointment>>
-      myAppointmentsFetchingOptions =
-          await getMyAppointmentsUseCase(
-            mobileNumber: event.params.mobileNumber,
-            token: event.params.token,
-          );
+      myAppointmentsFetchingOptions = await getMyAppointmentsUseCase(
+        mobileNumber: event.params.mobileNumber,
+        token: event.params.token,
+      );
       myAppointmentsFetchingOptions.fold(
         (error) => emit(
           state.copyWith(
@@ -204,9 +203,7 @@ class MyAppointmentsBloc
           state.copyWith(isAppointmentsCancelationFailed: false, error: error),
         ),
         (sucessesResponse) {
-          List<MyAppointment> myAppointments = List.from(
-            state.myAppointments,
-          );
+          List<MyAppointment> myAppointments = List.from(state.myAppointments);
 
           List<DateTime> monthTimeLineList = [];
           List<DateTime> monthTimeLineListOfNotConsulted = [];

@@ -5,8 +5,6 @@ part 'generated/shift.freezed.dart';
 
 @freezed
 sealed class Shift with _$Shift {
-  const factory Shift({
-    required List<Slot> slots,
-    required String shift,
-  }) = _Shift;
+  const factory Shift({required List<Slot> slots, required String shift}) =
+      _Shift;
 }

@@ -11,16 +11,19 @@ part of '../ad_banner_model.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$AdBannerModel {
 
- String? get imageName; String? get url; int get idPrimary; String get bannerType;
+@JsonKey(name: 'Image_nm') String? get imageName;@JsonKey(name: 'url') String? get url;@JsonKey(name: 'id_primary') int get idPrimary;@JsonKey(name: 'banner_type') String get bannerType;
 /// Create a copy of AdBannerModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $AdBannerModelCopyWith<AdBannerModel> get copyWith => _$AdBannerModelCopyWithImpl<AdBannerModel>(this as AdBannerModel, _$identity);
 
+  /// Serializes this AdBannerModel to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +31,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is AdBannerModel&&(identical(other.imageName, imageName) || other.imageName == imageName)&&(identical(other.url, url) || other.url == url)&&(identical(other.idPrimary, idPrimary) || other.idPrimary == idPrimary)&&(identical(other.bannerType, bannerType) || other.bannerType == bannerType));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,imageName,url,idPrimary,bannerType);
 
@@ -45,7 +48,7 @@ abstract mixin class $AdBannerModelCopyWith<$Res>  {
   factory $AdBannerModelCopyWith(AdBannerModel value, $Res Function(AdBannerModel) _then) = _$AdBannerModelCopyWithImpl;
 @useResult
 $Res call({
- String? imageName, String? url, int idPrimary, String bannerType
+@JsonKey(name: 'Image_nm') String? imageName,@JsonKey(name: 'url') String? url,@JsonKey(name: 'id_primary') int idPrimary,@JsonKey(name: 'banner_type') String bannerType
 });
 
 
@@ -150,7 +153,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? imageName,  String? url,  int idPrimary,  String bannerType)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'Image_nm')  String? imageName, @JsonKey(name: 'url')  String? url, @JsonKey(name: 'id_primary')  int idPrimary, @JsonKey(name: 'banner_type')  String bannerType)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AdBannerModel() when $default != null:
 return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType);case _:
@@ -171,7 +174,7 @@ return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType);case
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? imageName,  String? url,  int idPrimary,  String bannerType)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'Image_nm')  String? imageName, @JsonKey(name: 'url')  String? url, @JsonKey(name: 'id_primary')  int idPrimary, @JsonKey(name: 'banner_type')  String bannerType)  $default,) {final _that = this;
 switch (_that) {
 case _AdBannerModel():
 return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType);}
@@ -188,7 +191,7 @@ return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? imageName,  String? url,  int idPrimary,  String bannerType)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'Image_nm')  String? imageName, @JsonKey(name: 'url')  String? url, @JsonKey(name: 'id_primary')  int idPrimary, @JsonKey(name: 'banner_type')  String bannerType)?  $default,) {final _that = this;
 switch (_that) {
 case _AdBannerModel() when $default != null:
 return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType);case _:
@@ -200,16 +203,16 @@ return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType);case
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _AdBannerModel extends AdBannerModel {
-  const _AdBannerModel({required this.imageName, required this.url, required this.idPrimary, required this.bannerType}): super._();
-  
+  const _AdBannerModel({@JsonKey(name: 'Image_nm') required this.imageName, @JsonKey(name: 'url') required this.url, @JsonKey(name: 'id_primary') required this.idPrimary, @JsonKey(name: 'banner_type') required this.bannerType}): super._();
+  factory _AdBannerModel.fromJson(Map<String, dynamic> json) => _$AdBannerModelFromJson(json);
 
-@override final  String? imageName;
-@override final  String? url;
-@override final  int idPrimary;
-@override final  String bannerType;
+@override@JsonKey(name: 'Image_nm') final  String? imageName;
+@override@JsonKey(name: 'url') final  String? url;
+@override@JsonKey(name: 'id_primary') final  int idPrimary;
+@override@JsonKey(name: 'banner_type') final  String bannerType;
 
 /// Create a copy of AdBannerModel
 /// with the given fields replaced by the non-null parameter values.
@@ -217,14 +220,17 @@ class _AdBannerModel extends AdBannerModel {
 @pragma('vm:prefer-inline')
 _$AdBannerModelCopyWith<_AdBannerModel> get copyWith => __$AdBannerModelCopyWithImpl<_AdBannerModel>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$AdBannerModelToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _AdBannerModel&&(identical(other.imageName, imageName) || other.imageName == imageName)&&(identical(other.url, url) || other.url == url)&&(identical(other.idPrimary, idPrimary) || other.idPrimary == idPrimary)&&(identical(other.bannerType, bannerType) || other.bannerType == bannerType));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,imageName,url,idPrimary,bannerType);
 
@@ -241,7 +247,7 @@ abstract mixin class _$AdBannerModelCopyWith<$Res> implements $AdBannerModelCopy
   factory _$AdBannerModelCopyWith(_AdBannerModel value, $Res Function(_AdBannerModel) _then) = __$AdBannerModelCopyWithImpl;
 @override @useResult
 $Res call({
- String? imageName, String? url, int idPrimary, String bannerType
+@JsonKey(name: 'Image_nm') String? imageName,@JsonKey(name: 'url') String? url,@JsonKey(name: 'id_primary') int idPrimary,@JsonKey(name: 'banner_type') String bannerType
 });
 
 

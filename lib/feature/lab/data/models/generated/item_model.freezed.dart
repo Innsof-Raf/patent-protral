@@ -11,16 +11,19 @@ part of '../item_model.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$ItemModel {
 
- int get idItem; String get itemNmae; double get itemPrice; String get itemImg; String get itemShortDesc; String get itemType; bool get isCart; bool get isChangingCartStatus;
+@JsonKey(name: 'id_item') int get idItem;@JsonKey(name: 'item_name') String get itemNmae;@JsonKey(name: 'item_price') double get itemPrice;@JsonKey(name: 'item_img') String get itemImg;@JsonKey(name: 'item_shortdescr') String get itemShortDesc;@JsonKey(name: 'item_Type') String get itemType;@JsonKey(name: 'is_cart') bool get isCart; bool get isChangingCartStatus;
 /// Create a copy of ItemModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $ItemModelCopyWith<ItemModel> get copyWith => _$ItemModelCopyWithImpl<ItemModel>(this as ItemModel, _$identity);
 
+  /// Serializes this ItemModel to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +31,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is ItemModel&&(identical(other.idItem, idItem) || other.idItem == idItem)&&(identical(other.itemNmae, itemNmae) || other.itemNmae == itemNmae)&&(identical(other.itemPrice, itemPrice) || other.itemPrice == itemPrice)&&(identical(other.itemImg, itemImg) || other.itemImg == itemImg)&&(identical(other.itemShortDesc, itemShortDesc) || other.itemShortDesc == itemShortDesc)&&(identical(other.itemType, itemType) || other.itemType == itemType)&&(identical(other.isCart, isCart) || other.isCart == isCart)&&(identical(other.isChangingCartStatus, isChangingCartStatus) || other.isChangingCartStatus == isChangingCartStatus));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,idItem,itemNmae,itemPrice,itemImg,itemShortDesc,itemType,isCart,isChangingCartStatus);
 
@@ -45,7 +48,7 @@ abstract mixin class $ItemModelCopyWith<$Res>  {
   factory $ItemModelCopyWith(ItemModel value, $Res Function(ItemModel) _then) = _$ItemModelCopyWithImpl;
 @useResult
 $Res call({
- int idItem, String itemNmae, double itemPrice, String itemImg, String itemShortDesc, String itemType, bool isCart, bool isChangingCartStatus
+@JsonKey(name: 'id_item') int idItem,@JsonKey(name: 'item_name') String itemNmae,@JsonKey(name: 'item_price') double itemPrice,@JsonKey(name: 'item_img') String itemImg,@JsonKey(name: 'item_shortdescr') String itemShortDesc,@JsonKey(name: 'item_Type') String itemType,@JsonKey(name: 'is_cart') bool isCart, bool isChangingCartStatus
 });
 
 
@@ -154,7 +157,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int idItem,  String itemNmae,  double itemPrice,  String itemImg,  String itemShortDesc,  String itemType,  bool isCart,  bool isChangingCartStatus)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_item')  int idItem, @JsonKey(name: 'item_name')  String itemNmae, @JsonKey(name: 'item_price')  double itemPrice, @JsonKey(name: 'item_img')  String itemImg, @JsonKey(name: 'item_shortdescr')  String itemShortDesc, @JsonKey(name: 'item_Type')  String itemType, @JsonKey(name: 'is_cart')  bool isCart,  bool isChangingCartStatus)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ItemModel() when $default != null:
 return $default(_that.idItem,_that.itemNmae,_that.itemPrice,_that.itemImg,_that.itemShortDesc,_that.itemType,_that.isCart,_that.isChangingCartStatus);case _:
@@ -175,7 +178,7 @@ return $default(_that.idItem,_that.itemNmae,_that.itemPrice,_that.itemImg,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int idItem,  String itemNmae,  double itemPrice,  String itemImg,  String itemShortDesc,  String itemType,  bool isCart,  bool isChangingCartStatus)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_item')  int idItem, @JsonKey(name: 'item_name')  String itemNmae, @JsonKey(name: 'item_price')  double itemPrice, @JsonKey(name: 'item_img')  String itemImg, @JsonKey(name: 'item_shortdescr')  String itemShortDesc, @JsonKey(name: 'item_Type')  String itemType, @JsonKey(name: 'is_cart')  bool isCart,  bool isChangingCartStatus)  $default,) {final _that = this;
 switch (_that) {
 case _ItemModel():
 return $default(_that.idItem,_that.itemNmae,_that.itemPrice,_that.itemImg,_that.itemShortDesc,_that.itemType,_that.isCart,_that.isChangingCartStatus);}
@@ -192,7 +195,7 @@ return $default(_that.idItem,_that.itemNmae,_that.itemPrice,_that.itemImg,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int idItem,  String itemNmae,  double itemPrice,  String itemImg,  String itemShortDesc,  String itemType,  bool isCart,  bool isChangingCartStatus)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id_item')  int idItem, @JsonKey(name: 'item_name')  String itemNmae, @JsonKey(name: 'item_price')  double itemPrice, @JsonKey(name: 'item_img')  String itemImg, @JsonKey(name: 'item_shortdescr')  String itemShortDesc, @JsonKey(name: 'item_Type')  String itemType, @JsonKey(name: 'is_cart')  bool isCart,  bool isChangingCartStatus)?  $default,) {final _that = this;
 switch (_that) {
 case _ItemModel() when $default != null:
 return $default(_that.idItem,_that.itemNmae,_that.itemPrice,_that.itemImg,_that.itemShortDesc,_that.itemType,_that.isCart,_that.isChangingCartStatus);case _:
@@ -204,19 +207,19 @@ return $default(_that.idItem,_that.itemNmae,_that.itemPrice,_that.itemImg,_that.
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _ItemModel extends ItemModel {
-  const _ItemModel({required this.idItem, required this.itemNmae, required this.itemPrice, required this.itemImg, required this.itemShortDesc, required this.itemType, required this.isCart, this.isChangingCartStatus = false}): super._();
-  
+  const _ItemModel({@JsonKey(name: 'id_item') required this.idItem, @JsonKey(name: 'item_name') required this.itemNmae, @JsonKey(name: 'item_price') required this.itemPrice, @JsonKey(name: 'item_img') required this.itemImg, @JsonKey(name: 'item_shortdescr') required this.itemShortDesc, @JsonKey(name: 'item_Type') required this.itemType, @JsonKey(name: 'is_cart') required this.isCart, this.isChangingCartStatus = false}): super._();
+  factory _ItemModel.fromJson(Map<String, dynamic> json) => _$ItemModelFromJson(json);
 
-@override final  int idItem;
-@override final  String itemNmae;
-@override final  double itemPrice;
-@override final  String itemImg;
-@override final  String itemShortDesc;
-@override final  String itemType;
-@override final  bool isCart;
+@override@JsonKey(name: 'id_item') final  int idItem;
+@override@JsonKey(name: 'item_name') final  String itemNmae;
+@override@JsonKey(name: 'item_price') final  double itemPrice;
+@override@JsonKey(name: 'item_img') final  String itemImg;
+@override@JsonKey(name: 'item_shortdescr') final  String itemShortDesc;
+@override@JsonKey(name: 'item_Type') final  String itemType;
+@override@JsonKey(name: 'is_cart') final  bool isCart;
 @override@JsonKey() final  bool isChangingCartStatus;
 
 /// Create a copy of ItemModel
@@ -225,14 +228,17 @@ class _ItemModel extends ItemModel {
 @pragma('vm:prefer-inline')
 _$ItemModelCopyWith<_ItemModel> get copyWith => __$ItemModelCopyWithImpl<_ItemModel>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$ItemModelToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _ItemModel&&(identical(other.idItem, idItem) || other.idItem == idItem)&&(identical(other.itemNmae, itemNmae) || other.itemNmae == itemNmae)&&(identical(other.itemPrice, itemPrice) || other.itemPrice == itemPrice)&&(identical(other.itemImg, itemImg) || other.itemImg == itemImg)&&(identical(other.itemShortDesc, itemShortDesc) || other.itemShortDesc == itemShortDesc)&&(identical(other.itemType, itemType) || other.itemType == itemType)&&(identical(other.isCart, isCart) || other.isCart == isCart)&&(identical(other.isChangingCartStatus, isChangingCartStatus) || other.isChangingCartStatus == isChangingCartStatus));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,idItem,itemNmae,itemPrice,itemImg,itemShortDesc,itemType,isCart,isChangingCartStatus);
 
@@ -249,7 +255,7 @@ abstract mixin class _$ItemModelCopyWith<$Res> implements $ItemModelCopyWith<$Re
   factory _$ItemModelCopyWith(_ItemModel value, $Res Function(_ItemModel) _then) = __$ItemModelCopyWithImpl;
 @override @useResult
 $Res call({
- int idItem, String itemNmae, double itemPrice, String itemImg, String itemShortDesc, String itemType, bool isCart, bool isChangingCartStatus
+@JsonKey(name: 'id_item') int idItem,@JsonKey(name: 'item_name') String itemNmae,@JsonKey(name: 'item_price') double itemPrice,@JsonKey(name: 'item_img') String itemImg,@JsonKey(name: 'item_shortdescr') String itemShortDesc,@JsonKey(name: 'item_Type') String itemType,@JsonKey(name: 'is_cart') bool isCart, bool isChangingCartStatus
 });
 
 

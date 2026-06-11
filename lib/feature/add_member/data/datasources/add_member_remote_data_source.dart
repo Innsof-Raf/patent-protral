@@ -63,10 +63,7 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
         };
 
         FormData formData = FormData.fromMap({
-          'saveRequest': {
-            "CONTENT": contentMap,
-            "TYPE": "PP0018",
-          },
+          'saveRequest': {"CONTENT": contentMap, "TYPE": "PP0018"},
           'PathIdentifier': 'PatientProfileImage',
           'removeProfilePic': 'false',
         });

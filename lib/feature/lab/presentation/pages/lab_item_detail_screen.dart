@@ -22,9 +22,7 @@ class LabItemDetailScreen extends StatelessWidget {
           (element) => element.idItem == idItem,
         );
 
-        Item? selectedItem = itemIndex != -1
-            ? state.items[itemIndex]
-            : null;
+        Item? selectedItem = itemIndex != -1 ? state.items[itemIndex] : null;
         return Scaffold(
           appBar: const CommonAppbar(title: 'Lab'),
           body: Padding(

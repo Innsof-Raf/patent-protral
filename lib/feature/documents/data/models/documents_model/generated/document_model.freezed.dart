@@ -11,16 +11,19 @@ part of '../document_model.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$DocumentModel {
 
- int get docId; int get memberId; DateTime get expireDate; String get docName; String get docType;
+@JsonKey(name: 'doc_id') int get docId;@JsonKey(name: 'id_customer') int get memberId;@JsonKey(name: 'expire_date') DateTime get expireDate;@JsonKey(name: 'doc_name') String get docName;@JsonKey(name: 'doc_type') String get docType;
 /// Create a copy of DocumentModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $DocumentModelCopyWith<DocumentModel> get copyWith => _$DocumentModelCopyWithImpl<DocumentModel>(this as DocumentModel, _$identity);
 
+  /// Serializes this DocumentModel to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +31,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentModel&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.expireDate, expireDate) || other.expireDate == expireDate)&&(identical(other.docName, docName) || other.docName == docName)&&(identical(other.docType, docType) || other.docType == docType));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,docId,memberId,expireDate,docName,docType);
 
@@ -45,7 +48,7 @@ abstract mixin class $DocumentModelCopyWith<$Res>  {
   factory $DocumentModelCopyWith(DocumentModel value, $Res Function(DocumentModel) _then) = _$DocumentModelCopyWithImpl;
 @useResult
 $Res call({
- int docId, int memberId, DateTime expireDate, String docName, String docType
+@JsonKey(name: 'doc_id') int docId,@JsonKey(name: 'id_customer') int memberId,@JsonKey(name: 'expire_date') DateTime expireDate,@JsonKey(name: 'doc_name') String docName,@JsonKey(name: 'doc_type') String docType
 });
 
 
@@ -151,7 +154,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int docId,  int memberId,  DateTime expireDate,  String docName,  String docType)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'doc_id')  int docId, @JsonKey(name: 'id_customer')  int memberId, @JsonKey(name: 'expire_date')  DateTime expireDate, @JsonKey(name: 'doc_name')  String docName, @JsonKey(name: 'doc_type')  String docType)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DocumentModel() when $default != null:
 return $default(_that.docId,_that.memberId,_that.expireDate,_that.docName,_that.docType);case _:
@@ -172,7 +175,7 @@ return $default(_that.docId,_that.memberId,_that.expireDate,_that.docName,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int docId,  int memberId,  DateTime expireDate,  String docName,  String docType)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'doc_id')  int docId, @JsonKey(name: 'id_customer')  int memberId, @JsonKey(name: 'expire_date')  DateTime expireDate, @JsonKey(name: 'doc_name')  String docName, @JsonKey(name: 'doc_type')  String docType)  $default,) {final _that = this;
 switch (_that) {
 case _DocumentModel():
 return $default(_that.docId,_that.memberId,_that.expireDate,_that.docName,_that.docType);}
@@ -189,7 +192,7 @@ return $default(_that.docId,_that.memberId,_that.expireDate,_that.docName,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int docId,  int memberId,  DateTime expireDate,  String docName,  String docType)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'doc_id')  int docId, @JsonKey(name: 'id_customer')  int memberId, @JsonKey(name: 'expire_date')  DateTime expireDate, @JsonKey(name: 'doc_name')  String docName, @JsonKey(name: 'doc_type')  String docType)?  $default,) {final _that = this;
 switch (_that) {
 case _DocumentModel() when $default != null:
 return $default(_that.docId,_that.memberId,_that.expireDate,_that.docName,_that.docType);case _:
@@ -201,17 +204,17 @@ return $default(_that.docId,_that.memberId,_that.expireDate,_that.docName,_that.
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _DocumentModel extends DocumentModel {
-  const _DocumentModel({required this.docId, required this.memberId, required this.expireDate, required this.docName, required this.docType}): super._();
-  
+  const _DocumentModel({@JsonKey(name: 'doc_id') required this.docId, @JsonKey(name: 'id_customer') required this.memberId, @JsonKey(name: 'expire_date') required this.expireDate, @JsonKey(name: 'doc_name') required this.docName, @JsonKey(name: 'doc_type') required this.docType}): super._();
+  factory _DocumentModel.fromJson(Map<String, dynamic> json) => _$DocumentModelFromJson(json);
 
-@override final  int docId;
-@override final  int memberId;
-@override final  DateTime expireDate;
-@override final  String docName;
-@override final  String docType;
+@override@JsonKey(name: 'doc_id') final  int docId;
+@override@JsonKey(name: 'id_customer') final  int memberId;
+@override@JsonKey(name: 'expire_date') final  DateTime expireDate;
+@override@JsonKey(name: 'doc_name') final  String docName;
+@override@JsonKey(name: 'doc_type') final  String docType;
 
 /// Create a copy of DocumentModel
 /// with the given fields replaced by the non-null parameter values.
@@ -219,14 +222,17 @@ class _DocumentModel extends DocumentModel {
 @pragma('vm:prefer-inline')
 _$DocumentModelCopyWith<_DocumentModel> get copyWith => __$DocumentModelCopyWithImpl<_DocumentModel>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$DocumentModelToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentModel&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.expireDate, expireDate) || other.expireDate == expireDate)&&(identical(other.docName, docName) || other.docName == docName)&&(identical(other.docType, docType) || other.docType == docType));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,docId,memberId,expireDate,docName,docType);
 
@@ -243,7 +249,7 @@ abstract mixin class _$DocumentModelCopyWith<$Res> implements $DocumentModelCopy
   factory _$DocumentModelCopyWith(_DocumentModel value, $Res Function(_DocumentModel) _then) = __$DocumentModelCopyWithImpl;
 @override @useResult
 $Res call({
- int docId, int memberId, DateTime expireDate, String docName, String docType
+@JsonKey(name: 'doc_id') int docId,@JsonKey(name: 'id_customer') int memberId,@JsonKey(name: 'expire_date') DateTime expireDate,@JsonKey(name: 'doc_name') String docName,@JsonKey(name: 'doc_type') String docType
 });
 
 

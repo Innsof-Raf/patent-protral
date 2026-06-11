@@ -11,16 +11,19 @@ part of '../package_model.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$PackageModel {
 
- int get id; String get pkgName; double get pkgPrice; String get pkgImage;
+ int get id;@JsonKey(name: 'pkg_name') String get pkgName;@JsonKey(name: 'pkg_price') double get pkgPrice;@JsonKey(name: 'pkg_img') String get pkgImage;
 /// Create a copy of PackageModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $PackageModelCopyWith<PackageModel> get copyWith => _$PackageModelCopyWithImpl<PackageModel>(this as PackageModel, _$identity);
 
+  /// Serializes this PackageModel to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +31,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is PackageModel&&(identical(other.id, id) || other.id == id)&&(identical(other.pkgName, pkgName) || other.pkgName == pkgName)&&(identical(other.pkgPrice, pkgPrice) || other.pkgPrice == pkgPrice)&&(identical(other.pkgImage, pkgImage) || other.pkgImage == pkgImage));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,id,pkgName,pkgPrice,pkgImage);
 
@@ -45,7 +48,7 @@ abstract mixin class $PackageModelCopyWith<$Res>  {
   factory $PackageModelCopyWith(PackageModel value, $Res Function(PackageModel) _then) = _$PackageModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String pkgName, double pkgPrice, String pkgImage
+ int id,@JsonKey(name: 'pkg_name') String pkgName,@JsonKey(name: 'pkg_price') double pkgPrice,@JsonKey(name: 'pkg_img') String pkgImage
 });
 
 
@@ -150,7 +153,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String pkgName,  double pkgPrice,  String pkgImage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'pkg_name')  String pkgName, @JsonKey(name: 'pkg_price')  double pkgPrice, @JsonKey(name: 'pkg_img')  String pkgImage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PackageModel() when $default != null:
 return $default(_that.id,_that.pkgName,_that.pkgPrice,_that.pkgImage);case _:
@@ -171,7 +174,7 @@ return $default(_that.id,_that.pkgName,_that.pkgPrice,_that.pkgImage);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String pkgName,  double pkgPrice,  String pkgImage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'pkg_name')  String pkgName, @JsonKey(name: 'pkg_price')  double pkgPrice, @JsonKey(name: 'pkg_img')  String pkgImage)  $default,) {final _that = this;
 switch (_that) {
 case _PackageModel():
 return $default(_that.id,_that.pkgName,_that.pkgPrice,_that.pkgImage);}
@@ -188,7 +191,7 @@ return $default(_that.id,_that.pkgName,_that.pkgPrice,_that.pkgImage);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String pkgName,  double pkgPrice,  String pkgImage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id, @JsonKey(name: 'pkg_name')  String pkgName, @JsonKey(name: 'pkg_price')  double pkgPrice, @JsonKey(name: 'pkg_img')  String pkgImage)?  $default,) {final _that = this;
 switch (_that) {
 case _PackageModel() when $default != null:
 return $default(_that.id,_that.pkgName,_that.pkgPrice,_that.pkgImage);case _:
@@ -200,16 +203,16 @@ return $default(_that.id,_that.pkgName,_that.pkgPrice,_that.pkgImage);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _PackageModel extends PackageModel {
-  const _PackageModel({required this.id, required this.pkgName, required this.pkgPrice, required this.pkgImage}): super._();
-  
+  const _PackageModel({required this.id, @JsonKey(name: 'pkg_name') required this.pkgName, @JsonKey(name: 'pkg_price') required this.pkgPrice, @JsonKey(name: 'pkg_img') required this.pkgImage}): super._();
+  factory _PackageModel.fromJson(Map<String, dynamic> json) => _$PackageModelFromJson(json);
 
 @override final  int id;
-@override final  String pkgName;
-@override final  double pkgPrice;
-@override final  String pkgImage;
+@override@JsonKey(name: 'pkg_name') final  String pkgName;
+@override@JsonKey(name: 'pkg_price') final  double pkgPrice;
+@override@JsonKey(name: 'pkg_img') final  String pkgImage;
 
 /// Create a copy of PackageModel
 /// with the given fields replaced by the non-null parameter values.
@@ -217,14 +220,17 @@ class _PackageModel extends PackageModel {
 @pragma('vm:prefer-inline')
 _$PackageModelCopyWith<_PackageModel> get copyWith => __$PackageModelCopyWithImpl<_PackageModel>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$PackageModelToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _PackageModel&&(identical(other.id, id) || other.id == id)&&(identical(other.pkgName, pkgName) || other.pkgName == pkgName)&&(identical(other.pkgPrice, pkgPrice) || other.pkgPrice == pkgPrice)&&(identical(other.pkgImage, pkgImage) || other.pkgImage == pkgImage));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,id,pkgName,pkgPrice,pkgImage);
 
@@ -241,7 +247,7 @@ abstract mixin class _$PackageModelCopyWith<$Res> implements $PackageModelCopyWi
   factory _$PackageModelCopyWith(_PackageModel value, $Res Function(_PackageModel) _then) = __$PackageModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String pkgName, double pkgPrice, String pkgImage
+ int id,@JsonKey(name: 'pkg_name') String pkgName,@JsonKey(name: 'pkg_price') double pkgPrice,@JsonKey(name: 'pkg_img') String pkgImage
 });
 
 

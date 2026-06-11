@@ -17,7 +17,5 @@ abstract class LabRepository {
     required String token,
   });
 
-  Future<Either<Failure, List<Package>>> getPackages({
-    required String token,
-  });
+  Future<Either<Failure, List<Package>>> getPackages({required String token});
 }

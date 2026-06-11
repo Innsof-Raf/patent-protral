@@ -11,16 +11,19 @@ part of '../otp_response_model.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$OtpResponseModel {
 
- bool get showPasswordSection; String get otp;
+@JsonKey(name: 'is_pwdset', defaultValue: false) bool get showPasswordSection;@JsonKey(name: 'Otp', fromJson: _otpFromJson) String get otp;
 /// Create a copy of OtpResponseModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $OtpResponseModelCopyWith<OtpResponseModel> get copyWith => _$OtpResponseModelCopyWithImpl<OtpResponseModel>(this as OtpResponseModel, _$identity);
 
+  /// Serializes this OtpResponseModel to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +31,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is OtpResponseModel&&(identical(other.showPasswordSection, showPasswordSection) || other.showPasswordSection == showPasswordSection)&&(identical(other.otp, otp) || other.otp == otp));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,showPasswordSection,otp);
 
@@ -45,7 +48,7 @@ abstract mixin class $OtpResponseModelCopyWith<$Res>  {
   factory $OtpResponseModelCopyWith(OtpResponseModel value, $Res Function(OtpResponseModel) _then) = _$OtpResponseModelCopyWithImpl;
 @useResult
 $Res call({
- bool showPasswordSection, String otp
+@JsonKey(name: 'is_pwdset', defaultValue: false) bool showPasswordSection,@JsonKey(name: 'Otp', fromJson: _otpFromJson) String otp
 });
 
 
@@ -148,7 +151,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool showPasswordSection,  String otp)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'is_pwdset', defaultValue: false)  bool showPasswordSection, @JsonKey(name: 'Otp', fromJson: _otpFromJson)  String otp)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _OtpResponseModel() when $default != null:
 return $default(_that.showPasswordSection,_that.otp);case _:
@@ -169,7 +172,7 @@ return $default(_that.showPasswordSection,_that.otp);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool showPasswordSection,  String otp)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'is_pwdset', defaultValue: false)  bool showPasswordSection, @JsonKey(name: 'Otp', fromJson: _otpFromJson)  String otp)  $default,) {final _that = this;
 switch (_that) {
 case _OtpResponseModel():
 return $default(_that.showPasswordSection,_that.otp);}
@@ -186,7 +189,7 @@ return $default(_that.showPasswordSection,_that.otp);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool showPasswordSection,  String otp)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'is_pwdset', defaultValue: false)  bool showPasswordSection, @JsonKey(name: 'Otp', fromJson: _otpFromJson)  String otp)?  $default,) {final _that = this;
 switch (_that) {
 case _OtpResponseModel() when $default != null:
 return $default(_that.showPasswordSection,_that.otp);case _:
@@ -198,14 +201,14 @@ return $default(_that.showPasswordSection,_that.otp);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _OtpResponseModel extends OtpResponseModel {
-  const _OtpResponseModel({required this.showPasswordSection, required this.otp}): super._();
-  
+  const _OtpResponseModel({@JsonKey(name: 'is_pwdset', defaultValue: false) required this.showPasswordSection, @JsonKey(name: 'Otp', fromJson: _otpFromJson) required this.otp}): super._();
+  factory _OtpResponseModel.fromJson(Map<String, dynamic> json) => _$OtpResponseModelFromJson(json);
 
-@override final  bool showPasswordSection;
-@override final  String otp;
+@override@JsonKey(name: 'is_pwdset', defaultValue: false) final  bool showPasswordSection;
+@override@JsonKey(name: 'Otp', fromJson: _otpFromJson) final  String otp;
 
 /// Create a copy of OtpResponseModel
 /// with the given fields replaced by the non-null parameter values.
@@ -213,14 +216,17 @@ class _OtpResponseModel extends OtpResponseModel {
 @pragma('vm:prefer-inline')
 _$OtpResponseModelCopyWith<_OtpResponseModel> get copyWith => __$OtpResponseModelCopyWithImpl<_OtpResponseModel>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$OtpResponseModelToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _OtpResponseModel&&(identical(other.showPasswordSection, showPasswordSection) || other.showPasswordSection == showPasswordSection)&&(identical(other.otp, otp) || other.otp == otp));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,showPasswordSection,otp);
 
@@ -237,7 +243,7 @@ abstract mixin class _$OtpResponseModelCopyWith<$Res> implements $OtpResponseMod
   factory _$OtpResponseModelCopyWith(_OtpResponseModel value, $Res Function(_OtpResponseModel) _then) = __$OtpResponseModelCopyWithImpl;
 @override @useResult
 $Res call({
- bool showPasswordSection, String otp
+@JsonKey(name: 'is_pwdset', defaultValue: false) bool showPasswordSection,@JsonKey(name: 'Otp', fromJson: _otpFromJson) String otp
 });
 
 

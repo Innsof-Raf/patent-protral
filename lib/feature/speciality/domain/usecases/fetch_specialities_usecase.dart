@@ -9,9 +9,7 @@ class FetchSpecialitiesUseCase {
 
   FetchSpecialitiesUseCase(this.repository);
 
-  Future<Either<ErrorModel, List<Speciality>>> call(
-    SpecialityParams params,
-  ) {
+  Future<Either<ErrorModel, List<Speciality>>> call(SpecialityParams params) {
     return repository.fetchSpecialities(params);
   }
 }

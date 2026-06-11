@@ -3,6 +3,7 @@ import 'package:patient_portal/feature/book_appointment/data/models/slot_model.d
 import 'package:patient_portal/feature/book_appointment/domain/entities/shift.dart';
 
 part 'generated/shift_model.freezed.dart';
+part 'generated/shift_model.g.dart';
 
 @freezed
 sealed class ShiftModel with _$ShiftModel {
@@ -10,20 +11,12 @@ sealed class ShiftModel with _$ShiftModel {
 
   const factory ShiftModel({
     required List<SlotModel> slots,
-    required String shift,
+    @JsonKey(name: 'shift_detail') required String shift,
   }) = _ShiftModel;
 
-  factory ShiftModel.fromJson(Map<String, dynamic> json) {
-    return ShiftModel(
-      slots: (json['slots'] as List)
-          .map((slot) => SlotModel.fromJson(slot as Map<String, dynamic>))
-          .toList(),
-      shift: json['shift_detail'] as String,
-    );
-  }
+  factory ShiftModel.fromJson(Map<String, dynamic> json) =>
+      _$ShiftModelFromJson(json);
 
-  Shift toEntity() => Shift(
-        slots: slots.map((slot) => slot.toEntity()).toList(),
-        shift: shift,
-      );
+  Shift toEntity() =>
+      Shift(slots: slots.map((slot) => slot.toEntity()).toList(), shift: shift);
 }

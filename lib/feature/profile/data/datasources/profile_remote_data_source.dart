@@ -45,10 +45,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
         "profile_image": p.profileImage != null ? "profile.png" : null,
       };
 
-      final saveRequest = {
-        "CONTENT": jsonEncode(content),
-        "TYPE": "PP0018",
-      };
+      final saveRequest = {"CONTENT": jsonEncode(content), "TYPE": "PP0018"};
 
       FormData formData = FormData.fromMap({
         'saveRequest': jsonEncode(saveRequest),
@@ -68,7 +65,10 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
         );
       }
 
-      final response = await client.post(ConstantUrls.addMember, data: formData);
+      final response = await client.post(
+        ConstantUrls.addMember,
+        data: formData,
+      );
 
       if (response.statusCode == 200) {
         final responseData = response.data;
@@ -115,10 +115,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
         "expire_date": p.expireDate,
         "member_number": p.memberNumber,
       };
-      final Map data = {
-        "CONTENT": jsonEncode(content),
-        "TYPE": "PP0035",
-      };
+      final Map data = {"CONTENT": jsonEncode(content), "TYPE": "PP0035"};
       final response = await client.post(
         ConstantUrls.serviceUrl,
         data: data,

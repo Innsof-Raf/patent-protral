@@ -11,16 +11,19 @@ part of '../document_type_model.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$DocumentTypeModel {
 
- int get idDocument; String get documentType;
+@JsonKey(name: 'id_document') int get idDocument;@JsonKey(name: 'document_name') String get documentType;
 /// Create a copy of DocumentTypeModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $DocumentTypeModelCopyWith<DocumentTypeModel> get copyWith => _$DocumentTypeModelCopyWithImpl<DocumentTypeModel>(this as DocumentTypeModel, _$identity);
 
+  /// Serializes this DocumentTypeModel to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +31,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentTypeModel&&(identical(other.idDocument, idDocument) || other.idDocument == idDocument)&&(identical(other.documentType, documentType) || other.documentType == documentType));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,idDocument,documentType);
 
@@ -45,7 +48,7 @@ abstract mixin class $DocumentTypeModelCopyWith<$Res>  {
   factory $DocumentTypeModelCopyWith(DocumentTypeModel value, $Res Function(DocumentTypeModel) _then) = _$DocumentTypeModelCopyWithImpl;
 @useResult
 $Res call({
- int idDocument, String documentType
+@JsonKey(name: 'id_document') int idDocument,@JsonKey(name: 'document_name') String documentType
 });
 
 
@@ -148,7 +151,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int idDocument,  String documentType)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_document')  int idDocument, @JsonKey(name: 'document_name')  String documentType)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DocumentTypeModel() when $default != null:
 return $default(_that.idDocument,_that.documentType);case _:
@@ -169,7 +172,7 @@ return $default(_that.idDocument,_that.documentType);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int idDocument,  String documentType)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_document')  int idDocument, @JsonKey(name: 'document_name')  String documentType)  $default,) {final _that = this;
 switch (_that) {
 case _DocumentTypeModel():
 return $default(_that.idDocument,_that.documentType);}
@@ -186,7 +189,7 @@ return $default(_that.idDocument,_that.documentType);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int idDocument,  String documentType)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id_document')  int idDocument, @JsonKey(name: 'document_name')  String documentType)?  $default,) {final _that = this;
 switch (_that) {
 case _DocumentTypeModel() when $default != null:
 return $default(_that.idDocument,_that.documentType);case _:
@@ -198,14 +201,14 @@ return $default(_that.idDocument,_that.documentType);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _DocumentTypeModel extends DocumentTypeModel {
-  const _DocumentTypeModel({required this.idDocument, required this.documentType}): super._();
-  
+  const _DocumentTypeModel({@JsonKey(name: 'id_document') required this.idDocument, @JsonKey(name: 'document_name') required this.documentType}): super._();
+  factory _DocumentTypeModel.fromJson(Map<String, dynamic> json) => _$DocumentTypeModelFromJson(json);
 
-@override final  int idDocument;
-@override final  String documentType;
+@override@JsonKey(name: 'id_document') final  int idDocument;
+@override@JsonKey(name: 'document_name') final  String documentType;
 
 /// Create a copy of DocumentTypeModel
 /// with the given fields replaced by the non-null parameter values.
@@ -213,14 +216,17 @@ class _DocumentTypeModel extends DocumentTypeModel {
 @pragma('vm:prefer-inline')
 _$DocumentTypeModelCopyWith<_DocumentTypeModel> get copyWith => __$DocumentTypeModelCopyWithImpl<_DocumentTypeModel>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$DocumentTypeModelToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentTypeModel&&(identical(other.idDocument, idDocument) || other.idDocument == idDocument)&&(identical(other.documentType, documentType) || other.documentType == documentType));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,idDocument,documentType);
 
@@ -237,7 +243,7 @@ abstract mixin class _$DocumentTypeModelCopyWith<$Res> implements $DocumentTypeM
   factory _$DocumentTypeModelCopyWith(_DocumentTypeModel value, $Res Function(_DocumentTypeModel) _then) = __$DocumentTypeModelCopyWithImpl;
 @override @useResult
 $Res call({
- int idDocument, String documentType
+@JsonKey(name: 'id_document') int idDocument,@JsonKey(name: 'document_name') String documentType
 });
 
 

@@ -15,9 +15,7 @@ class LabRepositoryImpl implements LabRepository {
   LabRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<Failure, List<Item>>> getItems({
-    required String token,
-  }) async {
+  Future<Either<Failure, List<Item>>> getItems({required String token}) async {
     try {
       final items = await remoteDataSource.getItems(token: token);
       return Right(items.map((item) => item.toEntity()).toList());

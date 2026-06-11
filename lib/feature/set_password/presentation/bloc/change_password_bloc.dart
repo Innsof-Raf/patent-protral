@@ -24,8 +24,8 @@ class ChangePasswordBloc
           isPasswordChangingSucces: false,
         ),
       );
-      final Either<ErrorModel, ChangePasswordResponse>
-      changePasswordOptions = await changePasswordUseCase(event.params);
+      final Either<ErrorModel, ChangePasswordResponse> changePasswordOptions =
+          await changePasswordUseCase(event.params);
       changePasswordOptions.fold(
         (error) => emit(
           state.copyWith(
