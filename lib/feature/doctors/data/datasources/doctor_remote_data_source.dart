@@ -35,14 +35,9 @@ class DoctorRemoteDataSourceImpl implements DoctorRemoteDataSource {
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       final List<dynamic> responseData = decodeResponseData(response.data);
-      List<DoctorModel> doctorsList = [];
-      for (final raw in responseData) {
-        final doctor = raw as Map<String, dynamic>;
-        if (intFromJson(doctor['id_dept']) == specialityId) {
-          doctorsList.add(DoctorModel.fromJson(doctor));
-        }
-      }
-      return doctorsList;
+      return responseData
+          .map((raw) => DoctorModel.fromJson(raw as Map<String, dynamic>))
+          .toList();
     } else {
       throw Exception('Server Failure');
     }

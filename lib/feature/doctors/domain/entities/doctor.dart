@@ -7,6 +7,7 @@ sealed class Doctor with _$Doctor {
   const factory Doctor({
     required String doctorId,
     required int idDoctor,
+    required int idDept,
     required int idBusUnit,
     required String busUnitName,
     required String doctorName,

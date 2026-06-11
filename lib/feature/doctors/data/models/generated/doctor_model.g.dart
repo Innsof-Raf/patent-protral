@@ -9,6 +9,7 @@ part of '../doctor_model.dart';
 _DoctorModel _$DoctorModelFromJson(Map<String, dynamic> json) => _DoctorModel(
   doctorId: stringFromJson(json['employee_id']),
   idDoctor: intFromJson(json['id_employee']),
+  idDept: json['id_dept'] == null ? 0 : intFromJson(json['id_dept']),
   idBusUnit: intFromJson(json['id_busunit']),
   busUnitName: stringFromJson(json['busunit_name']),
   doctorName: stringFromJson(json['employee_name']),
@@ -28,6 +29,7 @@ Map<String, dynamic> _$DoctorModelToJson(_DoctorModel instance) =>
     <String, dynamic>{
       'employee_id': instance.doctorId,
       'id_employee': instance.idDoctor,
+      'id_dept': instance.idDept,
       'id_busunit': instance.idBusUnit,
       'busunit_name': instance.busUnitName,
       'employee_name': instance.doctorName,

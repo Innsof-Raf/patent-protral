@@ -15,6 +15,7 @@ sealed class DoctorModel with _$DoctorModel {
     @JsonKey(name: 'employee_id', fromJson: stringFromJson)
     required String doctorId,
     @JsonKey(name: 'id_employee', fromJson: intFromJson) required int idDoctor,
+    @Default(0) @JsonKey(name: 'id_dept', fromJson: intFromJson) int idDept,
     @JsonKey(name: 'id_busunit', fromJson: intFromJson) required int idBusUnit,
     @JsonKey(name: 'busunit_name', fromJson: stringFromJson)
     required String busUnitName,
@@ -50,6 +51,7 @@ sealed class DoctorModel with _$DoctorModel {
     return Doctor(
       doctorId: doctorId,
       idDoctor: idDoctor,
+      idDept: idDept,
       idBusUnit: idBusUnit,
       busUnitName: busUnitName,
       doctorName: doctorName,
