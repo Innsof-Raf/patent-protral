@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer' as dev;
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
@@ -82,7 +85,6 @@ import 'package:patient_portal/feature/speciality/domain/repositories/speciality
 import 'package:patient_portal/feature/speciality/domain/usecases/fetch_specialities_usecase.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/search_specialities_usecase.dart';
 import 'package:patient_portal/feature/speciality/presentation/bloc/speciality_bloc/speciality_bloc.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 final sl = GetIt.instance;
 
@@ -362,40 +364,173 @@ Future<void> init() async {
 
   //! External
   sl.registerLazySingleton<Dio>(
-    () =>
-        Dio(
-            BaseOptions(
-              connectTimeout: const Duration(seconds: 20),
-              receiveTimeout: const Duration(seconds: 20),
-            ),
-          )
-          ..interceptors.add(
-            InterceptorsWrapper(
-              onResponse: (response, handler) {
-                if (kDebugMode) {
-                  print("Dio Response Status: ${response.statusCode}");
-                }
-                return handler.next(response);
-              },
-              onError: (DioException e, handler) {
-                if (kDebugMode) {
-                  print("Dio Error Status: ${e.response?.statusCode}");
-                }
-                return handler.next(e);
-              },
-            ),
-          )
-          ..interceptors.add(
-            PrettyDioLogger(
-              requestHeader: true,
-              requestBody: true,
-              responseBody: true,
-              responseHeader: true,
-              error: true,
-              compact: true,
-              request: true,
-              maxWidth: 90,
-            ),
-          ),
+    () => Dio(
+      BaseOptions(
+        connectTimeout: const Duration(seconds: 20),
+        receiveTimeout: const Duration(seconds: 20),
+      ),
+    )..interceptors.add(_CustomLogger()),
   );
+}
+
+class _CustomLogger extends Interceptor {
+  static const String _topBorder =
+      '============================== API LOG ==============================';
+  static const String _midBorder =
+      '---------------------------------------------------------------------';
+  static const String _botBorder =
+      '=====================================================================';
+
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    if (kDebugMode) {
+      final buffer = StringBuffer()
+        ..writeln(_topBorder)
+        ..writeln('REQUEST: [${options.method}]')
+        ..writeln('URL: ${options.uri}');
+
+      if (options.headers.isNotEmpty) {
+        buffer
+          ..writeln(_midBorder)
+          ..writeln('HEADERS:')
+          ..writeln(
+            const JsonEncoder.withIndent('  ').convert(options.headers),
+          );
+      }
+
+      final bodyText = _formatBody(options.data);
+      if (bodyText.isNotEmpty) {
+        buffer
+          ..writeln(_midBorder)
+          ..writeln('BODY:')
+          ..writeln(bodyText);
+      }
+
+      options.extra['request_log'] = buffer.toString();
+      options.extra['request_start_time'] = DateTime.now();
+    }
+    handler.next(options);
+  }
+
+  @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    if (kDebugMode) {
+      final buffer = StringBuffer();
+      final requestLog =
+          response.requestOptions.extra['request_log'] as String?;
+
+      if (requestLog != null) {
+        buffer.write(requestLog);
+      } else {
+        buffer
+          ..writeln(_topBorder)
+          ..writeln('RESPONSE (No Request Log Found)');
+      }
+
+      buffer
+        ..writeln(_midBorder)
+        ..writeln('RESPONSE: [${response.statusCode}]')
+        ..writeln('PATH: ${response.requestOptions.path}');
+
+      final startTime =
+          response.requestOptions.extra['request_start_time'] as DateTime?;
+      if (startTime != null) {
+        final duration = DateTime.now().difference(startTime);
+        buffer.writeln('DURATION: ${duration.inMilliseconds}ms');
+      }
+
+      final status = response.statusCode;
+      final shouldSkipBody = status == 204 || status == 205;
+
+      if (!shouldSkipBody) {
+        final bodyText = _formatBody(response.data);
+        buffer
+          ..writeln(_midBorder)
+          ..writeln('BODY:')
+          ..writeln(bodyText.isEmpty ? 'EMPTY' : bodyText);
+      }
+
+      buffer.writeln(_botBorder);
+      dev.log(buffer.toString(), name: 'API');
+    }
+    handler.next(response);
+  }
+
+  @override
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    if (kDebugMode) {
+      final buffer = StringBuffer();
+      final requestLog = err.requestOptions.extra['request_log'] as String?;
+
+      if (requestLog != null) {
+        buffer.write(requestLog);
+      } else {
+        buffer
+          ..writeln(_topBorder)
+          ..writeln('ERROR (No Request Log Found)');
+      }
+
+      buffer
+        ..writeln(_midBorder)
+        ..writeln('ERROR: [${err.response?.statusCode ?? "CONNECTION"}]')
+        ..writeln('URI: ${err.requestOptions.uri}')
+        ..writeln('MESSAGE: ${err.message}');
+
+      final startTime =
+          err.requestOptions.extra['request_start_time'] as DateTime?;
+      if (startTime != null) {
+        final duration = DateTime.now().difference(startTime);
+        buffer.writeln('DURATION: ${duration.inMilliseconds}ms');
+      }
+
+      final bodyText = _formatBody(err.response?.data);
+      buffer
+        ..writeln(_midBorder)
+        ..writeln('ERROR BODY:')
+        ..writeln(bodyText.isEmpty ? 'EMPTY' : bodyText)
+        ..writeln(_botBorder);
+
+      dev.log(buffer.toString(), name: 'API');
+    }
+    handler.next(err);
+  }
+
+  String _formatBody(dynamic data) {
+    if (data == null) return '';
+
+    if (data is FormData) {
+      final fields = data.fields
+          .map((e) => {'key': e.key, 'value': e.value})
+          .toList(growable: false);
+      final files = data.files
+          .map(
+            (e) => {
+              'key': e.key,
+              'filename': e.value.filename,
+              'contentType': e.value.contentType?.toString(),
+            },
+          )
+          .toList(growable: false);
+
+      return const JsonEncoder.withIndent('  ').convert({
+        'type': 'FormData',
+        'fieldsCount': fields.length,
+        'filesCount': files.length,
+        if (fields.isNotEmpty) 'fields': fields,
+        if (files.isNotEmpty) 'files': files,
+      });
+    }
+
+    if (data is String && data.trim().isEmpty) return '';
+
+    try {
+      final jsonObject = data is String ? jsonDecode(data) : data;
+      if (jsonObject == null) return '';
+      return const JsonEncoder.withIndent('  ').convert(jsonObject);
+    } catch (_) {
+      final asString = data.toString();
+      if (asString == 'null' || asString.trim().isEmpty) return '';
+      return asString;
+    }
+  }
 }
