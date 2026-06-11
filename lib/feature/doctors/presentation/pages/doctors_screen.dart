@@ -1,28 +1,46 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
-import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc/doctor_bloc.dart';
-import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc/search_doctor_bloc.dart';
-import 'package:patient_portal/feature/doctors/presentation/widgets/doctor_tile.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
+import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
+import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc/doctor_bloc.dart';
+import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc/search_doctor_bloc.dart';
+import 'package:patient_portal/feature/doctors/presentation/widgets/doctor_tile.dart';
 
-class DoctorsScreen extends StatelessWidget {
+class DoctorsScreen extends StatefulWidget {
   final int idSpecilaity;
 
   const DoctorsScreen({super.key, required this.idSpecilaity});
 
   @override
+  State<DoctorsScreen> createState() => _DoctorsScreenState();
+}
+
+class _DoctorsScreenState extends State<DoctorsScreen> {
+  final TextEditingController searchController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    log('idSpecilaity: ${widget.idSpecilaity}', name: 'DoctorsScreen');
+    context.read<DoctorBloc>().add(
+      GetAvailableDoctorsByDepartment(idspeciality: widget.idSpecilaity),
+    );
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<DoctorBloc>().add(
-        GetAvailableDoctorsByDepartment(idspeciality: idSpecilaity),
-      );
-    });
-    TextEditingController searchController = TextEditingController();
-    final formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: const CommonAppbar(title: 'Doctors'),
       body: Container(

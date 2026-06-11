@@ -31,18 +31,26 @@ List<PreferredSizeWidget?> appBars = const [
   ProfileAppBar(),
 ];
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final User user = context.read<UserBloc>().state.user!;
-      context.read<HomeBloc>().add(
-        GetHomeData(token: user.accessToken, idBusunit: 3),
-      );
-    });
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  @override
+  void initState() {
+    super.initState();
+    final User user = context.read<UserBloc>().state.user!;
+    context.read<HomeBloc>().add(
+      GetHomeData(token: user.accessToken, idBusunit: 3),
+    );
     MainScreenHelpers.mainScreenNotifier.value = 0;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: MainScreenHelpers.mainScreenNotifier,
       builder: (context, value, child) => Scaffold(

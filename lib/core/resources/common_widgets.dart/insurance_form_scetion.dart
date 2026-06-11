@@ -11,7 +11,7 @@ import '../app_colors.dart';
 import '../app_text_styles.dart';
 import '../common_helpers/inurance_validation_helpers.dart';
 
-class InsuranceFormSection extends StatelessWidget {
+class InsuranceFormSection extends StatefulWidget {
   final int? idInsurance;
   final String? insuranceName;
   final String? memberNumber;
@@ -33,28 +33,33 @@ class InsuranceFormSection extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    if (idInsurance != null) {
-      InsuranceHelpers.selectedInsuranceNotifer.value = idInsurance;
-      expireDate = memberInsuranvceExpireDate;
-      memberNumberController.text = memberNumber!;
-      expireDateController.text = DateFormat(
+  State<InsuranceFormSection> createState() => _InsuranceFormSectionState();
+}
+
+class _InsuranceFormSectionState extends State<InsuranceFormSection> {
+  @override
+  void initState() {
+    super.initState();
+    if (widget.idInsurance != null) {
+      InsuranceHelpers.selectedInsuranceNotifer.value = widget.idInsurance;
+      InsuranceFormSection.expireDate = widget.memberInsuranvceExpireDate;
+      InsuranceFormSection.memberNumberController.text = widget.memberNumber!;
+      InsuranceFormSection.expireDateController.text = DateFormat(
         'dd-MM-yyyy',
-      ).format(memberInsuranvceExpireDate!);
+      ).format(widget.memberInsuranvceExpireDate!);
     } else {
-      expireDateController.text = '';
-      memberNumberController.text = '';
-      expireDate = null;
+      InsuranceFormSection.expireDateController.text = '';
+      InsuranceFormSection.memberNumberController.text = '';
+      InsuranceFormSection.expireDate = null;
       InsuranceHelpers.selectedInsuranceNotifer.value = null;
     }
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<AddMemberBloc>().add(
-        FetchInsurances(
-          token: context.read<UserBloc>().state.user!.accessToken,
-        ),
-      );
-    });
+    context.read<AddMemberBloc>().add(
+      FetchInsurances(token: context.read<UserBloc>().state.user!.accessToken),
+    );
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return BlocConsumer<AddMemberBloc, AddMemberState>(
       listener: (context, state) {
         if (state.isInsuranceFetchingFailed &&
@@ -86,7 +91,7 @@ class InsuranceFormSection extends StatelessWidget {
                 ],
               )
             : Form(
-                key: insuranceFormKey,
+                key: InsuranceFormSection.insuranceFormKey,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -94,7 +99,7 @@ class InsuranceFormSection extends StatelessWidget {
                     DropdownButtonFormField(
                       focusColor: AppColors.white,
                       isExpanded: true,
-                      initialValue: idInsurance,
+                      initialValue: widget.idInsurance,
                       items: state.insurances
                           .map(
                             (insurance) => InsuranceHelpers.createDropDownItem(
@@ -115,20 +120,23 @@ class InsuranceFormSection extends StatelessWidget {
                       valueListenable:
                           InsuranceHelpers.selectedInsuranceNotifer,
                       builder: (context, value, child) {
-                        if (insuranceName != null) {
-                          insuranceNameController.text = insuranceName!;
+                        if (widget.insuranceName != null) {
+                          InsuranceFormSection.insuranceNameController.text =
+                              widget.insuranceName!;
                         } else {
-                          insuranceNameController.text = '';
+                          InsuranceFormSection.insuranceNameController.text =
+                              '';
                         }
                         return value == 0
                             ? Form(
-                                key: insuranceNameFormKey,
+                                key: InsuranceFormSection.insuranceNameFormKey,
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     const SizedBox(height: 10),
                                     TextFormField(
-                                      controller: insuranceNameController,
+                                      controller: InsuranceFormSection
+                                          .insuranceNameController,
                                       keyboardType: TextInputType.name,
                                       textInputAction: TextInputAction.next,
                                       inputFormatters: [
@@ -162,7 +170,7 @@ class InsuranceFormSection extends StatelessWidget {
                           InsuranceValidationHelpers.validateMemberNumber(
                             value: value,
                           ),
-                      controller: memberNumberController,
+                      controller: InsuranceFormSection.memberNumberController,
                       keyboardType: TextInputType.name,
                       textInputAction: TextInputAction.next,
                       inputFormatters: [
@@ -188,20 +196,21 @@ class InsuranceFormSection extends StatelessWidget {
                         labelText: 'Expire date',
                       ),
                       style: AppTextStyles.textFormFieldStyle,
-                      controller: expireDateController,
+                      controller: InsuranceFormSection.expireDateController,
                       onTap: () async {
                         DateTime? selectedDate =
                             await InsuranceHelpers.getExpireDate(
                               initialDate:
-                                  expireDate ??
+                                  InsuranceFormSection.expireDate ??
                                   DateTime.now().add(const Duration(days: 1)),
                               context: context,
                             );
                         if (selectedDate != null) {
-                          expireDate = selectedDate;
-                          expireDateController.text = DateFormat(
-                            'dd-MM-yyyy',
-                          ).format(expireDate!);
+                          InsuranceFormSection.expireDate = selectedDate;
+                          InsuranceFormSection.expireDateController.text =
+                              DateFormat(
+                                'dd-MM-yyyy',
+                              ).format(InsuranceFormSection.expireDate!);
                         }
                       },
                     ),

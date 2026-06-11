@@ -7,23 +7,31 @@ import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.da
 import 'package:patient_portal/feature/reports/presentation/widgets/report_tile.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 
-class ReportsScreen extends StatelessWidget {
+class ReportsScreen extends StatefulWidget {
   const ReportsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final User user = context.read<UserBloc>().state.user!;
-      context.read<ReportsBloc>().add(
-        GetReports(
-          params: ReportsParams.getReports(
-            memberId: 0,
-            token: user.accessToken,
-            mobileNumber: user.mobileNumber,
-          ),
+  State<ReportsScreen> createState() => _ReportsScreenState();
+}
+
+class _ReportsScreenState extends State<ReportsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    final User user = context.read<UserBloc>().state.user!;
+    context.read<ReportsBloc>().add(
+      GetReports(
+        params: ReportsParams.getReports(
+          memberId: 0,
+          token: user.accessToken,
+          mobileNumber: user.mobileNumber,
         ),
-      );
-    });
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),

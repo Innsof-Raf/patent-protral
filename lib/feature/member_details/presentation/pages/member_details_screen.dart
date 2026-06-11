@@ -13,21 +13,28 @@ import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/route/route_constants.dart';
 
-class MemberDetailsScreen extends StatelessWidget {
+class MemberDetailsScreen extends StatefulWidget {
   final int memberId;
 
   const MemberDetailsScreen({super.key, required this.memberId});
 
   @override
-  Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<UserBloc>().add(
-        GetMemberDetail(
-          params: ProfileParams.getMemberDetail(memberId: memberId),
-        ),
-      );
-    });
+  State<MemberDetailsScreen> createState() => _MemberDetailsScreenState();
+}
 
+class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<UserBloc>().add(
+      GetMemberDetail(
+        params: ProfileParams.getMemberDetail(memberId: widget.memberId),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: const MemberDetailsScreenAppbar(),
       body: BlocBuilder<UserBloc, UserState>(
@@ -50,7 +57,7 @@ class MemberDetailsScreen extends StatelessWidget {
             );
           } else {
             final Member member = state.user!.members.singleWhere(
-              (element) => element.id == memberId,
+              (element) => element.id == widget.memberId,
             );
 
             return Container(
@@ -59,7 +66,7 @@ class MemberDetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 55),
                 children: [
                   MemberProfileImageSection(
-                    memberId: memberId,
+                    memberId: widget.memberId,
                     image: member.profileImage,
                     title: member.name,
                   ),
@@ -120,7 +127,7 @@ class MemberDetailsScreen extends StatelessWidget {
                     .state
                     .user!
                     .members
-                    .singleWhere((member) => member.id == memberId),
+                    .singleWhere((member) => member.id == widget.memberId),
               },
             );
           },

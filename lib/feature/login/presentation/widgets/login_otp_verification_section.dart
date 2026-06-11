@@ -12,15 +12,32 @@ import 'package:patient_portal/feature/profile/domain/usecases/params/profile_pa
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:pinput/pinput.dart';
 
-class LoginOtpVerificationSection extends StatelessWidget {
+class LoginOtpVerificationSection extends StatefulWidget {
   const LoginOtpVerificationSection({super.key});
 
   @override
+  State<LoginOtpVerificationSection> createState() =>
+      _LoginOtpVerificationSectionState();
+}
+
+class _LoginOtpVerificationSectionState
+    extends State<LoginOtpVerificationSection> {
+  final TextEditingController otpController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    LoginScreenHelpers.addTimer();
+  }
+
+  @override
+  void dispose() {
+    otpController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      LoginScreenHelpers.addTimer();
-    });
-    TextEditingController otpController = TextEditingController();
     return Container(
       color: AppColors.white,
       child: Column(

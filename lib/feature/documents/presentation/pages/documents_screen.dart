@@ -9,20 +9,28 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/route/route_constants.dart';
 
-class DocumentsScreen extends StatelessWidget {
+class DocumentsScreen extends StatefulWidget {
   const DocumentsScreen({super.key});
 
   @override
+  State<DocumentsScreen> createState() => _DocumentsScreenState();
+}
+
+class _DocumentsScreenState extends State<DocumentsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<DocumentsBloc>().add(
+      GetDocuments(
+        memberId: 0,
+        mobileNumber: context.read<UserBloc>().state.user!.mobileNumber,
+        token: context.read<UserBloc>().state.user!.accessToken,
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<DocumentsBloc>().add(
-        GetDocuments(
-          memberId: 0,
-          mobileNumber: context.read<UserBloc>().state.user!.mobileNumber,
-          token: context.read<UserBloc>().state.user!.accessToken,
-        ),
-      );
-    });
     return Scaffold(
       appBar: const DocumentsScreenAppBar(),
       body: BlocBuilder<DocumentsBloc, DocumentsState>(

@@ -12,7 +12,7 @@ import '../widgets/book_appointment_appbar.dart';
 import '../widgets/book_appointment_bottom_navigation_bar.dart';
 import '../widgets/member_selection_section.dart';
 
-class BookAppointmentScreen extends StatelessWidget {
+class BookAppointmentScreen extends StatefulWidget {
   final int appointmentId;
   final String doctorImage;
   final String doctorName;
@@ -26,17 +26,24 @@ class BookAppointmentScreen extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<BookAppointmentBloc>().add(
-        GetAvailableSlots(
-          idDoctor: idDoctor,
-          date: BookAppointmentScreenHelpers.selectedDateNotifier.value,
-          token: context.read<UserBloc>().state.user!.accessToken,
-        ),
-      );
-    });
+  State<BookAppointmentScreen> createState() => _BookAppointmentScreenState();
+}
 
+class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<BookAppointmentBloc>().add(
+      GetAvailableSlots(
+        idDoctor: widget.idDoctor,
+        date: BookAppointmentScreenHelpers.selectedDateNotifier.value,
+        token: context.read<UserBloc>().state.user!.accessToken,
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: const BookAppointmentAppbar(),
       body: DefaultTabController(
@@ -55,7 +62,7 @@ class BookAppointmentScreen extends StatelessWidget {
                       BookAppointmentScreenHelpers.dateList[value];
                   context.read<BookAppointmentBloc>().add(
                     GetAvailableSlots(
-                      idDoctor: idDoctor,
+                      idDoctor: widget.idDoctor,
                       date: BookAppointmentScreenHelpers.dateList[value],
                       token: context.read<UserBloc>().state.user!.accessToken,
                     ),
@@ -116,7 +123,7 @@ class BookAppointmentScreen extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   const SizedBox(height: 15),
-                                  appointmentId == 0
+                                  widget.appointmentId == 0
                                       ? const MemberSelectionSection()
                                       : const SizedBox(),
                                 ],
@@ -134,10 +141,10 @@ class BookAppointmentScreen extends StatelessWidget {
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: BookAppointmentBottomNavigationBar(
-          appointmentId: appointmentId,
-          doctorImage: doctorImage,
-          doctorName: doctorName,
-          idDoctor: idDoctor,
+          appointmentId: widget.appointmentId,
+          doctorImage: widget.doctorImage,
+          doctorName: widget.doctorName,
+          idDoctor: widget.idDoctor,
         ),
       ),
     );

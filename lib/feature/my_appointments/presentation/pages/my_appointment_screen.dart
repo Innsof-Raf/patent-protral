@@ -10,22 +10,30 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/succes_dailog.dart';
 
-class MyAppointmentScreen extends StatelessWidget {
+class MyAppointmentScreen extends StatefulWidget {
   const MyAppointmentScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  State<MyAppointmentScreen> createState() => _MyAppointmentScreenState();
+}
+
+class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
+  @override
+  void initState() {
+    super.initState();
     MyAppointmentScreenHelpers.selectedTabNotifier.value = 0;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<MyAppointmentsBloc>().add(
-        GetMyAppointments(
-          params: MyAppointmentsParams.getMyAppointments(
-            token: context.read<UserBloc>().state.user!.accessToken,
-            mobileNumber: context.read<UserBloc>().state.user!.mobileNumber,
-          ),
+    context.read<MyAppointmentsBloc>().add(
+      GetMyAppointments(
+        params: MyAppointmentsParams.getMyAppointments(
+          token: context.read<UserBloc>().state.user!.accessToken,
+          mobileNumber: context.read<UserBloc>().state.user!.mobileNumber,
         ),
-      );
-    });
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: DefaultTabController(
         length: 3,

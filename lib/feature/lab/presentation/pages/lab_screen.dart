@@ -10,16 +10,24 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/route/route_constants.dart';
 
-class LabScreen extends StatelessWidget {
+class LabScreen extends StatefulWidget {
   const LabScreen({super.key});
 
   @override
+  State<LabScreen> createState() => _LabScreenState();
+}
+
+class _LabScreenState extends State<LabScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ItemsBloc>().add(
+      GetItems(token: context.read<UserBloc>().state.user!.accessToken),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<ItemsBloc>().add(
-        GetItems(token: context.read<UserBloc>().state.user!.accessToken),
-      );
-    });
     return Scaffold(
       appBar: const LabScreenAppbar(),
       body: DefaultTabController(

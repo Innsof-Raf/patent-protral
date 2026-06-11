@@ -10,7 +10,7 @@ import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/inurance_validation_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/rounded_cheack_box.dart';
 
-class EditMemberInsuranceSection extends StatelessWidget {
+class EditMemberInsuranceSection extends StatefulWidget {
   static DateTime? expireDate;
 
   static GlobalKey<FormState> insuranceFormKey = GlobalKey<FormState>();
@@ -23,19 +23,26 @@ class EditMemberInsuranceSection extends StatelessWidget {
   const EditMemberInsuranceSection({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<AddMemberBloc>().add(
-        FetchInsurances(
-          token: context.read<UserBloc>().state.user!.accessToken,
-        ),
-      );
-    });
-    expireDate = null;
+  State<EditMemberInsuranceSection> createState() =>
+      _EditMemberInsuranceSectionState();
+}
 
-    memberNumberController.text = '';
-    expireDateController.text = '';
+class _EditMemberInsuranceSectionState
+    extends State<EditMemberInsuranceSection> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<AddMemberBloc>().add(
+      FetchInsurances(token: context.read<UserBloc>().state.user!.accessToken),
+    );
+    EditMemberInsuranceSection.expireDate = null;
+    EditMemberInsuranceSection.memberNumberController.text = '';
+    EditMemberInsuranceSection.expireDateController.text = '';
     EditMemberInuranceHelpers.selectedInsuranceNotifer.value = null;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -46,7 +53,7 @@ class EditMemberInsuranceSection extends StatelessWidget {
           title: 'I have insurance',
         ),
         Form(
-          key: insuranceFormKey,
+          key: EditMemberInsuranceSection.insuranceFormKey,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -69,16 +76,17 @@ class EditMemberInsuranceSection extends StatelessWidget {
                 valueListenable:
                     EditMemberInuranceHelpers.selectedInsuranceNotifer,
                 builder: (context, value, child) {
-                  insuranceNameController.text = '';
+                  EditMemberInsuranceSection.insuranceNameController.text = '';
                   return value == 0
                       ? Form(
-                          key: insuranceNameFormKey,
+                          key: EditMemberInsuranceSection.insuranceNameFormKey,
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               const SizedBox(height: 10),
                               TextFormField(
-                                controller: insuranceNameController,
+                                controller: EditMemberInsuranceSection
+                                    .insuranceNameController,
                                 keyboardType: TextInputType.name,
                                 textInputAction: TextInputAction.next,
                                 inputFormatters: [
@@ -111,7 +119,7 @@ class EditMemberInsuranceSection extends StatelessWidget {
                     InsuranceValidationHelpers.validateMemberNumber(
                       value: value,
                     ),
-                controller: memberNumberController,
+                controller: EditMemberInsuranceSection.memberNumberController,
                 keyboardType: TextInputType.name,
                 textInputAction: TextInputAction.next,
                 inputFormatters: [
@@ -131,20 +139,21 @@ class EditMemberInsuranceSection extends StatelessWidget {
                     ),
                 decoration: const InputDecoration(labelText: 'Expire date'),
                 style: AppTextStyles.textFormFieldStyle,
-                controller: expireDateController,
+                controller: EditMemberInsuranceSection.expireDateController,
                 onTap: () async {
                   DateTime? selectedDate =
                       await EditMemberInuranceHelpers.getExpireDate(
                         initialDate:
-                            expireDate ??
+                            EditMemberInsuranceSection.expireDate ??
                             DateTime.now().add(const Duration(days: 1)),
                         context: context,
                       );
                   if (selectedDate != null) {
-                    expireDate = selectedDate;
-                    expireDateController.text = DateFormat(
-                      'dd-MM-yyyy',
-                    ).format(expireDate!);
+                    EditMemberInsuranceSection.expireDate = selectedDate;
+                    EditMemberInsuranceSection.expireDateController.text =
+                        DateFormat(
+                          'dd-MM-yyyy',
+                        ).format(EditMemberInsuranceSection.expireDate!);
                   }
                 },
               ),

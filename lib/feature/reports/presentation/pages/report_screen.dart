@@ -7,7 +7,7 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-class ReportScreen extends StatelessWidget {
+class ReportScreen extends StatefulWidget {
   static PdfViewerController pdfController = PdfViewerController();
   final String doctorName;
 
@@ -21,18 +21,26 @@ class ReportScreen extends StatelessWidget {
   });
 
   @override
+  State<ReportScreen> createState() => _ReportScreenState();
+}
+
+class _ReportScreenState extends State<ReportScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ReportsBloc>().add(
+      StroeRport(params: ReportsParams.downloadReport(url: widget.pdfUrl)),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<ReportsBloc>().add(
-        StroeRport(params: ReportsParams.downloadReport(url: pdfUrl)),
-      );
-    });
     return Scaffold(
       backgroundColor: AppColors.lightGray,
       appBar: ReportAppBar(
-        doctorName: doctorName,
-        consultaionDateTime: consultedDateTime,
-        documentUrl: pdfUrl,
+        doctorName: widget.doctorName,
+        consultaionDateTime: widget.consultedDateTime,
+        documentUrl: widget.pdfUrl,
       ),
       body: BlocBuilder<ReportsBloc, ReportsState>(
         builder: (context, state) {
@@ -57,7 +65,7 @@ class ReportScreen extends StatelessWidget {
               : SfPdfViewer.memory(
                   state.report!.bytes,
                   pageSpacing: 10,
-                  controller: pdfController,
+                  controller: ReportScreen.pdfController,
                   canShowScrollHead: false,
                 );
         },
