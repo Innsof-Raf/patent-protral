@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
-import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment_model.dart';
+import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
@@ -19,7 +19,7 @@ import 'cancel_booking_popup.dart';
 
 class MyAppointmentTile extends StatelessWidget {
   final bool isCounselted;
-  final MyAppointmentModel appointment;
+  final MyAppointment appointment;
 
   const MyAppointmentTile({
     super.key,

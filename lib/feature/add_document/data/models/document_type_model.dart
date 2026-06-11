@@ -1,13 +1,16 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/add_document/domain/entities/document_type.dart';
 
-class DocumentTypeModel {
-  final int idDocument;
-  final String documentType;
+part 'generated/document_type_model.freezed.dart';
 
-  const DocumentTypeModel({
-    required this.idDocument,
-    required this.documentType,
-  });
+@freezed
+sealed class DocumentTypeModel with _$DocumentTypeModel {
+  const DocumentTypeModel._();
+
+  const factory DocumentTypeModel({
+    required int idDocument,
+    required String documentType,
+  }) = _DocumentTypeModel;
 
   factory DocumentTypeModel.fromJson(Map<String, dynamic> json) {
     return DocumentTypeModel(
@@ -16,10 +19,8 @@ class DocumentTypeModel {
     );
   }
 
-  DocumentType toEntity() {
-    return DocumentType(
-      idDocument: idDocument,
-      documentType: documentType,
-    );
-  }
+  DocumentType toEntity() => DocumentType(
+        idDocument: idDocument,
+        documentType: documentType,
+      );
 }

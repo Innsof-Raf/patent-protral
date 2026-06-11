@@ -303,7 +303,7 @@ $Res call({
 });
 
 
-
+$ErrorModelCopyWith<$Res> get error;
 
 }
 /// @nodoc
@@ -325,7 +325,16 @@ as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_n
 as ErrorModel,
   ));
 }
-
+/// Create a copy of MemberDetailState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
+  });
+}
 }
 
 
@@ -499,7 +508,7 @@ $Res call({
 });
 
 
-
+@override $ErrorModelCopyWith<$Res> get error;
 
 }
 /// @nodoc
@@ -522,7 +531,16 @@ as ErrorModel,
   ));
 }
 
-
+/// Create a copy of MemberDetailState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
+  });
+}
 }
 
 // dart format on

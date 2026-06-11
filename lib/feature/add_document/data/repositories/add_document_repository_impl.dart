@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:patient_portal/core/error/failures.dart';
 import 'package:patient_portal/feature/add_document/data/datasources/add_document_remote_data_source.dart';
 import 'package:patient_portal/feature/add_document/domain/repositories/add_document_repository.dart';
-import 'package:patient_portal/feature/add_document/domain/entities/document_type_model.dart';
+import 'package:patient_portal/feature/add_document/domain/entities/document_type.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
 
 class AddDocumentRepositoryImpl implements AddDocumentRepository {
@@ -14,7 +14,7 @@ class AddDocumentRepositoryImpl implements AddDocumentRepository {
   AddDocumentRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<Failure, List<DocumentTypeModel>>> getDocumentTypes({
+  Future<Either<Failure, List<DocumentType>>> getDocumentTypes({
     required String token,
   }) async {
     try {

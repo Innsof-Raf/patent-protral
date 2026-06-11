@@ -431,7 +431,7 @@ $Res call({
 });
 
 
-$MemberCopyWith<$Res>? get newMember;
+$MemberCopyWith<$Res>? get newMember;$ErrorModelCopyWith<$Res> get error;
 
 }
 /// @nodoc
@@ -469,6 +469,15 @@ $MemberCopyWith<$Res>? get newMember {
 
   return $MemberCopyWith<$Res>(_self.newMember!, (value) {
     return _then(_self.copyWith(newMember: value));
+  });
+}/// Create a copy of AddMemberState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
   });
 }
 }
@@ -655,7 +664,7 @@ $Res call({
 });
 
 
-@override $MemberCopyWith<$Res>? get newMember;
+@override $MemberCopyWith<$Res>? get newMember;@override $ErrorModelCopyWith<$Res> get error;
 
 }
 /// @nodoc
@@ -694,6 +703,15 @@ $MemberCopyWith<$Res>? get newMember {
 
   return $MemberCopyWith<$Res>(_self.newMember!, (value) {
     return _then(_self.copyWith(newMember: value));
+  });
+}/// Create a copy of AddMemberState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
   });
 }
 }

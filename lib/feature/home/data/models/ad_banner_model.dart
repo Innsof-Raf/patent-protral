@@ -1,17 +1,18 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/home/domain/entities/ad_banner.dart';
 
-class AdBannerModel {
-  final String? imageName;
-  final String? url;
-  final int idPrimary;
-  final String bannerType;
+part 'generated/ad_banner_model.freezed.dart';
 
-  const AdBannerModel({
-    required this.imageName,
-    required this.url,
-    required this.idPrimary,
-    required this.bannerType,
-  });
+@freezed
+sealed class AdBannerModel with _$AdBannerModel {
+  const AdBannerModel._();
+
+  const factory AdBannerModel({
+    required String? imageName,
+    required String? url,
+    required int idPrimary,
+    required String bannerType,
+  }) = _AdBannerModel;
 
   factory AdBannerModel.fromJson(Map<String, dynamic> json) {
     return AdBannerModel(
@@ -22,12 +23,10 @@ class AdBannerModel {
     );
   }
 
-  AdBanner toEntity() {
-    return AdBanner(
-      imageName: imageName,
-      url: url,
-      idPrimary: idPrimary,
-      bannerType: bannerType,
-    );
-  }
+  AdBanner toEntity() => AdBanner(
+        imageName: imageName,
+        url: url,
+        idPrimary: idPrimary,
+        bannerType: bannerType,
+      );
 }

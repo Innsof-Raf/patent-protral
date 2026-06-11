@@ -1,27 +1,13 @@
-class Slot {
-  final String id;
-  final String label;
-  final DateTime appdttm;
-  final bool isBooked;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  const Slot({
-    required this.id,
-    required this.label,
-    required this.appdttm,
-    required this.isBooked,
-  });
+part 'generated/slot.freezed.dart';
 
-  Slot copyWith({
-    String? id,
-    String? label,
-    DateTime? appdttm,
-    bool? isBooked,
-  }) {
-    return Slot(
-      id: id ?? this.id,
-      label: label ?? this.label,
-      appdttm: appdttm ?? this.appdttm,
-      isBooked: isBooked ?? this.isBooked,
-    );
-  }
+@freezed
+sealed class Slot with _$Slot {
+  const factory Slot({
+    required String id,
+    required String label,
+    required DateTime appdttm,
+    required bool isBooked,
+  }) = _Slot;
 }

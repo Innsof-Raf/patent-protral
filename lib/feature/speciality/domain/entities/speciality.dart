@@ -1,13 +1,13 @@
-class Speciality {
-  final int idSpeciality;
-  final String specialityId;
-  final String specialityName;
-  final String? specialityImage;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  const Speciality({
-    required this.idSpeciality,
-    required this.specialityId,
-    required this.specialityName,
-    required this.specialityImage,
-  });
+part 'generated/speciality.freezed.dart';
+
+@freezed
+sealed class Speciality with _$Speciality {
+  const factory Speciality({
+    required int idSpeciality,
+    required String specialityId,
+    required String specialityName,
+    required String? specialityImage,
+  }) = _Speciality;
 }

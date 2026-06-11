@@ -1,11 +1,11 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class OtpResponse extends Equatable {
-  final bool showPasswordSection;
-  final String otp;
+part 'generated/otp_response.freezed.dart';
 
-  const OtpResponse({required this.showPasswordSection, required this.otp});
-
-  @override
-  List<Object?> get props => [showPasswordSection, otp];
+@freezed
+sealed class OtpResponse with _$OtpResponse {
+  const factory OtpResponse({
+    required bool showPasswordSection,
+    required String otp,
+  }) = _OtpResponse;
 }

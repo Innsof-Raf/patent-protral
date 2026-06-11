@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_portal/feature/book_appointment/domain/entities/slot_model.dart';
+import 'package:patient_portal/feature/book_appointment/domain/entities/slot.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class SlotTile extends StatelessWidget {
   final bool isSelected;
-  final SlotModel slot;
+  final Slot slot;
   const SlotTile({super.key, required this.isSelected, required this.slot});
 
   @override

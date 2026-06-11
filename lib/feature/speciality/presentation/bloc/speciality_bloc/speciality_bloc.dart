@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:patient_portal/feature/speciality/domain/entities/speciality_model.dart';
+import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/fetch_specialities_usecase.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/params/speciality_params.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/search_specialities_usecase.dart';
@@ -29,7 +29,7 @@ class SpecialityBloc extends Bloc<SpecialityEvent, SpecialityState> {
           isFetchingSuccess: false,
         ),
       );
-      Either<ErrorModel, List<SpecialityModel>> speclityOptions =
+      Either<ErrorModel, List<Speciality>> speclityOptions =
           await fetchSpecialitiesUseCase(event.params);
       speclityOptions.fold(
         (failure) => emit(

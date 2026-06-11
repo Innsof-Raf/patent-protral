@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment_model.dart';
+import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
 
 import 'my_appointment_tile.dart';
 
 class MyAppointmentsListView extends StatelessWidget {
-  final List<MyAppointmentModel> appointments;
+  final List<MyAppointment> appointments;
   const MyAppointmentsListView({super.key, required this.appointments});
 
   @override

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:patient_portal/feature/speciality/domain/entities/speciality_model.dart';
+import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
 
 part 'generated/speciality_params.freezed.dart';
 
@@ -12,6 +12,6 @@ sealed class SpecialityParams with _$SpecialityParams {
 
   const factory SpecialityParams.searchSpecialities({
     required String searchKey,
-    required List<SpecialityModel> specialities,
+    required List<Speciality> specialities,
   }) = SearchSpecialitiesParams;
 }

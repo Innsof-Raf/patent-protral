@@ -1,15 +1,14 @@
-class Document {
-  final int docId;
-  final int memberId;
-  final DateTime expireDate;
-  final String docName;
-  final String docType;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  const Document({
-    required this.docId,
-    required this.memberId,
-    required this.expireDate,
-    required this.docName,
-    required this.docType,
-  });
+part 'generated/document.freezed.dart';
+
+@freezed
+sealed class Document with _$Document {
+  const factory Document({
+    required int docId,
+    required int memberId,
+    required DateTime expireDate,
+    required String docName,
+    required String docType,
+  }) = _Document;
 }

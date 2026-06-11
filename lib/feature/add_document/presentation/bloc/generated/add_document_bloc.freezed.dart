@@ -265,7 +265,7 @@ as String,
 /// @nodoc
 mixin _$AddDocumentState {
 
- bool get isFetchingDocumentTypes; bool get isFetchingDocumentTypesFailed; bool get isFetchingDocumentTypesSuccess; ErrorModel get error; List<DocumentTypeModel> get documentTypes;
+ bool get isFetchingDocumentTypes; bool get isFetchingDocumentTypesFailed; bool get isFetchingDocumentTypesSuccess; ErrorModel get error; List<DocumentType> get documentTypes;
 /// Create a copy of AddDocumentState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -296,11 +296,11 @@ abstract mixin class $AddDocumentStateCopyWith<$Res>  {
   factory $AddDocumentStateCopyWith(AddDocumentState value, $Res Function(AddDocumentState) _then) = _$AddDocumentStateCopyWithImpl;
 @useResult
 $Res call({
- bool isFetchingDocumentTypes, bool isFetchingDocumentTypesFailed, bool isFetchingDocumentTypesSuccess, ErrorModel error, List<DocumentTypeModel> documentTypes
+ bool isFetchingDocumentTypes, bool isFetchingDocumentTypesFailed, bool isFetchingDocumentTypesSuccess, ErrorModel error, List<DocumentType> documentTypes
 });
 
 
-
+$ErrorModelCopyWith<$Res> get error;
 
 }
 /// @nodoc
@@ -320,10 +320,19 @@ as bool,isFetchingDocumentTypesFailed: null == isFetchingDocumentTypesFailed ? _
 as bool,isFetchingDocumentTypesSuccess: null == isFetchingDocumentTypesSuccess ? _self.isFetchingDocumentTypesSuccess : isFetchingDocumentTypesSuccess // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,documentTypes: null == documentTypes ? _self.documentTypes : documentTypes // ignore: cast_nullable_to_non_nullable
-as List<DocumentTypeModel>,
+as List<DocumentType>,
   ));
 }
-
+/// Create a copy of AddDocumentState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
+  });
+}
 }
 
 
@@ -402,7 +411,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isFetchingDocumentTypes,  bool isFetchingDocumentTypesFailed,  bool isFetchingDocumentTypesSuccess,  ErrorModel error,  List<DocumentTypeModel> documentTypes)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isFetchingDocumentTypes,  bool isFetchingDocumentTypesFailed,  bool isFetchingDocumentTypesSuccess,  ErrorModel error,  List<DocumentType> documentTypes)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AddDocumentState() when $default != null:
 return $default(_that.isFetchingDocumentTypes,_that.isFetchingDocumentTypesFailed,_that.isFetchingDocumentTypesSuccess,_that.error,_that.documentTypes);case _:
@@ -423,7 +432,7 @@ return $default(_that.isFetchingDocumentTypes,_that.isFetchingDocumentTypesFaile
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isFetchingDocumentTypes,  bool isFetchingDocumentTypesFailed,  bool isFetchingDocumentTypesSuccess,  ErrorModel error,  List<DocumentTypeModel> documentTypes)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isFetchingDocumentTypes,  bool isFetchingDocumentTypesFailed,  bool isFetchingDocumentTypesSuccess,  ErrorModel error,  List<DocumentType> documentTypes)  $default,) {final _that = this;
 switch (_that) {
 case _AddDocumentState():
 return $default(_that.isFetchingDocumentTypes,_that.isFetchingDocumentTypesFailed,_that.isFetchingDocumentTypesSuccess,_that.error,_that.documentTypes);}
@@ -440,7 +449,7 @@ return $default(_that.isFetchingDocumentTypes,_that.isFetchingDocumentTypesFaile
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isFetchingDocumentTypes,  bool isFetchingDocumentTypesFailed,  bool isFetchingDocumentTypesSuccess,  ErrorModel error,  List<DocumentTypeModel> documentTypes)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isFetchingDocumentTypes,  bool isFetchingDocumentTypesFailed,  bool isFetchingDocumentTypesSuccess,  ErrorModel error,  List<DocumentType> documentTypes)?  $default,) {final _that = this;
 switch (_that) {
 case _AddDocumentState() when $default != null:
 return $default(_that.isFetchingDocumentTypes,_that.isFetchingDocumentTypesFailed,_that.isFetchingDocumentTypesSuccess,_that.error,_that.documentTypes);case _:
@@ -455,15 +464,15 @@ return $default(_that.isFetchingDocumentTypes,_that.isFetchingDocumentTypesFaile
 
 
 class _AddDocumentState implements AddDocumentState {
-  const _AddDocumentState({required this.isFetchingDocumentTypes, required this.isFetchingDocumentTypesFailed, required this.isFetchingDocumentTypesSuccess, required this.error, required final  List<DocumentTypeModel> documentTypes}): _documentTypes = documentTypes;
+  const _AddDocumentState({required this.isFetchingDocumentTypes, required this.isFetchingDocumentTypesFailed, required this.isFetchingDocumentTypesSuccess, required this.error, required final  List<DocumentType> documentTypes}): _documentTypes = documentTypes;
   
 
 @override final  bool isFetchingDocumentTypes;
 @override final  bool isFetchingDocumentTypesFailed;
 @override final  bool isFetchingDocumentTypesSuccess;
 @override final  ErrorModel error;
- final  List<DocumentTypeModel> _documentTypes;
-@override List<DocumentTypeModel> get documentTypes {
+ final  List<DocumentType> _documentTypes;
+@override List<DocumentType> get documentTypes {
   if (_documentTypes is EqualUnmodifiableListView) return _documentTypes;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_documentTypes);
@@ -500,11 +509,11 @@ abstract mixin class _$AddDocumentStateCopyWith<$Res> implements $AddDocumentSta
   factory _$AddDocumentStateCopyWith(_AddDocumentState value, $Res Function(_AddDocumentState) _then) = __$AddDocumentStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isFetchingDocumentTypes, bool isFetchingDocumentTypesFailed, bool isFetchingDocumentTypesSuccess, ErrorModel error, List<DocumentTypeModel> documentTypes
+ bool isFetchingDocumentTypes, bool isFetchingDocumentTypesFailed, bool isFetchingDocumentTypesSuccess, ErrorModel error, List<DocumentType> documentTypes
 });
 
 
-
+@override $ErrorModelCopyWith<$Res> get error;
 
 }
 /// @nodoc
@@ -524,11 +533,20 @@ as bool,isFetchingDocumentTypesFailed: null == isFetchingDocumentTypesFailed ? _
 as bool,isFetchingDocumentTypesSuccess: null == isFetchingDocumentTypesSuccess ? _self.isFetchingDocumentTypesSuccess : isFetchingDocumentTypesSuccess // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,documentTypes: null == documentTypes ? _self._documentTypes : documentTypes // ignore: cast_nullable_to_non_nullable
-as List<DocumentTypeModel>,
+as List<DocumentType>,
   ));
 }
 
-
+/// Create a copy of AddDocumentState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
+  });
+}
 }
 
 // dart format on

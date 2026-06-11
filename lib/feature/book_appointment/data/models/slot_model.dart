@@ -1,17 +1,18 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/book_appointment/domain/entities/slot.dart';
 
-class SlotModel {
-  final String id;
-  final String label;
-  final DateTime appdttm;
-  final bool isBooked;
+part 'generated/slot_model.freezed.dart';
 
-  const SlotModel({
-    required this.id,
-    required this.label,
-    required this.appdttm,
-    required this.isBooked,
-  });
+@freezed
+sealed class SlotModel with _$SlotModel {
+  const SlotModel._();
+
+  const factory SlotModel({
+    required String id,
+    required String label,
+    required DateTime appdttm,
+    required bool isBooked,
+  }) = _SlotModel;
 
   factory SlotModel.fromJson(Map<String, dynamic> json) {
     return SlotModel(
@@ -22,12 +23,10 @@ class SlotModel {
     );
   }
 
-  Slot toEntity() {
-    return Slot(
-      id: id,
-      label: label,
-      appdttm: appdttm,
-      isBooked: isBooked,
-    );
-  }
+  Slot toEntity() => Slot(
+        id: id,
+        label: label,
+        appdttm: appdttm,
+        isBooked: isBooked,
+      );
 }

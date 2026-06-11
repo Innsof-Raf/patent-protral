@@ -540,7 +540,7 @@ as DateTime,
 /// @nodoc
 mixin _$BookAppointmentState {
 
- bool get isAppointmentLoading; bool get isAppointmentSavingSuccses; bool get isAppointmentSavingFailure; bool get isSlotLoading; bool get isFetchingSuccses; bool get isFetchingError; ErrorModel get error; AppointmentModel? get appointmentDetails; ShiftModel get shift;
+ bool get isAppointmentLoading; bool get isAppointmentSavingSuccses; bool get isAppointmentSavingFailure; bool get isSlotLoading; bool get isFetchingSuccses; bool get isFetchingError; ErrorModel get error; AppointmentModel? get appointmentDetails; Shift get shift;
 /// Create a copy of BookAppointmentState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -571,11 +571,11 @@ abstract mixin class $BookAppointmentStateCopyWith<$Res>  {
   factory $BookAppointmentStateCopyWith(BookAppointmentState value, $Res Function(BookAppointmentState) _then) = _$BookAppointmentStateCopyWithImpl;
 @useResult
 $Res call({
- bool isAppointmentLoading, bool isAppointmentSavingSuccses, bool isAppointmentSavingFailure, bool isSlotLoading, bool isFetchingSuccses, bool isFetchingError, ErrorModel error, AppointmentModel? appointmentDetails, ShiftModel shift
+ bool isAppointmentLoading, bool isAppointmentSavingSuccses, bool isAppointmentSavingFailure, bool isSlotLoading, bool isFetchingSuccses, bool isFetchingError, ErrorModel error, AppointmentModel? appointmentDetails, Shift shift
 });
 
 
-$AppointmentModelCopyWith<$Res>? get appointmentDetails;
+$ErrorModelCopyWith<$Res> get error;$AppointmentModelCopyWith<$Res>? get appointmentDetails;$ShiftCopyWith<$Res> get shift;
 
 }
 /// @nodoc
@@ -599,10 +599,19 @@ as bool,isFetchingError: null == isFetchingError ? _self.isFetchingError : isFet
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,appointmentDetails: freezed == appointmentDetails ? _self.appointmentDetails : appointmentDetails // ignore: cast_nullable_to_non_nullable
 as AppointmentModel?,shift: null == shift ? _self.shift : shift // ignore: cast_nullable_to_non_nullable
-as ShiftModel,
+as Shift,
   ));
 }
 /// Create a copy of BookAppointmentState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
+  });
+}/// Create a copy of BookAppointmentState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -613,6 +622,15 @@ $AppointmentModelCopyWith<$Res>? get appointmentDetails {
 
   return $AppointmentModelCopyWith<$Res>(_self.appointmentDetails!, (value) {
     return _then(_self.copyWith(appointmentDetails: value));
+  });
+}/// Create a copy of BookAppointmentState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ShiftCopyWith<$Res> get shift {
+  
+  return $ShiftCopyWith<$Res>(_self.shift, (value) {
+    return _then(_self.copyWith(shift: value));
   });
 }
 }
@@ -693,7 +711,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isAppointmentLoading,  bool isAppointmentSavingSuccses,  bool isAppointmentSavingFailure,  bool isSlotLoading,  bool isFetchingSuccses,  bool isFetchingError,  ErrorModel error,  AppointmentModel? appointmentDetails,  ShiftModel shift)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isAppointmentLoading,  bool isAppointmentSavingSuccses,  bool isAppointmentSavingFailure,  bool isSlotLoading,  bool isFetchingSuccses,  bool isFetchingError,  ErrorModel error,  AppointmentModel? appointmentDetails,  Shift shift)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _BookAppointmentState() when $default != null:
 return $default(_that.isAppointmentLoading,_that.isAppointmentSavingSuccses,_that.isAppointmentSavingFailure,_that.isSlotLoading,_that.isFetchingSuccses,_that.isFetchingError,_that.error,_that.appointmentDetails,_that.shift);case _:
@@ -714,7 +732,7 @@ return $default(_that.isAppointmentLoading,_that.isAppointmentSavingSuccses,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isAppointmentLoading,  bool isAppointmentSavingSuccses,  bool isAppointmentSavingFailure,  bool isSlotLoading,  bool isFetchingSuccses,  bool isFetchingError,  ErrorModel error,  AppointmentModel? appointmentDetails,  ShiftModel shift)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isAppointmentLoading,  bool isAppointmentSavingSuccses,  bool isAppointmentSavingFailure,  bool isSlotLoading,  bool isFetchingSuccses,  bool isFetchingError,  ErrorModel error,  AppointmentModel? appointmentDetails,  Shift shift)  $default,) {final _that = this;
 switch (_that) {
 case _BookAppointmentState():
 return $default(_that.isAppointmentLoading,_that.isAppointmentSavingSuccses,_that.isAppointmentSavingFailure,_that.isSlotLoading,_that.isFetchingSuccses,_that.isFetchingError,_that.error,_that.appointmentDetails,_that.shift);}
@@ -731,7 +749,7 @@ return $default(_that.isAppointmentLoading,_that.isAppointmentSavingSuccses,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isAppointmentLoading,  bool isAppointmentSavingSuccses,  bool isAppointmentSavingFailure,  bool isSlotLoading,  bool isFetchingSuccses,  bool isFetchingError,  ErrorModel error,  AppointmentModel? appointmentDetails,  ShiftModel shift)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isAppointmentLoading,  bool isAppointmentSavingSuccses,  bool isAppointmentSavingFailure,  bool isSlotLoading,  bool isFetchingSuccses,  bool isFetchingError,  ErrorModel error,  AppointmentModel? appointmentDetails,  Shift shift)?  $default,) {final _that = this;
 switch (_that) {
 case _BookAppointmentState() when $default != null:
 return $default(_that.isAppointmentLoading,_that.isAppointmentSavingSuccses,_that.isAppointmentSavingFailure,_that.isSlotLoading,_that.isFetchingSuccses,_that.isFetchingError,_that.error,_that.appointmentDetails,_that.shift);case _:
@@ -757,7 +775,7 @@ class _BookAppointmentState implements BookAppointmentState {
 @override final  bool isFetchingError;
 @override final  ErrorModel error;
 @override final  AppointmentModel? appointmentDetails;
-@override final  ShiftModel shift;
+@override final  Shift shift;
 
 /// Create a copy of BookAppointmentState
 /// with the given fields replaced by the non-null parameter values.
@@ -789,11 +807,11 @@ abstract mixin class _$BookAppointmentStateCopyWith<$Res> implements $BookAppoin
   factory _$BookAppointmentStateCopyWith(_BookAppointmentState value, $Res Function(_BookAppointmentState) _then) = __$BookAppointmentStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isAppointmentLoading, bool isAppointmentSavingSuccses, bool isAppointmentSavingFailure, bool isSlotLoading, bool isFetchingSuccses, bool isFetchingError, ErrorModel error, AppointmentModel? appointmentDetails, ShiftModel shift
+ bool isAppointmentLoading, bool isAppointmentSavingSuccses, bool isAppointmentSavingFailure, bool isSlotLoading, bool isFetchingSuccses, bool isFetchingError, ErrorModel error, AppointmentModel? appointmentDetails, Shift shift
 });
 
 
-@override $AppointmentModelCopyWith<$Res>? get appointmentDetails;
+@override $ErrorModelCopyWith<$Res> get error;@override $AppointmentModelCopyWith<$Res>? get appointmentDetails;@override $ShiftCopyWith<$Res> get shift;
 
 }
 /// @nodoc
@@ -817,11 +835,20 @@ as bool,isFetchingError: null == isFetchingError ? _self.isFetchingError : isFet
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,appointmentDetails: freezed == appointmentDetails ? _self.appointmentDetails : appointmentDetails // ignore: cast_nullable_to_non_nullable
 as AppointmentModel?,shift: null == shift ? _self.shift : shift // ignore: cast_nullable_to_non_nullable
-as ShiftModel,
+as Shift,
   ));
 }
 
 /// Create a copy of BookAppointmentState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
+  });
+}/// Create a copy of BookAppointmentState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -832,6 +859,15 @@ $AppointmentModelCopyWith<$Res>? get appointmentDetails {
 
   return $AppointmentModelCopyWith<$Res>(_self.appointmentDetails!, (value) {
     return _then(_self.copyWith(appointmentDetails: value));
+  });
+}/// Create a copy of BookAppointmentState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ShiftCopyWith<$Res> get shift {
+  
+  return $ShiftCopyWith<$Res>(_self.shift, (value) {
+    return _then(_self.copyWith(shift: value));
   });
 }
 }

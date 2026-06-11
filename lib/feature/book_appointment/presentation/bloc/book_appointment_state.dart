@@ -11,7 +11,7 @@ sealed class BookAppointmentState with _$BookAppointmentState {
     required bool isFetchingError,
     required ErrorModel error,
     required AppointmentModel? appointmentDetails,
-    required ShiftModel shift,
+    required Shift shift,
   }) = _BookAppointmentState;
 
   factory BookAppointmentState.initial() => BookAppointmentState(
@@ -22,7 +22,7 @@ sealed class BookAppointmentState with _$BookAppointmentState {
     isFetchingSuccses: false,
     isFetchingError: false,
     appointmentDetails: null,
-    shift: const ShiftModel(shift: '', slots: []),
+    shift: const Shift(shift: '', slots: []),
     error: ErrorModel(message: ''),
   );
 }

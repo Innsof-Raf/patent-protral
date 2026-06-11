@@ -526,7 +526,7 @@ $MyAppointmentsParamsCopyWith<$Res> get params {
 /// @nodoc
 mixin _$MyAppointmentsState {
 
- bool get isAppointmentsFetching; bool get isAppointmentsFetchingFailed; bool get isAppointmentsFetchingSuccess; ErrorModel get error; List<DateTime> get monthTimeLineListOfNotConsulted; List<MyAppointmentModel> get myNotConsultedAppointments; List<DateTime> get monthTimeLineListOfConsulted; List<MyAppointmentModel> get myConsultedAppointments; List<DateTime> get monthTimeLineList; bool get isAppointmentsCancelationFailed; bool get isAppointmentsCancelationSuccess; List<MyAppointmentModel> get myAppointments;
+ bool get isAppointmentsFetching; bool get isAppointmentsFetchingFailed; bool get isAppointmentsFetchingSuccess; ErrorModel get error; List<DateTime> get monthTimeLineListOfNotConsulted; List<MyAppointment> get myNotConsultedAppointments; List<DateTime> get monthTimeLineListOfConsulted; List<MyAppointment> get myConsultedAppointments; List<DateTime> get monthTimeLineList; bool get isAppointmentsCancelationFailed; bool get isAppointmentsCancelationSuccess; List<MyAppointment> get myAppointments;
 /// Create a copy of MyAppointmentsState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -557,11 +557,11 @@ abstract mixin class $MyAppointmentsStateCopyWith<$Res>  {
   factory $MyAppointmentsStateCopyWith(MyAppointmentsState value, $Res Function(MyAppointmentsState) _then) = _$MyAppointmentsStateCopyWithImpl;
 @useResult
 $Res call({
- bool isAppointmentsFetching, bool isAppointmentsFetchingFailed, bool isAppointmentsFetchingSuccess, ErrorModel error, List<DateTime> monthTimeLineListOfNotConsulted, List<MyAppointmentModel> myNotConsultedAppointments, List<DateTime> monthTimeLineListOfConsulted, List<MyAppointmentModel> myConsultedAppointments, List<DateTime> monthTimeLineList, bool isAppointmentsCancelationFailed, bool isAppointmentsCancelationSuccess, List<MyAppointmentModel> myAppointments
+ bool isAppointmentsFetching, bool isAppointmentsFetchingFailed, bool isAppointmentsFetchingSuccess, ErrorModel error, List<DateTime> monthTimeLineListOfNotConsulted, List<MyAppointment> myNotConsultedAppointments, List<DateTime> monthTimeLineListOfConsulted, List<MyAppointment> myConsultedAppointments, List<DateTime> monthTimeLineList, bool isAppointmentsCancelationFailed, bool isAppointmentsCancelationSuccess, List<MyAppointment> myAppointments
 });
 
 
-
+$ErrorModelCopyWith<$Res> get error;
 
 }
 /// @nodoc
@@ -582,16 +582,25 @@ as bool,isAppointmentsFetchingSuccess: null == isAppointmentsFetchingSuccess ? _
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,monthTimeLineListOfNotConsulted: null == monthTimeLineListOfNotConsulted ? _self.monthTimeLineListOfNotConsulted : monthTimeLineListOfNotConsulted // ignore: cast_nullable_to_non_nullable
 as List<DateTime>,myNotConsultedAppointments: null == myNotConsultedAppointments ? _self.myNotConsultedAppointments : myNotConsultedAppointments // ignore: cast_nullable_to_non_nullable
-as List<MyAppointmentModel>,monthTimeLineListOfConsulted: null == monthTimeLineListOfConsulted ? _self.monthTimeLineListOfConsulted : monthTimeLineListOfConsulted // ignore: cast_nullable_to_non_nullable
+as List<MyAppointment>,monthTimeLineListOfConsulted: null == monthTimeLineListOfConsulted ? _self.monthTimeLineListOfConsulted : monthTimeLineListOfConsulted // ignore: cast_nullable_to_non_nullable
 as List<DateTime>,myConsultedAppointments: null == myConsultedAppointments ? _self.myConsultedAppointments : myConsultedAppointments // ignore: cast_nullable_to_non_nullable
-as List<MyAppointmentModel>,monthTimeLineList: null == monthTimeLineList ? _self.monthTimeLineList : monthTimeLineList // ignore: cast_nullable_to_non_nullable
+as List<MyAppointment>,monthTimeLineList: null == monthTimeLineList ? _self.monthTimeLineList : monthTimeLineList // ignore: cast_nullable_to_non_nullable
 as List<DateTime>,isAppointmentsCancelationFailed: null == isAppointmentsCancelationFailed ? _self.isAppointmentsCancelationFailed : isAppointmentsCancelationFailed // ignore: cast_nullable_to_non_nullable
 as bool,isAppointmentsCancelationSuccess: null == isAppointmentsCancelationSuccess ? _self.isAppointmentsCancelationSuccess : isAppointmentsCancelationSuccess // ignore: cast_nullable_to_non_nullable
 as bool,myAppointments: null == myAppointments ? _self.myAppointments : myAppointments // ignore: cast_nullable_to_non_nullable
-as List<MyAppointmentModel>,
+as List<MyAppointment>,
   ));
 }
-
+/// Create a copy of MyAppointmentsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
+  });
+}
 }
 
 
@@ -670,7 +679,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isAppointmentsFetching,  bool isAppointmentsFetchingFailed,  bool isAppointmentsFetchingSuccess,  ErrorModel error,  List<DateTime> monthTimeLineListOfNotConsulted,  List<MyAppointmentModel> myNotConsultedAppointments,  List<DateTime> monthTimeLineListOfConsulted,  List<MyAppointmentModel> myConsultedAppointments,  List<DateTime> monthTimeLineList,  bool isAppointmentsCancelationFailed,  bool isAppointmentsCancelationSuccess,  List<MyAppointmentModel> myAppointments)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isAppointmentsFetching,  bool isAppointmentsFetchingFailed,  bool isAppointmentsFetchingSuccess,  ErrorModel error,  List<DateTime> monthTimeLineListOfNotConsulted,  List<MyAppointment> myNotConsultedAppointments,  List<DateTime> monthTimeLineListOfConsulted,  List<MyAppointment> myConsultedAppointments,  List<DateTime> monthTimeLineList,  bool isAppointmentsCancelationFailed,  bool isAppointmentsCancelationSuccess,  List<MyAppointment> myAppointments)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MyAppointmentState() when $default != null:
 return $default(_that.isAppointmentsFetching,_that.isAppointmentsFetchingFailed,_that.isAppointmentsFetchingSuccess,_that.error,_that.monthTimeLineListOfNotConsulted,_that.myNotConsultedAppointments,_that.monthTimeLineListOfConsulted,_that.myConsultedAppointments,_that.monthTimeLineList,_that.isAppointmentsCancelationFailed,_that.isAppointmentsCancelationSuccess,_that.myAppointments);case _:
@@ -691,7 +700,7 @@ return $default(_that.isAppointmentsFetching,_that.isAppointmentsFetchingFailed,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isAppointmentsFetching,  bool isAppointmentsFetchingFailed,  bool isAppointmentsFetchingSuccess,  ErrorModel error,  List<DateTime> monthTimeLineListOfNotConsulted,  List<MyAppointmentModel> myNotConsultedAppointments,  List<DateTime> monthTimeLineListOfConsulted,  List<MyAppointmentModel> myConsultedAppointments,  List<DateTime> monthTimeLineList,  bool isAppointmentsCancelationFailed,  bool isAppointmentsCancelationSuccess,  List<MyAppointmentModel> myAppointments)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isAppointmentsFetching,  bool isAppointmentsFetchingFailed,  bool isAppointmentsFetchingSuccess,  ErrorModel error,  List<DateTime> monthTimeLineListOfNotConsulted,  List<MyAppointment> myNotConsultedAppointments,  List<DateTime> monthTimeLineListOfConsulted,  List<MyAppointment> myConsultedAppointments,  List<DateTime> monthTimeLineList,  bool isAppointmentsCancelationFailed,  bool isAppointmentsCancelationSuccess,  List<MyAppointment> myAppointments)  $default,) {final _that = this;
 switch (_that) {
 case _MyAppointmentState():
 return $default(_that.isAppointmentsFetching,_that.isAppointmentsFetchingFailed,_that.isAppointmentsFetchingSuccess,_that.error,_that.monthTimeLineListOfNotConsulted,_that.myNotConsultedAppointments,_that.monthTimeLineListOfConsulted,_that.myConsultedAppointments,_that.monthTimeLineList,_that.isAppointmentsCancelationFailed,_that.isAppointmentsCancelationSuccess,_that.myAppointments);}
@@ -708,7 +717,7 @@ return $default(_that.isAppointmentsFetching,_that.isAppointmentsFetchingFailed,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isAppointmentsFetching,  bool isAppointmentsFetchingFailed,  bool isAppointmentsFetchingSuccess,  ErrorModel error,  List<DateTime> monthTimeLineListOfNotConsulted,  List<MyAppointmentModel> myNotConsultedAppointments,  List<DateTime> monthTimeLineListOfConsulted,  List<MyAppointmentModel> myConsultedAppointments,  List<DateTime> monthTimeLineList,  bool isAppointmentsCancelationFailed,  bool isAppointmentsCancelationSuccess,  List<MyAppointmentModel> myAppointments)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isAppointmentsFetching,  bool isAppointmentsFetchingFailed,  bool isAppointmentsFetchingSuccess,  ErrorModel error,  List<DateTime> monthTimeLineListOfNotConsulted,  List<MyAppointment> myNotConsultedAppointments,  List<DateTime> monthTimeLineListOfConsulted,  List<MyAppointment> myConsultedAppointments,  List<DateTime> monthTimeLineList,  bool isAppointmentsCancelationFailed,  bool isAppointmentsCancelationSuccess,  List<MyAppointment> myAppointments)?  $default,) {final _that = this;
 switch (_that) {
 case _MyAppointmentState() when $default != null:
 return $default(_that.isAppointmentsFetching,_that.isAppointmentsFetchingFailed,_that.isAppointmentsFetchingSuccess,_that.error,_that.monthTimeLineListOfNotConsulted,_that.myNotConsultedAppointments,_that.monthTimeLineListOfConsulted,_that.myConsultedAppointments,_that.monthTimeLineList,_that.isAppointmentsCancelationFailed,_that.isAppointmentsCancelationSuccess,_that.myAppointments);case _:
@@ -723,7 +732,7 @@ return $default(_that.isAppointmentsFetching,_that.isAppointmentsFetchingFailed,
 
 
 class _MyAppointmentState implements MyAppointmentsState {
-  const _MyAppointmentState({required this.isAppointmentsFetching, required this.isAppointmentsFetchingFailed, required this.isAppointmentsFetchingSuccess, required this.error, required final  List<DateTime> monthTimeLineListOfNotConsulted, required final  List<MyAppointmentModel> myNotConsultedAppointments, required final  List<DateTime> monthTimeLineListOfConsulted, required final  List<MyAppointmentModel> myConsultedAppointments, required final  List<DateTime> monthTimeLineList, required this.isAppointmentsCancelationFailed, required this.isAppointmentsCancelationSuccess, required final  List<MyAppointmentModel> myAppointments}): _monthTimeLineListOfNotConsulted = monthTimeLineListOfNotConsulted,_myNotConsultedAppointments = myNotConsultedAppointments,_monthTimeLineListOfConsulted = monthTimeLineListOfConsulted,_myConsultedAppointments = myConsultedAppointments,_monthTimeLineList = monthTimeLineList,_myAppointments = myAppointments;
+  const _MyAppointmentState({required this.isAppointmentsFetching, required this.isAppointmentsFetchingFailed, required this.isAppointmentsFetchingSuccess, required this.error, required final  List<DateTime> monthTimeLineListOfNotConsulted, required final  List<MyAppointment> myNotConsultedAppointments, required final  List<DateTime> monthTimeLineListOfConsulted, required final  List<MyAppointment> myConsultedAppointments, required final  List<DateTime> monthTimeLineList, required this.isAppointmentsCancelationFailed, required this.isAppointmentsCancelationSuccess, required final  List<MyAppointment> myAppointments}): _monthTimeLineListOfNotConsulted = monthTimeLineListOfNotConsulted,_myNotConsultedAppointments = myNotConsultedAppointments,_monthTimeLineListOfConsulted = monthTimeLineListOfConsulted,_myConsultedAppointments = myConsultedAppointments,_monthTimeLineList = monthTimeLineList,_myAppointments = myAppointments;
   
 
 @override final  bool isAppointmentsFetching;
@@ -737,8 +746,8 @@ class _MyAppointmentState implements MyAppointmentsState {
   return EqualUnmodifiableListView(_monthTimeLineListOfNotConsulted);
 }
 
- final  List<MyAppointmentModel> _myNotConsultedAppointments;
-@override List<MyAppointmentModel> get myNotConsultedAppointments {
+ final  List<MyAppointment> _myNotConsultedAppointments;
+@override List<MyAppointment> get myNotConsultedAppointments {
   if (_myNotConsultedAppointments is EqualUnmodifiableListView) return _myNotConsultedAppointments;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_myNotConsultedAppointments);
@@ -751,8 +760,8 @@ class _MyAppointmentState implements MyAppointmentsState {
   return EqualUnmodifiableListView(_monthTimeLineListOfConsulted);
 }
 
- final  List<MyAppointmentModel> _myConsultedAppointments;
-@override List<MyAppointmentModel> get myConsultedAppointments {
+ final  List<MyAppointment> _myConsultedAppointments;
+@override List<MyAppointment> get myConsultedAppointments {
   if (_myConsultedAppointments is EqualUnmodifiableListView) return _myConsultedAppointments;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_myConsultedAppointments);
@@ -767,8 +776,8 @@ class _MyAppointmentState implements MyAppointmentsState {
 
 @override final  bool isAppointmentsCancelationFailed;
 @override final  bool isAppointmentsCancelationSuccess;
- final  List<MyAppointmentModel> _myAppointments;
-@override List<MyAppointmentModel> get myAppointments {
+ final  List<MyAppointment> _myAppointments;
+@override List<MyAppointment> get myAppointments {
   if (_myAppointments is EqualUnmodifiableListView) return _myAppointments;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_myAppointments);
@@ -805,11 +814,11 @@ abstract mixin class _$MyAppointmentStateCopyWith<$Res> implements $MyAppointmen
   factory _$MyAppointmentStateCopyWith(_MyAppointmentState value, $Res Function(_MyAppointmentState) _then) = __$MyAppointmentStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isAppointmentsFetching, bool isAppointmentsFetchingFailed, bool isAppointmentsFetchingSuccess, ErrorModel error, List<DateTime> monthTimeLineListOfNotConsulted, List<MyAppointmentModel> myNotConsultedAppointments, List<DateTime> monthTimeLineListOfConsulted, List<MyAppointmentModel> myConsultedAppointments, List<DateTime> monthTimeLineList, bool isAppointmentsCancelationFailed, bool isAppointmentsCancelationSuccess, List<MyAppointmentModel> myAppointments
+ bool isAppointmentsFetching, bool isAppointmentsFetchingFailed, bool isAppointmentsFetchingSuccess, ErrorModel error, List<DateTime> monthTimeLineListOfNotConsulted, List<MyAppointment> myNotConsultedAppointments, List<DateTime> monthTimeLineListOfConsulted, List<MyAppointment> myConsultedAppointments, List<DateTime> monthTimeLineList, bool isAppointmentsCancelationFailed, bool isAppointmentsCancelationSuccess, List<MyAppointment> myAppointments
 });
 
 
-
+@override $ErrorModelCopyWith<$Res> get error;
 
 }
 /// @nodoc
@@ -830,17 +839,26 @@ as bool,isAppointmentsFetchingSuccess: null == isAppointmentsFetchingSuccess ? _
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,monthTimeLineListOfNotConsulted: null == monthTimeLineListOfNotConsulted ? _self._monthTimeLineListOfNotConsulted : monthTimeLineListOfNotConsulted // ignore: cast_nullable_to_non_nullable
 as List<DateTime>,myNotConsultedAppointments: null == myNotConsultedAppointments ? _self._myNotConsultedAppointments : myNotConsultedAppointments // ignore: cast_nullable_to_non_nullable
-as List<MyAppointmentModel>,monthTimeLineListOfConsulted: null == monthTimeLineListOfConsulted ? _self._monthTimeLineListOfConsulted : monthTimeLineListOfConsulted // ignore: cast_nullable_to_non_nullable
+as List<MyAppointment>,monthTimeLineListOfConsulted: null == monthTimeLineListOfConsulted ? _self._monthTimeLineListOfConsulted : monthTimeLineListOfConsulted // ignore: cast_nullable_to_non_nullable
 as List<DateTime>,myConsultedAppointments: null == myConsultedAppointments ? _self._myConsultedAppointments : myConsultedAppointments // ignore: cast_nullable_to_non_nullable
-as List<MyAppointmentModel>,monthTimeLineList: null == monthTimeLineList ? _self._monthTimeLineList : monthTimeLineList // ignore: cast_nullable_to_non_nullable
+as List<MyAppointment>,monthTimeLineList: null == monthTimeLineList ? _self._monthTimeLineList : monthTimeLineList // ignore: cast_nullable_to_non_nullable
 as List<DateTime>,isAppointmentsCancelationFailed: null == isAppointmentsCancelationFailed ? _self.isAppointmentsCancelationFailed : isAppointmentsCancelationFailed // ignore: cast_nullable_to_non_nullable
 as bool,isAppointmentsCancelationSuccess: null == isAppointmentsCancelationSuccess ? _self.isAppointmentsCancelationSuccess : isAppointmentsCancelationSuccess // ignore: cast_nullable_to_non_nullable
 as bool,myAppointments: null == myAppointments ? _self._myAppointments : myAppointments // ignore: cast_nullable_to_non_nullable
-as List<MyAppointmentModel>,
+as List<MyAppointment>,
   ));
 }
 
-
+/// Create a copy of MyAppointmentsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
+  });
+}
 }
 
 // dart format on

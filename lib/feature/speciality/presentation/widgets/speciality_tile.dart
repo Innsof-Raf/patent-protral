@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:patient_portal/feature/speciality/domain/entities/speciality_model.dart';
+import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/route_constants.dart';
 
 class SpecilityTile extends StatelessWidget {
-  final SpecialityModel speciality;
+  final Speciality speciality;
   const SpecilityTile({super.key, required this.speciality});
 
   @override

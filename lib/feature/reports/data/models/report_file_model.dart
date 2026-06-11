@@ -1,12 +1,15 @@
 import 'dart:typed_data';
+
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/reports/domain/entities/report_file.dart';
 
-class ReportFileModel {
-  final Uint8List bytes;
+part 'generated/report_file_model.freezed.dart';
 
-  const ReportFileModel({required this.bytes});
+@freezed
+sealed class ReportFileModel with _$ReportFileModel {
+  const ReportFileModel._();
 
-  ReportFile toEntity() {
-    return ReportFile(bytes: bytes);
-  }
+  const factory ReportFileModel({required Uint8List bytes}) = _ReportFileModel;
+
+  ReportFile toEntity() => ReportFile(bytes: bytes);
 }

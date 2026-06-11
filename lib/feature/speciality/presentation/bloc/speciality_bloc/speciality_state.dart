@@ -7,8 +7,8 @@ sealed class SpecialityState with _$SpecialityState {
     required bool isFetchingSuccess,
     required bool isFetchingError,
     required ErrorModel error,
-    required List<SpecialityModel> specialities,
-    required List<SpecialityModel> searchResult,
+    required List<Speciality> specialities,
+    required List<Speciality> searchResult,
   }) = _SpecialityState;
 
   factory SpecialityState.initial() => SpecialityState(

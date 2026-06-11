@@ -119,7 +119,7 @@ return searchSpecialities(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String token,  int idBusUnit)?  fetchSpecialities,TResult Function( String searchKey,  List<SpecialityModel> specialities)?  searchSpecialities,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String token,  int idBusUnit)?  fetchSpecialities,TResult Function( String searchKey,  List<Speciality> specialities)?  searchSpecialities,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case FetchSpecialitiesParams() when fetchSpecialities != null:
 return fetchSpecialities(_that.token,_that.idBusUnit);case SearchSpecialitiesParams() when searchSpecialities != null:
@@ -141,7 +141,7 @@ return searchSpecialities(_that.searchKey,_that.specialities);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String token,  int idBusUnit)  fetchSpecialities,required TResult Function( String searchKey,  List<SpecialityModel> specialities)  searchSpecialities,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String token,  int idBusUnit)  fetchSpecialities,required TResult Function( String searchKey,  List<Speciality> specialities)  searchSpecialities,}) {final _that = this;
 switch (_that) {
 case FetchSpecialitiesParams():
 return fetchSpecialities(_that.token,_that.idBusUnit);case SearchSpecialitiesParams():
@@ -159,7 +159,7 @@ return searchSpecialities(_that.searchKey,_that.specialities);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String token,  int idBusUnit)?  fetchSpecialities,TResult? Function( String searchKey,  List<SpecialityModel> specialities)?  searchSpecialities,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String token,  int idBusUnit)?  fetchSpecialities,TResult? Function( String searchKey,  List<Speciality> specialities)?  searchSpecialities,}) {final _that = this;
 switch (_that) {
 case FetchSpecialitiesParams() when fetchSpecialities != null:
 return fetchSpecialities(_that.token,_that.idBusUnit);case SearchSpecialitiesParams() when searchSpecialities != null:
@@ -243,12 +243,12 @@ as int,
 
 
 class SearchSpecialitiesParams implements SpecialityParams {
-  const SearchSpecialitiesParams({required this.searchKey, required final  List<SpecialityModel> specialities}): _specialities = specialities;
+  const SearchSpecialitiesParams({required this.searchKey, required final  List<Speciality> specialities}): _specialities = specialities;
   
 
  final  String searchKey;
- final  List<SpecialityModel> _specialities;
- List<SpecialityModel> get specialities {
+ final  List<Speciality> _specialities;
+ List<Speciality> get specialities {
   if (_specialities is EqualUnmodifiableListView) return _specialities;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_specialities);
@@ -285,7 +285,7 @@ abstract mixin class $SearchSpecialitiesParamsCopyWith<$Res> implements $Special
   factory $SearchSpecialitiesParamsCopyWith(SearchSpecialitiesParams value, $Res Function(SearchSpecialitiesParams) _then) = _$SearchSpecialitiesParamsCopyWithImpl;
 @useResult
 $Res call({
- String searchKey, List<SpecialityModel> specialities
+ String searchKey, List<Speciality> specialities
 });
 
 
@@ -306,7 +306,7 @@ class _$SearchSpecialitiesParamsCopyWithImpl<$Res>
   return _then(SearchSpecialitiesParams(
 searchKey: null == searchKey ? _self.searchKey : searchKey // ignore: cast_nullable_to_non_nullable
 as String,specialities: null == specialities ? _self._specialities : specialities // ignore: cast_nullable_to_non_nullable
-as List<SpecialityModel>,
+as List<Speciality>,
   ));
 }
 

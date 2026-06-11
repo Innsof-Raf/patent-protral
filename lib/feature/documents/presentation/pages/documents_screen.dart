@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/documents/domain/entities/documents_model/document_model.dart';
+import 'package:patient_portal/feature/documents/domain/entities/document.dart';
 import 'package:patient_portal/feature/documents/presentation/bloc/documents_bloc/documents_bloc.dart';
 import 'package:patient_portal/feature/documents/presentation/widgets/documets_screen_app_bar.dart';
 import 'package:patient_portal/feature/documents/presentation/widgets/documents_tile.dart';
@@ -44,7 +44,7 @@ class DocumentsScreen extends StatelessWidget {
               ),
             );
           } else {
-            List<DocumentModel> documents = [];
+            List<Document> documents = [];
             if (state.selectedMemberId == 0) {
               documents = state.documents;
             } else {

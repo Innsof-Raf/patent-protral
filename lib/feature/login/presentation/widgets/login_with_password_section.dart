@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/login_with_password_bloc/login_with_password_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
-import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';

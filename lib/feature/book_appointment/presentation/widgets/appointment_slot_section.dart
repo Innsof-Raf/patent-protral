@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
-import 'package:patient_portal/feature/book_appointment/domain/entities/shift_model.dart';
+import 'package:patient_portal/feature/book_appointment/domain/entities/shift.dart';
 
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
@@ -8,7 +8,7 @@ import 'package:patient_portal/core/resources/dimens.dart';
 import 'slot_tile.dart';
 
 class AppointmentSlotSection extends StatelessWidget {
-  final ShiftModel shift;
+  final Shift shift;
   const AppointmentSlotSection({super.key, required this.shift});
 
   @override

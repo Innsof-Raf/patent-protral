@@ -1,13 +1,13 @@
-class AdBanner {
-  final String? imageName;
-  final String? url;
-  final int idPrimary;
-  final String bannerType;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  const AdBanner({
-    required this.imageName,
-    required this.url,
-    required this.idPrimary,
-    required this.bannerType,
-  });
+part 'generated/ad_banner.freezed.dart';
+
+@freezed
+sealed class AdBanner with _$AdBanner {
+  const factory AdBanner({
+    required String? imageName,
+    required String? url,
+    required int idPrimary,
+    required String bannerType,
+  }) = _AdBanner;
 }

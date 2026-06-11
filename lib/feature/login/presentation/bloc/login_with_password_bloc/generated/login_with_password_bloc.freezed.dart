@@ -303,7 +303,7 @@ $Res call({
 });
 
 
-$UserCopyWith<$Res>? get user;
+$UserCopyWith<$Res>? get user;$ErrorModelCopyWith<$Res> get error;
 
 }
 /// @nodoc
@@ -337,6 +337,15 @@ $UserCopyWith<$Res>? get user {
 
   return $UserCopyWith<$Res>(_self.user!, (value) {
     return _then(_self.copyWith(user: value));
+  });
+}/// Create a copy of LoginWithPasswordState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
   });
 }
 }
@@ -513,7 +522,7 @@ $Res call({
 });
 
 
-@override $UserCopyWith<$Res>? get user;
+@override $UserCopyWith<$Res>? get user;@override $ErrorModelCopyWith<$Res> get error;
 
 }
 /// @nodoc
@@ -548,6 +557,15 @@ $UserCopyWith<$Res>? get user {
 
   return $UserCopyWith<$Res>(_self.user!, (value) {
     return _then(_self.copyWith(user: value));
+  });
+}/// Create a copy of LoginWithPasswordState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
   });
 }
 }

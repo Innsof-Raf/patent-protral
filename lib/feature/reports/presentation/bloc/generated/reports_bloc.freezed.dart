@@ -397,7 +397,7 @@ $Res call({
 });
 
 
-$ReportFileCopyWith<$Res>? get report;
+$ReportFileCopyWith<$Res>? get report;$ErrorModelCopyWith<$Res> get error;
 
 }
 /// @nodoc
@@ -436,6 +436,15 @@ $ReportFileCopyWith<$Res>? get report {
 
   return $ReportFileCopyWith<$Res>(_self.report!, (value) {
     return _then(_self.copyWith(report: value));
+  });
+}/// Create a copy of ReportsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
   });
 }
 }
@@ -623,7 +632,7 @@ $Res call({
 });
 
 
-@override $ReportFileCopyWith<$Res>? get report;
+@override $ReportFileCopyWith<$Res>? get report;@override $ErrorModelCopyWith<$Res> get error;
 
 }
 /// @nodoc
@@ -663,6 +672,15 @@ $ReportFileCopyWith<$Res>? get report {
 
   return $ReportFileCopyWith<$Res>(_self.report!, (value) {
     return _then(_self.copyWith(report: value));
+  });
+}/// Create a copy of ReportsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
   });
 }
 }

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment_model.dart';
+import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
 
 part 'generated/my_appointments_params.freezed.dart';
 
@@ -11,11 +11,11 @@ sealed class MyAppointmentsParams with _$MyAppointmentsParams {
   }) = GetMyAppointmentsParams;
 
   const factory MyAppointmentsParams.storeBokkedApoointment({
-    required MyAppointmentModel appointment,
+    required MyAppointment appointment,
   }) = StoreBokkedApoointmentParams;
 
   const factory MyAppointmentsParams.changeResheduledAppointmentDetails({
-    required MyAppointmentModel appointment,
+    required MyAppointment appointment,
     required DateTime cureentSlot,
   }) = ChangeResheduledAppointmentDetailsParams;
 

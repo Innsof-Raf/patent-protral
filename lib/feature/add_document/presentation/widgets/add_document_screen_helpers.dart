@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:patient_portal/feature/add_document/domain/entities/document_type_model.dart';
+import 'package:patient_portal/feature/add_document/domain/entities/document_type.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 
 import 'package:patient_portal/core/resources/app_colors.dart';
@@ -23,7 +23,7 @@ class AddDocumentScreenHelpers {
   }
 
   static DropdownMenuItem<int> createDocumentTypeDropDownItem({
-    required DocumentTypeModel document,
+    required DocumentType document,
   }) {
     return DropdownMenuItem(
       value: document.idDocument,

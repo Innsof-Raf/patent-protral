@@ -1,25 +1,22 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/lab/domain/entities/item.dart';
 
-class ItemModel {
-  final int idItem;
-  final String itemNmae;
-  final double itemPrice;
-  final String itemImg;
-  final String itemShortDesc;
-  final String itemType;
-  final bool isCart;
-  final bool isChangingCartStatus;
+part 'generated/item_model.freezed.dart';
 
-  const ItemModel({
-    required this.idItem,
-    required this.itemNmae,
-    required this.itemPrice,
-    required this.itemImg,
-    required this.itemShortDesc,
-    required this.itemType,
-    required this.isCart,
-    this.isChangingCartStatus = false,
-  });
+@freezed
+sealed class ItemModel with _$ItemModel {
+  const ItemModel._();
+
+  const factory ItemModel({
+    required int idItem,
+    required String itemNmae,
+    required double itemPrice,
+    required String itemImg,
+    required String itemShortDesc,
+    required String itemType,
+    required bool isCart,
+    @Default(false) bool isChangingCartStatus,
+  }) = _ItemModel;
 
   factory ItemModel.fromJson(Map<String, dynamic> json) {
     return ItemModel(
@@ -33,16 +30,14 @@ class ItemModel {
     );
   }
 
-  Item toEntity() {
-    return Item(
-      idItem: idItem,
-      itemNmae: itemNmae,
-      itemPrice: itemPrice,
-      itemImg: itemImg,
-      itemShortDesc: itemShortDesc,
-      itemType: itemType,
-      isCart: isCart,
-      isChangingCartStatus: isChangingCartStatus,
-    );
-  }
+  Item toEntity() => Item(
+        idItem: idItem,
+        itemNmae: itemNmae,
+        itemPrice: itemPrice,
+        itemImg: itemImg,
+        itemShortDesc: itemShortDesc,
+        itemType: itemType,
+        isCart: isCart,
+        isChangingCartStatus: isChangingCartStatus,
+      );
 }

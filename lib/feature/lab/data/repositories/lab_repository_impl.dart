@@ -4,8 +4,8 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:patient_portal/core/error/failures.dart';
 import 'package:patient_portal/feature/lab/data/datasources/lab_remote_data_source.dart';
-import 'package:patient_portal/feature/lab/domain/entities/item_model.dart';
-import 'package:patient_portal/feature/lab/domain/entities/package_model.dart';
+import 'package:patient_portal/feature/lab/domain/entities/item.dart';
+import 'package:patient_portal/feature/lab/domain/entities/package.dart';
 import 'package:patient_portal/feature/lab/domain/repositories/lab_repository.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
 
@@ -15,7 +15,7 @@ class LabRepositoryImpl implements LabRepository {
   LabRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<Failure, List<ItemModel>>> getItems({
+  Future<Either<Failure, List<Item>>> getItems({
     required String token,
   }) async {
     try {
@@ -58,7 +58,7 @@ class LabRepositoryImpl implements LabRepository {
   }
 
   @override
-  Future<Either<Failure, ItemModel>> getItemDetail({
+  Future<Either<Failure, Item>> getItemDetail({
     required int idItem,
     required String token,
   }) async {
@@ -80,7 +80,7 @@ class LabRepositoryImpl implements LabRepository {
   }
 
   @override
-  Future<Either<Failure, List<PackageModel>>> getPackages({
+  Future<Either<Failure, List<Package>>> getPackages({
     required String token,
   }) async {
     try {

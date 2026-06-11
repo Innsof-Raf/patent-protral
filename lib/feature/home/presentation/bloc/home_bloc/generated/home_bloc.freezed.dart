@@ -268,7 +268,7 @@ as int,
 /// @nodoc
 mixin _$HomeState {
 
- bool get isDataFetching; bool get isDataFetchingFailed; bool get isDataFetchingsuccess; ErrorModel get error; HomeDataModel get homeData;
+ bool get isDataFetching; bool get isDataFetchingFailed; bool get isDataFetchingsuccess; ErrorModel get error; HomeData get homeData;
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -299,11 +299,11 @@ abstract mixin class $HomeStateCopyWith<$Res>  {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) _then) = _$HomeStateCopyWithImpl;
 @useResult
 $Res call({
- bool isDataFetching, bool isDataFetchingFailed, bool isDataFetchingsuccess, ErrorModel error, HomeDataModel homeData
+ bool isDataFetching, bool isDataFetchingFailed, bool isDataFetchingsuccess, ErrorModel error, HomeData homeData
 });
 
 
-
+$ErrorModelCopyWith<$Res> get error;$HomeDataCopyWith<$Res> get homeData;
 
 }
 /// @nodoc
@@ -323,10 +323,28 @@ as bool,isDataFetchingFailed: null == isDataFetchingFailed ? _self.isDataFetchin
 as bool,isDataFetchingsuccess: null == isDataFetchingsuccess ? _self.isDataFetchingsuccess : isDataFetchingsuccess // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,homeData: null == homeData ? _self.homeData : homeData // ignore: cast_nullable_to_non_nullable
-as HomeDataModel,
+as HomeData,
   ));
 }
-
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
+  });
+}/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$HomeDataCopyWith<$Res> get homeData {
+  
+  return $HomeDataCopyWith<$Res>(_self.homeData, (value) {
+    return _then(_self.copyWith(homeData: value));
+  });
+}
 }
 
 
@@ -405,7 +423,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isDataFetching,  bool isDataFetchingFailed,  bool isDataFetchingsuccess,  ErrorModel error,  HomeDataModel homeData)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isDataFetching,  bool isDataFetchingFailed,  bool isDataFetchingsuccess,  ErrorModel error,  HomeData homeData)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _HomeState() when $default != null:
 return $default(_that.isDataFetching,_that.isDataFetchingFailed,_that.isDataFetchingsuccess,_that.error,_that.homeData);case _:
@@ -426,7 +444,7 @@ return $default(_that.isDataFetching,_that.isDataFetchingFailed,_that.isDataFetc
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isDataFetching,  bool isDataFetchingFailed,  bool isDataFetchingsuccess,  ErrorModel error,  HomeDataModel homeData)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isDataFetching,  bool isDataFetchingFailed,  bool isDataFetchingsuccess,  ErrorModel error,  HomeData homeData)  $default,) {final _that = this;
 switch (_that) {
 case _HomeState():
 return $default(_that.isDataFetching,_that.isDataFetchingFailed,_that.isDataFetchingsuccess,_that.error,_that.homeData);}
@@ -443,7 +461,7 @@ return $default(_that.isDataFetching,_that.isDataFetchingFailed,_that.isDataFetc
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isDataFetching,  bool isDataFetchingFailed,  bool isDataFetchingsuccess,  ErrorModel error,  HomeDataModel homeData)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isDataFetching,  bool isDataFetchingFailed,  bool isDataFetchingsuccess,  ErrorModel error,  HomeData homeData)?  $default,) {final _that = this;
 switch (_that) {
 case _HomeState() when $default != null:
 return $default(_that.isDataFetching,_that.isDataFetchingFailed,_that.isDataFetchingsuccess,_that.error,_that.homeData);case _:
@@ -465,7 +483,7 @@ class _HomeState implements HomeState {
 @override final  bool isDataFetchingFailed;
 @override final  bool isDataFetchingsuccess;
 @override final  ErrorModel error;
-@override final  HomeDataModel homeData;
+@override final  HomeData homeData;
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
@@ -497,11 +515,11 @@ abstract mixin class _$HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Re
   factory _$HomeStateCopyWith(_HomeState value, $Res Function(_HomeState) _then) = __$HomeStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isDataFetching, bool isDataFetchingFailed, bool isDataFetchingsuccess, ErrorModel error, HomeDataModel homeData
+ bool isDataFetching, bool isDataFetchingFailed, bool isDataFetchingsuccess, ErrorModel error, HomeData homeData
 });
 
 
-
+@override $ErrorModelCopyWith<$Res> get error;@override $HomeDataCopyWith<$Res> get homeData;
 
 }
 /// @nodoc
@@ -521,11 +539,29 @@ as bool,isDataFetchingFailed: null == isDataFetchingFailed ? _self.isDataFetchin
 as bool,isDataFetchingsuccess: null == isDataFetchingsuccess ? _self.isDataFetchingsuccess : isDataFetchingsuccess // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,homeData: null == homeData ? _self.homeData : homeData // ignore: cast_nullable_to_non_nullable
-as HomeDataModel,
+as HomeData,
   ));
 }
 
-
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
+  });
+}/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$HomeDataCopyWith<$Res> get homeData {
+  
+  return $HomeDataCopyWith<$Res>(_self.homeData, (value) {
+    return _then(_self.copyWith(homeData: value));
+  });
+}
 }
 
 // dart format on

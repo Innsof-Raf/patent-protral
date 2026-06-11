@@ -7,7 +7,7 @@ sealed class AddDocumentState with _$AddDocumentState {
     required bool isFetchingDocumentTypesFailed,
     required bool isFetchingDocumentTypesSuccess,
     required ErrorModel error,
-    required List<DocumentTypeModel> documentTypes,
+    required List<DocumentType> documentTypes,
   }) = _AddDocumentState;
 
   factory AddDocumentState.initial() => AddDocumentState(

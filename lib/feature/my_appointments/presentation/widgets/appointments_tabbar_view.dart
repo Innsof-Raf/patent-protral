@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment_model.dart';
+import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
 
 import 'month_tile.dart';
 import 'my_appointments_list_view.dart';
 
 class AppointmentsTabbarView extends StatelessWidget {
   final List<DateTime> monthTimeLineList;
-  final List<MyAppointmentModel> appointments;
+  final List<MyAppointment> appointments;
 
   const AppointmentsTabbarView({
     super.key,

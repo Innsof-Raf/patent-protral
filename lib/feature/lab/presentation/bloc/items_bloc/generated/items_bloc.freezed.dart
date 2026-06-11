@@ -341,7 +341,7 @@ as String,
 /// @nodoc
 mixin _$ItemsState {
 
- bool get isItemsFetching; bool get isItemsFetchingFailed; bool get isItemsFetchingSuccess; bool get isCartUpdatingFailed; bool get isCartUpdatingSucees; ErrorModel get error; double get cartTotal; List<ItemModel> get items; List<ItemModel> get cart;
+ bool get isItemsFetching; bool get isItemsFetchingFailed; bool get isItemsFetchingSuccess; bool get isCartUpdatingFailed; bool get isCartUpdatingSucees; ErrorModel get error; double get cartTotal; List<Item> get items; List<Item> get cart;
 /// Create a copy of ItemsState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -372,11 +372,11 @@ abstract mixin class $ItemsStateCopyWith<$Res>  {
   factory $ItemsStateCopyWith(ItemsState value, $Res Function(ItemsState) _then) = _$ItemsStateCopyWithImpl;
 @useResult
 $Res call({
- bool isItemsFetching, bool isItemsFetchingFailed, bool isItemsFetchingSuccess, bool isCartUpdatingFailed, bool isCartUpdatingSucees, ErrorModel error, double cartTotal, List<ItemModel> items, List<ItemModel> cart
+ bool isItemsFetching, bool isItemsFetchingFailed, bool isItemsFetchingSuccess, bool isCartUpdatingFailed, bool isCartUpdatingSucees, ErrorModel error, double cartTotal, List<Item> items, List<Item> cart
 });
 
 
-
+$ErrorModelCopyWith<$Res> get error;
 
 }
 /// @nodoc
@@ -399,11 +399,20 @@ as bool,isCartUpdatingSucees: null == isCartUpdatingSucees ? _self.isCartUpdatin
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,cartTotal: null == cartTotal ? _self.cartTotal : cartTotal // ignore: cast_nullable_to_non_nullable
 as double,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
-as List<ItemModel>,cart: null == cart ? _self.cart : cart // ignore: cast_nullable_to_non_nullable
-as List<ItemModel>,
+as List<Item>,cart: null == cart ? _self.cart : cart // ignore: cast_nullable_to_non_nullable
+as List<Item>,
   ));
 }
-
+/// Create a copy of ItemsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
+  });
+}
 }
 
 
@@ -482,7 +491,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isItemsFetching,  bool isItemsFetchingFailed,  bool isItemsFetchingSuccess,  bool isCartUpdatingFailed,  bool isCartUpdatingSucees,  ErrorModel error,  double cartTotal,  List<ItemModel> items,  List<ItemModel> cart)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isItemsFetching,  bool isItemsFetchingFailed,  bool isItemsFetchingSuccess,  bool isCartUpdatingFailed,  bool isCartUpdatingSucees,  ErrorModel error,  double cartTotal,  List<Item> items,  List<Item> cart)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ItemState() when $default != null:
 return $default(_that.isItemsFetching,_that.isItemsFetchingFailed,_that.isItemsFetchingSuccess,_that.isCartUpdatingFailed,_that.isCartUpdatingSucees,_that.error,_that.cartTotal,_that.items,_that.cart);case _:
@@ -503,7 +512,7 @@ return $default(_that.isItemsFetching,_that.isItemsFetchingFailed,_that.isItemsF
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isItemsFetching,  bool isItemsFetchingFailed,  bool isItemsFetchingSuccess,  bool isCartUpdatingFailed,  bool isCartUpdatingSucees,  ErrorModel error,  double cartTotal,  List<ItemModel> items,  List<ItemModel> cart)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isItemsFetching,  bool isItemsFetchingFailed,  bool isItemsFetchingSuccess,  bool isCartUpdatingFailed,  bool isCartUpdatingSucees,  ErrorModel error,  double cartTotal,  List<Item> items,  List<Item> cart)  $default,) {final _that = this;
 switch (_that) {
 case _ItemState():
 return $default(_that.isItemsFetching,_that.isItemsFetchingFailed,_that.isItemsFetchingSuccess,_that.isCartUpdatingFailed,_that.isCartUpdatingSucees,_that.error,_that.cartTotal,_that.items,_that.cart);}
@@ -520,7 +529,7 @@ return $default(_that.isItemsFetching,_that.isItemsFetchingFailed,_that.isItemsF
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isItemsFetching,  bool isItemsFetchingFailed,  bool isItemsFetchingSuccess,  bool isCartUpdatingFailed,  bool isCartUpdatingSucees,  ErrorModel error,  double cartTotal,  List<ItemModel> items,  List<ItemModel> cart)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isItemsFetching,  bool isItemsFetchingFailed,  bool isItemsFetchingSuccess,  bool isCartUpdatingFailed,  bool isCartUpdatingSucees,  ErrorModel error,  double cartTotal,  List<Item> items,  List<Item> cart)?  $default,) {final _that = this;
 switch (_that) {
 case _ItemState() when $default != null:
 return $default(_that.isItemsFetching,_that.isItemsFetchingFailed,_that.isItemsFetchingSuccess,_that.isCartUpdatingFailed,_that.isCartUpdatingSucees,_that.error,_that.cartTotal,_that.items,_that.cart);case _:
@@ -535,7 +544,7 @@ return $default(_that.isItemsFetching,_that.isItemsFetchingFailed,_that.isItemsF
 
 
 class _ItemState implements ItemsState {
-  const _ItemState({required this.isItemsFetching, required this.isItemsFetchingFailed, required this.isItemsFetchingSuccess, required this.isCartUpdatingFailed, required this.isCartUpdatingSucees, required this.error, required this.cartTotal, required final  List<ItemModel> items, required final  List<ItemModel> cart}): _items = items,_cart = cart;
+  const _ItemState({required this.isItemsFetching, required this.isItemsFetchingFailed, required this.isItemsFetchingSuccess, required this.isCartUpdatingFailed, required this.isCartUpdatingSucees, required this.error, required this.cartTotal, required final  List<Item> items, required final  List<Item> cart}): _items = items,_cart = cart;
   
 
 @override final  bool isItemsFetching;
@@ -545,15 +554,15 @@ class _ItemState implements ItemsState {
 @override final  bool isCartUpdatingSucees;
 @override final  ErrorModel error;
 @override final  double cartTotal;
- final  List<ItemModel> _items;
-@override List<ItemModel> get items {
+ final  List<Item> _items;
+@override List<Item> get items {
   if (_items is EqualUnmodifiableListView) return _items;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_items);
 }
 
- final  List<ItemModel> _cart;
-@override List<ItemModel> get cart {
+ final  List<Item> _cart;
+@override List<Item> get cart {
   if (_cart is EqualUnmodifiableListView) return _cart;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_cart);
@@ -590,11 +599,11 @@ abstract mixin class _$ItemStateCopyWith<$Res> implements $ItemsStateCopyWith<$R
   factory _$ItemStateCopyWith(_ItemState value, $Res Function(_ItemState) _then) = __$ItemStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isItemsFetching, bool isItemsFetchingFailed, bool isItemsFetchingSuccess, bool isCartUpdatingFailed, bool isCartUpdatingSucees, ErrorModel error, double cartTotal, List<ItemModel> items, List<ItemModel> cart
+ bool isItemsFetching, bool isItemsFetchingFailed, bool isItemsFetchingSuccess, bool isCartUpdatingFailed, bool isCartUpdatingSucees, ErrorModel error, double cartTotal, List<Item> items, List<Item> cart
 });
 
 
-
+@override $ErrorModelCopyWith<$Res> get error;
 
 }
 /// @nodoc
@@ -617,12 +626,21 @@ as bool,isCartUpdatingSucees: null == isCartUpdatingSucees ? _self.isCartUpdatin
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,cartTotal: null == cartTotal ? _self.cartTotal : cartTotal // ignore: cast_nullable_to_non_nullable
 as double,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
-as List<ItemModel>,cart: null == cart ? _self._cart : cart // ignore: cast_nullable_to_non_nullable
-as List<ItemModel>,
+as List<Item>,cart: null == cart ? _self._cart : cart // ignore: cast_nullable_to_non_nullable
+as List<Item>,
   ));
 }
 
-
+/// Create a copy of ItemsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
+  });
+}
 }
 
 // dart format on

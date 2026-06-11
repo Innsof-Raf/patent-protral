@@ -10,8 +10,8 @@ sealed class ItemsState with _$ItemsState {
     required bool isCartUpdatingSucees,
     required ErrorModel error,
     required double cartTotal,
-    required List<ItemModel> items,
-    required List<ItemModel> cart,
+    required List<Item> items,
+    required List<Item> cart,
   }) = _ItemState;
 
   factory ItemsState.inoitial() => ItemsState(

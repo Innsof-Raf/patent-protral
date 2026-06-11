@@ -364,7 +364,7 @@ $SpecialityParamsCopyWith<$Res> get params {
 /// @nodoc
 mixin _$SpecialityState {
 
- bool get isFetching; bool get isFetchingSuccess; bool get isFetchingError; ErrorModel get error; List<SpecialityModel> get specialities; List<SpecialityModel> get searchResult;
+ bool get isFetching; bool get isFetchingSuccess; bool get isFetchingError; ErrorModel get error; List<Speciality> get specialities; List<Speciality> get searchResult;
 /// Create a copy of SpecialityState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -395,11 +395,11 @@ abstract mixin class $SpecialityStateCopyWith<$Res>  {
   factory $SpecialityStateCopyWith(SpecialityState value, $Res Function(SpecialityState) _then) = _$SpecialityStateCopyWithImpl;
 @useResult
 $Res call({
- bool isFetching, bool isFetchingSuccess, bool isFetchingError, ErrorModel error, List<SpecialityModel> specialities, List<SpecialityModel> searchResult
+ bool isFetching, bool isFetchingSuccess, bool isFetchingError, ErrorModel error, List<Speciality> specialities, List<Speciality> searchResult
 });
 
 
-
+$ErrorModelCopyWith<$Res> get error;
 
 }
 /// @nodoc
@@ -419,11 +419,20 @@ as bool,isFetchingSuccess: null == isFetchingSuccess ? _self.isFetchingSuccess :
 as bool,isFetchingError: null == isFetchingError ? _self.isFetchingError : isFetchingError // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,specialities: null == specialities ? _self.specialities : specialities // ignore: cast_nullable_to_non_nullable
-as List<SpecialityModel>,searchResult: null == searchResult ? _self.searchResult : searchResult // ignore: cast_nullable_to_non_nullable
-as List<SpecialityModel>,
+as List<Speciality>,searchResult: null == searchResult ? _self.searchResult : searchResult // ignore: cast_nullable_to_non_nullable
+as List<Speciality>,
   ));
 }
-
+/// Create a copy of SpecialityState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
+  });
+}
 }
 
 
@@ -502,7 +511,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isFetching,  bool isFetchingSuccess,  bool isFetchingError,  ErrorModel error,  List<SpecialityModel> specialities,  List<SpecialityModel> searchResult)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isFetching,  bool isFetchingSuccess,  bool isFetchingError,  ErrorModel error,  List<Speciality> specialities,  List<Speciality> searchResult)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SpecialityState() when $default != null:
 return $default(_that.isFetching,_that.isFetchingSuccess,_that.isFetchingError,_that.error,_that.specialities,_that.searchResult);case _:
@@ -523,7 +532,7 @@ return $default(_that.isFetching,_that.isFetchingSuccess,_that.isFetchingError,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isFetching,  bool isFetchingSuccess,  bool isFetchingError,  ErrorModel error,  List<SpecialityModel> specialities,  List<SpecialityModel> searchResult)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isFetching,  bool isFetchingSuccess,  bool isFetchingError,  ErrorModel error,  List<Speciality> specialities,  List<Speciality> searchResult)  $default,) {final _that = this;
 switch (_that) {
 case _SpecialityState():
 return $default(_that.isFetching,_that.isFetchingSuccess,_that.isFetchingError,_that.error,_that.specialities,_that.searchResult);}
@@ -540,7 +549,7 @@ return $default(_that.isFetching,_that.isFetchingSuccess,_that.isFetchingError,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isFetching,  bool isFetchingSuccess,  bool isFetchingError,  ErrorModel error,  List<SpecialityModel> specialities,  List<SpecialityModel> searchResult)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isFetching,  bool isFetchingSuccess,  bool isFetchingError,  ErrorModel error,  List<Speciality> specialities,  List<Speciality> searchResult)?  $default,) {final _that = this;
 switch (_that) {
 case _SpecialityState() when $default != null:
 return $default(_that.isFetching,_that.isFetchingSuccess,_that.isFetchingError,_that.error,_that.specialities,_that.searchResult);case _:
@@ -555,22 +564,22 @@ return $default(_that.isFetching,_that.isFetchingSuccess,_that.isFetchingError,_
 
 
 class _SpecialityState implements SpecialityState {
-  const _SpecialityState({required this.isFetching, required this.isFetchingSuccess, required this.isFetchingError, required this.error, required final  List<SpecialityModel> specialities, required final  List<SpecialityModel> searchResult}): _specialities = specialities,_searchResult = searchResult;
+  const _SpecialityState({required this.isFetching, required this.isFetchingSuccess, required this.isFetchingError, required this.error, required final  List<Speciality> specialities, required final  List<Speciality> searchResult}): _specialities = specialities,_searchResult = searchResult;
   
 
 @override final  bool isFetching;
 @override final  bool isFetchingSuccess;
 @override final  bool isFetchingError;
 @override final  ErrorModel error;
- final  List<SpecialityModel> _specialities;
-@override List<SpecialityModel> get specialities {
+ final  List<Speciality> _specialities;
+@override List<Speciality> get specialities {
   if (_specialities is EqualUnmodifiableListView) return _specialities;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_specialities);
 }
 
- final  List<SpecialityModel> _searchResult;
-@override List<SpecialityModel> get searchResult {
+ final  List<Speciality> _searchResult;
+@override List<Speciality> get searchResult {
   if (_searchResult is EqualUnmodifiableListView) return _searchResult;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_searchResult);
@@ -607,11 +616,11 @@ abstract mixin class _$SpecialityStateCopyWith<$Res> implements $SpecialityState
   factory _$SpecialityStateCopyWith(_SpecialityState value, $Res Function(_SpecialityState) _then) = __$SpecialityStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isFetching, bool isFetchingSuccess, bool isFetchingError, ErrorModel error, List<SpecialityModel> specialities, List<SpecialityModel> searchResult
+ bool isFetching, bool isFetchingSuccess, bool isFetchingError, ErrorModel error, List<Speciality> specialities, List<Speciality> searchResult
 });
 
 
-
+@override $ErrorModelCopyWith<$Res> get error;
 
 }
 /// @nodoc
@@ -631,12 +640,21 @@ as bool,isFetchingSuccess: null == isFetchingSuccess ? _self.isFetchingSuccess :
 as bool,isFetchingError: null == isFetchingError ? _self.isFetchingError : isFetchingError // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,specialities: null == specialities ? _self._specialities : specialities // ignore: cast_nullable_to_non_nullable
-as List<SpecialityModel>,searchResult: null == searchResult ? _self._searchResult : searchResult // ignore: cast_nullable_to_non_nullable
-as List<SpecialityModel>,
+as List<Speciality>,searchResult: null == searchResult ? _self._searchResult : searchResult // ignore: cast_nullable_to_non_nullable
+as List<Speciality>,
   ));
 }
 
-
+/// Create a copy of SpecialityState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
+  });
+}
 }
 
 // dart format on

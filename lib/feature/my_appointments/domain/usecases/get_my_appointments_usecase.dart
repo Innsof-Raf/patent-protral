@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:patient_portal/core/resources/error_model.dart';
-import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment_model.dart';
+import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
 import 'package:patient_portal/feature/my_appointments/domain/repositories/my_appointments_repository.dart';
 
 class GetMyAppointmentsUseCase {
@@ -8,7 +8,7 @@ class GetMyAppointmentsUseCase {
 
   GetMyAppointmentsUseCase(this.repository);
 
-  Future<Either<ErrorModel, List<MyAppointmentModel>>> call({
+  Future<Either<ErrorModel, List<MyAppointment>>> call({
     required String mobileNumber,
     required String token,
   }) {

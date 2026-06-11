@@ -7,7 +7,7 @@ sealed class HomeState with _$HomeState {
     required bool isDataFetchingFailed,
     required bool isDataFetchingsuccess,
     required ErrorModel error,
-    required HomeDataModel homeData,
+    required HomeData homeData,
   }) = _HomeState;
 
   factory HomeState.initial() => HomeState(
@@ -15,7 +15,7 @@ sealed class HomeState with _$HomeState {
     isDataFetchingFailed: false,
     isDataFetchingsuccess: false,
     error: ErrorModel(message: ''),
-    homeData: const HomeDataModel(
+    homeData: const HomeData(
       ads: [],
       topSpecialities: [],
       topInsurances: [],

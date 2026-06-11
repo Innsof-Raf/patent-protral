@@ -18,7 +18,7 @@ class LoginRepositoryImpl implements LoginRepository {
   Future<Either<Failure, OtpResponse>> generateOtp(String mobileNumber) async {
     try {
       final remoteOtp = await remoteDataSource.generateOtp(mobileNumber);
-      return Right(remoteOtp);
+      return Right(remoteOtp.toEntity());
     } on SocketException {
       return const Left(NetworkFailure(ConstantMessages.noNetworkErrorMessage));
     } on TimeoutException {

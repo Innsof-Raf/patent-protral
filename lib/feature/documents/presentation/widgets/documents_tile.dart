@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_portal/feature/documents/domain/entities/documents_model/document_model.dart';
+import 'package:patient_portal/feature/documents/domain/entities/document.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class DocumentTile extends StatelessWidget {
-  final DocumentModel document;
+  final Document document;
   const DocumentTile({super.key, required this.document});
 
   @override

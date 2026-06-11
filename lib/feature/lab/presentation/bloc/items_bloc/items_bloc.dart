@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:patient_portal/feature/lab/domain/entities/item_model.dart';
+import 'package:patient_portal/feature/lab/domain/entities/item.dart';
 import 'package:patient_portal/feature/lab/domain/usecases/get_items_usecase.dart';
 import 'package:patient_portal/feature/lab/domain/usecases/params/lab_params.dart';
 import 'package:patient_portal/feature/lab/domain/usecases/update_item_in_cart_usecase.dart';
@@ -39,7 +39,7 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
         ),
         (items) {
           double cartTotal = 0;
-          for (ItemModel item in items) {
+          for (Item item in items) {
             if (item.isCart) {
               cartTotal = cartTotal + item.itemPrice;
             }
@@ -100,15 +100,15 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
         ),
         (succes) {
           double cartTotal = state.cartTotal;
-          List<ItemModel> cart = List.from(state.cart);
+          List<Item> cart = List.from(state.cart);
           if (cart.any((item) => item.idItem == event.idItem)) {
-            final ItemModel item = cart.singleWhere(
+            final Item item = cart.singleWhere(
               (item) => item.idItem == event.idItem,
             );
             cart.remove(item);
             cartTotal = cartTotal - item.itemPrice;
           } else {
-            final ItemModel item = state.items.singleWhere(
+            final Item item = state.items.singleWhere(
               (item) => item.idItem == event.idItem,
             );
             cart.add(item);

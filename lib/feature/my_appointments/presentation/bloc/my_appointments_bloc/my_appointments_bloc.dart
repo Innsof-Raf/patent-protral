@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment_model.dart';
+import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/cancel_appointment_usecase.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/get_my_appointments_usecase.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
@@ -30,7 +30,7 @@ class MyAppointmentsBloc
           isAppointmentsFetchingSuccess: false,
         ),
       );
-      final Either<ErrorModel, List<MyAppointmentModel>>
+      final Either<ErrorModel, List<MyAppointment>>
       myAppointmentsFetchingOptions =
           await getMyAppointmentsUseCase(
             mobileNumber: event.params.mobileNumber,
@@ -48,9 +48,9 @@ class MyAppointmentsBloc
           List<DateTime> monthTimeLineList = [];
           List<DateTime> monthTimeLineListOfConsulted = [];
           List<DateTime> monthTimeLineListOfNotConsulted = [];
-          List<MyAppointmentModel> consultedAppointments = [];
-          List<MyAppointmentModel> notConsultedAppointments = [];
-          for (MyAppointmentModel appointment in myAppointments) {
+          List<MyAppointment> consultedAppointments = [];
+          List<MyAppointment> notConsultedAppointments = [];
+          for (MyAppointment appointment in myAppointments) {
             if (!monthTimeLineList.contains(
               DateTime(
                 appointment.appointmentDateTime.year,
@@ -113,15 +113,15 @@ class MyAppointmentsBloc
       );
     });
     on<ChangeResheduledAppointmentDetails>((event, emit) {
-      List<MyAppointmentModel> myAppointments = List.from(state.myAppointments);
+      List<MyAppointment> myAppointments = List.from(state.myAppointments);
 
       List<DateTime> monthTimeLineList = [];
       List<DateTime> monthTimeLineListOfNotConsulted = [];
-      List<MyAppointmentModel> notConsultedAppointments = [];
+      List<MyAppointment> notConsultedAppointments = [];
       final int currentAppointmentIndex = myAppointments.indexOf(
         event.params.appointment,
       );
-      myAppointments[currentAppointmentIndex] = MyAppointmentModel(
+      myAppointments[currentAppointmentIndex] = MyAppointment(
         id: event.params.appointment.id,
         memberId: event.params.appointment.memberId,
         memberName: event.params.appointment.memberName,
@@ -137,7 +137,7 @@ class MyAppointmentsBloc
         appointmentDateTime: event.params.cureentSlot,
         idDoctor: event.params.appointment.idDoctor,
       );
-      for (MyAppointmentModel appointment in myAppointments) {
+      for (MyAppointment appointment in myAppointments) {
         if (!monthTimeLineList.contains(
           DateTime(
             appointment.appointmentDateTime.year,
@@ -204,17 +204,17 @@ class MyAppointmentsBloc
           state.copyWith(isAppointmentsCancelationFailed: false, error: error),
         ),
         (sucessesResponse) {
-          List<MyAppointmentModel> myAppointments = List.from(
+          List<MyAppointment> myAppointments = List.from(
             state.myAppointments,
           );
 
           List<DateTime> monthTimeLineList = [];
           List<DateTime> monthTimeLineListOfNotConsulted = [];
-          List<MyAppointmentModel> notConsultedAppointments = [];
+          List<MyAppointment> notConsultedAppointments = [];
           myAppointments.removeWhere(
             (appointment) => appointment.id == event.params.idAppointment,
           );
-          for (MyAppointmentModel appointment in myAppointments) {
+          for (MyAppointment appointment in myAppointments) {
             if (!monthTimeLineList.contains(
               DateTime(
                 appointment.appointmentDateTime.year,
@@ -259,11 +259,11 @@ class MyAppointmentsBloc
       );
     });
     on<StoreBokkedApoointment>((event, emit) {
-      List<MyAppointmentModel> myAppointments = List.from(state.myAppointments);
-      List<MyAppointmentModel> myNotConsultedAppointments = List.from(
+      List<MyAppointment> myAppointments = List.from(state.myAppointments);
+      List<MyAppointment> myNotConsultedAppointments = List.from(
         state.myNotConsultedAppointments,
       );
-      List<MyAppointmentModel> myConsultedAppointments = List.from(
+      List<MyAppointment> myConsultedAppointments = List.from(
         state.myConsultedAppointments,
       );
       List<DateTime> monthList = List.from(state.monthTimeLineList);
@@ -362,7 +362,7 @@ extension _MyAppointmentsParamsX on MyAppointmentsParams {
     orElse: () => throw Exception('Invalid mobile number params'),
   );
 
-  MyAppointmentModel get appointment => maybeWhen(
+  MyAppointment get appointment => maybeWhen(
     storeBokkedApoointment: (appointment) => appointment,
     changeResheduledAppointmentDetails: (appointment, cureentSlot) =>
         appointment,

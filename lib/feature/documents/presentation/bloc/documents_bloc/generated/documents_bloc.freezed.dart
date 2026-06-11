@@ -271,7 +271,7 @@ as String,
 /// @nodoc
 mixin _$DocumentsState {
 
- List<DocumentModel> get documents; bool get isFetching; bool get isFetchingFailed; bool get isFetchingSucces; ErrorModel get error; int get selectedMemberId;
+ List<Document> get documents; bool get isFetching; bool get isFetchingFailed; bool get isFetchingSucces; ErrorModel get error; int get selectedMemberId;
 /// Create a copy of DocumentsState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -302,11 +302,11 @@ abstract mixin class $DocumentsStateCopyWith<$Res>  {
   factory $DocumentsStateCopyWith(DocumentsState value, $Res Function(DocumentsState) _then) = _$DocumentsStateCopyWithImpl;
 @useResult
 $Res call({
- List<DocumentModel> documents, bool isFetching, bool isFetchingFailed, bool isFetchingSucces, ErrorModel error, int selectedMemberId
+ List<Document> documents, bool isFetching, bool isFetchingFailed, bool isFetchingSucces, ErrorModel error, int selectedMemberId
 });
 
 
-
+$ErrorModelCopyWith<$Res> get error;
 
 }
 /// @nodoc
@@ -322,7 +322,7 @@ class _$DocumentsStateCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? documents = null,Object? isFetching = null,Object? isFetchingFailed = null,Object? isFetchingSucces = null,Object? error = null,Object? selectedMemberId = null,}) {
   return _then(_self.copyWith(
 documents: null == documents ? _self.documents : documents // ignore: cast_nullable_to_non_nullable
-as List<DocumentModel>,isFetching: null == isFetching ? _self.isFetching : isFetching // ignore: cast_nullable_to_non_nullable
+as List<Document>,isFetching: null == isFetching ? _self.isFetching : isFetching // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingFailed: null == isFetchingFailed ? _self.isFetchingFailed : isFetchingFailed // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingSucces: null == isFetchingSucces ? _self.isFetchingSucces : isFetchingSucces // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
@@ -330,7 +330,16 @@ as ErrorModel,selectedMemberId: null == selectedMemberId ? _self.selectedMemberI
 as int,
   ));
 }
-
+/// Create a copy of DocumentsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
+  });
+}
 }
 
 
@@ -409,7 +418,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<DocumentModel> documents,  bool isFetching,  bool isFetchingFailed,  bool isFetchingSucces,  ErrorModel error,  int selectedMemberId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<Document> documents,  bool isFetching,  bool isFetchingFailed,  bool isFetchingSucces,  ErrorModel error,  int selectedMemberId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DocumentsState() when $default != null:
 return $default(_that.documents,_that.isFetching,_that.isFetchingFailed,_that.isFetchingSucces,_that.error,_that.selectedMemberId);case _:
@@ -430,7 +439,7 @@ return $default(_that.documents,_that.isFetching,_that.isFetchingFailed,_that.is
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<DocumentModel> documents,  bool isFetching,  bool isFetchingFailed,  bool isFetchingSucces,  ErrorModel error,  int selectedMemberId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<Document> documents,  bool isFetching,  bool isFetchingFailed,  bool isFetchingSucces,  ErrorModel error,  int selectedMemberId)  $default,) {final _that = this;
 switch (_that) {
 case _DocumentsState():
 return $default(_that.documents,_that.isFetching,_that.isFetchingFailed,_that.isFetchingSucces,_that.error,_that.selectedMemberId);}
@@ -447,7 +456,7 @@ return $default(_that.documents,_that.isFetching,_that.isFetchingFailed,_that.is
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<DocumentModel> documents,  bool isFetching,  bool isFetchingFailed,  bool isFetchingSucces,  ErrorModel error,  int selectedMemberId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<Document> documents,  bool isFetching,  bool isFetchingFailed,  bool isFetchingSucces,  ErrorModel error,  int selectedMemberId)?  $default,) {final _that = this;
 switch (_that) {
 case _DocumentsState() when $default != null:
 return $default(_that.documents,_that.isFetching,_that.isFetchingFailed,_that.isFetchingSucces,_that.error,_that.selectedMemberId);case _:
@@ -462,11 +471,11 @@ return $default(_that.documents,_that.isFetching,_that.isFetchingFailed,_that.is
 
 
 class _DocumentsState implements DocumentsState {
-  const _DocumentsState({required final  List<DocumentModel> documents, required this.isFetching, required this.isFetchingFailed, required this.isFetchingSucces, required this.error, required this.selectedMemberId}): _documents = documents;
+  const _DocumentsState({required final  List<Document> documents, required this.isFetching, required this.isFetchingFailed, required this.isFetchingSucces, required this.error, required this.selectedMemberId}): _documents = documents;
   
 
- final  List<DocumentModel> _documents;
-@override List<DocumentModel> get documents {
+ final  List<Document> _documents;
+@override List<Document> get documents {
   if (_documents is EqualUnmodifiableListView) return _documents;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_documents);
@@ -508,11 +517,11 @@ abstract mixin class _$DocumentsStateCopyWith<$Res> implements $DocumentsStateCo
   factory _$DocumentsStateCopyWith(_DocumentsState value, $Res Function(_DocumentsState) _then) = __$DocumentsStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<DocumentModel> documents, bool isFetching, bool isFetchingFailed, bool isFetchingSucces, ErrorModel error, int selectedMemberId
+ List<Document> documents, bool isFetching, bool isFetchingFailed, bool isFetchingSucces, ErrorModel error, int selectedMemberId
 });
 
 
-
+@override $ErrorModelCopyWith<$Res> get error;
 
 }
 /// @nodoc
@@ -528,7 +537,7 @@ class __$DocumentsStateCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? documents = null,Object? isFetching = null,Object? isFetchingFailed = null,Object? isFetchingSucces = null,Object? error = null,Object? selectedMemberId = null,}) {
   return _then(_DocumentsState(
 documents: null == documents ? _self._documents : documents // ignore: cast_nullable_to_non_nullable
-as List<DocumentModel>,isFetching: null == isFetching ? _self.isFetching : isFetching // ignore: cast_nullable_to_non_nullable
+as List<Document>,isFetching: null == isFetching ? _self.isFetching : isFetching // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingFailed: null == isFetchingFailed ? _self.isFetchingFailed : isFetchingFailed // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingSucces: null == isFetchingSucces ? _self.isFetchingSucces : isFetchingSucces // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
@@ -537,7 +546,16 @@ as int,
   ));
 }
 
-
+/// Create a copy of DocumentsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ErrorModelCopyWith<$Res> get error {
+  
+  return $ErrorModelCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
+  });
+}
 }
 
 // dart format on

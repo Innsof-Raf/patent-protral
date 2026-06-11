@@ -8,13 +8,13 @@ sealed class MyAppointmentsState with _$MyAppointmentsState {
     required bool isAppointmentsFetchingSuccess,
     required ErrorModel error,
     required List<DateTime> monthTimeLineListOfNotConsulted,
-    required List<MyAppointmentModel> myNotConsultedAppointments,
+    required List<MyAppointment> myNotConsultedAppointments,
     required List<DateTime> monthTimeLineListOfConsulted,
-    required List<MyAppointmentModel> myConsultedAppointments,
+    required List<MyAppointment> myConsultedAppointments,
     required List<DateTime> monthTimeLineList,
     required bool isAppointmentsCancelationFailed,
     required bool isAppointmentsCancelationSuccess,
-    required List<MyAppointmentModel> myAppointments,
+    required List<MyAppointment> myAppointments,
   }) = _MyAppointmentState;
 
   factory MyAppointmentsState.initial() => MyAppointmentsState(

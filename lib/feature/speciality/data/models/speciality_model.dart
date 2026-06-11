@@ -1,17 +1,18 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
 
-class SpecialityModel {
-  final int idSpeciality;
-  final String specialityId;
-  final String specialityName;
-  final String? specialityImage;
+part 'generated/speciality_model.freezed.dart';
 
-  const SpecialityModel({
-    required this.idSpeciality,
-    required this.specialityId,
-    required this.specialityName,
-    required this.specialityImage,
-  });
+@freezed
+sealed class SpecialityModel with _$SpecialityModel {
+  const SpecialityModel._();
+
+  const factory SpecialityModel({
+    required int idSpeciality,
+    required String specialityId,
+    required String specialityName,
+    required String? specialityImage,
+  }) = _SpecialityModel;
 
   factory SpecialityModel.fromJson(Map<String, dynamic> json) {
     return SpecialityModel(
@@ -22,12 +23,10 @@ class SpecialityModel {
     );
   }
 
-  Speciality toEntity() {
-    return Speciality(
-      idSpeciality: idSpeciality,
-      specialityId: specialityId,
-      specialityName: specialityName,
-      specialityImage: specialityImage,
-    );
-  }
+  Speciality toEntity() => Speciality(
+        idSpeciality: idSpeciality,
+        specialityId: specialityId,
+        specialityName: specialityName,
+        specialityImage: specialityImage,
+      );
 }

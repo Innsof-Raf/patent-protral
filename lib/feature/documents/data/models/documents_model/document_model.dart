@@ -1,19 +1,19 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/documents/domain/entities/document.dart';
 
-class DocumentModel {
-  final int docId;
-  final int memberId;
-  final DateTime expireDate;
-  final String docName;
-  final String docType;
+part 'generated/document_model.freezed.dart';
 
-  const DocumentModel({
-    required this.docId,
-    required this.memberId,
-    required this.expireDate,
-    required this.docName,
-    required this.docType,
-  });
+@freezed
+sealed class DocumentModel with _$DocumentModel {
+  const DocumentModel._();
+
+  const factory DocumentModel({
+    required int docId,
+    required int memberId,
+    required DateTime expireDate,
+    required String docName,
+    required String docType,
+  }) = _DocumentModel;
 
   factory DocumentModel.fromJson(Map<String, dynamic> json) {
     return DocumentModel(
@@ -25,13 +25,11 @@ class DocumentModel {
     );
   }
 
-  Document toEntity() {
-    return Document(
-      docId: docId,
-      memberId: memberId,
-      expireDate: expireDate,
-      docName: docName,
-      docType: docType,
-    );
-  }
+  Document toEntity() => Document(
+        docId: docId,
+        memberId: memberId,
+        expireDate: expireDate,
+        docName: docName,
+        docType: docType,
+      );
 }

@@ -1,39 +1,29 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
 
-class MyAppointmentModel {
-  final int id;
-  final int memberId;
-  final String memberName;
-  final String email;
-  final String mobileNumber;
-  final String departName;
-  final String doctorId;
-  final String doctorName;
-  final String speciality;
-  final String branch;
-  final String profileUrl;
-  final String busunitName;
-  final DateTime appointmentDateTime;
-  final int idDoctor;
-  final bool isCanceling;
+part 'generated/my_appointment_model.freezed.dart';
 
-  const MyAppointmentModel({
-    required this.id,
-    required this.memberId,
-    required this.memberName,
-    required this.email,
-    required this.mobileNumber,
-    required this.departName,
-    required this.doctorId,
-    required this.doctorName,
-    required this.speciality,
-    required this.branch,
-    required this.profileUrl,
-    required this.busunitName,
-    required this.appointmentDateTime,
-    required this.idDoctor,
-    this.isCanceling = false,
-  });
+@freezed
+sealed class MyAppointmentModel with _$MyAppointmentModel {
+  const MyAppointmentModel._();
+
+  const factory MyAppointmentModel({
+    required int id,
+    required int memberId,
+    required String memberName,
+    required String email,
+    required String mobileNumber,
+    required String departName,
+    required String doctorId,
+    required String doctorName,
+    required String speciality,
+    required String branch,
+    required String profileUrl,
+    required String busunitName,
+    required DateTime appointmentDateTime,
+    required int idDoctor,
+    @Default(false) bool isCanceling,
+  }) = _MyAppointmentModel;
 
   factory MyAppointmentModel.fromJson(Map<String, dynamic> json) {
     return MyAppointmentModel(
@@ -54,23 +44,21 @@ class MyAppointmentModel {
     );
   }
 
-  MyAppointment toEntity() {
-    return MyAppointment(
-      id: id,
-      memberId: memberId,
-      memberName: memberName,
-      email: email,
-      mobileNumber: mobileNumber,
-      departName: departName,
-      doctorId: doctorId,
-      doctorName: doctorName,
-      speciality: speciality,
-      branch: branch,
-      profileUrl: profileUrl,
-      busunitName: busunitName,
-      appointmentDateTime: appointmentDateTime,
-      idDoctor: idDoctor,
-      isCanceling: isCanceling,
-    );
-  }
+  MyAppointment toEntity() => MyAppointment(
+        id: id,
+        memberId: memberId,
+        memberName: memberName,
+        email: email,
+        mobileNumber: mobileNumber,
+        departName: departName,
+        doctorId: doctorId,
+        doctorName: doctorName,
+        speciality: speciality,
+        branch: branch,
+        profileUrl: profileUrl,
+        busunitName: busunitName,
+        appointmentDateTime: appointmentDateTime,
+        idDoctor: idDoctor,
+        isCanceling: isCanceling,
+      );
 }

@@ -3,7 +3,7 @@ part of 'documents_bloc.dart';
 @freezed
 sealed class DocumentsState with _$DocumentsState {
   const factory DocumentsState({
-    required List<DocumentModel> documents,
+    required List<Document> documents,
     required bool isFetching,
     required bool isFetchingFailed,
     required bool isFetchingSucces,

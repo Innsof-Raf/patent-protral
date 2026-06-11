@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:patient_portal/feature/home/domain/entities/home_data_model.dart';
+import 'package:patient_portal/feature/home/domain/entities/home_data.dart';
 import 'package:patient_portal/feature/home/domain/usecases/get_home_data_usecase.dart';
 import 'package:patient_portal/feature/home/domain/usecases/params/home_params.dart';
 import 'package:patient_portal/core/resources/error_model.dart';
