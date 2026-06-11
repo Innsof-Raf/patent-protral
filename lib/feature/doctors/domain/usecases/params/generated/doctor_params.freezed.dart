@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DoctorParams {
 
- int get specialityId;
+ int get specialityId; String get token;
 /// Create a copy of DoctorParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $DoctorParamsCopyWith<DoctorParams> get copyWith => _$DoctorParamsCopyWithImpl<D
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DoctorParams&&(identical(other.specialityId, specialityId) || other.specialityId == specialityId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DoctorParams&&(identical(other.specialityId, specialityId) || other.specialityId == specialityId)&&(identical(other.token, token) || other.token == token));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,specialityId);
+int get hashCode => Object.hash(runtimeType,specialityId,token);
 
 @override
 String toString() {
-  return 'DoctorParams(specialityId: $specialityId)';
+  return 'DoctorParams(specialityId: $specialityId, token: $token)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $DoctorParamsCopyWith<$Res>  {
   factory $DoctorParamsCopyWith(DoctorParams value, $Res Function(DoctorParams) _then) = _$DoctorParamsCopyWithImpl;
 @useResult
 $Res call({
- int specialityId
+ int specialityId, String token
 });
 
 
@@ -62,10 +62,11 @@ class _$DoctorParamsCopyWithImpl<$Res>
 
 /// Create a copy of DoctorParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? specialityId = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? specialityId = null,Object? token = null,}) {
   return _then(_self.copyWith(
 specialityId: null == specialityId ? _self.specialityId : specialityId // ignore: cast_nullable_to_non_nullable
-as int,
+as int,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -147,10 +148,10 @@ return getAvailableDoctors(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int specialityId)?  getAvailableDoctors,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int specialityId,  String token)?  getAvailableDoctors,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case GetAvailableDoctorsParams() when getAvailableDoctors != null:
-return getAvailableDoctors(_that.specialityId);case _:
+return getAvailableDoctors(_that.specialityId,_that.token);case _:
   return orElse();
 
 }
@@ -168,10 +169,10 @@ return getAvailableDoctors(_that.specialityId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int specialityId)  getAvailableDoctors,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int specialityId,  String token)  getAvailableDoctors,}) {final _that = this;
 switch (_that) {
 case GetAvailableDoctorsParams():
-return getAvailableDoctors(_that.specialityId);}
+return getAvailableDoctors(_that.specialityId,_that.token);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -185,10 +186,10 @@ return getAvailableDoctors(_that.specialityId);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int specialityId)?  getAvailableDoctors,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int specialityId,  String token)?  getAvailableDoctors,}) {final _that = this;
 switch (_that) {
 case GetAvailableDoctorsParams() when getAvailableDoctors != null:
-return getAvailableDoctors(_that.specialityId);case _:
+return getAvailableDoctors(_that.specialityId,_that.token);case _:
   return null;
 
 }
@@ -200,10 +201,11 @@ return getAvailableDoctors(_that.specialityId);case _:
 
 
 class GetAvailableDoctorsParams implements DoctorParams {
-  const GetAvailableDoctorsParams({required this.specialityId});
+  const GetAvailableDoctorsParams({required this.specialityId, required this.token});
   
 
 @override final  int specialityId;
+@override final  String token;
 
 /// Create a copy of DoctorParams
 /// with the given fields replaced by the non-null parameter values.
@@ -215,16 +217,16 @@ $GetAvailableDoctorsParamsCopyWith<GetAvailableDoctorsParams> get copyWith => _$
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetAvailableDoctorsParams&&(identical(other.specialityId, specialityId) || other.specialityId == specialityId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetAvailableDoctorsParams&&(identical(other.specialityId, specialityId) || other.specialityId == specialityId)&&(identical(other.token, token) || other.token == token));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,specialityId);
+int get hashCode => Object.hash(runtimeType,specialityId,token);
 
 @override
 String toString() {
-  return 'DoctorParams.getAvailableDoctors(specialityId: $specialityId)';
+  return 'DoctorParams.getAvailableDoctors(specialityId: $specialityId, token: $token)';
 }
 
 
@@ -235,7 +237,7 @@ abstract mixin class $GetAvailableDoctorsParamsCopyWith<$Res> implements $Doctor
   factory $GetAvailableDoctorsParamsCopyWith(GetAvailableDoctorsParams value, $Res Function(GetAvailableDoctorsParams) _then) = _$GetAvailableDoctorsParamsCopyWithImpl;
 @override @useResult
 $Res call({
- int specialityId
+ int specialityId, String token
 });
 
 
@@ -252,10 +254,11 @@ class _$GetAvailableDoctorsParamsCopyWithImpl<$Res>
 
 /// Create a copy of DoctorParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? specialityId = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? specialityId = null,Object? token = null,}) {
   return _then(GetAvailableDoctorsParams(
 specialityId: null == specialityId ? _self.specialityId : specialityId // ignore: cast_nullable_to_non_nullable
-as int,
+as int,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

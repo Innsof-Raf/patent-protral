@@ -10,6 +10,7 @@ import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
 import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc/doctor_bloc.dart';
 import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc/search_doctor_bloc.dart';
 import 'package:patient_portal/feature/doctors/presentation/widgets/doctor_tile.dart';
+import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
 class DoctorsScreen extends StatefulWidget {
   final int idSpecilaity;
@@ -28,8 +29,12 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
   void initState() {
     super.initState();
     log('idSpecilaity: ${widget.idSpecilaity}', name: 'DoctorsScreen');
+    final token = context.read<UserBloc>().state.user!.accessToken;
     context.read<DoctorBloc>().add(
-      GetAvailableDoctorsByDepartment(idspeciality: widget.idSpecilaity),
+      GetAvailableDoctorsByDepartment(
+        idspeciality: widget.idSpecilaity,
+        token: token,
+      ),
     );
   }
 

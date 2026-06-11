@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DoctorEvent {
 
- int get idspeciality;
+ int get idspeciality; String get token;
 /// Create a copy of DoctorEvent
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $DoctorEventCopyWith<DoctorEvent> get copyWith => _$DoctorEventCopyWithImpl<Doct
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DoctorEvent&&(identical(other.idspeciality, idspeciality) || other.idspeciality == idspeciality));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DoctorEvent&&(identical(other.idspeciality, idspeciality) || other.idspeciality == idspeciality)&&(identical(other.token, token) || other.token == token));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,idspeciality);
+int get hashCode => Object.hash(runtimeType,idspeciality,token);
 
 @override
 String toString() {
-  return 'DoctorEvent(idspeciality: $idspeciality)';
+  return 'DoctorEvent(idspeciality: $idspeciality, token: $token)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $DoctorEventCopyWith<$Res>  {
   factory $DoctorEventCopyWith(DoctorEvent value, $Res Function(DoctorEvent) _then) = _$DoctorEventCopyWithImpl;
 @useResult
 $Res call({
- int idspeciality
+ int idspeciality, String token
 });
 
 
@@ -62,10 +62,11 @@ class _$DoctorEventCopyWithImpl<$Res>
 
 /// Create a copy of DoctorEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? idspeciality = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? idspeciality = null,Object? token = null,}) {
   return _then(_self.copyWith(
 idspeciality: null == idspeciality ? _self.idspeciality : idspeciality // ignore: cast_nullable_to_non_nullable
-as int,
+as int,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -147,10 +148,10 @@ return getAvailableDoctorsByDepartment(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int idspeciality)?  getAvailableDoctorsByDepartment,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int idspeciality,  String token)?  getAvailableDoctorsByDepartment,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case GetAvailableDoctorsByDepartment() when getAvailableDoctorsByDepartment != null:
-return getAvailableDoctorsByDepartment(_that.idspeciality);case _:
+return getAvailableDoctorsByDepartment(_that.idspeciality,_that.token);case _:
   return orElse();
 
 }
@@ -168,10 +169,10 @@ return getAvailableDoctorsByDepartment(_that.idspeciality);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int idspeciality)  getAvailableDoctorsByDepartment,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int idspeciality,  String token)  getAvailableDoctorsByDepartment,}) {final _that = this;
 switch (_that) {
 case GetAvailableDoctorsByDepartment():
-return getAvailableDoctorsByDepartment(_that.idspeciality);}
+return getAvailableDoctorsByDepartment(_that.idspeciality,_that.token);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -185,10 +186,10 @@ return getAvailableDoctorsByDepartment(_that.idspeciality);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int idspeciality)?  getAvailableDoctorsByDepartment,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int idspeciality,  String token)?  getAvailableDoctorsByDepartment,}) {final _that = this;
 switch (_that) {
 case GetAvailableDoctorsByDepartment() when getAvailableDoctorsByDepartment != null:
-return getAvailableDoctorsByDepartment(_that.idspeciality);case _:
+return getAvailableDoctorsByDepartment(_that.idspeciality,_that.token);case _:
   return null;
 
 }
@@ -200,10 +201,11 @@ return getAvailableDoctorsByDepartment(_that.idspeciality);case _:
 
 
 class GetAvailableDoctorsByDepartment implements DoctorEvent {
-  const GetAvailableDoctorsByDepartment({required this.idspeciality});
+  const GetAvailableDoctorsByDepartment({required this.idspeciality, required this.token});
   
 
 @override final  int idspeciality;
+@override final  String token;
 
 /// Create a copy of DoctorEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -215,16 +217,16 @@ $GetAvailableDoctorsByDepartmentCopyWith<GetAvailableDoctorsByDepartment> get co
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetAvailableDoctorsByDepartment&&(identical(other.idspeciality, idspeciality) || other.idspeciality == idspeciality));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetAvailableDoctorsByDepartment&&(identical(other.idspeciality, idspeciality) || other.idspeciality == idspeciality)&&(identical(other.token, token) || other.token == token));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,idspeciality);
+int get hashCode => Object.hash(runtimeType,idspeciality,token);
 
 @override
 String toString() {
-  return 'DoctorEvent.getAvailableDoctorsByDepartment(idspeciality: $idspeciality)';
+  return 'DoctorEvent.getAvailableDoctorsByDepartment(idspeciality: $idspeciality, token: $token)';
 }
 
 
@@ -235,7 +237,7 @@ abstract mixin class $GetAvailableDoctorsByDepartmentCopyWith<$Res> implements $
   factory $GetAvailableDoctorsByDepartmentCopyWith(GetAvailableDoctorsByDepartment value, $Res Function(GetAvailableDoctorsByDepartment) _then) = _$GetAvailableDoctorsByDepartmentCopyWithImpl;
 @override @useResult
 $Res call({
- int idspeciality
+ int idspeciality, String token
 });
 
 
@@ -252,10 +254,11 @@ class _$GetAvailableDoctorsByDepartmentCopyWithImpl<$Res>
 
 /// Create a copy of DoctorEvent
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? idspeciality = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? idspeciality = null,Object? token = null,}) {
   return _then(GetAvailableDoctorsByDepartment(
 idspeciality: null == idspeciality ? _self.idspeciality : idspeciality // ignore: cast_nullable_to_non_nullable
-as int,
+as int,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

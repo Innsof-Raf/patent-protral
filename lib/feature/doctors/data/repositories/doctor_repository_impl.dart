@@ -19,10 +19,11 @@ class DoctorRepositoryImpl implements DoctorRepository {
     DoctorParams params,
   ) async {
     return await params.when(
-      getAvailableDoctors: (specialityId) async {
+      getAvailableDoctors: (specialityId, token) async {
         try {
           final remoteDoctors = await remoteDataSource.getAvailableDoctors(
             specialityId,
+            token,
           );
           return Right(remoteDoctors.map((model) => model.toEntity()).toList());
         } on SocketException {

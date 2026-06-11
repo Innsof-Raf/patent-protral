@@ -24,7 +24,10 @@ class DoctorBloc extends Bloc<DoctorEvent, DoctorState> {
       );
 
       final result = await getAvailableDoctorsUseCase(
-        DoctorParams.getAvailableDoctors(specialityId: event.idspeciality),
+        DoctorParams.getAvailableDoctors(
+          specialityId: event.idspeciality,
+          token: event.token,
+        ),
       );
 
       result.fold(
