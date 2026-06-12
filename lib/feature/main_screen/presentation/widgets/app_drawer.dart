@@ -66,14 +66,14 @@ class AppDrawer extends StatelessWidget {
                       iconPath: Assets.icons.membersIcon.path,
                       tileName: 'Members',
                       onPress: () {
-                        context.router.push(const MembersRoute());
+                        _openRoute(context, const MembersRoute());
                       },
                     ),
                     AppDrawerTile(
                       iconPath: Assets.icons.labIcon.path,
                       tileName: 'Laboratory',
                       onPress: () {
-                        context.router.push(const LabRoute());
+                        _openRoute(context, const LabRoute());
                       },
                     ),
                     AppDrawerTile(
@@ -118,5 +118,13 @@ class AppDrawer extends StatelessWidget {
       MainScreenHelpers.mainScreenNotifier.value = index;
     }
     Navigator.of(context).pop();
+  }
+
+  void _openRoute(BuildContext context, PageRouteInfo route) {
+    final router = context.router;
+    Navigator.of(context).pop();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      router.push(route);
+    });
   }
 }
