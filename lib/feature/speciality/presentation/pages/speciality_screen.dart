@@ -55,7 +55,7 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
               'Find Specialist',
               style: AppTextStyles.subHeaddingSemiBoldRoboto,
             ),
-             Text(
+            Text(
               'Consult top doctors online for any health concern',
               style: AppTextStyles.bodyTextInter,
             ),

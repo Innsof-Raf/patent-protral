@@ -88,8 +88,7 @@ class $AssetsIconsGen {
       const SvgGenImage('assets/icons/drawer_icon.svg');
 
   /// File path: assets/icons/error_icon.svg
-  SvgGenImage get errorIcon =>
-      const SvgGenImage('assets/icons/error_icon.svg');
+  SvgGenImage get errorIcon => const SvgGenImage('assets/icons/error_icon.svg');
 
   /// File path: assets/icons/experience_icon.svg
   SvgGenImage get experienceIcon =>
@@ -156,8 +155,7 @@ class $AssetsIconsGen {
       const SvgGenImage('assets/icons/reports_icon.svg');
 
   /// File path: assets/icons/share_icon.svg
-  SvgGenImage get shareIcon =>
-      const SvgGenImage('assets/icons/share_icon.svg');
+  SvgGenImage get shareIcon => const SvgGenImage('assets/icons/share_icon.svg');
 
   /// File path: assets/icons/view_reports_icon.svg
   SvgGenImage get viewReportsIcon =>

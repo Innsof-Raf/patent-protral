@@ -14,7 +14,8 @@ sealed class SlotModel with _$SlotModel {
     @JsonKey(readValue: _readLabel, fromJson: stringFromJson)
     required String label,
     required DateTime appdttm,
-    @Default(false) @JsonKey(name: 'booked', fromJson: boolFromJson)
+    @Default(false)
+    @JsonKey(name: 'booked', fromJson: boolFromJson)
     bool isBooked,
   }) = _SlotModel;
 

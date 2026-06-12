@@ -95,7 +95,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                             Text(
+                            Text(
                               'Consult top doctors online for any health concern',
                               style: AppTextStyles.bodyTextInter,
                             ),
@@ -162,7 +162,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                             Text(
+                            Text(
                               'We are providing following Medical insurance',
                               style: AppTextStyles.bodyTextInter,
                             ),
@@ -179,22 +179,26 @@ class HomeScreen extends StatelessWidget {
                                           crossAxisCount: 6,
                                           crossAxisSpacing: 10,
                                         ),
-                                    itemBuilder: (context, index) => CachedNetworkImage(
-                                      imageUrl:
-                                          '${ConstantUrls.insuranceImagePath}/${state.homeData.topInsurances[index].idInsurance}/${state.homeData.topInsurances[index].img}',
-                                      fit: BoxFit.fill,
-                                      fadeInDuration: const Duration(
-                                        seconds: 0,
-                                      ),
-                                      fadeOutDuration: const Duration(
-                                        seconds: 0,
-                                      ),
-                                      errorWidget: (context, url, error) =>
-                                          Image.asset(
-                                            Assets.images.imageLoadingFailedImage.path,
-                                            fit: BoxFit.fill,
+                                    itemBuilder: (context, index) =>
+                                        CachedNetworkImage(
+                                          imageUrl:
+                                              '${ConstantUrls.insuranceImagePath}/${state.homeData.topInsurances[index].idInsurance}/${state.homeData.topInsurances[index].img}',
+                                          fit: BoxFit.fill,
+                                          fadeInDuration: const Duration(
+                                            seconds: 0,
                                           ),
-                                    ),
+                                          fadeOutDuration: const Duration(
+                                            seconds: 0,
+                                          ),
+                                          errorWidget: (context, url, error) =>
+                                              Image.asset(
+                                                Assets
+                                                    .images
+                                                    .imageLoadingFailedImage
+                                                    .path,
+                                                fit: BoxFit.fill,
+                                              ),
+                                        ),
                                     itemCount:
                                         state.homeData.topInsurances.length,
                                   ),

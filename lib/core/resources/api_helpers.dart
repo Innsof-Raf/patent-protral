@@ -1,9 +1,6 @@
 import 'dart:convert';
 
-Map<String, dynamic> serviceRequest({
-  required String type,
-  Object? content,
-}) {
+Map<String, dynamic> serviceRequest({required String type, Object? content}) {
   return {
     'type': type,
     'content': content is String ? content : jsonEncode(content ?? {}),

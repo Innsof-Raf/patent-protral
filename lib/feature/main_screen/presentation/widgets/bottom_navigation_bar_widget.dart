@@ -50,8 +50,16 @@ class BottomNavigationBarWidget extends StatelessWidget {
               },
               child: SvgPicture.asset(
                 value == 1
-                    ? Assets.icons.bottomBarIcons.myAppointmentsSelectedIcon.path
-                    : Assets.icons.bottomBarIcons.myAppointmentsUnselectedIcon.path,
+                    ? Assets
+                          .icons
+                          .bottomBarIcons
+                          .myAppointmentsSelectedIcon
+                          .path
+                    : Assets
+                          .icons
+                          .bottomBarIcons
+                          .myAppointmentsUnselectedIcon
+                          .path,
               ),
             ),
             GestureDetector(
@@ -63,7 +71,11 @@ class BottomNavigationBarWidget extends StatelessWidget {
               child: SvgPicture.asset(
                 value == 2
                     ? Assets.icons.bottomBarIcons.appointmentSelectedIcon.path
-                    : Assets.icons.bottomBarIcons.appointmentUnselectedIcon.path,
+                    : Assets
+                          .icons
+                          .bottomBarIcons
+                          .appointmentUnselectedIcon
+                          .path,
               ),
             ),
             GestureDetector(

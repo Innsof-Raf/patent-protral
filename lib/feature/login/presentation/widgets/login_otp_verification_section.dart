@@ -69,9 +69,7 @@ class _LoginOtpVerificationSectionState
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: _OtpInput(controller: _otpController),
-            ),
+            Expanded(child: _OtpInput(controller: _otpController)),
             const SizedBox(width: 12),
             BlocConsumer<OtpVerificationBloc, OtpVerificationState>(
               listener: (context, state) {
@@ -94,9 +92,7 @@ class _LoginOtpVerificationSectionState
                     !state.isVerifyingFailed) {
                   context.read<UserBloc>().add(
                     StoreUserDetails(
-                      params: ProfileParams.storeUserDetails(
-                        user: state.user!,
-                      ),
+                      params: ProfileParams.storeUserDetails(user: state.user!),
                     ),
                   );
                   context.router.replaceAll([const MainRoute()]);
@@ -205,8 +201,7 @@ class _OtpSecondaryActions extends StatelessWidget {
 
             return BlocConsumer<OtpGenerationBloc, OtpGenerationState>(
               listener: (context, state) {
-                if (state.isOtpResentingSucess &&
-                    !state.isOtpResentingFailed) {
+                if (state.isOtpResentingSucess && !state.isOtpResentingFailed) {
                   LoginScreenHelpers.timerNotifer.value = 30;
                   LoginScreenHelpers.addTimer();
                 }

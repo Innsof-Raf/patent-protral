@@ -19,7 +19,8 @@ sealed class MyAppointmentModel with _$MyAppointmentModel {
     @JsonKey(readValue: _readMobileNumber, fromJson: stringFromJson)
     required String mobileNumber,
     @Default('') @JsonKey(name: 'dept_name') String departName,
-    @Default('') @JsonKey(name: 'employee_id', fromJson: stringFromJson)
+    @Default('')
+    @JsonKey(name: 'employee_id', fromJson: stringFromJson)
     String doctorId,
     @Default('') @JsonKey(name: 'employee_name') String doctorName,
     @Default('') String speciality,
@@ -27,7 +28,8 @@ sealed class MyAppointmentModel with _$MyAppointmentModel {
     @Default('') @JsonKey(name: 'profileurl') String profileUrl,
     @Default('') @JsonKey(name: 'busunit_name') String busunitName,
     @JsonKey(name: 'Appmnt_Dttm') required DateTime appointmentDateTime,
-    @Default(0) @JsonKey(name: 'id_employee', fromJson: intFromJson)
+    @Default(0)
+    @JsonKey(name: 'id_employee', fromJson: intFromJson)
     int idDoctor,
     @Default(false) bool isCanceling,
   }) = _MyAppointmentModel;

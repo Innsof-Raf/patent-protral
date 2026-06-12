@@ -117,7 +117,10 @@ class _LoginBottomPanel extends StatelessWidget {
 
                 return FadeTransition(
                   opacity: animation,
-                  child: SlideTransition(position: slideAnimation, child: child),
+                  child: SlideTransition(
+                    position: slideAnimation,
+                    child: child,
+                  ),
                 );
               },
               child: switch (sectionIndex) {

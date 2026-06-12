@@ -67,21 +67,25 @@ class _LoginWithPasswordSectionState extends State<LoginWithPasswordSection> {
               const SizedBox(width: 12),
               Padding(
                 padding: const EdgeInsets.only(top: 3),
-                child: BlocConsumer<
-                  LoginWithPasswordBloc,
-                  LoginWithPasswordState
-                >(
-                  listener: (context, state) {
-                    if (state.isLoginFailed && !state.isLoginSucces) {
-                      showGeneralDialog(
-                        context: context,
-                        pageBuilder:
-                            (context, animation, secondaryAnimation) =>
-                                Container(),
-                        transitionDuration: const Duration(milliseconds: 300),
-                        transitionBuilder:
-                            (context, animation, secondaryAnimation, child) =>
-                                Transform.scale(
+                child:
+                    BlocConsumer<LoginWithPasswordBloc, LoginWithPasswordState>(
+                      listener: (context, state) {
+                        if (state.isLoginFailed && !state.isLoginSucces) {
+                          showGeneralDialog(
+                            context: context,
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    Container(),
+                            transitionDuration: const Duration(
+                              milliseconds: 300,
+                            ),
+                            transitionBuilder:
+                                (
+                                  context,
+                                  animation,
+                                  secondaryAnimation,
+                                  child,
+                                ) => Transform.scale(
                                   scale: Curves.easeOut.transform(
                                     animation.value,
                                   ),
@@ -89,27 +93,28 @@ class _LoginWithPasswordSectionState extends State<LoginWithPasswordSection> {
                                     content: state.error.message,
                                   ),
                                 ),
-                      );
-                    } else if (state.isLoginSucces && !state.isLoginFailed) {
-                      context.read<UserBloc>().add(
-                        StoreUserDetails(
-                          params: ProfileParams.storeUserDetails(
-                            user: state.user!,
-                          ),
-                        ),
-                      );
-                      context.router.replaceAll([const MainRoute()]);
-                    }
-                  },
-                  builder: (context, state) {
-                    return LoginActionButton(
-                      icon: Icons.login_rounded,
-                      tooltip: 'Login',
-                      isLoading: state.isLogingin,
-                      onPressed: () => _login(context, state),
-                    );
-                  },
-                ),
+                          );
+                        } else if (state.isLoginSucces &&
+                            !state.isLoginFailed) {
+                          context.read<UserBloc>().add(
+                            StoreUserDetails(
+                              params: ProfileParams.storeUserDetails(
+                                user: state.user!,
+                              ),
+                            ),
+                          );
+                          context.router.replaceAll([const MainRoute()]);
+                        }
+                      },
+                      builder: (context, state) {
+                        return LoginActionButton(
+                          icon: Icons.login_rounded,
+                          tooltip: 'Login',
+                          isLoading: state.isLogingin,
+                          onPressed: () => _login(context, state),
+                        );
+                      },
+                    ),
               ),
             ],
           ),

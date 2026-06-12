@@ -21,9 +21,7 @@ class MembersTile extends StatelessWidget {
         padding: EdgeInsets.all(size.width < 600 ? 10 : 20),
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(
-              Assets.images.homeMemberTileBagroundImage.path,
-            ),
+            image: AssetImage(Assets.images.homeMemberTileBagroundImage.path),
             fit: BoxFit.fill,
           ),
           borderRadius: BorderRadius.circular(11.5),

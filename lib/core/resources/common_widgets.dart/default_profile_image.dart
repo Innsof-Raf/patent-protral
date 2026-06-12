@@ -11,9 +11,7 @@ class DefaultProfileImage extends StatelessWidget {
     return CircleAvatar(
       radius: 22,
       backgroundColor: AppColors.dividerGrayColor,
-      backgroundImage: AssetImage(
-        Assets.images.memberDefaultProfileImage.path,
-      ),
+      backgroundImage: AssetImage(Assets.images.memberDefaultProfileImage.path),
     );
   }
 }

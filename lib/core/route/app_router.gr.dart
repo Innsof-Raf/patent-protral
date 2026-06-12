@@ -25,12 +25,15 @@ class AddMemberRoute extends PageRouteInfo<AddMemberRouteArgs> {
 
   static const String name = 'AddMemberRoute';
 
-  static final PageInfo page = PageInfo(name, builder: (data) {
-    final args = data.argsAs<AddMemberRouteArgs>(
-      orElse: () => const AddMemberRouteArgs(),
-    );
-    return AddMemberScreen(key: args.key, member: args.member);
-  });
+  static final PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<AddMemberRouteArgs>(
+        orElse: () => const AddMemberRouteArgs(),
+      );
+      return AddMemberScreen(key: args.key, member: args.member);
+    },
+  );
 }
 
 class AddMemberRouteArgs {
@@ -40,8 +43,7 @@ class AddMemberRouteArgs {
   final Member? member;
 }
 
-class BookAppointmentRoute
-    extends PageRouteInfo<BookAppointmentRouteArgs> {
+class BookAppointmentRoute extends PageRouteInfo<BookAppointmentRouteArgs> {
   BookAppointmentRoute({
     Key? key,
     required int appointmentId,
@@ -63,16 +65,19 @@ class BookAppointmentRoute
 
   static const String name = 'BookAppointmentRoute';
 
-  static final PageInfo page = PageInfo(name, builder: (data) {
-    final args = data.argsAs<BookAppointmentRouteArgs>();
-    return BookAppointmentScreen(
-      key: args.key,
-      appointmentId: args.appointmentId,
-      doctorImage: args.doctorImage,
-      doctorName: args.doctorName,
-      idDoctor: args.idDoctor,
-    );
-  });
+  static final PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<BookAppointmentRouteArgs>();
+      return BookAppointmentScreen(
+        key: args.key,
+        appointmentId: args.appointmentId,
+        doctorImage: args.doctorImage,
+        doctorName: args.doctorName,
+        idDoctor: args.idDoctor,
+      );
+    },
+  );
 }
 
 class BookAppointmentRouteArgs {
@@ -128,10 +133,13 @@ class DoctorsRoute extends PageRouteInfo<DoctorsRouteArgs> {
 
   static const String name = 'DoctorsRoute';
 
-  static final PageInfo page = PageInfo(name, builder: (data) {
-    final args = data.argsAs<DoctorsRouteArgs>();
-    return DoctorsScreen(key: args.key, idSpecilaity: args.idSpecilaity);
-  });
+  static final PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<DoctorsRouteArgs>();
+      return DoctorsScreen(key: args.key, idSpecilaity: args.idSpecilaity);
+    },
+  );
 }
 
 class DoctorsRouteArgs {
@@ -190,10 +198,13 @@ class LabItemDetailRoute extends PageRouteInfo<LabItemDetailRouteArgs> {
 
   static const String name = 'LabItemDetailRoute';
 
-  static final PageInfo page = PageInfo(name, builder: (data) {
-    final args = data.argsAs<LabItemDetailRouteArgs>();
-    return LabItemDetailScreen(key: args.key, idItem: args.idItem);
-  });
+  static final PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<LabItemDetailRouteArgs>();
+      return LabItemDetailScreen(key: args.key, idItem: args.idItem);
+    },
+  );
 }
 
 class LabItemDetailRouteArgs {
@@ -264,10 +275,13 @@ class MemberDetailsRoute extends PageRouteInfo<MemberDetailsRouteArgs> {
 
   static const String name = 'MemberDetailsRoute';
 
-  static final PageInfo page = PageInfo(name, builder: (data) {
-    final args = data.argsAs<MemberDetailsRouteArgs>();
-    return MemberDetailsScreen(key: args.key, memberId: args.memberId);
-  });
+  static final PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<MemberDetailsRouteArgs>();
+      return MemberDetailsScreen(key: args.key, memberId: args.memberId);
+    },
+  );
 }
 
 class MemberDetailsRouteArgs {
@@ -345,15 +359,18 @@ class ReportRoute extends PageRouteInfo<ReportRouteArgs> {
 
   static const String name = 'ReportRoute';
 
-  static final PageInfo page = PageInfo(name, builder: (data) {
-    final args = data.argsAs<ReportRouteArgs>();
-    return ReportScreen(
-      key: args.key,
-      doctorName: args.doctorName,
-      pdfUrl: args.pdfUrl,
-      consultedDateTime: args.consultedDateTime,
-    );
-  });
+  static final PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ReportRouteArgs>();
+      return ReportScreen(
+        key: args.key,
+        doctorName: args.doctorName,
+        pdfUrl: args.pdfUrl,
+        consultedDateTime: args.consultedDateTime,
+      );
+    },
+  );
 }
 
 class ReportRouteArgs {
