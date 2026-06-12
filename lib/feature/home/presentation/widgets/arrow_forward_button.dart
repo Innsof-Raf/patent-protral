@@ -1,29 +1,33 @@
 import 'package:flutter/material.dart';
 
 class ArrowForwardButton extends StatelessWidget {
+  const ArrowForwardButton({required this.onPressed, this.tooltip, super.key});
+
   final VoidCallback onPressed;
-  final Color iconColor;
-  final Color bagroundColor;
-  const ArrowForwardButton({
-    super.key,
-    required this.onPressed,
-    required this.iconColor,
-    required this.bagroundColor,
-  });
+  final String? tooltip;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        minimumSize: const Size(0, 0),
-        elevation: 0,
-        backgroundColor: bagroundColor,
-        shape: const CircleBorder(),
-        padding: const EdgeInsets.all(7),
+    final theme = Theme.of(context);
+
+    return Tooltip(
+      message: tooltip ?? 'Open',
+      child: IconButton(
+        style: IconButton.styleFrom(
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          backgroundColor: theme.colorScheme.surfaceContainerHighest.withValues(
+            alpha: .72,
+          ),
+          foregroundColor: theme.colorScheme.onSurface,
+          fixedSize: const Size.square(40),
+          padding: EdgeInsets.zero,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
+        ),
+        onPressed: onPressed,
+        icon: const Icon(Icons.arrow_forward_rounded, size: 19),
       ),
-      onPressed: onPressed,
-      child: Icon(Icons.arrow_forward_ios, color: iconColor, size: 13),
     );
   }
 }

@@ -121,10 +121,8 @@ class AppDrawer extends StatelessWidget {
   }
 
   void _openRoute(BuildContext context, PageRouteInfo route) {
-    final router = context.router;
+    final router = context.router.root;
     Navigator.of(context).pop();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      router.push(route);
-    });
+    router.push(route);
   }
 }
