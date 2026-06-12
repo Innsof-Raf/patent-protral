@@ -26,8 +26,11 @@ class DoctorTile extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
+            color: theme.colorScheme.surface,
             borderRadius: BorderRadius.circular(22),
-            border: Border.all(color: theme.colorScheme.outlineVariant),
+            border: Border.all(
+              color: theme.colorScheme.outlineVariant.withValues(alpha: .55),
+            ),
             boxShadow: [
               BoxShadow(
                 color: theme.colorScheme.shadow.withValues(alpha: .05),

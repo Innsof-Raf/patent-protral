@@ -2,12 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
 import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
 import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc/doctor_bloc.dart';
 import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc/search_doctor_bloc.dart';
 import 'package:patient_portal/feature/doctors/presentation/widgets/doctor_tile.dart';
 import 'package:patient_portal/feature/doctors/presentation/widgets/doctors_header.dart';
-import 'package:patient_portal/feature/doctors/presentation/widgets/doctors_search_field.dart';
 import 'package:patient_portal/feature/doctors/presentation/widgets/doctors_state_view.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
@@ -63,35 +63,32 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
             );
           }
 
-          return Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
-                child: Column(
-                  children: [
-                    DoctorsHeader(count: state.doctors.length),
-                    if (state.doctors.isNotEmpty) ...[
-                      const SizedBox(height: 14),
-                      DoctorsSearchField(
-                        controller: searchController,
-                        onChanged: (value) {
-                          context.read<SearchDoctorBloc>().add(
-                            SearchDoctor(
-                              searchKey: value.toLowerCase(),
-                              doctors: state.doctors,
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ],
+          return CustomScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            slivers: [
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 10),
+                sliver: SliverToBoxAdapter(
+                  child: DoctorsHeader(count: state.doctors.length),
                 ),
               ),
-              Expanded(
-                child: _DoctorsResultList(
-                  allDoctors: state.doctors,
-                  searchController: searchController,
+              if (state.doctors.isNotEmpty)
+                SliverSearchHeader(
+                  controller: searchController,
+                  title: 'Search doctor by name or speciality',
+                  hintText: 'Search doctors',
+                  onChanged: (value) {
+                    context.read<SearchDoctorBloc>().add(
+                      SearchDoctor(
+                        searchKey: value.toLowerCase(),
+                        doctors: state.doctors,
+                      ),
+                    );
+                  },
                 ),
+              _DoctorsResultSliver(
+                allDoctors: state.doctors,
+                searchController: searchController,
               ),
             ],
           );
@@ -101,8 +98,8 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
   }
 }
 
-class _DoctorsResultList extends StatelessWidget {
-  const _DoctorsResultList({
+class _DoctorsResultSliver extends StatelessWidget {
+  const _DoctorsResultSliver({
     required this.allDoctors,
     required this.searchController,
   });
@@ -113,9 +110,12 @@ class _DoctorsResultList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (allDoctors.isEmpty) {
-      return const DoctorsMessageView(
-        title: 'No doctors found',
-        message: 'Try another speciality or check again later.',
+      return const SliverFillRemaining(
+        hasScrollBody: false,
+        child: DoctorsMessageView(
+          title: 'No doctors found',
+          message: 'Try another speciality or check again later.',
+        ),
       );
     }
 
@@ -126,19 +126,24 @@ class _DoctorsResultList extends StatelessWidget {
             : allDoctors;
 
         if (doctors.isEmpty) {
-          return const DoctorsMessageView(
-            title: 'No matching doctor',
-            message: 'Try searching by another name or speciality.',
+          return const SliverFillRemaining(
+            hasScrollBody: false,
+            child: DoctorsMessageView(
+              title: 'No matching doctor',
+              message: 'Try searching by another name or speciality.',
+            ),
           );
         }
 
-        return ListView.separated(
-          padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
-          separatorBuilder: (context, index) => const SizedBox(height: 12),
-          itemCount: doctors.length,
-          itemBuilder: (context, index) {
-            return DoctorTile(doctor: doctors[index]);
-          },
+        return SliverPadding(
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+          sliver: SliverList.separated(
+            itemCount: doctors.length,
+            separatorBuilder: (context, index) => const SizedBox(height: 12),
+            itemBuilder: (context, index) {
+              return DoctorTile(doctor: doctors[index]);
+            },
+          ),
         );
       },
     );
