@@ -66,48 +66,63 @@ class _LoginOtpVerificationSectionState
           ),
         ),
         const SizedBox(height: 10),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(child: _OtpInput(controller: _otpController)),
-            const SizedBox(width: 12),
-            BlocConsumer<OtpVerificationBloc, OtpVerificationState>(
-              listener: (context, state) {
-                if (state.isVerifyingFailed && !state.isVerifyingSuccess) {
-                  showGeneralDialog(
-                    context: context,
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                        Container(),
-                    transitionDuration: const Duration(milliseconds: 300),
-                    transitionBuilder:
-                        (context, animation, secondaryAnimation, child) =>
-                            Transform.scale(
-                              scale: Curves.easeOut.transform(animation.value),
-                              child: CommonErrorAlert(
-                                content: state.error.message,
-                              ),
+        LayoutBuilder(
+          builder: (context, constraints) {
+            final rowWidth = constraints.maxWidth.clamp(0.0, 340.0).toDouble();
+
+            return SizedBox(
+              width: rowWidth,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(child: _OtpInput(controller: _otpController)),
+                  const SizedBox(width: 12),
+                  BlocConsumer<OtpVerificationBloc, OtpVerificationState>(
+                    listener: (context, state) {
+                      if (state.isVerifyingFailed &&
+                          !state.isVerifyingSuccess) {
+                        showGeneralDialog(
+                          context: context,
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) =>
+                                  Container(),
+                          transitionDuration: const Duration(milliseconds: 300),
+                          transitionBuilder:
+                              (context, animation, secondaryAnimation, child) =>
+                                  Transform.scale(
+                                    scale: Curves.easeOut.transform(
+                                      animation.value,
+                                    ),
+                                    child: CommonErrorAlert(
+                                      content: state.error.message,
+                                    ),
+                                  ),
+                        );
+                      } else if (state.isVerifyingSuccess &&
+                          !state.isVerifyingFailed) {
+                        context.read<UserBloc>().add(
+                          StoreUserDetails(
+                            params: ProfileParams.storeUserDetails(
+                              user: state.user!,
                             ),
-                  );
-                } else if (state.isVerifyingSuccess &&
-                    !state.isVerifyingFailed) {
-                  context.read<UserBloc>().add(
-                    StoreUserDetails(
-                      params: ProfileParams.storeUserDetails(user: state.user!),
-                    ),
-                  );
-                  context.router.replaceAll([const MainRoute()]);
-                }
-              },
-              builder: (context, state) {
-                return LoginActionButton(
-                  icon: Icons.arrow_forward_rounded,
-                  tooltip: 'Verify OTP',
-                  isLoading: state.isVerifying,
-                  onPressed: () => _verifyOtp(context),
-                );
-              },
-            ),
-          ],
+                          ),
+                        );
+                        context.router.replaceAll([const MainRoute()]);
+                      }
+                    },
+                    builder: (context, state) {
+                      return LoginActionButton(
+                        icon: Icons.arrow_forward_rounded,
+                        tooltip: 'Verify OTP',
+                        isLoading: state.isVerifying,
+                        onPressed: () => _verifyOtp(context),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            );
+          },
         ),
         const SizedBox(height: 18),
         const _OtpSecondaryActions(),
