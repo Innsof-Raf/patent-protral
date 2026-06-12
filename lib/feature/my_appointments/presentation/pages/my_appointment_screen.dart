@@ -10,6 +10,7 @@ import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/succes_dailog.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 @RoutePage(name: 'MyAppointmentsRoute')
 class MyAppointmentScreen extends StatefulWidget {
@@ -123,7 +124,7 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
                       ? LayoutBuilder(
                           builder: (context, constraints) => Center(
                             child: Image.asset(
-                              'assets/gif_images/Ripple-0 2.gif',
+                              Assets.gifImages.ripple02.path,
                               width: constraints.maxWidth * .3,
                             ),
                           ),

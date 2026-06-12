@@ -7,6 +7,7 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/helpers.dart';
 import 'package:patient_portal/core/route/app_router.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class ProfileDetailsSection extends StatelessWidget {
   const ProfileDetailsSection({super.key});
@@ -32,7 +33,7 @@ class ProfileDetailsSection extends StatelessWidget {
                         width: 62,
                         errorBuilder: (context, error, stackTrace) {
                           return Image.asset(
-                            'assets/images/member_default_profile_image.png',
+                            Assets.images.memberDefaultProfileImage.path,
                             height: 62,
                             width: 62,
                           );
@@ -56,7 +57,7 @@ class ProfileDetailsSection extends StatelessWidget {
                           shape: BoxShape.circle,
                         ),
                         child: SvgPicture.asset(
-                          "assets/icons/female_gender_icon.svg",
+                          Assets.icons.femaleGenderIcon.path,
                         ),
                       ),
                     ),

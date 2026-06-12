@@ -4,6 +4,7 @@ import 'package:patient_portal/feature/lab/domain/entities/item.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
 import 'package:patient_portal/feature/lab/presentation/widgets/lab_grid_item_tile.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class PackagesTabBarView extends StatelessWidget {
   const PackagesTabBarView({super.key});
@@ -16,7 +17,7 @@ class PackagesTabBarView extends StatelessWidget {
           return LayoutBuilder(
             builder: (context, constraints) => Center(
               child: Image.asset(
-                'assets/gif_images/Ripple-0 2.gif',
+                Assets.gifImages.ripple02.path,
                 width: constraints.maxWidth * .3,
               ),
             ),

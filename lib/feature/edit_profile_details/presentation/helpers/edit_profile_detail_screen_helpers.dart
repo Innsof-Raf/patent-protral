@@ -6,6 +6,7 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/image_picker_tile.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class EditProfileDetailScreenHelpers {
   static Future<DateTime?> getDob({
@@ -49,7 +50,7 @@ class EditProfileDetailScreenHelpers {
               children: [
                 ImagePickerTile(
                   title: 'Camera',
-                  iconPath: 'assets/icons/camera_icon.svg',
+                  iconPath: Assets.icons.cameraIcon.path,
                   onPressed: () async {
                     final XFile? image = await ImagePicker().pickImage(
                       source: ImageSource.camera,
@@ -63,7 +64,7 @@ class EditProfileDetailScreenHelpers {
                 const SizedBox(width: 15),
                 ImagePickerTile(
                   title: 'Gallery',
-                  iconPath: 'assets/icons/gallery_icon.svg',
+                  iconPath: Assets.icons.galleryIcon.path,
                   onPressed: () async {
                     final XFile? image = await ImagePicker().pickImage(
                       source: ImageSource.gallery,

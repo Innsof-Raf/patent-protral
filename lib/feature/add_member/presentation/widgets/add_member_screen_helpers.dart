@@ -14,6 +14,7 @@ import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.d
 import 'package:patient_portal/core/resources/common_widgets.dart/image_picker_tile.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/insurance_form_scetion.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class AddMemberScreenHelpers {
   static Future<DateTime?> getDob({
@@ -57,7 +58,7 @@ class AddMemberScreenHelpers {
               children: [
                 ImagePickerTile(
                   title: 'Camera',
-                  iconPath: 'assets/icons/camera_icon.svg',
+                  iconPath: Assets.icons.cameraIcon.path,
                   onPressed: () async {
                     final image = await ImagePicker().pickImage(
                       source: ImageSource.camera,
@@ -75,7 +76,7 @@ class AddMemberScreenHelpers {
                 const SizedBox(width: 15),
                 ImagePickerTile(
                   title: 'Gallery',
-                  iconPath: 'assets/icons/gallery_icon.svg',
+                  iconPath: Assets.icons.galleryIcon.path,
                   onPressed: () async {
                     final image = await ImagePicker().pickImage(
                       source: ImageSource.gallery,

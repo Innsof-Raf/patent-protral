@@ -8,6 +8,7 @@ import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.da
 import 'package:patient_portal/feature/reports/presentation/helpers/reports_appbar_helpers.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class ReportsAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ReportsAppBar({super.key});
@@ -62,7 +63,7 @@ class ReportsAppBar extends StatelessWidget implements PreferredSizeWidget {
                         fit: BoxFit.fill,
                         errorBuilder: (context, error, stackTrace) {
                           return Image.asset(
-                            'assets/images/member_default_profile_image.png',
+                            Assets.images.memberDefaultProfileImage.path,
                             height: 26,
                             width: 26,
                             fit: BoxFit.fill,
@@ -101,7 +102,7 @@ class ReportsAppBar extends StatelessWidget implements PreferredSizeWidget {
         onPressed: () {
           Scaffold.of(context).openDrawer();
         },
-        child: SvgPicture.asset('assets/icons/drawer_icon.svg'),
+        child: SvgPicture.asset(Assets.icons.drawerIcon.path),
       ),
       actions: [
         IconButton(

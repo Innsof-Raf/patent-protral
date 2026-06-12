@@ -10,12 +10,13 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 List<String> bagroundImages = [
-  'assets/images/login_baground_image.png',
-  'assets/images/login_baground_image.png',
-  'assets/images/login_baground_image.png',
-  'assets/images/login_baground_image.png',
+  Assets.images.loginBagroundImage.path,
+  Assets.images.loginBagroundImage.path,
+  Assets.images.loginBagroundImage.path,
+  Assets.images.loginBagroundImage.path,
 ];
 final CarouselSliderController bagroundImageCarouselController =
     CarouselSliderController();
@@ -69,11 +70,11 @@ class LogInScreen extends StatelessWidget {
                     itemBuilder: (context, index, realIndex) => Container(
                       height: double.infinity,
                       width: double.infinity,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         image: DecorationImage(
                           fit: BoxFit.fill,
                           image: AssetImage(
-                            'assets/images/login_baground_image.png',
+                            Assets.images.loginBagroundImage.path,
                           ),
                         ),
                       ),
@@ -141,7 +142,7 @@ class LogInScreen extends StatelessWidget {
                                 ),
                                 Dimens.constWidth10,
                                 Image.asset(
-                                  'assets/logos/allevia_logo_gray.png',
+                                  Assets.logos.alleviaLogoGray.path,
                                   width: 92,
                                 ),
                               ],

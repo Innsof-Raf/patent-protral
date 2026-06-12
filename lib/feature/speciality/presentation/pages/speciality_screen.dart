@@ -9,6 +9,7 @@ import 'package:patient_portal/feature/speciality/domain/entities/speciality.dar
 import 'package:patient_portal/feature/speciality/domain/usecases/params/speciality_params.dart';
 import 'package:patient_portal/feature/speciality/presentation/bloc/speciality_bloc/speciality_bloc.dart';
 import 'package:patient_portal/feature/speciality/presentation/widgets/speciality_tile.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 @RoutePage(name: 'SpecialityRoute')
 class SpecialityScreen extends StatefulWidget {
@@ -110,7 +111,7 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
                         if (state.isFetching) {
                           return Center(
                             child: Image.asset(
-                              'assets/gif_images/Ripple-0 2.gif',
+                              Assets.gifImages.ripple02.path,
                               width: constraints.maxHeight * .3,
                             ),
                           );

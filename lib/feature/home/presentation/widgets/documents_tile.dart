@@ -4,6 +4,7 @@ import 'package:patient_portal/feature/home/presentation/widgets/unorderd_list_t
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/route/app_router.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class DocumentsTile extends StatelessWidget {
   const DocumentsTile({super.key});
@@ -18,9 +19,9 @@ class DocumentsTile extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(size.width < 600 ? 10 : 20),
         decoration: BoxDecoration(
-          image: const DecorationImage(
+          image: DecorationImage(
             image: AssetImage(
-              'assets/images/home_documents_tile_baground_image.png',
+              Assets.images.homeDocumentsTileBagroundImage.path,
             ),
             fit: BoxFit.fill,
           ),

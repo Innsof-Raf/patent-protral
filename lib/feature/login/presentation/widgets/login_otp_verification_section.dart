@@ -12,6 +12,7 @@ import 'package:patient_portal/feature/login/presentation/helpers/login_screen_h
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:pinput/pinput.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class LoginOtpVerificationSection extends StatefulWidget {
   const LoginOtpVerificationSection({super.key});
@@ -118,7 +119,7 @@ class _LoginOtpVerificationSectionState
                 builder: (context, state) {
                   return state.isVerifying
                       ? Image.asset(
-                          'assets/gif_images/Ripple-0 2.gif',
+                          Assets.gifImages.ripple02.path,
                           width: 70,
                           fit: BoxFit.contain,
                         )

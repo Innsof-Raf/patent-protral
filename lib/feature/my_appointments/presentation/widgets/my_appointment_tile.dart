@@ -17,6 +17,7 @@ import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 
 import 'cancel_booking_popup.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class MyAppointmentTile extends StatelessWidget {
   final bool isCounselted;
@@ -61,7 +62,7 @@ class MyAppointmentTile extends StatelessWidget {
                       ),
                   errorBuilder: (context, error, stackTrace) {
                     return SvgPicture.asset(
-                      'assets/images/doctor_image_loading_failed_image.svg',
+                      Assets.images.doctorImageLoadingFailedImage.path,
                       fit: BoxFit.fill,
                     );
                   },

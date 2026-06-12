@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../app_colors.dart';
 import '../app_text_styles.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class SucessDialog extends StatelessWidget {
   final VoidCallback onPressed;
@@ -42,7 +43,7 @@ class SucessDialog extends StatelessWidget {
               style: AppTextStyles.largeRobotoNormal,
             ),
             const SizedBox(height: 30),
-            SvgPicture.asset('assets/icons/done_icon.svg'),
+            SvgPicture.asset(Assets.icons.doneIcon.path),
             const SizedBox(height: 30),
             SizedBox(
               width: double.infinity,

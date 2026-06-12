@@ -12,6 +12,7 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import '../bloc/add_document_bloc.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 @RoutePage(name: 'AddDocumentRoute')
 class AddDocumentScreen extends StatefulWidget {
@@ -53,7 +54,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
               ? LayoutBuilder(
                   builder: (context, constraints) => Center(
                     child: Image.asset(
-                      'assets/gif_images/Ripple-0 2.gif',
+                      Assets.gifImages.ripple02.path,
                       width: constraints.maxWidth * .3,
                     ),
                   ),
@@ -202,7 +203,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                                   );
                                 },
                                 child: SvgPicture.asset(
-                                  'assets/icons/attachment_icon.svg',
+                                  Assets.icons.attachmentIcon.path,
                                 ),
                               ),
                             ],

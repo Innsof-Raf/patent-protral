@@ -11,6 +11,7 @@ import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/image_picker_tile.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
 import '../pages/add_document_screen.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class AddDocumentScreenHelpers {
   static DropdownMenuItem<int> createMemberDropDownItem({
@@ -71,7 +72,7 @@ class AddDocumentScreenHelpers {
               children: [
                 ImagePickerTile(
                   title: 'Camera',
-                  iconPath: 'assets/icons/camera_icon.svg',
+                  iconPath: Assets.icons.cameraIcon.path,
                   onPressed: () async {
                     final image = await ImagePicker().pickImage(
                       source: ImageSource.camera,
@@ -87,7 +88,7 @@ class AddDocumentScreenHelpers {
                 const SizedBox(width: 15),
                 ImagePickerTile(
                   title: 'Files',
-                  iconPath: 'assets/icons/folder_icon.svg',
+                  iconPath: Assets.icons.folderIcon.path,
                   onPressed: () async {
                     final value = await FilePicker.pickFiles(
                       type: FileType.custom,

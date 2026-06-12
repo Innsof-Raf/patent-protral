@@ -6,6 +6,7 @@ import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class SpecialityTile extends StatelessWidget {
   final Speciality speciality;
@@ -41,7 +42,7 @@ class SpecialityTile extends StatelessWidget {
                 height: constraints.maxHeight * .39,
                 errorWidget: (context, url, error) {
                   return Image.asset(
-                    'assets/images/image_loading_failed_image.png',
+                    Assets.images.imageLoadingFailedImage.path,
                     height: constraints.maxHeight * .39,
                   );
                 },

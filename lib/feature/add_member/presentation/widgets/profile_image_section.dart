@@ -6,6 +6,7 @@ import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/default_profile_image.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
 import 'add_member_screen_helpers.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class ProfileImageSection extends StatelessWidget {
   const ProfileImageSection({super.key});
@@ -47,7 +48,7 @@ class ProfileImageSection extends StatelessWidget {
           onPressed: () {
             AddMemberScreenHelpers.pickImage(context: context);
           },
-          child: SvgPicture.asset('assets/icons/camera_icon.svg'),
+          child: SvgPicture.asset(Assets.icons.cameraIcon.path),
         ),
       ],
     );

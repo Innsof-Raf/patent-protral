@@ -13,6 +13,7 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/route/app_router.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 @RoutePage(name: 'MemberDetailsRoute')
 class MemberDetailsScreen extends StatefulWidget {
@@ -45,7 +46,7 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
             return LayoutBuilder(
               builder: (context, constraints) => Center(
                 child: Image.asset(
-                  'assets/gif_images/Ripple-0 2.gif',
+                  Assets.gifImages.ripple02.path,
                   width: constraints.maxWidth * .3,
                 ),
               ),

@@ -5,6 +5,7 @@ import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/route/app_router.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class MembersTile extends StatelessWidget {
   const MembersTile({super.key});
@@ -19,9 +20,9 @@ class MembersTile extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(size.width < 600 ? 10 : 20),
         decoration: BoxDecoration(
-          image: const DecorationImage(
+          image: DecorationImage(
             image: AssetImage(
-              'assets/images/home_member_tile_baground_image.png',
+              Assets.images.homeMemberTileBagroundImage.path,
             ),
             fit: BoxFit.fill,
           ),

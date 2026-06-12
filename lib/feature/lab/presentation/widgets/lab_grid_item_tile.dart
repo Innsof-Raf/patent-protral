@@ -10,6 +10,7 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class LabGridItemTile extends StatelessWidget {
   final Item item;
@@ -38,7 +39,7 @@ class LabGridItemTile extends StatelessWidget {
                     "${ConstantUrls.packageImageUrl}/${item.idItem}/${item.itemImg}",
                 errorWidget: (context, url, error) {
                   return Image.asset(
-                    'assets/images/image_loading_failed_image.png',
+                    Assets.images.imageLoadingFailedImage.path,
                   );
                 },
                 fadeInDuration: const Duration(seconds: 0),
@@ -118,8 +119,8 @@ class LabGridItemTile extends StatelessWidget {
                             },
                             child: SvgPicture.asset(
                               item.isCart
-                                  ? 'assets/icons/cart_icon_white.svg'
-                                  : 'assets/icons/cart_icon_black.svg',
+                                  ? Assets.icons.cartIconWhite.path
+                                  : Assets.icons.cartIconBlack.path,
                               height: 10,
                               width: 10,
                             ),

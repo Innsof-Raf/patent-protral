@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class MedicalInsuranceWidget extends StatelessWidget {
   final int idInsurance;
@@ -18,7 +19,7 @@ class MedicalInsuranceWidget extends StatelessWidget {
       fadeInDuration: const Duration(seconds: 0),
       fadeOutDuration: const Duration(seconds: 0),
       errorWidget: (context, url, error) => Image.asset(
-        'assets/images/image_loading_failed_image.png',
+        Assets.images.imageLoadingFailedImage.path,
         fit: BoxFit.contain,
       ),
     );

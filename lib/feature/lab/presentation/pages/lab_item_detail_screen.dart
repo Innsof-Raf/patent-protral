@@ -10,6 +10,7 @@ import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
 import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 @RoutePage(name: 'LabItemDetailRoute')
 class LabItemDetailScreen extends StatelessWidget {
@@ -44,7 +45,7 @@ class LabItemDetailScreen extends StatelessWidget {
                                   "${ConstantUrls.packageImageUrl}/${selectedItem.idItem}/${selectedItem.itemImg}",
                               errorWidget: (context, url, error) {
                                 return Image.asset(
-                                  'assets/images/image_loading_failed_image.png',
+                                  Assets.images.imageLoadingFailedImage.path,
                                 );
                               },
                               fadeInDuration: const Duration(seconds: 0),

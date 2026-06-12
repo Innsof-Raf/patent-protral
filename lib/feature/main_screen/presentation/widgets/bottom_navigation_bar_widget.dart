@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
 
 import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   const BottomNavigationBarWidget({super.key});
@@ -37,8 +38,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
               },
               child: SvgPicture.asset(
                 value == 0
-                    ? "assets/icons/bottom_bar_icons/home_selected_icon.svg"
-                    : "assets/icons/bottom_bar_icons/home_unselected_icon.svg",
+                    ? Assets.icons.bottomBarIcons.homeSelectedIcon.path
+                    : Assets.icons.bottomBarIcons.homeUnselectedIcon.path,
               ),
             ),
             GestureDetector(
@@ -49,8 +50,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
               },
               child: SvgPicture.asset(
                 value == 1
-                    ? "assets/icons/bottom_bar_icons/my_appointments_selected_icon.svg"
-                    : "assets/icons/bottom_bar_icons/my_appointments_unselected_icon.svg",
+                    ? Assets.icons.bottomBarIcons.myAppointmentsSelectedIcon.path
+                    : Assets.icons.bottomBarIcons.myAppointmentsUnselectedIcon.path,
               ),
             ),
             GestureDetector(
@@ -61,8 +62,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
               },
               child: SvgPicture.asset(
                 value == 2
-                    ? "assets/icons/bottom_bar_icons/appointment_selected icon.svg"
-                    : "assets/icons/bottom_bar_icons/appointment_unselected_icon.svg",
+                    ? Assets.icons.bottomBarIcons.appointmentSelectedIcon.path
+                    : Assets.icons.bottomBarIcons.appointmentUnselectedIcon.path,
               ),
             ),
             GestureDetector(
@@ -73,8 +74,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
               },
               child: SvgPicture.asset(
                 value == 3
-                    ? "assets/icons/bottom_bar_icons/reports_selected_icon.svg"
-                    : "assets/icons/bottom_bar_icons/reports_unselected_icon.svg",
+                    ? Assets.icons.bottomBarIcons.reportsSelectedIcon.path
+                    : Assets.icons.bottomBarIcons.reportsUnselectedIcon.path,
               ),
             ),
             GestureDetector(
@@ -85,8 +86,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
               },
               child: SvgPicture.asset(
                 value == 4
-                    ? "assets/icons/bottom_bar_icons/profile_selected_icon.svg"
-                    : "assets/icons/bottom_bar_icons/profile_unselected_icon.svg",
+                    ? Assets.icons.bottomBarIcons.profileSelectedIcon.path
+                    : Assets.icons.bottomBarIcons.profileUnselectedIcon.path,
               ),
             ),
           ],

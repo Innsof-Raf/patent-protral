@@ -8,6 +8,7 @@ import '../app_colors.dart';
 import '../app_text_styles.dart';
 import '../dimens.dart';
 import '../urls.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class MemberTile extends StatelessWidget {
   final Member member;
@@ -71,7 +72,7 @@ class MemberTile extends StatelessWidget {
           ),
           const Spacer(),
           member.isInsurance && !member.isInsuranceExpired
-              ? SvgPicture.asset('assets/icons/insurance_cart_icon.svg')
+              ? SvgPicture.asset(Assets.icons.insuranceCartIcon.path)
               : const SizedBox(),
         ],
       ),

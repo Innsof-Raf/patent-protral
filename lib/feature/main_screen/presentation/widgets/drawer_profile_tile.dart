@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class DrawerProfileTile extends StatelessWidget {
   const DrawerProfileTile({super.key});
@@ -27,9 +28,9 @@ class DrawerProfileTile extends StatelessWidget {
                       color: AppColors.white,
                       border: Border.all(width: 2, color: AppColors.white),
                       shape: BoxShape.circle,
-                      image: const DecorationImage(
+                      image: DecorationImage(
                         image: AssetImage(
-                          'assets/images/member_default_profile_image.png',
+                          Assets.images.memberDefaultProfileImage.path,
                         ),
                       ),
                     ),
@@ -45,7 +46,7 @@ class DrawerProfileTile extends StatelessWidget {
                         shape: BoxShape.circle,
                       ),
                       child: SvgPicture.asset(
-                        "assets/icons/female_gender_icon.svg",
+                        Assets.icons.femaleGenderIcon.path,
                         height: 12,
                         width: 12,
                       ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class AddAttachmentsSection extends StatelessWidget {
   const AddAttachmentsSection({super.key});
@@ -30,7 +31,7 @@ class AddAttachmentsSection extends StatelessWidget {
               CircleAvatar(
                 radius: 17,
                 backgroundColor: AppColors.dividerGrayColor,
-                child: SvgPicture.asset('assets/icons/attachment_icon.svg'),
+                child: SvgPicture.asset(Assets.icons.attachmentIcon.path),
               ),
               const SizedBox(width: 10),
               const Flexible(

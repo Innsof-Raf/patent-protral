@@ -12,6 +12,7 @@ import '../widgets/appointment_slot_section.dart';
 import '../widgets/book_appointment_appbar.dart';
 import '../widgets/book_appointment_bottom_navigation_bar.dart';
 import '../widgets/member_selection_section.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 @RoutePage(name: 'BookAppointmentRoute')
 class BookAppointmentScreen extends StatefulWidget {
@@ -110,7 +111,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                                       children: [
                                         const SizedBox(height: 10),
                                         Image.asset(
-                                          'assets/gif_images/Ripple-0 2.gif',
+                                          Assets.gifImages.ripple02.path,
                                           width: 100,
                                         ),
                                       ],

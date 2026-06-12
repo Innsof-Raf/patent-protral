@@ -5,6 +5,7 @@ import 'package:patient_portal/feature/reports/domain/entities/report.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'test_report_button.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class MyReportTile extends StatelessWidget {
   final Report report;
@@ -28,7 +29,7 @@ class MyReportTile extends StatelessWidget {
           Row(
             children: [
               SvgPicture.asset(
-                "assets/icons/pdf_icon.svg",
+                Assets.icons.pdfIcon.path,
                 height: 25,
                 width: 21,
               ),

@@ -7,6 +7,7 @@ import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class CartItemTile extends StatelessWidget {
   final Item item;
@@ -33,7 +34,7 @@ class CartItemTile extends StatelessWidget {
                     "${ConstantUrls.packageImageUrl}/${item.idItem}/${item.itemImg}",
                 errorWidget: (context, url, error) {
                   return Image.asset(
-                    'assets/images/image_loading_failed_image.png',
+                    Assets.images.imageLoadingFailedImage.path,
                   );
                 },
                 fadeInDuration: const Duration(seconds: 0),

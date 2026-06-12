@@ -5,6 +5,7 @@ import 'package:patient_portal/feature/login/presentation/helpers/login_screen_h
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/route/app_router.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class LogOutTile extends StatelessWidget {
   const LogOutTile({super.key});
@@ -36,7 +37,7 @@ class LogOutTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SvgPicture.asset(
-                "assets/icons/log_out_icon.svg",
+                Assets.icons.logOutIcon.path,
                 colorFilter: ColorFilter.mode(AppColors.vilot, BlendMode.srcIn),
                 width: 22,
                 height: 22,

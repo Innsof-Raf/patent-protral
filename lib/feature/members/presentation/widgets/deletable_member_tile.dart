@@ -8,6 +8,7 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class DeletableMemberTile extends StatelessWidget {
   final Member member;
@@ -91,7 +92,7 @@ class DeletableMemberTile extends StatelessWidget {
               ),
               const Spacer(),
               member.isInsurance && !member.isInsuranceExpired
-                  ? SvgPicture.asset('assets/icons/insurance_cart_icon.svg')
+                  ? SvgPicture.asset(Assets.icons.insuranceCartIcon.path)
                   : const SizedBox(),
             ],
           ),

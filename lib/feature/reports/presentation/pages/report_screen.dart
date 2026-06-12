@@ -7,6 +7,7 @@ import 'package:patient_portal/feature/reports/presentation/widgets/report_app_b
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 @RoutePage(name: 'ReportRoute')
 class ReportScreen extends StatefulWidget {
@@ -50,7 +51,7 @@ class _ReportScreenState extends State<ReportScreen> {
               ? LayoutBuilder(
                   builder: (context, constraints) => Center(
                     child: Image.asset(
-                      'assets/gif_images/Ripple-0 2.gif',
+                      Assets.gifImages.ripple02.path,
                       width: constraints.maxWidth * .3,
                     ),
                   ),

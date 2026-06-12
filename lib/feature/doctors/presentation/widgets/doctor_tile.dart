@@ -11,6 +11,7 @@ import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
 
 import '../../../book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class DoctorTile extends StatelessWidget {
   final Doctor doctor;
@@ -44,7 +45,7 @@ class DoctorTile extends StatelessWidget {
                       ),
                   errorBuilder: ((context, error, stackTrace) {
                     return SvgPicture.asset(
-                      'assets/images/doctor_image_loading_failed_image.svg',
+                      Assets.images.doctorImageLoadingFailedImage.path,
                       fit: BoxFit.fill,
                     );
                   }),
@@ -83,7 +84,7 @@ class DoctorTile extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             SvgPicture.asset(
-                              'assets/icons/experience_icon.svg',
+                              Assets.icons.experienceIcon.path,
                               height: 9.8,
                             ),
                             Padding(
@@ -103,7 +104,7 @@ class DoctorTile extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             SvgPicture.asset(
-                              'assets/icons/experience_icon.svg',
+                              Assets.icons.experienceIcon.path,
                               height: 9.8,
                             ),
                             Padding(
@@ -122,7 +123,7 @@ class DoctorTile extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             SvgPicture.asset(
-                              'assets/icons/experience_icon.svg',
+                              Assets.icons.experienceIcon.path,
                               height: 9.8,
                             ),
                             Padding(

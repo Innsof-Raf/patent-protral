@@ -7,6 +7,7 @@ import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.da
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String doctorName;
@@ -35,7 +36,7 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SvgPicture.asset("assets/icons/pdf_icon.svg"),
+          SvgPicture.asset(Assets.icons.pdfIcon.path),
           const SizedBox(width: 16),
           Flexible(
             child: Column(

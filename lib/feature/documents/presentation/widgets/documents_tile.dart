@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:patient_portal/feature/documents/domain/entities/document.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class DocumentTile extends StatelessWidget {
   final Document document;
@@ -23,7 +24,7 @@ class DocumentTile extends StatelessWidget {
       onPressed: () {},
       child: Row(
         children: [
-          SvgPicture.asset("assets/icons/pdf_icon.svg", height: 25, width: 21),
+          SvgPicture.asset(Assets.icons.pdfIcon.path, height: 25, width: 21),
           const SizedBox(width: 15),
           Expanded(
             child: Column(
@@ -56,7 +57,7 @@ class DocumentTile extends StatelessWidget {
               minimumSize: const Size(0, 0),
             ),
             onPressed: () {},
-            child: SvgPicture.asset('assets/icons/share_icon.svg'),
+            child: SvgPicture.asset(Assets.icons.shareIcon.path),
           ),
           const SizedBox(width: 8),
           ElevatedButton(
@@ -68,7 +69,7 @@ class DocumentTile extends StatelessWidget {
               minimumSize: const Size(0, 0),
             ),
             onPressed: () {},
-            child: SvgPicture.asset('assets/icons/delete_icon.svg'),
+            child: SvgPicture.asset(Assets.icons.deleteIcon.path),
           ),
         ],
       ),

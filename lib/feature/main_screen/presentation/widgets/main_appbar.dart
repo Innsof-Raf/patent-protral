@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MainAppBar({super.key, required this.title});
@@ -27,7 +28,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
         onPressed: () {
           Scaffold.of(context).openDrawer();
         },
-        child: SvgPicture.asset('assets/icons/drawer_icon.svg'),
+        child: SvgPicture.asset(Assets.icons.drawerIcon.path),
       ),
       title: Text(title, style: AppTextStyles.largeSemiBoldRoboto),
     );

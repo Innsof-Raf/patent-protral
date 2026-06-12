@@ -17,6 +17,7 @@ import 'package:patient_portal/feature/home/presentation/widgets/members_tile.da
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
 import 'package:patient_portal/feature/speciality/presentation/widgets/speciality_tile.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 @RoutePage(name: 'HomeRoute')
 class HomeScreen extends StatelessWidget {
@@ -34,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                   child: LayoutBuilder(
                     builder: (context, constraints) => Center(
                       child: Image.asset(
-                        'assets/gif_images/Ripple-0 2.gif',
+                        Assets.gifImages.ripple02.path,
                         width: constraints.maxWidth * .3,
                       ),
                     ),
@@ -190,7 +191,7 @@ class HomeScreen extends StatelessWidget {
                                       ),
                                       errorWidget: (context, url, error) =>
                                           Image.asset(
-                                            'assets/images/image_loading_failed_image.png',
+                                            Assets.images.imageLoadingFailedImage.path,
                                             fit: BoxFit.fill,
                                           ),
                                     ),

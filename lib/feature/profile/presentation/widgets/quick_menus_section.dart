@@ -7,6 +7,7 @@ import 'package:patient_portal/core/resources/dimens.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 
 import 'quick_menu_button.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class QuickMenuSection extends StatelessWidget {
   const QuickMenuSection({super.key});
@@ -32,7 +33,7 @@ class QuickMenuSection extends StatelessWidget {
         Wrap(
           children: [
             QuickMenuButton(
-              imagePath: 'assets/icons/view_reports_icon.svg',
+              imagePath: Assets.icons.viewReportsIcon.path,
               onPressed: () {
                 MainScreenHelpers.mainScreenNotifier.value = 3;
               },
@@ -40,7 +41,7 @@ class QuickMenuSection extends StatelessWidget {
             ),
             Dimens.constWidth10,
             QuickMenuButton(
-              imagePath: 'assets/icons/lock_icon.dart.svg',
+              imagePath: Assets.icons.lockIconDart.path,
               onPressed: () {
                 context.router.push(const SetPasswordRoute());
               },

@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ProfileAppBar({super.key});
@@ -29,7 +30,7 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
         onPressed: () {
           Scaffold.of(context).openDrawer();
         },
-        child: SvgPicture.asset('assets/icons/drawer_icon.svg'),
+        child: SvgPicture.asset(Assets.icons.drawerIcon.path),
       ),
     );
   }

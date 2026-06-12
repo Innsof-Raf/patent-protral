@@ -8,6 +8,7 @@ import 'package:patient_portal/core/route/app_router.dart';
 
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});
@@ -32,10 +33,10 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },
-            child: SvgPicture.asset('assets/icons/drawer_icon.svg'),
+            child: SvgPicture.asset(Assets.icons.drawerIcon.path),
           ),
           title: Image.asset(
-            'assets/logos/allevia_logo_gray.png',
+            Assets.logos.alleviaLogoGray.path,
             fit: BoxFit.contain,
             width: 72,
           ),
@@ -65,7 +66,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 clipBehavior: Clip.none,
                 alignment: Alignment.topRight,
                 children: [
-                  SvgPicture.asset("assets/icons/notification_icon.svg"),
+                  SvgPicture.asset(Assets.icons.notificationIcon.path),
                   Positioned(
                     top: -4,
                     child: Container(

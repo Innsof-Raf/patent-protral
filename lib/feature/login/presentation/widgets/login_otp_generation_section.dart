@@ -8,6 +8,7 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class LoginOtpGenerationSection extends StatefulWidget {
   const LoginOtpGenerationSection({super.key});
@@ -101,7 +102,7 @@ class _LoginOtpGenerationSectionState extends State<LoginOtpGenerationSection> {
                   ),
                   state.isOtpGenerating
                       ? Image.asset(
-                          'assets/gif_images/Ripple-0 2.gif',
+                          Assets.gifImages.ripple02.path,
                           width: 70,
                           fit: BoxFit.contain,
                         )

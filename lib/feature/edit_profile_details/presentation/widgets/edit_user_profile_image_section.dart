@@ -4,6 +4,7 @@ import 'package:patient_portal/feature/edit_profile_details/presentation/helpers
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class EditUserProfileImageSection extends StatelessWidget {
   final String? image;
@@ -32,7 +33,7 @@ class EditUserProfileImageSection extends StatelessWidget {
                   radius: 22,
                   backgroundColor: AppColors.dividerGrayColor,
                   backgroundImage: AssetImage(
-                    'assets/images/member_default_profile_image.png',
+                    Assets.images.memberDefaultProfileImage.path,
                   ),
                 ),
         ),
@@ -57,7 +58,7 @@ class EditUserProfileImageSection extends StatelessWidget {
           onPressed: () {
             EditProfileDetailScreenHelpers.pickImage(context: context);
           },
-          child: SvgPicture.asset('assets/icons/camera_icon.svg'),
+          child: SvgPicture.asset(Assets.icons.cameraIcon.path),
         ),
       ],
     );

@@ -6,6 +6,7 @@ import 'package:patient_portal/feature/documents/presentation/helpers/documents_
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class DocumentsScreenAppBar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -63,7 +64,7 @@ class DocumentsScreenAppBar extends StatelessWidget
                         fit: BoxFit.fill,
                         errorBuilder: (context, error, stackTrace) {
                           return Image.asset(
-                            'assets/images/member_default_profile_image.png',
+                            Assets.images.memberDefaultProfileImage.path,
                             height: 26,
                             width: 26,
                             fit: BoxFit.fill,

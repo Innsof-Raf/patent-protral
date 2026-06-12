@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../app_colors.dart';
 import '../app_text_styles.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class CommonErrorAlert extends StatelessWidget {
   final String content;
@@ -41,7 +42,7 @@ class CommonErrorAlert extends StatelessWidget {
               style: AppTextStyles.largeRobotoNormal,
             ),
             const SizedBox(height: 30),
-            SvgPicture.asset('assets/icons/error_icon.svg'),
+            SvgPicture.asset(Assets.icons.errorIcon.path),
             const SizedBox(height: 30),
             SizedBox(
               width: double.infinity,

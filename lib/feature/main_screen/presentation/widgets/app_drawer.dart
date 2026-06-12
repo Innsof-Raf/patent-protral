@@ -7,6 +7,7 @@ import 'package:patient_portal/feature/main_screen/presentation/widgets/drawer_p
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -28,7 +29,7 @@ class AppDrawer extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(horizontal: 15),
                     alignment: Alignment.centerLeft,
                     child: Image.asset(
-                      'assets/logos/allevia_logo_white.png',
+                      Assets.logos.alleviaLogoWhitePng.path,
                       width: 110,
                       height: 33.96,
                     ),
@@ -37,7 +38,7 @@ class AppDrawer extends StatelessWidget {
                   const DrawerProfileTile(),
                   SizedBox(height: constraints.maxHeight * .04),
                   AppDrawerTile(
-                    iconPath: "assets/icons/home_icon.svg",
+                    iconPath: Assets.icons.homeIcon.path,
                     tileName: "Home",
                     onPress: () {
                       if (MainScreenHelpers.mainScreenNotifier.value != 0) {
@@ -47,7 +48,7 @@ class AppDrawer extends StatelessWidget {
                     },
                   ),
                   AppDrawerTile(
-                    iconPath: "assets/icons/doctor_icon.svg",
+                    iconPath: Assets.icons.doctorIcon.path,
                     tileName: "Book Appointment",
                     onPress: () {
                       if (MainScreenHelpers.mainScreenNotifier.value != 2) {
@@ -57,7 +58,7 @@ class AppDrawer extends StatelessWidget {
                     },
                   ),
                   AppDrawerTile(
-                    iconPath: "assets/icons/calender_icon.svg",
+                    iconPath: Assets.icons.calenderIcon.path,
                     tileName: "Appoinments",
                     onPress: () {
                       if (MainScreenHelpers.mainScreenNotifier.value != 1) {
@@ -67,21 +68,21 @@ class AppDrawer extends StatelessWidget {
                     },
                   ),
                   AppDrawerTile(
-                    iconPath: "assets/icons/members_icon.svg",
+                    iconPath: Assets.icons.membersIcon.path,
                     tileName: "Members",
                     onPress: () {
                       context.router.push(const MembersRoute());
                     },
                   ),
                   AppDrawerTile(
-                    iconPath: "assets/icons/lab_icon.svg",
+                    iconPath: Assets.icons.labIcon.path,
                     tileName: "Laboratory",
                     onPress: () {
                       context.router.push(const LabRoute());
                     },
                   ),
                   AppDrawerTile(
-                    iconPath: "assets/icons/reports_icon.svg",
+                    iconPath: Assets.icons.reportsIcon.path,
                     tileName: "Reports",
                     onPress: () {
                       if (MainScreenHelpers.mainScreenNotifier.value != 3) {
@@ -91,7 +92,7 @@ class AppDrawer extends StatelessWidget {
                     },
                   ),
                   AppDrawerTile(
-                    iconPath: "assets/icons/profile_icon.svg",
+                    iconPath: Assets.icons.profileIcon.path,
                     tileName: "Profile",
                     onPress: () {
                       if (MainScreenHelpers.mainScreenNotifier.value != 4) {
@@ -101,12 +102,12 @@ class AppDrawer extends StatelessWidget {
                     },
                   ),
                   AppDrawerTile(
-                    iconPath: "assets/icons/orders_icon.svg",
+                    iconPath: Assets.icons.ordersIcon.path,
                     tileName: "Orders",
                     onPress: () {},
                   ),
                   AppDrawerTile(
-                    iconPath: "assets/icons/mail_icon.svg",
+                    iconPath: Assets.icons.mailIcon.path,
                     tileName: "Mail Us",
                     onPress: () async {
                       var url = Uri.parse("mailto:info@innsof.com");

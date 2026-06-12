@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../app_colors.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class DefaultProfileImage extends StatelessWidget {
   const DefaultProfileImage({super.key});
@@ -11,7 +12,7 @@ class DefaultProfileImage extends StatelessWidget {
       radius: 22,
       backgroundColor: AppColors.dividerGrayColor,
       backgroundImage: AssetImage(
-        'assets/images/member_default_profile_image.png',
+        Assets.images.memberDefaultProfileImage.path,
       ),
     );
   }

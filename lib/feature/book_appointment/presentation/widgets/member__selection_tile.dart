@@ -6,6 +6,7 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
 import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class MemberSelectionTile extends StatelessWidget {
   final Member member;
@@ -84,8 +85,8 @@ class MemberSelectionTile extends StatelessWidget {
           member.isInsurance && !member.isInsuranceExpired
               ? SvgPicture.asset(
                   isSelected
-                      ? 'assets/icons/insurance_icon_vilot.svg'
-                      : 'assets/icons/insurance_cart_icon.svg',
+                      ? Assets.icons.insuranceIconVilot.path
+                      : Assets.icons.insuranceCartIcon.path,
                 )
               : const SizedBox(),
         ],

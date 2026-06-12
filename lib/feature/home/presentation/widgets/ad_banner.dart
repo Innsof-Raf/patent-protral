@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:patient_portal/feature/home/domain/entities/ad_banner.dart'
     as home_entity;
 import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class AdBanner extends StatelessWidget {
   final home_entity.AdBanner adBanner;
@@ -25,7 +26,7 @@ class AdBanner extends StatelessWidget {
                 progressIndicatorBuilder: (context, url, progress) =>
                     const Center(child: CircularProgressIndicator()),
                 errorWidget: (context, url, error) => Image.asset(
-                  'assets/images/image_loading_failed_image.png',
+                  Assets.images.imageLoadingFailedImage.path,
                   width: double.infinity,
                   fit: BoxFit.contain,
                 ),
@@ -33,7 +34,7 @@ class AdBanner extends StatelessWidget {
                 width: double.infinity,
               )
             : Image.asset(
-                'assets/images/image_loading_failed_image.png',
+                Assets.images.imageLoadingFailedImage.path,
                 width: double.infinity,
                 fit: BoxFit.contain,
               ),

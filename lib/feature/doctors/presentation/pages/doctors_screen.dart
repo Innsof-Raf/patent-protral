@@ -12,6 +12,7 @@ import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc/doc
 import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc/search_doctor_bloc.dart';
 import 'package:patient_portal/feature/doctors/presentation/widgets/doctor_tile.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 @RoutePage(name: 'DoctorsRoute')
 class DoctorsScreen extends StatefulWidget {
@@ -113,7 +114,7 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
                       ? LayoutBuilder(
                           builder: (context, constraints) => Center(
                             child: Image.asset(
-                              'assets/gif_images/Ripple-0 2.gif',
+                              Assets.gifImages.ripple02.path,
                               width: constraints.maxWidth * .3,
                             ),
                           ),

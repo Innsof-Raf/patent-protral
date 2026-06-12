@@ -10,6 +10,7 @@ import 'package:patient_portal/core/resources/constant_messages.dart';
 import '../app_colors.dart';
 import '../app_text_styles.dart';
 import '../common_helpers/inurance_validation_helpers.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class InsuranceFormSection extends StatefulWidget {
   final int? idInsurance;
@@ -87,7 +88,7 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const SizedBox(height: 10),
-                  Image.asset('assets/gif_images/Ripple-0 2.gif', width: 100),
+                  Image.asset(Assets.gifImages.ripple02.path, width: 100),
                 ],
               )
             : Form(
