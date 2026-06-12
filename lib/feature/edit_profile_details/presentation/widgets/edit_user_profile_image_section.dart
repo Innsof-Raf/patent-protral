@@ -29,7 +29,7 @@ class EditUserProfileImageSection extends StatelessWidget {
                   backgroundColor: AppColors.dividerGrayColor,
                   backgroundImage: NetworkImage(image!),
                 )
-              : const CircleAvatar(
+              : CircleAvatar(
                   radius: 22,
                   backgroundColor: AppColors.dividerGrayColor,
                   backgroundImage: AssetImage(
