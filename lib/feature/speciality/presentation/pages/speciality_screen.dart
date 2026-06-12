@@ -1,15 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
-import 'package:patient_portal/core/resources/dimens.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/params/speciality_params.dart';
 import 'package:patient_portal/feature/speciality/presentation/bloc/speciality_bloc/speciality_bloc.dart';
-import 'package:patient_portal/feature/speciality/presentation/widgets/speciality_tile.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
+import 'package:patient_portal/feature/speciality/presentation/widgets/speciality_grid.dart';
+import 'package:patient_portal/feature/speciality/presentation/widgets/speciality_header.dart';
+import 'package:patient_portal/feature/speciality/presentation/widgets/speciality_state_view.dart';
 
 @RoutePage(name: 'SpecialityRoute')
 class SpecialityScreen extends StatefulWidget {
@@ -20,7 +19,6 @@ class SpecialityScreen extends StatefulWidget {
 }
 
 class _SpecialityScreenState extends State<SpecialityScreen> {
-  final formKey = GlobalKey<FormState>();
   final TextEditingController searchController = TextEditingController();
 
   @override
@@ -44,126 +42,100 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      body: Container(
-        margin: const EdgeInsets.symmetric(horizontal: Dimens.constPadding),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Dimens.constHeight,
-            const Text(
-              'Find Specialist',
-              style: AppTextStyles.subHeaddingSemiBoldRoboto,
-            ),
-            Text(
-              'Consult top doctors online for any health concern',
-              style: AppTextStyles.bodyTextInter,
-            ),
-            BlocBuilder<SpecialityBloc, SpecialityState>(
-              builder: (context, state) {
-                return !state.isFetching &&
-                        !state.isFetchingError &&
-                        state.specialities.isNotEmpty
-                    ? Form(
-                        key: formKey,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Dimens.constHeight,
-                            TextFormField(
-                              keyboardType: TextInputType.text,
-                              onChanged: (value) {
-                                context.read<SpecialityBloc>().add(
-                                  SearchSpecialities(
-                                    params: SpecialityParams.searchSpecialities(
-                                      searchKey: value,
-                                      specialities: state.specialities,
-                                    ),
-                                  ),
-                                );
-                              },
-                              controller: searchController,
-                              style: AppTextStyles.largeRobotoNormal.copyWith(
-                                color: AppColors.textBluishDark,
-                              ),
-                              decoration: const InputDecoration(
-                                suffixIcon: Icon(
-                                  Icons.search,
-                                  color: AppColors.textDark,
-                                ),
-                                hintStyle: AppTextStyles.largeRobotoNormal,
-                                hintText: 'Search Here',
-                                contentPadding: EdgeInsets.all(15),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    : const SizedBox.shrink();
-              },
-            ),
-            Dimens.constHeight,
-            Expanded(
-              child: LayoutBuilder(
-                builder: (context, constraints) =>
-                    BlocBuilder<SpecialityBloc, SpecialityState>(
-                      builder: (context, state) {
-                        if (state.isFetching) {
-                          return Center(
-                            child: Image.asset(
-                              Assets.gifImages.ripple02.path,
-                              width: constraints.maxHeight * .3,
-                            ),
-                          );
-                        } else if (state.isFetchingError) {
-                          return Center(
-                            child: Text(
-                              state.error.message,
-                              style: AppTextStyles.largeRobotoNormal,
-                            ),
-                          );
-                        } else {
-                          List<Speciality> specialities = [];
-                          if (searchController.text.isNotEmpty) {
-                            specialities = state.searchResult;
-                          } else {
-                            specialities = state.specialities;
-                          }
-                          return specialities.isEmpty
-                              ? const Center(
-                                  child: Text(
-                                    'No Specialities Found',
-                                    style: AppTextStyles.largeRobotoNormal,
-                                  ),
-                                )
-                              : GridView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: specialities.length,
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                        childAspectRatio: 1.5,
-                                        crossAxisSpacing: 10,
-                                        mainAxisSpacing: 10,
-                                        crossAxisCount:
-                                            constraints.maxWidth < 280
-                                            ? 3
-                                            : constraints.maxWidth < 700
-                                            ? 4
-                                            : 5,
-                                      ),
-                                  itemBuilder: (context, index) =>
-                                      SpecialityTile(
-                                        speciality: specialities[index],
-                                      ),
-                                );
-                        }
-                      },
-                    ),
+      backgroundColor: theme.colorScheme.surface,
+      body: BlocBuilder<SpecialityBloc, SpecialityState>(
+        builder: (context, state) {
+          if (state.isFetching) {
+            return const SpecialityLoadingView();
+          }
+
+          if (state.isFetchingError) {
+            return SpecialityMessageView(
+              title: 'Unable to load specialities',
+              message: state.error.message,
+              isError: true,
+            );
+          }
+
+          return CustomScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            slivers: [
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 10),
+                sliver: SliverToBoxAdapter(
+                  child: SpecialityHeader(count: state.specialities.length),
+                ),
               ),
-            ),
-          ],
-        ),
+              if (state.specialities.isNotEmpty)
+                SliverSearchHeader(
+                  controller: searchController,
+                  title: 'Search speciality by department',
+                  hintText: 'Search specialities',
+                  onChanged: (value) {
+                    context.read<SpecialityBloc>().add(
+                      SearchSpecialities(
+                        params: SpecialityParams.searchSpecialities(
+                          searchKey: value,
+                          specialities: state.specialities,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              _SpecialityResultSliver(
+                allSpecialities: state.specialities,
+                searchController: searchController,
+              ),
+            ],
+          );
+        },
       ),
+    );
+  }
+}
+
+class _SpecialityResultSliver extends StatelessWidget {
+  const _SpecialityResultSliver({
+    required this.allSpecialities,
+    required this.searchController,
+  });
+
+  final List<Speciality> allSpecialities;
+  final TextEditingController searchController;
+
+  @override
+  Widget build(BuildContext context) {
+    if (allSpecialities.isEmpty) {
+      return const SliverFillRemaining(
+        hasScrollBody: false,
+        child: SpecialityMessageView(
+          title: 'No specialities found',
+          message: 'Please check again later.',
+        ),
+      );
+    }
+
+    return BlocBuilder<SpecialityBloc, SpecialityState>(
+      builder: (context, state) {
+        final specialities = searchController.text.isNotEmpty
+            ? state.searchResult
+            : allSpecialities;
+
+        if (specialities.isEmpty) {
+          return const SliverFillRemaining(
+            hasScrollBody: false,
+            child: SpecialityMessageView(
+              title: 'No matching speciality',
+              message: 'Try searching with another department name.',
+            ),
+          );
+        }
+
+        return SpecialityGrid(specialities: specialities);
+      },
     );
   }
 }
