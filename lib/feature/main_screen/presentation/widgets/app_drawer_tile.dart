@@ -1,54 +1,69 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AppDrawerTile extends StatelessWidget {
   const AppDrawerTile({
-    super.key,
     required this.iconPath,
     required this.tileName,
     required this.onPress,
+    this.isSelected = false,
+    super.key,
   });
+
   final String iconPath;
   final String tileName;
   final VoidCallback onPress;
+  final bool isSelected;
+
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return TextButton(
-          onPressed: onPress,
-          style: TextButton.styleFrom(
-            padding: EdgeInsets.only(
-              left: constraints.maxWidth * 0.08,
-              top: constraints.maxWidth * 0.05,
-              bottom: constraints.maxWidth * 0.05,
-            ),
-            side: BorderSide.none,
-            backgroundColor: AppColors.vilot,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.zero,
-            ),
-            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SvgPicture.asset(iconPath, height: 22, width: 22),
-              const SizedBox(width: 18),
-              Text(
-                tileName,
-                style: AppTextStyles.subHeaddingSemiBoldRoboto.copyWith(
-                  color: AppColors.white,
+    final theme = Theme.of(context);
+    final foregroundColor = theme.colorScheme.onPrimary;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 3),
+      child: Material(
+        color: isSelected
+            ? foregroundColor.withValues(alpha: .14)
+            : Colors.transparent,
+        borderRadius: BorderRadius.circular(18),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(18),
+          onTap: onPress,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
+            child: Row(
+              children: [
+                SvgPicture.asset(
+                  iconPath,
+                  height: 21,
+                  width: 21,
+                  colorFilter: ColorFilter.mode(
+                    foregroundColor.withValues(alpha: isSelected ? 1 : .82),
+                    BlendMode.srcIn,
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Text(
+                    tileName,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: foregroundColor.withValues(
+                        alpha: isSelected ? 1 : .86,
+                      ),
+                      fontWeight: isSelected
+                          ? FontWeight.w700
+                          : FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

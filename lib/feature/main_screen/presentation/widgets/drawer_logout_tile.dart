@@ -1,10 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:patient_portal/core/route/app_router.dart';
+import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
 import 'package:patient_portal/gen/assets.gen.dart';
 
 class LogOutTile extends StatelessWidget {
@@ -12,45 +10,61 @@ class LogOutTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return TextButton(
-          style: TextButton.styleFrom(
-            padding: EdgeInsets.only(
-              left: constraints.maxWidth * 0.08,
-              top: constraints.maxWidth * 0.05,
-              bottom: constraints.maxWidth * 0.05,
+    final theme = Theme.of(context);
+    final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
+
+    return Padding(
+      padding: EdgeInsets.fromLTRB(14, 10, 14, bottomInset + 32),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              color: theme.colorScheme.onPrimary.withValues(alpha: .12),
             ),
-            side: BorderSide.none,
-            foregroundColor: AppColors.textDark,
-            backgroundColor: AppColors.white,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.zero,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 14),
+          child: Material(
+            color: theme.colorScheme.onPrimary,
+            borderRadius: BorderRadius.circular(18),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(18),
+              onTap: () {
+                LoginScreenHelpers.loginSectionNotifer.value = 0;
+                context.router.replaceAll([const LoginRoute()]);
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 14,
+                ),
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      Assets.icons.logOutIcon.path,
+                      colorFilter: ColorFilter.mode(
+                        theme.colorScheme.primary,
+                        BlendMode.srcIn,
+                      ),
+                      width: 21,
+                      height: 21,
+                    ),
+                    const SizedBox(width: 14),
+                    Text(
+                      'Logout',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.primary,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
-          onPressed: () {
-            LoginScreenHelpers.loginSectionNotifer.value = 0;
-            context.router.replaceAll([const LoginRoute()]);
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SvgPicture.asset(
-                Assets.icons.logOutIcon.path,
-                colorFilter: ColorFilter.mode(AppColors.vilot, BlendMode.srcIn),
-                width: 22,
-                height: 22,
-              ),
-              const SizedBox(width: 18),
-              const Text(
-                "Logout",
-                style: AppTextStyles.subHeaddingSemiBoldRoboto,
-              ),
-            ],
-          ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

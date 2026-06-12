@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/gen/assets.gen.dart';
 
 class DrawerProfileTile extends StatelessWidget {
@@ -11,38 +9,49 @@ class DrawerProfileTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
-        return Row(
-          children: [
-            const SizedBox(width: 32),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 7),
-              child: Stack(
+        final user = state.user;
+        final fullName = [
+          user?.firstName ?? '',
+          user?.lastName ?? '',
+        ].where((value) => value.trim().isNotEmpty).join(' ');
+        final displayName = fullName.isEmpty ? user?.userName ?? '' : fullName;
+        final selectedMembers =
+            user?.members.where((member) => member.id == user.idMember) ?? [];
+        final member = selectedMembers.isEmpty ? null : selectedMembers.first;
+
+        return Container(
+          margin: const EdgeInsets.symmetric(horizontal: 14),
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: theme.colorScheme.onPrimary.withValues(alpha: .12),
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(
+              color: theme.colorScheme.onPrimary.withValues(alpha: .14),
+            ),
+          ),
+          child: Row(
+            children: [
+              Stack(
                 clipBehavior: Clip.none,
                 children: [
-                  Container(
-                    height: 62,
-                    width: 62,
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      border: Border.all(width: 2, color: AppColors.white),
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: AssetImage(
-                          Assets.images.memberDefaultProfileImage.path,
-                        ),
-                      ),
+                  CircleAvatar(
+                    radius: 31,
+                    backgroundColor: theme.colorScheme.onPrimary,
+                    backgroundImage: AssetImage(
+                      Assets.images.memberDefaultProfileImage.path,
                     ),
                   ),
                   Positioned(
-                    bottom: -7,
-                    left: 0,
-                    right: 0,
+                    bottom: -4,
+                    right: -2,
                     child: Container(
-                      padding: const EdgeInsets.all(3),
-                      decoration: const BoxDecoration(
-                        color: AppColors.white,
+                      padding: const EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.onPrimary,
                         shape: BoxShape.circle,
                       ),
                       child: SvgPicture.asset(
@@ -54,39 +63,50 @@ class DrawerProfileTile extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 7),
+              const SizedBox(width: 14),
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "Anzil Alphones",
-                      style: AppTextStyles.subHeaddingSemiBoldRoboto.copyWith(
-                        color: AppColors.white,
+                      displayName.isEmpty ? 'Patient' : displayName,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        color: theme.colorScheme.onPrimary,
+                        fontWeight: FontWeight.w800,
                       ),
                     ),
+                    const SizedBox(height: 4),
                     Text(
-                      "Age : 32  | National ID : 08923739 ",
-                      style: AppTextStyles.bodySmallInterNormal.copyWith(
-                        color: AppColors.borderColor,
+                      member == null
+                          ? user?.mobileNumber ?? ''
+                          : 'Age ${member.age} | ID ${member.nationalId}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: theme.colorScheme.onPrimary.withValues(
+                          alpha: .72,
+                        ),
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(height: 6),
                     Text(
-                      "anzilalphonse@gmail.com",
-                      style: AppTextStyles.bodyTextInterSemibold.copyWith(
-                        color: AppColors.white,
+                      user?.emailId ?? '',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onPrimary,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         );
       },
     );
