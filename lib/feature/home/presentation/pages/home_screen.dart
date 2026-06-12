@@ -95,7 +95,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            const Text(
+                             Text(
                               'Consult top doctors online for any health concern',
                               style: AppTextStyles.bodyTextInter,
                             ),
@@ -162,7 +162,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            const Text(
+                             Text(
                               'We are providing following Medical insurance',
                               style: AppTextStyles.bodyTextInter,
                             ),

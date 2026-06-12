@@ -56,7 +56,7 @@ class CartScreen extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Text(
+                       Text(
                         'Total',
                         style: AppTextStyles.bodyLargeSemiBoldTextInter,
                       ),

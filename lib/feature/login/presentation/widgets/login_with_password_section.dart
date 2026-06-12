@@ -116,7 +116,7 @@ class LoginWithPasswordSection extends StatelessWidget {
           LoginScreenHelpers.constHeiht20,
           Row(
             children: [
-              const Text(
+               Text(
                 'Continue by agree our',
                 style: AppTextStyles.bodyTextInter,
               ),

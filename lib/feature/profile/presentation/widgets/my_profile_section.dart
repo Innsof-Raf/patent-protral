@@ -68,7 +68,7 @@ class ProfileDetailsSection extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
-                    children: const [
+                    children:  [
                       Text(
                         "Anzil Alphones",
                         style: AppTextStyles.subHeaddingSemiBoldRoboto,

@@ -55,7 +55,7 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
               'Find Specialist',
               style: AppTextStyles.subHeaddingSemiBoldRoboto,
             ),
-            const Text(
+             Text(
               'Consult top doctors online for any health concern',
               style: AppTextStyles.bodyTextInter,
             ),
@@ -99,7 +99,7 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
                           ],
                         ),
                       )
-                    : const SizedBox();
+                    : const SizedBox.shrink();
               },
             ),
             Dimens.constHeight,

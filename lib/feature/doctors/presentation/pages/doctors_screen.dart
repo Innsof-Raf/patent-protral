@@ -61,7 +61,7 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
               'Find Doctor',
               style: AppTextStyles.subHeaddingSemiBoldRoboto,
             ),
-            const Text(
+             Text(
               'Consult top doctors online for any health concern',
               style: AppTextStyles.bodyTextInter,
             ),
