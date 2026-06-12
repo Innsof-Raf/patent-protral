@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,6 +13,7 @@ import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import '../bloc/add_document_bloc.dart';
 
+@RoutePage(name: 'AddDocumentRoute')
 class AddDocumentScreen extends StatefulWidget {
   static DateTime? expireDate;
   static int? selectedMember;

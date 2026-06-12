@@ -1,8 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/unorderd_list_tile.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
-import 'package:patient_portal/core/route/route_constants.dart';
+import 'package:patient_portal/core/route/app_router.dart';
 
 class DocumentsTile extends StatelessWidget {
   const DocumentsTile({super.key});
@@ -12,7 +13,7 @@ class DocumentsTile extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed(RouteConstants.documentsScreen);
+        context.router.push(const DocumentsRoute());
       },
       child: Container(
         padding: EdgeInsets.all(size.width < 600 ? 10 : 20),
@@ -53,7 +54,7 @@ class DocumentsTile extends StatelessWidget {
                 padding: const EdgeInsets.all(4),
               ),
               onPressed: () {
-                Navigator.of(context).pushNamed(RouteConstants.documentsScreen);
+                context.router.push(const DocumentsRoute());
               },
               child: const Icon(
                 Icons.arrow_forward_ios,

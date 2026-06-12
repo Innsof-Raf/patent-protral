@@ -1,7 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
-import 'package:patient_portal/core/route/route_constants.dart';
+import 'package:patient_portal/core/route/app_router.dart';
 
 import '../app_colors.dart';
 import '../app_text_styles.dart';
@@ -23,10 +24,7 @@ class MemberTile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       ),
       onPressed: () {
-        Navigator.of(context).pushNamed(
-          RouteConstants.memberDetailsScreen,
-          arguments: {'member_id': member.id},
-        );
+        context.router.push(MemberDetailsRoute(memberId: member.id));
       },
       child: Row(
         children: [

@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
@@ -19,6 +20,7 @@ List<String> bagroundImages = [
 final CarouselSliderController bagroundImageCarouselController =
     CarouselSliderController();
 
+@RoutePage(name: 'LoginRoute')
 class LogInScreen extends StatelessWidget {
   const LogInScreen({super.key});
 

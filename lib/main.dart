@@ -23,8 +23,9 @@ import 'package:patient_portal/feature/speciality/presentation/bloc/speciality_b
 import 'package:patient_portal/core/injection_container.dart' as di;
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
-import 'package:patient_portal/core/route/route_constants.dart';
-import 'package:patient_portal/core/route/router.dart';
+import 'package:patient_portal/core/route/app_router.dart';
+
+final _appRouter = AppRouter();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -70,7 +71,7 @@ class MyApp extends StatelessWidget {
           create: (context) => di.sl<LoginWithPasswordBloc>(),
         ),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: const ColorScheme.light(
@@ -128,8 +129,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        initialRoute: RouteConstants.loginScreen,
-        onGenerateRoute: (settings) => Approuter.generateRoute(settings),
+        routerConfig: _appRouter.config(),
       ),
     );
   }

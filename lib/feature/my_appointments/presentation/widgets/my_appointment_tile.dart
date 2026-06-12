@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,7 +14,7 @@ import 'package:patient_portal/core/resources/common_widgets.dart/active_outline
 import 'package:patient_portal/core/resources/dimens.dart';
 import 'package:patient_portal/core/resources/helpers.dart';
 import 'package:patient_portal/core/resources/urls.dart';
-import 'package:patient_portal/core/route/route_constants.dart';
+import 'package:patient_portal/core/route/app_router.dart';
 
 import 'cancel_booking_popup.dart';
 
@@ -175,15 +176,14 @@ class MyAppointmentTile extends StatelessWidget {
                                           date.day ==
                                           appointment.appointmentDateTime.day,
                                     );
-                                Navigator.of(context).pushNamed(
-                                  RouteConstants.bookAppointmentScreen,
-                                  arguments: {
-                                    'doctor_name': appointment.doctorName,
-                                    'id_doctor': appointment.idDoctor,
-                                    'doctor_image':
+                                context.router.push(
+                                  BookAppointmentRoute(
+                                    doctorName: appointment.doctorName,
+                                    idDoctor: appointment.idDoctor,
+                                    doctorImage:
                                         '${ConstantUrls.doctorImageUrl}/${appointment.idDoctor}/${appointment.profileUrl}',
-                                    'appointment_id': appointment.id,
-                                  },
+                                    appointmentId: appointment.id,
+                                  ),
                                 );
                               }
                             },
@@ -276,15 +276,14 @@ class MyAppointmentTile extends StatelessWidget {
                                 .selectedDateNotifier
                                 .value =
                             BookAppointmentScreenHelpers.dateList[0];
-                        Navigator.of(context).pushNamed(
-                          RouteConstants.bookAppointmentScreen,
-                          arguments: {
-                            'doctor_name': appointment.doctorName,
-                            'id_doctor': appointment.idDoctor,
-                            'doctor_image':
+                        context.router.push(
+                          BookAppointmentRoute(
+                            doctorName: appointment.doctorName,
+                            idDoctor: appointment.idDoctor,
+                            doctorImage:
                                 '${ConstantUrls.doctorImageUrl}/${appointment.idDoctor}/${appointment.profileUrl}',
-                            'appointment_id': 0,
-                          },
+                            appointmentId: 0,
+                          ),
                         );
                       },
                     ),

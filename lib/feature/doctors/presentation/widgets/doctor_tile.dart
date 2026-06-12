@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
@@ -6,7 +7,7 @@ import 'package:patient_portal/core/resources/common_widgets.dart/active_button.
 import 'package:patient_portal/core/resources/dimens.dart';
 import 'package:patient_portal/core/resources/helpers.dart';
 import 'package:patient_portal/core/resources/urls.dart';
-import 'package:patient_portal/core/route/route_constants.dart';
+import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
 
 import '../../../book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
@@ -160,15 +161,14 @@ class DoctorTile extends StatelessWidget {
                     BookAppointmentScreenHelpers.createDateList();
                     BookAppointmentScreenHelpers.selectedDateNotifier.value =
                         BookAppointmentScreenHelpers.dateList[0];
-                    Navigator.of(context).pushNamed(
-                      RouteConstants.bookAppointmentScreen,
-                      arguments: {
-                        'doctor_name': doctor.doctorName,
-                        'id_doctor': doctor.idDoctor,
-                        'doctor_image':
+                    context.router.push(
+                      BookAppointmentRoute(
+                        doctorName: doctor.doctorName,
+                        idDoctor: doctor.idDoctor,
+                        doctorImage:
                             '${ConstantUrls.doctorImageUrl}/${doctor.idDoctor}/${doctor.doctorImage}',
-                        'appointment_id': 0,
-                      },
+                        appointmentId: 0,
+                      ),
                     );
                   },
                 ),

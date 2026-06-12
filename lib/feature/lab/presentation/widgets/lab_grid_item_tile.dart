@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,7 +9,7 @@ import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
-import 'package:patient_portal/core/route/route_constants.dart';
+import 'package:patient_portal/core/route/app_router.dart';
 
 class LabGridItemTile extends StatelessWidget {
   final Item item;
@@ -18,10 +19,7 @@ class LabGridItemTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: () {
-        Navigator.of(context).pushNamed(
-          RouteConstants.labItemDetailScreen,
-          arguments: {'id_item': item.idItem},
-        );
+        context.router.push(LabItemDetailRoute(idItem: item.idItem));
       },
       style: OutlinedButton.styleFrom(
         elevation: 0,
@@ -140,9 +138,8 @@ class LabGridItemTile extends StatelessWidget {
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                       onPressed: () {
-                        Navigator.of(context).pushNamed(
-                          RouteConstants.labItemDetailScreen,
-                          arguments: {'id_item': item.idItem},
+                        context.router.push(
+                          LabItemDetailRoute(idItem: item.idItem),
                         );
                       },
                       child: const Icon(

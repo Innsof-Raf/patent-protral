@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
@@ -17,6 +18,7 @@ import 'package:patient_portal/core/resources/common_widgets.dart/rounded_cheack
 import 'package:patient_portal/core/resources/common_widgets.dart/succes_dailog.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
 
+@RoutePage(name: 'AddMemberRoute')
 class AddMemberScreen extends StatelessWidget {
   final Member? member;
   const AddMemberScreen({super.key, this.member});

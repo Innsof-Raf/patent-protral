@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -5,7 +6,7 @@ import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/helpers.dart';
-import 'package:patient_portal/core/route/route_constants.dart';
+import 'package:patient_portal/core/route/app_router.dart';
 
 class ProfileDetailsSection extends StatelessWidget {
   const ProfileDetailsSection({super.key});
@@ -103,9 +104,7 @@ class ProfileDetailsSection extends StatelessWidget {
                   foregroundColor: AppColors.white,
                 ),
                 onPressed: () {
-                  Navigator.of(
-                    context,
-                  ).pushNamed(RouteConstants.editProfileDetailsScreen);
+                  context.router.push(const EditProfileDetailsRoute());
                 },
                 child: Text(
                   "EDIT PROFILE",

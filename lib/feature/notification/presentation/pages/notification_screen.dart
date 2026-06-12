@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/feature/notification/presentation/widgets/notification_widget.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 
+@RoutePage(name: 'NotificationRoute')
 class Notificationscreen extends StatelessWidget {
   const Notificationscreen({super.key});
 

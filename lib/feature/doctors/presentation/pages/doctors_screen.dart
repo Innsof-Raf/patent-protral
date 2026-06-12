@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
@@ -12,6 +13,7 @@ import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_b
 import 'package:patient_portal/feature/doctors/presentation/widgets/doctor_tile.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
+@RoutePage(name: 'DoctorsRoute')
 class DoctorsScreen extends StatefulWidget {
   final int idSpecilaity;
 

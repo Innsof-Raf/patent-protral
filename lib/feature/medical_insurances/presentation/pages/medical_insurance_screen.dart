@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:patient_portal/feature/medical_insurances/presentation/widgets/medical_insurance_widget.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 
+@RoutePage(name: 'MedicalInsuranceRoute')
 class MedicalInsurancesScreen extends StatelessWidget {
   const MedicalInsurancesScreen({super.key});
 

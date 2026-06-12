@@ -1,10 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/app_drawer_tile.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/drawer_logout_tile.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/drawer_profile_tile.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/route/route_constants.dart';
+import 'package:patient_portal/core/route/app_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -69,16 +70,14 @@ class AppDrawer extends StatelessWidget {
                     iconPath: "assets/icons/members_icon.svg",
                     tileName: "Members",
                     onPress: () {
-                      Navigator.of(
-                        context,
-                      ).pushNamed(RouteConstants.membersScreen);
+                      context.router.push(const MembersRoute());
                     },
                   ),
                   AppDrawerTile(
                     iconPath: "assets/icons/lab_icon.svg",
                     tileName: "Laboratory",
                     onPress: () {
-                      Navigator.of(context).pushNamed(RouteConstants.labScreen);
+                      context.router.push(const LabRoute());
                     },
                   ),
                   AppDrawerTile(

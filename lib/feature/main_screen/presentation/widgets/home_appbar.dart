@@ -1,9 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
-import 'package:patient_portal/core/route/route_constants.dart';
+import 'package:patient_portal/core/route/app_router.dart';
 
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
@@ -58,9 +59,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 minimumSize: const Size(0, 0),
               ),
               onPressed: () {
-                Navigator.of(
-                  context,
-                ).pushNamed(RouteConstants.notificationScreen);
+                context.router.push(const NotificationRoute());
               },
               child: Stack(
                 clipBehavior: Clip.none,

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/cart/presentation/widgets/cart_item_tile.dart';
@@ -6,6 +7,7 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 
+@RoutePage(name: 'CartRoute')
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
 

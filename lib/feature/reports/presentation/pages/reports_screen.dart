@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
@@ -7,6 +8,7 @@ import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.da
 import 'package:patient_portal/feature/reports/presentation/widgets/report_tile.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 
+@RoutePage(name: 'ReportsRoute')
 class ReportsScreen extends StatefulWidget {
   const ReportsScreen({super.key});
 

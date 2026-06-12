@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
@@ -12,6 +13,7 @@ import '../widgets/book_appointment_appbar.dart';
 import '../widgets/book_appointment_bottom_navigation_bar.dart';
 import '../widgets/member_selection_section.dart';
 
+@RoutePage(name: 'BookAppointmentRoute')
 class BookAppointmentScreen extends StatefulWidget {
   final int appointmentId;
   final String doctorImage;

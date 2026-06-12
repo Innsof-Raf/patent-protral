@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
 import 'package:patient_portal/core/resources/urls.dart';
-import 'package:patient_portal/core/route/route_constants.dart';
+import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:patient_portal/feature/home/presentation/helpers/home_helpers.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/ad_banner.dart';
@@ -17,6 +18,7 @@ import 'package:patient_portal/feature/main_screen/presentation/helpers/main_scr
 import 'package:patient_portal/feature/speciality/presentation/widgets/speciality_tile.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+@RoutePage(name: 'HomeRoute')
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -151,8 +153,8 @@ class HomeScreen extends StatelessWidget {
                                         .homeData
                                         .topInsurances
                                         .isNotEmpty) {
-                                      Navigator.of(context).pushNamed(
-                                        RouteConstants.medicalInsuranceScreen,
+                                      context.router.push(
+                                        const MedicalInsuranceRoute(),
                                       );
                                     }
                                   },
@@ -231,8 +233,8 @@ class HomeScreen extends StatelessWidget {
                                                   AppColors.lightBlue,
                                               iconColor: AppColors.lightGray,
                                               onPressed: () {
-                                                Navigator.of(context).pushNamed(
-                                                  RouteConstants.labScreen,
+                                                context.router.push(
+                                                  const LabRoute(),
                                                 );
                                               },
                                             ),

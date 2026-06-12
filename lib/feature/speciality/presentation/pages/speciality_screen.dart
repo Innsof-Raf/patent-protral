@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
@@ -9,6 +10,7 @@ import 'package:patient_portal/feature/speciality/domain/usecases/params/special
 import 'package:patient_portal/feature/speciality/presentation/bloc/speciality_bloc/speciality_bloc.dart';
 import 'package:patient_portal/feature/speciality/presentation/widgets/speciality_tile.dart';
 
+@RoutePage(name: 'SpecialityRoute')
 class SpecialityScreen extends StatefulWidget {
   const SpecialityScreen({super.key});
 

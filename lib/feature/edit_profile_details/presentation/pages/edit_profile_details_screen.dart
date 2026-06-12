@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/widgets/edit_profile_details_section.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/widgets/edit_user_profile_image_section.dart';
@@ -5,8 +6,9 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
-import 'package:patient_portal/core/route/route_constants.dart';
+import 'package:patient_portal/core/route/app_router.dart';
 
+@RoutePage(name: 'EditProfileDetailsRoute')
 class EditProfileDetailsScreen extends StatelessWidget {
   const EditProfileDetailsScreen({super.key});
 
@@ -53,10 +55,7 @@ class EditProfileDetailsScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 15),
           ),
           onPressed: () {
-            Navigator.pushReplacementNamed(
-              context,
-              RouteConstants.myProfileScreen,
-            );
+            context.router.replace(const MyProfileRoute());
           },
           child: Text(
             "NEXT",

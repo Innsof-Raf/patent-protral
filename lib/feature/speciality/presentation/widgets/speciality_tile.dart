@@ -1,9 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
-import 'package:patient_portal/core/route/route_constants.dart';
+import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
 
 class SpecialityTile extends StatelessWidget {
@@ -26,9 +27,8 @@ class SpecialityTile extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            Navigator.of(context).pushNamed(
-              RouteConstants.doctorsScreen,
-              arguments: {'id_speciality': speciality.idSpeciality},
+            context.router.push(
+              DoctorsRoute(idSpecilaity: speciality.idSpeciality),
             );
           },
           child: Column(

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/documents/domain/entities/document.dart';
@@ -7,8 +8,9 @@ import 'package:patient_portal/feature/documents/presentation/widgets/documents_
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
-import 'package:patient_portal/core/route/route_constants.dart';
+import 'package:patient_portal/core/route/app_router.dart';
 
+@RoutePage(name: 'DocumentsRoute')
 class DocumentsScreen extends StatefulWidget {
   const DocumentsScreen({super.key});
 
@@ -90,7 +92,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.vilot,
         onPressed: () {
-          Navigator.of(context).pushNamed(RouteConstants.addDocumentScreen);
+          context.router.push(const AddDocumentRoute());
         },
         child: const Icon(Icons.add, color: AppColors.white),
       ),

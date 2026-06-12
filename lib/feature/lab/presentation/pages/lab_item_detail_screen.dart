@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/lab/domain/entities/item.dart';
@@ -10,6 +11,7 @@ import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.
 import 'package:patient_portal/core/resources/dimens.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 
+@RoutePage(name: 'LabItemDetailRoute')
 class LabItemDetailScreen extends StatelessWidget {
   final int idItem;
   const LabItemDetailScreen({super.key, required this.idItem});
