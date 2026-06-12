@@ -30,6 +30,13 @@ final _appRouter = AppRouter();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: AppColors.black,
+      statusBarIconBrightness: Brightness.light,
+      statusBarBrightness: Brightness.dark,
+    ),
+  );
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -81,6 +88,13 @@ class MyApp extends StatelessWidget {
           ),
           primaryColor: AppColors.vilot,
           scaffoldBackgroundColor: AppColors.white,
+          appBarTheme: const AppBarTheme(
+            systemOverlayStyle: SystemUiOverlayStyle(
+              statusBarColor: AppColors.black,
+              statusBarIconBrightness: Brightness.light,
+              statusBarBrightness: Brightness.dark,
+            ),
+          ),
           textButtonTheme: TextButtonThemeData(
             style: TextButton.styleFrom(
               padding: EdgeInsets.zero,

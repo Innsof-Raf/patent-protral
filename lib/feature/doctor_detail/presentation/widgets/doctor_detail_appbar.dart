@@ -12,8 +12,9 @@ class DoctorDetailScreenAppbar extends StatelessWidget
   Widget build(BuildContext context) {
     return AppBar(
       systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarColor: AppColors.vilot,
+        statusBarColor: AppColors.black,
         statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
       ),
       backgroundColor: AppColors.vilot,
       elevation: 0,
