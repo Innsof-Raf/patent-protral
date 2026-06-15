@@ -63,6 +63,11 @@ import 'package:patient_portal/feature/my_appointments/domain/repositories/my_ap
 import 'package:patient_portal/feature/my_appointments/domain/usecases/cancel_appointment_usecase.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/get_my_appointments_usecase.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
+import 'package:patient_portal/feature/notification/data/datasources/notification_remote_data_source.dart';
+import 'package:patient_portal/feature/notification/data/repositories/notification_repository_impl.dart';
+import 'package:patient_portal/feature/notification/domain/repositories/notification_repository.dart';
+import 'package:patient_portal/feature/notification/domain/usecases/get_notifications_usecase.dart';
+import 'package:patient_portal/feature/notification/presentation/bloc/notification_bloc.dart';
 import 'package:patient_portal/feature/profile/data/datasources/profile_remote_data_source.dart';
 import 'package:patient_portal/feature/profile/data/repositories/profile_repository_impl.dart';
 import 'package:patient_portal/feature/profile/domain/repositories/profile_repository.dart';
@@ -361,6 +366,23 @@ Future<void> init() async {
   // Data sources
   sl.registerLazySingleton<SpecialityRemoteDataSource>(
     () => SpecialityRemoteDataSourceImpl(client: sl()),
+  );
+
+  //! Features - Notification
+  // Bloc
+  sl.registerFactory(() => NotificationBloc(getNotificationsUseCase: sl()));
+
+  // Use cases
+  sl.registerLazySingleton(() => GetNotificationsUseCase(sl()));
+
+  // Repository
+  sl.registerLazySingleton<NotificationRepository>(
+    () => NotificationRepositoryImpl(remoteDataSource: sl()),
+  );
+
+  // Data sources
+  sl.registerLazySingleton<NotificationRemoteDataSource>(
+    () => NotificationRemoteDataSourceImpl(client: sl()),
   );
 
   //! External

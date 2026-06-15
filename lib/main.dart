@@ -16,6 +16,7 @@ import 'package:patient_portal/feature/member_details/presentation/bloc/member_d
 import 'package:patient_portal/feature/members/presentation/bloc/delete_member_bloc/delete_member_bloc.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/member_search_bloc/member_search_bloc.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
+import 'package:patient_portal/feature/notification/presentation/bloc/notification_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
 import 'package:patient_portal/feature/set_password/presentation/bloc/change_password_bloc.dart';
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => di.sl<MemberSearchBloc>()),
         BlocProvider(create: (context) => di.sl<DeleteMemberBloc>()),
         BlocProvider(create: (context) => di.sl<MemberDetailBloc>()),
+        BlocProvider(create: (context) => di.sl<NotificationBloc>()),
         BlocProvider(create: (context) => di.sl<MyAppointmentsBloc>()),
         BlocProvider(create: (context) => di.sl<ItemsBloc>()),
         BlocProvider(create: (context) => di.sl<ReportsBloc>()),
