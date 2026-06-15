@@ -1,10 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:patient_portal/feature/profile/presentation/widgets/member_section.dart';
 import 'package:patient_portal/feature/profile/presentation/widgets/my_profile_section.dart';
 import 'package:patient_portal/feature/profile/presentation/widgets/quick_menus_section.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/dimens.dart';
+import 'package:patient_portal/feature/profile/presentation/widgets/member_section.dart';
 
 @RoutePage(name: 'MyProfileRoute')
 class ProfileScreen extends StatelessWidget {
@@ -12,29 +10,24 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: ProfileDetailsSection(),
+      backgroundColor: theme.colorScheme.surface,
+      body: const CustomScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        slivers: [
+          SliverPadding(
+            padding: EdgeInsets.fromLTRB(16, 16, 16, 12),
+            sliver: SliverToBoxAdapter(child: ProfileDetailsSection()),
           ),
-          Container(
-            height: 1,
-            width: double.infinity,
-            color: AppColors.dividerGrayColor,
+          SliverPadding(
+            padding: EdgeInsets.fromLTRB(16, 0, 16, 12),
+            sliver: SliverToBoxAdapter(child: QuickMenuSection()), 
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: QuickMenuSection(),
-          ),
-          Dimens.constHeight,
-          const Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: MemberSection(),
-            ),
+          SliverPadding(
+            padding: EdgeInsets.fromLTRB(16, 0, 16, 112),
+            sliver: SliverToBoxAdapter(child: MemberSection()),
           ),
         ],
       ),

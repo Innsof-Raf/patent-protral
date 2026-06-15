@@ -1,12 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
-import 'package:patient_portal/core/resources/dimens.dart';
 import 'package:patient_portal/core/route/app_router.dart';
-
-import 'quick_menu_button.dart';
+import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
+import 'package:patient_portal/feature/profile/presentation/widgets/profile_section_card.dart';
+import 'package:patient_portal/feature/profile/presentation/widgets/quick_menu_button.dart';
 import 'package:patient_portal/gen/assets.gen.dart';
 
 class QuickMenuSection extends StatelessWidget {
@@ -14,42 +11,53 @@ class QuickMenuSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const SizedBox(height: 10),
-        const Text(
-          "Quick menus",
-          style: AppTextStyles.subHeaddingSemiBoldRoboto,
-        ),
-        Text(
-          "Your new password must be at least 8 Charaters",
-          style: AppTextStyles.bodyTextRoboto.copyWith(
-            color: AppColors.textLight,
+    final theme = Theme.of(context);
+
+    return ProfileSectionCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Quick actions',
+            style: theme.textTheme.titleMedium?.copyWith(
+              color: theme.colorScheme.onSurface,
+              fontWeight: FontWeight.w800,
+            ),
           ),
-        ),
-        Dimens.constHeight,
-        Wrap(
-          children: [
-            QuickMenuButton(
-              imagePath: Assets.icons.viewReportsIcon.path,
-              onPressed: () {
-                MainScreenHelpers.mainScreenNotifier.value = 3;
-              },
-              title: "View\nReports",
+          const SizedBox(height: 4),
+          Text(
+            'Jump to the most used profile tasks.',
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+              fontWeight: FontWeight.w600,
             ),
-            Dimens.constWidth10,
-            QuickMenuButton(
-              imagePath: Assets.icons.lockIconDart.path,
-              onPressed: () {
-                context.router.push(const SetPasswordRoute());
-              },
-              title: "Change\nPassword",
-            ),
-          ],
-        ),
-      ],
+          ),
+          const SizedBox(height: 14),
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: [
+              QuickMenuButton(
+                imagePath: Assets.icons.viewReportsIcon.path,
+                onPressed: () {
+                  MainScreenHelpers.mainScreenNotifier.value = 3;
+                },
+                title: 'Reports',
+                subtitle: 'View files',
+              ),
+              QuickMenuButton(
+                imagePath: Assets.icons.lockIconDart.path,
+                onPressed: () {
+                  context.router.root.push(const SetPasswordRoute());
+                },
+                title: 'Password',
+                subtitle: 'Change login',
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
