@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/feature/notification/domain/entities/notification.dart';
 import 'package:patient_portal/feature/notification/domain/usecases/get_notifications_usecase.dart';
-import 'package:patient_portal/feature/notification/domain/usecases/params/notification_params.dart';
 
 part 'generated/notification_bloc.freezed.dart';
 part 'notification_event.dart';
@@ -16,6 +15,42 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     on<GetNotifications>((event, emit) async {
       emit(state.copyWith(isLoading: true, isError: false));
 
+      // Temporarily using static data instead of calling API
+      await Future.delayed(const Duration(milliseconds: 500));
+
+      final staticNotifications = [
+        const NotificationEntity(
+          date: '12',
+          month: 'Oct',
+          title: 'Appointment Confirmed',
+          subtitle: 'Dr. John Doe',
+          description: 'Your appointment has been confirmed for 10:30 AM.',
+          isRead: false,
+        ),
+        const NotificationEntity(
+          date: '10',
+          month: 'Oct',
+          title: 'New Lab Report',
+          subtitle: 'Blood Test',
+          description: 'Your lab report for the blood test is now available.',
+          isRead: true,
+        ),
+        const NotificationEntity(
+          date: '08',
+          month: 'Oct',
+          title: 'Reminder',
+          subtitle: 'Follow-up Visit',
+          description:
+              'Don\'t forget your follow-up visit with Dr. Sarah Smith tomorrow.',
+          isRead: true,
+        ),
+      ];
+
+      emit(
+        state.copyWith(isLoading: false, notifications: staticNotifications),
+      );
+
+      /*
       final result = await getNotificationsUseCase(
         NotificationParams(
           token: event.token,
@@ -35,6 +70,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
           state.copyWith(isLoading: false, notifications: notifications),
         ),
       );
+      */
     });
   }
 }
