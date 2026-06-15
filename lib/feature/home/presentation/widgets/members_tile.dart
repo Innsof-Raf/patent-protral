@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_quick_action_card.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
 
 class MembersTile extends StatelessWidget {
   const MembersTile({super.key});

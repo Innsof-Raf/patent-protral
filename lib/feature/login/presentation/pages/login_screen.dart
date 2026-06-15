@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
 import 'package:patient_portal/feature/login/presentation/widgets/login_auth_card.dart';
@@ -9,7 +10,6 @@ import 'package:patient_portal/feature/login/presentation/widgets/login_backgrou
 import 'package:patient_portal/feature/login/presentation/widgets/login_otp_generation_section.dart';
 import 'package:patient_portal/feature/login/presentation/widgets/login_otp_verification_section.dart';
 import 'package:patient_portal/feature/login/presentation/widgets/login_with_password_section.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
 
 final List<String> bagroundImages = [
   Assets.images.loginBagroundImage.path,

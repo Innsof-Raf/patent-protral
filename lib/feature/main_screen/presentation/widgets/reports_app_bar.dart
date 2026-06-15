@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/main_shell_app_bar.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/reports/domain/usecases/params/reports_params.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
 import 'package:patient_portal/feature/reports/presentation/helpers/reports_appbar_helpers.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
 
 class ReportsAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ReportsAppBar({super.key});

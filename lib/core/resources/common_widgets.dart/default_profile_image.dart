@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 
 import '../app_colors.dart';
 

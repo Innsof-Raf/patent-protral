@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$InsuranceModel {
 
-@JsonKey(name: 'id_insurance') int get idInsurance;@JsonKey(name: 'ins_name') String get insuranceName;@JsonKey(name: "Img") String? get img;
+@JsonKey(name: 'id_insurance') int get idInsurance;@JsonKey(name: 'ins_name') String get insuranceName;@JsonKey(name: 'Img') String? get img;
 /// Create a copy of InsuranceModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $InsuranceModelCopyWith<$Res>  {
   factory $InsuranceModelCopyWith(InsuranceModel value, $Res Function(InsuranceModel) _then) = _$InsuranceModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'id_insurance') int idInsurance,@JsonKey(name: 'ins_name') String insuranceName,@JsonKey(name: "Img") String? img
+@JsonKey(name: 'id_insurance') int idInsurance,@JsonKey(name: 'ins_name') String insuranceName,@JsonKey(name: 'Img') String? img
 });
 
 
@@ -152,7 +152,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_insurance')  int idInsurance, @JsonKey(name: 'ins_name')  String insuranceName, @JsonKey(name: "Img")  String? img)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_insurance')  int idInsurance, @JsonKey(name: 'ins_name')  String insuranceName, @JsonKey(name: 'Img')  String? img)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _InsuranceModel() when $default != null:
 return $default(_that.idInsurance,_that.insuranceName,_that.img);case _:
@@ -173,7 +173,7 @@ return $default(_that.idInsurance,_that.insuranceName,_that.img);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_insurance')  int idInsurance, @JsonKey(name: 'ins_name')  String insuranceName, @JsonKey(name: "Img")  String? img)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_insurance')  int idInsurance, @JsonKey(name: 'ins_name')  String insuranceName, @JsonKey(name: 'Img')  String? img)  $default,) {final _that = this;
 switch (_that) {
 case _InsuranceModel():
 return $default(_that.idInsurance,_that.insuranceName,_that.img);}
@@ -190,7 +190,7 @@ return $default(_that.idInsurance,_that.insuranceName,_that.img);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id_insurance')  int idInsurance, @JsonKey(name: 'ins_name')  String insuranceName, @JsonKey(name: "Img")  String? img)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id_insurance')  int idInsurance, @JsonKey(name: 'ins_name')  String insuranceName, @JsonKey(name: 'Img')  String? img)?  $default,) {final _that = this;
 switch (_that) {
 case _InsuranceModel() when $default != null:
 return $default(_that.idInsurance,_that.insuranceName,_that.img);case _:
@@ -205,12 +205,12 @@ return $default(_that.idInsurance,_that.insuranceName,_that.img);case _:
 @JsonSerializable()
 
 class _InsuranceModel implements InsuranceModel {
-  const _InsuranceModel({@JsonKey(name: 'id_insurance') required this.idInsurance, @JsonKey(name: 'ins_name') required this.insuranceName, @JsonKey(name: "Img") this.img = null});
+  const _InsuranceModel({@JsonKey(name: 'id_insurance') required this.idInsurance, @JsonKey(name: 'ins_name') required this.insuranceName, @JsonKey(name: 'Img') this.img = null});
   factory _InsuranceModel.fromJson(Map<String, dynamic> json) => _$InsuranceModelFromJson(json);
 
 @override@JsonKey(name: 'id_insurance') final  int idInsurance;
 @override@JsonKey(name: 'ins_name') final  String insuranceName;
-@override@JsonKey(name: "Img") final  String? img;
+@override@JsonKey(name: 'Img') final  String? img;
 
 /// Create a copy of InsuranceModel
 /// with the given fields replaced by the non-null parameter values.
@@ -245,7 +245,7 @@ abstract mixin class _$InsuranceModelCopyWith<$Res> implements $InsuranceModelCo
   factory _$InsuranceModelCopyWith(_InsuranceModel value, $Res Function(_InsuranceModel) _then) = __$InsuranceModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'id_insurance') int idInsurance,@JsonKey(name: 'ins_name') String insuranceName,@JsonKey(name: "Img") String? img
+@JsonKey(name: 'id_insurance') int idInsurance,@JsonKey(name: 'ins_name') String insuranceName,@JsonKey(name: 'Img') String? img
 });
 
 

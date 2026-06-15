@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/succes_dailog.dart';
@@ -10,7 +11,6 @@ import 'package:patient_portal/feature/my_appointments/presentation/helpers/my_a
 import 'package:patient_portal/feature/my_appointments/presentation/widgets/appointments_tabbar_view.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/widgets/my_appointment_screen_tab_bar.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
 
 @RoutePage(name: 'MyAppointmentsRoute')
 class MyAppointmentScreen extends StatefulWidget {

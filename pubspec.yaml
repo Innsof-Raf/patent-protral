@@ -77,7 +77,7 @@ dev_dependencies:
   freezed: ^3.2.5
 
 flutter_gen:
-  output: lib/gen/
+  output: lib/core/gen/
   integrations:
     flutter_svg: true
 

@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_quick_action_card.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/unorderd_list_tile.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
 
 class DocumentsTile extends StatelessWidget {
   const DocumentsTile({super.key});

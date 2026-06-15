@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
 
 class MemberSelectionTile extends StatelessWidget {
   final Member member;
@@ -21,7 +21,8 @@ class MemberSelectionTile extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        if (BookAppointmentScreenHelpers.selectedMemberNotifier.value == member) {
+        if (BookAppointmentScreenHelpers.selectedMemberNotifier.value ==
+            member) {
           BookAppointmentScreenHelpers.selectedMemberNotifier.value = null;
         } else {
           BookAppointmentScreenHelpers.selectedMemberNotifier.value = member;
@@ -32,10 +33,14 @@ class MemberSelectionTile extends StatelessWidget {
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: isSelected ? colorScheme.primaryContainer.withValues(alpha: 0.3) : colorScheme.surface,
+          color: isSelected
+              ? colorScheme.primaryContainer.withValues(alpha: 0.3)
+              : colorScheme.surface,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? colorScheme.primary : colorScheme.outlineVariant,
+            color: isSelected
+                ? colorScheme.primary
+                : colorScheme.outlineVariant,
             width: isSelected ? 2 : 1,
           ),
         ),
@@ -45,7 +50,9 @@ class MemberSelectionTile extends StatelessWidget {
               width: 48,
               height: 48,
               decoration: BoxDecoration(
-                color: member.profileImage == null ? colorScheme.secondaryContainer : null,
+                color: member.profileImage == null
+                    ? colorScheme.secondaryContainer
+                    : null,
                 shape: BoxShape.circle,
                 image: member.profileImage != null
                     ? DecorationImage(
@@ -59,7 +66,9 @@ class MemberSelectionTile extends StatelessWidget {
               child: member.profileImage == null
                   ? Center(
                       child: Text(
-                        member.name.isNotEmpty ? member.name[0].toUpperCase() : '?',
+                        member.name.isNotEmpty
+                            ? member.name[0].toUpperCase()
+                            : '?',
                         style: theme.textTheme.titleMedium?.copyWith(
                           color: colorScheme.onSecondaryContainer,
                           fontWeight: FontWeight.bold,
@@ -98,7 +107,9 @@ class MemberSelectionTile extends StatelessWidget {
                   width: 24,
                   height: 24,
                   colorFilter: ColorFilter.mode(
-                    isSelected ? colorScheme.primary : colorScheme.onSurfaceVariant,
+                    isSelected
+                        ? colorScheme.primary
+                        : colorScheme.onSurfaceVariant,
                     BlendMode.srcIn,
                   ),
                 ),
@@ -108,7 +119,8 @@ class MemberSelectionTile extends StatelessWidget {
               value: member,
               groupValue: isSelected ? member : null,
               onChanged: (value) {
-                BookAppointmentScreenHelpers.selectedMemberNotifier.value = value;
+                BookAppointmentScreenHelpers.selectedMemberNotifier.value =
+                    value;
               },
               activeColor: colorScheme.primary,
             ),

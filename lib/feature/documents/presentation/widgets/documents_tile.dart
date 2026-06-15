@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/documents/domain/entities/document.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
 
 class DocumentTile extends StatelessWidget {
   final Document document;

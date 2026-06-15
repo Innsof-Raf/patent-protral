@@ -5,14 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/feature/add_document/presentation/bloc/add_document_bloc.dart';
 import 'package:patient_portal/feature/add_document/presentation/widgets/add_document_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
-
-import '../bloc/add_document_bloc.dart';
 
 @RoutePage(name: 'AddDocumentRoute')
 class AddDocumentScreen extends StatefulWidget {

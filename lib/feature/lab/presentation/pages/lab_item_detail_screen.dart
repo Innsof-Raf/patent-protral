@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
@@ -10,7 +11,6 @@ import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/lab/domain/entities/item.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
 
 @RoutePage(name: 'LabItemDetailRoute')
 class LabItemDetailScreen extends StatelessWidget {
@@ -25,7 +25,9 @@ class LabItemDetailScreen extends StatelessWidget {
           (element) => element.idItem == idItem,
         );
 
-        final Item? selectedItem = itemIndex != -1 ? state.items[itemIndex] : null;
+        final Item? selectedItem = itemIndex != -1
+            ? state.items[itemIndex]
+            : null;
         return Scaffold(
           appBar: const CommonAppbar(title: 'Lab'),
           body: Padding(

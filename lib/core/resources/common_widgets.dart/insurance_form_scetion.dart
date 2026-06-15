@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
 import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
 
 import '../common_helpers/inurance_validation_helpers.dart';
 
@@ -201,12 +201,13 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
                 ),
                 controller: InsuranceFormSection.expireDateController,
                 onTap: () async {
-                  final DateTime? selectedDate = await InsuranceHelpers.getExpireDate(
-                    initialDate:
-                        InsuranceFormSection.expireDate ??
-                        DateTime.now().add(const Duration(days: 1)),
-                    context: context,
-                  );
+                  final DateTime? selectedDate =
+                      await InsuranceHelpers.getExpireDate(
+                        initialDate:
+                            InsuranceFormSection.expireDate ??
+                            DateTime.now().add(const Duration(days: 1)),
+                        context: context,
+                      );
                   if (selectedDate != null) {
                     InsuranceFormSection.expireDate = selectedDate;
                     InsuranceFormSection.expireDateController.text = DateFormat(

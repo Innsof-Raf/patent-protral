@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/helpers/edit_profile_detail_screen_helpers.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/widgets/edit_profile_section_card.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
 
 class EditUserProfileImageSection extends StatelessWidget {
   const EditUserProfileImageSection({super.key, required this.image});

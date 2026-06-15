@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/home/domain/entities/ad_banner.dart'
     as home_entity;
-import 'package:patient_portal/gen/assets.gen.dart';
 
 class AdBanner extends StatelessWidget {
   const AdBanner({required this.adBanner, required this.onPressed, super.key});

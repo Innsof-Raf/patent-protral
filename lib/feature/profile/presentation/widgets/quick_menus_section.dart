@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/presentation/widgets/profile_section_card.dart';
 import 'package:patient_portal/feature/profile/presentation/widgets/quick_menu_button.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
 
 class QuickMenuSection extends StatelessWidget {
   const QuickMenuSection({super.key});

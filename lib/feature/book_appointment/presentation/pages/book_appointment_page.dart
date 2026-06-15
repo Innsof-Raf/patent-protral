@@ -1,16 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
+import 'package:patient_portal/feature/book_appointment/presentation/widgets/appointment_slot_section.dart';
+import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_appbar.dart';
+import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_bottom_navigation_bar.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/date_tab.dart';
+import 'package:patient_portal/feature/book_appointment/presentation/widgets/member_selection_section.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
-
-import '../widgets/appointment_slot_section.dart';
-import '../widgets/book_appointment_appbar.dart';
-import '../widgets/book_appointment_bottom_navigation_bar.dart';
-import '../widgets/member_selection_section.dart';
 
 @RoutePage(name: 'BookAppointmentRoute')
 class BookAppointmentScreen extends StatefulWidget {

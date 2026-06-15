@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/main_shell_icon_button.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
 
 class MainShellAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MainShellAppBar({

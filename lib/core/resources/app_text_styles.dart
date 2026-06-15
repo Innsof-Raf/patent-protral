@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:patient_portal/core/gen/fonts.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/gen/fonts.gen.dart';
 
 class AppTextStyles {
   static String interFont = FontFamily.inter;

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ReportModel {
 
-@JsonKey(name: "id_cons") int get idConseltation;@JsonKey(name: "id") int get id;@JsonKey(name: "ID_CUSTOMER") int get memberId;@JsonKey(name: "employee_name") String get doctorName;@JsonKey(name: "speciality") String get departmentName;@JsonKey(name: "appmnt_dttm") DateTime get appointmentDate;@JsonKey(name: "appmnt_time") String get appointmentTime;@JsonKey(name: "labreport_url") String? get labPdfUrl;@JsonKey(name: "xrayreport_url") String? get xRayPdfUrl;@JsonKey(name: "ussreport_url") String? get ussPdfUrl;@JsonKey(name: "ct_url") String? get ctPdfUrl;
+@JsonKey(name: 'id_cons') int get idConseltation;@JsonKey(name: 'id') int get id;@JsonKey(name: 'ID_CUSTOMER') int get memberId;@JsonKey(name: 'employee_name') String get doctorName;@JsonKey(name: 'speciality') String get departmentName;@JsonKey(name: 'appmnt_dttm') DateTime get appointmentDate;@JsonKey(name: 'appmnt_time') String get appointmentTime;@JsonKey(name: 'labreport_url') String? get labPdfUrl;@JsonKey(name: 'xrayreport_url') String? get xRayPdfUrl;@JsonKey(name: 'ussreport_url') String? get ussPdfUrl;@JsonKey(name: 'ct_url') String? get ctPdfUrl;
 /// Create a copy of ReportModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $ReportModelCopyWith<$Res>  {
   factory $ReportModelCopyWith(ReportModel value, $Res Function(ReportModel) _then) = _$ReportModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "id_cons") int idConseltation,@JsonKey(name: "id") int id,@JsonKey(name: "ID_CUSTOMER") int memberId,@JsonKey(name: "employee_name") String doctorName,@JsonKey(name: "speciality") String departmentName,@JsonKey(name: "appmnt_dttm") DateTime appointmentDate,@JsonKey(name: "appmnt_time") String appointmentTime,@JsonKey(name: "labreport_url") String? labPdfUrl,@JsonKey(name: "xrayreport_url") String? xRayPdfUrl,@JsonKey(name: "ussreport_url") String? ussPdfUrl,@JsonKey(name: "ct_url") String? ctPdfUrl
+@JsonKey(name: 'id_cons') int idConseltation,@JsonKey(name: 'id') int id,@JsonKey(name: 'ID_CUSTOMER') int memberId,@JsonKey(name: 'employee_name') String doctorName,@JsonKey(name: 'speciality') String departmentName,@JsonKey(name: 'appmnt_dttm') DateTime appointmentDate,@JsonKey(name: 'appmnt_time') String appointmentTime,@JsonKey(name: 'labreport_url') String? labPdfUrl,@JsonKey(name: 'xrayreport_url') String? xRayPdfUrl,@JsonKey(name: 'ussreport_url') String? ussPdfUrl,@JsonKey(name: 'ct_url') String? ctPdfUrl
 });
 
 
@@ -160,7 +160,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "id_cons")  int idConseltation, @JsonKey(name: "id")  int id, @JsonKey(name: "ID_CUSTOMER")  int memberId, @JsonKey(name: "employee_name")  String doctorName, @JsonKey(name: "speciality")  String departmentName, @JsonKey(name: "appmnt_dttm")  DateTime appointmentDate, @JsonKey(name: "appmnt_time")  String appointmentTime, @JsonKey(name: "labreport_url")  String? labPdfUrl, @JsonKey(name: "xrayreport_url")  String? xRayPdfUrl, @JsonKey(name: "ussreport_url")  String? ussPdfUrl, @JsonKey(name: "ct_url")  String? ctPdfUrl)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_cons')  int idConseltation, @JsonKey(name: 'id')  int id, @JsonKey(name: 'ID_CUSTOMER')  int memberId, @JsonKey(name: 'employee_name')  String doctorName, @JsonKey(name: 'speciality')  String departmentName, @JsonKey(name: 'appmnt_dttm')  DateTime appointmentDate, @JsonKey(name: 'appmnt_time')  String appointmentTime, @JsonKey(name: 'labreport_url')  String? labPdfUrl, @JsonKey(name: 'xrayreport_url')  String? xRayPdfUrl, @JsonKey(name: 'ussreport_url')  String? ussPdfUrl, @JsonKey(name: 'ct_url')  String? ctPdfUrl)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ReportModel() when $default != null:
 return $default(_that.idConseltation,_that.id,_that.memberId,_that.doctorName,_that.departmentName,_that.appointmentDate,_that.appointmentTime,_that.labPdfUrl,_that.xRayPdfUrl,_that.ussPdfUrl,_that.ctPdfUrl);case _:
@@ -181,7 +181,7 @@ return $default(_that.idConseltation,_that.id,_that.memberId,_that.doctorName,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "id_cons")  int idConseltation, @JsonKey(name: "id")  int id, @JsonKey(name: "ID_CUSTOMER")  int memberId, @JsonKey(name: "employee_name")  String doctorName, @JsonKey(name: "speciality")  String departmentName, @JsonKey(name: "appmnt_dttm")  DateTime appointmentDate, @JsonKey(name: "appmnt_time")  String appointmentTime, @JsonKey(name: "labreport_url")  String? labPdfUrl, @JsonKey(name: "xrayreport_url")  String? xRayPdfUrl, @JsonKey(name: "ussreport_url")  String? ussPdfUrl, @JsonKey(name: "ct_url")  String? ctPdfUrl)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_cons')  int idConseltation, @JsonKey(name: 'id')  int id, @JsonKey(name: 'ID_CUSTOMER')  int memberId, @JsonKey(name: 'employee_name')  String doctorName, @JsonKey(name: 'speciality')  String departmentName, @JsonKey(name: 'appmnt_dttm')  DateTime appointmentDate, @JsonKey(name: 'appmnt_time')  String appointmentTime, @JsonKey(name: 'labreport_url')  String? labPdfUrl, @JsonKey(name: 'xrayreport_url')  String? xRayPdfUrl, @JsonKey(name: 'ussreport_url')  String? ussPdfUrl, @JsonKey(name: 'ct_url')  String? ctPdfUrl)  $default,) {final _that = this;
 switch (_that) {
 case _ReportModel():
 return $default(_that.idConseltation,_that.id,_that.memberId,_that.doctorName,_that.departmentName,_that.appointmentDate,_that.appointmentTime,_that.labPdfUrl,_that.xRayPdfUrl,_that.ussPdfUrl,_that.ctPdfUrl);}
@@ -198,7 +198,7 @@ return $default(_that.idConseltation,_that.id,_that.memberId,_that.doctorName,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "id_cons")  int idConseltation, @JsonKey(name: "id")  int id, @JsonKey(name: "ID_CUSTOMER")  int memberId, @JsonKey(name: "employee_name")  String doctorName, @JsonKey(name: "speciality")  String departmentName, @JsonKey(name: "appmnt_dttm")  DateTime appointmentDate, @JsonKey(name: "appmnt_time")  String appointmentTime, @JsonKey(name: "labreport_url")  String? labPdfUrl, @JsonKey(name: "xrayreport_url")  String? xRayPdfUrl, @JsonKey(name: "ussreport_url")  String? ussPdfUrl, @JsonKey(name: "ct_url")  String? ctPdfUrl)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id_cons')  int idConseltation, @JsonKey(name: 'id')  int id, @JsonKey(name: 'ID_CUSTOMER')  int memberId, @JsonKey(name: 'employee_name')  String doctorName, @JsonKey(name: 'speciality')  String departmentName, @JsonKey(name: 'appmnt_dttm')  DateTime appointmentDate, @JsonKey(name: 'appmnt_time')  String appointmentTime, @JsonKey(name: 'labreport_url')  String? labPdfUrl, @JsonKey(name: 'xrayreport_url')  String? xRayPdfUrl, @JsonKey(name: 'ussreport_url')  String? ussPdfUrl, @JsonKey(name: 'ct_url')  String? ctPdfUrl)?  $default,) {final _that = this;
 switch (_that) {
 case _ReportModel() when $default != null:
 return $default(_that.idConseltation,_that.id,_that.memberId,_that.doctorName,_that.departmentName,_that.appointmentDate,_that.appointmentTime,_that.labPdfUrl,_that.xRayPdfUrl,_that.ussPdfUrl,_that.ctPdfUrl);case _:
@@ -213,20 +213,20 @@ return $default(_that.idConseltation,_that.id,_that.memberId,_that.doctorName,_t
 @JsonSerializable()
 
 class _ReportModel extends ReportModel {
-  const _ReportModel({@JsonKey(name: "id_cons") required this.idConseltation, @JsonKey(name: "id") required this.id, @JsonKey(name: "ID_CUSTOMER") required this.memberId, @JsonKey(name: "employee_name") required this.doctorName, @JsonKey(name: "speciality") required this.departmentName, @JsonKey(name: "appmnt_dttm") required this.appointmentDate, @JsonKey(name: "appmnt_time") required this.appointmentTime, @JsonKey(name: "labreport_url") this.labPdfUrl = null, @JsonKey(name: "xrayreport_url") this.xRayPdfUrl = null, @JsonKey(name: "ussreport_url") this.ussPdfUrl = null, @JsonKey(name: "ct_url") this.ctPdfUrl = null}): super._();
+  const _ReportModel({@JsonKey(name: 'id_cons') required this.idConseltation, @JsonKey(name: 'id') required this.id, @JsonKey(name: 'ID_CUSTOMER') required this.memberId, @JsonKey(name: 'employee_name') required this.doctorName, @JsonKey(name: 'speciality') required this.departmentName, @JsonKey(name: 'appmnt_dttm') required this.appointmentDate, @JsonKey(name: 'appmnt_time') required this.appointmentTime, @JsonKey(name: 'labreport_url') this.labPdfUrl = null, @JsonKey(name: 'xrayreport_url') this.xRayPdfUrl = null, @JsonKey(name: 'ussreport_url') this.ussPdfUrl = null, @JsonKey(name: 'ct_url') this.ctPdfUrl = null}): super._();
   factory _ReportModel.fromJson(Map<String, dynamic> json) => _$ReportModelFromJson(json);
 
-@override@JsonKey(name: "id_cons") final  int idConseltation;
-@override@JsonKey(name: "id") final  int id;
-@override@JsonKey(name: "ID_CUSTOMER") final  int memberId;
-@override@JsonKey(name: "employee_name") final  String doctorName;
-@override@JsonKey(name: "speciality") final  String departmentName;
-@override@JsonKey(name: "appmnt_dttm") final  DateTime appointmentDate;
-@override@JsonKey(name: "appmnt_time") final  String appointmentTime;
-@override@JsonKey(name: "labreport_url") final  String? labPdfUrl;
-@override@JsonKey(name: "xrayreport_url") final  String? xRayPdfUrl;
-@override@JsonKey(name: "ussreport_url") final  String? ussPdfUrl;
-@override@JsonKey(name: "ct_url") final  String? ctPdfUrl;
+@override@JsonKey(name: 'id_cons') final  int idConseltation;
+@override@JsonKey(name: 'id') final  int id;
+@override@JsonKey(name: 'ID_CUSTOMER') final  int memberId;
+@override@JsonKey(name: 'employee_name') final  String doctorName;
+@override@JsonKey(name: 'speciality') final  String departmentName;
+@override@JsonKey(name: 'appmnt_dttm') final  DateTime appointmentDate;
+@override@JsonKey(name: 'appmnt_time') final  String appointmentTime;
+@override@JsonKey(name: 'labreport_url') final  String? labPdfUrl;
+@override@JsonKey(name: 'xrayreport_url') final  String? xRayPdfUrl;
+@override@JsonKey(name: 'ussreport_url') final  String? ussPdfUrl;
+@override@JsonKey(name: 'ct_url') final  String? ctPdfUrl;
 
 /// Create a copy of ReportModel
 /// with the given fields replaced by the non-null parameter values.
@@ -261,7 +261,7 @@ abstract mixin class _$ReportModelCopyWith<$Res> implements $ReportModelCopyWith
   factory _$ReportModelCopyWith(_ReportModel value, $Res Function(_ReportModel) _then) = __$ReportModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "id_cons") int idConseltation,@JsonKey(name: "id") int id,@JsonKey(name: "ID_CUSTOMER") int memberId,@JsonKey(name: "employee_name") String doctorName,@JsonKey(name: "speciality") String departmentName,@JsonKey(name: "appmnt_dttm") DateTime appointmentDate,@JsonKey(name: "appmnt_time") String appointmentTime,@JsonKey(name: "labreport_url") String? labPdfUrl,@JsonKey(name: "xrayreport_url") String? xRayPdfUrl,@JsonKey(name: "ussreport_url") String? ussPdfUrl,@JsonKey(name: "ct_url") String? ctPdfUrl
+@JsonKey(name: 'id_cons') int idConseltation,@JsonKey(name: 'id') int id,@JsonKey(name: 'ID_CUSTOMER') int memberId,@JsonKey(name: 'employee_name') String doctorName,@JsonKey(name: 'speciality') String departmentName,@JsonKey(name: 'appmnt_dttm') DateTime appointmentDate,@JsonKey(name: 'appmnt_time') String appointmentTime,@JsonKey(name: 'labreport_url') String? labPdfUrl,@JsonKey(name: 'xrayreport_url') String? xRayPdfUrl,@JsonKey(name: 'ussreport_url') String? ussPdfUrl,@JsonKey(name: 'ct_url') String? ctPdfUrl
 });
 
 

@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
 
 class SpecialityTile extends StatelessWidget {
   const SpecialityTile({super.key, required this.speciality});
