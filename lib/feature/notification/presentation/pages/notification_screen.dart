@@ -8,14 +8,14 @@ import 'package:patient_portal/feature/notification/presentation/widgets/notific
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
 @RoutePage(name: 'NotificationRoute')
-class Notificationscreen extends StatefulWidget {
-  const Notificationscreen({super.key});
+class NotificationScreen extends StatefulWidget {
+  const NotificationScreen({super.key});
 
   @override
-  State<Notificationscreen> createState() => _NotificationscreenState();
+  State<NotificationScreen> createState() => _NotificationScreenState();
 }
 
-class _NotificationscreenState extends State<Notificationscreen> {
+class _NotificationScreenState extends State<NotificationScreen> {
   @override
   void initState() {
     super.initState();

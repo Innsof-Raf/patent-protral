@@ -473,7 +473,7 @@ class MyAppointmentsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [Notificationscreen]
+/// [NotificationScreen]
 class NotificationRoute extends PageRouteInfo<void> {
   const NotificationRoute({List<PageRouteInfo>? children})
     : super(NotificationRoute.name, initialChildren: children);
@@ -483,7 +483,7 @@ class NotificationRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const Notificationscreen();
+      return const NotificationScreen();
     },
   );
 }
