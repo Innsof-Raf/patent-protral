@@ -16,6 +16,7 @@ sealed class ProfileParams with _$ProfileParams {
     required String patientName,
     required String nationalId,
     String? email,
+    String? mobileNumber,
     required String gender,
     required DateTime dob,
     int? idInsurance,

@@ -2,17 +2,17 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/core/error/failures.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/add_profile_member_usecase.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/change_member_insurance_details_usecase.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/get_member_detail_usecase.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
-import 'package:patient_portal/core/resources/error_model.dart';
 
+part 'generated/user_bloc.freezed.dart';
 part 'user_event.dart';
 part 'user_state.dart';
-part 'generated/user_bloc.freezed.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   final AddProfileMemberUseCase addProfileMemberUseCase;
@@ -179,6 +179,7 @@ extension _ProfileParamsX on ProfileParams {
         patientName: p.patientName,
         nationalId: p.nationalId,
         email: p.email,
+        mobileNumber: p.mobileNumber,
         gender: p.gender,
         dob: p.dob,
         idInsurance: p.idInsurance,

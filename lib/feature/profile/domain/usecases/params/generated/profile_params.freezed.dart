@@ -131,11 +131,11 @@ return updateMemberInLocal(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( User user)?  storeUserDetails,TResult Function( User? user,  String patientName,  String nationalId,  String? email,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber,  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)?  addMember,TResult Function( String? token,  int idInsurance,  int memberId,  String? insuranceName,  String memberNumber,  DateTime expireDate)?  changeMemberInsuranceDetails,TResult Function( int memberId,  String? token)?  getMemberDetail,TResult Function( Member member)?  addMemberToLocal,TResult Function( Member member)?  updateMemberInLocal,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( User user)?  storeUserDetails,TResult Function( User? user,  String patientName,  String nationalId,  String? email,  String? mobileNumber,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber,  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)?  addMember,TResult Function( String? token,  int idInsurance,  int memberId,  String? insuranceName,  String memberNumber,  DateTime expireDate)?  changeMemberInsuranceDetails,TResult Function( int memberId,  String? token)?  getMemberDetail,TResult Function( Member member)?  addMemberToLocal,TResult Function( Member member)?  updateMemberInLocal,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case StoreUserDetailsParams() when storeUserDetails != null:
 return storeUserDetails(_that.user);case AddMemberParams() when addMember != null:
-return addMember(_that.user,_that.patientName,_that.nationalId,_that.email,_that.gender,_that.dob,_that.idInsurance,_that.memberNumber,_that.profileImage,_that.expireDate,_that.otherInsuranceName);case ChangeMemberInsuranceDetailsParams() when changeMemberInsuranceDetails != null:
+return addMember(_that.user,_that.patientName,_that.nationalId,_that.email,_that.mobileNumber,_that.gender,_that.dob,_that.idInsurance,_that.memberNumber,_that.profileImage,_that.expireDate,_that.otherInsuranceName);case ChangeMemberInsuranceDetailsParams() when changeMemberInsuranceDetails != null:
 return changeMemberInsuranceDetails(_that.token,_that.idInsurance,_that.memberId,_that.insuranceName,_that.memberNumber,_that.expireDate);case GetMemberDetailParams() when getMemberDetail != null:
 return getMemberDetail(_that.memberId,_that.token);case AddMemberToLocalParams() when addMemberToLocal != null:
 return addMemberToLocal(_that.member);case UpdateMemberInLocalParams() when updateMemberInLocal != null:
@@ -157,11 +157,11 @@ return updateMemberInLocal(_that.member);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( User user)  storeUserDetails,required TResult Function( User? user,  String patientName,  String nationalId,  String? email,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber,  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)  addMember,required TResult Function( String? token,  int idInsurance,  int memberId,  String? insuranceName,  String memberNumber,  DateTime expireDate)  changeMemberInsuranceDetails,required TResult Function( int memberId,  String? token)  getMemberDetail,required TResult Function( Member member)  addMemberToLocal,required TResult Function( Member member)  updateMemberInLocal,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( User user)  storeUserDetails,required TResult Function( User? user,  String patientName,  String nationalId,  String? email,  String? mobileNumber,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber,  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)  addMember,required TResult Function( String? token,  int idInsurance,  int memberId,  String? insuranceName,  String memberNumber,  DateTime expireDate)  changeMemberInsuranceDetails,required TResult Function( int memberId,  String? token)  getMemberDetail,required TResult Function( Member member)  addMemberToLocal,required TResult Function( Member member)  updateMemberInLocal,}) {final _that = this;
 switch (_that) {
 case StoreUserDetailsParams():
 return storeUserDetails(_that.user);case AddMemberParams():
-return addMember(_that.user,_that.patientName,_that.nationalId,_that.email,_that.gender,_that.dob,_that.idInsurance,_that.memberNumber,_that.profileImage,_that.expireDate,_that.otherInsuranceName);case ChangeMemberInsuranceDetailsParams():
+return addMember(_that.user,_that.patientName,_that.nationalId,_that.email,_that.mobileNumber,_that.gender,_that.dob,_that.idInsurance,_that.memberNumber,_that.profileImage,_that.expireDate,_that.otherInsuranceName);case ChangeMemberInsuranceDetailsParams():
 return changeMemberInsuranceDetails(_that.token,_that.idInsurance,_that.memberId,_that.insuranceName,_that.memberNumber,_that.expireDate);case GetMemberDetailParams():
 return getMemberDetail(_that.memberId,_that.token);case AddMemberToLocalParams():
 return addMemberToLocal(_that.member);case UpdateMemberInLocalParams():
@@ -179,11 +179,11 @@ return updateMemberInLocal(_that.member);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( User user)?  storeUserDetails,TResult? Function( User? user,  String patientName,  String nationalId,  String? email,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber,  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)?  addMember,TResult? Function( String? token,  int idInsurance,  int memberId,  String? insuranceName,  String memberNumber,  DateTime expireDate)?  changeMemberInsuranceDetails,TResult? Function( int memberId,  String? token)?  getMemberDetail,TResult? Function( Member member)?  addMemberToLocal,TResult? Function( Member member)?  updateMemberInLocal,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( User user)?  storeUserDetails,TResult? Function( User? user,  String patientName,  String nationalId,  String? email,  String? mobileNumber,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber,  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)?  addMember,TResult? Function( String? token,  int idInsurance,  int memberId,  String? insuranceName,  String memberNumber,  DateTime expireDate)?  changeMemberInsuranceDetails,TResult? Function( int memberId,  String? token)?  getMemberDetail,TResult? Function( Member member)?  addMemberToLocal,TResult? Function( Member member)?  updateMemberInLocal,}) {final _that = this;
 switch (_that) {
 case StoreUserDetailsParams() when storeUserDetails != null:
 return storeUserDetails(_that.user);case AddMemberParams() when addMember != null:
-return addMember(_that.user,_that.patientName,_that.nationalId,_that.email,_that.gender,_that.dob,_that.idInsurance,_that.memberNumber,_that.profileImage,_that.expireDate,_that.otherInsuranceName);case ChangeMemberInsuranceDetailsParams() when changeMemberInsuranceDetails != null:
+return addMember(_that.user,_that.patientName,_that.nationalId,_that.email,_that.mobileNumber,_that.gender,_that.dob,_that.idInsurance,_that.memberNumber,_that.profileImage,_that.expireDate,_that.otherInsuranceName);case ChangeMemberInsuranceDetailsParams() when changeMemberInsuranceDetails != null:
 return changeMemberInsuranceDetails(_that.token,_that.idInsurance,_that.memberId,_that.insuranceName,_that.memberNumber,_that.expireDate);case GetMemberDetailParams() when getMemberDetail != null:
 return getMemberDetail(_that.memberId,_that.token);case AddMemberToLocalParams() when addMemberToLocal != null:
 return addMemberToLocal(_that.member);case UpdateMemberInLocalParams() when updateMemberInLocal != null:
@@ -274,13 +274,14 @@ $UserCopyWith<$Res> get user {
 
 
 class AddMemberParams implements ProfileParams {
-  const AddMemberParams({this.user, required this.patientName, required this.nationalId, this.email, required this.gender, required this.dob, this.idInsurance, this.memberNumber, this.profileImage, this.expireDate, this.otherInsuranceName});
+  const AddMemberParams({this.user, required this.patientName, required this.nationalId, this.email, this.mobileNumber, required this.gender, required this.dob, this.idInsurance, this.memberNumber, this.profileImage, this.expireDate, this.otherInsuranceName});
   
 
  final  User? user;
  final  String patientName;
  final  String nationalId;
  final  String? email;
+ final  String? mobileNumber;
  final  String gender;
  final  DateTime dob;
  final  int? idInsurance;
@@ -299,16 +300,16 @@ $AddMemberParamsCopyWith<AddMemberParams> get copyWith => _$AddMemberParamsCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AddMemberParams&&(identical(other.user, user) || other.user == user)&&(identical(other.patientName, patientName) || other.patientName == patientName)&&(identical(other.nationalId, nationalId) || other.nationalId == nationalId)&&(identical(other.email, email) || other.email == email)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.dob, dob) || other.dob == dob)&&(identical(other.idInsurance, idInsurance) || other.idInsurance == idInsurance)&&(identical(other.memberNumber, memberNumber) || other.memberNumber == memberNumber)&&(identical(other.profileImage, profileImage) || other.profileImage == profileImage)&&(identical(other.expireDate, expireDate) || other.expireDate == expireDate)&&(identical(other.otherInsuranceName, otherInsuranceName) || other.otherInsuranceName == otherInsuranceName));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AddMemberParams&&(identical(other.user, user) || other.user == user)&&(identical(other.patientName, patientName) || other.patientName == patientName)&&(identical(other.nationalId, nationalId) || other.nationalId == nationalId)&&(identical(other.email, email) || other.email == email)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.dob, dob) || other.dob == dob)&&(identical(other.idInsurance, idInsurance) || other.idInsurance == idInsurance)&&(identical(other.memberNumber, memberNumber) || other.memberNumber == memberNumber)&&(identical(other.profileImage, profileImage) || other.profileImage == profileImage)&&(identical(other.expireDate, expireDate) || other.expireDate == expireDate)&&(identical(other.otherInsuranceName, otherInsuranceName) || other.otherInsuranceName == otherInsuranceName));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,user,patientName,nationalId,email,gender,dob,idInsurance,memberNumber,profileImage,expireDate,otherInsuranceName);
+int get hashCode => Object.hash(runtimeType,user,patientName,nationalId,email,mobileNumber,gender,dob,idInsurance,memberNumber,profileImage,expireDate,otherInsuranceName);
 
 @override
 String toString() {
-  return 'ProfileParams.addMember(user: $user, patientName: $patientName, nationalId: $nationalId, email: $email, gender: $gender, dob: $dob, idInsurance: $idInsurance, memberNumber: $memberNumber, profileImage: $profileImage, expireDate: $expireDate, otherInsuranceName: $otherInsuranceName)';
+  return 'ProfileParams.addMember(user: $user, patientName: $patientName, nationalId: $nationalId, email: $email, mobileNumber: $mobileNumber, gender: $gender, dob: $dob, idInsurance: $idInsurance, memberNumber: $memberNumber, profileImage: $profileImage, expireDate: $expireDate, otherInsuranceName: $otherInsuranceName)';
 }
 
 
@@ -319,7 +320,7 @@ abstract mixin class $AddMemberParamsCopyWith<$Res> implements $ProfileParamsCop
   factory $AddMemberParamsCopyWith(AddMemberParams value, $Res Function(AddMemberParams) _then) = _$AddMemberParamsCopyWithImpl;
 @useResult
 $Res call({
- User? user, String patientName, String nationalId, String? email, String gender, DateTime dob, int? idInsurance, String? memberNumber, File? profileImage, DateTime? expireDate, String? otherInsuranceName
+ User? user, String patientName, String nationalId, String? email, String? mobileNumber, String gender, DateTime dob, int? idInsurance, String? memberNumber, File? profileImage, DateTime? expireDate, String? otherInsuranceName
 });
 
 
@@ -336,12 +337,13 @@ class _$AddMemberParamsCopyWithImpl<$Res>
 
 /// Create a copy of ProfileParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? user = freezed,Object? patientName = null,Object? nationalId = null,Object? email = freezed,Object? gender = null,Object? dob = null,Object? idInsurance = freezed,Object? memberNumber = freezed,Object? profileImage = freezed,Object? expireDate = freezed,Object? otherInsuranceName = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? user = freezed,Object? patientName = null,Object? nationalId = null,Object? email = freezed,Object? mobileNumber = freezed,Object? gender = null,Object? dob = null,Object? idInsurance = freezed,Object? memberNumber = freezed,Object? profileImage = freezed,Object? expireDate = freezed,Object? otherInsuranceName = freezed,}) {
   return _then(AddMemberParams(
 user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
 as User?,patientName: null == patientName ? _self.patientName : patientName // ignore: cast_nullable_to_non_nullable
 as String,nationalId: null == nationalId ? _self.nationalId : nationalId // ignore: cast_nullable_to_non_nullable
 as String,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String?,mobileNumber: freezed == mobileNumber ? _self.mobileNumber : mobileNumber // ignore: cast_nullable_to_non_nullable
 as String?,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
 as String,dob: null == dob ? _self.dob : dob // ignore: cast_nullable_to_non_nullable
 as DateTime,idInsurance: freezed == idInsurance ? _self.idInsurance : idInsurance // ignore: cast_nullable_to_non_nullable

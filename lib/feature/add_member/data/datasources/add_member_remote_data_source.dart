@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:intl/intl.dart';
 import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/core/resources/common_models/insurance/insurance_model.dart';
@@ -68,17 +69,23 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
         try {
           final contentMap = {
             "id_customer": 0,
+            "customer_id": "New",
+            "id_setid": 4,
             "customer_name": p.patientName,
+            "customer_status": "ACTIVE",
+            "customer_type": "PATIENT",
             "mobile_no": p.mobileNumber,
             "national_id": p.nationalId,
-            "email_id": p.email,
-            "dob": p.dob.toString(),
+            "email": p.email,
+            "dob": DateFormat('yyyy-MM-dd').format(p.dob),
             "gender": p.gender,
             "id_insurance": p.idInsurance,
             "member_no": p.memberNumber,
-            "expiry_dt": p.expireDate?.toString(),
+            "expiry_dt": p.expireDate != null
+                ? DateFormat('yyyy-MM-dd').format(p.expireDate!)
+                : null,
             "others": p.otherInsuranceName?.toUpperCase(),
-            "profile_image": p.profileImage != null ? "profile.png" : null,
+            "profile_img": p.profileImage != null ? "profile.png" : null,
           };
 
           FormData formData = FormData.fromMap({
@@ -112,7 +119,14 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
             final Map<String, dynamic> responseData = rawData is String
                 ? jsonDecode(rawData) as Map<String, dynamic>
                 : rawData as Map<String, dynamic>;
-            if (responseData['status'] == true) {
+
+            if (responseData['status'] == true ||
+                responseData['status']?.toString().toLowerCase() == 'true') {
+              // Try to find patient_detail in response, if not found, use the response itself
+              final patientDetail = responseData['patient_detail'];
+              if (patientDetail is Map<String, dynamic>) {
+                return MemberModel.fromJson(patientDetail);
+              }
               return MemberModel.fromJson(responseData);
             } else {
               throw Exception(
@@ -151,7 +165,7 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
               "id_customer": p.memberId,
               "id_insurance": p.idInsurance,
               "insurance_name": p.idInsurance == 0 ? p.insuranceName : null,
-              "expire_date": p.expireDate.toString(),
+              "expire_date": DateFormat('yyyy-MM-dd').format(p.expireDate),
               "member_number": p.memberNumber,
             },
           );

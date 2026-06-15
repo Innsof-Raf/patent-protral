@@ -8,16 +8,18 @@ part of '../member_model.dart';
 
 _MemberModel _$MemberModelFromJson(Map<String, dynamic> json) => _MemberModel(
   id: intFromJson(json['Id']),
-  name: json['Name'] == null ? '' : stringFromJson(json['Name']),
+  name: stringFromJson(json['Name']),
   mobileNo: _nullableStringFromJson(json['MobileNo']),
   emailId: _nullableStringFromJson(json['EmailID']),
-  age: json['Age'] == null ? '' : stringFromJson(json['Age']),
-  nationalId: json['SSN'] == null ? '' : stringFromJson(json['SSN']),
+  age: stringFromJson(json['Age']),
+  nationalId: stringFromJson(json['SSN']),
   profileImage: _nullableStringFromJson(json['Profile_Img']),
   isInsurance: boolFromJson(json['Is_Insu']),
   isInsuranceExpired: boolFromJson(json['Is_InsuExpired']),
-  insuranceExpDttm: _nullableDateTimeFromJson(json['Insur_Exp']),
-  dob: _nullableDateTimeFromJson(json['Dob']),
+  insuranceExpDttm: json['Insur_Exp'] == null
+      ? null
+      : _nullableDateTimeFromJson(json['Insur_Exp']),
+  dob: json['Dob'] == null ? null : _nullableDateTimeFromJson(json['Dob']),
   memberNo: _nullableStringFromJson(json['member_no']),
   insuranceName: _nullableStringFromJson(json['insur_name']),
   insuranceId: _nullableIntFromJson(json['insu_id']),

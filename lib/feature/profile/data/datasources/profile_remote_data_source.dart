@@ -4,13 +4,14 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:intl/intl.dart';
 import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
+import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/profile/data/models/member_model.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
-import 'package:patient_portal/core/resources/urls.dart';
 
 abstract class ProfileRemoteDataSource {
   Future<MemberModel> addMember(ProfileParams params);
@@ -37,19 +38,28 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     try {
       final user = p.user;
       final idCustomer = _resolveCustomerId(p);
+
       final content = {
         "id_customer": idCustomer,
+        "customer_id": idCustomer == 0
+            ? "New"
+            : "", // Should ideally come from member model if existing
+        "id_setid": 4,
         "customer_name": p.patientName,
-        "mobile_no": user!.mobileNumber,
-        "national_id": p.nationalId,
-        "email_id": p.email,
-        "dob": p.dob.toString(),
+        "customer_status": "ACTIVE",
+        "customer_type": "PATIENT",
         "gender": p.gender,
+        "mobile_no": p.mobileNumber ?? user?.mobileNumber,
+        "email": p.email ?? user?.emailId,
+        "dob": DateFormat('yyyy-MM-dd').format(p.dob),
+        "national_id": p.nationalId, // Extra field, usually accepted
         "id_insurance": p.idInsurance,
         "member_no": p.memberNumber,
-        "expiry_dt": p.expireDate?.toString(),
+        "expiry_dt": p.expireDate != null
+            ? DateFormat('yyyy-MM-dd').format(p.expireDate!)
+            : null,
         "others": p.otherInsuranceName?.toUpperCase(),
-        "profile_image": p.profileImage != null ? "profile.png" : null,
+        "profile_img": p.profileImage != null ? "profile.png" : null,
       };
 
       final saveRequest = serviceRequest(type: 'HMS0035', content: content);
@@ -75,7 +85,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       final response = await client.post(
         url: ConstantUrls.addMember,
         body: formData,
-        token: user.accessToken,
+        token: user?.accessToken,
       );
 
       if (response.statusCode == 200) {
@@ -99,12 +109,16 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
         final patientDetail = decodeResponseData(
           responseData['patient_detail'],
         );
-        if (patientDetail is! Map<String, dynamic>) {
-          final updatedCustomerId =
-              intFromJson(responseData['id_customer']) == 0
-              ? idCustomer
-              : intFromJson(responseData['id_customer']);
 
+        if (patientDetail is Map<String, dynamic>) {
+          return MemberModel.fromJson(patientDetail);
+        }
+
+        final updatedCustomerId = intFromJson(responseData['id_customer']) == 0
+            ? idCustomer
+            : intFromJson(responseData['id_customer']);
+
+        if (updatedCustomerId != 0 && user != null) {
           try {
             return await getMemberDetail(
               ProfileParams.getMemberDetail(
@@ -112,16 +126,10 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
                 token: user.accessToken,
               ),
             );
-          } catch (_) {
-            return _memberModelFromParams(p, updatedCustomerId);
-          }
+          } catch (_) {}
         }
 
-        try {
-          return MemberModel.fromJson(patientDetail);
-        } catch (_) {
-          return _memberModelFromParams(p, idCustomer);
-        }
+        return _memberModelFromParams(p, updatedCustomerId);
       } else {
         throw Exception('Server Failure');
       }
@@ -154,8 +162,9 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     return MemberModel(
       id: idCustomer,
       name: params.patientName,
-      mobileNo: user?.mobileNumber ?? existingMember?.mobileNo,
-      emailId: params.email ?? existingMember?.emailId,
+      mobileNo:
+          params.mobileNumber ?? user?.mobileNumber ?? existingMember?.mobileNo,
+      emailId: params.email ?? user?.emailId ?? existingMember?.emailId,
       age: existingMember?.age ?? '',
       nationalId: params.nationalId,
       profileImage: existingMember?.profileImage,

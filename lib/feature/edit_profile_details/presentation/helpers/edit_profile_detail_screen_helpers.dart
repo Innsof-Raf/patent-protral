@@ -121,6 +121,7 @@ class EditProfileDetailScreenHelpers {
           nationalId: EditProfileDetailsSection.nationalIdController.text
               .trim(),
           email: user.emailId,
+          mobileNumber: EditProfileDetailsSection.phoneController.text.trim(),
           gender: GenderFormHelpers.genderNotifier.value,
           dob: dob,
           profileImage: profileImage.value,

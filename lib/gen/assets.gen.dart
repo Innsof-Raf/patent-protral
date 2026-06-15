@@ -1,3 +1,5 @@
+// dart format width=80
+
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
 ///  FlutterGen
@@ -5,28 +7,12 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import
+// ignore_for_file: deprecated_member_use,directives_ordering,implicit_dynamic_list_literal,unnecessary_import
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
-class Assets {
-  const Assets._();
-
-  static const fonts = $AssetsFontsGen();
-  static const gifImages = $AssetsGifImagesGen();
-  static const icons = $AssetsIconsGen();
-  static const images = $AssetsImagesGen();
-  static const logos = $AssetsLogosGen();
-}
-
-class $AssetsFontsGen {
-  const $AssetsFontsGen();
-
-  /// Font family: inter
-  final String inter = 'inter';
-}
+import 'package:flutter_svg/flutter_svg.dart' as _svg;
+import 'package:vector_graphics/vector_graphics.dart' as _vg;
 
 class $AssetsGifImagesGen {
   const $AssetsGifImagesGen();
@@ -34,13 +20,13 @@ class $AssetsGifImagesGen {
   /// File path: assets/gif_images/Ripple-0 2.gif
   AssetGenImage get ripple02 =>
       const AssetGenImage('assets/gif_images/Ripple-0 2.gif');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [ripple02];
 }
 
 class $AssetsIconsGen {
   const $AssetsIconsGen();
-
-  $AssetsIconsBottomBarIconsGen get bottomBarIcons =>
-      const $AssetsIconsBottomBarIconsGen();
 
   /// File path: assets/icons/Frame204.svg
   SvgGenImage get frame204 => const SvgGenImage('assets/icons/Frame204.svg');
@@ -55,6 +41,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/attachment_icon.svg
   SvgGenImage get attachmentIcon =>
       const SvgGenImage('assets/icons/attachment_icon.svg');
+
+  /// Directory path: assets/icons/bottom_bar_icons
+  $AssetsIconsBottomBarIconsGen get bottomBarIcons =>
+      const $AssetsIconsBottomBarIconsGen();
 
   /// File path: assets/icons/calender_icon.svg
   SvgGenImage get calenderIcon =>
@@ -160,6 +150,109 @@ class $AssetsIconsGen {
   /// File path: assets/icons/view_reports_icon.svg
   SvgGenImage get viewReportsIcon =>
       const SvgGenImage('assets/icons/view_reports_icon.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [
+    frame204,
+    appointments,
+    arrowDown,
+    attachmentIcon,
+    calenderIcon,
+    cameraIcon,
+    cartIconBlack,
+    cartIconWhite,
+    deleteIcon,
+    doctorIcon,
+    doneIcon,
+    drawerIcon,
+    errorIcon,
+    experienceIcon,
+    femaleGenderIcon,
+    folderIcon,
+    galleryIcon,
+    homeIcon,
+    insuranceCartIcon,
+    insuranceIconVilot,
+    labIcon,
+    lockIconDart,
+    logOutIcon,
+    mailIcon,
+    membersIcon,
+    notificationIcon,
+    ordersIcon,
+    pdfIcon,
+    profileIcon,
+    reportsIcon,
+    shareIcon,
+    viewReportsIcon,
+  ];
+}
+
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/doctor_image_loading_failed_image.svg
+  SvgGenImage get doctorImageLoadingFailedImage =>
+      const SvgGenImage('assets/images/doctor_image_loading_failed_image.svg');
+
+  /// File path: assets/images/home_documents_tile_baground_image.png
+  AssetGenImage get homeDocumentsTileBagroundImage => const AssetGenImage(
+    'assets/images/home_documents_tile_baground_image.png',
+  );
+
+  /// File path: assets/images/home_member_tile_baground_image.png
+  AssetGenImage get homeMemberTileBagroundImage =>
+      const AssetGenImage('assets/images/home_member_tile_baground_image.png');
+
+  /// File path: assets/images/image_loading_failed_image.png
+  AssetGenImage get imageLoadingFailedImage =>
+      const AssetGenImage('assets/images/image_loading_failed_image.png');
+
+  /// File path: assets/images/login_baground_image.png
+  AssetGenImage get loginBagroundImage =>
+      const AssetGenImage('assets/images/login_baground_image.png');
+
+  /// File path: assets/images/member_default_profile_image.png
+  AssetGenImage get memberDefaultProfileImage =>
+      const AssetGenImage('assets/images/member_default_profile_image.png');
+
+  /// File path: assets/images/profile_photo_image.svg
+  SvgGenImage get profilePhotoImage =>
+      const SvgGenImage('assets/images/profile_photo_image.svg');
+
+  /// List of all assets
+  List<dynamic> get values => [
+    doctorImageLoadingFailedImage,
+    homeDocumentsTileBagroundImage,
+    homeMemberTileBagroundImage,
+    imageLoadingFailedImage,
+    loginBagroundImage,
+    memberDefaultProfileImage,
+    profilePhotoImage,
+  ];
+}
+
+class $AssetsLogosGen {
+  const $AssetsLogosGen();
+
+  /// File path: assets/logos/allevia_logo_gray.png
+  AssetGenImage get alleviaLogoGray =>
+      const AssetGenImage('assets/logos/allevia_logo_gray.png');
+
+  /// File path: assets/logos/allevia_logo_white.png
+  AssetGenImage get alleviaLogoWhitePng =>
+      const AssetGenImage('assets/logos/allevia_logo_white.png');
+
+  /// File path: assets/logos/allevia_logo_white.svg
+  SvgGenImage get alleviaLogoWhiteSvg =>
+      const SvgGenImage('assets/logos/allevia_logo_white.svg');
+
+  /// List of all assets
+  List<dynamic> get values => [
+    alleviaLogoGray,
+    alleviaLogoWhitePng,
+    alleviaLogoWhiteSvg,
+  ];
 }
 
 class $AssetsIconsBottomBarIconsGen {
@@ -222,61 +315,46 @@ class $AssetsIconsBottomBarIconsGen {
   SvgGenImage get reportsUnselectedIcon => const SvgGenImage(
     'assets/icons/bottom_bar_icons/reports_unselected_icon.svg',
   );
+
+  /// List of all assets
+  List<SvgGenImage> get values => [
+    appointmentSelectedIcon,
+    appointmentUnselectedIcon,
+    homeSelectedIcon,
+    homeUnselectedIcon,
+    labIconUnselected,
+    labSelectedIcon,
+    myAppointmentsSelectedIcon,
+    myAppointmentsUnselectedIcon,
+    profileSelectedIcon,
+    profileUnselectedIcon,
+    reportsSelectedIcon,
+    reportsUnselectedIcon,
+  ];
 }
 
-class $AssetsImagesGen {
-  const $AssetsImagesGen();
+class Assets {
+  const Assets._();
 
-  /// File path: assets/images/doctor_image_loading_failed_image.svg
-  SvgGenImage get doctorImageLoadingFailedImage =>
-      const SvgGenImage('assets/images/doctor_image_loading_failed_image.svg');
-
-  /// File path: assets/images/home_documents_tile_baground_image.png
-  AssetGenImage get homeDocumentsTileBagroundImage => const AssetGenImage(
-    'assets/images/home_documents_tile_baground_image.png',
-  );
-
-  /// File path: assets/images/home_member_tile_baground_image.png
-  AssetGenImage get homeMemberTileBagroundImage =>
-      const AssetGenImage('assets/images/home_member_tile_baground_image.png');
-
-  /// File path: assets/images/image_loading_failed_image.png
-  AssetGenImage get imageLoadingFailedImage =>
-      const AssetGenImage('assets/images/image_loading_failed_image.png');
-
-  /// File path: assets/images/login_baground_image.png
-  AssetGenImage get loginBagroundImage =>
-      const AssetGenImage('assets/images/login_baground_image.png');
-
-  /// File path: assets/images/member_default_profile_image.png
-  AssetGenImage get memberDefaultProfileImage =>
-      const AssetGenImage('assets/images/member_default_profile_image.png');
-
-  /// File path: assets/images/profile_photo_image.svg
-  SvgGenImage get profilePhotoImage =>
-      const SvgGenImage('assets/images/profile_photo_image.svg');
-}
-
-class $AssetsLogosGen {
-  const $AssetsLogosGen();
-
-  /// File path: assets/logos/allevia_logo_gray.png
-  AssetGenImage get alleviaLogoGray =>
-      const AssetGenImage('assets/logos/allevia_logo_gray.png');
-
-  /// File path: assets/logos/allevia_logo_white.png
-  AssetGenImage get alleviaLogoWhitePng =>
-      const AssetGenImage('assets/logos/allevia_logo_white.png');
-
-  /// File path: assets/logos/allevia_logo_white.svg
-  SvgGenImage get alleviaLogoWhiteSvg =>
-      const SvgGenImage('assets/logos/allevia_logo_white.svg');
+  static const $AssetsGifImagesGen gifImages = $AssetsGifImagesGen();
+  static const $AssetsIconsGen icons = $AssetsIconsGen();
+  static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsLogosGen logos = $AssetsLogosGen();
 }
 
 class AssetGenImage {
-  const AssetGenImage(this._assetName);
+  const AssetGenImage(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+    this.animation,
+  });
 
   final String _assetName;
+
+  final Size? size;
+  final Set<String> flavors;
+  final AssetGenImageAnimation? animation;
 
   Image image({
     Key? key,
@@ -336,14 +414,35 @@ class AssetGenImage {
   }
 
   String get path => _assetName;
+
+  String get keyName => _assetName;
+}
+
+class AssetGenImageAnimation {
+  const AssetGenImageAnimation({
+    required this.isAnimation,
+    required this.duration,
+    required this.frames,
+  });
+
+  final bool isAnimation;
+  final Duration duration;
+  final int frames;
 }
 
 class SvgGenImage {
-  const SvgGenImage(this._assetName);
+  const SvgGenImage(this._assetName, {this.size, this.flavors = const {}})
+    : _isVecFormat = false;
+
+  const SvgGenImage.vec(this._assetName, {this.size, this.flavors = const {}})
+    : _isVecFormat = true;
 
   final String _assetName;
+  final Size? size;
+  final Set<String> flavors;
+  final bool _isVecFormat;
 
-  SvgPicture svg({
+  _svg.SvgPicture svg({
     Key? key,
     bool matchTextDirection = false,
     AssetBundle? bundle,
@@ -356,16 +455,34 @@ class SvgGenImage {
     WidgetBuilder? placeholderBuilder,
     String? semanticsLabel,
     bool excludeFromSemantics = false,
-    SvgTheme? theme,
+    _svg.SvgTheme? theme,
+    _svg.ColorMapper? colorMapper,
     ColorFilter? colorFilter,
     Clip clipBehavior = Clip.hardEdge,
+    @deprecated Color? color,
+    @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
+    @deprecated bool cacheColorFilter = false,
   }) {
-    return SvgPicture.asset(
-      _assetName,
+    final _svg.BytesLoader loader;
+    if (_isVecFormat) {
+      loader = _vg.AssetBytesLoader(
+        _assetName,
+        assetBundle: bundle,
+        packageName: package,
+      );
+    } else {
+      loader = _svg.SvgAssetLoader(
+        _assetName,
+        assetBundle: bundle,
+        packageName: package,
+        theme: theme,
+        colorMapper: colorMapper,
+      );
+    }
+    return _svg.SvgPicture(
+      loader,
       key: key,
       matchTextDirection: matchTextDirection,
-      bundle: bundle,
-      package: package,
       width: width,
       height: height,
       fit: fit,
@@ -374,11 +491,15 @@ class SvgGenImage {
       placeholderBuilder: placeholderBuilder,
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
-      theme: theme,
-      colorFilter: colorFilter,
+      colorFilter:
+          colorFilter ??
+          (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
       clipBehavior: clipBehavior,
+      cacheColorFilter: cacheColorFilter,
     );
   }
 
   String get path => _assetName;
+
+  String get keyName => _assetName;
 }

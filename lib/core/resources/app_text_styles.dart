@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
+import 'package:patient_portal/gen/fonts.gen.dart';
 
 class AppTextStyles {
-  static String interFont = Assets.fonts.inter;
+  static String interFont = FontFamily.inter;
 
   static const TextStyle bodyXSmallRobotoNormal = TextStyle(
     fontSize: 6,

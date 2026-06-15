@@ -135,12 +135,28 @@ class EditProfileDetailsSection extends StatelessWidget {
                   ),
               controller: nationalIdController,
               keyboardType: TextInputType.number,
-              textInputAction: TextInputAction.done,
+              textInputAction: TextInputAction.next,
               label: 'National ID',
               icon: Icons.badge_outlined,
               inputFormatters: [
                 FilteringTextInputFormatter.digitsOnly,
                 LengthLimitingTextInputFormatter(11),
+              ],
+            ),
+            const SizedBox(height: 12),
+            EditProfileTextField(
+              validator: (value) =>
+                  EditProfileDetailsFormValidationHelpers.phoneNumberValidator(
+                    value: value,
+                  ),
+              controller: phoneController,
+              keyboardType: TextInputType.phone,
+              textInputAction: TextInputAction.done,
+              label: 'Phone number',
+              icon: Icons.phone_android_rounded,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+                LengthLimitingTextInputFormatter(10),
               ],
             ),
             const SizedBox(height: 16),
