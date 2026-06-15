@@ -1,23 +1,21 @@
-import 'package:patient_portal/feature/set_password/presentation/widgets/set_password_section.dart';
-
 class ChangePasswordFormHelpers {
   static String? validatePassword(String? value) {
-    if (value == null || value == '') {
+    if (value == null || value.isEmpty) {
       return 'Please enter your password';
-    } else if (value.length >= 4) {
+    } else if (value.length >= 8) {
       return null;
     } else {
-      return 'Enter a password with minimum 4 charatcers';
+      return 'Enter a password with minimum 8 characters';
     }
   }
 
-  static String? validateConfirmPassword(String? value) {
-    if (value == null || value == '') {
-      return 'Please enter your password';
-    } else if (SetPasswordSection.newPasswordController.text == value) {
+  static String? validateConfirmPassword(String? value, String? password) {
+    if (value == null || value.isEmpty) {
+      return 'Please confirm your password';
+    } else if (value == password) {
       return null;
     } else {
-      return 'Password does\'nt match';
+      return 'Passwords do not match';
     }
   }
 }

@@ -1,51 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:patient_portal/feature/set_password/presentation/helpers/change_password_form_helpers.dart';
-
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/feature/set_password/presentation/widgets/password_input_field.dart';
 
 class SetPasswordSection extends StatelessWidget {
-  const SetPasswordSection({super.key});
+  const SetPasswordSection({
+    required this.formKey,
+    required this.newPasswordController,
+    required this.confirmPasswordController,
+    super.key,
+  });
 
-  static GlobalKey<FormState> setPasswordKey = GlobalKey<FormState>();
-  static TextEditingController newPasswordController = TextEditingController();
-  static TextEditingController confirmPasswordController =
-      TextEditingController();
+  final GlobalKey<FormState> formKey;
+  final TextEditingController newPasswordController;
+  final TextEditingController confirmPasswordController;
 
   @override
   Widget build(BuildContext context) {
-    newPasswordController.text = '';
-    confirmPasswordController.text = '';
     return Form(
-      key: setPasswordKey,
+      key: formKey,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Text('New Password', style: AppTextStyles.bodyTextRoboto),
-          const SizedBox(height: 4),
-          TextFormField(
-            keyboardType: TextInputType.name,
-            obscureText: true,
-            enableInteractiveSelection: false,
-            textInputAction: TextInputAction.next,
+          PasswordInputField(
             controller: newPasswordController,
-            obscuringCharacter: '•',
+            label: 'New Password',
+            hintText: 'Enter your new password',
+            textInputAction: TextInputAction.next,
             validator: (value) =>
                 ChangePasswordFormHelpers.validatePassword(value),
           ),
-          const SizedBox(height: 15),
-          const Text('Confirm Password', style: AppTextStyles.bodyTextRoboto),
-          const SizedBox(height: 4),
-          TextFormField(
-            keyboardType: TextInputType.name,
-            obscureText: true,
-            enableInteractiveSelection: false,
-            obscuringCharacter: '•',
-            textInputAction: TextInputAction.next,
+          const SizedBox(height: 20),
+          PasswordInputField(
             controller: confirmPasswordController,
+            label: 'Confirm Password',
+            hintText: 'Re-enter your new password',
+            textInputAction: TextInputAction.done,
             validator: (value) =>
-                ChangePasswordFormHelpers.validateConfirmPassword(value),
+                ChangePasswordFormHelpers.validateConfirmPassword(
+                  value,
+                  newPasswordController.text,
+                ),
           ),
-          const SizedBox(height: 55),
         ],
       ),
     );
