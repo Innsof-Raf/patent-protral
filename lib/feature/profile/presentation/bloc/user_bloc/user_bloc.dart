@@ -58,7 +58,14 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         ),
         (newMember) {
           List<Member> members = List.from(state.user!.members);
-          members.add(newMember);
+          final currentMemberIndex = members.indexWhere(
+            (member) => member.id == newMember.id,
+          );
+          if (currentMemberIndex == -1) {
+            members.add(newMember);
+          } else {
+            members[currentMemberIndex] = newMember;
+          }
           return emit(
             state.copyWith(
               isMemberAdding: false,

@@ -1,69 +1,203 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/succes_dailog.dart';
+import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/feature/edit_profile_details/presentation/helpers/edit_profile_detail_screen_helpers.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/widgets/edit_profile_details_section.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/widgets/edit_user_profile_image_section.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
-import 'package:patient_portal/core/resources/dimens.dart';
-import 'package:patient_portal/core/route/app_router.dart';
+import 'package:patient_portal/feature/profile/domain/entities/member.dart';
+import 'package:patient_portal/feature/profile/domain/entities/user.dart';
+import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
 @RoutePage(name: 'EditProfileDetailsRoute')
-class EditProfileDetailsScreen extends StatelessWidget {
+class EditProfileDetailsScreen extends StatefulWidget {
   const EditProfileDetailsScreen({super.key});
 
   @override
+  State<EditProfileDetailsScreen> createState() =>
+      _EditProfileDetailsScreenState();
+}
+
+class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    final user = context.read<UserBloc>().state.user;
+    EditProfileDetailsSection.initializeFromUser(user);
+    EditProfileDetailScreenHelpers.profileImage.value = null;
+    context.read<UserBloc>().add(const ChangeMemberAddingSateToInitial());
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final user = context.watch<UserBloc>().state.user;
+    final profileImageUrl = _profileImageUrl(user);
+
     return Scaffold(
       extendBody: true,
+      resizeToAvoidBottomInset: true,
+      backgroundColor: theme.colorScheme.surface,
       appBar: const CommonAppbar(title: 'Profile Details'),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: Dimens.constPadding),
-        child: ListView(
-          padding: const EdgeInsets.only(bottom: 16),
-          shrinkWrap: true,
-          physics: const BouncingScrollPhysics(),
-          children: const [
-            SizedBox(height: 15),
-            EditUserProfileImageSection(image: null),
-            EditProfileDetailsSection(),
+      body: BlocListener<UserBloc, UserState>(
+        listenWhen: (previous, current) =>
+            previous.isMemberAddingFailed != current.isMemberAddingFailed ||
+            previous.isMemberAddingSucess != current.isMemberAddingSucess,
+        listener: (context, state) {
+          if (state.isMemberAddingFailed) {
+            showDialog(
+              context: context,
+              builder: (context) => CommonErrorAlert(
+                content: 'Profile update failed\n${state.error.message}',
+              ),
+            ).then((_) {
+              if (context.mounted) {
+                context.read<UserBloc>().add(
+                  const ChangeMemberAddingSateToInitial(),
+                );
+              }
+            });
+          }
+
+          if (state.isMemberAddingSucess) {
+            showDialog(
+              context: context,
+              builder: (context) => SucessDialog(
+                title: 'Your profile has been updated successfully.',
+                onPressed: () {
+                  Navigator.pop(context);
+                  context.read<UserBloc>().add(
+                    const ChangeMemberAddingSateToInitial(),
+                  );
+                  context.router.maybePop();
+                },
+              ),
+            ).then((_) {
+              if (context.mounted) {
+                context.read<UserBloc>().add(
+                  const ChangeMemberAddingSateToInitial(),
+                );
+              }
+            });
+          }
+        },
+        child: CustomScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          slivers: [
+            SliverPadding(
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
+              sliver: SliverToBoxAdapter(
+                child: _EditProfileIntroCard(theme: theme),
+              ),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+              sliver: SliverToBoxAdapter(
+                child: EditUserProfileImageSection(image: profileImageUrl),
+              ),
+            ),
+            const SliverPadding(
+              padding: EdgeInsets.fromLTRB(16, 0, 16, 112),
+              sliver: SliverToBoxAdapter(child: EditProfileDetailsSection()),
+            ),
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        margin: const EdgeInsets.only(left: 15, right: 15, bottom: 16),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 1,
-              color: AppColors.black.withValues(alpha: .25),
-              offset: const Offset(0, 0),
-            ),
-          ],
-        ),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(6),
-            ),
-            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            elevation: 0,
-            backgroundColor: AppColors.vilot,
-            foregroundColor: AppColors.white,
-            padding: const EdgeInsets.symmetric(vertical: 15),
-          ),
-          onPressed: () {
-            context.router.replace(const MyProfileRoute());
+      bottomNavigationBar: SafeArea(
+        minimum: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+        child: BlocBuilder<UserBloc, UserState>(
+          builder: (context, state) {
+            return FilledButton(
+              style: FilledButton.styleFrom(
+                minimumSize: const Size.fromHeight(52),
+                backgroundColor: theme.colorScheme.primary,
+                foregroundColor: theme.colorScheme.onPrimary,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18),
+                ),
+              ),
+              onPressed: state.isMemberAdding
+                  ? null
+                  : () {
+                      EditProfileDetailScreenHelpers.saveProfile(
+                        context: context,
+                      );
+                    },
+              child: state.isMemberAdding
+                  ? SizedBox(
+                      width: 22,
+                      height: 22,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2.4,
+                        color: theme.colorScheme.onPrimary,
+                      ),
+                    )
+                  : const Text('Save Changes'),
+            );
           },
-          child: Text(
-            "NEXT",
-            style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-              color: AppColors.white,
+        ),
+      ),
+    );
+  }
+
+  String? _profileImageUrl(User? user) {
+    final member = _primaryMember(user);
+    final image = member?.profileImage;
+    if (member == null || image == null || image.isEmpty) return null;
+    return '${ConstantUrls.memberImageUrl}/${member.id}/$image';
+  }
+
+  Member? _primaryMember(User? user) {
+    if (user == null || user.members.isEmpty) return null;
+
+    for (final member in user.members) {
+      if (member.id == user.idMember) return member;
+    }
+
+    return user.members.first;
+  }
+}
+
+class _EditProfileIntroCard extends StatelessWidget {
+  const _EditProfileIntroCard({required this.theme});
+
+  final ThemeData theme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.primaryContainer.withValues(alpha: .22),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(
+          color: theme.colorScheme.outlineVariant.withValues(alpha: .55),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Edit your profile',
+            style: theme.textTheme.headlineSmall?.copyWith(
+              color: theme.colorScheme.onSurface,
+              fontWeight: FontWeight.w800,
+              height: 1.08,
             ),
           ),
-        ),
+          const SizedBox(height: 8),
+          Text(
+            'Review the essentials before continuing back to your profile.',
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
       ),
     );
   }
