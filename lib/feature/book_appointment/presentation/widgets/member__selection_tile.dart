@@ -115,14 +115,15 @@ class MemberSelectionTile extends StatelessWidget {
                 ),
               ),
             const SizedBox(width: 8),
-            Radio<Member?>(
-              value: member,
+            RadioGroup<Member?>(
               groupValue: isSelected ? member : null,
-              onChanged: (value) {
-                BookAppointmentScreenHelpers.selectedMemberNotifier.value =
-                    value;
-              },
-              activeColor: colorScheme.primary,
+              onChanged: (value) =>
+                  BookAppointmentScreenHelpers.selectedMemberNotifier.value =
+                      value,
+              child: Radio<Member?>(
+                value: member,
+                activeColor: colorScheme.primary,
+              ),
             ),
           ],
         ),

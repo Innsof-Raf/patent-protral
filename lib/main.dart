@@ -38,7 +38,7 @@ void main() async {
       statusBarBrightness: Brightness.dark,
     ),
   );
-  SystemChrome.setPreferredOrientations([
+  await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]).then((value) => runApp(const MyApp()));
