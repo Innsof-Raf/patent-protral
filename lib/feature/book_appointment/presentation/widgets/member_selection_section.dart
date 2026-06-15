@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/route/app_router.dart';
-
 import 'member__selection_tile.dart';
 
 class MemberSelectionSection extends StatelessWidget {
@@ -15,72 +12,77 @@ class MemberSelectionSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Container(
-      padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
+      padding: const EdgeInsets.all(16),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Flexible(
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Appoinment for',
-                      style: AppTextStyles.subHeaddingSemiBoldRoboto,
+                    Text(
+                      'Appointment for',
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: colorScheme.onSurface,
+                      ),
                     ),
+                    const SizedBox(height: 4),
                     BlocBuilder<UserBloc, UserState>(
                       builder: (context, state) {
+                        final memberCount = state.user?.members.length ?? 0;
                         return Text(
-                          state.user!.members.isEmpty
-                              ? 'No members available add a member to book appointment'
-                              : 'Found ${state.user!.members.length}  Members or add new member',
-                          style: AppTextStyles.bodyTextRoboto,
+                          memberCount == 0
+                              ? 'No members available. Add a member to proceed.'
+                              : 'Select a member or add a new one.',
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: colorScheme.onSurfaceVariant,
+                          ),
                         );
                       },
                     ),
                   ],
                 ),
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.vilot,
-                  padding: const EdgeInsets.all(10),
-                  shape: const CircleBorder(),
-                  minimumSize: const Size(0, 0),
-                ),
+              IconButton.filledTonal(
                 onPressed: () {
                   InsuranceHelpers.insuranceCheackBoxNotifier.value = false;
                   context.router.push(AddMemberRoute());
                 },
-                child: const Icon(Icons.add, color: AppColors.white),
+                icon: const Icon(Icons.add_rounded),
+                tooltip: 'Add Member',
               ),
             ],
           ),
-          const SizedBox(height: 15),
+          const SizedBox(height: 16),
           BlocBuilder<UserBloc, UserState>(
             builder: (context, state) {
-              return state.user!.members.isEmpty
-                  ? const SizedBox()
-                  : ValueListenableBuilder(
-                      valueListenable:
-                          BookAppointmentScreenHelpers.selectedMemberNotifier,
-                      builder: (context, value, child) => ListView.separated(
-                        padding: const EdgeInsets.only(bottom: 68),
-                        separatorBuilder: (context, index) =>
-                            const SizedBox(height: 10),
-                        itemBuilder: (context, index) => MemberSelectionTile(
-                          isSelected: value == state.user!.members[index],
-                          member: state.user!.members[index],
-                        ),
-                        itemCount: state.user!.members.length,
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                      ),
-                    );
+              final members = state.user?.members ?? [];
+              if (members.isEmpty) return const SizedBox.shrink();
+
+              return ValueListenableBuilder(
+                valueListenable: BookAppointmentScreenHelpers.selectedMemberNotifier,
+                builder: (context, selectedMember, child) => ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: members.length,
+                  separatorBuilder: (context, index) => const SizedBox(height: 12),
+                  itemBuilder: (context, index) => MemberSelectionTile(
+                    isSelected: selectedMember == members[index],
+                    member: members[index],
+                  ),
+                ),
+              );
             },
           ),
+          const SizedBox(height: 80), // Space for bottom bar
         ],
       ),
     );

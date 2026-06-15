@@ -1,6 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/insurance_form_scetion.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/succes_dailog.dart';
 import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
 import 'package:patient_portal/feature/add_member/presentation/widgets/add_member_screen_helpers.dart';
 import 'package:patient_portal/feature/add_member/presentation/widgets/member_details_section.dart';
@@ -8,28 +13,31 @@ import 'package:patient_portal/feature/add_member/presentation/widgets/profile_i
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
-import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/insurance_form_scetion.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/rounded_cheack_box.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/succes_dailog.dart';
-import 'package:patient_portal/core/resources/dimens.dart';
+import 'package:patient_portal/feature/profile/presentation/widgets/profile_section_card.dart';
 
 @RoutePage(name: 'AddMemberRoute')
-class AddMemberScreen extends StatelessWidget {
+class AddMemberScreen extends StatefulWidget {
   final Member? member;
   const AddMemberScreen({super.key, this.member});
 
   @override
-  Widget build(BuildContext context) {
-    if (member != null) {
-      MemberDetailsSection.nameController.text = member!.name;
-      MemberDetailsSection.nationalIdController.text = member!.nationalId;
-      MemberDetailsSection.dob = member!.dob;
-      MemberDetailsSection.emailController.text = member!.emailId ?? '';
+  State<AddMemberScreen> createState() => _AddMemberScreenState();
+}
+
+class _AddMemberScreenState extends State<AddMemberScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _initializeData();
+  }
+
+  void _initializeData() {
+    if (widget.member != null) {
+      MemberDetailsSection.nameController.text = widget.member!.name;
+      MemberDetailsSection.nationalIdController.text =
+          widget.member!.nationalId;
+      MemberDetailsSection.dob = widget.member!.dob;
+      MemberDetailsSection.emailController.text = widget.member!.emailId ?? '';
     } else {
       MemberDetailsSection.nameController.text = '';
       MemberDetailsSection.nationalIdController.text = '';
@@ -37,11 +45,16 @@ class AddMemberScreen extends StatelessWidget {
       MemberDetailsSection.emailController.text = '';
       AddMemberScreenHelpers.profileImageNotifer.value = null;
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
 
     return Scaffold(
-      extendBody: true,
       appBar: CommonAppbar(
-        title: member == null ? 'Add Member' : 'Edit insurance Details',
+        title: widget.member == null ? 'Add Member' : 'Edit Insurance Details',
       ),
       body: BlocListener<AddMemberBloc, AddMemberState>(
         listener: (context, state) {
@@ -50,142 +63,226 @@ class AddMemberScreen extends StatelessWidget {
               context: context,
               builder: (context) => CommonErrorAlert(
                 content:
-                    '${member == null ? 'Member Adding' : 'Insurance Update'} failed\n${state.error.message}',
+                    '${widget.member == null ? 'Member Adding' : 'Insurance Update'} failed\n${state.error.message}',
               ),
             );
           } else if (state.isMemberAddingSuccess) {
-            if (member == null) {
-              context.read<UserBloc>().add(
-                AddMemberToLocal(
-                  params: ProfileParams.addMemberToLocal(
-                    member: state.newMember!,
-                  ),
-                ),
-              );
-            } else {
-              context.read<UserBloc>().add(
-                UpdateMemberInLocal(
-                  params: ProfileParams.updateMemberInLocal(
-                    member: state.newMember!,
-                  ),
-                ),
-              );
-            }
-            showDialog(
-              context: context,
-              builder: (context) => SucessDialog(
-                title: member == null
-                    ? 'Your Member has been\nadded Sucessfully.'
-                    : 'Your Member insurance has been\nupdated Sucessfully.',
-                onPressed: () {
-                  Navigator.pop(context); // Close dialog
-                  Navigator.pop(context); // Go back
-                },
-              ),
-            );
+            _onSuccess(state.newMember!);
           }
         },
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: Dimens.constPadding),
-          child: ListView(
-            shrinkWrap: true,
-            physics: const BouncingScrollPhysics(),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const SizedBox(height: 15),
-              member == null
-                  ? Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const ProfileImageSection(),
-                        const MemberDetailsSection(),
-                        ValueListenableBuilder(
-                          valueListenable:
-                              InsuranceHelpers.insuranceCheackBoxNotifier,
-                          builder: (context, value, child) =>
-                              RoundedCheackBoxTile(
-                                isSelected: value,
-                                onChanged: () {
-                                  InsuranceHelpers
-                                          .insuranceCheackBoxNotifier
-                                          .value =
-                                      !value;
-                                },
-                                title: 'I have insurance',
-                              ),
-                        ),
-                      ],
-                    )
-                  : const SizedBox(),
+              if (widget.member == null) ...[
+                ProfileSectionCard(
+                  child: Column(
+                    children: [
+                      ProfileImageSection(),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 24),
+                        child: Divider(),
+                      ),
+                      const MemberDetailsSection(),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                _buildInsuranceToggle(colorScheme),
+              ],
               ValueListenableBuilder(
                 valueListenable: InsuranceHelpers.insuranceCheackBoxNotifier,
-                builder: (context, value, child) => value
-                    ? InsuranceFormSection(
-                        idInsurance: member?.insuranceId,
-                        insuranceName:
-                            member != null && member!.insuranceId == 0
-                            ? member!.insuranceName
-                            : null,
-                        memberInsuranvceExpireDate: member?.insuranceExpDttm,
-                        memberNumber: member?.memberNo,
-                      )
-                    : const SizedBox(height: 55),
+                builder: (context, hasInsurance, child) {
+                  if (!hasInsurance) return const SizedBox(height: 100);
+                  return Column(
+                    children: [
+                      const SizedBox(height: 16),
+                      ProfileSectionCard(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Insurance Information',
+                              style: theme.textTheme.titleMedium?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: colorScheme.primary,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            InsuranceFormSection(
+                              idInsurance: widget.member?.insuranceId,
+                              insuranceName:
+                                  widget.member != null &&
+                                      widget.member!.insuranceId == 0
+                                  ? widget.member!.insuranceName
+                                  : null,
+                              memberInsuranvceExpireDate:
+                                  widget.member?.insuranceExpDttm,
+                              memberNumber: widget.member?.memberNo,
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 100),
+                    ],
+                  );
+                },
               ),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(left: 15, right: 15, bottom: 16),
-        child: BlocBuilder<AddMemberBloc, AddMemberState>(
-          builder: (context, state) {
-            return Container(
-              decoration: BoxDecoration(
-                color: AppColors.vilot,
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 1,
-                    color: AppColors.black.withValues(alpha: .25),
-                    offset: const Offset(0, 0),
+      bottomNavigationBar: _buildBottomAction(theme),
+    );
+  }
+
+  Widget _buildInsuranceToggle(ColorScheme colorScheme) {
+    final theme = Theme.of(context);
+    return ValueListenableBuilder(
+      valueListenable: InsuranceHelpers.insuranceCheackBoxNotifier,
+      builder: (context, value, child) => InkWell(
+        onTap: () => InsuranceHelpers.insuranceCheackBoxNotifier.value = !value,
+        borderRadius: BorderRadius.circular(16),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          decoration: BoxDecoration(
+            color: value
+                ? colorScheme.primary.withValues(alpha: 0.1)
+                : colorScheme.surface,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: value
+                  ? colorScheme.primary
+                  : colorScheme.outlineVariant.withValues(alpha: 0.5),
+              width: value ? 2 : 1.2,
+            ),
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 24,
+                height: 24,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: value ? colorScheme.primary : Colors.transparent,
+                  border: Border.all(
+                    color: value ? colorScheme.primary : colorScheme.outline,
+                    width: 2,
                   ),
-                ],
-                borderRadius: BorderRadius.circular(6),
-              ),
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  backgroundColor: AppColors.vilot,
-                  foregroundColor: AppColors.white,
-                  padding: const EdgeInsets.all(15),
                 ),
-                onPressed: state.isMemberAdding
-                    ? null
-                    : () {
-                        if (member != null) {
-                          AddMemberScreenHelpers.ediMemberInsuranceDetail(
-                            context: context,
-                            memberId: member!.id,
-                          );
-                        } else {
-                          AddMemberScreenHelpers.saveMember(context: context);
-                        }
-                      },
+                child: value
+                    ? const Icon(Icons.check, size: 16, color: Colors.white)
+                    : null,
+              ),
+              const SizedBox(width: 12),
+              Text(
+                'I have insurance',
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  fontWeight: value ? FontWeight.bold : FontWeight.normal,
+                  color: value ? colorScheme.primary : colorScheme.onSurface,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBottomAction(ThemeData theme) {
+    return Container(
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, -5),
+          ),
+        ],
+      ),
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
+          child: BlocBuilder<AddMemberBloc, AddMemberState>(
+            builder: (context, state) {
+              return FilledButton(
+                style: FilledButton.styleFrom(
+                  minimumSize: const Size.fromHeight(56),
+                  backgroundColor: theme.colorScheme.primary,
+                  foregroundColor: theme.colorScheme.onPrimary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+                onPressed: state.isMemberAdding ? null : _onActionPressed,
                 child: state.isMemberAdding
-                    ? const CircularProgressIndicator(color: AppColors.white)
+                    ? const SizedBox(
+                        height: 24,
+                        width: 24,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            Colors.white,
+                          ),
+                        ),
+                      )
                     : Text(
-                        member == null ? 'Done' : 'Update',
-                        style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                          color: AppColors.white,
+                        widget.member == null
+                            ? 'Save Member'
+                            : 'Update Details',
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: theme.colorScheme.onPrimary,
                         ),
                       ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
+      ),
+    );
+  }
+
+  void _onActionPressed() {
+    if (widget.member != null) {
+      AddMemberScreenHelpers.ediMemberInsuranceDetail(
+        context: context,
+        memberId: widget.member!.id,
+      );
+    } else {
+      AddMemberScreenHelpers.saveMember(context: context);
+    }
+  }
+
+  void _onSuccess(Member newMember) {
+    final userBloc = context.read<UserBloc>();
+    if (widget.member == null) {
+      userBloc.add(
+        AddMemberToLocal(
+          params: ProfileParams.addMemberToLocal(member: newMember),
+        ),
+      );
+    } else {
+      userBloc.add(
+        UpdateMemberInLocal(
+          params: ProfileParams.updateMemberInLocal(member: newMember),
+        ),
+      );
+    }
+    showDialog(
+      context: context,
+      builder: (context) => SucessDialog(
+        title: widget.member == null
+            ? 'Member added successfully!'
+            : 'Insurance details updated successfully!',
+        onPressed: () {
+          Navigator.pop(context); // Close dialog
+          context.router.back(); // Go back
+        },
       ),
     );
   }

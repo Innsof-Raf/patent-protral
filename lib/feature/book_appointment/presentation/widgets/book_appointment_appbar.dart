@@ -1,37 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 
-class BookAppointmentAppbar extends StatelessWidget
-    implements PreferredSizeWidget {
+class BookAppointmentAppbar extends StatelessWidget implements PreferredSizeWidget {
   const BookAppointmentAppbar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return AppBar(
-      systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarColor: AppColors.black,
-        statusBarIconBrightness: Brightness.light,
-        statusBarBrightness: Brightness.dark,
-      ),
-      backgroundColor: AppColors.white,
-      elevation: 0,
-      titleSpacing: 0,
-      automaticallyImplyLeading: false,
-      title: const Text(
-        'Book appointment',
-        style: AppTextStyles.largeSemiBoldRoboto,
+      title: const Text('Book Appointment'),
+      centerTitle: true,
+      titleTextStyle: theme.textTheme.titleLarge?.copyWith(
+        fontWeight: FontWeight.bold,
+        color: theme.colorScheme.onSurface,
       ),
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios, color: AppColors.textDark),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
+        icon: const Icon(Icons.arrow_back_ios_new_rounded),
+        onPressed: () => Navigator.of(context).pop(),
       ),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(55);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

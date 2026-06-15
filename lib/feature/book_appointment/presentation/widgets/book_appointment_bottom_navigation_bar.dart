@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/succes_dailog.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -29,215 +27,184 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return BlocBuilder<BookAppointmentBloc, BookAppointmentState>(
       builder: (context, state) {
-        return state.isFetchingError
-            ? const SizedBox()
-            : BlocConsumer<BookAppointmentBloc, BookAppointmentState>(
-                listener: (context, state) {
-                  if (state.isAppointmentSavingFailure &&
-                      !state.isAppointmentSavingSuccses) {
-                    showDialog(
-                      context: context,
-                      builder: (context) => CommonErrorAlert(
-                        content:
-                            'Appointment booking failed\n ${state.error.message}',
-                      ),
-                    );
-                  } else if (state.isAppointmentSavingSuccses &&
-                      !state.isAppointmentSavingFailure) {
-                    if (appointmentId == 0) {
-                      showGeneralDialog(
-                        transitionDuration: const Duration(milliseconds: 300),
-                        pageBuilder: (context, animation, secondaryAnimation) {
-                          return Container();
-                        },
-                        context: context,
-                        transitionBuilder:
-                            (
-                              context,
-                              Animation<double> animation,
-                              Animation<double> secondaryAnimation,
-                              Widget child,
-                            ) => Transform.scale(
-                              scale: Curves.easeOut.transform(animation.value),
-                              child: SucessDialog(
-                                title: 'Appointment booked Succesfully',
-                                onPressed: () {
-                                  context.router.popUntilRouteWithName(
-                                    MainRoute.name,
-                                  );
-                                },
-                              ),
-                            ),
-                      ).then((value) {
-                        if (!context.mounted) return;
-                        BookAppointmentScreenHelpers
-                                .selectedSlotNotifier
-                                .value =
-                            null;
-                        context.read<MyAppointmentsBloc>().add(
-                          StoreBokkedApoointment(
-                            params: MyAppointmentsParams.storeBokkedApoointment(
-                              appointment: MyAppointment(
-                                appointmentDateTime: state
-                                    .appointmentDetails!
-                                    .appointmentDateTime,
-                                branch: state.appointmentDetails!.branch,
-                                busunitName:
-                                    state.appointmentDetails!.busunitName,
-                                departName: state.appointmentDetails!.deptName,
-                                doctorId: state.appointmentDetails!.doctorId,
-                                doctorName:
-                                    state.appointmentDetails!.doctorName,
-                                email: state.appointmentDetails!.email,
-                                id: state.appointmentDetails!.id,
-                                idDoctor: state.appointmentDetails!.idDoctor,
-                                memberId: state.appointmentDetails!.idMember,
-                                memberName:
-                                    state.appointmentDetails!.memberName,
-                                mobileNumber:
-                                    state.appointmentDetails!.mobileNo,
-                                profileUrl:
-                                    state.appointmentDetails!.doctorImage,
-                                speciality:
-                                    state.appointmentDetails!.doctorSpeciality,
-                                isCanceling: false,
-                              ),
-                            ),
-                          ),
-                        );
-                        context.read<BookAppointmentBloc>().add(
-                          ChangeBookedSlotState(
-                            slotTime:
-                                state.appointmentDetails!.appointmentDateTime,
-                          ),
-                        );
-                        BookAppointmentScreenHelpers
-                                .selectedMemberNotifier
-                                .value =
-                            null;
-                      });
-                    } else {
-                      showGeneralDialog(
-                        transitionDuration: const Duration(milliseconds: 300),
-                        pageBuilder: (context, animation, secondaryAnimation) {
-                          return Container();
-                        },
-                        context: context,
-                        transitionBuilder:
-                            (
-                              context,
-                              Animation<double> animation,
-                              Animation<double> secondaryAnimation,
-                              Widget child,
-                            ) => Transform.scale(
-                              scale: Curves.easeOut.transform(animation.value),
-                              child: SucessDialog(
-                                title: 'Appointment Resheduled Succesfully',
-                                onPressed: () {
-                                  context.router.popUntilRouteWithName(
-                                    MainRoute.name,
-                                  );
-                                },
-                              ),
-                            ),
-                      ).then((value) {
-                        if (!context.mounted) return;
-                        BookAppointmentScreenHelpers
-                                .selectedSlotNotifier
-                                .value =
-                            null;
-                        final MyAppointment selectedAppointment = context
-                            .read<MyAppointmentsBloc>()
-                            .state
-                            .myAppointments
-                            .singleWhere(
-                              (appointment) => appointment.id == appointmentId,
-                            );
+        if (state.isFetchingError) return const SizedBox.shrink();
 
-                        context.read<BookAppointmentBloc>().add(
-                          ChangeResheduledSlotState(
-                            oldSlot: selectedAppointment.appointmentDateTime,
-                            currentSlot:
-                                state.appointmentDetails!.appointmentDateTime,
-                          ),
-                        );
-                        context.read<MyAppointmentsBloc>().add(
-                          ChangeResheduledAppointmentDetails(
-                            params:
-                                MyAppointmentsParams.changeResheduledAppointmentDetails(
-                                  appointment: selectedAppointment,
-                                  cureentSlot: state
-                                      .appointmentDetails!
-                                      .appointmentDateTime,
-                                ),
-                          ),
-                        );
-                      });
-                    }
-                  }
-                },
-                builder: (context, state) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: AppColors.vilot,
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 1,
-                          color: AppColors.black.withValues(alpha: .25),
-                          offset: const Offset(0, 0),
-                        ),
-                      ],
-                    ),
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        elevation: 0,
-                        backgroundColor: AppColors.vilot,
-                        foregroundColor: AppColors.white,
-                        padding: const EdgeInsets.all(15),
-                      ),
-                      onPressed: () {
-                        if (!state.isAppointmentLoading) {
-                          if (appointmentId == 0) {
-                            BookAppointmentScreenHelpers.bookAppointment(
-                              context: context,
-                              doctorImage: doctorImage,
-                              doctorName: doctorName,
-                              idDoctor: idDoctor,
-                            );
-                          } else {
-                            BookAppointmentScreenHelpers.resheduleAppointment(
-                              doctorImage: doctorImage,
-                              doctorName: doctorName,
-                              idDoctor: idDoctor,
-                              context: context,
-                              idAppointment: appointmentId,
-                            );
-                          }
-                        }
-                      },
-                      child: state.isAppointmentLoading
-                          ? const CircularProgressIndicator(
-                              color: AppColors.white,
-                            )
-                          : Text(
-                              'Done',
-                              style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                                color: AppColors.white,
-                              ),
-                            ),
-                    ),
-                  );
-                },
+        return BlocConsumer<BookAppointmentBloc, BookAppointmentState>(
+          listener: (context, state) {
+            if (state.isAppointmentSavingFailure &&
+                !state.isAppointmentSavingSuccses) {
+              showDialog(
+                context: context,
+                builder: (context) => CommonErrorAlert(
+                  content:
+                      'Appointment booking failed\n ${state.error.message}',
+                ),
               );
+            } else if (state.isAppointmentSavingSuccses &&
+                !state.isAppointmentSavingFailure) {
+              _handleSuccess(context, state);
+            }
+          },
+          builder: (context, state) {
+            return Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.surface,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.05),
+                    blurRadius: 10,
+                    offset: const Offset(0, -5),
+                  ),
+                ],
+              ),
+              child: SafeArea(
+                child: FilledButton(
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size.fromHeight(56),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                  onPressed: state.isAppointmentLoading
+                      ? null
+                      : () => _onPressed(context, state),
+                  child: state.isAppointmentLoading
+                      ? const SizedBox(
+                          height: 24,
+                          width: 24,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              Colors.white,
+                            ),
+                          ),
+                        )
+                      : Text(
+                          appointmentId == 0
+                              ? 'Confirm Booking'
+                              : 'Reschedule Appointment',
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: theme.colorScheme.onPrimary,
+                          ),
+                        ),
+                ),
+              ),
+            );
+          },
+        );
       },
     );
+  }
+
+  void _onPressed(BuildContext context, BookAppointmentState state) {
+    if (appointmentId == 0) {
+      BookAppointmentScreenHelpers.bookAppointment(
+        context: context,
+        doctorImage: doctorImage,
+        doctorName: doctorName,
+        idDoctor: idDoctor,
+      );
+    } else {
+      BookAppointmentScreenHelpers.resheduleAppointment(
+        doctorImage: doctorImage,
+        doctorName: doctorName,
+        idDoctor: idDoctor,
+        context: context,
+        idAppointment: appointmentId,
+      );
+    }
+  }
+
+  void _handleSuccess(BuildContext context, BookAppointmentState state) {
+    final title = appointmentId == 0
+        ? 'Appointment booked Successfully'
+        : 'Appointment Rescheduled Successfully';
+
+    showGeneralDialog(
+      transitionDuration: const Duration(milliseconds: 300),
+      pageBuilder: (context, animation, secondaryAnimation) => Container(),
+      context: context,
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
+        return ScaleTransition(
+          scale: CurvedAnimation(parent: animation, curve: Curves.easeOutBack),
+          child: SucessDialog(
+            title: title,
+            onPressed: () {
+              context.router.popUntilRouteWithName(MainRoute.name);
+            },
+          ),
+        );
+      },
+    ).then((_) {
+      if (!context.mounted) return;
+      _clearSelectionAndRefresh(context, state);
+    });
+  }
+
+  void _clearSelectionAndRefresh(
+    BuildContext context,
+    BookAppointmentState state,
+  ) {
+    BookAppointmentScreenHelpers.selectedSlotNotifier.value = null;
+
+    if (appointmentId == 0) {
+      context.read<MyAppointmentsBloc>().add(
+        StoreBokkedApoointment(
+          params: MyAppointmentsParams.storeBokkedApoointment(
+            appointment: MyAppointment(
+              appointmentDateTime:
+                  state.appointmentDetails!.appointmentDateTime,
+              branch: state.appointmentDetails!.branch,
+              busunitName: state.appointmentDetails!.busunitName,
+              departName: state.appointmentDetails!.deptName,
+              doctorId: state.appointmentDetails!.doctorId,
+              doctorName: state.appointmentDetails!.doctorName,
+              email: state.appointmentDetails!.email,
+              id: state.appointmentDetails!.id,
+              idDoctor: state.appointmentDetails!.idDoctor,
+              memberId: state.appointmentDetails!.idMember,
+              memberName: state.appointmentDetails!.memberName,
+              mobileNumber: state.appointmentDetails!.mobileNo,
+              profileUrl: state.appointmentDetails!.doctorImage,
+              speciality: state.appointmentDetails!.doctorSpeciality,
+              isCanceling: false,
+            ),
+          ),
+        ),
+      );
+      context.read<BookAppointmentBloc>().add(
+        ChangeBookedSlotState(
+          slotTime: state.appointmentDetails!.appointmentDateTime,
+        ),
+      );
+      BookAppointmentScreenHelpers.selectedMemberNotifier.value = null;
+    } else {
+      final selectedAppointment = context
+          .read<MyAppointmentsBloc>()
+          .state
+          .myAppointments
+          .singleWhere((appointment) => appointment.id == appointmentId);
+
+      context.read<BookAppointmentBloc>().add(
+        ChangeResheduledSlotState(
+          oldSlot: selectedAppointment.appointmentDateTime,
+          currentSlot: state.appointmentDetails!.appointmentDateTime,
+        ),
+      );
+      context.read<MyAppointmentsBloc>().add(
+        ChangeResheduledAppointmentDetails(
+          params: MyAppointmentsParams.changeResheduledAppointmentDetails(
+            appointment: selectedAppointment,
+            cureentSlot: state.appointmentDetails!.appointmentDateTime,
+          ),
+        ),
+      );
+    }
   }
 }

@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
-import 'package:patient_portal/core/resources/urls.dart';
-
-import 'alert_active_elevated_button.dart';
-import 'alert_active_oulined_button.dart';
 
 class BookAppoitmentConfirmationPopUp extends StatelessWidget {
   final String title;
@@ -33,160 +28,179 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      child: Padding(
+        padding: const EdgeInsets.all(24),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                Text(
+                  title,
+                  style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                ),
                 IconButton(
-                  padding: EdgeInsets.zero,
-                  splashRadius: 15,
-                  style: IconButton.styleFrom(minimumSize: const Size(0, 0)),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.close, color: AppColors.black),
+                  onPressed: () => Navigator.pop(context),
+                  icon: const Icon(Icons.close_rounded),
                 ),
               ],
             ),
-            Text(title, style: AppTextStyles.extraLargeRobotoSemiBold),
-            const SizedBox(height: 25),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text('On ', style: AppTextStyles.largeRobotoNormal),
-                Text(
-                  DateFormat('dd EEE yyyy ').format(appintmentDateTime),
-                  style: AppTextStyles.largeSemiBoldRoboto,
-                ),
-                const Text('at ', style: AppTextStyles.largeRobotoNormal),
-                Text(
-                  DateFormat.jm().format(appintmentDateTime),
-                  style: AppTextStyles.largeSemiBoldRoboto,
-                ),
-              ],
-            ),
-            const SizedBox(height: 40),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Expanded(
-                  child: SizedBox(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          doctorName,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
-                          style: AppTextStyles.bodyLargeRobotoSemiBold,
-                        ),
-                        const SizedBox(height: 5),
-                        CircleAvatar(
-                          radius: 30,
-                          backgroundImage: NetworkImage(doctorImage),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const Text('For', style: AppTextStyles.largeRobotoNormal),
-                Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
+            const SizedBox(height: 24),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Icon(Icons.calendar_today_rounded, size: 18, color: colorScheme.primary),
+                      const SizedBox(width: 8),
                       Text(
-                        member.name,
-                        style: AppTextStyles.bodyLargeRobotoSemiBold,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 5),
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundColor: member.profileImage == null
-                            ? AppColors.orange
-                            : null,
-                        backgroundImage: member.profileImage != null
-                            ? NetworkImage(
-                                '${ConstantUrls.memberImageUrl}/${member.id}//${member.profileImage}',
-                              )
-                            : null,
-                        child: member.profileImage == null
-                            ? Text(
-                                member.name[0],
-                                style: AppTextStyles.subHeaddingSemiBoldRoboto
-                                    .copyWith(
-                                      fontSize: 18,
-                                      color: AppColors.white,
-                                    ),
-                              )
-                            : null,
+                        DateFormat('dd MMM yyyy').format(appintmentDateTime),
+                        style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.access_time_rounded, size: 18, color: colorScheme.primary),
+                      const SizedBox(width: 8),
+                      Text(
+                        DateFormat.jm().format(appintmentDateTime),
+                        style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 32),
+            Row(
+              children: [
+                Expanded(
+                  child: _UserMiniProfile(
+                    name: doctorName,
+                    imageUrl: doctorImage,
+                    label: 'Doctor',
+                  ),
+                ),
+                Icon(Icons.arrow_forward_rounded, color: colorScheme.outline),
+                Expanded(
+                  child: _UserMiniProfile(
+                    name: member.name,
+                    imageUrl: member.profileImage != null
+                        ? '${ConstantUrls.memberImageUrl}/${member.id}//${member.profileImage}'
+                        : null,
+                    label: 'Patient',
+                  ),
                 ),
               ],
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 32),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                AlertActiveOutlinedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  title: 'CANCEL',
+                Expanded(
+                  child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    ),
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: const Text('Cancel'),
+                  ),
                 ),
-                AlertActiveElevatedButton(
-                  onPressed: () {
-                    if (appointmentId == 0) {
-                      context.read<BookAppointmentBloc>().add(
-                        BookNewAppointment(
-                          appointmentDateTime: appintmentDateTime,
-                          idDoctor: idDoctor,
-                          idMember: member.id,
-                          mobileNo: context
-                              .read<UserBloc>()
-                              .state
-                              .user!
-                              .mobileNumber,
-                          token: context
-                              .read<UserBloc>()
-                              .state
-                              .user!
-                              .accessToken,
-                        ),
-                      );
-                    } else {
-                      context.read<BookAppointmentBloc>().add(
-                        ResheduleAppointment(
-                          idAppointment: appointmentId,
-                          appointmentDateTime: appintmentDateTime,
-                          token: context
-                              .read<UserBloc>()
-                              .state
-                              .user!
-                              .accessToken,
-                        ),
-                      );
-                    }
-                    Navigator.pop(context);
-                  },
-                  title: 'CONFIRM',
+                const SizedBox(width: 16),
+                Expanded(
+                  child: FilledButton(
+                    style: FilledButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    ),
+                    onPressed: () {
+                      if (appointmentId == 0) {
+                        context.read<BookAppointmentBloc>().add(
+                              BookNewAppointment(
+                                appointmentDateTime: appintmentDateTime,
+                                idDoctor: idDoctor,
+                                idMember: member.id,
+                                mobileNo: context.read<UserBloc>().state.user!.mobileNumber,
+                                token: context.read<UserBloc>().state.user!.accessToken,
+                              ),
+                            );
+                      } else {
+                        context.read<BookAppointmentBloc>().add(
+                              ResheduleAppointment(
+                                idAppointment: appointmentId,
+                                appointmentDateTime: appintmentDateTime,
+                                token: context.read<UserBloc>().state.user!.accessToken,
+                              ),
+                            );
+                      }
+                      Navigator.pop(context);
+                    },
+                    child: const Text('Confirm'),
+                  ),
                 ),
               ],
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _UserMiniProfile extends StatelessWidget {
+  final String name;
+  final String? imageUrl;
+  final String label;
+
+  const _UserMiniProfile({required this.name, this.imageUrl, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Column(
+      children: [
+        CircleAvatar(
+          radius: 30,
+          backgroundImage: imageUrl != null ? NetworkImage(imageUrl!) : null,
+          backgroundColor: theme.colorScheme.secondaryContainer,
+          child: imageUrl == null
+              ? Text(
+                  name.isNotEmpty ? name[0].toUpperCase() : '?',
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    color: theme.colorScheme.onSecondaryContainer,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              : null,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          label,
+          style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+        ),
+        Text(
+          name,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          style: theme.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold),
+        ),
+      ],
     );
   }
 }

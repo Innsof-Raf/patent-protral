@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/gender_form_helpers.dart';
 import 'package:patient_portal/core/resources/common_helpers/member_form_validation_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/radio_button.dart';
-import 'package:patient_portal/core/resources/dimens.dart';
 
 import 'add_member_screen_helpers.dart';
 
@@ -22,12 +19,7 @@ class MemberDetailsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    dobController.text = '';
-    dob = null;
-    nameController.text = '';
-    nationalIdController.text = '';
-    GenderFormHelpers.genderNotifier.value = 'Male';
-    emailController.text = '';
+    final theme = Theme.of(context);
 
     return Form(
       key: memberFormKey,
@@ -35,31 +27,26 @@ class MemberDetailsSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Dimens.constHeight,
           TextFormField(
             validator: (value) =>
                 MemeberFormValidationHelpers.nameValidator(value: value),
             controller: nameController,
-            autofocus: true,
             keyboardType: TextInputType.name,
             textInputAction: TextInputAction.next,
-            textCapitalization: TextCapitalization.sentences,
-            decoration: const InputDecoration(labelText: 'Name'),
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r'[A-Za-z ]')),
-              LengthLimitingTextInputFormatter(20),
-            ],
-            style: AppTextStyles.textFormFieldStyle,
-            cursorColor: AppColors.textFormFiledStyleColor,
+            textCapitalization: TextCapitalization.words,
+            decoration: const InputDecoration(
+              labelText: 'Full Name',
+              prefixIcon: Icon(Icons.person_outline_rounded),
+            ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 16),
           TextFormField(
             validator: (value) =>
                 MemeberFormValidationHelpers.dobValidator(value: value),
             readOnly: true,
             onTap: () async {
               DateTime? selectedDate = await AddMemberScreenHelpers.getDob(
-                initialDate: dob ?? DateTime.now(),
+                initialDate: dob ?? DateTime(2000),
                 context: context,
               );
               if (selectedDate != null) {
@@ -68,44 +55,27 @@ class MemberDetailsSection extends StatelessWidget {
               }
             },
             controller: dobController,
-            decoration: const InputDecoration(labelText: 'Date of birth'),
-            style: AppTextStyles.textFormFieldStyle,
+            decoration: const InputDecoration(
+              labelText: 'Date of Birth',
+              prefixIcon: Icon(Icons.calendar_month_outlined),
+            ),
           ),
-          const SizedBox(height: 10),
-          const Text('Gender', style: AppTextStyles.bodyTextRoboto),
-          const SizedBox(height: 5),
+          const SizedBox(height: 24),
+          Text(
+            'Gender',
+            style: theme.textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 8),
           Row(
             children: [
-              ValueListenableBuilder(
-                valueListenable: GenderFormHelpers.genderNotifier,
-                builder: (context, value, child) => RadioButton(
-                  groupValue: value,
-                  onChanged: () {
-                    if (value != 'Male') {
-                      GenderFormHelpers.genderNotifier.value = 'Male';
-                    }
-                  },
-                  value: 'Male',
-                  title: 'Male',
-                ),
-              ),
-              const SizedBox(width: 20),
-              ValueListenableBuilder(
-                valueListenable: GenderFormHelpers.genderNotifier,
-                builder: (context, value, child) => RadioButton(
-                  groupValue: value,
-                  onChanged: () {
-                    if (value != 'Female') {
-                      GenderFormHelpers.genderNotifier.value = 'Female';
-                    }
-                  },
-                  value: 'Female',
-                  title: 'Female',
-                ),
-              ),
+              _buildGenderRadio('Male'),
+              const SizedBox(width: 24),
+              _buildGenderRadio('Female'),
             ],
           ),
-          const SizedBox(height: 15),
+          const SizedBox(height: 24),
           TextFormField(
             controller: nationalIdController,
             inputFormatters: [
@@ -116,23 +86,59 @@ class MemberDetailsSection extends StatelessWidget {
             validator: (value) =>
                 MemeberFormValidationHelpers.nationalIdValidator(value: value),
             textInputAction: TextInputAction.next,
-            decoration: const InputDecoration(labelText: 'National ID'),
-            style: AppTextStyles.textFormFieldStyle,
-            cursorColor: AppColors.textFormFiledStyleColor,
+            decoration: const InputDecoration(
+              labelText: 'National ID',
+              prefixIcon: Icon(Icons.badge_outlined),
+            ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 16),
           TextFormField(
             controller: emailController,
             keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(labelText: 'Email (Optional)'),
-            style: AppTextStyles.textFormFieldStyle,
             validator: (value) =>
                 MemeberFormValidationHelpers.emailValidator(value: value),
-            cursorColor: AppColors.textFormFiledStyleColor,
+            decoration: const InputDecoration(
+              labelText: 'Email Address (Optional)',
+              prefixIcon: Icon(Icons.email_outlined),
+            ),
           ),
-          const SizedBox(height: 10),
         ],
       ),
+    );
+  }
+
+  Widget _buildGenderRadio(String value) {
+    return ValueListenableBuilder<String>(
+      valueListenable: GenderFormHelpers.genderNotifier,
+      builder: (context, currentGender, child) {
+        final isSelected = currentGender == value;
+        final colorScheme = Theme.of(context).colorScheme;
+
+        return InkWell(
+          onTap: () => GenderFormHelpers.genderNotifier.value = value,
+          borderRadius: BorderRadius.circular(8),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              RadioButton(
+                groupValue: currentGender,
+                onChanged: () => GenderFormHelpers.genderNotifier.value = value,
+                value: value,
+                title: '', // We use our own label for better spacing
+              ),
+              Text(
+                value,
+                style: TextStyle(
+                  color: isSelected
+                      ? colorScheme.primary
+                      : colorScheme.onSurface,
+                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

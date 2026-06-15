@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'book_appointment_screen_helpers.dart';
+import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
-import 'package:patient_portal/core/resources/dimens.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/gen/assets.gen.dart';
 
@@ -19,77 +16,104 @@ class MemberSelectionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(
-      style: OutlinedButton.styleFrom(
-        side: BorderSide(
-          width: .5,
-          color: isSelected ? AppColors.vilot : AppColors.borderColor,
-        ),
-        foregroundColor: isSelected ? AppColors.white : AppColors.vilot,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        minimumSize: const Size(0, 0),
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-      ),
-      onPressed: () {
-        if (BookAppointmentScreenHelpers.selectedMemberNotifier.value ==
-            member) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return InkWell(
+      onTap: () {
+        if (BookAppointmentScreenHelpers.selectedMemberNotifier.value == member) {
           BookAppointmentScreenHelpers.selectedMemberNotifier.value = null;
         } else {
           BookAppointmentScreenHelpers.selectedMemberNotifier.value = member;
         }
       },
-      child: Row(
-        children: [
-          CircleAvatar(
-            radius: 18,
-            backgroundColor: member.profileImage == null
-                ? AppColors.orange
-                : null,
-            backgroundImage: member.profileImage != null
-                ? NetworkImage(
-                    '${ConstantUrls.memberImageUrl}/${member.id}//${member.profileImage}',
-                  )
-                : null,
-            child: member.profileImage == null
-                ? Text(
-                    member.name[0],
-                    style: AppTextStyles.subHeaddingSemiBoldRoboto.copyWith(
-                      fontSize: 18,
-                      color: AppColors.white,
+      borderRadius: BorderRadius.circular(16),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: isSelected ? colorScheme.primaryContainer.withValues(alpha: 0.3) : colorScheme.surface,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isSelected ? colorScheme.primary : colorScheme.outlineVariant,
+            width: isSelected ? 2 : 1,
+          ),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                color: member.profileImage == null ? colorScheme.secondaryContainer : null,
+                shape: BoxShape.circle,
+                image: member.profileImage != null
+                    ? DecorationImage(
+                        image: NetworkImage(
+                          '${ConstantUrls.memberImageUrl}/${member.id}//${member.profileImage}',
+                        ),
+                        fit: BoxFit.cover,
+                      )
+                    : null,
+              ),
+              child: member.profileImage == null
+                  ? Center(
+                      child: Text(
+                        member.name.isNotEmpty ? member.name[0].toUpperCase() : '?',
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          color: colorScheme.onSecondaryContainer,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )
+                  : null,
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    member.name,
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: colorScheme.onSurface,
                     ),
-                  )
-                : null,
-          ),
-          Dimens.constWidth10,
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                member.name,
-                style: AppTextStyles.bodyLargeRobotoSemiBold.copyWith(
-                  fontSize: 12,
-                  color: isSelected ? AppColors.vilot : AppColors.textLight,
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    'Age: ${member.age}',
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (member.isInsurance && !member.isInsuranceExpired)
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: SvgPicture.asset(
+                  Assets.icons.insuranceCartIcon.path,
+                  width: 24,
+                  height: 24,
+                  colorFilter: ColorFilter.mode(
+                    isSelected ? colorScheme.primary : colorScheme.onSurfaceVariant,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
-              const SizedBox(height: 4),
-              Text(
-                member.age,
-                style: AppTextStyles.bodyTextInter.copyWith(
-                  color: isSelected ? AppColors.vilot : AppColors.textLight,
-                ),
-              ),
-            ],
-          ),
-          const Spacer(),
-          member.isInsurance && !member.isInsuranceExpired
-              ? SvgPicture.asset(
-                  isSelected
-                      ? Assets.icons.insuranceIconVilot.path
-                      : Assets.icons.insuranceCartIcon.path,
-                )
-              : const SizedBox(),
-        ],
+            const SizedBox(width: 8),
+            Radio<Member?>(
+              value: member,
+              groupValue: isSelected ? member : null,
+              onChanged: (value) {
+                BookAppointmentScreenHelpers.selectedMemberNotifier.value = value;
+              },
+              activeColor: colorScheme.primary,
+            ),
+          ],
+        ),
       ),
     );
   }
