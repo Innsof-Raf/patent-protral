@@ -1,7 +1,7 @@
 import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
-import 'package:patient_portal/feature/documents/data/models/documents_model/document_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/feature/documents/data/models/documents_model/document_model.dart';
 
 abstract class DocumentsRemoteDataSource {
   Future<List<DocumentModel>> getDocuments({
@@ -24,7 +24,7 @@ class DocumentsRemoteDataSourceImpl implements DocumentsRemoteDataSource {
   }) async {
     final data = serviceRequest(
       type: 'PP0027',
-      content: {"id_customer": memberId, "mobile_number": mobileNumber},
+      content: {'id_customer': memberId, 'mobile_number': mobileNumber},
     );
 
     final response = await client.post(

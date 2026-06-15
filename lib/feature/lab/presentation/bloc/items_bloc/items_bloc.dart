@@ -1,14 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
 import 'package:patient_portal/feature/lab/domain/entities/item.dart';
 import 'package:patient_portal/feature/lab/domain/usecases/get_items_usecase.dart';
 import 'package:patient_portal/feature/lab/domain/usecases/params/lab_params.dart';
 import 'package:patient_portal/feature/lab/domain/usecases/update_item_in_cart_usecase.dart';
-import 'package:patient_portal/core/resources/error_model.dart';
 
+part 'generated/items_bloc.freezed.dart';
 part 'items_event.dart';
 part 'items_state.dart';
-part 'generated/items_bloc.freezed.dart';
 
 class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
   final GetItemsUseCase getItemsUseCase;
@@ -100,7 +100,7 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
         ),
         (succes) {
           double cartTotal = state.cartTotal;
-          List<Item> cart = List.from(state.cart);
+          final List<Item> cart = List.from(state.cart);
           if (cart.any((item) => item.idItem == event.idItem)) {
             final Item item = cart.singleWhere(
               (item) => item.idItem == event.idItem,

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
-import 'package:patient_portal/feature/member_details/presentation/helpers/eidt_member_insurance_helpers.dart';
-import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/inurance_validation_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/rounded_cheack_box.dart';
+import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
+import 'package:patient_portal/feature/member_details/presentation/helpers/eidt_member_insurance_helpers.dart';
+import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
 class EditMemberInsuranceSection extends StatefulWidget {
   static DateTime? expireDate;
@@ -141,7 +141,7 @@ class _EditMemberInsuranceSectionState
                 style: AppTextStyles.textFormFieldStyle,
                 controller: EditMemberInsuranceSection.expireDateController,
                 onTap: () async {
-                  DateTime? selectedDate =
+                  final DateTime? selectedDate =
                       await EditMemberInuranceHelpers.getExpireDate(
                         initialDate:
                             EditMemberInsuranceSection.expireDate ??

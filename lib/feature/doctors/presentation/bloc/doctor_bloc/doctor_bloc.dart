@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
 import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
 import 'package:patient_portal/feature/doctors/domain/usecases/get_available_doctors_usecase.dart';
 import 'package:patient_portal/feature/doctors/domain/usecases/params/doctor_params.dart';
-import 'package:patient_portal/core/resources/error_model.dart';
 
 part 'doctor_event.dart';
 part 'doctor_state.dart';

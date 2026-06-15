@@ -8,17 +8,17 @@ import 'package:flutter/material.dart';
 import 'package:patient_portal/core/injection_container.dart';
 import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
-import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
 import 'package:patient_portal/core/resources/error_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 
 class DocumentsScreenHelpers {
   static final ApiAgent _apiAgent = sl<ApiAgent>();
 
   static List<PopupMenuItem<int>> createPopupMenuItem(List<Member> members) {
-    List<PopupMenuItem<int>> popupMenuItems = [
+    final List<PopupMenuItem<int>> popupMenuItems = [
       const PopupMenuItem(
         value: 0,
         height: 30,
@@ -55,7 +55,7 @@ class DocumentsScreenHelpers {
     required int memberId,
   }) async {
     try {
-      FormData formData = FormData.fromMap({
+      final FormData formData = FormData.fromMap({
         'saveRequest': jsonEncode(
           serviceRequest(
             type: 'PP0025',

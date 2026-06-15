@@ -28,7 +28,7 @@ class EmptyNotificationsView extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             Text(
-              "All caught up!",
+              'All caught up!',
               textAlign: TextAlign.center,
               style: theme.textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.w800,

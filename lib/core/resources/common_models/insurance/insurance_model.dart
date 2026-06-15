@@ -10,7 +10,7 @@ sealed class InsuranceModel with _$InsuranceModel {
   const factory InsuranceModel({
     @JsonKey(name: 'id_insurance') required int idInsurance,
     @JsonKey(name: 'ins_name') required String insuranceName,
-    @JsonKey(name: "Img") @Default(null) String? img,
+    @JsonKey(name: 'Img') @Default(null) String? img,
   }) = _InsuranceModel;
 
   factory InsuranceModel.fromJson(Map<String, dynamic> json) =>

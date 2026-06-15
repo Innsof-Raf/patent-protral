@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 
 class ReportsAppbarHelpers {
   static List<PopupMenuItem<int>> createPopupMenuItem(List<Member> members) {
-    List<PopupMenuItem<int>> popupMenuItems = [
+    final List<PopupMenuItem<int>> popupMenuItems = [
       const PopupMenuItem(
         value: 0,
         height: 30,

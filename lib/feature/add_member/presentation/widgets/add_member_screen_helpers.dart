@@ -1,14 +1,15 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:patient_portal/core/resources/common_helpers/gender_form_helpers.dart';
+import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/insurance_form_scetion.dart';
 import 'package:patient_portal/feature/add_member/domain/usecases/params/params.dart';
 import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
 import 'package:patient_portal/feature/add_member/presentation/widgets/member_details_section.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/core/resources/common_helpers/gender_form_helpers.dart';
-import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/insurance_form_scetion.dart';
 
 class AddMemberScreenHelpers {
   static Future<DateTime?> getDob({

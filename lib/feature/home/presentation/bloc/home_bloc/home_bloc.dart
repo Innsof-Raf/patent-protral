@@ -1,13 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
 import 'package:patient_portal/feature/home/domain/entities/home_data.dart';
 import 'package:patient_portal/feature/home/domain/usecases/get_home_data_usecase.dart';
 import 'package:patient_portal/feature/home/domain/usecases/params/home_params.dart';
-import 'package:patient_portal/core/resources/error_model.dart';
 
+part 'generated/home_bloc.freezed.dart';
 part 'home_event.dart';
 part 'home_state.dart';
-part 'generated/home_bloc.freezed.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetHomeDataUseCase getHomeDataUseCase;

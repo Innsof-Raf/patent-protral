@@ -9,7 +9,7 @@ part 'member_search_state.dart';
 class MemberSearchBloc extends Bloc<MemberSearchEvent, MemberSearchState> {
   MemberSearchBloc() : super(MemberSearchState.initial()) {
     on<SearchMember>((event, emit) {
-      List<Member> searchResult = [];
+      final List<Member> searchResult = [];
       final List<Member> availableMembers = event.members;
       for (Member member in availableMembers) {
         if (member.name.toLowerCase().contains(event.searchKey)) {

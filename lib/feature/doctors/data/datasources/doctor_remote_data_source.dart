@@ -1,7 +1,7 @@
 import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
-import 'package:patient_portal/feature/doctors/data/models/doctor_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/feature/doctors/data/models/doctor_model.dart';
 
 abstract class DoctorRemoteDataSource {
   Future<List<DoctorModel>> getAvailableDoctors(int specialityId, String token);

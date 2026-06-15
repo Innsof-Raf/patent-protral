@@ -1,7 +1,7 @@
 import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
-import 'package:patient_portal/feature/add_document/data/models/document_type_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/feature/add_document/data/models/document_type_model.dart';
 
 abstract class AddDocumentRemoteDataSource {
   Future<List<DocumentTypeModel>> getDocumentTypes({required String token});

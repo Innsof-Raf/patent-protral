@@ -52,7 +52,7 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Create new password",
+                'Create new password',
                 style: theme.textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: colorScheme.onSurface,
@@ -60,7 +60,7 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
               ),
               const SizedBox(height: 8),
               Text(
-                "Your new password must be at least 8 characters long and include a mix of letters and numbers.",
+                'Your new password must be at least 8 characters long and include a mix of letters and numbers.',
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 ),
@@ -112,7 +112,7 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
                     ),
                   )
                 : const Text(
-                    "Save Password",
+                    'Save Password',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

@@ -2,12 +2,12 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/core/error/failures.dart';
+import 'package:patient_portal/core/resources/common_models/appointment_model.dart/appointment_model.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
 import 'package:patient_portal/feature/book_appointment/domain/entities/shift.dart';
 import 'package:patient_portal/feature/book_appointment/domain/entities/slot.dart';
 import 'package:patient_portal/feature/book_appointment/domain/usecases/book_appointment_usecase.dart';
 import 'package:patient_portal/feature/book_appointment/domain/usecases/params/book_appointment_params.dart';
-import 'package:patient_portal/core/resources/common_models/appointment_model.dart/appointment_model.dart';
-import 'package:patient_portal/core/resources/error_model.dart';
 
 part 'book_appointment_event.dart';
 part 'book_appointment_state.dart';
@@ -143,7 +143,7 @@ class BookAppointmentBloc
     ChangeBookedSlotState event,
     Emitter<BookAppointmentState> emit,
   ) {
-    List<Slot> slots = state.shift.slots;
+    final List<Slot> slots = state.shift.slots;
     emit(
       state.copyWith(
         shift: state.shift.copyWith(
@@ -163,7 +163,7 @@ class BookAppointmentBloc
     ChangeResheduledSlotState event,
     Emitter<BookAppointmentState> emit,
   ) {
-    List<Slot> slots = state.shift.slots;
+    final List<Slot> slots = state.shift.slots;
     emit(
       state.copyWith(
         shift: state.shift.copyWith(

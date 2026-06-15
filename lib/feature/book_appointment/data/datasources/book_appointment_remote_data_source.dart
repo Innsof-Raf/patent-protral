@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
-import 'package:patient_portal/feature/book_appointment/data/models/shift_model.dart';
 import 'package:patient_portal/core/resources/common_models/appointment_model.dart/appointment_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/feature/book_appointment/data/models/shift_model.dart';
 
 abstract class BookAppointmentRemoteDataSource {
   Future<ShiftModel> getAvailableSlots({
@@ -44,8 +44,8 @@ class BookAppointmentRemoteDataSourceImpl
     final data = serviceRequest(
       type: 'PP0003',
       content: {
-        "id_doctor": idDoctor,
-        "shift_dt": DateFormat('yyyy-MM-dd').format(date),
+        'id_doctor': idDoctor,
+        'shift_dt': DateFormat('yyyy-MM-dd').format(date),
       },
     );
     final response = await client.post(
@@ -74,16 +74,16 @@ class BookAppointmentRemoteDataSourceImpl
     final data = serviceRequest(
       type: 'PP0008',
       content: {
-        "id": 0,
-        "id_employee": idDoctor,
-        "id_busunit": 1,
-        "appmnt_mode": "Offline",
-        "appmnt_dttm": appointmentDateTime.toIso8601String(),
-        "appmnt_dt": DateFormat('yyyy-MM-dd').format(appointmentDateTime),
-        "appmnt_time": DateFormat('hh:mm a').format(appointmentDateTime),
-        "id_customer": idMember,
-        "mobile_no": mobileNo,
-        "patient_mobileno": mobileNo,
+        'id': 0,
+        'id_employee': idDoctor,
+        'id_busunit': 1,
+        'appmnt_mode': 'Offline',
+        'appmnt_dttm': appointmentDateTime.toIso8601String(),
+        'appmnt_dt': DateFormat('yyyy-MM-dd').format(appointmentDateTime),
+        'appmnt_time': DateFormat('hh:mm a').format(appointmentDateTime),
+        'id_customer': idMember,
+        'mobile_no': mobileNo,
+        'patient_mobileno': mobileNo,
       },
     );
     final response = await client.post(
@@ -96,12 +96,12 @@ class BookAppointmentRemoteDataSourceImpl
       final Map<String, dynamic> responseData = decodeResponseData(
         response.data,
       );
-      if (responseData["status"] == true ||
-          responseData["status"] == "1" ||
-          responseData["status"] == 1 ||
-          responseData.containsKey("data")) {
-        final appointmentData = responseData["data"] is Map
-            ? responseData["data"]
+      if (responseData['status'] == true ||
+          responseData['status'] == '1' ||
+          responseData['status'] == 1 ||
+          responseData.containsKey('data')) {
+        final appointmentData = responseData['data'] is Map
+            ? responseData['data']
             : responseData;
         return AppointmentModel.fromJson(
           appointmentData as Map<String, dynamic>,
@@ -123,10 +123,10 @@ class BookAppointmentRemoteDataSourceImpl
     final data = serviceRequest(
       type: 'PP0009',
       content: {
-        "id": idAppointment,
-        "appmnt_dttm": appointmentDateTime.toIso8601String(),
-        "appmnt_dt": DateFormat('yyyy-MM-dd').format(appointmentDateTime),
-        "appmnt_time": DateFormat('hh:mm a').format(appointmentDateTime),
+        'id': idAppointment,
+        'appmnt_dttm': appointmentDateTime.toIso8601String(),
+        'appmnt_dt': DateFormat('yyyy-MM-dd').format(appointmentDateTime),
+        'appmnt_time': DateFormat('hh:mm a').format(appointmentDateTime),
       },
     );
     final response = await client.post(
@@ -139,12 +139,12 @@ class BookAppointmentRemoteDataSourceImpl
       final Map<String, dynamic> responseData = decodeResponseData(
         response.data,
       );
-      if (responseData["status"] == true ||
-          responseData["status"] == 1 ||
-          responseData["status"] == "1" ||
-          responseData.containsKey("data")) {
-        final appointmentData = responseData["data"] is Map
-            ? responseData["data"]
+      if (responseData['status'] == true ||
+          responseData['status'] == 1 ||
+          responseData['status'] == '1' ||
+          responseData.containsKey('data')) {
+        final appointmentData = responseData['data'] is Map
+            ? responseData['data']
             : responseData;
         return AppointmentModel.fromJson(
           appointmentData as Map<String, dynamic>,

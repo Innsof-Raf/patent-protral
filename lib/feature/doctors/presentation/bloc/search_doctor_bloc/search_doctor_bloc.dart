@@ -9,7 +9,7 @@ part 'generated/search_doctor_bloc.freezed.dart';
 class SearchDoctorBloc extends Bloc<SearchDoctorEvent, SearchDoctorState> {
   SearchDoctorBloc() : super(SearchDoctorState.initial()) {
     on<SearchDoctor>((event, emit) {
-      List<Doctor> searchResult = [];
+      final List<Doctor> searchResult = [];
       for (Doctor doctor in event.doctors) {
         if (doctor.doctorName.toLowerCase().contains(event.searchKey)) {
           searchResult.add(doctor);

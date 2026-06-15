@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/lab/domain/entities/item.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
 import 'package:patient_portal/feature/lab/presentation/widgets/lab_grid_item_tile.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/gen/assets.gen.dart';
 
 class PackagesTabBarView extends StatelessWidget {
@@ -30,7 +30,7 @@ class PackagesTabBarView extends StatelessWidget {
             ),
           );
         } else {
-          List<Item> packages = state.items
+          final List<Item> packages = state.items
               .where((item) => item.itemType == 'pkg')
               .toList();
           if (packages.isEmpty) {

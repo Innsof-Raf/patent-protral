@@ -1,15 +1,15 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/lab/domain/entities/item.dart';
-import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
-import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
 import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/feature/lab/domain/entities/item.dart';
+import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
+import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/gen/assets.gen.dart';
 
 @RoutePage(name: 'LabItemDetailRoute')
@@ -21,11 +21,11 @@ class LabItemDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ItemsBloc, ItemsState>(
       builder: (context, state) {
-        int itemIndex = state.items.indexWhere(
+        final int itemIndex = state.items.indexWhere(
           (element) => element.idItem == idItem,
         );
 
-        Item? selectedItem = itemIndex != -1 ? state.items[itemIndex] : null;
+        final Item? selectedItem = itemIndex != -1 ? state.items[itemIndex] : null;
         return Scaffold(
           appBar: const CommonAppbar(title: 'Lab'),
           body: Padding(
@@ -42,7 +42,7 @@ class LabItemDetailScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(7),
                             child: CachedNetworkImage(
                               imageUrl:
-                                  "${ConstantUrls.packageImageUrl}/${selectedItem.idItem}/${selectedItem.itemImg}",
+                                  '${ConstantUrls.packageImageUrl}/${selectedItem.idItem}/${selectedItem.itemImg}',
                               errorWidget: (context, url, error) {
                                 return Image.asset(
                                   Assets.images.imageLoadingFailedImage.path,
@@ -74,12 +74,12 @@ class LabItemDetailScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 const Text(
-                  "Package Description",
+                  'Package Description',
                   style: AppTextStyles.bodySmallRobotoNormal,
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  "subtitle subtitle subttilte subtitlte jhwhdfjfjfji efujiejfij bfuhufujnj\njfjjjfjfjj\ndjfjigjigjijhfhfh",
+                  'subtitle subtitle subttilte subtitlte jhwhdfjfjfji efujiejfij bfuhufujnj\njfjjjfjfjj\ndjfjigjigjijhfhfh',
                   style: AppTextStyles.bodySmallInterNormal.copyWith(
                     color: AppColors.textLight,
                   ),
@@ -100,7 +100,7 @@ class LabItemDetailScreen extends StatelessWidget {
                         SizedBox(width: 5),
                         Flexible(
                           child: Text(
-                            "Lorem ipsum dolor sit amet, consectetuer",
+                            'Lorem ipsum dolor sit amet, consectetuer',
                             style: AppTextStyles.bodyTextBoldRoboto,
                           ),
                         ),

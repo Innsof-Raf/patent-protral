@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
+import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_screen_appbar.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_state_view.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_documents_section.dart';
@@ -10,8 +12,6 @@ import 'package:patient_portal/feature/member_details/presentation/widgets/membe
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
-import 'package:patient_portal/core/route/app_router.dart';
 
 @RoutePage(name: 'MemberDetailsRoute')
 class MemberDetailsScreen extends StatefulWidget {

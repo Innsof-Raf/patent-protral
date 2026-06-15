@@ -68,27 +68,27 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
       addMember: (p) async {
         try {
           final contentMap = {
-            "id_customer": 0,
-            "customer_id": "New",
-            "id_setid": 4,
-            "customer_name": p.patientName,
-            "customer_status": "ACTIVE",
-            "customer_type": "PATIENT",
-            "mobile_no": p.mobileNumber,
-            "national_id": p.nationalId,
-            "email": p.email,
-            "dob": DateFormat('yyyy-MM-dd').format(p.dob),
-            "gender": p.gender,
-            "id_insurance": p.idInsurance,
-            "member_no": p.memberNumber,
-            "expiry_dt": p.expireDate != null
+            'id_customer': 0,
+            'customer_id': 'New',
+            'id_setid': 4,
+            'customer_name': p.patientName,
+            'customer_status': 'ACTIVE',
+            'customer_type': 'PATIENT',
+            'mobile_no': p.mobileNumber,
+            'national_id': p.nationalId,
+            'email': p.email,
+            'dob': DateFormat('yyyy-MM-dd').format(p.dob),
+            'gender': p.gender,
+            'id_insurance': p.idInsurance,
+            'member_no': p.memberNumber,
+            'expiry_dt': p.expireDate != null
                 ? DateFormat('yyyy-MM-dd').format(p.expireDate!)
                 : null,
-            "others": p.otherInsuranceName?.toUpperCase(),
-            "profile_img": p.profileImage != null ? "profile.png" : null,
+            'others': p.otherInsuranceName?.toUpperCase(),
+            'profile_img': p.profileImage != null ? 'profile.png' : null,
           };
 
-          FormData formData = FormData.fromMap({
+          final FormData formData = FormData.fromMap({
             'saveRequest': jsonEncode(
               serviceRequest(type: 'HMS0035', content: contentMap),
             ),
@@ -162,11 +162,11 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
           final data = serviceRequest(
             type: 'PP0035',
             content: {
-              "id_customer": p.memberId,
-              "id_insurance": p.idInsurance,
-              "insurance_name": p.idInsurance == 0 ? p.insuranceName : null,
-              "expire_date": DateFormat('yyyy-MM-dd').format(p.expireDate),
-              "member_number": p.memberNumber,
+              'id_customer': p.memberId,
+              'id_insurance': p.idInsurance,
+              'insurance_name': p.idInsurance == 0 ? p.insuranceName : null,
+              'expire_date': DateFormat('yyyy-MM-dd').format(p.expireDate),
+              'member_number': p.memberNumber,
             },
           );
           final response = await client.post(

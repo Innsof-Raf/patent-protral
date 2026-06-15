@@ -6,12 +6,12 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
-import 'package:patient_portal/feature/reports/data/models/report_file_model.dart';
-import 'package:patient_portal/feature/reports/data/models/report_model.dart';
-import 'package:patient_portal/feature/reports/domain/usecases/params/reports_params.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
 import 'package:patient_portal/core/resources/error_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/feature/reports/data/models/report_file_model.dart';
+import 'package:patient_portal/feature/reports/data/models/report_model.dart';
+import 'package:patient_portal/feature/reports/domain/usecases/params/reports_params.dart';
 
 abstract class ReportsRemoteDataSource {
   Future<Either<ErrorModel, List<ReportModel>>> getReports(
@@ -40,9 +40,9 @@ class ReportsRemoteDataSourceImpl implements ReportsRemoteDataSource {
       final data = serviceRequest(
         type: 'PP0016',
         content: {
-          "id_customer": getReportsParams.memberId,
-          "mobile_no": getReportsParams.mobileNumber,
-          "status": "ALL",
+          'id_customer': getReportsParams.memberId,
+          'mobile_no': getReportsParams.mobileNumber,
+          'status': 'ALL',
         },
       );
       final response = await client.post(
@@ -52,7 +52,7 @@ class ReportsRemoteDataSourceImpl implements ReportsRemoteDataSource {
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
         final List responseList = decodeResponseData(response.data);
-        List<ReportModel> conseltationsList = [];
+        final List<ReportModel> conseltationsList = [];
         for (final raw in responseList) {
           conseltationsList.add(ReportModel.fromJson(raw));
         }

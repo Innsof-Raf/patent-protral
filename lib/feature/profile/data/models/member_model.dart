@@ -13,31 +13,31 @@ sealed class MemberModel with _$MemberModel {
   const MemberModel._();
 
   const factory MemberModel({
-    @JsonKey(name: "Id", fromJson: intFromJson) required int id,
-    @JsonKey(name: "Name", fromJson: stringFromJson) required String name,
-    @JsonKey(name: "MobileNo", fromJson: _nullableStringFromJson)
+    @JsonKey(name: 'Id', fromJson: intFromJson) required int id,
+    @JsonKey(name: 'Name', fromJson: stringFromJson) required String name,
+    @JsonKey(name: 'MobileNo', fromJson: _nullableStringFromJson)
     String? mobileNo,
-    @JsonKey(name: "EmailID", fromJson: _nullableStringFromJson)
+    @JsonKey(name: 'EmailID', fromJson: _nullableStringFromJson)
     String? emailId,
-    @JsonKey(name: "Age", fromJson: stringFromJson) required String age,
-    @JsonKey(name: "SSN", fromJson: stringFromJson) required String nationalId,
-    @JsonKey(name: "Profile_Img", fromJson: _nullableStringFromJson)
+    @JsonKey(name: 'Age', fromJson: stringFromJson) required String age,
+    @JsonKey(name: 'SSN', fromJson: stringFromJson) required String nationalId,
+    @JsonKey(name: 'Profile_Img', fromJson: _nullableStringFromJson)
     String? profileImage,
-    @JsonKey(name: "Is_Insu", fromJson: boolFromJson) required bool isInsurance,
-    @JsonKey(name: "Is_InsuExpired", fromJson: boolFromJson)
+    @JsonKey(name: 'Is_Insu', fromJson: boolFromJson) required bool isInsurance,
+    @JsonKey(name: 'Is_InsuExpired', fromJson: boolFromJson)
     required bool isInsuranceExpired,
-    @JsonKey(name: "Insur_Exp", fromJson: _nullableDateTimeFromJson)
+    @JsonKey(name: 'Insur_Exp', fromJson: _nullableDateTimeFromJson)
     @Default(null)
     DateTime? insuranceExpDttm,
-    @JsonKey(name: "Dob", fromJson: _nullableDateTimeFromJson)
+    @JsonKey(name: 'Dob', fromJson: _nullableDateTimeFromJson)
     @Default(null)
     DateTime? dob,
-    @JsonKey(name: "member_no", fromJson: _nullableStringFromJson)
+    @JsonKey(name: 'member_no', fromJson: _nullableStringFromJson)
     String? memberNo,
-    @JsonKey(name: "insur_name", fromJson: _nullableStringFromJson)
+    @JsonKey(name: 'insur_name', fromJson: _nullableStringFromJson)
     String? insuranceName,
-    @JsonKey(name: "insu_id", fromJson: _nullableIntFromJson) int? insuranceId,
-    @JsonKey(name: "Gender", fromJson: _nullableStringFromJson) String? gender,
+    @JsonKey(name: 'insu_id', fromJson: _nullableIntFromJson) int? insuranceId,
+    @JsonKey(name: 'Gender', fromJson: _nullableStringFromJson) String? gender,
     @JsonKey(name: 'docs') @Default([]) List<MmemberDocumentModel> memberDocs,
     @Default(false) bool isSelected,
   }) = _MemberModel;

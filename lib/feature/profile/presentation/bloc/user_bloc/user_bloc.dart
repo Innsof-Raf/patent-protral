@@ -57,7 +57,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           ),
         ),
         (newMember) {
-          List<Member> members = List.from(state.user!.members);
+          final List<Member> members = List.from(state.user!.members);
           final currentMemberIndex = members.indexWhere(
             (member) => member.id == newMember.id,
           );
@@ -97,8 +97,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           ),
         ),
         (memberDetail) {
-          List<Member> members = List.from(state.user!.members);
-          int currentMemberIndex = members.indexWhere(
+          final List<Member> members = List.from(state.user!.members);
+          final int currentMemberIndex = members.indexWhere(
             (member) => member.id == event.params.memberId,
           );
           members[currentMemberIndex] = memberDetail;
@@ -133,7 +133,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           ),
         ),
         (memberDetail) {
-          List<Member> members = List.from(state.user!.members);
+          final List<Member> members = List.from(state.user!.members);
           final int cureentMemberIndex = members.indexWhere(
             (member) => member.id == event.params.memberId,
           );

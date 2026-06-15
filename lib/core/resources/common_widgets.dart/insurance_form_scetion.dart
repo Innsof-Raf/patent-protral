@@ -201,7 +201,7 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
                 ),
                 controller: InsuranceFormSection.expireDateController,
                 onTap: () async {
-                  DateTime? selectedDate = await InsuranceHelpers.getExpireDate(
+                  final DateTime? selectedDate = await InsuranceHelpers.getExpireDate(
                     initialDate:
                         InsuranceFormSection.expireDate ??
                         DateTime.now().add(const Duration(days: 1)),

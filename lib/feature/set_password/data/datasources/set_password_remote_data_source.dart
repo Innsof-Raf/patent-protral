@@ -5,11 +5,11 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
-import 'package:patient_portal/feature/set_password/data/models/change_password_response_model.dart';
-import 'package:patient_portal/feature/set_password/domain/usecases/params/set_password_params.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
 import 'package:patient_portal/core/resources/error_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/feature/set_password/data/models/change_password_response_model.dart';
+import 'package:patient_portal/feature/set_password/domain/usecases/params/set_password_params.dart';
 
 abstract class SetPasswordRemoteDataSource {
   Future<Either<ErrorModel, ChangePasswordResponseModel>> changePassword(
@@ -34,9 +34,9 @@ class SetPasswordRemoteDataSourceImpl implements SetPasswordRemoteDataSource {
       final data = serviceRequest(
         type: 'PP0036',
         content: {
-          "id_user": changePasswordParams.idUser,
-          "mobile_no": changePasswordParams.mobileNumber,
-          "pwd": changePasswordParams.newPassword,
+          'id_user': changePasswordParams.idUser,
+          'mobile_no': changePasswordParams.mobileNumber,
+          'pwd': changePasswordParams.newPassword,
         },
       );
 

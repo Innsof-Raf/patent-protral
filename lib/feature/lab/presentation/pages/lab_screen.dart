@@ -1,15 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
 import 'package:patient_portal/feature/lab/presentation/widgets/lab_screen_appbar.dart';
 import 'package:patient_portal/feature/lab/presentation/widgets/lab_tab_bar.dart';
 import 'package:patient_portal/feature/lab/presentation/widgets/packages_tab_bar_view.dart';
 import 'package:patient_portal/feature/lab/presentation/widgets/tests_tab_bar_view.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
-import 'package:patient_portal/core/route/app_router.dart';
 
 @RoutePage(name: 'LabRoute')
 class LabScreen extends StatefulWidget {

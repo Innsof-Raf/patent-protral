@@ -45,7 +45,7 @@ class MemberDetailsSection extends StatelessWidget {
                 MemeberFormValidationHelpers.dobValidator(value: value),
             readOnly: true,
             onTap: () async {
-              DateTime? selectedDate = await AddMemberScreenHelpers.getDob(
+              final DateTime? selectedDate = await AddMemberScreenHelpers.getDob(
                 initialDate: dob ?? DateTime(2000),
                 context: context,
               );

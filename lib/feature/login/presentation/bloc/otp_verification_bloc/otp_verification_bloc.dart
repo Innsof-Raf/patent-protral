@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
 import 'package:patient_portal/feature/login/domain/usecases/params/login_params.dart';
 import 'package:patient_portal/feature/login/domain/usecases/verify_otp_usecase.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
-import 'package:patient_portal/core/resources/error_model.dart';
 
 part 'generated/otp_verification_bloc.freezed.dart';
 part 'otp_verification_event.dart';

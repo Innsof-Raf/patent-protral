@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:patient_portal/core/error/failures.dart';
+import 'package:patient_portal/core/resources/common_models/insurance/insurance_model.dart';
 import 'package:patient_portal/core/usecases/usecase.dart';
 import 'package:patient_portal/feature/add_member/domain/repositories/add_member_repository.dart';
 import 'package:patient_portal/feature/add_member/domain/usecases/params/params.dart';
-import 'package:patient_portal/core/resources/common_models/insurance/insurance_model.dart';
 
 class GetInsurancesUseCase
     implements UseCase<List<InsuranceModel>, AddMemberParams> {

@@ -8,8 +8,8 @@ part 'generated/appointment_model.g.dart';
 sealed class AppointmentModel with _$AppointmentModel {
   const factory AppointmentModel({
     @JsonKey(readValue: _readId, fromJson: intFromJson) required int id,
-    @Default('') @JsonKey(name: "appmt_id") String appointmentId,
-    @Default('') @JsonKey(name: "branch") String branch,
+    @Default('') @JsonKey(name: 'appmt_id') String appointmentId,
+    @Default('') @JsonKey(name: 'branch') String branch,
     @JsonKey(readValue: _readIdMember, fromJson: intFromJson)
     required int idMember,
     @JsonKey(readValue: _readMemberName, fromJson: stringFromJson)
@@ -18,24 +18,24 @@ sealed class AppointmentModel with _$AppointmentModel {
     required int idDoctor,
     @JsonKey(readValue: _readDoctorName, fromJson: stringFromJson)
     required String doctorName,
-    @Default('') @JsonKey(name: "speciality") String doctorSpeciality,
+    @Default('') @JsonKey(name: 'speciality') String doctorSpeciality,
     @JsonKey(readValue: _readDoctorImage, fromJson: stringFromJson)
     required String doctorImage,
-    @JsonKey(name: "Appmnt_Dttm") required DateTime appointmentDateTime,
-    @Default(null) @JsonKey(name: "customer_img") String? memberImage,
+    @JsonKey(name: 'Appmnt_Dttm') required DateTime appointmentDateTime,
+    @Default(null) @JsonKey(name: 'customer_img') String? memberImage,
     @JsonKey(readValue: _readBusunitName, fromJson: stringFromJson)
     required String busunitName,
-    @Default('') @JsonKey(name: "dept_name") String deptName,
+    @Default('') @JsonKey(name: 'dept_name') String deptName,
     @JsonKey(readValue: _readEmail, fromJson: stringFromJson)
     required String email,
     @Default('')
-    @JsonKey(name: "employee_id", fromJson: stringFromJson)
+    @JsonKey(name: 'employee_id', fromJson: stringFromJson)
     String doctorId,
     @JsonKey(readValue: _readMobileNo, fromJson: stringFromJson)
     required String mobileNo,
     @JsonKey(readValue: _readIdBusunit, fromJson: intFromJson)
     required int idBusunit,
-    @Default(0) @JsonKey(name: "id_dept", fromJson: intFromJson) int idDept,
+    @Default(0) @JsonKey(name: 'id_dept', fromJson: intFromJson) int idDept,
   }) = _AppointmentModel;
 
   factory AppointmentModel.fromJson(Map<String, dynamic> json) =>

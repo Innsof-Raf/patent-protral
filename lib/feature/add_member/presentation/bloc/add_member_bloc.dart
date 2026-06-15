@@ -1,12 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:patient_portal/feature/add_member/domain/usecases/add_member_usecase.dart';
-import 'package:patient_portal/feature/add_member/domain/usecases/get_insurances_usecase.dart';
-import 'package:patient_portal/feature/add_member/domain/usecases/update_insurance_usecase.dart';
-import 'package:patient_portal/feature/add_member/domain/usecases/params/params.dart';
-import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/core/resources/common_models/insurance/insurance_model.dart';
 import 'package:patient_portal/core/resources/error_model.dart';
+import 'package:patient_portal/feature/add_member/domain/usecases/add_member_usecase.dart';
+import 'package:patient_portal/feature/add_member/domain/usecases/get_insurances_usecase.dart';
+import 'package:patient_portal/feature/add_member/domain/usecases/params/params.dart';
+import 'package:patient_portal/feature/add_member/domain/usecases/update_insurance_usecase.dart';
+import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 
 part 'add_member_event.dart';
 part 'add_member_state.dart';

@@ -1,7 +1,7 @@
 import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
-import 'package:patient_portal/feature/home/data/models/home_data_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/feature/home/data/models/home_data_model.dart';
 
 abstract class HomeRemoteDataSource {
   Future<HomeDataModel> getHomeData({

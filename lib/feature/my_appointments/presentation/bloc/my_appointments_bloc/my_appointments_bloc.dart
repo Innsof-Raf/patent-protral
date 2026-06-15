@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/core/resources/error_model.dart';
 import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/cancel_appointment_usecase.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/get_my_appointments_usecase.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
-import 'package:patient_portal/core/resources/error_model.dart';
 
 part 'generated/my_appointments_bloc.freezed.dart';
 part 'my_appointments_event.dart';
@@ -44,11 +44,11 @@ class MyAppointmentsBloc
           ),
         ),
         (myAppointments) {
-          List<DateTime> monthTimeLineList = [];
-          List<DateTime> monthTimeLineListOfConsulted = [];
-          List<DateTime> monthTimeLineListOfNotConsulted = [];
-          List<MyAppointment> consultedAppointments = [];
-          List<MyAppointment> notConsultedAppointments = [];
+          final List<DateTime> monthTimeLineList = [];
+          final List<DateTime> monthTimeLineListOfConsulted = [];
+          final List<DateTime> monthTimeLineListOfNotConsulted = [];
+          final List<MyAppointment> consultedAppointments = [];
+          final List<MyAppointment> notConsultedAppointments = [];
           for (MyAppointment appointment in myAppointments) {
             if (!monthTimeLineList.contains(
               DateTime(
@@ -112,11 +112,11 @@ class MyAppointmentsBloc
       );
     });
     on<ChangeResheduledAppointmentDetails>((event, emit) {
-      List<MyAppointment> myAppointments = List.from(state.myAppointments);
+      final List<MyAppointment> myAppointments = List.from(state.myAppointments);
 
-      List<DateTime> monthTimeLineList = [];
-      List<DateTime> monthTimeLineListOfNotConsulted = [];
-      List<MyAppointment> notConsultedAppointments = [];
+      final List<DateTime> monthTimeLineList = [];
+      final List<DateTime> monthTimeLineListOfNotConsulted = [];
+      final List<MyAppointment> notConsultedAppointments = [];
       final int currentAppointmentIndex = myAppointments.indexOf(
         event.params.appointment,
       );
@@ -203,11 +203,11 @@ class MyAppointmentsBloc
           state.copyWith(isAppointmentsCancelationFailed: false, error: error),
         ),
         (sucessesResponse) {
-          List<MyAppointment> myAppointments = List.from(state.myAppointments);
+          final List<MyAppointment> myAppointments = List.from(state.myAppointments);
 
-          List<DateTime> monthTimeLineList = [];
-          List<DateTime> monthTimeLineListOfNotConsulted = [];
-          List<MyAppointment> notConsultedAppointments = [];
+          final List<DateTime> monthTimeLineList = [];
+          final List<DateTime> monthTimeLineListOfNotConsulted = [];
+          final List<MyAppointment> notConsultedAppointments = [];
           myAppointments.removeWhere(
             (appointment) => appointment.id == event.params.idAppointment,
           );
@@ -256,18 +256,18 @@ class MyAppointmentsBloc
       );
     });
     on<StoreBokkedApoointment>((event, emit) {
-      List<MyAppointment> myAppointments = List.from(state.myAppointments);
-      List<MyAppointment> myNotConsultedAppointments = List.from(
+      final List<MyAppointment> myAppointments = List.from(state.myAppointments);
+      final List<MyAppointment> myNotConsultedAppointments = List.from(
         state.myNotConsultedAppointments,
       );
-      List<MyAppointment> myConsultedAppointments = List.from(
+      final List<MyAppointment> myConsultedAppointments = List.from(
         state.myConsultedAppointments,
       );
-      List<DateTime> monthList = List.from(state.monthTimeLineList);
-      List<DateTime> monthTimeLineListOfConsulted = List.from(
+      final List<DateTime> monthList = List.from(state.monthTimeLineList);
+      final List<DateTime> monthTimeLineListOfConsulted = List.from(
         state.monthTimeLineListOfConsulted,
       );
-      List<DateTime> monthTimeLineListOfNotConsulted = List.from(
+      final List<DateTime> monthTimeLineListOfNotConsulted = List.from(
         state.monthTimeLineListOfNotConsulted,
       );
       if (event.params.appointment.appointmentDateTime.isAfter(

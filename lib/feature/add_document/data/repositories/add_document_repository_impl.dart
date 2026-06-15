@@ -3,10 +3,10 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:patient_portal/core/error/failures.dart';
-import 'package:patient_portal/feature/add_document/data/datasources/add_document_remote_data_source.dart';
-import 'package:patient_portal/feature/add_document/domain/repositories/add_document_repository.dart';
-import 'package:patient_portal/feature/add_document/domain/entities/document_type.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
+import 'package:patient_portal/feature/add_document/data/datasources/add_document_remote_data_source.dart';
+import 'package:patient_portal/feature/add_document/domain/entities/document_type.dart';
+import 'package:patient_portal/feature/add_document/domain/repositories/add_document_repository.dart';
 
 class AddDocumentRepositoryImpl implements AddDocumentRepository {
   final AddDocumentRemoteDataSource remoteDataSource;

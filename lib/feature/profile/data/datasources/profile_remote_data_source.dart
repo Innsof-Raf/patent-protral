@@ -40,31 +40,31 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       final idCustomer = _resolveCustomerId(p);
 
       final content = {
-        "id_customer": idCustomer,
-        "customer_id": idCustomer == 0
-            ? "New"
-            : "", // Should ideally come from member model if existing
-        "id_setid": 4,
-        "customer_name": p.patientName,
-        "customer_status": "ACTIVE",
-        "customer_type": "PATIENT",
-        "gender": p.gender,
-        "mobile_no": p.mobileNumber ?? user?.mobileNumber,
-        "email": p.email ?? user?.emailId,
-        "dob": DateFormat('yyyy-MM-dd').format(p.dob),
-        "national_id": p.nationalId, // Extra field, usually accepted
-        "id_insurance": p.idInsurance,
-        "member_no": p.memberNumber,
-        "expiry_dt": p.expireDate != null
+        'id_customer': idCustomer,
+        'customer_id': idCustomer == 0
+            ? 'New'
+            : '', // Should ideally come from member model if existing
+        'id_setid': 4,
+        'customer_name': p.patientName,
+        'customer_status': 'ACTIVE',
+        'customer_type': 'PATIENT',
+        'gender': p.gender,
+        'mobile_no': p.mobileNumber ?? user?.mobileNumber,
+        'email': p.email ?? user?.emailId,
+        'dob': DateFormat('yyyy-MM-dd').format(p.dob),
+        'national_id': p.nationalId, // Extra field, usually accepted
+        'id_insurance': p.idInsurance,
+        'member_no': p.memberNumber,
+        'expiry_dt': p.expireDate != null
             ? DateFormat('yyyy-MM-dd').format(p.expireDate!)
             : null,
-        "others": p.otherInsuranceName?.toUpperCase(),
-        "profile_img": p.profileImage != null ? "profile.png" : null,
+        'others': p.otherInsuranceName?.toUpperCase(),
+        'profile_img': p.profileImage != null ? 'profile.png' : null,
       };
 
       final saveRequest = serviceRequest(type: 'HMS0035', content: content);
 
-      FormData formData = FormData.fromMap({
+      final FormData formData = FormData.fromMap({
         'saveRequest': jsonEncode(saveRequest),
         'pathidentifier': 'PatientProfileImage',
         'removeProfilePic': 'false',
@@ -205,11 +205,11 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
   ) async {
     try {
       final content = {
-        "id_customer": p.memberId,
-        "id_insurance": p.idInsurance,
-        "insurance_name": p.idInsurance == 0 ? p.memberNumber : null,
-        "expire_date": p.expireDate.toString(),
-        "member_number": p.memberNumber,
+        'id_customer': p.memberId,
+        'id_insurance': p.idInsurance,
+        'insurance_name': p.idInsurance == 0 ? p.memberNumber : null,
+        'expire_date': p.expireDate.toString(),
+        'member_number': p.memberNumber,
       };
       final data = serviceRequest(type: 'PP0035', content: content);
       final response = await client.post(
@@ -250,7 +250,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     try {
       final data = serviceRequest(
         type: 'HMS0034',
-        content: {"id_customer": p.memberId},
+        content: {'id_customer': p.memberId},
       );
       final response = await client.post(
         url: ConstantUrls.serviceUrl,

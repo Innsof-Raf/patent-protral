@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:patient_portal/feature/profile/presentation/widgets/member_section.dart';
 import 'package:patient_portal/feature/profile/presentation/widgets/my_profile_section.dart';
 import 'package:patient_portal/feature/profile/presentation/widgets/quick_menus_section.dart';
-import 'package:patient_portal/feature/profile/presentation/widgets/member_section.dart';
 
 @RoutePage(name: 'MyProfileRoute')
 class ProfileScreen extends StatelessWidget {
