@@ -6,13 +6,10 @@ class MemberDetailsLoadingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Center(
       child: Image.asset(
         Assets.gifImages.ripple02.path,
         width: MediaQuery.sizeOf(context).shortestSide * .32,
-        color: theme.colorScheme.primary,
       ),
     );
   }
