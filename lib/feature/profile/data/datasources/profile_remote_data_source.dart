@@ -256,7 +256,8 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       } else {
         throw Exception('Server Failure');
       }
-    } on DioException catch (e) {
+    } on DioException catch (e, stackTrace) {
+      log('DioException: ${e.message}', stackTrace: stackTrace);
       if (e.error is SocketException) {
         throw Exception('No Network');
       } else if (e.type == DioExceptionType.connectionTimeout) {
@@ -264,6 +265,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       }
       throw Exception(e.message ?? 'Server Failure');
     } catch (e) {
+      log('Exception: ${e.toString()}', stackTrace: StackTrace.current);
       throw Exception(e.toString());
     }
   }

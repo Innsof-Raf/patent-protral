@@ -1,140 +1,142 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/members/presentation/bloc/member_search_bloc/member_search_bloc.dart';
-import 'package:patient_portal/feature/profile/domain/entities/member.dart';
-import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/member_tile.dart';
-import 'package:patient_portal/core/resources/dimens.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
 import 'package:patient_portal/core/route/app_router.dart';
+import 'package:patient_portal/feature/members/presentation/bloc/member_search_bloc/member_search_bloc.dart';
+import 'package:patient_portal/feature/members/presentation/widgets/deletable_member_tile.dart';
+import 'package:patient_portal/feature/members/presentation/widgets/members_header.dart';
+import 'package:patient_portal/feature/members/presentation/widgets/members_state_view.dart';
+import 'package:patient_portal/feature/profile/domain/entities/member.dart';
+import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
 @RoutePage(name: 'MembersRoute')
-class MembersScreen extends StatelessWidget {
+class MembersScreen extends StatefulWidget {
   const MembersScreen({super.key});
 
   @override
+  State<MembersScreen> createState() => _MembersScreenState();
+}
+
+class _MembersScreenState extends State<MembersScreen> {
+  final TextEditingController searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-    TextEditingController searchController = TextEditingController();
+    final theme = Theme.of(context);
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      backgroundColor: theme.colorScheme.surface,
       appBar: const CommonAppbar(title: 'Members'),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Dimens.constHeight,
-            const Text(
-              'Member list',
-              style: AppTextStyles.subHeaddingSemiBoldRoboto,
-            ),
-            BlocBuilder<UserBloc, UserState>(
-              builder: (context, state) {
-                return Text(
-                  state.user!.members.isEmpty
-                      ? 'No members found add a member'
-                      : 'Found ${state.user!.members.length}  Members or add new member',
-                  style: AppTextStyles.bodyTextInter,
-                );
-              },
-            ),
-            BlocBuilder<UserBloc, UserState>(
-              builder: (context, state) {
-                return state.user!.members.isEmpty
-                    ? const SizedBox.shrink()
-                    : Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Dimens.constHeight,
-                          Form(
-                            key: formKey,
-                            child: TextFormField(
-                              keyboardType: TextInputType.text,
-                              onChanged: (value) {
-                                context.read<MemberSearchBloc>().add(
-                                  SearchMember(
-                                    members: state.user!.members,
-                                    searchKey: searchController.text
-                                        .toLowerCase(),
-                                  ),
-                                );
-                              },
-                              controller: searchController,
-                              style: AppTextStyles.largeRobotoNormal.copyWith(
-                                color: AppColors.textBluishDark,
-                              ),
-                              decoration: const InputDecoration(
-                                suffixIcon: Icon(
-                                  Icons.search,
-                                  color: AppColors.textDark,
-                                ),
-                                hintStyle: AppTextStyles.largeRobotoNormal,
-                                hintText: 'Search Here',
-                                contentPadding: EdgeInsets.all(15),
-                              ),
-                            ),
-                          ),
-                        ],
-                      );
-              },
-            ),
-            Expanded(
-              child: BlocBuilder<UserBloc, UserState>(
-                builder: (context, userState) {
-                  return userState.user!.members.isEmpty
-                      ? const Center(
-                          child: Text(
-                            'No members found add new member',
-                            style: AppTextStyles.largeRobotoNormal,
-                          ),
-                        )
-                      : BlocBuilder<MemberSearchBloc, MemberSearchState>(
-                          builder: (context, searchState) {
-                            List<Member> members = [];
-                            if (searchController.text.isNotEmpty) {
-                              members = searchState.searchResultMembers;
-                            } else {
-                              members = userState.user!.members;
-                            }
-                            return members.isEmpty
-                                ? const Center(
-                                    child: Text(
-                                      'No Member found',
-                                      style: AppTextStyles.largeRobotoNormal,
-                                    ),
-                                  )
-                                : ListView.separated(
-                                    padding: const EdgeInsets.only(
-                                      top: 15,
-                                      bottom: 80,
-                                    ),
-                                    separatorBuilder: (context, index) =>
-                                        const SizedBox(height: 10),
-                                    itemCount: members.length,
-                                    itemBuilder: (context, index) =>
-                                        MemberTile(member: members[index]),
-                                  );
-                          },
-                        );
-                },
+      body: BlocBuilder<UserBloc, UserState>(
+        builder: (context, userState) {
+          final members = userState.user?.members ?? [];
+
+          return CustomScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            slivers: [
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 10),
+                sliver: SliverToBoxAdapter(
+                  child: MembersHeader(count: members.length),
+                ),
               ),
-            ),
-          ],
-        ),
+              if (members.isNotEmpty)
+                SliverSearchHeader(
+                  controller: searchController,
+                  title: 'Search member by name',
+                  hintText: 'Search members',
+                  onChanged: (value) {
+                    context.read<MemberSearchBloc>().add(
+                      SearchMember(
+                        members: members,
+                        searchKey: value.toLowerCase(),
+                      ),
+                    );
+                  },
+                ),
+              _MembersResultSliver(
+                allMembers: members,
+                searchController: searchController,
+              ),
+            ],
+          );
+        },
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.vilot,
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: theme.colorScheme.primary,
+        foregroundColor: theme.colorScheme.onPrimary,
+        elevation: 0,
         onPressed: () {
           InsuranceHelpers.insuranceCheackBoxNotifier.value = false;
-          context.router.push(AddMemberRoute());
+          context.router.root.push(AddMemberRoute());
         },
-        child: const Icon(Icons.add, color: AppColors.white),
+        icon: const Icon(Icons.person_add_alt_1_rounded),
+        label: const Text('Add Member'),
       ),
+    );
+  }
+}
+
+class _MembersResultSliver extends StatelessWidget {
+  const _MembersResultSliver({
+    required this.allMembers,
+    required this.searchController,
+  });
+
+  final List<Member> allMembers;
+  final TextEditingController searchController;
+
+  @override
+  Widget build(BuildContext context) {
+    if (allMembers.isEmpty) {
+      return const SliverFillRemaining(
+        hasScrollBody: false,
+        child: MembersStateView(
+          title: 'No members found',
+          message: 'Add a member to manage appointments, documents, and care.',
+          icon: Icons.group_add_outlined,
+        ),
+      );
+    }
+
+    return BlocBuilder<MemberSearchBloc, MemberSearchState>(
+      builder: (context, searchState) {
+        final members = searchController.text.isNotEmpty
+            ? searchState.searchResultMembers
+            : allMembers;
+
+        if (members.isEmpty) {
+          return const SliverFillRemaining(
+            hasScrollBody: false,
+            child: MembersStateView(
+              title: 'No matching member',
+              message: 'Try another name or clear the search field.',
+              icon: Icons.manage_search_rounded,
+            ),
+          );
+        }
+
+        return SliverPadding(
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 104),
+          sliver: SliverList.separated(
+            itemCount: members.length,
+            separatorBuilder: (context, index) => const SizedBox(height: 12),
+            itemBuilder: (context, index) {
+              return DeletableMemberTile(member: members[index]);
+            },
+          ),
+        );
+      },
     );
   }
 }

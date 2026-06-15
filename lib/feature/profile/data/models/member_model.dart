@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/feature/profile/data/models/member_document_model.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 
@@ -12,21 +13,31 @@ sealed class MemberModel with _$MemberModel {
   const MemberModel._();
 
   const factory MemberModel({
-    @JsonKey(name: "Id") required int id,
-    @JsonKey(name: "Name") required String name,
-    @Default(null) @JsonKey(name: "MobileNo") String? mobileNo,
-    @Default(null) @JsonKey(name: "EmailID") String? emailId,
-    @JsonKey(name: "Age") required String age,
-    @JsonKey(name: "SSN") required String nationalId,
-    @Default(null) @JsonKey(name: "Profile_Img") String? profileImage,
-    @JsonKey(name: "Is_Insu") required bool isInsurance,
-    @JsonKey(name: "Is_InsuExpired") required bool isInsuranceExpired,
-    @JsonKey(name: "Insur_Exp") @Default(null) DateTime? insuranceExpDttm,
-    @JsonKey(name: "Dob") @Default(null) DateTime? dob,
-    @JsonKey(name: "member_no") @Default(null) String? memberNo,
-    @JsonKey(name: "insur_name") @Default(null) String? insuranceName,
-    @JsonKey(name: "insu_id") @Default(null) int? insuranceId,
-    @JsonKey(name: "Gender") @Default(null) String? gender,
+    @JsonKey(name: "Id", fromJson: intFromJson) required int id,
+    @JsonKey(name: "Name", fromJson: stringFromJson) required String name,
+    @JsonKey(name: "MobileNo", fromJson: _nullableStringFromJson)
+    String? mobileNo,
+    @JsonKey(name: "EmailID", fromJson: _nullableStringFromJson)
+    String? emailId,
+    @JsonKey(name: "Age", fromJson: stringFromJson) required String age,
+    @JsonKey(name: "SSN", fromJson: stringFromJson) required String nationalId,
+    @JsonKey(name: "Profile_Img", fromJson: _nullableStringFromJson)
+    String? profileImage,
+    @JsonKey(name: "Is_Insu", fromJson: boolFromJson) required bool isInsurance,
+    @JsonKey(name: "Is_InsuExpired", fromJson: boolFromJson)
+    required bool isInsuranceExpired,
+    @JsonKey(name: "Insur_Exp", fromJson: _nullableDateTimeFromJson)
+    @Default(null)
+    DateTime? insuranceExpDttm,
+    @JsonKey(name: "Dob", fromJson: _nullableDateTimeFromJson)
+    @Default(null)
+    DateTime? dob,
+    @JsonKey(name: "member_no", fromJson: _nullableStringFromJson)
+    String? memberNo,
+    @JsonKey(name: "insur_name", fromJson: _nullableStringFromJson)
+    String? insuranceName,
+    @JsonKey(name: "insu_id", fromJson: _nullableIntFromJson) int? insuranceId,
+    @JsonKey(name: "Gender", fromJson: _nullableStringFromJson) String? gender,
     @JsonKey(name: 'docs') @Default([]) List<MmemberDocumentModel> memberDocs,
     @Default(false) bool isSelected,
   }) = _MemberModel;
@@ -55,4 +66,22 @@ sealed class MemberModel with _$MemberModel {
       isSelected: isSelected,
     );
   }
+}
+
+String? _nullableStringFromJson(Object? value) {
+  final text = value?.toString();
+  return text == null || text.isEmpty ? null : text;
+}
+
+int? _nullableIntFromJson(Object? value) {
+  if (value == null) return null;
+  final parsed = intFromJson(value);
+  return parsed == 0 && value.toString() != '0' ? null : parsed;
+}
+
+DateTime? _nullableDateTimeFromJson(Object? value) {
+  if (value == null) return null;
+  final text = value.toString();
+  if (text.isEmpty) return null;
+  return DateTime.tryParse(text);
 }

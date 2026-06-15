@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_section_card.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_text_filed.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/radio_button.dart';
 
 class MemberPersonalDetailsSection extends StatelessWidget {
-  final DateTime? dob;
-  final String gender;
-  final String nationalId;
-  final String? email;
   const MemberPersonalDetailsSection({
     super.key,
     required this.dob,
@@ -17,41 +12,53 @@ class MemberPersonalDetailsSection extends StatelessWidget {
     required this.email,
   });
 
+  final DateTime? dob;
+  final String gender;
+  final String nationalId;
+  final String? email;
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        MemberTextFiled(
-          title: 'Date of birth',
-          value: dob != null ? DateFormat('dd-MM-yyyy').format(dob!) : '',
-        ),
-        const SizedBox(height: 13),
-        const Text('Gender', style: AppTextStyles.bodyTextRoboto),
-        const SizedBox(height: 5),
-        Row(
-          children: [
-            RadioButton(
-              value: 'Male',
-              groupValue: gender,
-              onChanged: () {},
-              title: 'Male',
+    final theme = Theme.of(context);
+
+    return MemberDetailsSectionCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Personal details',
+            style: theme.textTheme.titleMedium?.copyWith(
+              color: theme.colorScheme.onSurface,
+              fontWeight: FontWeight.w800,
             ),
-            const SizedBox(width: 20),
-            RadioButton(
-              value: 'Female',
-              groupValue: gender,
-              onChanged: () {},
-              title: 'Female',
-            ),
-          ],
-        ),
-        const SizedBox(height: 19),
-        MemberTextFiled(title: 'National ID', value: nationalId),
-        const SizedBox(height: 8),
-        MemberTextFiled(title: 'Email', value: email ?? ''),
-      ],
+          ),
+          const SizedBox(height: 14),
+          MemberTextFiled(
+            title: 'Date of birth',
+            value: dob != null ? DateFormat('dd-MM-yyyy').format(dob!) : '',
+            icon: Icons.calendar_today_outlined,
+          ),
+          const SizedBox(height: 10),
+          MemberTextFiled(
+            title: 'Gender',
+            value: gender,
+            icon: Icons.wc_rounded,
+          ),
+          const SizedBox(height: 10),
+          MemberTextFiled(
+            title: 'National ID',
+            value: nationalId,
+            icon: Icons.badge_outlined,
+          ),
+          const SizedBox(height: 10),
+          MemberTextFiled(
+            title: 'Email',
+            value: email ?? '',
+            icon: Icons.mail_outline_rounded,
+          ),
+        ],
+      ),
     );
   }
 }

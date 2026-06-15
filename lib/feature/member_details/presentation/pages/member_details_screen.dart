@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_screen_appbar.dart';
+import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_state_view.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_documents_section.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_insurance_section.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_personal_details_section.dart';
@@ -9,11 +10,8 @@ import 'package:patient_portal/feature/member_details/presentation/widgets/membe
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/route/app_router.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
 
 @RoutePage(name: 'MemberDetailsRoute')
 class MemberDetailsScreen extends StatefulWidget {
@@ -38,109 +36,117 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
+      backgroundColor: theme.colorScheme.surface,
       appBar: const MemberDetailsScreenAppbar(),
       body: BlocBuilder<UserBloc, UserState>(
         builder: (context, state) {
           if (state.isFetchingMemberDetail) {
-            return LayoutBuilder(
-              builder: (context, constraints) => Center(
-                child: Image.asset(
-                  Assets.gifImages.ripple02.path,
-                  width: constraints.maxWidth * .3,
-                ),
-              ),
-            );
+            return const MemberDetailsLoadingView();
           } else if (state.isMemberDetailFetchingFailed) {
-            return Center(
-              child: Text(
-                state.error.message,
-                style: AppTextStyles.largeRobotoNormal,
-              ),
+            return MemberDetailsMessageView(
+              title: 'Unable to load member',
+              message: state.error.message,
+              isError: true,
             );
           } else {
-            final Member member = state.user!.members.singleWhere(
-              (element) => element.id == widget.memberId,
-            );
+            final Member? member = _findMember(state.user?.members);
 
-            return Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: ListView(
-                padding: const EdgeInsets.only(bottom: 55),
-                children: [
-                  MemberProfileImageSection(
-                    memberId: widget.memberId,
-                    image: member.profileImage,
-                    title: member.name,
+            if (member == null) {
+              return const MemberDetailsMessageView(
+                title: 'Member details not found',
+                message: 'This member is no longer available in your profile.',
+              );
+            }
+
+            final hasActiveInsurance =
+                member.isInsurance && !member.isInsuranceExpired;
+
+            return CustomScrollView(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              slivers: [
+                SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
+                  sliver: SliverToBoxAdapter(
+                    child: MemberProfileImageSection(
+                      memberId: widget.memberId,
+                      image: member.profileImage,
+                      title: member.name,
+                      subtitle: [
+                        if (member.age.isNotEmpty) 'Age ${member.age}',
+                        if (member.nationalId.isNotEmpty)
+                          'ID ${member.nationalId}',
+                      ].join('  |  '),
+                    ),
                   ),
-                  const SizedBox(height: 23),
-                  MemberPersonalDetailsSection(
-                    dob: member.dob,
-                    email: member.emailId,
-                    gender: member.gender ?? '',
-                    nationalId: member.nationalId,
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+                  sliver: SliverToBoxAdapter(
+                    child: MemberPersonalDetailsSection(
+                      dob: member.dob,
+                      email: member.emailId,
+                      gender: member.gender ?? '',
+                      nationalId: member.nationalId,
+                    ),
                   ),
-                  member.isInsurance && !member.isInsuranceExpired
-                      ? MemberInsuranceSection(
-                          insuranceName: member.insuranceName ?? '',
-                          memberNo: member.memberNo ?? '',
-                          expireDate: member.insuranceExpDttm,
-                        )
-                      : const SizedBox(height: 21),
-                  member.memberDocs.isEmpty
-                      ? const SizedBox.shrink()
-                      : MemberDocumentsSection(documents: member.memberDocs),
-                ],
-              ),
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+                  sliver: SliverToBoxAdapter(
+                    child: MemberInsuranceSection(
+                      hasInsurance: hasActiveInsurance,
+                      insuranceName: member.insuranceName ?? '',
+                      memberNo: member.memberNo ?? '',
+                      expireDate: member.insuranceExpDttm,
+                    ),
+                  ),
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 112),
+                  sliver: SliverToBoxAdapter(
+                    child: MemberDocumentsSection(documents: member.memberDocs),
+                  ),
+                ),
+              ],
             );
           }
         },
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 15),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 1,
-              color: AppColors.black.withValues(alpha: .25),
-              offset: const Offset(0, 0),
-            ),
-          ],
-        ),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
+      bottomNavigationBar: SafeArea(
+        minimum: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+        child: FilledButton.icon(
+          style: FilledButton.styleFrom(
+            minimumSize: const Size.fromHeight(52),
+            backgroundColor: theme.colorScheme.primary,
+            foregroundColor: theme.colorScheme.onPrimary,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(18),
             ),
-            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            elevation: 0,
-            backgroundColor: AppColors.vilot,
-            foregroundColor: AppColors.white,
-            padding: const EdgeInsets.symmetric(vertical: 15),
           ),
           onPressed: () {
-            InsuranceHelpers.insuranceCheackBoxNotifier.value = true;
-            context.router.push(
-              AddMemberRoute(
-                member: context
-                    .read<UserBloc>()
-                    .state
-                    .user!
-                    .members
-                    .singleWhere((member) => member.id == widget.memberId),
-              ),
+            final member = _findMember(
+              context.read<UserBloc>().state.user?.members,
             );
+            if (member == null) return;
+
+            InsuranceHelpers.insuranceCheackBoxNotifier.value = true;
+            context.router.root.push(AddMemberRoute(member: member));
           },
-          child: Text(
-            "Edit Insurance Details",
-            style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-              color: AppColors.white,
-            ),
-          ),
+          icon: const Icon(Icons.edit_outlined),
+          label: const Text('Edit Insurance Details'),
         ),
       ),
     );
+  }
+
+  Member? _findMember(List<Member>? members) {
+    if (members == null) return null;
+    for (final member in members) {
+      if (member.id == widget.memberId) return member;
+    }
+    return null;
   }
 }

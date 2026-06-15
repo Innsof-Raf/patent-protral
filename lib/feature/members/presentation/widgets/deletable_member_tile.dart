@@ -1,103 +1,218 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:patient_portal/feature/members/presentation/bloc/delete_member_bloc/delete_member_bloc.dart';
-import 'package:patient_portal/feature/profile/domain/entities/member.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
-import 'package:patient_portal/gen/assets.gen.dart';
+import 'package:patient_portal/feature/members/presentation/bloc/delete_member_bloc/delete_member_bloc.dart';
+import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 
 class DeletableMemberTile extends StatelessWidget {
-  final Member member;
-
   const DeletableMemberTile({super.key, required this.member});
+
+  final Member member;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DeleteMemberBloc, DeleteMemberState>(
       builder: (context, state) {
         final isSelected = state.selectedMebersList.contains(member.id);
-        return OutlinedButton(
+        final isSelectionMode = state.selectedMebersList.isNotEmpty;
+
+        return _MemberCard(
+          member: member,
+          isSelected: isSelected,
           onLongPress: () {
             context.read<DeleteMemberBloc>().add(
               UpdateSelectedMemberList(memberId: member.id),
             );
           },
-          style: OutlinedButton.styleFrom(
-            side: const BorderSide(width: .5, color: AppColors.borderColor),
-            backgroundColor: isSelected
-                ? AppColors.selectionColor
-                : AppColors.white,
-            foregroundColor: AppColors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5),
-            ),
-            minimumSize: const Size(0, 0),
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          ),
-          onPressed: () {
-            if (isSelected || state.selectedMebersList.isNotEmpty) {
+          onTap: () {
+            if (isSelectionMode) {
               context.read<DeleteMemberBloc>().add(
                 UpdateSelectedMemberList(memberId: member.id),
               );
-            } else {
-              context.router.push(MemberDetailsRoute(memberId: member.id));
+              return;
             }
+
+            context.router.root.push(MemberDetailsRoute(memberId: member.id));
           },
-          child: Row(
-            children: [
-              CircleAvatar(
-                radius: 18,
-                backgroundColor: member.profileImage == null
-                    ? AppColors.orange
-                    : null,
-                backgroundImage: member.profileImage != null
-                    ? NetworkImage(
-                        '${ConstantUrls.memberImageUrl}/${member.id}/${member.profileImage}',
-                      )
-                    : null,
-                child: member.profileImage == null
-                    ? Text(
-                        member.name[0],
-                        style: AppTextStyles.subHeaddingSemiBoldRoboto.copyWith(
-                          fontSize: 18,
-                          color: AppColors.white,
-                        ),
-                      )
-                    : null,
-              ),
-              const SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    member.name,
-                    style: AppTextStyles.bodyLargeRobotoSemiBold.copyWith(
-                      fontSize: 12,
-                      color: AppColors.textLight,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    member.age,
-                    style: AppTextStyles.bodyTextInter.copyWith(
-                      color: AppColors.textLight,
-                    ),
-                  ),
-                ],
-              ),
-              const Spacer(),
-              member.isInsurance && !member.isInsuranceExpired
-                  ? SvgPicture.asset(Assets.icons.insuranceCartIcon.path)
-                  : const SizedBox(),
-            ],
-          ),
         );
       },
+    );
+  }
+}
+
+class _MemberCard extends StatelessWidget {
+  const _MemberCard({
+    required this.member,
+    required this.isSelected,
+    required this.onTap,
+    required this.onLongPress,
+  });
+
+  final Member member;
+  final bool isSelected;
+  final VoidCallback onTap;
+  final VoidCallback onLongPress;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 180),
+      decoration: BoxDecoration(
+        color: isSelected
+            ? theme.colorScheme.primaryContainer.withValues(alpha: .58)
+            : theme.colorScheme.surface,
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(
+          color: isSelected
+              ? theme.colorScheme.primary
+              : theme.colorScheme.outlineVariant.withValues(alpha: .55),
+          width: isSelected ? 1.2 : 1,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: theme.colorScheme.shadow.withValues(alpha: .05),
+            blurRadius: 18,
+            offset: const Offset(0, 10),
+          ),
+        ],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(22),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(22),
+          onTap: onTap,
+          onLongPress: onLongPress,
+          child: Padding(
+            padding: const EdgeInsets.all(14),
+            child: Row(
+              children: [
+                _MemberAvatar(member: member),
+                const SizedBox(width: 12),
+                Expanded(child: _MemberDetails(member: member)),
+                const SizedBox(width: 10),
+                if (member.isInsurance && !member.isInsuranceExpired)
+                  const _InsuranceBadge(),
+                const SizedBox(width: 8),
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 160),
+                  child: isSelected
+                      ? Icon(
+                          Icons.check_circle_rounded,
+                          key: const ValueKey('selected'),
+                          color: theme.colorScheme.primary,
+                        )
+                      : Icon(
+                          Icons.chevron_right_rounded,
+                          key: const ValueKey('open'),
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _MemberAvatar extends StatelessWidget {
+  const _MemberAvatar({required this.member});
+
+  final Member member;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final image = member.profileImage;
+
+    return CircleAvatar(
+      radius: 26,
+      backgroundColor: theme.colorScheme.primaryContainer,
+      backgroundImage: image == null
+          ? null
+          : NetworkImage('${ConstantUrls.memberImageUrl}/${member.id}/$image'),
+      child: image == null
+          ? Text(
+              member.name.trim().isEmpty
+                  ? '?'
+                  : member.name.trim()[0].toUpperCase(),
+              style: theme.textTheme.titleLarge?.copyWith(
+                color: theme.colorScheme.onPrimaryContainer,
+                fontWeight: FontWeight.w900,
+              ),
+            )
+          : null,
+    );
+  }
+}
+
+class _MemberDetails extends StatelessWidget {
+  const _MemberDetails({required this.member});
+
+  final Member member;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final subtitle = [
+      if (member.age.isNotEmpty) 'Age ${member.age}',
+      if (member.nationalId.isNotEmpty) 'ID ${member.nationalId}',
+    ].join('  |  ');
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          member.name,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: theme.textTheme.titleSmall?.copyWith(
+            color: theme.colorScheme.onSurface,
+            fontWeight: FontWeight.w800,
+          ),
+        ),
+        const SizedBox(height: 5),
+        Text(
+          subtitle.isEmpty ? 'Member profile' : subtitle,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _InsuranceBadge extends StatelessWidget {
+  const _InsuranceBadge();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.primaryContainer.withValues(alpha: .42),
+        borderRadius: BorderRadius.circular(999),
+      ),
+      child: Text(
+        'Insured',
+        style: theme.textTheme.labelSmall?.copyWith(
+          color: theme.colorScheme.primary,
+          fontWeight: FontWeight.w800,
+        ),
+      ),
     );
   }
 }

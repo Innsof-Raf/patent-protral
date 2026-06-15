@@ -3,8 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/delete_member_bloc/delete_member_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class MemberScreenAppbar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -12,19 +10,28 @@ class MemberScreenAppbar extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return AppBar(
       systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarColor: AppColors.black,
+        statusBarColor: Colors.black,
         statusBarIconBrightness: Brightness.light,
         statusBarBrightness: Brightness.dark,
       ),
-      backgroundColor: AppColors.white,
-      elevation: 1,
+      backgroundColor: theme.colorScheme.surface,
+      foregroundColor: theme.colorScheme.onSurface,
+      elevation: 0,
       titleSpacing: 0,
-      automaticallyImplyLeading: false,
-      title: const Text('Members', style: AppTextStyles.largeSemiBoldRoboto),
+      centerTitle: false,
+      title: Text(
+        'Members',
+        style: theme.textTheme.titleMedium?.copyWith(
+          color: theme.colorScheme.onSurface,
+          fontWeight: FontWeight.w800,
+        ),
+      ),
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios, color: AppColors.textDark),
+        icon: const Icon(Icons.arrow_back_ios_new_rounded),
         onPressed: () {
           Navigator.of(context).pop();
         },
@@ -43,17 +50,12 @@ class MemberScreenAppbar extends StatelessWidget
               SelectAllMembers(membersIdList: membersIdList),
             );
           },
-          child: Text(
-            'Select All',
-            style: AppTextStyles.bodyLargeRobotoSemiBold.copyWith(
-              color: AppColors.vilot,
-            ),
-          ),
+          child: const Text('Select All'),
         ),
       ],
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(55.0);
+  Size get preferredSize => const Size.fromHeight(56);
 }

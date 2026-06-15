@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class MemberDetailsScreenAppbar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -9,37 +7,35 @@ class MemberDetailsScreenAppbar extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return AppBar(
       systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarColor: AppColors.black,
+        statusBarColor: Colors.black,
         statusBarIconBrightness: Brightness.light,
         statusBarBrightness: Brightness.dark,
       ),
-      backgroundColor: AppColors.white,
+      backgroundColor: theme.colorScheme.surface,
+      foregroundColor: theme.colorScheme.onSurface,
       elevation: 0,
       titleSpacing: 0,
       centerTitle: false,
-      automaticallyImplyLeading: false,
-      title: const Text(
+      title: Text(
         'Member Details',
-        style: AppTextStyles.largeSemiBoldRoboto,
+        style: theme.textTheme.titleMedium?.copyWith(
+          color: theme.colorScheme.onSurface,
+          fontWeight: FontWeight.w800,
+        ),
       ),
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios, color: AppColors.textDark),
+        icon: const Icon(Icons.arrow_back_ios_new_rounded),
         onPressed: () {
           Navigator.of(context).pop();
         },
       ),
-      actions: [
-        IconButton(
-          splashRadius: 20,
-          onPressed: () {},
-          icon: const Icon(Icons.more_vert, color: AppColors.textDark),
-        ),
-      ],
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(55);
+  Size get preferredSize => const Size.fromHeight(56);
 }
