@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/gen/assets.gen.dart';
 
 class AppTextStyles {
-  static const String interFont = 'inter';
+  static String interFont = Assets.fonts.inter;
 
   static const TextStyle bodyXSmallRobotoNormal = TextStyle(
     fontSize: 6,
@@ -16,14 +17,14 @@ class AppTextStyles {
     color: AppColors.textLight,
     height: 1.2,
   );
-  static const TextStyle bodySmallInterNormal = TextStyle(
+  static TextStyle bodySmallInterNormal = TextStyle(
     fontSize: 8,
     fontWeight: FontWeight.w400,
     color: AppColors.textLight,
     height: 1.15,
     fontFamily: interFont,
   );
-  static const TextStyle bodyXSmallInterNormal = TextStyle(
+  static TextStyle bodyXSmallInterNormal = TextStyle(
     fontSize: 6.9,
     fontWeight: FontWeight.w400,
     color: AppColors.textLight,
@@ -111,34 +112,34 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.textDark,
   );
-  static const TextStyle bodyLargeSemiBoldTextInter = TextStyle(
+  static TextStyle bodyLargeSemiBoldTextInter = TextStyle(
     fontSize: 11,
     fontWeight: FontWeight.w500,
     color: AppColors.textDark,
     fontFamily: interFont,
   );
-  static const TextStyle bodyTextInterSemibold = TextStyle(
+  static TextStyle bodyTextInterSemibold = TextStyle(
     fontSize: 10,
     fontWeight: FontWeight.w500,
     color: AppColors.textLight,
     fontFamily: interFont,
   );
 
-  static const TextStyle bodyTextInter = TextStyle(
+  static TextStyle bodyTextInter = TextStyle(
     fontSize: 10,
     fontWeight: FontWeight.w400,
     color: AppColors.textLight,
     fontFamily: interFont,
   );
 
-  static const TextStyle subHeadingInter = TextStyle(
+  static TextStyle subHeadingInter = TextStyle(
     fontSize: 10,
     fontWeight: FontWeight.w400,
     color: AppColors.textLight,
     fontFamily: interFont,
   );
 
-  static const TextStyle subHeadingInter2 = TextStyle(
+  static TextStyle subHeadingInter2 = TextStyle(
     fontSize: 10,
     fontWeight: FontWeight.w400,
     color: AppColors.textLight,
