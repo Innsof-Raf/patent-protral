@@ -112,7 +112,9 @@ class MyAppointmentsBloc
       );
     });
     on<ChangeResheduledAppointmentDetails>((event, emit) {
-      final List<MyAppointment> myAppointments = List.from(state.myAppointments);
+      final List<MyAppointment> myAppointments = List.from(
+        state.myAppointments,
+      );
 
       final List<DateTime> monthTimeLineList = [];
       final List<DateTime> monthTimeLineListOfNotConsulted = [];
@@ -203,7 +205,9 @@ class MyAppointmentsBloc
           state.copyWith(isAppointmentsCancelationFailed: false, error: error),
         ),
         (sucessesResponse) {
-          final List<MyAppointment> myAppointments = List.from(state.myAppointments);
+          final List<MyAppointment> myAppointments = List.from(
+            state.myAppointments,
+          );
 
           final List<DateTime> monthTimeLineList = [];
           final List<DateTime> monthTimeLineListOfNotConsulted = [];
@@ -256,7 +260,9 @@ class MyAppointmentsBloc
       );
     });
     on<StoreBokkedApoointment>((event, emit) {
-      final List<MyAppointment> myAppointments = List.from(state.myAppointments);
+      final List<MyAppointment> myAppointments = List.from(
+        state.myAppointments,
+      );
       final List<MyAppointment> myNotConsultedAppointments = List.from(
         state.myNotConsultedAppointments,
       );

@@ -14,7 +14,13 @@ class SetPasswordRepositoryImpl implements SetPasswordRepository {
   Future<Either<ErrorModel, ChangePasswordResponse>> changePassword(
     SetPasswordParams params,
   ) async {
-    final result = await remoteDataSource.changePassword(params);
-    return result.map((response) => response.toEntity());
+    try {
+      final response = await remoteDataSource.changePassword(params);
+      return Right(response.toEntity());
+    } catch (e) {
+      return Left(
+        ErrorModel(message: e.toString().replaceAll('ServerException: ', '')),
+      );
+    }
   }
 }

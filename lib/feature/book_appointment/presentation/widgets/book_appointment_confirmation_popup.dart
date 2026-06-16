@@ -43,7 +43,9 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 IconButton(
                   onPressed: () => Navigator.pop(context),
@@ -55,7 +57,9 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
+                color: colorScheme.surfaceContainerHighest.withValues(
+                  alpha: 0.4,
+                ),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Column(
@@ -63,11 +67,17 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.calendar_today_rounded, size: 18, color: colorScheme.primary),
+                      Icon(
+                        Icons.calendar_today_rounded,
+                        size: 18,
+                        color: colorScheme.primary,
+                      ),
                       const SizedBox(width: 8),
                       Text(
                         DateFormat('dd MMM yyyy').format(appintmentDateTime),
-                        style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
@@ -75,11 +85,17 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.access_time_rounded, size: 18, color: colorScheme.primary),
+                      Icon(
+                        Icons.access_time_rounded,
+                        size: 18,
+                        color: colorScheme.primary,
+                      ),
                       const SizedBox(width: 8),
                       Text(
                         DateFormat.jm().format(appintmentDateTime),
-                        style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
@@ -115,7 +131,9 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
                   child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 12),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                     onPressed: () => Navigator.of(context).pop(),
                     child: const Text('Cancel'),
@@ -126,27 +144,41 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
                   child: FilledButton(
                     style: FilledButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 12),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                     onPressed: () {
                       if (appointmentId == 0) {
                         context.read<BookAppointmentBloc>().add(
-                              BookNewAppointment(
-                                appointmentDateTime: appintmentDateTime,
-                                idDoctor: idDoctor,
-                                idMember: member.id,
-                                mobileNo: context.read<UserBloc>().state.user!.mobileNumber,
-                                token: context.read<UserBloc>().state.user!.accessToken,
-                              ),
-                            );
+                          BookNewAppointment(
+                            appointmentDateTime: appintmentDateTime,
+                            idDoctor: idDoctor,
+                            idMember: member.id,
+                            mobileNo: context
+                                .read<UserBloc>()
+                                .state
+                                .user!
+                                .mobileNumber,
+                            token: context
+                                .read<UserBloc>()
+                                .state
+                                .user!
+                                .accessToken,
+                          ),
+                        );
                       } else {
                         context.read<BookAppointmentBloc>().add(
-                              ResheduleAppointment(
-                                idAppointment: appointmentId,
-                                appointmentDateTime: appintmentDateTime,
-                                token: context.read<UserBloc>().state.user!.accessToken,
-                              ),
-                            );
+                          ResheduleAppointment(
+                            idAppointment: appointmentId,
+                            appointmentDateTime: appintmentDateTime,
+                            token: context
+                                .read<UserBloc>()
+                                .state
+                                .user!
+                                .accessToken,
+                          ),
+                        );
                       }
                       Navigator.pop(context);
                     },
@@ -167,7 +199,11 @@ class _UserMiniProfile extends StatelessWidget {
   final String? imageUrl;
   final String label;
 
-  const _UserMiniProfile({required this.name, this.imageUrl, required this.label});
+  const _UserMiniProfile({
+    required this.name,
+    this.imageUrl,
+    required this.label,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -191,14 +227,18 @@ class _UserMiniProfile extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           label,
-          style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+          style: theme.textTheme.labelSmall?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
         ),
         Text(
           name,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
-          style: theme.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold),
+          style: theme.textTheme.bodySmall?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ],
     );

@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/error/exceptions.dart';
 import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -15,7 +15,9 @@ import 'package:patient_portal/feature/profile/domain/usecases/params/profile_pa
 
 abstract class ProfileRemoteDataSource {
   Future<MemberModel> addMember(ProfileParams params);
+
   Future<MemberModel> changeMemberInsuranceDetails(ProfileParams params);
+
   Future<MemberModel> getMemberDetail(ProfileParams params);
 }
 
@@ -30,7 +32,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       addMember: (p) async {
         return _addMember(p);
       },
-      orElse: () => throw Exception('Invalid Params for addMember'),
+      orElse: () => throw ServerException('Invalid Params for addMember'),
     );
   }
 
@@ -41,9 +43,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
 
       final content = {
         'id_customer': idCustomer,
-        'customer_id': idCustomer == 0
-            ? 'New'
-            : '', // Should ideally come from member model if existing
+        'customer_id': idCustomer == 0 ? 'New' : '',
         'id_setid': 4,
         'customer_name': p.patientName,
         'customer_status': 'ACTIVE',
@@ -52,7 +52,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
         'mobile_no': p.mobileNumber ?? user?.mobileNumber,
         'email': p.email ?? user?.emailId,
         'dob': DateFormat('yyyy-MM-dd').format(p.dob),
-        'national_id': p.nationalId, // Extra field, usually accepted
+        'national_id': p.nationalId,
         'id_insurance': p.idInsurance,
         'member_no': p.memberNumber,
         'expiry_dt': p.expireDate != null
@@ -88,62 +88,50 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
         token: user?.accessToken,
       );
 
-      if (response.statusCode == 200) {
-        final responseData = decodeResponseData(response.data);
+      final responseData = decodeResponseData(response.data);
 
-        if (responseData is! Map<String, dynamic>) {
-          throw Exception('Invalid profile update response');
-        }
+      if (responseData is! Map<String, dynamic>) {
+        throw ServerException('Invalid profile update response');
+      }
 
-        final isSuccess =
-            responseData['status'] == true ||
-            responseData['status']?.toString().toLowerCase() == 'true';
+      final isSuccess =
+          responseData['status'] == true ||
+          responseData['status']?.toString().toLowerCase() == 'true';
 
-        if (!isSuccess) {
-          throw Exception(
-            responseData['message'] ??
-                'Member already registered with same national id',
-          );
-        }
-
-        final patientDetail = decodeResponseData(
-          responseData['patient_detail'],
+      if (!isSuccess) {
+        throw ServerException(
+          responseData['message'] ??
+              'Member already registered with same national id',
         );
-
-        if (patientDetail is Map<String, dynamic>) {
-          return MemberModel.fromJson(patientDetail);
-        }
-
-        final updatedCustomerId = intFromJson(responseData['id_customer']) == 0
-            ? idCustomer
-            : intFromJson(responseData['id_customer']);
-
-        if (updatedCustomerId != 0 && user != null) {
-          try {
-            return await getMemberDetail(
-              ProfileParams.getMemberDetail(
-                memberId: updatedCustomerId,
-                token: user.accessToken,
-              ),
-            );
-          } catch (_) {}
-        }
-
-        return _memberModelFromParams(p, updatedCustomerId);
-      } else {
-        throw Exception('Server Failure');
       }
-    } on DioException catch (e, stackTrace) {
-      log('DioException: ${e.message}', stackTrace: stackTrace);
-      if (e.error is SocketException) {
-        throw Exception('No Network');
-      } else if (e.type == DioExceptionType.connectionTimeout) {
-        throw Exception('Connection Timeout');
+
+      final patientDetail = decodeResponseData(responseData['patient_detail']);
+
+      if (patientDetail is Map<String, dynamic>) {
+        return MemberModel.fromJson(patientDetail);
       }
-      throw Exception(e.message ?? 'Server Failure');
-    } catch (e) {
-      log('Exception: ${e.toString()}', stackTrace: StackTrace.current);
-      throw Exception(e.toString());
+
+      final updatedCustomerId = intFromJson(responseData['id_customer']) == 0
+          ? idCustomer
+          : intFromJson(responseData['id_customer']);
+
+      if (updatedCustomerId != 0 && user != null) {
+        try {
+          return await getMemberDetail(
+            ProfileParams.getMemberDetail(
+              memberId: updatedCustomerId,
+              token: user.accessToken,
+            ),
+          );
+        } catch (_) {}
+      }
+
+      return _memberModelFromParams(p, updatedCustomerId);
+    } on ServerException {
+      rethrow;
+    } catch (e, stackTrace) {
+      log('_addMember Error', error: e, stackTrace: stackTrace);
+      throw ServerException(e.toString());
     }
   }
 
@@ -195,8 +183,9 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       changeMemberInsuranceDetails: (p) async {
         return _changeMemberInsuranceDetails(p);
       },
-      orElse: () =>
-          throw Exception('Invalid Params for changeMemberInsuranceDetails'),
+      orElse: () => throw ServerException(
+        'Invalid Params for changeMemberInsuranceDetails',
+      ),
     );
   }
 
@@ -218,21 +207,17 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
         token: p.token,
       );
 
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        final Map<String, dynamic> responseData = response.data;
-        return MemberModel.fromJson(responseData['customer_detail']);
-      } else {
-        throw Exception('Server Failure');
-      }
-    } on DioException catch (e) {
-      if (e.error is SocketException) {
-        throw Exception('No Network');
-      } else if (e.type == DioExceptionType.connectionTimeout) {
-        throw Exception('Connection Timeout');
-      }
-      throw Exception(e.message ?? 'Server Failure');
-    } catch (e) {
-      throw Exception(e.toString());
+      final Map<String, dynamic> responseData = response.data;
+      return MemberModel.fromJson(responseData['customer_detail']);
+    } on ServerException {
+      rethrow;
+    } catch (e, stackTrace) {
+      log(
+        '_changeMemberInsuranceDetails Error',
+        error: e,
+        stackTrace: stackTrace,
+      );
+      throw ServerException(e.toString());
     }
   }
 
@@ -242,7 +227,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       getMemberDetail: (p) async {
         return _getMemberDetail(p);
       },
-      orElse: () => throw Exception('Invalid Params for getMemberDetail'),
+      orElse: () => throw ServerException('Invalid Params for getMemberDetail'),
     );
   }
 
@@ -257,25 +242,15 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
         body: data,
         token: p.token,
       );
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        final Map<String, dynamic> responseData = decodeResponseData(
-          response.data,
-        );
-        return MemberModel.fromJson(responseData);
-      } else {
-        throw Exception('Server Failure');
-      }
-    } on DioException catch (e, stackTrace) {
-      log('DioException: ${e.message}', stackTrace: stackTrace);
-      if (e.error is SocketException) {
-        throw Exception('No Network');
-      } else if (e.type == DioExceptionType.connectionTimeout) {
-        throw Exception('Connection Timeout');
-      }
-      throw Exception(e.message ?? 'Server Failure');
-    } catch (e) {
-      log('Exception: ${e.toString()}', stackTrace: StackTrace.current);
-      throw Exception(e.toString());
+      final Map<String, dynamic> responseData = decodeResponseData(
+        response.data,
+      );
+      return MemberModel.fromJson(responseData);
+    } on ServerException {
+      rethrow;
+    } catch (e, stackTrace) {
+      log('_getMemberDetail Error', error: e, stackTrace: stackTrace);
+      throw ServerException(e.toString());
     }
   }
 }

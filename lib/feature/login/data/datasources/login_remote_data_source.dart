@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:patient_portal/core/error/exceptions.dart';
 import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -26,17 +27,20 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
 
   @override
   Future<OtpResponseModel> generateOtp(String mobileNumber) async {
-    final data = {'mobileNo': mobileNumber};
+    try {
+      final data = {'mobileNo': mobileNumber};
 
-    final response = await client.post(
-      url: ConstantUrls.otpGenerationUrl,
-      body: data,
-    );
+      final response = await client.post(
+        url: ConstantUrls.otpGenerationUrl,
+        body: data,
+      );
 
-    if (response.statusCode == 200 || response.statusCode == 201) {
       return OtpResponseModel.fromJson(response.data);
-    } else {
-      throw Exception('Server Failure');
+    } on ServerException {
+      rethrow;
+    } catch (e, stackTrace) {
+      log('generateOtp Error', error: e, stackTrace: stackTrace);
+      throw ServerException(e.toString());
     }
   }
 
@@ -46,21 +50,23 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
     required String mobileNumber,
     required String otp,
   }) async {
-    final Map<String, dynamic> data = {'mobileNo': mobileNumber, 'otp': otp};
-    //final String jsonData = jsonEncode(data);
-    log(
-      'OTP Verification Request Data: $data',
-      name: 'LoginRemoteDataSourceImpl.verifyOtp',
-    );
-    final response = await client.post(
-      url: ConstantUrls.otpVerificationUrl,
-      body: data,
-    );
+    try {
+      final Map<String, dynamic> data = {'mobileNo': mobileNumber, 'otp': otp};
+      log(
+        'OTP Verification Request Data: $data',
+        name: 'LoginRemoteDataSourceImpl.verifyOtp',
+      );
+      final response = await client.post(
+        url: ConstantUrls.otpVerificationUrl,
+        body: data,
+      );
 
-    if (response.statusCode == 200 || response.statusCode == 201) {
       return UserModel.fromJson(decodeResponseData(response.data));
-    } else {
-      throw Exception('Server Failure');
+    } on ServerException {
+      rethrow;
+    } catch (e, stackTrace) {
+      log('verifyOtp Error', error: e, stackTrace: stackTrace);
+      throw ServerException(e.toString());
     }
   }
 
@@ -69,24 +75,27 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
     required String mobileNumber,
     required String password,
   }) async {
-    final Map<String, dynamic> data = {
-      'username': mobileNumber,
-      'password': password,
-    };
+    try {
+      final Map<String, dynamic> data = {
+        'username': mobileNumber,
+        'password': password,
+      };
 
-    final response = await client.post(
-      url: ConstantUrls.loginWithPasswordUrl,
-      body: data,
-    );
+      final response = await client.post(
+        url: ConstantUrls.loginWithPasswordUrl,
+        body: data,
+      );
 
-    if (response.statusCode == 200 || response.statusCode == 201) {
       final responseData = decodeResponseData(response.data);
       if (responseData['accessToken'] != null) {
         return UserModel.fromJson(responseData);
       }
-      throw Exception(responseData['message'] ?? 'Authentication failed');
-    } else {
-      throw Exception('Server Failure');
+      throw ServerException(responseData['message'] ?? 'Authentication failed');
+    } on ServerException {
+      rethrow;
+    } catch (e, stackTrace) {
+      log('loginWithPassword Error', error: e, stackTrace: stackTrace);
+      throw ServerException(e.toString());
     }
   }
 }

@@ -1,20 +1,15 @@
 import 'dart:async';
-import 'dart:io';
+import 'dart:developer';
 
-import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
+import 'package:patient_portal/core/error/exceptions.dart';
 import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
-import 'package:patient_portal/core/resources/constant_messages.dart';
-import 'package:patient_portal/core/resources/error_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/speciality/data/models/speciality_model.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/params/speciality_params.dart';
 
 abstract class SpecialityRemoteDataSource {
-  Future<Either<ErrorModel, List<SpecialityModel>>> fetchSpecialities(
-    SpecialityParams params,
-  );
+  Future<List<SpecialityModel>> fetchSpecialities(SpecialityParams params);
 }
 
 class SpecialityRemoteDataSourceImpl implements SpecialityRemoteDataSource {
@@ -23,14 +18,15 @@ class SpecialityRemoteDataSourceImpl implements SpecialityRemoteDataSource {
   SpecialityRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<Either<ErrorModel, List<SpecialityModel>>> fetchSpecialities(
+  Future<List<SpecialityModel>> fetchSpecialities(
     SpecialityParams params,
   ) async {
-    final fetchParams = params.maybeMap(
-      fetchSpecialities: (value) => value,
-      orElse: () => throw Exception('Invalid speciality fetch params'),
-    );
     try {
+      final fetchParams = params.maybeMap(
+        fetchSpecialities: (value) => value,
+        orElse: () => throw ServerException('Invalid speciality fetch params'),
+      );
+
       final data = serviceRequest(type: 'PP0013');
 
       final response = await client.post(
@@ -39,30 +35,13 @@ class SpecialityRemoteDataSourceImpl implements SpecialityRemoteDataSource {
         token: fetchParams.token,
       );
 
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        final List<dynamic> responseData = decodeResponseData(response.data);
-        final List<SpecialityModel> specilaities = [];
-        for (final raw in responseData) {
-          specilaities.add(SpecialityModel.fromJson(raw));
-        }
-        return Right(specilaities);
-      } else {
-        return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
-      }
-    } on DioException catch (e) {
-      if (e.type == DioExceptionType.connectionTimeout ||
-          e.type == DioExceptionType.receiveTimeout) {
-        return Left(
-          ErrorModel(message: ConstantMessages.connectionTimeOutFailureMessage),
-        );
-      } else if (e.error is SocketException) {
-        return Left(
-          ErrorModel(message: ConstantMessages.noNetworkErrorMessage),
-        );
-      }
-      return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
-    } catch (e) {
-      return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));
+      final List<dynamic> responseData = decodeResponseData(response.data);
+      return responseData.map((raw) => SpecialityModel.fromJson(raw)).toList();
+    } on ServerException {
+      rethrow;
+    } catch (e, stackTrace) {
+      log('fetchSpecialities Error', error: e, stackTrace: stackTrace);
+      throw ServerException(e.toString());
     }
   }
 }

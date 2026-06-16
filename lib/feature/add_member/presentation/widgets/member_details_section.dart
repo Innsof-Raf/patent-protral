@@ -45,10 +45,11 @@ class MemberDetailsSection extends StatelessWidget {
                 MemeberFormValidationHelpers.dobValidator(value: value),
             readOnly: true,
             onTap: () async {
-              final DateTime? selectedDate = await AddMemberScreenHelpers.getDob(
-                initialDate: dob ?? DateTime(2000),
-                context: context,
-              );
+              final DateTime? selectedDate =
+                  await AddMemberScreenHelpers.getDob(
+                    initialDate: dob ?? DateTime(2000),
+                    context: context,
+                  );
               if (selectedDate != null) {
                 dob = selectedDate;
                 dobController.text = DateFormat('dd-MM-yyyy').format(dob!);

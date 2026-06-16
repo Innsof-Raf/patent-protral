@@ -41,12 +41,16 @@ class AddMemberScreenHelpers {
             children: [
               Text(
                 'Upload Profile Photo',
-                style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 8),
               Text(
                 'Select a source to pick an image',
-                style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
               ),
               const SizedBox(height: 24),
               Row(
@@ -126,32 +130,32 @@ class AddMemberScreenHelpers {
       if (InsuranceFormSection.insuranceFormKey.currentState!.validate() &&
           InsuranceFormSection.insuranceNameFormKey.currentState!.validate()) {
         context.read<AddMemberBloc>().add(
-              UpdateInsuranceAction(
-                params: AddMemberParams.updateInsurance(
-                  memberId: memberId,
-                  idInsurance: idInsurance,
-                  insuranceName: InsuranceFormSection.insuranceNameController.text,
-                  memberNumber: InsuranceFormSection.memberNumberController.text,
-                  expireDate: InsuranceFormSection.expireDate!,
-                  token: token,
-                ),
-              ),
-            );
+          UpdateInsuranceAction(
+            params: AddMemberParams.updateInsurance(
+              memberId: memberId,
+              idInsurance: idInsurance,
+              insuranceName: InsuranceFormSection.insuranceNameController.text,
+              memberNumber: InsuranceFormSection.memberNumberController.text,
+              expireDate: InsuranceFormSection.expireDate!,
+              token: token,
+            ),
+          ),
+        );
       }
     } else {
       if (InsuranceFormSection.insuranceFormKey.currentState!.validate()) {
         context.read<AddMemberBloc>().add(
-              UpdateInsuranceAction(
-                params: AddMemberParams.updateInsurance(
-                  memberId: memberId,
-                  idInsurance: idInsurance,
-                  insuranceName: null,
-                  memberNumber: InsuranceFormSection.memberNumberController.text,
-                  expireDate: InsuranceFormSection.expireDate!,
-                  token: token,
-                ),
-              ),
-            );
+          UpdateInsuranceAction(
+            params: AddMemberParams.updateInsurance(
+              memberId: memberId,
+              idInsurance: idInsurance,
+              insuranceName: null,
+              memberNumber: InsuranceFormSection.memberNumberController.text,
+              expireDate: InsuranceFormSection.expireDate!,
+              token: token,
+            ),
+          ),
+        );
       }
     }
   }
@@ -165,64 +169,66 @@ class AddMemberScreenHelpers {
       if (idInsurance == 0) {
         if (MemberDetailsSection.memberFormKey.currentState!.validate() &&
             InsuranceFormSection.insuranceFormKey.currentState!.validate() &&
-            InsuranceFormSection.insuranceNameFormKey.currentState!.validate()) {
+            InsuranceFormSection.insuranceNameFormKey.currentState!
+                .validate()) {
           context.read<AddMemberBloc>().add(
-                AddMemberAction(
-                  params: AddMemberParams.addMember(
-                    accessToken: user.accessToken,
-                    mobileNumber: user.mobileNumber,
-                    patientName: MemberDetailsSection.nameController.text,
-                    nationalId: MemberDetailsSection.nationalIdController.text,
-                    gender: GenderFormHelpers.genderNotifier.value,
-                    dob: MemberDetailsSection.dob!,
-                    email: MemberDetailsSection.emailController.text,
-                    expireDate: InsuranceFormSection.expireDate!,
-                    idInsurance: idInsurance!,
-                    memberNumber: InsuranceFormSection.memberNumberController.text,
-                    otherInsuranceName: InsuranceFormSection.insuranceNameController.text,
-                    profileImage: profileImageNotifer.value,
-                  ),
-                ),
-              );
+            AddMemberAction(
+              params: AddMemberParams.addMember(
+                accessToken: user.accessToken,
+                mobileNumber: user.mobileNumber,
+                patientName: MemberDetailsSection.nameController.text,
+                nationalId: MemberDetailsSection.nationalIdController.text,
+                gender: GenderFormHelpers.genderNotifier.value,
+                dob: MemberDetailsSection.dob!,
+                email: MemberDetailsSection.emailController.text,
+                expireDate: InsuranceFormSection.expireDate!,
+                idInsurance: idInsurance!,
+                memberNumber: InsuranceFormSection.memberNumberController.text,
+                otherInsuranceName:
+                    InsuranceFormSection.insuranceNameController.text,
+                profileImage: profileImageNotifer.value,
+              ),
+            ),
+          );
         }
       } else {
         if (MemberDetailsSection.memberFormKey.currentState!.validate() &&
             InsuranceFormSection.insuranceFormKey.currentState!.validate()) {
           context.read<AddMemberBloc>().add(
-                AddMemberAction(
-                  params: AddMemberParams.addMember(
-                    accessToken: user.accessToken,
-                    mobileNumber: user.mobileNumber,
-                    patientName: MemberDetailsSection.nameController.text,
-                    nationalId: MemberDetailsSection.nationalIdController.text,
-                    gender: GenderFormHelpers.genderNotifier.value,
-                    dob: MemberDetailsSection.dob!,
-                    email: MemberDetailsSection.emailController.text,
-                    expireDate: InsuranceFormSection.expireDate!,
-                    idInsurance: idInsurance!,
-                    memberNumber: InsuranceFormSection.memberNumberController.text,
-                    profileImage: profileImageNotifer.value,
-                  ),
-                ),
-              );
+            AddMemberAction(
+              params: AddMemberParams.addMember(
+                accessToken: user.accessToken,
+                mobileNumber: user.mobileNumber,
+                patientName: MemberDetailsSection.nameController.text,
+                nationalId: MemberDetailsSection.nationalIdController.text,
+                gender: GenderFormHelpers.genderNotifier.value,
+                dob: MemberDetailsSection.dob!,
+                email: MemberDetailsSection.emailController.text,
+                expireDate: InsuranceFormSection.expireDate!,
+                idInsurance: idInsurance!,
+                memberNumber: InsuranceFormSection.memberNumberController.text,
+                profileImage: profileImageNotifer.value,
+              ),
+            ),
+          );
         }
       }
     } else {
       if (MemberDetailsSection.memberFormKey.currentState!.validate()) {
         context.read<AddMemberBloc>().add(
-              AddMemberAction(
-                params: AddMemberParams.addMember(
-                  accessToken: user.accessToken,
-                  mobileNumber: user.mobileNumber,
-                  patientName: MemberDetailsSection.nameController.text,
-                  nationalId: MemberDetailsSection.nationalIdController.text,
-                  gender: GenderFormHelpers.genderNotifier.value,
-                  dob: MemberDetailsSection.dob!,
-                  email: MemberDetailsSection.emailController.text,
-                  profileImage: profileImageNotifer.value,
-                ),
-              ),
-            );
+          AddMemberAction(
+            params: AddMemberParams.addMember(
+              accessToken: user.accessToken,
+              mobileNumber: user.mobileNumber,
+              patientName: MemberDetailsSection.nameController.text,
+              nationalId: MemberDetailsSection.nationalIdController.text,
+              gender: GenderFormHelpers.genderNotifier.value,
+              dob: MemberDetailsSection.dob!,
+              email: MemberDetailsSection.emailController.text,
+              profileImage: profileImageNotifer.value,
+            ),
+          ),
+        );
       }
     }
   }

@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:patient_portal/core/error/exceptions.dart';
 import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -17,24 +20,27 @@ class DoctorRemoteDataSourceImpl implements DoctorRemoteDataSource {
     int specialityId,
     String token,
   ) async {
-    final data = serviceRequest(
-      type: 'PP0001',
-      content: {'id_dept': specialityId},
-    );
+    try {
+      final data = serviceRequest(
+        type: 'PP0001',
+        content: {'id_dept': specialityId},
+      );
 
-    final response = await client.post(
-      url: ConstantUrls.serviceUrl,
-      body: data,
-      token: token,
-    );
+      final response = await client.post(
+        url: ConstantUrls.serviceUrl,
+        body: data,
+        token: token,
+      );
 
-    if (response.statusCode == 200 || response.statusCode == 201) {
       final List<dynamic> responseData = decodeResponseData(response.data);
       return responseData
           .map((raw) => DoctorModel.fromJson(raw as Map<String, dynamic>))
           .toList();
-    } else {
-      throw Exception('Server Failure');
+    } on ServerException {
+      rethrow;
+    } catch (e, stackTrace) {
+      log('getAvailableDoctors Error', error: e, stackTrace: stackTrace);
+      throw ServerException(e.toString());
     }
   }
 }

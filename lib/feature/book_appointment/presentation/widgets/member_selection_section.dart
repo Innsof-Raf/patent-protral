@@ -69,12 +69,14 @@ class MemberSelectionSection extends StatelessWidget {
               if (members.isEmpty) return const SizedBox.shrink();
 
               return ValueListenableBuilder(
-                valueListenable: BookAppointmentScreenHelpers.selectedMemberNotifier,
+                valueListenable:
+                    BookAppointmentScreenHelpers.selectedMemberNotifier,
                 builder: (context, selectedMember, child) => ListView.separated(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: members.length,
-                  separatorBuilder: (context, index) => const SizedBox(height: 12),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 12),
                   itemBuilder: (context, index) => MemberSelectionTile(
                     isSelected: selectedMember == members[index],
                     member: members[index],

@@ -1,6 +1,6 @@
-import 'dart:io';
+import 'dart:developer';
 
-import 'package:dio/dio.dart';
+import 'package:patient_portal/core/error/exceptions.dart';
 import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -34,26 +34,15 @@ class NotificationRemoteDataSourceImpl implements NotificationRemoteDataSource {
         token: params.token,
       );
 
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        final List<dynamic> responseData = decodeResponseData(response.data);
-        return responseData
-            .map(
-              (raw) => NotificationModel.fromJson(raw as Map<String, dynamic>),
-            )
-            .toList();
-      }
-
-      throw Exception('Server Failure');
-    } on DioException catch (e) {
-      if (e.error is SocketException) {
-        throw Exception('No Network');
-      } else if (e.type == DioExceptionType.connectionTimeout ||
-          e.type == DioExceptionType.receiveTimeout) {
-        throw Exception('Connection Timeout');
-      }
-      throw Exception(e.message ?? 'Server Failure');
-    } catch (e) {
-      throw Exception('Server Failure');
+      final List<dynamic> responseData = decodeResponseData(response.data);
+      return responseData
+          .map((raw) => NotificationModel.fromJson(raw as Map<String, dynamic>))
+          .toList();
+    } on ServerException {
+      rethrow;
+    } catch (e, stackTrace) {
+      log('getNotifications Error', error: e, stackTrace: stackTrace);
+      throw ServerException(e.toString());
     }
   }
 }

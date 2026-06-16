@@ -113,10 +113,7 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
                   )
                 : const Text(
                     'Save Password',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
           );
         },
@@ -129,15 +126,15 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
       final user = context.read<UserBloc>().state.user;
       if (user != null) {
         context.read<ChangePasswordBloc>().add(
-              ChangePassword(
-                params: SetPasswordParams.changePassword(
-                  idUser: user.id,
-                  mobileNumber: user.mobileNumber,
-                  newPassword: _newPasswordController.text,
-                  token: user.accessToken,
-                ),
-              ),
-            );
+          ChangePassword(
+            params: SetPasswordParams.changePassword(
+              idUser: user.id,
+              mobileNumber: user.mobileNumber,
+              newPassword: _newPasswordController.text,
+              token: user.accessToken,
+            ),
+          ),
+        );
       }
     }
   }

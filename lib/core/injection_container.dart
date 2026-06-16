@@ -58,6 +58,7 @@ import 'package:patient_portal/feature/login/presentation/bloc/otp_verification_
 import 'package:patient_portal/feature/member_details/presentation/bloc/member_detail_bloc.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/delete_member_bloc/delete_member_bloc.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/member_search_bloc/member_search_bloc.dart';
+import 'package:patient_portal/feature/my_appointments/data/datasources/my_appointments_remote_data_source.dart';
 import 'package:patient_portal/feature/my_appointments/data/repositories/my_appointments_repository_impl.dart';
 import 'package:patient_portal/feature/my_appointments/domain/repositories/my_appointments_repository.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/cancel_appointment_usecase.dart';
@@ -286,7 +287,12 @@ Future<void> init() async {
 
   // Repository
   sl.registerLazySingleton<MyAppointmentsRepository>(
-    () => MyAppointmentsRepositoryImpl(),
+    () => MyAppointmentsRepositoryImpl(remoteDataSource: sl()),
+  );
+
+  // Data sources
+  sl.registerLazySingleton<MyAppointmentsRemoteDataSource>(
+    () => MyAppointmentsRemoteDataSourceImpl(client: sl()),
   );
 
   //! Features - Profile

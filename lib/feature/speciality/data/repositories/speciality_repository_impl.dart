@@ -14,11 +14,14 @@ class SpecialityRepositoryImpl implements SpecialityRepository {
   Future<Either<ErrorModel, List<Speciality>>> fetchSpecialities(
     SpecialityParams params,
   ) async {
-    final result = await remoteDataSource.fetchSpecialities(params);
-    return result.map(
-      (specialities) =>
-          specialities.map((speciality) => speciality.toEntity()).toList(),
-    );
+    try {
+      final models = await remoteDataSource.fetchSpecialities(params);
+      return Right(models.map((model) => model.toEntity()).toList());
+    } catch (e) {
+      return Left(
+        ErrorModel(message: e.toString().replaceAll('ServerException: ', '')),
+      );
+    }
   }
 
   @override

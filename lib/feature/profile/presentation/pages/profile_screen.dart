@@ -23,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
           ),
           SliverPadding(
             padding: EdgeInsets.fromLTRB(16, 0, 16, 12),
-            sliver: SliverToBoxAdapter(child: QuickMenuSection()), 
+            sliver: SliverToBoxAdapter(child: QuickMenuSection()),
           ),
           SliverPadding(
             padding: EdgeInsets.fromLTRB(16, 0, 16, 112),

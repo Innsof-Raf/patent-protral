@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/error/exceptions.dart';
 import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/core/resources/common_models/appointment_model.dart/appointment_model.dart';
@@ -41,25 +43,28 @@ class BookAppointmentRemoteDataSourceImpl
     required int idDoctor,
     required String token,
   }) async {
-    final data = serviceRequest(
-      type: 'PP0003',
-      content: {
-        'id_doctor': idDoctor,
-        'shift_dt': DateFormat('yyyy-MM-dd').format(date),
-      },
-    );
-    final response = await client.post(
-      url: ConstantUrls.serviceUrl,
-      body: data,
-    );
+    try {
+      final data = serviceRequest(
+        type: 'PP0003',
+        content: {
+          'id_doctor': idDoctor,
+          'shift_dt': DateFormat('yyyy-MM-dd').format(date),
+        },
+      );
+      final response = await client.post(
+        url: ConstantUrls.serviceUrl,
+        body: data,
+      );
 
-    if (response.statusCode == 200 || response.statusCode == 201) {
       final Map<String, dynamic> responseData = decodeResponseData(
         response.data,
       );
       return ShiftModel.fromJson(responseData);
-    } else {
-      throw Exception('Server Failure');
+    } on ServerException {
+      rethrow;
+    } catch (e, stackTrace) {
+      log('getAvailableSlots Error', error: e, stackTrace: stackTrace);
+      throw ServerException(e.toString());
     }
   }
 
@@ -71,28 +76,28 @@ class BookAppointmentRemoteDataSourceImpl
     required int idMember,
     required String token,
   }) async {
-    final data = serviceRequest(
-      type: 'PP0008',
-      content: {
-        'id': 0,
-        'id_employee': idDoctor,
-        'id_busunit': 1,
-        'appmnt_mode': 'Offline',
-        'appmnt_dttm': appointmentDateTime.toIso8601String(),
-        'appmnt_dt': DateFormat('yyyy-MM-dd').format(appointmentDateTime),
-        'appmnt_time': DateFormat('hh:mm a').format(appointmentDateTime),
-        'id_customer': idMember,
-        'mobile_no': mobileNo,
-        'patient_mobileno': mobileNo,
-      },
-    );
-    final response = await client.post(
-      url: ConstantUrls.serviceUrl,
-      body: data,
-      token: token,
-    );
+    try {
+      final data = serviceRequest(
+        type: 'PP0008',
+        content: {
+          'id': 0,
+          'id_employee': idDoctor,
+          'id_busunit': 1,
+          'appmnt_mode': 'Offline',
+          'appmnt_dttm': appointmentDateTime.toIso8601String(),
+          'appmnt_dt': DateFormat('yyyy-MM-dd').format(appointmentDateTime),
+          'appmnt_time': DateFormat('hh:mm a').format(appointmentDateTime),
+          'id_customer': idMember,
+          'mobile_no': mobileNo,
+          'patient_mobileno': mobileNo,
+        },
+      );
+      final response = await client.post(
+        url: ConstantUrls.serviceUrl,
+        body: data,
+        token: token,
+      );
 
-    if (response.statusCode == 200 || response.statusCode == 201) {
       final Map<String, dynamic> responseData = decodeResponseData(
         response.data,
       );
@@ -107,10 +112,13 @@ class BookAppointmentRemoteDataSourceImpl
           appointmentData as Map<String, dynamic>,
         );
       } else {
-        throw Exception('Appointment Booking Failed');
+        throw ServerException('Appointment Booking Failed');
       }
-    } else {
-      throw Exception('Server Failure');
+    } on ServerException {
+      rethrow;
+    } catch (e, stackTrace) {
+      log('bookAppointment Error', error: e, stackTrace: stackTrace);
+      throw ServerException(e.toString());
     }
   }
 
@@ -120,22 +128,22 @@ class BookAppointmentRemoteDataSourceImpl
     required int idAppointment,
     required String token,
   }) async {
-    final data = serviceRequest(
-      type: 'PP0009',
-      content: {
-        'id': idAppointment,
-        'appmnt_dttm': appointmentDateTime.toIso8601String(),
-        'appmnt_dt': DateFormat('yyyy-MM-dd').format(appointmentDateTime),
-        'appmnt_time': DateFormat('hh:mm a').format(appointmentDateTime),
-      },
-    );
-    final response = await client.post(
-      url: ConstantUrls.serviceUrl,
-      body: data,
-      token: token,
-    );
+    try {
+      final data = serviceRequest(
+        type: 'PP0009',
+        content: {
+          'id': idAppointment,
+          'appmnt_dttm': appointmentDateTime.toIso8601String(),
+          'appmnt_dt': DateFormat('yyyy-MM-dd').format(appointmentDateTime),
+          'appmnt_time': DateFormat('hh:mm a').format(appointmentDateTime),
+        },
+      );
+      final response = await client.post(
+        url: ConstantUrls.serviceUrl,
+        body: data,
+        token: token,
+      );
 
-    if (response.statusCode == 200 || response.statusCode == 201) {
       final Map<String, dynamic> responseData = decodeResponseData(
         response.data,
       );
@@ -150,10 +158,13 @@ class BookAppointmentRemoteDataSourceImpl
           appointmentData as Map<String, dynamic>,
         );
       } else {
-        throw Exception('Server Failure');
+        throw ServerException('Reschedule Appointment Failed');
       }
-    } else {
-      throw Exception('Server Failure');
+    } on ServerException {
+      rethrow;
+    } catch (e, stackTrace) {
+      log('rescheduleAppointment Error', error: e, stackTrace: stackTrace);
+      throw ServerException(e.toString());
     }
   }
 }
