@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/core/error/failures.dart';
 import 'package:patient_portal/core/resources/error_model.dart';
+import 'package:patient_portal/feature/profile/data/datasources/user_local_data_source.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/add_profile_member_usecase.dart';
@@ -18,14 +19,18 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   final AddProfileMemberUseCase addProfileMemberUseCase;
   final ChangeMemberInsuranceDetailsUseCase changeMemberInsuranceDetailsUseCase;
   final GetMemberDetailUseCase getMemberDetailUseCase;
+  final UserLocalDataSource userLocalDataSource;
 
   UserBloc({
     required this.addProfileMemberUseCase,
     required this.changeMemberInsuranceDetailsUseCase,
     required this.getMemberDetailUseCase,
-  }) : super(UserState.initial()) {
-    on<StoreUserDetails>((event, emit) {
+    required this.userLocalDataSource,
+    User? initialUser,
+  }) : super(UserState.initial().copyWith(user: initialUser)) {
+    on<StoreUserDetails>((event, emit) async {
       emit(state.copyWith(user: event.params.user));
+      await userLocalDataSource.saveUser(event.params.user);
     });
     on<ChangeMemberAddingSateToInitial>(
       (event, emit) => emit(
@@ -165,8 +170,15 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         emit(state.copyWith(user: state.user!.copyWith(members: members)));
       }
     });
-    on<LogOut>((event, emit) {
+    on<LogOut>((event, emit) async {
       emit(state.copyWith(user: null));
+      await userLocalDataSource.clearUser();
+    });
+    on<InitializeUser>((event, emit) async {
+      final user = await userLocalDataSource.getUser();
+      if (user != null) {
+        emit(state.copyWith(user: user));
+      }
     });
   }
 }

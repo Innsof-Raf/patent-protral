@@ -19,4 +19,5 @@ class UserEvent with _$UserEvent {
       UpdateMemberInLocal;
 
   const factory UserEvent.logOut() = LogOut;
+  const factory UserEvent.initializeUser() = InitializeUser;
 }

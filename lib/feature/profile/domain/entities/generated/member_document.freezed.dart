@@ -11,6 +11,7 @@ part of '../member_document.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$MemberDocument {
 
@@ -21,6 +22,8 @@ mixin _$MemberDocument {
 @pragma('vm:prefer-inline')
 $MemberDocumentCopyWith<MemberDocument> get copyWith => _$MemberDocumentCopyWithImpl<MemberDocument>(this as MemberDocument, _$identity);
 
+  /// Serializes this MemberDocument to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +31,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is MemberDocument&&(identical(other.idDocument, idDocument) || other.idDocument == idDocument)&&(identical(other.docName, docName) || other.docName == docName)&&(identical(other.expDate, expDate) || other.expDate == expDate)&&(identical(other.seqNo, seqNo) || other.seqNo == seqNo));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,idDocument,docName,expDate,seqNo);
 
@@ -200,11 +203,11 @@ return $default(_that.idDocument,_that.docName,_that.expDate,_that.seqNo);case _
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _MemberDocument implements MemberDocument {
   const _MemberDocument({required this.idDocument, required this.docName, required this.expDate, required this.seqNo});
-  
+  factory _MemberDocument.fromJson(Map<String, dynamic> json) => _$MemberDocumentFromJson(json);
 
 @override final  int idDocument;
 @override final  String docName;
@@ -217,14 +220,17 @@ class _MemberDocument implements MemberDocument {
 @pragma('vm:prefer-inline')
 _$MemberDocumentCopyWith<_MemberDocument> get copyWith => __$MemberDocumentCopyWithImpl<_MemberDocument>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$MemberDocumentToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _MemberDocument&&(identical(other.idDocument, idDocument) || other.idDocument == idDocument)&&(identical(other.docName, docName) || other.docName == docName)&&(identical(other.expDate, expDate) || other.expDate == expDate)&&(identical(other.seqNo, seqNo) || other.seqNo == seqNo));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,idDocument,docName,expDate,seqNo);
 

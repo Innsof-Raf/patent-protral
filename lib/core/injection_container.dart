@@ -69,7 +69,9 @@ import 'package:patient_portal/feature/notification/domain/repositories/notifica
 import 'package:patient_portal/feature/notification/domain/usecases/get_notifications_usecase.dart';
 import 'package:patient_portal/feature/notification/presentation/bloc/notification_bloc.dart';
 import 'package:patient_portal/feature/profile/data/datasources/profile_remote_data_source.dart';
+import 'package:patient_portal/feature/profile/data/datasources/user_local_data_source.dart';
 import 'package:patient_portal/feature/profile/data/repositories/profile_repository_impl.dart';
+import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 import 'package:patient_portal/feature/profile/domain/repositories/profile_repository.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/add_profile_member_usecase.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/change_member_insurance_details_usecase.dart';
@@ -91,6 +93,7 @@ import 'package:patient_portal/feature/speciality/domain/repositories/speciality
 import 'package:patient_portal/feature/speciality/domain/usecases/fetch_specialities_usecase.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/search_specialities_usecase.dart';
 import 'package:patient_portal/feature/speciality/presentation/bloc/speciality_bloc/speciality_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
 
@@ -288,11 +291,13 @@ Future<void> init() async {
 
   //! Features - Profile
   // Bloc
-  sl.registerFactory(
-    () => UserBloc(
+  sl.registerFactoryParam<UserBloc, User?, void>(
+    (initialUser, _) => UserBloc(
       addProfileMemberUseCase: sl(),
       changeMemberInsuranceDetailsUseCase: sl(),
       getMemberDetailUseCase: sl(),
+      userLocalDataSource: sl(),
+      initialUser: initialUser,
     ),
   );
 
@@ -309,6 +314,9 @@ Future<void> init() async {
   // Data sources
   sl.registerLazySingleton<ProfileRemoteDataSource>(
     () => ProfileRemoteDataSourceImpl(client: sl()),
+  );
+  sl.registerLazySingleton<UserLocalDataSource>(
+    () => UserLocalDataSourceImpl(sharedPreferences: sl()),
   );
 
   //! Features - Reports
@@ -386,6 +394,9 @@ Future<void> init() async {
   );
 
   //! External
+  final sharedPreferences = await SharedPreferences.getInstance();
+  sl.registerLazySingleton(() => sharedPreferences);
+
   sl.registerLazySingleton(() => ApiAgent(sl()));
 
   sl.registerLazySingleton<Dio>(

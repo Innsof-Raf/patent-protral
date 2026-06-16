@@ -1,7 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'member_document.dart';
 
 part 'generated/member.freezed.dart';
+part 'generated/member.g.dart';
 
 @freezed
 sealed class Member with _$Member {
@@ -24,4 +26,6 @@ sealed class Member with _$Member {
     @Default([]) List<MemberDocument> memberDocs,
     @Default(false) bool isSelected,
   }) = _Member;
+
+  factory Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
 }

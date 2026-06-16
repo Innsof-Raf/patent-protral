@@ -11,14 +11,14 @@ import 'package:patient_portal/feature/login/presentation/widgets/login_otp_gene
 import 'package:patient_portal/feature/login/presentation/widgets/login_otp_verification_section.dart';
 import 'package:patient_portal/feature/login/presentation/widgets/login_with_password_section.dart';
 
-final List<String> bagroundImages = [
+final List<String> bgImages = [
   Assets.images.loginBagroundImage.path,
   Assets.images.loginBagroundImage.path,
   Assets.images.loginBagroundImage.path,
   Assets.images.loginBagroundImage.path,
 ];
 
-final CarouselSliderController bagroundImageCarouselController =
+final CarouselSliderController bgImageCarouselController =
     CarouselSliderController();
 
 @RoutePage(name: 'LoginRoute')
@@ -61,8 +61,8 @@ class LogInScreen extends StatelessWidget {
                     right: 0,
                     bottom: 0,
                     child: LoginBackgroundCarousel(
-                      images: bagroundImages,
-                      controller: bagroundImageCarouselController,
+                      images: bgImages,
+                      controller: bgImageCarouselController,
                     ),
                   ),
                   Positioned(
@@ -99,8 +99,8 @@ class _LoginBottomPanel extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: LoginCarouselIndicator(
-              controller: bagroundImageCarouselController,
-              count: bagroundImages.length,
+              controller: bgImageCarouselController,
+              count: bgImages.length,
             ),
           ),
           const SizedBox(height: 18),

@@ -11,6 +11,7 @@ part of '../user.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$User {
 
@@ -21,6 +22,8 @@ mixin _$User {
 @pragma('vm:prefer-inline')
 $UserCopyWith<User> get copyWith => _$UserCopyWithImpl<User>(this as User, _$identity);
 
+  /// Serializes this User to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +31,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is User&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.userName, userName) || other.userName == userName)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.emailId, emailId) || other.emailId == emailId)&&(identical(other.accessToken, accessToken) || other.accessToken == accessToken)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&const DeepCollectionEquality().equals(other.members, members)&&(identical(other.idMember, idMember) || other.idMember == idMember));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,id,firstName,lastName,userName,mobileNumber,emailId,accessToken,fcmToken,const DeepCollectionEquality().hash(members),idMember);
 
@@ -206,11 +209,11 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mob
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _User implements User {
   const _User({required this.id, required this.firstName, required this.lastName, required this.userName, required this.mobileNumber, required this.emailId, required this.accessToken, this.fcmToken = '', required final  List<Member> members, this.idMember = 0}): _members = members;
-  
+  factory _User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
 @override final  int id;
 @override final  String firstName;
@@ -235,14 +238,17 @@ class _User implements User {
 @pragma('vm:prefer-inline')
 _$UserCopyWith<_User> get copyWith => __$UserCopyWithImpl<_User>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$UserToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _User&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.userName, userName) || other.userName == userName)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.emailId, emailId) || other.emailId == emailId)&&(identical(other.accessToken, accessToken) || other.accessToken == accessToken)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&const DeepCollectionEquality().equals(other._members, _members)&&(identical(other.idMember, idMember) || other.idMember == idMember));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,id,firstName,lastName,userName,mobileNumber,emailId,accessToken,fcmToken,const DeepCollectionEquality().hash(_members),idMember);
 

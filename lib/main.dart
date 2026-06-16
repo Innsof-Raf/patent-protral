@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:patient_portal/core/injection_container.dart' as di;
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
@@ -21,6 +23,8 @@ import 'package:patient_portal/feature/members/presentation/bloc/delete_member_b
 import 'package:patient_portal/feature/members/presentation/bloc/member_search_bloc/member_search_bloc.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/notification/presentation/bloc/notification_bloc.dart';
+import 'package:patient_portal/feature/profile/data/datasources/user_local_data_source.dart';
+import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
 import 'package:patient_portal/feature/set_password/presentation/bloc/change_password_bloc.dart';
@@ -29,8 +33,13 @@ import 'package:patient_portal/feature/speciality/presentation/bloc/speciality_b
 final _appRouter = AppRouter();
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  final WidgetsBinding widgetsBinding =
+      WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await di.init();
+
+  final initialUser = await di.sl<UserLocalDataSource>().getUser();
+
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: AppColors.black,
@@ -41,11 +50,15 @@ void main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
-  ]).then((value) => runApp(const MyApp()));
+  ]);
+
+  runApp(MyApp(initialUser: initialUser));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final User? initialUser;
+
+  const MyApp({super.key, this.initialUser});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +74,10 @@ class MyApp extends StatelessWidget {
         BlocProvider<SearchDoctorBloc>(
           create: (context) => di.sl<SearchDoctorBloc>(),
         ),
-        BlocProvider(create: (context) => di.sl<UserBloc>()),
+        BlocProvider(
+          create: (context) =>
+              di.sl<UserBloc>(param1: initialUser)..add(const InitializeUser()),
+        ),
         BlocProvider(create: (context) => di.sl<SpecialityBloc>()),
         BlocProvider(create: (context) => di.sl<HomeBloc>()),
         BlocProvider(create: (context) => di.sl<AddMemberBloc>()),
@@ -82,6 +98,10 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
+        builder: (context, child) {
+          FlutterNativeSplash.remove();
+          return child!;
+        },
         theme: ThemeData(
           colorScheme: const ColorScheme.light(
             primary: AppColors.vilot,
@@ -145,7 +165,11 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        routerConfig: _appRouter.config(),
+        routerConfig: _appRouter.config(
+          deepLinkBuilder: (deepLink) => DeepLink(
+            initialUser != null ? [const MainRoute()] : [const LoginRoute()],
+          ),
+        ),
       ),
     );
   }

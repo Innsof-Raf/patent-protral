@@ -11,6 +11,7 @@ part of '../member.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$Member {
 
@@ -21,6 +22,8 @@ mixin _$Member {
 @pragma('vm:prefer-inline')
 $MemberCopyWith<Member> get copyWith => _$MemberCopyWithImpl<Member>(this as Member, _$identity);
 
+  /// Serializes this Member to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +31,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is Member&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.mobileNo, mobileNo) || other.mobileNo == mobileNo)&&(identical(other.emailId, emailId) || other.emailId == emailId)&&(identical(other.age, age) || other.age == age)&&(identical(other.nationalId, nationalId) || other.nationalId == nationalId)&&(identical(other.profileImage, profileImage) || other.profileImage == profileImage)&&(identical(other.isInsurance, isInsurance) || other.isInsurance == isInsurance)&&(identical(other.isInsuranceExpired, isInsuranceExpired) || other.isInsuranceExpired == isInsuranceExpired)&&(identical(other.insuranceExpDttm, insuranceExpDttm) || other.insuranceExpDttm == insuranceExpDttm)&&(identical(other.dob, dob) || other.dob == dob)&&(identical(other.memberNo, memberNo) || other.memberNo == memberNo)&&(identical(other.insuranceName, insuranceName) || other.insuranceName == insuranceName)&&(identical(other.insuranceId, insuranceId) || other.insuranceId == insuranceId)&&(identical(other.gender, gender) || other.gender == gender)&&const DeepCollectionEquality().equals(other.memberDocs, memberDocs)&&(identical(other.isSelected, isSelected) || other.isSelected == isSelected));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,id,name,mobileNo,emailId,age,nationalId,profileImage,isInsurance,isInsuranceExpired,insuranceExpDttm,dob,memberNo,insuranceName,insuranceId,gender,const DeepCollectionEquality().hash(memberDocs),isSelected);
 
@@ -213,11 +216,11 @@ return $default(_that.id,_that.name,_that.mobileNo,_that.emailId,_that.age,_that
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _Member implements Member {
   const _Member({required this.id, required this.name, this.mobileNo, this.emailId, required this.age, required this.nationalId, this.profileImage, required this.isInsurance, required this.isInsuranceExpired, this.insuranceExpDttm, this.dob, this.memberNo, this.insuranceName, this.insuranceId, this.gender, final  List<MemberDocument> memberDocs = const [], this.isSelected = false}): _memberDocs = memberDocs;
-  
+  factory _Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
 
 @override final  int id;
 @override final  String name;
@@ -249,14 +252,17 @@ class _Member implements Member {
 @pragma('vm:prefer-inline')
 _$MemberCopyWith<_Member> get copyWith => __$MemberCopyWithImpl<_Member>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$MemberToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _Member&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.mobileNo, mobileNo) || other.mobileNo == mobileNo)&&(identical(other.emailId, emailId) || other.emailId == emailId)&&(identical(other.age, age) || other.age == age)&&(identical(other.nationalId, nationalId) || other.nationalId == nationalId)&&(identical(other.profileImage, profileImage) || other.profileImage == profileImage)&&(identical(other.isInsurance, isInsurance) || other.isInsurance == isInsurance)&&(identical(other.isInsuranceExpired, isInsuranceExpired) || other.isInsuranceExpired == isInsuranceExpired)&&(identical(other.insuranceExpDttm, insuranceExpDttm) || other.insuranceExpDttm == insuranceExpDttm)&&(identical(other.dob, dob) || other.dob == dob)&&(identical(other.memberNo, memberNo) || other.memberNo == memberNo)&&(identical(other.insuranceName, insuranceName) || other.insuranceName == insuranceName)&&(identical(other.insuranceId, insuranceId) || other.insuranceId == insuranceId)&&(identical(other.gender, gender) || other.gender == gender)&&const DeepCollectionEquality().equals(other._memberDocs, _memberDocs)&&(identical(other.isSelected, isSelected) || other.isSelected == isSelected));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,id,name,mobileNo,emailId,age,nationalId,profileImage,isInsurance,isInsuranceExpired,insuranceExpDttm,dob,memberNo,insuranceName,insuranceId,gender,const DeepCollectionEquality().hash(_memberDocs),isSelected);
 

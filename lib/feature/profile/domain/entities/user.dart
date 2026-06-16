@@ -1,7 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'member.dart';
 
 part 'generated/user.freezed.dart';
+part 'generated/user.g.dart';
 
 @freezed
 sealed class User with _$User {
@@ -17,4 +19,6 @@ sealed class User with _$User {
     required List<Member> members,
     @Default(0) int idMember,
   }) = _User;
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }
