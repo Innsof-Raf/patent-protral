@@ -2,9 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/appointment_slot_section.dart';
-import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_appbar.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_bottom_navigation_bar.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/date_tab.dart';
@@ -53,7 +53,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: const BookAppointmentAppbar(),
+      appBar: const CommonAppbar(title: 'Book Appointment', centerTitle: true),
       body: Column(
         children: [
           _DateSelector(

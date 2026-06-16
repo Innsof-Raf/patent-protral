@@ -5,6 +5,7 @@ import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.d
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
 import 'package:patient_portal/core/route/app_router.dart';
+import 'package:patient_portal/feature/members/presentation/bloc/delete_member_bloc/delete_member_bloc.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/member_search_bloc/member_search_bloc.dart';
 import 'package:patient_portal/feature/members/presentation/widgets/deletable_member_tile.dart';
 import 'package:patient_portal/feature/members/presentation/widgets/members_header.dart';
@@ -36,7 +37,26 @@ class _MembersScreenState extends State<MembersScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: theme.colorScheme.surface,
-      appBar: const CommonAppbar(title: 'Members'),
+      appBar: CommonAppbar(
+        title: 'Members',
+        actions: [
+          TextButton(
+            onPressed: () {
+              final membersIdList = context
+                  .read<UserBloc>()
+                  .state
+                  .user!
+                  .members
+                  .map((m) => m.id)
+                  .toList();
+              context.read<DeleteMemberBloc>().add(
+                SelectAllMembers(membersIdList: membersIdList),
+              );
+            },
+            child: const Text('Select All'),
+          ),
+        ],
+      ),
       body: BlocBuilder<UserBloc, UserState>(
         builder: (context, userState) {
           final members = userState.user?.members ?? [];
