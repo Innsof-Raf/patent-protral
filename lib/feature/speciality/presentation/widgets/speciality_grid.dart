@@ -14,11 +14,11 @@ class SpecialityGrid extends StatelessWidget {
       sliver: SliverLayoutBuilder(
         builder: (context, constraints) {
           final width = constraints.crossAxisExtent;
-          final crossAxisCount = width < 360
+          final crossAxisCount = width < 520
               ? 2
-              : width < 620
+              : width < 760
               ? 3
-              : width < 920
+              : width < 1040
               ? 4
               : 5;
 
@@ -28,7 +28,7 @@ class SpecialityGrid extends StatelessWidget {
               crossAxisCount: crossAxisCount,
               crossAxisSpacing: 12,
               mainAxisSpacing: 12,
-              childAspectRatio: width < 360 ? .92 : .98,
+              mainAxisExtent: width < 520 ? 156 : 164,
             ),
             itemBuilder: (context, index) {
               return SpecialityTile(speciality: specialities[index]);
