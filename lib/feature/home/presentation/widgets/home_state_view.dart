@@ -1,34 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/core/gen/assets.gen.dart';
-
-class HomeLoadingView extends StatelessWidget {
-  const HomeLoadingView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Center(
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(24),
-          boxShadow: [
-            BoxShadow(
-              color: theme.colorScheme.shadow.withValues(alpha: .08),
-              blurRadius: 22,
-              offset: const Offset(0, 12),
-            ),
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Image.asset(Assets.gifImages.ripple02.path, width: 96),
-        ),
-      ),
-    );
-  }
-}
 
 class HomeErrorView extends StatelessWidget {
   const HomeErrorView({required this.message, super.key});

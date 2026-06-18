@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/appointment_slot_section.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_bottom_navigation_bar.dart';
@@ -108,14 +108,9 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                   child: Column(
                     children: [
                       if (state.isSlotLoading)
-                        Padding(
-                          padding: const EdgeInsets.all(32.0),
-                          child: Center(
-                            child: Image.asset(
-                              Assets.gifImages.ripple02.path,
-                              width: 100,
-                            ),
-                          ),
+                        const CommonLoadingView(
+                          size: 80,
+                          padding: EdgeInsets.all(20),
                         )
                       else
                         AppointmentSlotSection(shift: state.shift),

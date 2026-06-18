@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 
 class DoctorsLoadingView extends StatelessWidget {
   const DoctorsLoadingView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Image.asset(Assets.gifImages.ripple02.path, width: 96),
-    );
+    return const CommonLoadingView();
   }
 }
 

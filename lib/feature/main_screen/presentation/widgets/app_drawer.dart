@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
@@ -7,8 +8,6 @@ import 'package:patient_portal/feature/main_screen/presentation/widgets/app_draw
 import 'package:patient_portal/feature/main_screen/presentation/widgets/drawer_logout_tile.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/drawer_profile_tile.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import 'package:gap/gap.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});

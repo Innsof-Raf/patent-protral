@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/feature/reports/domain/usecases/params/reports_params.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
 import 'package:patient_portal/feature/reports/presentation/widgets/report_app_bar.dart';
@@ -48,14 +48,7 @@ class _ReportScreenState extends State<ReportScreen> {
       body: BlocBuilder<ReportsBloc, ReportsState>(
         builder: (context, state) {
           return state.isRepoertSaving
-              ? LayoutBuilder(
-                  builder: (context, constraints) => Center(
-                    child: Image.asset(
-                      Assets.gifImages.ripple02.path,
-                      width: constraints.maxWidth * .3,
-                    ),
-                  ),
-                )
+              ? const CommonLoadingView()
               : state.isReportSavingFailed
               ? Center(
                   child: Text(

@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/succes_dailog.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
@@ -121,14 +121,7 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
                 },
                 builder: (context, state) {
                   return state.isAppointmentsFetching
-                      ? LayoutBuilder(
-                          builder: (context, constraints) => Center(
-                            child: Image.asset(
-                              Assets.gifImages.ripple02.path,
-                              width: constraints.maxWidth * .3,
-                            ),
-                          ),
-                        )
+                      ? const CommonLoadingView()
                       : state.isAppointmentsFetchingFailed
                       ? Center(
                           child: Text(

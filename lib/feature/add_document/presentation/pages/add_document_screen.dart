@@ -9,6 +9,7 @@ import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/feature/add_document/presentation/bloc/add_document_bloc.dart';
 import 'package:patient_portal/feature/add_document/presentation/widgets/add_document_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -50,14 +51,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
       body: BlocBuilder<AddDocumentBloc, AddDocumentState>(
         builder: (context, state) {
           return state.isFetchingDocumentTypes
-              ? LayoutBuilder(
-                  builder: (context, constraints) => Center(
-                    child: Image.asset(
-                      Assets.gifImages.ripple02.path,
-                      width: constraints.maxWidth * .3,
-                    ),
-                  ),
-                )
+              ? const CommonLoadingView()
               : state.isFetchingDocumentTypesFailed
               ? Center(
                   child: Text(

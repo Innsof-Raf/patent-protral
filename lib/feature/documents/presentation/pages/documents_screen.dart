@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/documents/domain/entities/document.dart';
 import 'package:patient_portal/feature/documents/presentation/bloc/documents_bloc/documents_bloc.dart';
@@ -39,14 +39,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
       body: BlocBuilder<DocumentsBloc, DocumentsState>(
         builder: (context, state) {
           if (state.isFetching) {
-            return LayoutBuilder(
-              builder: (context, constraints) => Center(
-                child: Image.asset(
-                  Assets.gifImages.ripple02.path,
-                  width: constraints.maxWidth * .3,
-                ),
-              ),
-            );
+            return const CommonLoadingView();
           } else if (state.isFetchingFailed) {
             return Center(
               child: Text(

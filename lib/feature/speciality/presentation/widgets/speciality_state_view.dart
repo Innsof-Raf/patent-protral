@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 
 class SpecialityLoadingView extends StatelessWidget {
   const SpecialityLoadingView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Center(
-      child: Image.asset(
-        Assets.gifImages.ripple02.path,
-        width: MediaQuery.sizeOf(context).shortestSide * .32,
-        color: theme.colorScheme.primary,
-      ),
-    );
+    return CommonLoadingView(color: Theme.of(context).colorScheme.primary);
   }
 }
 

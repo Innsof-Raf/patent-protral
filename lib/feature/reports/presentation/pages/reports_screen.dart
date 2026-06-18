@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/reports/domain/usecases/params/reports_params.dart';
@@ -41,14 +41,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
         child: BlocBuilder<ReportsBloc, ReportsState>(
           builder: (context, state) {
             return state.isFetchingReports
-                ? LayoutBuilder(
-                    builder: (context, constraints) => Center(
-                      child: Image.asset(
-                        Assets.gifImages.ripple02.path,
-                        width: constraints.maxWidth * .3,
-                      ),
-                    ),
-                  )
+                ? const CommonLoadingView()
                 : state.isFetchingFailed
                 ? Center(
                     child: Text(

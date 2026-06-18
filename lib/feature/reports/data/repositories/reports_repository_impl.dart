@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:patient_portal/core/resources/constant_messages.dart';
 import 'package:patient_portal/core/resources/error_model.dart';
 import 'package:patient_portal/feature/reports/data/datasources/reports_remote_data_source.dart';
 import 'package:patient_portal/feature/reports/domain/entities/report.dart';

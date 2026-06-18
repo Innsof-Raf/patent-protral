@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/feature/lab/domain/entities/item.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
 import 'package:patient_portal/feature/lab/presentation/widgets/lab_grid_item_tile.dart';
@@ -14,14 +14,7 @@ class PackagesTabBarView extends StatelessWidget {
     return BlocBuilder<ItemsBloc, ItemsState>(
       builder: (context, state) {
         if (state.isItemsFetching) {
-          return LayoutBuilder(
-            builder: (context, constraints) => Center(
-              child: Image.asset(
-                Assets.gifImages.ripple02.path,
-                width: constraints.maxWidth * .3,
-              ),
-            ),
-          );
+          return const CommonLoadingView();
         } else if (state.isItemsFetchingFailed) {
           return Center(
             child: Text(

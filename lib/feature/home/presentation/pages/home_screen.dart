@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:patient_portal/feature/home/presentation/helpers/home_helpers.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_banner_carousel.dart';
@@ -23,7 +24,7 @@ class HomeScreen extends StatelessWidget {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         if (state.isDataFetching) {
-          return const Scaffold(body: HomeLoadingView());
+          return const Scaffold(body: CommonLoadingView());
         }
 
         if (state.isDataFetchingFailed) {

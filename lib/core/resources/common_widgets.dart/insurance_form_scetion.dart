@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
 import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -92,12 +92,7 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
       },
       builder: (context, state) {
         if (state.isFetchingInsurances) {
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Image.asset(Assets.gifImages.ripple02.path, width: 80),
-            ),
-          );
+          return const CommonLoadingView(size: 80, padding: EdgeInsets.all(20));
         }
 
         return Form(
