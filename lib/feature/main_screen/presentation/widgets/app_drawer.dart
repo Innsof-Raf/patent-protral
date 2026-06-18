@@ -8,6 +8,8 @@ import 'package:patient_portal/feature/main_screen/presentation/widgets/drawer_l
 import 'package:patient_portal/feature/main_screen/presentation/widgets/drawer_profile_tile.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'package:gap/gap.dart';
+
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
 
@@ -26,6 +28,7 @@ class AppDrawer extends StatelessWidget {
         builder: (context, selectedIndex, child) {
           return Column(
             children: [
+              Gap(15),
               Expanded(
                 child: ListView(
                   padding: EdgeInsets.zero,
