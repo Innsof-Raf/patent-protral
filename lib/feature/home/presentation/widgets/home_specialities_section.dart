@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_section_header.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_speciality_card.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
@@ -24,22 +25,24 @@ class HomeSpecialitiesSection extends StatelessWidget {
             MainScreenHelpers.mainScreenNotifier.value = 2;
           },
         ),
-        const SizedBox(height: 14),
-        GridView.builder(
-          padding: EdgeInsets.zero,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: specialities.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            mainAxisSpacing: 12,
-            crossAxisSpacing: 12,
-            childAspectRatio: MediaQuery.sizeOf(context).width < 600
-                ? 1.08
-                : 1.35,
-            crossAxisCount: MediaQuery.sizeOf(context).width < 600 ? 4 : 6,
+        SizedBox(
+          height: 125,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.zero,
+            physics: const BouncingScrollPhysics(),
+            itemCount: specialities.length,
+            separatorBuilder: (context, index) => const Gap(12),
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: SizedBox(
+                  width: 120,
+                  child: HomeSpecialityCard(speciality: specialities[index]),
+                ),
+              );
+            },
           ),
-          itemBuilder: (context, index) =>
-              HomeSpecialityCard(speciality: specialities[index]),
         ),
       ],
     );
