@@ -75,9 +75,24 @@ class _MainScreenState extends State<MainScreen> {
           ),
           floatingActionButton: const BottomNavigationBarWidget(),
           floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
+              const _CompactBottomNavigationBarLocation(),
         );
       },
+    );
+  }
+}
+
+class _CompactBottomNavigationBarLocation extends FloatingActionButtonLocation {
+  const _CompactBottomNavigationBarLocation();
+
+  @override
+  Offset getOffset(ScaffoldPrelayoutGeometry scaffoldGeometry) {
+    final fabSize = scaffoldGeometry.floatingActionButtonSize;
+    final scaffoldSize = scaffoldGeometry.scaffoldSize;
+
+    return Offset(
+      (scaffoldSize.width - fabSize.width) / 2,
+      scaffoldSize.height - fabSize.height - 4,
     );
   }
 }

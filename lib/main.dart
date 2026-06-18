@@ -32,6 +32,16 @@ import 'package:patient_portal/feature/speciality/presentation/bloc/speciality_b
 
 final _appRouter = AppRouter();
 
+const _systemUiOverlayStyle = SystemUiOverlayStyle(
+  statusBarColor: AppColors.black,
+  statusBarIconBrightness: Brightness.light,
+  statusBarBrightness: Brightness.dark,
+  systemNavigationBarColor: Colors.transparent,
+  systemNavigationBarDividerColor: Colors.transparent,
+  systemNavigationBarIconBrightness: Brightness.dark,
+  systemNavigationBarContrastEnforced: false,
+);
+
 void main() async {
   final WidgetsBinding widgetsBinding =
       WidgetsFlutterBinding.ensureInitialized();
@@ -40,13 +50,8 @@ void main() async {
 
   final initialUser = await di.sl<UserLocalDataSource>().getUser();
 
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarColor: AppColors.black,
-      statusBarIconBrightness: Brightness.light,
-      statusBarBrightness: Brightness.dark,
-    ),
-  );
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  SystemChrome.setSystemUIOverlayStyle(_systemUiOverlayStyle);
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -111,11 +116,7 @@ class MyApp extends StatelessWidget {
           primaryColor: AppColors.vilot,
           scaffoldBackgroundColor: AppColors.white,
           appBarTheme: const AppBarTheme(
-            systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor: AppColors.black,
-              statusBarIconBrightness: Brightness.light,
-              statusBarBrightness: Brightness.dark,
-            ),
+            systemOverlayStyle: _systemUiOverlayStyle,
           ),
           textButtonTheme: TextButtonThemeData(
             style: TextButton.styleFrom(

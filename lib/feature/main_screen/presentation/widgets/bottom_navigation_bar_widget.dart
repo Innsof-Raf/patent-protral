@@ -10,8 +10,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return SafeArea(
-      minimum: const EdgeInsets.fromLTRB(16, 0, 16,0),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16).copyWith(bottom: 16),
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 560),
         child: DecoratedBox(

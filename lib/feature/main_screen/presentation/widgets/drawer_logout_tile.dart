@@ -15,7 +15,7 @@ class LogOutTile extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: EdgeInsets.fromLTRB(14, 10, 14, 10),
+      padding: EdgeInsets.fromLTRB(14, 10, 14, 25),
       child: DecoratedBox(
         decoration: BoxDecoration(
           border: Border(
