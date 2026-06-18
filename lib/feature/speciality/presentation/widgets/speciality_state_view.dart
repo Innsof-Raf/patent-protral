@@ -15,19 +15,15 @@ class SpecialityMessageView extends StatelessWidget {
     super.key,
     required this.title,
     required this.message,
-    this.isError = false,
   });
 
   final String title;
   final String message;
-  final bool isError;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final iconColor = isError
-        ? theme.colorScheme.error
-        : theme.colorScheme.primary;
+    final iconColor = theme.colorScheme.primary;
 
     return Center(
       child: Padding(
@@ -42,12 +38,7 @@ class SpecialityMessageView extends StatelessWidget {
                 color: iconColor.withValues(alpha: .12),
                 shape: BoxShape.circle,
               ),
-              child: Icon(
-                isError
-                    ? Icons.cloud_off_outlined
-                    : Icons.medical_information_outlined,
-                color: iconColor,
-              ),
+              child: Icon(Icons.medical_information_outlined, color: iconColor),
             ),
             const SizedBox(height: 16),
             Text(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/documents/domain/entities/document.dart';
@@ -23,11 +24,16 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
   @override
   void initState() {
     super.initState();
+    _fetchDocuments();
+  }
+
+  void _fetchDocuments() {
+    final user = context.read<UserBloc>().state.user!;
     context.read<DocumentsBloc>().add(
       GetDocuments(
         memberId: 0,
-        mobileNumber: context.read<UserBloc>().state.user!.mobileNumber,
-        token: context.read<UserBloc>().state.user!.accessToken,
+        mobileNumber: user.mobileNumber,
+        token: user.accessToken,
       ),
     );
   }
@@ -41,11 +47,10 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
           if (state.isFetching) {
             return const CommonLoadingView();
           } else if (state.isFetchingFailed) {
-            return Center(
-              child: Text(
-                state.error.message,
-                style: AppTextStyles.largeRobotoNormal,
-              ),
+            return CommonErrorView(
+              title: 'Unable to load documents',
+              message: state.error.message,
+              onRetry: _fetchDocuments,
             );
           } else {
             List<Document> documents = [];

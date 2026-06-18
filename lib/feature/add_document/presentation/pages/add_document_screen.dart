@@ -9,6 +9,7 @@ import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/feature/add_document/presentation/bloc/add_document_bloc.dart';
 import 'package:patient_portal/feature/add_document/presentation/widgets/add_document_screen_helpers.dart';
@@ -33,14 +34,18 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<AddDocumentBloc>().add(
-      GetDocumentTypes(token: context.read<UserBloc>().state.user!.accessToken),
-    );
+    _fetchDocumentTypes();
     AddDocumentScreen.expireDate = null;
     AddDocumentScreen.selectedDocumentType = null;
     AddDocumentScreen.selectedMember = null;
     AddDocumentScreen.expireDateController.text = '';
     AddDocumentScreen.documentNameController.text = '';
+  }
+
+  void _fetchDocumentTypes() {
+    context.read<AddDocumentBloc>().add(
+      GetDocumentTypes(token: context.read<UserBloc>().state.user!.accessToken),
+    );
   }
 
   @override
@@ -53,20 +58,16 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
           return state.isFetchingDocumentTypes
               ? const CommonLoadingView()
               : state.isFetchingDocumentTypesFailed
-              ? Center(
-                  child: Text(
-                    state.error.message,
-                    style: AppTextStyles.largeRobotoNormal,
-                    textAlign: TextAlign.center,
-                  ),
+              ? CommonErrorView(
+                  title: 'Unable to load document types',
+                  message: state.error.message,
+                  onRetry: _fetchDocumentTypes,
                 )
               : state.documentTypes.isEmpty
-              ? const Center(
-                  child: Text(
-                    'Somthing went wrong \n Can\'t add documents now',
-                    style: AppTextStyles.largeRobotoNormal,
-                    textAlign: TextAlign.center,
-                  ),
+              ? CommonErrorView(
+                  title: 'Document types unavailable',
+                  message: 'You cannot add documents right now.',
+                  onRetry: _fetchDocumentTypes,
                 )
               : Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),

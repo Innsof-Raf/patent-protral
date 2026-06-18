@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
@@ -24,6 +25,10 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
   @override
   void initState() {
     super.initState();
+    _fetchSpecialities();
+  }
+
+  void _fetchSpecialities() {
     context.read<SpecialityBloc>().add(
       FetchSpecialities(
         params: SpecialityParams.fetchSpecialities(
@@ -53,10 +58,10 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
           }
 
           if (state.isFetchingError) {
-            return SpecialityMessageView(
+            return CommonErrorView(
               title: 'Unable to load specialities',
               message: state.error.message,
-              isError: true,
+              onRetry: _fetchSpecialities,
             );
           }
 

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
 import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
 import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc/doctor_bloc.dart';
@@ -27,6 +28,10 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
   @override
   void initState() {
     super.initState();
+    _fetchDoctors();
+  }
+
+  void _fetchDoctors() {
     final token = context.read<UserBloc>().state.user!.accessToken;
     context.read<DoctorBloc>().add(
       GetAvailableDoctorsByDepartment(
@@ -56,10 +61,10 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
           }
 
           if (state.isDoctorsFetchingFailed) {
-            return DoctorsMessageView(
+            return CommonErrorView(
               title: 'Unable to load doctors',
               message: state.error.message,
-              isError: true,
+              onRetry: _fetchDoctors,
             );
           }
 

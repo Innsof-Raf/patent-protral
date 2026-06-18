@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/appointment_slot_section.dart';
@@ -50,8 +51,6 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Scaffold(
       appBar: const CommonAppbar(title: 'Book Appointment', centerTitle: true),
       body: Column(
@@ -71,35 +70,11 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
             child: BlocBuilder<BookAppointmentBloc, BookAppointmentState>(
               builder: (context, state) {
                 if (state.isFetchingError) {
-                  return Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(24.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.error_outline_rounded,
-                            size: 64,
-                            color: theme.colorScheme.error,
-                          ),
-                          const SizedBox(height: 16),
-                          Text(
-                            state.error.message,
-                            textAlign: TextAlign.center,
-                            style: theme.textTheme.titleMedium,
-                          ),
-                          const SizedBox(height: 24),
-                          FilledButton.icon(
-                            onPressed: () => _fetchSlots(
-                              BookAppointmentScreenHelpers
-                                  .selectedDateNotifier
-                                  .value,
-                            ),
-                            icon: const Icon(Icons.refresh_rounded),
-                            label: const Text('Retry'),
-                          ),
-                        ],
-                      ),
+                  return CommonErrorView(
+                    title: 'Unable to load appointment slots',
+                    message: state.error.message,
+                    onRetry: () => _fetchSlots(
+                      BookAppointmentScreenHelpers.selectedDateNotifier.value,
                     ),
                   );
                 }

@@ -15,17 +15,15 @@ class MemberDetailsMessageView extends StatelessWidget {
     super.key,
     required this.title,
     required this.message,
-    this.isError = false,
   });
 
   final String title;
   final String message;
-  final bool isError;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final color = isError ? theme.colorScheme.error : theme.colorScheme.primary;
+    final color = theme.colorScheme.primary;
 
     return Center(
       child: Padding(
@@ -40,13 +38,7 @@ class MemberDetailsMessageView extends StatelessWidget {
                 color: color.withValues(alpha: .12),
                 shape: BoxShape.circle,
               ),
-              child: Icon(
-                isError
-                    ? Icons.error_outline_rounded
-                    : Icons.person_search_outlined,
-                color: color,
-                size: 30,
-              ),
+              child: Icon(Icons.person_search_outlined, color: color, size: 30),
             ),
             const SizedBox(height: 16),
             Text(

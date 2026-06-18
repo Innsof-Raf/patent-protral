@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_state_view.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_documents_section.dart';
@@ -27,6 +28,10 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
   @override
   void initState() {
     super.initState();
+    _fetchMemberDetails();
+  }
+
+  void _fetchMemberDetails() {
     context.read<UserBloc>().add(
       GetMemberDetail(
         params: ProfileParams.getMemberDetail(memberId: widget.memberId),
@@ -46,10 +51,10 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
           if (state.isFetchingMemberDetail) {
             return const MemberDetailsLoadingView();
           } else if (state.isMemberDetailFetchingFailed) {
-            return MemberDetailsMessageView(
+            return CommonErrorView(
               title: 'Unable to load member',
               message: state.error.message,
-              isError: true,
+              onRetry: _fetchMemberDetails,
             );
           } else {
             final Member? member = _findMember(state.user?.members);

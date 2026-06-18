@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -21,6 +22,10 @@ class _ReportsScreenState extends State<ReportsScreen> {
   @override
   void initState() {
     super.initState();
+    _fetchReports();
+  }
+
+  void _fetchReports() {
     final User user = context.read<UserBloc>().state.user!;
     context.read<ReportsBloc>().add(
       GetReports(
@@ -43,11 +48,10 @@ class _ReportsScreenState extends State<ReportsScreen> {
             return state.isFetchingReports
                 ? const CommonLoadingView()
                 : state.isFetchingFailed
-                ? Center(
-                    child: Text(
-                      state.error.message,
-                      style: AppTextStyles.largeRobotoNormal,
-                    ),
+                ? CommonErrorView(
+                    title: 'Unable to load reports',
+                    message: state.error.message,
+                    onRetry: _fetchReports,
                   )
                 : state.reports.isEmpty
                 ? const Center(

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/feature/notification/presentation/bloc/notification_bloc.dart';
 import 'package:patient_portal/feature/notification/presentation/widgets/empty_notifications_view.dart';
 import 'package:patient_portal/feature/notification/presentation/widgets/notification_card.dart';
@@ -19,6 +20,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   void initState() {
     super.initState();
+    _fetchNotifications();
+  }
+
+  void _fetchNotifications() {
     final userState = context.read<UserBloc>().state;
     final token = userState.user?.accessToken ?? '';
     final mobileNumber = userState.user?.mobileNumber ?? '';
@@ -42,7 +47,11 @@ class _NotificationScreenState extends State<NotificationScreen> {
           }
 
           if (state.isError) {
-            return Center(child: Text(state.errorMessage));
+            return CommonErrorView(
+              title: 'Unable to load notifications',
+              message: state.errorMessage,
+              onRetry: _fetchNotifications,
+            );
           }
 
           if (state.notifications.isEmpty) {

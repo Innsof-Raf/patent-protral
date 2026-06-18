@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/succes_dailog.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
@@ -25,11 +26,16 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
   void initState() {
     super.initState();
     MyAppointmentScreenHelpers.selectedTabNotifier.value = 0;
+    _fetchAppointments();
+  }
+
+  void _fetchAppointments() {
+    final user = context.read<UserBloc>().state.user!;
     context.read<MyAppointmentsBloc>().add(
       GetMyAppointments(
         params: MyAppointmentsParams.getMyAppointments(
-          token: context.read<UserBloc>().state.user!.accessToken,
-          mobileNumber: context.read<UserBloc>().state.user!.mobileNumber,
+          token: user.accessToken,
+          mobileNumber: user.mobileNumber,
         ),
       ),
     );
@@ -123,11 +129,10 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
                   return state.isAppointmentsFetching
                       ? const CommonLoadingView()
                       : state.isAppointmentsFetchingFailed
-                      ? Center(
-                          child: Text(
-                            state.error.message,
-                            style: AppTextStyles.largeRobotoNormal,
-                          ),
+                      ? CommonErrorView(
+                          title: 'Unable to load appointments',
+                          message: state.error.message,
+                          onRetry: _fetchAppointments,
                         )
                       : state.monthTimeLineList.isEmpty
                       ? const Center(

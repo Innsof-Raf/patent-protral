@@ -11,23 +11,15 @@ class DoctorsLoadingView extends StatelessWidget {
 }
 
 class DoctorsMessageView extends StatelessWidget {
-  const DoctorsMessageView({
-    required this.title,
-    this.message,
-    this.isError = false,
-    super.key,
-  });
+  const DoctorsMessageView({required this.title, this.message, super.key});
 
   final String title;
   final String? message;
-  final bool isError;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final color = isError
-        ? theme.colorScheme.error
-        : theme.colorScheme.onSurfaceVariant;
+    final color = theme.colorScheme.onSurfaceVariant;
 
     return Center(
       child: Padding(
@@ -35,13 +27,7 @@ class DoctorsMessageView extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              isError
-                  ? Icons.error_outline_rounded
-                  : Icons.medical_services_outlined,
-              color: color,
-              size: 38,
-            ),
+            Icon(Icons.medical_services_outlined, color: color, size: 38),
             const SizedBox(height: 12),
             Text(
               title,
