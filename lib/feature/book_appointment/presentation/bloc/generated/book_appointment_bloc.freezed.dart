@@ -55,15 +55,15 @@ extension BookAppointmentEventPatterns on BookAppointmentEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( BookNewAppointment value)?  bookNewAppointment,TResult Function( ResheduleAppointment value)?  resheduleAppointment,TResult Function( GetAvailableSlots value)?  getAvailableSlots,TResult Function( ChangeBookedSlotState value)?  changeBookedSlotState,TResult Function( ChangeResheduledSlotState value)?  changeResheduledSlotState,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( BookNewAppointment value)?  bookNewAppointment,TResult Function( RescheduleAppointment value)?  rescheduleAppointment,TResult Function( GetAvailableSlots value)?  getAvailableSlots,TResult Function( ChangeBookedSlotState value)?  changeBookedSlotState,TResult Function( ChangeRescheduledSlotState value)?  changeRescheduledSlotState,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case BookNewAppointment() when bookNewAppointment != null:
-return bookNewAppointment(_that);case ResheduleAppointment() when resheduleAppointment != null:
-return resheduleAppointment(_that);case GetAvailableSlots() when getAvailableSlots != null:
+return bookNewAppointment(_that);case RescheduleAppointment() when rescheduleAppointment != null:
+return rescheduleAppointment(_that);case GetAvailableSlots() when getAvailableSlots != null:
 return getAvailableSlots(_that);case ChangeBookedSlotState() when changeBookedSlotState != null:
-return changeBookedSlotState(_that);case ChangeResheduledSlotState() when changeResheduledSlotState != null:
-return changeResheduledSlotState(_that);case _:
+return changeBookedSlotState(_that);case ChangeRescheduledSlotState() when changeRescheduledSlotState != null:
+return changeRescheduledSlotState(_that);case _:
   return orElse();
 
 }
@@ -81,15 +81,15 @@ return changeResheduledSlotState(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( BookNewAppointment value)  bookNewAppointment,required TResult Function( ResheduleAppointment value)  resheduleAppointment,required TResult Function( GetAvailableSlots value)  getAvailableSlots,required TResult Function( ChangeBookedSlotState value)  changeBookedSlotState,required TResult Function( ChangeResheduledSlotState value)  changeResheduledSlotState,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( BookNewAppointment value)  bookNewAppointment,required TResult Function( RescheduleAppointment value)  rescheduleAppointment,required TResult Function( GetAvailableSlots value)  getAvailableSlots,required TResult Function( ChangeBookedSlotState value)  changeBookedSlotState,required TResult Function( ChangeRescheduledSlotState value)  changeRescheduledSlotState,}){
 final _that = this;
 switch (_that) {
 case BookNewAppointment():
-return bookNewAppointment(_that);case ResheduleAppointment():
-return resheduleAppointment(_that);case GetAvailableSlots():
+return bookNewAppointment(_that);case RescheduleAppointment():
+return rescheduleAppointment(_that);case GetAvailableSlots():
 return getAvailableSlots(_that);case ChangeBookedSlotState():
-return changeBookedSlotState(_that);case ChangeResheduledSlotState():
-return changeResheduledSlotState(_that);}
+return changeBookedSlotState(_that);case ChangeRescheduledSlotState():
+return changeRescheduledSlotState(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -103,15 +103,15 @@ return changeResheduledSlotState(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( BookNewAppointment value)?  bookNewAppointment,TResult? Function( ResheduleAppointment value)?  resheduleAppointment,TResult? Function( GetAvailableSlots value)?  getAvailableSlots,TResult? Function( ChangeBookedSlotState value)?  changeBookedSlotState,TResult? Function( ChangeResheduledSlotState value)?  changeResheduledSlotState,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( BookNewAppointment value)?  bookNewAppointment,TResult? Function( RescheduleAppointment value)?  rescheduleAppointment,TResult? Function( GetAvailableSlots value)?  getAvailableSlots,TResult? Function( ChangeBookedSlotState value)?  changeBookedSlotState,TResult? Function( ChangeRescheduledSlotState value)?  changeRescheduledSlotState,}){
 final _that = this;
 switch (_that) {
 case BookNewAppointment() when bookNewAppointment != null:
-return bookNewAppointment(_that);case ResheduleAppointment() when resheduleAppointment != null:
-return resheduleAppointment(_that);case GetAvailableSlots() when getAvailableSlots != null:
+return bookNewAppointment(_that);case RescheduleAppointment() when rescheduleAppointment != null:
+return rescheduleAppointment(_that);case GetAvailableSlots() when getAvailableSlots != null:
 return getAvailableSlots(_that);case ChangeBookedSlotState() when changeBookedSlotState != null:
-return changeBookedSlotState(_that);case ChangeResheduledSlotState() when changeResheduledSlotState != null:
-return changeResheduledSlotState(_that);case _:
+return changeBookedSlotState(_that);case ChangeRescheduledSlotState() when changeRescheduledSlotState != null:
+return changeRescheduledSlotState(_that);case _:
   return null;
 
 }
@@ -128,14 +128,14 @@ return changeResheduledSlotState(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int idDoctor,  DateTime appointmentDateTime,  String mobileNo,  int idMember,  String token)?  bookNewAppointment,TResult Function( int idAppointment,  DateTime appointmentDateTime,  String token)?  resheduleAppointment,TResult Function( int idDoctor,  DateTime date,  String token)?  getAvailableSlots,TResult Function( DateTime slotTime)?  changeBookedSlotState,TResult Function( DateTime oldSlot,  DateTime currentSlot)?  changeResheduledSlotState,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int idDoctor,  DateTime appointmentDateTime,  String mobileNo,  int idMember,  String token)?  bookNewAppointment,TResult Function( int idAppointment,  DateTime appointmentDateTime,  String token)?  rescheduleAppointment,TResult Function( int idDoctor,  DateTime date,  String token)?  getAvailableSlots,TResult Function( DateTime slotTime)?  changeBookedSlotState,TResult Function( DateTime oldSlot,  DateTime currentSlot)?  changeRescheduledSlotState,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case BookNewAppointment() when bookNewAppointment != null:
-return bookNewAppointment(_that.idDoctor,_that.appointmentDateTime,_that.mobileNo,_that.idMember,_that.token);case ResheduleAppointment() when resheduleAppointment != null:
-return resheduleAppointment(_that.idAppointment,_that.appointmentDateTime,_that.token);case GetAvailableSlots() when getAvailableSlots != null:
+return bookNewAppointment(_that.idDoctor,_that.appointmentDateTime,_that.mobileNo,_that.idMember,_that.token);case RescheduleAppointment() when rescheduleAppointment != null:
+return rescheduleAppointment(_that.idAppointment,_that.appointmentDateTime,_that.token);case GetAvailableSlots() when getAvailableSlots != null:
 return getAvailableSlots(_that.idDoctor,_that.date,_that.token);case ChangeBookedSlotState() when changeBookedSlotState != null:
-return changeBookedSlotState(_that.slotTime);case ChangeResheduledSlotState() when changeResheduledSlotState != null:
-return changeResheduledSlotState(_that.oldSlot,_that.currentSlot);case _:
+return changeBookedSlotState(_that.slotTime);case ChangeRescheduledSlotState() when changeRescheduledSlotState != null:
+return changeRescheduledSlotState(_that.oldSlot,_that.currentSlot);case _:
   return orElse();
 
 }
@@ -153,14 +153,14 @@ return changeResheduledSlotState(_that.oldSlot,_that.currentSlot);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int idDoctor,  DateTime appointmentDateTime,  String mobileNo,  int idMember,  String token)  bookNewAppointment,required TResult Function( int idAppointment,  DateTime appointmentDateTime,  String token)  resheduleAppointment,required TResult Function( int idDoctor,  DateTime date,  String token)  getAvailableSlots,required TResult Function( DateTime slotTime)  changeBookedSlotState,required TResult Function( DateTime oldSlot,  DateTime currentSlot)  changeResheduledSlotState,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int idDoctor,  DateTime appointmentDateTime,  String mobileNo,  int idMember,  String token)  bookNewAppointment,required TResult Function( int idAppointment,  DateTime appointmentDateTime,  String token)  rescheduleAppointment,required TResult Function( int idDoctor,  DateTime date,  String token)  getAvailableSlots,required TResult Function( DateTime slotTime)  changeBookedSlotState,required TResult Function( DateTime oldSlot,  DateTime currentSlot)  changeRescheduledSlotState,}) {final _that = this;
 switch (_that) {
 case BookNewAppointment():
-return bookNewAppointment(_that.idDoctor,_that.appointmentDateTime,_that.mobileNo,_that.idMember,_that.token);case ResheduleAppointment():
-return resheduleAppointment(_that.idAppointment,_that.appointmentDateTime,_that.token);case GetAvailableSlots():
+return bookNewAppointment(_that.idDoctor,_that.appointmentDateTime,_that.mobileNo,_that.idMember,_that.token);case RescheduleAppointment():
+return rescheduleAppointment(_that.idAppointment,_that.appointmentDateTime,_that.token);case GetAvailableSlots():
 return getAvailableSlots(_that.idDoctor,_that.date,_that.token);case ChangeBookedSlotState():
-return changeBookedSlotState(_that.slotTime);case ChangeResheduledSlotState():
-return changeResheduledSlotState(_that.oldSlot,_that.currentSlot);}
+return changeBookedSlotState(_that.slotTime);case ChangeRescheduledSlotState():
+return changeRescheduledSlotState(_that.oldSlot,_that.currentSlot);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -174,14 +174,14 @@ return changeResheduledSlotState(_that.oldSlot,_that.currentSlot);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int idDoctor,  DateTime appointmentDateTime,  String mobileNo,  int idMember,  String token)?  bookNewAppointment,TResult? Function( int idAppointment,  DateTime appointmentDateTime,  String token)?  resheduleAppointment,TResult? Function( int idDoctor,  DateTime date,  String token)?  getAvailableSlots,TResult? Function( DateTime slotTime)?  changeBookedSlotState,TResult? Function( DateTime oldSlot,  DateTime currentSlot)?  changeResheduledSlotState,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int idDoctor,  DateTime appointmentDateTime,  String mobileNo,  int idMember,  String token)?  bookNewAppointment,TResult? Function( int idAppointment,  DateTime appointmentDateTime,  String token)?  rescheduleAppointment,TResult? Function( int idDoctor,  DateTime date,  String token)?  getAvailableSlots,TResult? Function( DateTime slotTime)?  changeBookedSlotState,TResult? Function( DateTime oldSlot,  DateTime currentSlot)?  changeRescheduledSlotState,}) {final _that = this;
 switch (_that) {
 case BookNewAppointment() when bookNewAppointment != null:
-return bookNewAppointment(_that.idDoctor,_that.appointmentDateTime,_that.mobileNo,_that.idMember,_that.token);case ResheduleAppointment() when resheduleAppointment != null:
-return resheduleAppointment(_that.idAppointment,_that.appointmentDateTime,_that.token);case GetAvailableSlots() when getAvailableSlots != null:
+return bookNewAppointment(_that.idDoctor,_that.appointmentDateTime,_that.mobileNo,_that.idMember,_that.token);case RescheduleAppointment() when rescheduleAppointment != null:
+return rescheduleAppointment(_that.idAppointment,_that.appointmentDateTime,_that.token);case GetAvailableSlots() when getAvailableSlots != null:
 return getAvailableSlots(_that.idDoctor,_that.date,_that.token);case ChangeBookedSlotState() when changeBookedSlotState != null:
-return changeBookedSlotState(_that.slotTime);case ChangeResheduledSlotState() when changeResheduledSlotState != null:
-return changeResheduledSlotState(_that.oldSlot,_that.currentSlot);case _:
+return changeBookedSlotState(_that.slotTime);case ChangeRescheduledSlotState() when changeRescheduledSlotState != null:
+return changeRescheduledSlotState(_that.oldSlot,_that.currentSlot);case _:
   return null;
 
 }
@@ -266,8 +266,8 @@ as String,
 /// @nodoc
 
 
-class ResheduleAppointment implements BookAppointmentEvent {
-  const ResheduleAppointment({required this.idAppointment, required this.appointmentDateTime, required this.token});
+class RescheduleAppointment implements BookAppointmentEvent {
+  const RescheduleAppointment({required this.idAppointment, required this.appointmentDateTime, required this.token});
   
 
  final  int idAppointment;
@@ -278,13 +278,13 @@ class ResheduleAppointment implements BookAppointmentEvent {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$ResheduleAppointmentCopyWith<ResheduleAppointment> get copyWith => _$ResheduleAppointmentCopyWithImpl<ResheduleAppointment>(this, _$identity);
+$RescheduleAppointmentCopyWith<RescheduleAppointment> get copyWith => _$RescheduleAppointmentCopyWithImpl<RescheduleAppointment>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ResheduleAppointment&&(identical(other.idAppointment, idAppointment) || other.idAppointment == idAppointment)&&(identical(other.appointmentDateTime, appointmentDateTime) || other.appointmentDateTime == appointmentDateTime)&&(identical(other.token, token) || other.token == token));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RescheduleAppointment&&(identical(other.idAppointment, idAppointment) || other.idAppointment == idAppointment)&&(identical(other.appointmentDateTime, appointmentDateTime) || other.appointmentDateTime == appointmentDateTime)&&(identical(other.token, token) || other.token == token));
 }
 
 
@@ -293,15 +293,15 @@ int get hashCode => Object.hash(runtimeType,idAppointment,appointmentDateTime,to
 
 @override
 String toString() {
-  return 'BookAppointmentEvent.resheduleAppointment(idAppointment: $idAppointment, appointmentDateTime: $appointmentDateTime, token: $token)';
+  return 'BookAppointmentEvent.rescheduleAppointment(idAppointment: $idAppointment, appointmentDateTime: $appointmentDateTime, token: $token)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $ResheduleAppointmentCopyWith<$Res> implements $BookAppointmentEventCopyWith<$Res> {
-  factory $ResheduleAppointmentCopyWith(ResheduleAppointment value, $Res Function(ResheduleAppointment) _then) = _$ResheduleAppointmentCopyWithImpl;
+abstract mixin class $RescheduleAppointmentCopyWith<$Res> implements $BookAppointmentEventCopyWith<$Res> {
+  factory $RescheduleAppointmentCopyWith(RescheduleAppointment value, $Res Function(RescheduleAppointment) _then) = _$RescheduleAppointmentCopyWithImpl;
 @useResult
 $Res call({
  int idAppointment, DateTime appointmentDateTime, String token
@@ -312,17 +312,17 @@ $Res call({
 
 }
 /// @nodoc
-class _$ResheduleAppointmentCopyWithImpl<$Res>
-    implements $ResheduleAppointmentCopyWith<$Res> {
-  _$ResheduleAppointmentCopyWithImpl(this._self, this._then);
+class _$RescheduleAppointmentCopyWithImpl<$Res>
+    implements $RescheduleAppointmentCopyWith<$Res> {
+  _$RescheduleAppointmentCopyWithImpl(this._self, this._then);
 
-  final ResheduleAppointment _self;
-  final $Res Function(ResheduleAppointment) _then;
+  final RescheduleAppointment _self;
+  final $Res Function(RescheduleAppointment) _then;
 
 /// Create a copy of BookAppointmentEvent
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? idAppointment = null,Object? appointmentDateTime = null,Object? token = null,}) {
-  return _then(ResheduleAppointment(
+  return _then(RescheduleAppointment(
 idAppointment: null == idAppointment ? _self.idAppointment : idAppointment // ignore: cast_nullable_to_non_nullable
 as int,appointmentDateTime: null == appointmentDateTime ? _self.appointmentDateTime : appointmentDateTime // ignore: cast_nullable_to_non_nullable
 as DateTime,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
@@ -472,8 +472,8 @@ as DateTime,
 /// @nodoc
 
 
-class ChangeResheduledSlotState implements BookAppointmentEvent {
-  const ChangeResheduledSlotState({required this.oldSlot, required this.currentSlot});
+class ChangeRescheduledSlotState implements BookAppointmentEvent {
+  const ChangeRescheduledSlotState({required this.oldSlot, required this.currentSlot});
   
 
  final  DateTime oldSlot;
@@ -483,13 +483,13 @@ class ChangeResheduledSlotState implements BookAppointmentEvent {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$ChangeResheduledSlotStateCopyWith<ChangeResheduledSlotState> get copyWith => _$ChangeResheduledSlotStateCopyWithImpl<ChangeResheduledSlotState>(this, _$identity);
+$ChangeRescheduledSlotStateCopyWith<ChangeRescheduledSlotState> get copyWith => _$ChangeRescheduledSlotStateCopyWithImpl<ChangeRescheduledSlotState>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangeResheduledSlotState&&(identical(other.oldSlot, oldSlot) || other.oldSlot == oldSlot)&&(identical(other.currentSlot, currentSlot) || other.currentSlot == currentSlot));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangeRescheduledSlotState&&(identical(other.oldSlot, oldSlot) || other.oldSlot == oldSlot)&&(identical(other.currentSlot, currentSlot) || other.currentSlot == currentSlot));
 }
 
 
@@ -498,15 +498,15 @@ int get hashCode => Object.hash(runtimeType,oldSlot,currentSlot);
 
 @override
 String toString() {
-  return 'BookAppointmentEvent.changeResheduledSlotState(oldSlot: $oldSlot, currentSlot: $currentSlot)';
+  return 'BookAppointmentEvent.changeRescheduledSlotState(oldSlot: $oldSlot, currentSlot: $currentSlot)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $ChangeResheduledSlotStateCopyWith<$Res> implements $BookAppointmentEventCopyWith<$Res> {
-  factory $ChangeResheduledSlotStateCopyWith(ChangeResheduledSlotState value, $Res Function(ChangeResheduledSlotState) _then) = _$ChangeResheduledSlotStateCopyWithImpl;
+abstract mixin class $ChangeRescheduledSlotStateCopyWith<$Res> implements $BookAppointmentEventCopyWith<$Res> {
+  factory $ChangeRescheduledSlotStateCopyWith(ChangeRescheduledSlotState value, $Res Function(ChangeRescheduledSlotState) _then) = _$ChangeRescheduledSlotStateCopyWithImpl;
 @useResult
 $Res call({
  DateTime oldSlot, DateTime currentSlot
@@ -517,17 +517,17 @@ $Res call({
 
 }
 /// @nodoc
-class _$ChangeResheduledSlotStateCopyWithImpl<$Res>
-    implements $ChangeResheduledSlotStateCopyWith<$Res> {
-  _$ChangeResheduledSlotStateCopyWithImpl(this._self, this._then);
+class _$ChangeRescheduledSlotStateCopyWithImpl<$Res>
+    implements $ChangeRescheduledSlotStateCopyWith<$Res> {
+  _$ChangeRescheduledSlotStateCopyWithImpl(this._self, this._then);
 
-  final ChangeResheduledSlotState _self;
-  final $Res Function(ChangeResheduledSlotState) _then;
+  final ChangeRescheduledSlotState _self;
+  final $Res Function(ChangeRescheduledSlotState) _then;
 
 /// Create a copy of BookAppointmentEvent
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? oldSlot = null,Object? currentSlot = null,}) {
-  return _then(ChangeResheduledSlotState(
+  return _then(ChangeRescheduledSlotState(
 oldSlot: null == oldSlot ? _self.oldSlot : oldSlot // ignore: cast_nullable_to_non_nullable
 as DateTime,currentSlot: null == currentSlot ? _self.currentSlot : currentSlot // ignore: cast_nullable_to_non_nullable
 as DateTime,

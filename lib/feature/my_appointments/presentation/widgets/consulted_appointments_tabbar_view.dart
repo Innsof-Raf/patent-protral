@@ -4,12 +4,12 @@ import 'package:patient_portal/feature/my_appointments/domain/entities/my_appoin
 import 'appointments_tabbar_view.dart';
 
 class ConsultedAppointmentsTabbarView extends StatelessWidget {
-  final List<DateTime> monthTimeLineList;
+  final List<DateTime> monthTimelineList;
   final List<MyAppointment> appointments;
 
   const ConsultedAppointmentsTabbarView({
     super.key,
-    required this.monthTimeLineList,
+    required this.monthTimelineList,
     required this.appointments,
   });
 
@@ -18,7 +18,7 @@ class ConsultedAppointmentsTabbarView extends StatelessWidget {
     return AppointmentsTabbarView(
       title: 'Consulted appointments',
       appointments: appointments,
-      monthTimeLineList: monthTimeLineList,
+      monthTimelineList: monthTimelineList,
       emptyTitle: 'No consulted appointments',
       emptyMessage: 'Completed visits will appear here after consultation.',
     );

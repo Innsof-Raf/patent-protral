@@ -5,10 +5,14 @@ import 'package:patient_portal/core/gen/assets.gen.dart';
 import '../app_colors.dart';
 import '../app_text_styles.dart';
 
-class SucessDialog extends StatelessWidget {
+class SuccessDialog extends StatelessWidget {
   final VoidCallback onPressed;
   final String title;
-  const SucessDialog({super.key, required this.title, required this.onPressed});
+  const SuccessDialog({
+    super.key,
+    required this.title,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {

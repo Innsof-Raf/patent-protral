@@ -21,7 +21,7 @@ _MyAppointmentModel _$MyAppointmentModelFromJson(Map<String, dynamic> json) =>
       speciality: json['speciality'] as String? ?? '',
       branch: json['branch'] as String? ?? '',
       profileUrl: json['profileurl'] as String? ?? '',
-      busunitName: json['busunit_name'] as String? ?? '',
+      busUnitName: json['busunit_name'] as String? ?? '',
       appointmentDateTime: _dateTimeFromJson(
         _readAppointmentDateTime(json, 'Appmnt_Dttm'),
       ),
@@ -44,7 +44,7 @@ Map<String, dynamic> _$MyAppointmentModelToJson(_MyAppointmentModel instance) =>
       'speciality': instance.speciality,
       'branch': instance.branch,
       'profileurl': instance.profileUrl,
-      'busunit_name': instance.busunitName,
+      'busunit_name': instance.busUnitName,
       'Appmnt_Dttm': instance.appointmentDateTime.toIso8601String(),
       'id_employee': instance.idDoctor,
       'isCanceling': instance.isCanceling,

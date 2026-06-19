@@ -6,13 +6,13 @@ sealed class MyAppointmentsEvent with _$MyAppointmentsEvent {
     required MyAppointmentsParams params,
   }) = GetMyAppointments;
 
-  const factory MyAppointmentsEvent.storeBokkedApoointment({
+  const factory MyAppointmentsEvent.storeBookedAppointment({
     required MyAppointmentsParams params,
-  }) = StoreBokkedApoointment;
+  }) = StoreBookedAppointment;
 
-  const factory MyAppointmentsEvent.changeResheduledAppointmentDetails({
+  const factory MyAppointmentsEvent.changeRescheduledAppointmentDetails({
     required MyAppointmentsParams params,
-  }) = ChangeResheduledAppointmentDetails;
+  }) = ChangeRescheduledAppointmentDetails;
 
   const factory MyAppointmentsEvent.cancelAppointment({
     required MyAppointmentsParams params,

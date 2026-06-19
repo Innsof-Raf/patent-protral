@@ -10,17 +10,17 @@ sealed class MyAppointmentsParams with _$MyAppointmentsParams {
     required String mobileNumber,
   }) = GetMyAppointmentsParams;
 
-  const factory MyAppointmentsParams.storeBokkedApoointment({
+  const factory MyAppointmentsParams.storeBookedAppointment({
     required MyAppointment appointment,
-  }) = StoreBokkedApoointmentParams;
+  }) = StoreBookedAppointmentParams;
 
-  const factory MyAppointmentsParams.changeResheduledAppointmentDetails({
+  const factory MyAppointmentsParams.changeRescheduledAppointmentDetails({
     required MyAppointment appointment,
-    required DateTime cureentSlot,
-  }) = ChangeResheduledAppointmentDetailsParams;
+    required DateTime currentSlot,
+  }) = ChangeRescheduledAppointmentDetailsParams;
 
   const factory MyAppointmentsParams.cancelAppointment({
-    required int idAppointment,
+    required int appointmentId,
     required String token,
   }) = CancelAppointmentParams;
 }

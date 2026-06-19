@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
-import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_confirmation_popup.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
+
+import 'book_appointment_confirmation_popup.dart';
 
 class BookAppointmentScreenHelpers {
   static final List<DateTime> dateList = [];
@@ -16,7 +17,7 @@ class BookAppointmentScreenHelpers {
     }
   }
 
-  static void resheduleAppointment({
+  static void rescheduleAppointment({
     required BuildContext context,
     required int idAppointment,
     required int idDoctor,
@@ -26,7 +27,7 @@ class BookAppointmentScreenHelpers {
     ScaffoldMessenger.of(context).clearSnackBars();
     if (BookAppointmentScreenHelpers.selectedSlotNotifier.value == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        alertSnakBar(content: 'Select slot for reshedule appointment'),
+        alertSnackBar(content: 'Select slot for reschedule appointment'),
       );
     } else {
       showGeneralDialog(
@@ -43,10 +44,10 @@ class BookAppointmentScreenHelpers {
               Widget child,
             ) => Transform.scale(
               scale: Curves.easeOut.transform(animation.value),
-              child: BookAppoitmentConfirmationPopUp(
+              child: BookAppointmentConfirmationPopUp(
                 appointmentId: idAppointment,
-                title: 'Reshedule Slot',
-                appintmentDateTime: selectedSlotNotifier.value!,
+                title: 'Reschedule Slot',
+                appointmentDateTime: selectedSlotNotifier.value!,
                 doctorImage: doctorImage,
                 doctorName: doctorName,
                 idDoctor: idDoctor,
@@ -66,23 +67,25 @@ class BookAppointmentScreenHelpers {
     ScaffoldMessenger.of(context).clearSnackBars();
     if (context.read<UserBloc>().state.user!.members.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        alertSnakBar(content: 'Add a Member to book an apoointment'),
+        alertSnackBar(content: 'Add a Member to book an appointment'),
       );
     } else if (BookAppointmentScreenHelpers.selectedSlotNotifier.value ==
             null &&
         BookAppointmentScreenHelpers.selectedMemberNotifier.value == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        alertSnakBar(content: 'Select a slot and a member to book appointment'),
+        alertSnackBar(
+          content: 'Select a slot and a member to book appointment',
+        ),
       );
     } else if (BookAppointmentScreenHelpers.selectedSlotNotifier.value ==
         null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        alertSnakBar(content: 'Select a slot to book appointment'),
+        alertSnackBar(content: 'Select a slot to book appointment'),
       );
     } else if (BookAppointmentScreenHelpers.selectedMemberNotifier.value ==
         null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        alertSnakBar(content: 'Select a member to book appointment'),
+        alertSnackBar(content: 'Select a member to book appointment'),
       );
     } else {
       showGeneralDialog(
@@ -99,10 +102,10 @@ class BookAppointmentScreenHelpers {
               Widget child,
             ) => Transform.scale(
               scale: Curves.easeOut.transform(animation.value),
-              child: BookAppoitmentConfirmationPopUp(
+              child: BookAppointmentConfirmationPopUp(
                 appointmentId: 0,
                 title: 'Book Slot',
-                appintmentDateTime: selectedSlotNotifier.value!,
+                appointmentDateTime: selectedSlotNotifier.value!,
                 doctorImage: doctorImage,
                 doctorName: doctorName,
                 idDoctor: idDoctor,
@@ -119,7 +122,7 @@ class BookAppointmentScreenHelpers {
   static ValueNotifier<DateTime?> selectedSlotNotifier = ValueNotifier(null);
   static ValueNotifier<Member?> selectedMemberNotifier = ValueNotifier(null);
 
-  static SnackBar alertSnakBar({required String content}) {
+  static SnackBar alertSnackBar({required String content}) {
     return SnackBar(
       content: Text(
         content,

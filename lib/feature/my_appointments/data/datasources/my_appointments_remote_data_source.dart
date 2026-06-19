@@ -76,7 +76,7 @@ class MyAppointmentsRemoteDataSourceImpl
           responseData['status'] == 1) {
         return responseData as Map<String, dynamic>;
       } else {
-        throw ServerException('Appointment Cancelled Failed');
+        throw ServerException('Appointment Cancellation Failed');
       }
     } on ServerException {
       rethrow;

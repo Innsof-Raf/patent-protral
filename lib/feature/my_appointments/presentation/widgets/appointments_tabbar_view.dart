@@ -8,7 +8,7 @@ class AppointmentsTabbarView extends StatelessWidget {
   final String title;
   final String emptyTitle;
   final String emptyMessage;
-  final List<DateTime> monthTimeLineList;
+  final List<DateTime> monthTimelineList;
   final List<MyAppointment> appointments;
 
   const AppointmentsTabbarView({
@@ -16,7 +16,7 @@ class AppointmentsTabbarView extends StatelessWidget {
     required this.title,
     required this.emptyTitle,
     required this.emptyMessage,
-    required this.monthTimeLineList,
+    required this.monthTimelineList,
     required this.appointments,
   });
 
@@ -31,7 +31,7 @@ class AppointmentsTabbarView extends StatelessWidget {
 
     return ListView.separated(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      itemCount: monthTimeLineList.length + 1,
+      itemCount: monthTimelineList.length + 1,
       separatorBuilder: (context, index) => const SizedBox(height: 16),
       itemBuilder: (context, index) {
         if (index == 0) {
@@ -61,7 +61,7 @@ class AppointmentsTabbarView extends StatelessWidget {
           );
         }
 
-        final month = monthTimeLineList[index - 1];
+        final month = monthTimelineList[index - 1];
         final monthlyAppointments = appointments.where((appointment) {
           return appointment.appointmentDateTime.year == month.year &&
               appointment.appointmentDateTime.month == month.month;

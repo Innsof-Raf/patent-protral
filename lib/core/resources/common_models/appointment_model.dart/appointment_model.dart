@@ -28,8 +28,8 @@ sealed class AppointmentModel with _$AppointmentModel {
     )
     required DateTime appointmentDateTime,
     @Default(null) @JsonKey(name: 'customer_img') String? memberImage,
-    @JsonKey(readValue: _readBusunitName, fromJson: stringFromJson)
-    required String busunitName,
+    @JsonKey(readValue: _readBusUnitName, fromJson: stringFromJson)
+    required String busUnitName,
     @Default('') @JsonKey(name: 'dept_name') String deptName,
     @JsonKey(readValue: _readEmail, fromJson: stringFromJson)
     required String email,
@@ -38,8 +38,8 @@ sealed class AppointmentModel with _$AppointmentModel {
     String doctorId,
     @JsonKey(readValue: _readMobileNo, fromJson: stringFromJson)
     required String mobileNo,
-    @JsonKey(readValue: _readIdBusunit, fromJson: intFromJson)
-    required int idBusunit,
+    @JsonKey(readValue: _readIdBusUnit, fromJson: intFromJson)
+    required int idBusUnit,
     @Default(0) @JsonKey(name: 'id_dept', fromJson: intFromJson) int idDept,
   }) = _AppointmentModel;
 
@@ -60,12 +60,12 @@ Object? _readDoctorImage(Map json, String key) =>
     json['profileurl'] ?? json['Employee_Img'];
 Object? _readAppointmentDateTime(Map json, String key) =>
     json['appmnt_dttm'] ?? json['Appmnt_Dttm'];
-Object? _readBusunitName(Map json, String key) =>
+Object? _readBusUnitName(Map json, String key) =>
     json['busunit_name'] ?? json['Busunit_Name'];
 Object? _readEmail(Map json, String key) => json['email'] ?? json['Email_ID'];
 Object? _readMobileNo(Map json, String key) =>
     json['mobile_no'] ?? json['Mobile_No'] ?? json['Patient_MobileNo'];
-Object? _readIdBusunit(Map json, String key) =>
+Object? _readIdBusUnit(Map json, String key) =>
     json['id_busunit'] ?? json['ID_Busunit'];
 
 DateTime _dateTimeFromJson(Object? value) =>

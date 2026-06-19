@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
@@ -54,7 +55,7 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
       body: BlocBuilder<SpecialityBloc, SpecialityState>(
         builder: (context, state) {
           if (state.isFetching) {
-            return const SpecialityLoadingView();
+            return const CommonLoadingView();
           }
 
           if (state.isFetchingError) {

@@ -10,11 +10,11 @@ sealed class BookAppointmentEvent with _$BookAppointmentEvent {
     required String token,
   }) = BookNewAppointment;
 
-  const factory BookAppointmentEvent.resheduleAppointment({
+  const factory BookAppointmentEvent.rescheduleAppointment({
     required int idAppointment,
     required DateTime appointmentDateTime,
     required String token,
-  }) = ResheduleAppointment;
+  }) = RescheduleAppointment;
 
   const factory BookAppointmentEvent.getAvailableSlots({
     required int idDoctor,
@@ -26,8 +26,8 @@ sealed class BookAppointmentEvent with _$BookAppointmentEvent {
     required DateTime slotTime,
   }) = ChangeBookedSlotState;
 
-  const factory BookAppointmentEvent.changeResheduledSlotState({
+  const factory BookAppointmentEvent.changeRescheduledSlotState({
     required DateTime oldSlot,
     required DateTime currentSlot,
-  }) = ChangeResheduledSlotState;
+  }) = ChangeRescheduledSlotState;
 }

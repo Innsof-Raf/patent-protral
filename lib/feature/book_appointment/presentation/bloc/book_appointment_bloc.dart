@@ -25,10 +25,10 @@ class BookAppointmentBloc
     required this.getAvailableSlotsUseCase,
   }) : super(BookAppointmentState.initial()) {
     on<BookNewAppointment>(_bookNewAppointment);
-    on<ResheduleAppointment>(_rescheduleAppointment);
+    on<RescheduleAppointment>(_rescheduleAppointment);
     on<GetAvailableSlots>(_getAvailableSlots);
     on<ChangeBookedSlotState>(_changeBookedSlotState);
-    on<ChangeResheduledSlotState>(_changeResheduledSlotState);
+    on<ChangeRescheduledSlotState>(_changeRescheduledSlotState);
   }
 
   Future<void> _bookNewAppointment(
@@ -57,7 +57,7 @@ class BookAppointmentBloc
   }
 
   Future<void> _rescheduleAppointment(
-    ResheduleAppointment event,
+    RescheduleAppointment event,
     Emitter<BookAppointmentState> emit,
   ) async {
     emit(
@@ -159,8 +159,8 @@ class BookAppointmentBloc
     );
   }
 
-  void _changeResheduledSlotState(
-    ChangeResheduledSlotState event,
+  void _changeRescheduledSlotState(
+    ChangeRescheduledSlotState event,
     Emitter<BookAppointmentState> emit,
   ) {
     final List<Slot> slots = state.shift.slots;

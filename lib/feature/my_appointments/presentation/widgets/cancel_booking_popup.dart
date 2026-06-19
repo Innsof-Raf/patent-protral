@@ -9,7 +9,7 @@ import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_
 
 class CancelBookingPopUp extends StatelessWidget {
   final int appointmentId;
-  final DateTime appintmentDateTime;
+  final DateTime appointmentDateTime;
   final String doctorName;
   final Member member;
   final String doctorImage;
@@ -17,7 +17,7 @@ class CancelBookingPopUp extends StatelessWidget {
   const CancelBookingPopUp({
     super.key,
     required this.appointmentId,
-    required this.appintmentDateTime,
+    required this.appointmentDateTime,
     required this.doctorName,
     required this.member,
     required this.doctorImage,
@@ -151,7 +151,7 @@ class CancelBookingPopUp extends StatelessWidget {
                         ),
                         const SizedBox(width: 10),
                         Text(
-                          '${DateFormat('dd MMM yyyy').format(appintmentDateTime)} at ${DateFormat.jm().format(appintmentDateTime)}',
+                          '${DateFormat('dd MMM yyyy').format(appointmentDateTime)} at ${DateFormat.jm().format(appointmentDateTime)}',
                           style: theme.textTheme.titleSmall?.copyWith(
                             fontWeight: FontWeight.w800,
                             color: colorScheme.onSurface,
@@ -186,7 +186,7 @@ class CancelBookingPopUp extends StatelessWidget {
                       context.read<MyAppointmentsBloc>().add(
                         CancelAppointment(
                           params: MyAppointmentsParams.cancelAppointment(
-                            idAppointment: appointmentId,
+                            appointmentId: appointmentId,
                             token: context
                                 .read<UserBloc>()
                                 .state

@@ -65,7 +65,7 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
           if (state.isMemberAddingSucess) {
             showDialog(
               context: context,
-              builder: (context) => SucessDialog(
+              builder: (context) => SuccessDialog(
                 title: 'Your profile has been updated successfully.',
                 onPressed: () {
                   Navigator.pop(context);

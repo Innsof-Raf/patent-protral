@@ -6,19 +6,19 @@ import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_a
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
-class BookAppoitmentConfirmationPopUp extends StatelessWidget {
+class BookAppointmentConfirmationPopUp extends StatelessWidget {
   final String title;
-  final DateTime appintmentDateTime;
+  final DateTime appointmentDateTime;
   final int appointmentId;
   final String doctorName;
   final int idDoctor;
   final String doctorImage;
   final Member member;
 
-  const BookAppoitmentConfirmationPopUp({
+  const BookAppointmentConfirmationPopUp({
     super.key,
     required this.title,
-    required this.appintmentDateTime,
+    required this.appointmentDateTime,
     required this.member,
     required this.appointmentId,
     required this.doctorName,
@@ -74,7 +74,7 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        DateFormat('dd MMM yyyy').format(appintmentDateTime),
+                        DateFormat('dd MMM yyyy').format(appointmentDateTime),
                         style: theme.textTheme.bodyLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -92,7 +92,7 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        DateFormat.jm().format(appintmentDateTime),
+                        DateFormat.jm().format(appointmentDateTime),
                         style: theme.textTheme.bodyLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -152,7 +152,7 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
                       if (appointmentId == 0) {
                         context.read<BookAppointmentBloc>().add(
                           BookNewAppointment(
-                            appointmentDateTime: appintmentDateTime,
+                            appointmentDateTime: appointmentDateTime,
                             idDoctor: idDoctor,
                             idMember: member.id,
                             mobileNo: context
@@ -169,9 +169,9 @@ class BookAppoitmentConfirmationPopUp extends StatelessWidget {
                         );
                       } else {
                         context.read<BookAppointmentBloc>().add(
-                          ResheduleAppointment(
+                          RescheduleAppointment(
                             idAppointment: appointmentId,
-                            appointmentDateTime: appintmentDateTime,
+                            appointmentDateTime: appointmentDateTime,
                             token: context
                                 .read<UserBloc>()
                                 .state

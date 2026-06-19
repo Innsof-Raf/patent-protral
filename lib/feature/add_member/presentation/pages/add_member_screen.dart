@@ -275,7 +275,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
     }
     showDialog(
       context: context,
-      builder: (context) => SucessDialog(
+      builder: (context) => SuccessDialog(
         title: widget.member == null
             ? 'Member added successfully!'
             : 'Insurance details updated successfully!',

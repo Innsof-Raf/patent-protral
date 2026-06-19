@@ -26,7 +26,7 @@ sealed class MyAppointmentModel with _$MyAppointmentModel {
     @Default('') String speciality,
     @Default('') String branch,
     @Default('') @JsonKey(name: 'profileurl') String profileUrl,
-    @Default('') @JsonKey(name: 'busunit_name') String busunitName,
+    @Default('') @JsonKey(name: 'busunit_name') String busUnitName,
     @JsonKey(
       name: 'Appmnt_Dttm',
       readValue: _readAppointmentDateTime,
@@ -54,7 +54,7 @@ sealed class MyAppointmentModel with _$MyAppointmentModel {
     speciality: speciality,
     branch: branch,
     profileUrl: profileUrl,
-    busunitName: busunitName,
+    busUnitName: busUnitName,
     appointmentDateTime: appointmentDateTime,
     idDoctor: idDoctor,
     isCanceling: isCanceling,

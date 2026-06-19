@@ -24,10 +24,8 @@ class MyAppointmentsListView extends StatelessWidget {
       itemBuilder: (context, index) {
         final appointment = sortedAppointments[index];
         return MyAppointmentTile(
-          isCounselted: appointment.appointmentDateTime.isBefore(
-            DateTime.now(),
-          ),
           appointment: appointment,
+          isConsulted: appointment.appointmentDateTime.isBefore(DateTime.now()),
         );
       },
     );

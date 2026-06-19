@@ -50,8 +50,8 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
       length: 3,
       child: BlocConsumer<MyAppointmentsBloc, MyAppointmentsState>(
         listener: (context, state) async {
-          if (state.isAppointmentsCancelationSuccess &&
-              !state.isAppointmentsCancelationFailed) {
+          if (state.isAppointmentsCancellationSuccess &&
+              !state.isAppointmentsCancellationFailed) {
             await showDialog<void>(
               context: context,
               builder: (context) => const AppointmentStatusDialog(
@@ -61,8 +61,8 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
                 actionLabel: 'Done',
               ),
             );
-          } else if (state.isAppointmentsCancelationFailed &&
-              !state.isAppointmentsCancelationSuccess) {
+          } else if (state.isAppointmentsCancellationFailed &&
+              !state.isAppointmentsCancellationSuccess) {
             showMyAppointmentsSnackBar(context, message: state.error.message);
           }
         },
@@ -85,18 +85,11 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
               return [
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AppointmentsOverviewCard(
-                          totalCount: state.myAppointments.length,
-                          consultedCount: state.myConsultedAppointments.length,
-                          upcomingCount:
-                              state.myNotConsultedAppointments.length,
-                        ),
-                        const SizedBox(height: 16),
-                      ],
+                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 10),
+                    child: AppointmentsOverviewCard(
+                      totalCount: state.myAppointments.length,
+                      consultedCount: state.myConsultedAppointments.length,
+                      upcomingCount: state.myNotConsultedAppointments.length,
                     ),
                   ),
                 ),
@@ -123,7 +116,7 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
                 AppointmentsTabbarView(
                   title: 'All appointments',
                   appointments: state.myAppointments,
-                  monthTimeLineList: state.monthTimeLineList,
+                  monthTimelineList: state.monthTimelineList,
                   emptyTitle: 'No appointments yet',
                   emptyMessage:
                       'Your bookings will appear here once available.',
@@ -131,7 +124,7 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
                 AppointmentsTabbarView(
                   title: 'Consulted appointments',
                   appointments: state.myConsultedAppointments,
-                  monthTimeLineList: state.monthTimeLineListOfConsulted,
+                  monthTimelineList: state.monthTimelineListOfConsulted,
                   emptyTitle: 'No consulted appointments',
                   emptyMessage:
                       'Completed visits will appear here after consultation.',
@@ -139,7 +132,7 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
                 AppointmentsTabbarView(
                   title: 'Upcoming appointments',
                   appointments: state.myNotConsultedAppointments,
-                  monthTimeLineList: state.monthTimeLineListOfNotConsulted,
+                  monthTimelineList: state.monthTimelineListOfNotConsulted,
                   emptyTitle: 'No upcoming appointments',
                   emptyMessage:
                       'You do not have any scheduled visits right now.',
@@ -160,6 +153,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   double get minExtent => 64.0;
+
   @override
   double get maxExtent => 64.0;
 

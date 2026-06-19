@@ -111,7 +111,7 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
         idDoctor: idDoctor,
       );
     } else {
-      BookAppointmentScreenHelpers.resheduleAppointment(
+      BookAppointmentScreenHelpers.rescheduleAppointment(
         doctorImage: doctorImage,
         doctorName: doctorName,
         idDoctor: idDoctor,
@@ -133,7 +133,7 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
       transitionBuilder: (context, animation, secondaryAnimation, child) {
         return ScaleTransition(
           scale: CurvedAnimation(parent: animation, curve: Curves.easeOutBack),
-          child: SucessDialog(
+          child: SuccessDialog(
             title: title,
             onPressed: () {
               context.router.popUntilRouteWithName(MainRoute.name);
@@ -155,13 +155,13 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
 
     if (appointmentId == 0) {
       context.read<MyAppointmentsBloc>().add(
-        StoreBokkedApoointment(
-          params: MyAppointmentsParams.storeBokkedApoointment(
+        StoreBookedAppointment(
+          params: MyAppointmentsParams.storeBookedAppointment(
             appointment: MyAppointment(
               appointmentDateTime:
                   state.appointmentDetails!.appointmentDateTime,
               branch: state.appointmentDetails!.branch,
-              busunitName: state.appointmentDetails!.busunitName,
+              busUnitName: state.appointmentDetails!.busUnitName,
               departName: state.appointmentDetails!.deptName,
               doctorId: state.appointmentDetails!.doctorId,
               doctorName: state.appointmentDetails!.doctorName,
@@ -192,16 +192,16 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
           .singleWhere((appointment) => appointment.id == appointmentId);
 
       context.read<BookAppointmentBloc>().add(
-        ChangeResheduledSlotState(
+        ChangeRescheduledSlotState(
           oldSlot: selectedAppointment.appointmentDateTime,
           currentSlot: state.appointmentDetails!.appointmentDateTime,
         ),
       );
       context.read<MyAppointmentsBloc>().add(
-        ChangeResheduledAppointmentDetails(
-          params: MyAppointmentsParams.changeResheduledAppointmentDetails(
+        ChangeRescheduledAppointmentDetails(
+          params: MyAppointmentsParams.changeRescheduledAppointmentDetails(
             appointment: selectedAppointment,
-            cureentSlot: state.appointmentDetails!.appointmentDateTime,
+            currentSlot: state.appointmentDetails!.appointmentDateTime,
           ),
         ),
       );

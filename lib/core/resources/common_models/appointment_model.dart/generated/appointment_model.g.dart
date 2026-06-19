@@ -21,14 +21,14 @@ _AppointmentModel _$AppointmentModelFromJson(Map<String, dynamic> json) =>
         _readAppointmentDateTime(json, 'Appmnt_Dttm'),
       ),
       memberImage: json['customer_img'] as String? ?? null,
-      busunitName: stringFromJson(_readBusunitName(json, 'busunitName')),
+      busUnitName: stringFromJson(_readBusUnitName(json, 'busUnitName')),
       deptName: json['dept_name'] as String? ?? '',
       email: stringFromJson(_readEmail(json, 'email')),
       doctorId: json['employee_id'] == null
           ? ''
           : stringFromJson(json['employee_id']),
       mobileNo: stringFromJson(_readMobileNo(json, 'mobileNo')),
-      idBusunit: intFromJson(_readIdBusunit(json, 'idBusunit')),
+      idBusUnit: intFromJson(_readIdBusUnit(json, 'idBusUnit')),
       idDept: json['id_dept'] == null ? 0 : intFromJson(json['id_dept']),
     );
 
@@ -45,11 +45,11 @@ Map<String, dynamic> _$AppointmentModelToJson(_AppointmentModel instance) =>
       'doctorImage': instance.doctorImage,
       'Appmnt_Dttm': instance.appointmentDateTime.toIso8601String(),
       'customer_img': instance.memberImage,
-      'busunitName': instance.busunitName,
+      'busUnitName': instance.busUnitName,
       'dept_name': instance.deptName,
       'email': instance.email,
       'employee_id': instance.doctorId,
       'mobileNo': instance.mobileNo,
-      'idBusunit': instance.idBusunit,
+      'idBusUnit': instance.idBusUnit,
       'id_dept': instance.idDept,
     };

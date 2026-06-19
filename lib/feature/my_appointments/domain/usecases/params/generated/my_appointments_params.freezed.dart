@@ -55,13 +55,13 @@ extension MyAppointmentsParamsPatterns on MyAppointmentsParams {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( GetMyAppointmentsParams value)?  getMyAppointments,TResult Function( StoreBokkedApoointmentParams value)?  storeBokkedApoointment,TResult Function( ChangeResheduledAppointmentDetailsParams value)?  changeResheduledAppointmentDetails,TResult Function( CancelAppointmentParams value)?  cancelAppointment,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( GetMyAppointmentsParams value)?  getMyAppointments,TResult Function( StoreBookedAppointmentParams value)?  storeBookedAppointment,TResult Function( ChangeRescheduledAppointmentDetailsParams value)?  changeRescheduledAppointmentDetails,TResult Function( CancelAppointmentParams value)?  cancelAppointment,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case GetMyAppointmentsParams() when getMyAppointments != null:
-return getMyAppointments(_that);case StoreBokkedApoointmentParams() when storeBokkedApoointment != null:
-return storeBokkedApoointment(_that);case ChangeResheduledAppointmentDetailsParams() when changeResheduledAppointmentDetails != null:
-return changeResheduledAppointmentDetails(_that);case CancelAppointmentParams() when cancelAppointment != null:
+return getMyAppointments(_that);case StoreBookedAppointmentParams() when storeBookedAppointment != null:
+return storeBookedAppointment(_that);case ChangeRescheduledAppointmentDetailsParams() when changeRescheduledAppointmentDetails != null:
+return changeRescheduledAppointmentDetails(_that);case CancelAppointmentParams() when cancelAppointment != null:
 return cancelAppointment(_that);case _:
   return orElse();
 
@@ -80,13 +80,13 @@ return cancelAppointment(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( GetMyAppointmentsParams value)  getMyAppointments,required TResult Function( StoreBokkedApoointmentParams value)  storeBokkedApoointment,required TResult Function( ChangeResheduledAppointmentDetailsParams value)  changeResheduledAppointmentDetails,required TResult Function( CancelAppointmentParams value)  cancelAppointment,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( GetMyAppointmentsParams value)  getMyAppointments,required TResult Function( StoreBookedAppointmentParams value)  storeBookedAppointment,required TResult Function( ChangeRescheduledAppointmentDetailsParams value)  changeRescheduledAppointmentDetails,required TResult Function( CancelAppointmentParams value)  cancelAppointment,}){
 final _that = this;
 switch (_that) {
 case GetMyAppointmentsParams():
-return getMyAppointments(_that);case StoreBokkedApoointmentParams():
-return storeBokkedApoointment(_that);case ChangeResheduledAppointmentDetailsParams():
-return changeResheduledAppointmentDetails(_that);case CancelAppointmentParams():
+return getMyAppointments(_that);case StoreBookedAppointmentParams():
+return storeBookedAppointment(_that);case ChangeRescheduledAppointmentDetailsParams():
+return changeRescheduledAppointmentDetails(_that);case CancelAppointmentParams():
 return cancelAppointment(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
@@ -101,13 +101,13 @@ return cancelAppointment(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( GetMyAppointmentsParams value)?  getMyAppointments,TResult? Function( StoreBokkedApoointmentParams value)?  storeBokkedApoointment,TResult? Function( ChangeResheduledAppointmentDetailsParams value)?  changeResheduledAppointmentDetails,TResult? Function( CancelAppointmentParams value)?  cancelAppointment,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( GetMyAppointmentsParams value)?  getMyAppointments,TResult? Function( StoreBookedAppointmentParams value)?  storeBookedAppointment,TResult? Function( ChangeRescheduledAppointmentDetailsParams value)?  changeRescheduledAppointmentDetails,TResult? Function( CancelAppointmentParams value)?  cancelAppointment,}){
 final _that = this;
 switch (_that) {
 case GetMyAppointmentsParams() when getMyAppointments != null:
-return getMyAppointments(_that);case StoreBokkedApoointmentParams() when storeBokkedApoointment != null:
-return storeBokkedApoointment(_that);case ChangeResheduledAppointmentDetailsParams() when changeResheduledAppointmentDetails != null:
-return changeResheduledAppointmentDetails(_that);case CancelAppointmentParams() when cancelAppointment != null:
+return getMyAppointments(_that);case StoreBookedAppointmentParams() when storeBookedAppointment != null:
+return storeBookedAppointment(_that);case ChangeRescheduledAppointmentDetailsParams() when changeRescheduledAppointmentDetails != null:
+return changeRescheduledAppointmentDetails(_that);case CancelAppointmentParams() when cancelAppointment != null:
 return cancelAppointment(_that);case _:
   return null;
 
@@ -125,13 +125,13 @@ return cancelAppointment(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String token,  String mobileNumber)?  getMyAppointments,TResult Function( MyAppointment appointment)?  storeBokkedApoointment,TResult Function( MyAppointment appointment,  DateTime cureentSlot)?  changeResheduledAppointmentDetails,TResult Function( int idAppointment,  String token)?  cancelAppointment,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String token,  String mobileNumber)?  getMyAppointments,TResult Function( MyAppointment appointment)?  storeBookedAppointment,TResult Function( MyAppointment appointment,  DateTime currentSlot)?  changeRescheduledAppointmentDetails,TResult Function( int appointmentId,  String token)?  cancelAppointment,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case GetMyAppointmentsParams() when getMyAppointments != null:
-return getMyAppointments(_that.token,_that.mobileNumber);case StoreBokkedApoointmentParams() when storeBokkedApoointment != null:
-return storeBokkedApoointment(_that.appointment);case ChangeResheduledAppointmentDetailsParams() when changeResheduledAppointmentDetails != null:
-return changeResheduledAppointmentDetails(_that.appointment,_that.cureentSlot);case CancelAppointmentParams() when cancelAppointment != null:
-return cancelAppointment(_that.idAppointment,_that.token);case _:
+return getMyAppointments(_that.token,_that.mobileNumber);case StoreBookedAppointmentParams() when storeBookedAppointment != null:
+return storeBookedAppointment(_that.appointment);case ChangeRescheduledAppointmentDetailsParams() when changeRescheduledAppointmentDetails != null:
+return changeRescheduledAppointmentDetails(_that.appointment,_that.currentSlot);case CancelAppointmentParams() when cancelAppointment != null:
+return cancelAppointment(_that.appointmentId,_that.token);case _:
   return orElse();
 
 }
@@ -149,13 +149,13 @@ return cancelAppointment(_that.idAppointment,_that.token);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String token,  String mobileNumber)  getMyAppointments,required TResult Function( MyAppointment appointment)  storeBokkedApoointment,required TResult Function( MyAppointment appointment,  DateTime cureentSlot)  changeResheduledAppointmentDetails,required TResult Function( int idAppointment,  String token)  cancelAppointment,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String token,  String mobileNumber)  getMyAppointments,required TResult Function( MyAppointment appointment)  storeBookedAppointment,required TResult Function( MyAppointment appointment,  DateTime currentSlot)  changeRescheduledAppointmentDetails,required TResult Function( int appointmentId,  String token)  cancelAppointment,}) {final _that = this;
 switch (_that) {
 case GetMyAppointmentsParams():
-return getMyAppointments(_that.token,_that.mobileNumber);case StoreBokkedApoointmentParams():
-return storeBokkedApoointment(_that.appointment);case ChangeResheduledAppointmentDetailsParams():
-return changeResheduledAppointmentDetails(_that.appointment,_that.cureentSlot);case CancelAppointmentParams():
-return cancelAppointment(_that.idAppointment,_that.token);}
+return getMyAppointments(_that.token,_that.mobileNumber);case StoreBookedAppointmentParams():
+return storeBookedAppointment(_that.appointment);case ChangeRescheduledAppointmentDetailsParams():
+return changeRescheduledAppointmentDetails(_that.appointment,_that.currentSlot);case CancelAppointmentParams():
+return cancelAppointment(_that.appointmentId,_that.token);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -169,13 +169,13 @@ return cancelAppointment(_that.idAppointment,_that.token);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String token,  String mobileNumber)?  getMyAppointments,TResult? Function( MyAppointment appointment)?  storeBokkedApoointment,TResult? Function( MyAppointment appointment,  DateTime cureentSlot)?  changeResheduledAppointmentDetails,TResult? Function( int idAppointment,  String token)?  cancelAppointment,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String token,  String mobileNumber)?  getMyAppointments,TResult? Function( MyAppointment appointment)?  storeBookedAppointment,TResult? Function( MyAppointment appointment,  DateTime currentSlot)?  changeRescheduledAppointmentDetails,TResult? Function( int appointmentId,  String token)?  cancelAppointment,}) {final _that = this;
 switch (_that) {
 case GetMyAppointmentsParams() when getMyAppointments != null:
-return getMyAppointments(_that.token,_that.mobileNumber);case StoreBokkedApoointmentParams() when storeBokkedApoointment != null:
-return storeBokkedApoointment(_that.appointment);case ChangeResheduledAppointmentDetailsParams() when changeResheduledAppointmentDetails != null:
-return changeResheduledAppointmentDetails(_that.appointment,_that.cureentSlot);case CancelAppointmentParams() when cancelAppointment != null:
-return cancelAppointment(_that.idAppointment,_that.token);case _:
+return getMyAppointments(_that.token,_that.mobileNumber);case StoreBookedAppointmentParams() when storeBookedAppointment != null:
+return storeBookedAppointment(_that.appointment);case ChangeRescheduledAppointmentDetailsParams() when changeRescheduledAppointmentDetails != null:
+return changeRescheduledAppointmentDetails(_that.appointment,_that.currentSlot);case CancelAppointmentParams() when cancelAppointment != null:
+return cancelAppointment(_that.appointmentId,_that.token);case _:
   return null;
 
 }
@@ -254,8 +254,8 @@ as String,
 /// @nodoc
 
 
-class StoreBokkedApoointmentParams implements MyAppointmentsParams {
-  const StoreBokkedApoointmentParams({required this.appointment});
+class StoreBookedAppointmentParams implements MyAppointmentsParams {
+  const StoreBookedAppointmentParams({required this.appointment});
   
 
  final  MyAppointment appointment;
@@ -264,13 +264,13 @@ class StoreBokkedApoointmentParams implements MyAppointmentsParams {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$StoreBokkedApoointmentParamsCopyWith<StoreBokkedApoointmentParams> get copyWith => _$StoreBokkedApoointmentParamsCopyWithImpl<StoreBokkedApoointmentParams>(this, _$identity);
+$StoreBookedAppointmentParamsCopyWith<StoreBookedAppointmentParams> get copyWith => _$StoreBookedAppointmentParamsCopyWithImpl<StoreBookedAppointmentParams>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is StoreBokkedApoointmentParams&&(identical(other.appointment, appointment) || other.appointment == appointment));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StoreBookedAppointmentParams&&(identical(other.appointment, appointment) || other.appointment == appointment));
 }
 
 
@@ -279,15 +279,15 @@ int get hashCode => Object.hash(runtimeType,appointment);
 
 @override
 String toString() {
-  return 'MyAppointmentsParams.storeBokkedApoointment(appointment: $appointment)';
+  return 'MyAppointmentsParams.storeBookedAppointment(appointment: $appointment)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $StoreBokkedApoointmentParamsCopyWith<$Res> implements $MyAppointmentsParamsCopyWith<$Res> {
-  factory $StoreBokkedApoointmentParamsCopyWith(StoreBokkedApoointmentParams value, $Res Function(StoreBokkedApoointmentParams) _then) = _$StoreBokkedApoointmentParamsCopyWithImpl;
+abstract mixin class $StoreBookedAppointmentParamsCopyWith<$Res> implements $MyAppointmentsParamsCopyWith<$Res> {
+  factory $StoreBookedAppointmentParamsCopyWith(StoreBookedAppointmentParams value, $Res Function(StoreBookedAppointmentParams) _then) = _$StoreBookedAppointmentParamsCopyWithImpl;
 @useResult
 $Res call({
  MyAppointment appointment
@@ -298,17 +298,17 @@ $MyAppointmentCopyWith<$Res> get appointment;
 
 }
 /// @nodoc
-class _$StoreBokkedApoointmentParamsCopyWithImpl<$Res>
-    implements $StoreBokkedApoointmentParamsCopyWith<$Res> {
-  _$StoreBokkedApoointmentParamsCopyWithImpl(this._self, this._then);
+class _$StoreBookedAppointmentParamsCopyWithImpl<$Res>
+    implements $StoreBookedAppointmentParamsCopyWith<$Res> {
+  _$StoreBookedAppointmentParamsCopyWithImpl(this._self, this._then);
 
-  final StoreBokkedApoointmentParams _self;
-  final $Res Function(StoreBokkedApoointmentParams) _then;
+  final StoreBookedAppointmentParams _self;
+  final $Res Function(StoreBookedAppointmentParams) _then;
 
 /// Create a copy of MyAppointmentsParams
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? appointment = null,}) {
-  return _then(StoreBokkedApoointmentParams(
+  return _then(StoreBookedAppointmentParams(
 appointment: null == appointment ? _self.appointment : appointment // ignore: cast_nullable_to_non_nullable
 as MyAppointment,
   ));
@@ -329,44 +329,44 @@ $MyAppointmentCopyWith<$Res> get appointment {
 /// @nodoc
 
 
-class ChangeResheduledAppointmentDetailsParams implements MyAppointmentsParams {
-  const ChangeResheduledAppointmentDetailsParams({required this.appointment, required this.cureentSlot});
+class ChangeRescheduledAppointmentDetailsParams implements MyAppointmentsParams {
+  const ChangeRescheduledAppointmentDetailsParams({required this.appointment, required this.currentSlot});
   
 
  final  MyAppointment appointment;
- final  DateTime cureentSlot;
+ final  DateTime currentSlot;
 
 /// Create a copy of MyAppointmentsParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$ChangeResheduledAppointmentDetailsParamsCopyWith<ChangeResheduledAppointmentDetailsParams> get copyWith => _$ChangeResheduledAppointmentDetailsParamsCopyWithImpl<ChangeResheduledAppointmentDetailsParams>(this, _$identity);
+$ChangeRescheduledAppointmentDetailsParamsCopyWith<ChangeRescheduledAppointmentDetailsParams> get copyWith => _$ChangeRescheduledAppointmentDetailsParamsCopyWithImpl<ChangeRescheduledAppointmentDetailsParams>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangeResheduledAppointmentDetailsParams&&(identical(other.appointment, appointment) || other.appointment == appointment)&&(identical(other.cureentSlot, cureentSlot) || other.cureentSlot == cureentSlot));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangeRescheduledAppointmentDetailsParams&&(identical(other.appointment, appointment) || other.appointment == appointment)&&(identical(other.currentSlot, currentSlot) || other.currentSlot == currentSlot));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,appointment,cureentSlot);
+int get hashCode => Object.hash(runtimeType,appointment,currentSlot);
 
 @override
 String toString() {
-  return 'MyAppointmentsParams.changeResheduledAppointmentDetails(appointment: $appointment, cureentSlot: $cureentSlot)';
+  return 'MyAppointmentsParams.changeRescheduledAppointmentDetails(appointment: $appointment, currentSlot: $currentSlot)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $ChangeResheduledAppointmentDetailsParamsCopyWith<$Res> implements $MyAppointmentsParamsCopyWith<$Res> {
-  factory $ChangeResheduledAppointmentDetailsParamsCopyWith(ChangeResheduledAppointmentDetailsParams value, $Res Function(ChangeResheduledAppointmentDetailsParams) _then) = _$ChangeResheduledAppointmentDetailsParamsCopyWithImpl;
+abstract mixin class $ChangeRescheduledAppointmentDetailsParamsCopyWith<$Res> implements $MyAppointmentsParamsCopyWith<$Res> {
+  factory $ChangeRescheduledAppointmentDetailsParamsCopyWith(ChangeRescheduledAppointmentDetailsParams value, $Res Function(ChangeRescheduledAppointmentDetailsParams) _then) = _$ChangeRescheduledAppointmentDetailsParamsCopyWithImpl;
 @useResult
 $Res call({
- MyAppointment appointment, DateTime cureentSlot
+ MyAppointment appointment, DateTime currentSlot
 });
 
 
@@ -374,19 +374,19 @@ $MyAppointmentCopyWith<$Res> get appointment;
 
 }
 /// @nodoc
-class _$ChangeResheduledAppointmentDetailsParamsCopyWithImpl<$Res>
-    implements $ChangeResheduledAppointmentDetailsParamsCopyWith<$Res> {
-  _$ChangeResheduledAppointmentDetailsParamsCopyWithImpl(this._self, this._then);
+class _$ChangeRescheduledAppointmentDetailsParamsCopyWithImpl<$Res>
+    implements $ChangeRescheduledAppointmentDetailsParamsCopyWith<$Res> {
+  _$ChangeRescheduledAppointmentDetailsParamsCopyWithImpl(this._self, this._then);
 
-  final ChangeResheduledAppointmentDetailsParams _self;
-  final $Res Function(ChangeResheduledAppointmentDetailsParams) _then;
+  final ChangeRescheduledAppointmentDetailsParams _self;
+  final $Res Function(ChangeRescheduledAppointmentDetailsParams) _then;
 
 /// Create a copy of MyAppointmentsParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? appointment = null,Object? cureentSlot = null,}) {
-  return _then(ChangeResheduledAppointmentDetailsParams(
+@pragma('vm:prefer-inline') $Res call({Object? appointment = null,Object? currentSlot = null,}) {
+  return _then(ChangeRescheduledAppointmentDetailsParams(
 appointment: null == appointment ? _self.appointment : appointment // ignore: cast_nullable_to_non_nullable
-as MyAppointment,cureentSlot: null == cureentSlot ? _self.cureentSlot : cureentSlot // ignore: cast_nullable_to_non_nullable
+as MyAppointment,currentSlot: null == currentSlot ? _self.currentSlot : currentSlot // ignore: cast_nullable_to_non_nullable
 as DateTime,
   ));
 }
@@ -407,10 +407,10 @@ $MyAppointmentCopyWith<$Res> get appointment {
 
 
 class CancelAppointmentParams implements MyAppointmentsParams {
-  const CancelAppointmentParams({required this.idAppointment, required this.token});
+  const CancelAppointmentParams({required this.appointmentId, required this.token});
   
 
- final  int idAppointment;
+ final  int appointmentId;
  final  String token;
 
 /// Create a copy of MyAppointmentsParams
@@ -423,16 +423,16 @@ $CancelAppointmentParamsCopyWith<CancelAppointmentParams> get copyWith => _$Canc
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CancelAppointmentParams&&(identical(other.idAppointment, idAppointment) || other.idAppointment == idAppointment)&&(identical(other.token, token) || other.token == token));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CancelAppointmentParams&&(identical(other.appointmentId, appointmentId) || other.appointmentId == appointmentId)&&(identical(other.token, token) || other.token == token));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,idAppointment,token);
+int get hashCode => Object.hash(runtimeType,appointmentId,token);
 
 @override
 String toString() {
-  return 'MyAppointmentsParams.cancelAppointment(idAppointment: $idAppointment, token: $token)';
+  return 'MyAppointmentsParams.cancelAppointment(appointmentId: $appointmentId, token: $token)';
 }
 
 
@@ -443,7 +443,7 @@ abstract mixin class $CancelAppointmentParamsCopyWith<$Res> implements $MyAppoin
   factory $CancelAppointmentParamsCopyWith(CancelAppointmentParams value, $Res Function(CancelAppointmentParams) _then) = _$CancelAppointmentParamsCopyWithImpl;
 @useResult
 $Res call({
- int idAppointment, String token
+ int appointmentId, String token
 });
 
 
@@ -460,9 +460,9 @@ class _$CancelAppointmentParamsCopyWithImpl<$Res>
 
 /// Create a copy of MyAppointmentsParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? idAppointment = null,Object? token = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? appointmentId = null,Object? token = null,}) {
   return _then(CancelAppointmentParams(
-idAppointment: null == idAppointment ? _self.idAppointment : idAppointment // ignore: cast_nullable_to_non_nullable
+appointmentId: null == appointmentId ? _self.appointmentId : appointmentId // ignore: cast_nullable_to_non_nullable
 as int,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
 as String,
   ));

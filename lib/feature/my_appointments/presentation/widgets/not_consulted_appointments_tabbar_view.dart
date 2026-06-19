@@ -4,12 +4,12 @@ import 'package:patient_portal/feature/my_appointments/domain/entities/my_appoin
 import 'appointments_tabbar_view.dart';
 
 class NotConsultedAppointmentsTabbarView extends StatelessWidget {
-  final List<DateTime> monthTimeLineList;
+  final List<DateTime> monthTimelineList;
   final List<MyAppointment> appointments;
 
   const NotConsultedAppointmentsTabbarView({
     super.key,
-    required this.monthTimeLineList,
+    required this.monthTimelineList,
     required this.appointments,
   });
 
@@ -18,7 +18,7 @@ class NotConsultedAppointmentsTabbarView extends StatelessWidget {
     return AppointmentsTabbarView(
       title: 'Upcoming appointments',
       appointments: appointments,
-      monthTimeLineList: monthTimeLineList,
+      monthTimelineList: monthTimelineList,
       emptyTitle: 'No upcoming appointments',
       emptyMessage: 'You do not have any scheduled visits right now.',
     );

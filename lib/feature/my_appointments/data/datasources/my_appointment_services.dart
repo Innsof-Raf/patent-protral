@@ -80,7 +80,7 @@ class MyAppointmentServices {
             responseData['status'] == 1) {
           return Right(responseData);
         } else {
-          return Left(ErrorModel(message: 'Appointment Cancelled Failed'));
+          return Left(ErrorModel(message: 'Appointment Cancellation Failed'));
         }
       } else {
         return Left(ErrorModel(message: ConstantMessages.serverFailureMessage));

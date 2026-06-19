@@ -16,7 +16,7 @@ sealed class MyAppointment with _$MyAppointment {
     required String speciality,
     required String branch,
     required String profileUrl,
-    required String busunitName,
+    required String busUnitName,
     required DateTime appointmentDateTime,
     required int idDoctor,
     @Default(false) bool isCanceling,

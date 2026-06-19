@@ -17,13 +17,13 @@ import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_
 import 'cancel_booking_popup.dart';
 
 class MyAppointmentTile extends StatelessWidget {
-  final bool isCounselted;
+  final bool isConsulted;
   final MyAppointment appointment;
 
   const MyAppointmentTile({
     super.key,
     required this.appointment,
-    required this.isCounselted,
+    required this.isConsulted,
   });
 
   @override
@@ -87,7 +87,7 @@ class MyAppointmentTile extends StatelessWidget {
                         ],
                       ),
                     ),
-                    _StatusBadge(isConsulted: isCounselted),
+                    _StatusBadge(isConsulted: isConsulted),
                   ],
                 ),
                 const SizedBox(height: 16),
@@ -144,7 +144,7 @@ class MyAppointmentTile extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 _ActionBar(
-                  isCounselted: isCounselted,
+                  isConsulted: isConsulted,
                   isCanceling: appointment.isCanceling,
                   onReschedule: () => _onReschedulePressed(context),
                   onCancel: () => _onCancelPressed(context),
@@ -230,7 +230,7 @@ class MyAppointmentTile extends StatelessWidget {
           Transform.scale(
             scale: Curves.easeOutBack.transform(animation.value),
             child: CancelBookingPopUp(
-              appintmentDateTime: appointment.appointmentDateTime,
+              appointmentDateTime: appointment.appointmentDateTime,
               appointmentId: appointment.id,
               doctorImage: _doctorImageUrl,
               doctorName: appointment.doctorName,
@@ -396,14 +396,14 @@ class _StatusBadge extends StatelessWidget {
 }
 
 class _ActionBar extends StatelessWidget {
-  final bool isCounselted;
+  final bool isConsulted;
   final bool isCanceling;
   final VoidCallback onReschedule;
   final VoidCallback onCancel;
   final VoidCallback onBookAgain;
 
   const _ActionBar({
-    required this.isCounselted,
+    required this.isConsulted,
     required this.isCanceling,
     required this.onReschedule,
     required this.onCancel,
@@ -415,7 +415,7 @@ class _ActionBar extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    if (isCounselted) {
+    if (isConsulted) {
       return SizedBox(
         width: double.infinity,
         child: FilledButton.icon(

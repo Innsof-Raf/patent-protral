@@ -150,7 +150,7 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => SucessDialog(
+      builder: (context) => SuccessDialog(
         title: 'Password changed successfully',
         onPressed: () {
           context.router.popUntilRouteWithName(MainRoute.name);

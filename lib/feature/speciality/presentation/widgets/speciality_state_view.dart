@@ -1,14 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
-
-class SpecialityLoadingView extends StatelessWidget {
-  const SpecialityLoadingView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return CommonLoadingView(color: Theme.of(context).colorScheme.primary);
-  }
-}
 
 class SpecialityMessageView extends StatelessWidget {
   const SpecialityMessageView({

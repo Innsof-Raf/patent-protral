@@ -109,7 +109,9 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
 
           if (responseData['status'] == true ||
               responseData['status']?.toString().toLowerCase() == 'true') {
-            final patientDetail = decodeResponseData(responseData['patient_detail']);
+            final patientDetail = decodeResponseData(
+              responseData['patient_detail'],
+            );
             if (patientDetail is Map<String, dynamic>) {
               return MemberModel.fromJson(patientDetail);
             }

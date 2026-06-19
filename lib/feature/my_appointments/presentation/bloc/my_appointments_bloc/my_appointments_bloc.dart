@@ -23,8 +23,8 @@ class MyAppointmentsBloc
     on<GetMyAppointments>((event, emit) async {
       emit(
         state.copyWith(
-          isAppointmentsCancelationFailed: false,
-          isAppointmentsCancelationSuccess: false,
+          isAppointmentsCancellationFailed: false,
+          isAppointmentsCancellationSuccess: false,
           isAppointmentsFetching: true,
           isAppointmentsFetchingFailed: false,
           isAppointmentsFetchingSuccess: false,
@@ -44,19 +44,19 @@ class MyAppointmentsBloc
           ),
         ),
         (myAppointments) {
-          final List<DateTime> monthTimeLineList = [];
-          final List<DateTime> monthTimeLineListOfConsulted = [];
-          final List<DateTime> monthTimeLineListOfNotConsulted = [];
+          final List<DateTime> monthTimelineList = [];
+          final List<DateTime> monthTimelineListOfConsulted = [];
+          final List<DateTime> monthTimelineListOfNotConsulted = [];
           final List<MyAppointment> consultedAppointments = [];
           final List<MyAppointment> notConsultedAppointments = [];
           for (MyAppointment appointment in myAppointments) {
-            if (!monthTimeLineList.contains(
+            if (!monthTimelineList.contains(
               DateTime(
                 appointment.appointmentDateTime.year,
                 appointment.appointmentDateTime.month,
               ),
             )) {
-              monthTimeLineList.add(
+              monthTimelineList.add(
                 DateTime(
                   appointment.appointmentDateTime.year,
                   appointment.appointmentDateTime.month,
@@ -66,13 +66,13 @@ class MyAppointmentsBloc
             if (appointment.appointmentDateTime == DateTime.now() ||
                 appointment.appointmentDateTime.isAfter(DateTime.now())) {
               notConsultedAppointments.add(appointment);
-              if (!monthTimeLineListOfNotConsulted.contains(
+              if (!monthTimelineListOfNotConsulted.contains(
                 DateTime(
                   appointment.appointmentDateTime.year,
                   appointment.appointmentDateTime.month,
                 ),
               )) {
-                monthTimeLineListOfNotConsulted.add(
+                monthTimelineListOfNotConsulted.add(
                   DateTime(
                     appointment.appointmentDateTime.year,
                     appointment.appointmentDateTime.month,
@@ -81,13 +81,13 @@ class MyAppointmentsBloc
               }
             } else {
               consultedAppointments.add(appointment);
-              if (!monthTimeLineListOfConsulted.contains(
+              if (!monthTimelineListOfConsulted.contains(
                 DateTime(
                   appointment.appointmentDateTime.year,
                   appointment.appointmentDateTime.month,
                 ),
               )) {
-                monthTimeLineListOfConsulted.add(
+                monthTimelineListOfConsulted.add(
                   DateTime(
                     appointment.appointmentDateTime.year,
                     appointment.appointmentDateTime.month,
@@ -99,11 +99,11 @@ class MyAppointmentsBloc
           return emit(
             state.copyWith(
               isAppointmentsFetching: false,
-              monthTimeLineListOfConsulted: monthTimeLineListOfConsulted,
-              monthTimeLineListOfNotConsulted: monthTimeLineListOfNotConsulted,
+              monthTimelineListOfConsulted: monthTimelineListOfConsulted,
+              monthTimelineListOfNotConsulted: monthTimelineListOfNotConsulted,
               myConsultedAppointments: consultedAppointments,
               myNotConsultedAppointments: notConsultedAppointments,
-              monthTimeLineList: monthTimeLineList,
+              monthTimelineList: monthTimelineList,
               isAppointmentsFetchingSuccess: true,
               myAppointments: myAppointments,
             ),
@@ -111,13 +111,13 @@ class MyAppointmentsBloc
         },
       );
     });
-    on<ChangeResheduledAppointmentDetails>((event, emit) {
+    on<ChangeRescheduledAppointmentDetails>((event, emit) {
       final List<MyAppointment> myAppointments = List.from(
         state.myAppointments,
       );
 
-      final List<DateTime> monthTimeLineList = [];
-      final List<DateTime> monthTimeLineListOfNotConsulted = [];
+      final List<DateTime> monthTimelineList = [];
+      final List<DateTime> monthTimelineListOfNotConsulted = [];
       final List<MyAppointment> notConsultedAppointments = [];
       final int currentAppointmentIndex = myAppointments.indexOf(
         event.params.appointment,
@@ -130,22 +130,22 @@ class MyAppointmentsBloc
         mobileNumber: event.params.appointment.mobileNumber,
         departName: event.params.appointment.departName,
         doctorId: event.params.appointment.doctorId,
-        doctorName: event.params.appointment.departName,
+        doctorName: event.params.appointment.doctorName,
         speciality: event.params.appointment.speciality,
         branch: event.params.appointment.branch,
         profileUrl: event.params.appointment.profileUrl,
-        busunitName: event.params.appointment.busunitName,
-        appointmentDateTime: event.params.cureentSlot,
+        busUnitName: event.params.appointment.busUnitName,
+        appointmentDateTime: event.params.currentSlot,
         idDoctor: event.params.appointment.idDoctor,
       );
       for (MyAppointment appointment in myAppointments) {
-        if (!monthTimeLineList.contains(
+        if (!monthTimelineList.contains(
           DateTime(
             appointment.appointmentDateTime.year,
             appointment.appointmentDateTime.month,
           ),
         )) {
-          monthTimeLineList.add(
+          monthTimelineList.add(
             DateTime(
               appointment.appointmentDateTime.year,
               appointment.appointmentDateTime.month,
@@ -155,13 +155,13 @@ class MyAppointmentsBloc
         if (appointment.appointmentDateTime == DateTime.now() ||
             appointment.appointmentDateTime.isAfter(DateTime.now())) {
           notConsultedAppointments.add(appointment);
-          if (!monthTimeLineListOfNotConsulted.contains(
+          if (!monthTimelineListOfNotConsulted.contains(
             DateTime(
               appointment.appointmentDateTime.year,
               appointment.appointmentDateTime.month,
             ),
           )) {
-            monthTimeLineListOfNotConsulted.add(
+            monthTimelineListOfNotConsulted.add(
               DateTime(
                 appointment.appointmentDateTime.year,
                 appointment.appointmentDateTime.month,
@@ -172,11 +172,11 @@ class MyAppointmentsBloc
       }
       return emit(
         state.copyWith(
-          isAppointmentsCancelationFailed: false,
-          isAppointmentsCancelationSuccess: false,
-          monthTimeLineListOfNotConsulted: monthTimeLineListOfNotConsulted,
+          isAppointmentsCancellationFailed: false,
+          isAppointmentsCancellationSuccess: false,
+          monthTimelineListOfNotConsulted: monthTimelineListOfNotConsulted,
           myNotConsultedAppointments: notConsultedAppointments,
-          monthTimeLineList: monthTimeLineList,
+          monthTimelineList: monthTimelineList,
           myAppointments: myAppointments,
         ),
       );
@@ -184,10 +184,10 @@ class MyAppointmentsBloc
     on<CancelAppointment>((event, emit) async {
       emit(
         state.copyWith(
-          isAppointmentsCancelationFailed: false,
-          isAppointmentsCancelationSuccess: false,
+          isAppointmentsCancellationFailed: false,
+          isAppointmentsCancellationSuccess: false,
           myAppointments: state.myAppointments.map((appointment) {
-            if (appointment.id == event.params.idAppointment) {
+            if (appointment.id == event.params.appointmentId) {
               return appointment.copyWith(isCanceling: true);
             } else {
               return appointment;
@@ -195,34 +195,34 @@ class MyAppointmentsBloc
           }).toList(),
         ),
       );
-      final Either<ErrorModel, Map> appointmentCancelationOptions =
+      final Either<ErrorModel, Map> appointmentCancellationOptions =
           await cancelAppointmentUseCase(
-            appointmentId: event.params.idAppointment,
+            appointmentId: event.params.appointmentId,
             token: event.params.token,
           );
-      appointmentCancelationOptions.fold(
+      appointmentCancellationOptions.fold(
         (error) => emit(
-          state.copyWith(isAppointmentsCancelationFailed: false, error: error),
+          state.copyWith(isAppointmentsCancellationFailed: false, error: error),
         ),
-        (sucessesResponse) {
+        (successResponse) {
           final List<MyAppointment> myAppointments = List.from(
             state.myAppointments,
           );
 
-          final List<DateTime> monthTimeLineList = [];
-          final List<DateTime> monthTimeLineListOfNotConsulted = [];
+          final List<DateTime> monthTimelineList = [];
+          final List<DateTime> monthTimelineListOfNotConsulted = [];
           final List<MyAppointment> notConsultedAppointments = [];
           myAppointments.removeWhere(
-            (appointment) => appointment.id == event.params.idAppointment,
+            (appointment) => appointment.id == event.params.appointmentId,
           );
           for (MyAppointment appointment in myAppointments) {
-            if (!monthTimeLineList.contains(
+            if (!monthTimelineList.contains(
               DateTime(
                 appointment.appointmentDateTime.year,
                 appointment.appointmentDateTime.month,
               ),
             )) {
-              monthTimeLineList.add(
+              monthTimelineList.add(
                 DateTime(
                   appointment.appointmentDateTime.year,
                   appointment.appointmentDateTime.month,
@@ -232,13 +232,13 @@ class MyAppointmentsBloc
             if (appointment.appointmentDateTime == DateTime.now() ||
                 appointment.appointmentDateTime.isAfter(DateTime.now())) {
               notConsultedAppointments.add(appointment);
-              if (!monthTimeLineListOfNotConsulted.contains(
+              if (!monthTimelineListOfNotConsulted.contains(
                 DateTime(
                   appointment.appointmentDateTime.year,
                   appointment.appointmentDateTime.month,
                 ),
               )) {
-                monthTimeLineListOfNotConsulted.add(
+                monthTimelineListOfNotConsulted.add(
                   DateTime(
                     appointment.appointmentDateTime.year,
                     appointment.appointmentDateTime.month,
@@ -249,17 +249,17 @@ class MyAppointmentsBloc
           }
           return emit(
             state.copyWith(
-              isAppointmentsCancelationSuccess: true,
-              monthTimeLineListOfNotConsulted: monthTimeLineListOfNotConsulted,
+              isAppointmentsCancellationSuccess: true,
+              monthTimelineListOfNotConsulted: monthTimelineListOfNotConsulted,
               myNotConsultedAppointments: notConsultedAppointments,
-              monthTimeLineList: monthTimeLineList,
+              monthTimelineList: monthTimelineList,
               myAppointments: myAppointments,
             ),
           );
         },
       );
     });
-    on<StoreBokkedApoointment>((event, emit) {
+    on<StoreBookedAppointment>((event, emit) {
       final List<MyAppointment> myAppointments = List.from(
         state.myAppointments,
       );
@@ -269,12 +269,12 @@ class MyAppointmentsBloc
       final List<MyAppointment> myConsultedAppointments = List.from(
         state.myConsultedAppointments,
       );
-      final List<DateTime> monthList = List.from(state.monthTimeLineList);
-      final List<DateTime> monthTimeLineListOfConsulted = List.from(
-        state.monthTimeLineListOfConsulted,
+      final List<DateTime> monthList = List.from(state.monthTimelineList);
+      final List<DateTime> monthTimelineListOfConsulted = List.from(
+        state.monthTimelineListOfConsulted,
       );
-      final List<DateTime> monthTimeLineListOfNotConsulted = List.from(
-        state.monthTimeLineListOfNotConsulted,
+      final List<DateTime> monthTimelineListOfNotConsulted = List.from(
+        state.monthTimelineListOfNotConsulted,
       );
       if (event.params.appointment.appointmentDateTime.isAfter(
         DateTime.now(),
@@ -299,14 +299,14 @@ class MyAppointmentsBloc
               event.params.appointment.appointmentDateTime.month,
             ),
           );
-          monthTimeLineListOfNotConsulted.add(
+          monthTimelineListOfNotConsulted.add(
             DateTime(
               event.params.appointment.appointmentDateTime.year,
               event.params.appointment.appointmentDateTime.month,
             ),
           );
           monthList.sort((a, b) => a.compareTo(b));
-          monthTimeLineListOfNotConsulted.sort((a, b) => a.compareTo(b));
+          monthTimelineListOfNotConsulted.sort((a, b) => a.compareTo(b));
         }
       } else {
         myAppointments.add(event.params.appointment);
@@ -329,23 +329,23 @@ class MyAppointmentsBloc
               event.params.appointment.appointmentDateTime.month,
             ),
           );
-          monthTimeLineListOfConsulted.add(
+          monthTimelineListOfConsulted.add(
             DateTime(
               event.params.appointment.appointmentDateTime.year,
               event.params.appointment.appointmentDateTime.month,
             ),
           );
           monthList.sort((a, b) => a.compareTo(b));
-          monthTimeLineListOfConsulted.sort((a, b) => a.compareTo(b));
+          monthTimelineListOfConsulted.sort((a, b) => a.compareTo(b));
         }
       }
       emit(
         state.copyWith(
-          monthTimeLineList: monthList,
+          monthTimelineList: monthList,
           myAppointments: myAppointments,
           myConsultedAppointments: myConsultedAppointments,
-          monthTimeLineListOfConsulted: monthTimeLineListOfConsulted,
-          monthTimeLineListOfNotConsulted: monthTimeLineListOfNotConsulted,
+          monthTimelineListOfConsulted: monthTimelineListOfConsulted,
+          monthTimelineListOfNotConsulted: monthTimelineListOfNotConsulted,
           myNotConsultedAppointments: myNotConsultedAppointments,
         ),
       );
@@ -356,7 +356,7 @@ class MyAppointmentsBloc
 extension _MyAppointmentsParamsX on MyAppointmentsParams {
   String get token => maybeWhen(
     getMyAppointments: (token, mobileNumber) => token,
-    cancelAppointment: (idAppointment, token) => token,
+    cancelAppointment: (appointmentId, token) => token,
     orElse: () => throw Exception('Invalid token params'),
   );
 
@@ -366,20 +366,20 @@ extension _MyAppointmentsParamsX on MyAppointmentsParams {
   );
 
   MyAppointment get appointment => maybeWhen(
-    storeBokkedApoointment: (appointment) => appointment,
-    changeResheduledAppointmentDetails: (appointment, cureentSlot) =>
+    storeBookedAppointment: (appointment) => appointment,
+    changeRescheduledAppointmentDetails: (appointment, currentSlot) =>
         appointment,
     orElse: () => throw Exception('Invalid appointment params'),
   );
 
-  DateTime get cureentSlot => maybeWhen(
-    changeResheduledAppointmentDetails: (appointment, cureentSlot) =>
-        cureentSlot,
+  DateTime get currentSlot => maybeWhen(
+    changeRescheduledAppointmentDetails: (appointment, currentSlot) =>
+        currentSlot,
     orElse: () => throw Exception('Invalid slot params'),
   );
 
-  int get idAppointment => maybeWhen(
-    cancelAppointment: (idAppointment, token) => idAppointment,
+  int get appointmentId => maybeWhen(
+    cancelAppointment: (appointmentId, token) => appointmentId,
     orElse: () => throw Exception('Invalid appointment id params'),
   );
 }
