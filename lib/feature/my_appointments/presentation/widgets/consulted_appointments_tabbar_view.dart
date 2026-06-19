@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
 
-import 'month_tile.dart';
-import 'my_appointments_list_view.dart';
+import 'appointments_tabbar_view.dart';
 
 class ConsultedAppointmentsTabbarView extends StatelessWidget {
   final List<DateTime> monthTimeLineList;
   final List<MyAppointment> appointments;
+
   const ConsultedAppointmentsTabbarView({
     super.key,
     required this.monthTimeLineList,
@@ -15,28 +15,12 @@ class ConsultedAppointmentsTabbarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemCount: monthTimeLineList.length,
-      separatorBuilder: (context, index) => const SizedBox(height: 9),
-      itemBuilder: (context, index) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          MonthTile(month: monthTimeLineList[index]),
-          MyAppointmentsListView(
-            appointments: appointments
-                .where(
-                  (appointment) =>
-                      appointment.appointmentDateTime.year ==
-                          monthTimeLineList[index].year &&
-                      appointment.appointmentDateTime.month ==
-                          monthTimeLineList[index].month,
-                )
-                .toList(),
-          ),
-        ],
-      ),
-      shrinkWrap: true,
-      padding: const EdgeInsets.symmetric(vertical: 9),
+    return AppointmentsTabbarView(
+      title: 'Consulted appointments',
+      appointments: appointments,
+      monthTimeLineList: monthTimeLineList,
+      emptyTitle: 'No consulted appointments',
+      emptyMessage: 'Completed visits will appear here after consultation.',
     );
   }
 }

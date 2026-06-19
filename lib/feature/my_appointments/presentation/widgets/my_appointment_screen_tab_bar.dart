@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class MyAppointmentScreenTabBar extends StatelessWidget {
   final bool isSelected;
   final String title;
+
   const MyAppointmentScreenTabBar({
     super.key,
     required this.title,
@@ -13,30 +12,40 @@ class MyAppointmentScreenTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return isSelected
-        ? Container(
-            margin: const EdgeInsets.only(left: 10),
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: AppColors.vilot,
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Text(
-              title,
-              style: AppTextStyles.bodyLargeRobotoSemiBold.copyWith(
-                color: AppColors.white,
-              ),
-            ),
-          )
-        : Container(
-            margin: const EdgeInsets.only(left: 10),
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border.all(color: AppColors.borderColor, width: .5),
-              color: AppColors.white,
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Text(title, style: AppTextStyles.bodyLargeRobotoSemiBold),
-          );
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.easeInOut,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      decoration: BoxDecoration(
+        color: isSelected ? colorScheme.primary : colorScheme.surface,
+        borderRadius: BorderRadius.circular(30),
+        border: Border.all(
+          color: isSelected
+              ? colorScheme.primary
+              : colorScheme.outlineVariant.withValues(alpha: 0.5),
+        ),
+        boxShadow: isSelected
+            ? [
+                BoxShadow(
+                  color: colorScheme.primary.withValues(alpha: 0.3),
+                  blurRadius: 8,
+                  offset: const Offset(0, 4),
+                ),
+              ]
+            : null,
+      ),
+      child: Text(
+        title,
+        style: theme.textTheme.labelLarge?.copyWith(
+          color: isSelected
+              ? colorScheme.onPrimary
+              : colorScheme.onSurfaceVariant,
+          fontWeight: isSelected ? FontWeight.w800 : FontWeight.w600,
+        ),
+      ),
+    );
   }
 }

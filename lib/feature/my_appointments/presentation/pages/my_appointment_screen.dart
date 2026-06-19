@@ -1,14 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/succes_dailog.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/helpers/my_appointment_screen_helpers.dart';
+import 'package:patient_portal/feature/my_appointments/presentation/helpers/my_appointments_snackbar.dart';
+import 'package:patient_portal/feature/my_appointments/presentation/widgets/appointment_status_dialog.dart';
+import 'package:patient_portal/feature/my_appointments/presentation/widgets/appointments_overview_card.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/widgets/appointments_tabbar_view.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/widgets/my_appointment_screen_tab_bar.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -43,131 +43,182 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: DefaultTabController(
-        length: 3,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 15),
-            ValueListenableBuilder(
-              valueListenable: MyAppointmentScreenHelpers.selectedTabNotifier,
-              builder: (context, index, child) => TabBar(
-                padding: const EdgeInsets.only(left: 4),
-                onTap: (value) {
-                  if (value != index) {
-                    MyAppointmentScreenHelpers.selectedTabNotifier.value =
-                        value;
-                  }
-                },
-                splashFactory: NoSplash.splashFactory,
-                indicatorPadding: EdgeInsets.zero,
-                overlayColor: WidgetStateProperty.resolveWith<Color?>((
-                  Set<WidgetState> states,
-                ) {
-                  return states.contains(WidgetState.focused)
-                      ? null
-                      : Colors.transparent;
-                }),
-                indicator: const BoxDecoration(),
-                labelPadding: EdgeInsets.zero,
-                isScrollable: true,
-                tabs: [
-                  MyAppointmentScreenTabBar(
-                    title: 'All',
-                    isSelected: index == 0 ? true : false,
-                  ),
-                  MyAppointmentScreenTabBar(
-                    title: 'Consulted',
-                    isSelected: index == 1 ? true : false,
-                  ),
-                  MyAppointmentScreenTabBar(
-                    title: 'Not Consulted',
-                    isSelected: index == 2 ? true : false,
-                  ),
-                ],
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return DefaultTabController(
+      length: 3,
+      child: BlocConsumer<MyAppointmentsBloc, MyAppointmentsState>(
+        listener: (context, state) async {
+          if (state.isAppointmentsCancelationSuccess &&
+              !state.isAppointmentsCancelationFailed) {
+            await showDialog<void>(
+              context: context,
+              builder: (context) => const AppointmentStatusDialog(
+                title: 'Appointment canceled',
+                message:
+                    'The appointment has been removed from your upcoming schedule.',
+                actionLabel: 'Done',
               ),
+            );
+          } else if (state.isAppointmentsCancelationFailed &&
+              !state.isAppointmentsCancelationSuccess) {
+            showMyAppointmentsSnackBar(context, message: state.error.message);
+          }
+        },
+        builder: (context, state) {
+          if (state.isAppointmentsFetching) {
+            return const CommonLoadingView();
+          }
+
+          if (state.isAppointmentsFetchingFailed) {
+            return CommonErrorView(
+              title: 'Unable to load appointments',
+              message: state.error.message,
+              onRetry: _fetchAppointments,
+            );
+          }
+
+          return NestedScrollView(
+            key: const ValueKey('my_appointments_nested_scroll_view'),
+            headerSliverBuilder: (context, innerBoxIsScrolled) {
+              return [
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppointmentsOverviewCard(
+                          totalCount: state.myAppointments.length,
+                          consultedCount: state.myConsultedAppointments.length,
+                          upcomingCount:
+                              state.myNotConsultedAppointments.length,
+                        ),
+                        const SizedBox(height: 16),
+                      ],
+                    ),
+                  ),
+                ),
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: _SliverAppBarDelegate(
+                    child: Container(
+                      height: 64,
+                      color: colorScheme.surface,
+                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
+                      alignment: Alignment.bottomCenter,
+                      child: _AppointmentsTabBar(
+                        selectedIndexListenable:
+                            MyAppointmentScreenHelpers.selectedTabNotifier,
+                      ),
+                    ),
+                  ),
+                ),
+              ];
+            },
+            body: TabBarView(
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                AppointmentsTabbarView(
+                  title: 'All appointments',
+                  appointments: state.myAppointments,
+                  monthTimeLineList: state.monthTimeLineList,
+                  emptyTitle: 'No appointments yet',
+                  emptyMessage:
+                      'Your bookings will appear here once available.',
+                ),
+                AppointmentsTabbarView(
+                  title: 'Consulted appointments',
+                  appointments: state.myConsultedAppointments,
+                  monthTimeLineList: state.monthTimeLineListOfConsulted,
+                  emptyTitle: 'No consulted appointments',
+                  emptyMessage:
+                      'Completed visits will appear here after consultation.',
+                ),
+                AppointmentsTabbarView(
+                  title: 'Upcoming appointments',
+                  appointments: state.myNotConsultedAppointments,
+                  monthTimeLineList: state.monthTimeLineListOfNotConsulted,
+                  emptyTitle: 'No upcoming appointments',
+                  emptyMessage:
+                      'You do not have any scheduled visits right now.',
+                ),
+              ],
             ),
-            const SizedBox(height: 10),
-            Container(
-              height: 1,
-              width: double.infinity,
-              color: AppColors.dividerGrayColor,
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  final Widget child;
+
+  _SliverAppBarDelegate({required this.child});
+
+  @override
+  double get minExtent => 64.0;
+  @override
+  double get maxExtent => 64.0;
+
+  @override
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
+    return child;
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return child != oldDelegate.child;
+  }
+}
+
+class _AppointmentsTabBar extends StatelessWidget {
+  final ValueNotifier<int> selectedIndexListenable;
+
+  const _AppointmentsTabBar({required this.selectedIndexListenable});
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<int>(
+      valueListenable: selectedIndexListenable,
+      builder: (context, index, child) {
+        return TabBar(
+          onTap: (value) {
+            if (value != index) {
+              MyAppointmentScreenHelpers.selectedTabNotifier.value = value;
+            }
+          },
+          tabAlignment: TabAlignment.start,
+          isScrollable: true,
+          splashFactory: NoSplash.splashFactory,
+          dividerColor: Colors.transparent,
+          indicatorColor: Colors.transparent,
+          overlayColor: WidgetStateProperty.resolveWith<Color?>(
+            (states) => states.contains(WidgetState.focused)
+                ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.08)
+                : null,
+          ),
+          labelPadding: const EdgeInsets.only(right: 8),
+          padding: EdgeInsets.zero,
+          tabs: [
+            MyAppointmentScreenTabBar(title: 'All', isSelected: index == 0),
+            MyAppointmentScreenTabBar(
+              title: 'Consulted',
+              isSelected: index == 1,
             ),
-            Expanded(
-              child: BlocConsumer<MyAppointmentsBloc, MyAppointmentsState>(
-                listener: (context, state) {
-                  if (state.isAppointmentsCancelationFailed &&
-                      !state.isAppointmentsCancelationSuccess) {
-                  } else if (state.isAppointmentsCancelationSuccess &&
-                      !state.isAppointmentsCancelationFailed) {
-                    showGeneralDialog(
-                      transitionDuration: const Duration(milliseconds: 300),
-                      pageBuilder: (context, animation, secondaryAnimation) {
-                        return Container();
-                      },
-                      context: context,
-                      transitionBuilder:
-                          (
-                            context,
-                            Animation<double> animation,
-                            Animation<double> secondaryAnimation,
-                            Widget child,
-                          ) => Transform.scale(
-                            scale: Curves.easeOut.transform(animation.value),
-                            child: SucessDialog(
-                              title: 'Appointment Canceled',
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ),
-                    );
-                  }
-                },
-                builder: (context, state) {
-                  return state.isAppointmentsFetching
-                      ? const CommonLoadingView()
-                      : state.isAppointmentsFetchingFailed
-                      ? CommonErrorView(
-                          title: 'Unable to load appointments',
-                          message: state.error.message,
-                          onRetry: _fetchAppointments,
-                        )
-                      : state.monthTimeLineList.isEmpty
-                      ? const Center(
-                          child: Text(
-                            'No appointments found',
-                            style: AppTextStyles.largeRobotoNormal,
-                          ),
-                        )
-                      : Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: TabBarView(
-                            children: [
-                              AppointmentsTabbarView(
-                                appointments: state.myAppointments,
-                                monthTimeLineList: state.monthTimeLineList,
-                              ),
-                              AppointmentsTabbarView(
-                                appointments: state.myConsultedAppointments,
-                                monthTimeLineList:
-                                    state.monthTimeLineListOfConsulted,
-                              ),
-                              AppointmentsTabbarView(
-                                appointments: state.myNotConsultedAppointments,
-                                monthTimeLineList:
-                                    state.monthTimeLineListOfNotConsulted,
-                              ),
-                            ],
-                          ),
-                        );
-                },
-              ),
+            MyAppointmentScreenTabBar(
+              title: 'Upcoming',
+              isSelected: index == 2,
             ),
           ],
-        ),
-      ),
+        );
+      },
     );
   }
 }
