@@ -7,17 +7,17 @@ part of '../report_model.dart';
 // **************************************************************************
 
 _ReportModel _$ReportModelFromJson(Map<String, dynamic> json) => _ReportModel(
-  idConseltation: (json['id_cons'] as num).toInt(),
-  id: (json['id'] as num).toInt(),
-  memberId: (json['ID_CUSTOMER'] as num).toInt(),
-  doctorName: json['employee_name'] as String,
-  departmentName: json['speciality'] as String,
+  idConseltation: intFromJson(json['id_cons']),
+  id: intFromJson(json['id']),
+  memberId: intFromJson(json['ID_CUSTOMER']),
+  doctorName: stringFromJson(json['employee_name']),
+  departmentName: stringFromJson(json['speciality']),
   appointmentDate: DateTime.parse(json['appmnt_dttm'] as String),
-  appointmentTime: json['appmnt_time'] as String,
-  labPdfUrl: json['labreport_url'] as String? ?? null,
-  xRayPdfUrl: json['xrayreport_url'] as String? ?? null,
-  ussPdfUrl: json['ussreport_url'] as String? ?? null,
-  ctPdfUrl: json['ct_url'] as String? ?? null,
+  appointmentTime: stringFromJson(json['appmnt_time']),
+  labPdfUrl: json['labreport_url'] as String?,
+  xRayPdfUrl: json['xrayreport_url'] as String?,
+  ussPdfUrl: json['ussreport_url'] as String?,
+  ctPdfUrl: json['ct_url'] as String?,
 );
 
 Map<String, dynamic> _$ReportModelToJson(_ReportModel instance) =>

@@ -43,7 +43,7 @@ sealed class MemberModel with _$MemberModel {
   }) = _MemberModel;
 
   factory MemberModel.fromJson(Map<String, dynamic> json) =>
-      _$MemberModelFromJson(json);
+      _$MemberModelFromJson(_normalizeMemberJson(json));
 
   Member toEntity() {
     return Member(
@@ -84,4 +84,31 @@ DateTime? _nullableDateTimeFromJson(Object? value) {
   final text = value.toString();
   if (text.isEmpty) return null;
   return DateTime.tryParse(text);
+}
+
+Map<String, dynamic> _normalizeMemberJson(Map<String, dynamic> json) {
+  if (json.containsKey('Id') || json.containsKey('Name')) {
+    return json;
+  }
+
+  return {
+    'Id': json['id_customer'] ?? json['Id'],
+    'Name': json['customer_name'] ?? json['Name'],
+    'MobileNo': json['mobile_no'] ?? json['MobileNo'],
+    'EmailID': json['email'] ?? json['EmailID'],
+    'Age': json['age'] ?? json['Age'],
+    'SSN': json['national_id'] ?? json['SSN'],
+    'Profile_Img': json['profile_img'] ?? json['Profile_Img'],
+    'Is_Insu': json['is_insurance'] ?? json['Is_Insu'] ?? false,
+    'Is_InsuExpired':
+        json['is_insurance_expired'] ?? json['Is_InsuExpired'] ?? false,
+    'Insur_Exp': json['expiry_dt'] ?? json['Insur_Exp'],
+    'Dob': json['dob'] ?? json['Dob'],
+    'member_no': json['member_no'],
+    'insur_name': json['insurance_name'] ?? json['insur_name'],
+    'insu_id': json['id_insurance'] ?? json['insu_id'],
+    'Gender': json['gender'] ?? json['Gender'],
+    'docs': json['docs'] ?? const [],
+    'isSelected': json['isSelected'] ?? false,
+  };
 }

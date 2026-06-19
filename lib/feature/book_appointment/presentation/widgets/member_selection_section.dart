@@ -52,7 +52,7 @@ class MemberSelectionSection extends StatelessWidget {
                   ],
                 ),
               ),
-              IconButton.filledTonal(
+              IconButton.filled(
                 onPressed: () {
                   InsuranceHelpers.insuranceCheackBoxNotifier.value = false;
                   context.router.push(AddMemberRoute());

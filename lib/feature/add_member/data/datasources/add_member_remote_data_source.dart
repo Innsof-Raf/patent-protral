@@ -105,17 +105,39 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
           );
 
           final dynamic rawData = response.data;
-          final Map<String, dynamic> responseData = rawData is String
-              ? jsonDecode(rawData) as Map<String, dynamic>
-              : rawData as Map<String, dynamic>;
+          final Map<String, dynamic> responseData = decodeResponseData(rawData);
 
           if (responseData['status'] == true ||
               responseData['status']?.toString().toLowerCase() == 'true') {
-            final patientDetail = responseData['patient_detail'];
+            final patientDetail = decodeResponseData(responseData['patient_detail']);
             if (patientDetail is Map<String, dynamic>) {
               return MemberModel.fromJson(patientDetail);
             }
-            return MemberModel.fromJson(responseData);
+
+            final memberId = intFromJson(responseData['id_customer']);
+            if (memberId != 0) {
+              try {
+                return await _getMemberDetail(
+                  memberId: memberId,
+                  token: p.accessToken,
+                );
+              } catch (_) {}
+            }
+
+            return _memberModelFromParams(
+              memberId: memberId,
+              patientName: p.patientName,
+              mobileNumber: p.mobileNumber,
+              email: p.email,
+              dob: p.dob,
+              nationalId: p.nationalId,
+              hasProfileImage: p.profileImage != null,
+              idInsurance: p.idInsurance,
+              expireDate: p.expireDate,
+              memberNumber: p.memberNumber,
+              otherInsuranceName: p.otherInsuranceName,
+              gender: p.gender,
+            );
           } else {
             throw ServerException(
               responseData['message'] ??
@@ -131,6 +153,67 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
       },
       orElse: () => throw ServerException('Invalid Params for addMember'),
     );
+  }
+
+  Future<MemberModel> _getMemberDetail({
+    required int memberId,
+    required String token,
+  }) async {
+    final data = serviceRequest(
+      type: 'HMS0034',
+      content: {'id_customer': memberId},
+    );
+    final response = await client.post(
+      url: ConstantUrls.serviceUrl,
+      body: data,
+      token: token,
+    );
+    final Map<String, dynamic> responseData = decodeResponseData(response.data);
+    return MemberModel.fromJson(responseData);
+  }
+
+  MemberModel _memberModelFromParams({
+    required int memberId,
+    required String patientName,
+    required String mobileNumber,
+    required String? email,
+    required DateTime dob,
+    required String nationalId,
+    required bool hasProfileImage,
+    required int? idInsurance,
+    required DateTime? expireDate,
+    required String? memberNumber,
+    required String? otherInsuranceName,
+    required String gender,
+  }) {
+    return MemberModel(
+      id: memberId,
+      name: patientName,
+      mobileNo: mobileNumber,
+      emailId: email,
+      age: _calculateAge(dob),
+      nationalId: nationalId,
+      profileImage: hasProfileImage ? 'profile.png' : null,
+      isInsurance: idInsurance != null,
+      isInsuranceExpired: false,
+      insuranceExpDttm: expireDate,
+      dob: dob,
+      memberNo: memberNumber,
+      insuranceName: otherInsuranceName,
+      insuranceId: idInsurance,
+      gender: gender,
+      memberDocs: const [],
+    );
+  }
+
+  String _calculateAge(DateTime dob) {
+    final today = DateTime.now();
+    var age = today.year - dob.year;
+    final hasHadBirthday =
+        today.month > dob.month ||
+        (today.month == dob.month && today.day >= dob.day);
+    if (!hasHadBirthday) age--;
+    return age.toString();
   }
 
   @override
