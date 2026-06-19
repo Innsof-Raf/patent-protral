@@ -18,7 +18,7 @@ class CartScreen extends StatelessWidget {
       body: BlocBuilder<ItemsBloc, ItemsState>(
         builder: (context, state) {
           return state.cart.isEmpty
-              ? const Center(
+              ? Center(
                   child: Text(
                     'Your cart is empty',
                     style: AppTextStyles.largeRobotoNormal,
@@ -62,7 +62,7 @@ class CartScreen extends StatelessWidget {
                       ),
                       Text(
                         'QR ${state.cartTotal}',
-                        style: AppTextStyles.subHeaddingSemiBoldRoboto.copyWith(
+                        style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                           color: AppColors.lightGreen,
                         ),
                       ),

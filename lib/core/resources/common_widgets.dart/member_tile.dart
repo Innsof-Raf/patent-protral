@@ -42,7 +42,7 @@ class MemberTile extends StatelessWidget {
             child: member.profileImage == null
                 ? Text(
                     member.name[0],
-                    style: AppTextStyles.subHeaddingSemiBoldRoboto.copyWith(
+                    style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                       fontSize: 18,
                       color: AppColors.white,
                     ),

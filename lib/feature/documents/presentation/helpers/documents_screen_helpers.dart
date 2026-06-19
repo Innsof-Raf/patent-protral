@@ -19,7 +19,7 @@ class DocumentsScreenHelpers {
 
   static List<PopupMenuItem<int>> createPopupMenuItem(List<Member> members) {
     final List<PopupMenuItem<int>> popupMenuItems = [
-      const PopupMenuItem(
+      PopupMenuItem(
         value: 0,
         height: 30,
         padding: EdgeInsets.symmetric(horizontal: 15),

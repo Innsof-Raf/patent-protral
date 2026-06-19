@@ -54,7 +54,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                     onRetry: _fetchReports,
                   )
                 : state.reports.isEmpty
-                ? const Center(
+                ? Center(
                     child: Text(
                       'No Reports Available',
                       style: AppTextStyles.largeRobotoNormal,

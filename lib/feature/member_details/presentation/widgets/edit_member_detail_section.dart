@@ -27,7 +27,7 @@ class EditmemberDetailSection extends StatelessWidget {
           style: AppTextStyles.textFormFieldStyle,
         ),
         const SizedBox(height: 10),
-        const Text('Gender', style: AppTextStyles.bodyTextRoboto),
+        Text('Gender', style: AppTextStyles.bodyTextRoboto),
         const SizedBox(height: 5),
         Row(
           children: [

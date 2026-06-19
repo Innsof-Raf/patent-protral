@@ -64,7 +64,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
                   .toList();
             }
             if (documents.isEmpty) {
-              return const Center(
+              return Center(
                 child: Text(
                   'No documents Found',
                   style: AppTextStyles.largeRobotoNormal,

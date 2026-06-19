@@ -46,6 +46,7 @@ dependencies:
   freezed_annotation: ^3.1.0
   gap: ^3.0.1
   get_it: ^9.2.1
+  google_fonts: ^8.1.0
   http: ^1.6.0
   image_picker: ^1.2.2
   intl: ^0.20.2

@@ -34,7 +34,7 @@ class CommonErrorAlert extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 4),
-            const Text('Failed !', style: AppTextStyles.xXLargeBobotoSemiBold),
+            const Text('Failed !', style: AppTextStyles.xXLargeRobotoSemiBold),
             const SizedBox(height: 4),
             Text(
               content,

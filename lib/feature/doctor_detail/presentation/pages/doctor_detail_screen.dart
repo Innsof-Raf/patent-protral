@@ -67,7 +67,7 @@ class DoctorDetailScreen extends StatelessWidget {
                       children: [
                         const Text(
                           'Dr.Manu James',
-                          style: AppTextStyles.xXXLargeBobotoSemiBold,
+                          style: AppTextStyles.xXXLargeRobotoSemiBold,
                         ),
                         Text(
                           'Internal Medicine',

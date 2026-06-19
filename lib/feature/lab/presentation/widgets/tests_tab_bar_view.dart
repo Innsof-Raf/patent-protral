@@ -30,7 +30,7 @@ class TsetsTabBarView extends StatelessWidget {
               .where((item) => item.itemType == 'SERV')
               .toList();
           if (tests.isEmpty) {
-            return const Center(
+            return Center(
               child: Text(
                 'No tests available right now',
                 style: AppTextStyles.largeRobotoNormal,

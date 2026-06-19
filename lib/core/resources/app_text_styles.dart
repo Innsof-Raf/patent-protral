@@ -1,21 +1,25 @@
 import 'package:flutter/cupertino.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:patient_portal/core/gen/fonts.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 
 class AppTextStyles {
-  static String interFont = FontFamily.inter;
+  static const String interFont = FontFamily.inter;
+  static final String robotoFont = GoogleFonts.roboto().fontFamily!;
 
-  static const TextStyle bodyXSmallRobotoNormal = TextStyle(
+  static final TextStyle bodyXSmallRobotoNormal = TextStyle(
     fontSize: 6,
     fontWeight: FontWeight.w400,
     color: AppColors.textDark,
     height: 1.6,
+    fontFamily: robotoFont,
   );
-  static const TextStyle bodySmallRobotoNormal = TextStyle(
+  static final TextStyle bodySmallRobotoNormal = TextStyle(
     fontSize: 9,
     fontWeight: FontWeight.w400,
     color: AppColors.textLight,
     height: 1.2,
+    fontFamily: robotoFont,
   );
   static TextStyle bodySmallInterNormal = TextStyle(
     fontSize: 8,
@@ -32,85 +36,100 @@ class AppTextStyles {
     fontFamily: interFont,
   );
 
-  static const TextStyle extraLargeRobotoBold = TextStyle(
+  static final TextStyle extraLargeRobotoBold = TextStyle(
     fontSize: 21,
     fontWeight: FontWeight.w700,
     height: 1.172,
     color: AppColors.textDark,
+    fontFamily: robotoFont,
   );
-  static const TextStyle extraLargeRobotoSemiBold = TextStyle(
+  static final TextStyle extraLargeRobotoSemiBold = TextStyle(
     fontSize: 21,
     fontWeight: FontWeight.w500,
     height: 1.172,
     color: AppColors.textDark,
+    fontFamily: robotoFont,
   );
-  static const TextStyle xXLargeBobotoSemiBold = TextStyle(
+  static const TextStyle xXLargeRobotoSemiBold = TextStyle(
     fontSize: 25,
     fontWeight: FontWeight.w500,
     height: 1.17,
     color: AppColors.textDark,
+    fontFamily: interFont,
   );
-  static const TextStyle xXXLargeBobotoSemiBold = TextStyle(
+  static const TextStyle xXXLargeRobotoSemiBold = TextStyle(
     fontSize: 29,
     fontWeight: FontWeight.w500,
     height: 1.17,
     color: AppColors.white,
+    fontFamily: interFont,
   );
-  static const TextStyle bodyLargeRobotoBold = TextStyle(
+  static final TextStyle bodyLargeRobotoBold = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w700,
     color: AppColors.textDark,
+    fontFamily: robotoFont,
   );
-  static const TextStyle bodyLargeRobotoSemiBold = TextStyle(
+  static final TextStyle bodyLargeRobotoSemiBold = TextStyle(
     height: 1.17,
     fontSize: 12,
     fontWeight: FontWeight.w500,
     color: AppColors.textDark,
+    fontFamily: robotoFont,
   );
-  static const TextStyle largeRobotoNormal = TextStyle(
+  static final TextStyle largeRobotoNormal = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
     color: AppColors.textDark,
+    fontFamily: robotoFont,
   );
-  static const TextStyle largeSemiBoldRoboto = TextStyle(
+  static final TextStyle largeSemiBoldRoboto = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w500,
     color: AppColors.textDark,
+    fontFamily: robotoFont,
   );
-  static const TextStyle largeBoldRoboto = TextStyle(
+  static final TextStyle largeBoldRoboto = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w700,
     color: AppColors.textDark,
+    fontFamily: robotoFont,
   );
-  static const TextStyle subHeaddingSemiBoldRoboto = TextStyle(
+  static final TextStyle subHeadingSemiBoldRoboto = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
     color: AppColors.textDark,
+    fontFamily: robotoFont,
   );
-  static const TextStyle bodySemiBoldRoboto = TextStyle(
+  static final TextStyle bodySemiBoldRoboto = TextStyle(
     color: AppColors.textDark,
     fontSize: 9,
     fontWeight: FontWeight.w500,
+    fontFamily: robotoFont,
   );
-  static const TextStyle bodyTextRoboto = TextStyle(
+  static final TextStyle bodyTextRoboto = TextStyle(
     fontSize: 10,
     fontWeight: FontWeight.w400,
     color: AppColors.textLight,
+    fontFamily: robotoFont,
   );
-  static const TextStyle bodyTextBoldRoboto = TextStyle(
+  static final TextStyle bodyTextBoldRoboto = TextStyle(
     fontSize: 10,
     fontWeight: FontWeight.w700,
     color: AppColors.textLight,
+    fontFamily: robotoFont,
   );
-  static const TextStyle bodyTextRobotoSemiBold = TextStyle(
+  static final TextStyle bodyTextRobotoSemiBold = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w500,
     color: AppColors.lightGreen,
+    fontFamily: robotoFont,
   );
   static const TextStyle textFormFieldStyle = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
     color: AppColors.textDark,
+    fontFamily: interFont,
   );
   static TextStyle bodyLargeSemiBoldTextInter = TextStyle(
     fontSize: 11,

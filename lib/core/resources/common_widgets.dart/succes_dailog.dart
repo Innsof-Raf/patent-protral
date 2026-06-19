@@ -39,7 +39,7 @@ class SuccessDialog extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 4),
-            const Text('Success !', style: AppTextStyles.xXLargeBobotoSemiBold),
+            const Text('Success !', style: AppTextStyles.xXLargeRobotoSemiBold),
             const SizedBox(height: 4),
             Text(
               title,

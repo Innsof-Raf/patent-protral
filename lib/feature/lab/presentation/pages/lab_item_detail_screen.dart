@@ -75,7 +75,7 @@ class LabItemDetailScreen extends StatelessWidget {
                   style: AppTextStyles.bodyLargeRobotoSemiBold,
                 ),
                 const SizedBox(height: 4),
-                const Text(
+                Text(
                   'Package Description',
                   style: AppTextStyles.bodySmallRobotoNormal,
                 ),
@@ -94,7 +94,7 @@ class LabItemDetailScreen extends StatelessWidget {
                   itemCount: 5,
                   itemBuilder: (context, index) {
                     return Row(
-                      children: const [
+                      children: [
                         CircleAvatar(
                           radius: 4,
                           backgroundColor: AppColors.vilot,

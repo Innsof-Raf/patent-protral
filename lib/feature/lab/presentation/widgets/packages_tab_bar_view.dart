@@ -30,7 +30,7 @@ class PackagesTabBarView extends StatelessWidget {
               .where((item) => item.itemType == 'pkg')
               .toList();
           if (packages.isEmpty) {
-            return const Center(
+            return Center(
               child: Text(
                 'No packages available right now',
                 style: AppTextStyles.largeRobotoNormal,

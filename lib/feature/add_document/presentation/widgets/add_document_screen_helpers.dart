@@ -65,7 +65,7 @@ class AddDocumentScreenHelpers {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text('Document', style: AppTextStyles.largeSemiBoldRoboto),
+            Text('Document', style: AppTextStyles.largeSemiBoldRoboto),
             const SizedBox(height: 15),
             Row(
               children: [
