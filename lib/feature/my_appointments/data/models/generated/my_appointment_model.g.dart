@@ -22,7 +22,9 @@ _MyAppointmentModel _$MyAppointmentModelFromJson(Map<String, dynamic> json) =>
       branch: json['branch'] as String? ?? '',
       profileUrl: json['profileurl'] as String? ?? '',
       busunitName: json['busunit_name'] as String? ?? '',
-      appointmentDateTime: DateTime.parse(json['Appmnt_Dttm'] as String),
+      appointmentDateTime: _dateTimeFromJson(
+        _readAppointmentDateTime(json, 'Appmnt_Dttm'),
+      ),
       idDoctor: json['id_employee'] == null
           ? 0
           : intFromJson(json['id_employee']),

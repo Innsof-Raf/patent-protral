@@ -17,7 +17,9 @@ _AppointmentModel _$AppointmentModelFromJson(Map<String, dynamic> json) =>
       doctorName: stringFromJson(_readDoctorName(json, 'doctorName')),
       doctorSpeciality: json['speciality'] as String? ?? '',
       doctorImage: stringFromJson(_readDoctorImage(json, 'doctorImage')),
-      appointmentDateTime: DateTime.parse(json['Appmnt_Dttm'] as String),
+      appointmentDateTime: _dateTimeFromJson(
+        _readAppointmentDateTime(json, 'Appmnt_Dttm'),
+      ),
       memberImage: json['customer_img'] as String? ?? null,
       busunitName: stringFromJson(_readBusunitName(json, 'busunitName')),
       deptName: json['dept_name'] as String? ?? '',

@@ -27,7 +27,12 @@ sealed class MyAppointmentModel with _$MyAppointmentModel {
     @Default('') String branch,
     @Default('') @JsonKey(name: 'profileurl') String profileUrl,
     @Default('') @JsonKey(name: 'busunit_name') String busunitName,
-    @JsonKey(name: 'Appmnt_Dttm') required DateTime appointmentDateTime,
+    @JsonKey(
+      name: 'Appmnt_Dttm',
+      readValue: _readAppointmentDateTime,
+      fromJson: _dateTimeFromJson,
+    )
+    required DateTime appointmentDateTime,
     @Default(0)
     @JsonKey(name: 'id_employee', fromJson: intFromJson)
     int idDoctor,
@@ -64,3 +69,9 @@ Object? _readMemberName(Map json, String key) =>
     json['customer_name'] ?? json['Customer_Name'];
 Object? _readMobileNumber(Map json, String key) =>
     json['mobile_no'] ?? json['Mobile_No'] ?? json['Patient_MobileNo'];
+Object? _readAppointmentDateTime(Map json, String key) =>
+    json['appmnt_dttm'] ?? json['Appmnt_Dttm'];
+
+DateTime _dateTimeFromJson(Object? value) =>
+    DateTime.tryParse(value?.toString() ?? '') ??
+    DateTime.fromMillisecondsSinceEpoch(0);
