@@ -42,6 +42,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  final Set<int> _loadedScreens = {0};
+
   @override
   void initState() {
     super.initState();
@@ -59,6 +61,7 @@ class _MainScreenState extends State<MainScreen> {
     return ValueListenableBuilder<int>(
       valueListenable: MainScreenHelpers.mainScreenNotifier,
       builder: (context, value, child) {
+        _loadedScreens.add(value);
         return Scaffold(
           resizeToAvoidBottomInset: false,
           extendBody: true,
@@ -71,7 +74,18 @@ class _MainScreenState extends State<MainScreen> {
               if (didPop) return;
               MainScreenHelpers.mainScreenNotifier.value = 0;
             },
-            child: IndexedStack(index: value, children: screens),
+            child: IndexedStack(
+              index: value,
+              children: screens
+                  .asMap()
+                  .entries
+                  .map(
+                    (entry) => _loadedScreens.contains(entry.key)
+                        ? entry.value
+                        : const SizedBox.shrink(),
+                  )
+                  .toList(),
+            ),
           ),
           floatingActionButton: const BottomNavigationBarWidget(),
           floatingActionButtonLocation:
