@@ -50,48 +50,27 @@ class MyAppointmentsBloc
           final List<MyAppointment> consultedAppointments = [];
           final List<MyAppointment> notConsultedAppointments = [];
           for (MyAppointment appointment in myAppointments) {
-            if (!monthTimelineList.contains(
-              DateTime(
-                appointment.appointmentDateTime.year,
-                appointment.appointmentDateTime.month,
-              ),
-            )) {
-              monthTimelineList.add(
-                DateTime(
-                  appointment.appointmentDateTime.year,
-                  appointment.appointmentDateTime.month,
-                ),
-              );
+            final monthDate = DateTime(
+              appointment.appointmentDateTime.year,
+              appointment.appointmentDateTime.month,
+            );
+            if (!monthTimelineList.contains(monthDate)) {
+              monthTimelineList.add(monthDate);
             }
+
+            if (appointment.status == 'INACTV') {
+              continue;
+            }
+
             if (!appointment.appointmentDateTime.isBefore(DateTime.now())) {
               notConsultedAppointments.add(appointment);
-              if (!monthTimelineListOfNotConsulted.contains(
-                DateTime(
-                  appointment.appointmentDateTime.year,
-                  appointment.appointmentDateTime.month,
-                ),
-              )) {
-                monthTimelineListOfNotConsulted.add(
-                  DateTime(
-                    appointment.appointmentDateTime.year,
-                    appointment.appointmentDateTime.month,
-                  ),
-                );
+              if (!monthTimelineListOfNotConsulted.contains(monthDate)) {
+                monthTimelineListOfNotConsulted.add(monthDate);
               }
             } else {
               consultedAppointments.add(appointment);
-              if (!monthTimelineListOfConsulted.contains(
-                DateTime(
-                  appointment.appointmentDateTime.year,
-                  appointment.appointmentDateTime.month,
-                ),
-              )) {
-                monthTimelineListOfConsulted.add(
-                  DateTime(
-                    appointment.appointmentDateTime.year,
-                    appointment.appointmentDateTime.month,
-                  ),
-                );
+              if (!monthTimelineListOfConsulted.contains(monthDate)) {
+                monthTimelineListOfConsulted.add(monthDate);
               }
             }
           }
@@ -138,33 +117,23 @@ class MyAppointmentsBloc
         idDoctor: event.params.appointment.idDoctor,
       );
       for (MyAppointment appointment in myAppointments) {
-        if (!monthTimelineList.contains(
-          DateTime(
-            appointment.appointmentDateTime.year,
-            appointment.appointmentDateTime.month,
-          ),
-        )) {
-          monthTimelineList.add(
-            DateTime(
-              appointment.appointmentDateTime.year,
-              appointment.appointmentDateTime.month,
-            ),
-          );
+        final monthDate = DateTime(
+          appointment.appointmentDateTime.year,
+          appointment.appointmentDateTime.month,
+        );
+
+        if (!monthTimelineList.contains(monthDate)) {
+          monthTimelineList.add(monthDate);
         }
+
+        if (appointment.status == 'INACTV') {
+          continue;
+        }
+
         if (!appointment.appointmentDateTime.isBefore(DateTime.now())) {
           notConsultedAppointments.add(appointment);
-          if (!monthTimelineListOfNotConsulted.contains(
-            DateTime(
-              appointment.appointmentDateTime.year,
-              appointment.appointmentDateTime.month,
-            ),
-          )) {
-            monthTimelineListOfNotConsulted.add(
-              DateTime(
-                appointment.appointmentDateTime.year,
-                appointment.appointmentDateTime.month,
-              ),
-            );
+          if (!monthTimelineListOfNotConsulted.contains(monthDate)) {
+            monthTimelineListOfNotConsulted.add(monthDate);
           }
         }
       }
@@ -249,19 +218,20 @@ class MyAppointmentsBloc
           ),
         ),
         (successResponse) {
-          final List<MyAppointment> myAppointments = List.from(
-            state.myAppointments,
-          );
+          final List<MyAppointment> myAppointments = state.myAppointments.map((
+            appointment,
+          ) {
+            if (appointment.id == event.params.appointmentId) {
+              return appointment.copyWith(status: 'INACTV', isCanceling: false);
+            }
+            return appointment;
+          }).toList();
 
           final List<DateTime> monthTimelineList = [];
           final List<DateTime> monthTimelineListOfConsulted = [];
           final List<DateTime> monthTimelineListOfNotConsulted = [];
           final List<MyAppointment> consultedAppointments = [];
           final List<MyAppointment> notConsultedAppointments = [];
-
-          myAppointments.removeWhere(
-            (appointment) => appointment.id == event.params.appointmentId,
-          );
 
           for (MyAppointment appointment in myAppointments) {
             final monthDate = DateTime(
@@ -271,6 +241,10 @@ class MyAppointmentsBloc
 
             if (!monthTimelineList.contains(monthDate)) {
               monthTimelineList.add(monthDate);
+            }
+
+            if (appointment.status == 'INACTV') {
+              continue;
             }
 
             if (!appointment.appointmentDateTime.isBefore(DateTime.now())) {

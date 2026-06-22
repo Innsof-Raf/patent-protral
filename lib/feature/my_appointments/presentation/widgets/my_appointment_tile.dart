@@ -88,7 +88,10 @@ class MyAppointmentTile extends StatelessWidget {
                         ],
                       ),
                     ),
-                    _StatusBadge(isConsulted: isConsulted),
+                    _StatusBadge(
+                      isConsulted: isConsulted,
+                      status: appointment.status,
+                    ),
                   ],
                 ),
                 const SizedBox(height: 16),
@@ -146,6 +149,7 @@ class MyAppointmentTile extends StatelessWidget {
                 const SizedBox(height: 16),
                 _ActionBar(
                   isConsulted: isConsulted,
+                  status: appointment.status,
                   isCanceling: appointment.isCanceling,
                   onReschedule: () => _onReschedulePressed(context),
                   onCancel: () => _onCancelPressed(context),
@@ -393,14 +397,19 @@ class _DoctorImage extends StatelessWidget {
 
 class _StatusBadge extends StatelessWidget {
   final bool isConsulted;
+  final String status;
 
-  const _StatusBadge({required this.isConsulted});
+  const _StatusBadge({required this.isConsulted, required this.status});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final color = isConsulted ? Colors.green : colorScheme.primary;
+    final bool isCancelled = status == 'INACTV';
+
+    final color = isCancelled
+        ? colorScheme.error
+        : (isConsulted ? Colors.green : colorScheme.primary);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -418,7 +427,9 @@ class _StatusBadge extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           Text(
-            isConsulted ? AppStaticTexts.done : AppStaticTexts.upcoming,
+            isCancelled
+                ? 'Cancelled'
+                : (isConsulted ? AppStaticTexts.done : AppStaticTexts.upcoming),
             style: theme.textTheme.labelSmall?.copyWith(
               color: color,
               fontWeight: FontWeight.w900,
@@ -433,6 +444,7 @@ class _StatusBadge extends StatelessWidget {
 
 class _ActionBar extends StatelessWidget {
   final bool isConsulted;
+  final String status;
   final bool isCanceling;
   final VoidCallback onReschedule;
   final VoidCallback onCancel;
@@ -440,6 +452,7 @@ class _ActionBar extends StatelessWidget {
 
   const _ActionBar({
     required this.isConsulted,
+    required this.status,
     required this.isCanceling,
     required this.onReschedule,
     required this.onCancel,
@@ -450,8 +463,9 @@ class _ActionBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final bool isCancelled = status == 'INACTV';
 
-    if (isConsulted) {
+    if (isConsulted || isCancelled) {
       return SizedBox(
         width: double.infinity,
         child: FilledButton.icon(
