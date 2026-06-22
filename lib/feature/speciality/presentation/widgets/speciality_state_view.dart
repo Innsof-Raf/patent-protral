@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class SpecialityMessageView extends StatelessWidget {
   const SpecialityMessageView({
@@ -30,7 +31,7 @@ class SpecialityMessageView extends StatelessWidget {
               ),
               child: Icon(Icons.medical_information_outlined, color: iconColor),
             ),
-            const SizedBox(height: 16),
+            const Gap(16),
             Text(
               title,
               textAlign: TextAlign.center,
@@ -39,7 +40,7 @@ class SpecialityMessageView extends StatelessWidget {
                 fontWeight: FontWeight.w800,
               ),
             ),
-            const SizedBox(height: 6),
+            const Gap(6),
             Text(
               message,
               textAlign: TextAlign.center,

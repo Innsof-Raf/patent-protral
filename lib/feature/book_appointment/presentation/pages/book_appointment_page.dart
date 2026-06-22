@@ -83,9 +83,12 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                   child: Column(
                     children: [
                       if (state.isSlotLoading)
-                        const CommonLoadingView(
-                          size: 80,
-                          padding: EdgeInsets.all(20),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          child: const CommonLoadingView(
+                            size: 80,
+                            padding: EdgeInsets.all(20),
+                          ),
                         )
                       else
                         AppointmentSlotSection(shift: state.shift),

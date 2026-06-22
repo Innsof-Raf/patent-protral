@@ -130,6 +130,8 @@ class AppStaticTexts {
   static const String specialistSubtitle =
       'Choose a department and book with the right doctor faster.';
   static const String specialitiesAvailable = 'specialities available';
+  static const String findDoctors = 'Find Doctors';
+  static const String viewDoctorsIn = 'View doctors in';
 
   // Members
   static const String selectAll = 'Select All';

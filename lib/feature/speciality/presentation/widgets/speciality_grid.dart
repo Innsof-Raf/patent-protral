@@ -26,9 +26,9 @@ class SpecialityGrid extends StatelessWidget {
             itemCount: specialities.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: crossAxisCount,
-              crossAxisSpacing: 12,
-              mainAxisSpacing: 12,
-              mainAxisExtent: width < 520 ? 156 : 164,
+              crossAxisSpacing: 14,
+              mainAxisSpacing: 14,
+              mainAxisExtent: width < 520 ? 168 : 176,
             ),
             itemBuilder: (context, index) {
               return SpecialityTile(speciality: specialities[index]);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 
 class SpecialityHeader extends StatelessWidget {
@@ -31,7 +32,7 @@ class SpecialityHeader extends StatelessWidget {
               height: 1.08,
             ),
           ),
-          const SizedBox(height: 8),
+          const Gap(8),
           Text(
             AppStaticTexts.specialistSubtitle,
             style: theme.textTheme.bodyMedium?.copyWith(
@@ -39,7 +40,7 @@ class SpecialityHeader extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          const SizedBox(height: 16),
+          const Gap(16),
           DecoratedBox(
             decoration: BoxDecoration(
               color: theme.colorScheme.surface,
