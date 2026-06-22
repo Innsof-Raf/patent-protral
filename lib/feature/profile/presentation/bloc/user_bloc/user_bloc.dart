@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/core/error/failures.dart';
 import 'package:patient_portal/core/resources/error_model.dart';
+import 'package:patient_portal/feature/login/domain/usecases/params/login_params.dart';
+import 'package:patient_portal/feature/login/domain/usecases/refresh_token_usecase.dart';
 import 'package:patient_portal/feature/profile/data/datasources/user_local_data_source.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
@@ -19,12 +21,14 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   final AddProfileMemberUseCase addProfileMemberUseCase;
   final ChangeMemberInsuranceDetailsUseCase changeMemberInsuranceDetailsUseCase;
   final GetMemberDetailUseCase getMemberDetailUseCase;
+  final RefreshTokenUseCase refreshTokenUseCase;
   final UserLocalDataSource userLocalDataSource;
 
   UserBloc({
     required this.addProfileMemberUseCase,
     required this.changeMemberInsuranceDetailsUseCase,
     required this.getMemberDetailUseCase,
+    required this.refreshTokenUseCase,
     required this.userLocalDataSource,
     User? initialUser,
   }) : super(UserState.initial().copyWith(user: initialUser)) {
@@ -186,7 +190,24 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       final user = await userLocalDataSource.getUser();
       if (user != null) {
         emit(state.copyWith(user: user));
+        add(const RefreshToken());
       }
+    });
+    on<RefreshToken>((event, emit) async {
+      if (state.user == null) return;
+
+      final result = await refreshTokenUseCase(
+        LoginParams.refreshToken(
+          id: state.user!.id,
+          mobileNumber: state.user!.mobileNumber,
+          token: state.user!.refreshToken,
+        ),
+      );
+
+      await result.fold((failure) {}, (user) async {
+        emit(state.copyWith(user: user));
+        await userLocalDataSource.saveUser(user);
+      });
     });
   }
 }

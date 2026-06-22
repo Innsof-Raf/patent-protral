@@ -51,6 +51,7 @@ import 'package:patient_portal/feature/login/data/repositories/login_repository_
 import 'package:patient_portal/feature/login/domain/repositories/login_repository.dart';
 import 'package:patient_portal/feature/login/domain/usecases/generate_otp_usecase.dart';
 import 'package:patient_portal/feature/login/domain/usecases/login_with_password_usecase.dart';
+import 'package:patient_portal/feature/login/domain/usecases/refresh_token_usecase.dart';
 import 'package:patient_portal/feature/login/domain/usecases/verify_otp_usecase.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/login_with_password_bloc/login_with_password_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
@@ -128,6 +129,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GenerateOtpUseCase(sl()));
   sl.registerLazySingleton(() => VerifyOtpUseCase(sl()));
   sl.registerLazySingleton(() => LoginWithPasswordUseCase(sl()));
+  sl.registerLazySingleton(() => RefreshTokenUseCase(sl()));
 
   // Repository
   sl.registerLazySingleton<LoginRepository>(
@@ -303,6 +305,7 @@ Future<void> init() async {
       changeMemberInsuranceDetailsUseCase: sl(),
       getMemberDetailUseCase: sl(),
       userLocalDataSource: sl(),
+      refreshTokenUseCase: sl(),
       initialUser: initialUser,
     ),
   );

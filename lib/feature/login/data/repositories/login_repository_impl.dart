@@ -82,4 +82,30 @@ class LoginRepositoryImpl implements LoginRepository {
       return Left(ServerFailure(e.toString().replaceAll('Exception: ', '')));
     }
   }
+
+  @override
+  Future<Either<Failure, User>> refreshToken({
+    required int id,
+    required String mobileNumber,
+    required String token,
+  }) async {
+    try {
+      final userModel = await remoteDataSource.refreshToken(
+        LoginParams.refreshToken(
+          id: id,
+          mobileNumber: mobileNumber,
+          token: token,
+        ),
+      );
+      return Right(userModel.toEntity());
+    } on SocketException {
+      return const Left(NetworkFailure(ConstantMessages.noNetworkErrorMessage));
+    } on TimeoutException {
+      return const Left(
+        ServerFailure(ConstantMessages.connectionTimeOutFailureMessage),
+      );
+    } catch (e) {
+      return Left(ServerFailure(e.toString().replaceAll('Exception: ', '')));
+    }
+  }
 }

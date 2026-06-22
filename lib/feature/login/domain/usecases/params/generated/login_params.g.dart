@@ -49,3 +49,19 @@ Map<String, dynamic> _$LoginWithPasswordParamsToJson(
   'password': instance.password,
   'runtimeType': instance.$type,
 };
+
+RefreshTokenParams _$RefreshTokenParamsFromJson(Map<String, dynamic> json) =>
+    RefreshTokenParams(
+      id: (json['Id'] as num).toInt(),
+      mobileNumber: json['MobileNo'] as String,
+      token: json['Token'] as String,
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$RefreshTokenParamsToJson(RefreshTokenParams instance) =>
+    <String, dynamic>{
+      'Id': instance.id,
+      'MobileNo': instance.mobileNumber,
+      'Token': instance.token,
+      'runtimeType': instance.$type,
+    };

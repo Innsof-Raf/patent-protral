@@ -1,7 +1,7 @@
 part of 'user_bloc.dart';
 
 @freezed
-class UserEvent with _$UserEvent {
+sealed class UserEvent with _$UserEvent {
   const factory UserEvent.storeUserDetails({required ProfileParams params}) =
       StoreUserDetails;
 
@@ -30,4 +30,6 @@ class UserEvent with _$UserEvent {
   const factory UserEvent.logOut() = LogOut;
 
   const factory UserEvent.initializeUser() = InitializeUser;
+
+  const factory UserEvent.refreshToken() = RefreshToken;
 }

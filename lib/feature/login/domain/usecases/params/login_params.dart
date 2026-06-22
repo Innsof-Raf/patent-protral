@@ -20,6 +20,12 @@ sealed class LoginParams with _$LoginParams {
     required String password,
   }) = LoginWithPasswordParams;
 
+  const factory LoginParams.refreshToken({
+    @JsonKey(name: 'Id') required int id,
+    @JsonKey(name: 'MobileNo') required String mobileNumber,
+    @JsonKey(name: 'Token') required String token,
+  }) = RefreshTokenParams;
+
   factory LoginParams.fromJson(Map<String, dynamic> json) =>
       _$LoginParamsFromJson(json);
 }

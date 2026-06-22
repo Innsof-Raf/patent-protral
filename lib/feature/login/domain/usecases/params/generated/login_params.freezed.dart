@@ -27,6 +27,10 @@ LoginParams _$LoginParamsFromJson(
           return LoginWithPasswordParams.fromJson(
             json
           );
+                case 'refreshToken':
+          return RefreshTokenParams.fromJson(
+            json
+          );
         
           default:
             throw CheckedFromJsonException(
@@ -42,7 +46,7 @@ LoginParams _$LoginParamsFromJson(
 /// @nodoc
 mixin _$LoginParams {
 
-@JsonKey(name: 'mobileNo')@JsonKey(name: 'username') String get mobileNumber;
+@JsonKey(name: 'mobileNo')@JsonKey(name: 'username')@JsonKey(name: 'MobileNo') String get mobileNumber;
 /// Create a copy of LoginParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -116,13 +120,14 @@ extension LoginParamsPatterns on LoginParams {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( GenerateOtpParams value)?  generateOtp,TResult Function( VerifyOtpParams value)?  verifyOtp,TResult Function( LoginWithPasswordParams value)?  loginWithPassword,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( GenerateOtpParams value)?  generateOtp,TResult Function( VerifyOtpParams value)?  verifyOtp,TResult Function( LoginWithPasswordParams value)?  loginWithPassword,TResult Function( RefreshTokenParams value)?  refreshToken,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case GenerateOtpParams() when generateOtp != null:
 return generateOtp(_that);case VerifyOtpParams() when verifyOtp != null:
 return verifyOtp(_that);case LoginWithPasswordParams() when loginWithPassword != null:
-return loginWithPassword(_that);case _:
+return loginWithPassword(_that);case RefreshTokenParams() when refreshToken != null:
+return refreshToken(_that);case _:
   return orElse();
 
 }
@@ -140,13 +145,14 @@ return loginWithPassword(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( GenerateOtpParams value)  generateOtp,required TResult Function( VerifyOtpParams value)  verifyOtp,required TResult Function( LoginWithPasswordParams value)  loginWithPassword,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( GenerateOtpParams value)  generateOtp,required TResult Function( VerifyOtpParams value)  verifyOtp,required TResult Function( LoginWithPasswordParams value)  loginWithPassword,required TResult Function( RefreshTokenParams value)  refreshToken,}){
 final _that = this;
 switch (_that) {
 case GenerateOtpParams():
 return generateOtp(_that);case VerifyOtpParams():
 return verifyOtp(_that);case LoginWithPasswordParams():
-return loginWithPassword(_that);}
+return loginWithPassword(_that);case RefreshTokenParams():
+return refreshToken(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -160,13 +166,14 @@ return loginWithPassword(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( GenerateOtpParams value)?  generateOtp,TResult? Function( VerifyOtpParams value)?  verifyOtp,TResult? Function( LoginWithPasswordParams value)?  loginWithPassword,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( GenerateOtpParams value)?  generateOtp,TResult? Function( VerifyOtpParams value)?  verifyOtp,TResult? Function( LoginWithPasswordParams value)?  loginWithPassword,TResult? Function( RefreshTokenParams value)?  refreshToken,}){
 final _that = this;
 switch (_that) {
 case GenerateOtpParams() when generateOtp != null:
 return generateOtp(_that);case VerifyOtpParams() when verifyOtp != null:
 return verifyOtp(_that);case LoginWithPasswordParams() when loginWithPassword != null:
-return loginWithPassword(_that);case _:
+return loginWithPassword(_that);case RefreshTokenParams() when refreshToken != null:
+return refreshToken(_that);case _:
   return null;
 
 }
@@ -183,12 +190,13 @@ return loginWithPassword(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@JsonKey(name: 'mobileNo')  String mobileNumber)?  generateOtp,TResult Function(@JsonKey(name: 'id_otp')  String idOtp, @JsonKey(name: 'mobileNo')  String mobileNumber,  String otp)?  verifyOtp,TResult Function(@JsonKey(name: 'username')  String mobileNumber,  String password)?  loginWithPassword,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@JsonKey(name: 'mobileNo')  String mobileNumber)?  generateOtp,TResult Function(@JsonKey(name: 'id_otp')  String idOtp, @JsonKey(name: 'mobileNo')  String mobileNumber,  String otp)?  verifyOtp,TResult Function(@JsonKey(name: 'username')  String mobileNumber,  String password)?  loginWithPassword,TResult Function(@JsonKey(name: 'Id')  int id, @JsonKey(name: 'MobileNo')  String mobileNumber, @JsonKey(name: 'Token')  String token)?  refreshToken,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case GenerateOtpParams() when generateOtp != null:
 return generateOtp(_that.mobileNumber);case VerifyOtpParams() when verifyOtp != null:
 return verifyOtp(_that.idOtp,_that.mobileNumber,_that.otp);case LoginWithPasswordParams() when loginWithPassword != null:
-return loginWithPassword(_that.mobileNumber,_that.password);case _:
+return loginWithPassword(_that.mobileNumber,_that.password);case RefreshTokenParams() when refreshToken != null:
+return refreshToken(_that.id,_that.mobileNumber,_that.token);case _:
   return orElse();
 
 }
@@ -206,12 +214,13 @@ return loginWithPassword(_that.mobileNumber,_that.password);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@JsonKey(name: 'mobileNo')  String mobileNumber)  generateOtp,required TResult Function(@JsonKey(name: 'id_otp')  String idOtp, @JsonKey(name: 'mobileNo')  String mobileNumber,  String otp)  verifyOtp,required TResult Function(@JsonKey(name: 'username')  String mobileNumber,  String password)  loginWithPassword,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@JsonKey(name: 'mobileNo')  String mobileNumber)  generateOtp,required TResult Function(@JsonKey(name: 'id_otp')  String idOtp, @JsonKey(name: 'mobileNo')  String mobileNumber,  String otp)  verifyOtp,required TResult Function(@JsonKey(name: 'username')  String mobileNumber,  String password)  loginWithPassword,required TResult Function(@JsonKey(name: 'Id')  int id, @JsonKey(name: 'MobileNo')  String mobileNumber, @JsonKey(name: 'Token')  String token)  refreshToken,}) {final _that = this;
 switch (_that) {
 case GenerateOtpParams():
 return generateOtp(_that.mobileNumber);case VerifyOtpParams():
 return verifyOtp(_that.idOtp,_that.mobileNumber,_that.otp);case LoginWithPasswordParams():
-return loginWithPassword(_that.mobileNumber,_that.password);}
+return loginWithPassword(_that.mobileNumber,_that.password);case RefreshTokenParams():
+return refreshToken(_that.id,_that.mobileNumber,_that.token);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -225,12 +234,13 @@ return loginWithPassword(_that.mobileNumber,_that.password);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@JsonKey(name: 'mobileNo')  String mobileNumber)?  generateOtp,TResult? Function(@JsonKey(name: 'id_otp')  String idOtp, @JsonKey(name: 'mobileNo')  String mobileNumber,  String otp)?  verifyOtp,TResult? Function(@JsonKey(name: 'username')  String mobileNumber,  String password)?  loginWithPassword,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@JsonKey(name: 'mobileNo')  String mobileNumber)?  generateOtp,TResult? Function(@JsonKey(name: 'id_otp')  String idOtp, @JsonKey(name: 'mobileNo')  String mobileNumber,  String otp)?  verifyOtp,TResult? Function(@JsonKey(name: 'username')  String mobileNumber,  String password)?  loginWithPassword,TResult? Function(@JsonKey(name: 'Id')  int id, @JsonKey(name: 'MobileNo')  String mobileNumber, @JsonKey(name: 'Token')  String token)?  refreshToken,}) {final _that = this;
 switch (_that) {
 case GenerateOtpParams() when generateOtp != null:
 return generateOtp(_that.mobileNumber);case VerifyOtpParams() when verifyOtp != null:
 return verifyOtp(_that.idOtp,_that.mobileNumber,_that.otp);case LoginWithPasswordParams() when loginWithPassword != null:
-return loginWithPassword(_that.mobileNumber,_that.password);case _:
+return loginWithPassword(_that.mobileNumber,_that.password);case RefreshTokenParams() when refreshToken != null:
+return refreshToken(_that.id,_that.mobileNumber,_that.token);case _:
   return null;
 
 }
@@ -456,6 +466,83 @@ class _$LoginWithPasswordParamsCopyWithImpl<$Res>
   return _then(LoginWithPasswordParams(
 mobileNumber: null == mobileNumber ? _self.mobileNumber : mobileNumber // ignore: cast_nullable_to_non_nullable
 as String,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class RefreshTokenParams implements LoginParams {
+  const RefreshTokenParams({@JsonKey(name: 'Id') required this.id, @JsonKey(name: 'MobileNo') required this.mobileNumber, @JsonKey(name: 'Token') required this.token, final  String? $type}): $type = $type ?? 'refreshToken';
+  factory RefreshTokenParams.fromJson(Map<String, dynamic> json) => _$RefreshTokenParamsFromJson(json);
+
+@JsonKey(name: 'Id') final  int id;
+@override@JsonKey(name: 'MobileNo') final  String mobileNumber;
+@JsonKey(name: 'Token') final  String token;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
+
+/// Create a copy of LoginParams
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$RefreshTokenParamsCopyWith<RefreshTokenParams> get copyWith => _$RefreshTokenParamsCopyWithImpl<RefreshTokenParams>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$RefreshTokenParamsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RefreshTokenParams&&(identical(other.id, id) || other.id == id)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.token, token) || other.token == token));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,mobileNumber,token);
+
+@override
+String toString() {
+  return 'LoginParams.refreshToken(id: $id, mobileNumber: $mobileNumber, token: $token)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $RefreshTokenParamsCopyWith<$Res> implements $LoginParamsCopyWith<$Res> {
+  factory $RefreshTokenParamsCopyWith(RefreshTokenParams value, $Res Function(RefreshTokenParams) _then) = _$RefreshTokenParamsCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'Id') int id,@JsonKey(name: 'MobileNo') String mobileNumber,@JsonKey(name: 'Token') String token
+});
+
+
+
+
+}
+/// @nodoc
+class _$RefreshTokenParamsCopyWithImpl<$Res>
+    implements $RefreshTokenParamsCopyWith<$Res> {
+  _$RefreshTokenParamsCopyWithImpl(this._self, this._then);
+
+  final RefreshTokenParams _self;
+  final $Res Function(RefreshTokenParams) _then;
+
+/// Create a copy of LoginParams
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? mobileNumber = null,Object? token = null,}) {
+  return _then(RefreshTokenParams(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,mobileNumber: null == mobileNumber ? _self.mobileNumber : mobileNumber // ignore: cast_nullable_to_non_nullable
+as String,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

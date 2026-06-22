@@ -14,6 +14,8 @@ abstract class LoginRemoteDataSource {
   Future<UserModel> verifyOtp(LoginParams params);
 
   Future<UserModel> loginWithPassword(LoginParams params);
+
+  Future<UserModel> refreshToken(LoginParams params);
 }
 
 class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
@@ -91,6 +93,28 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
       rethrow;
     } catch (e, stackTrace) {
       log('loginWithPassword Error', error: e, stackTrace: stackTrace);
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<UserModel> refreshToken(LoginParams params) async {
+    try {
+      final p = params.maybeMap(
+        refreshToken: (value) => value,
+        orElse: () => throw ServerException('Invalid params'),
+      );
+
+      final response = await client.post(
+        url: ConstantUrls.refreshUrl,
+        body: p.toJson(),
+      );
+
+      return UserModel.fromJson(decodeResponseData(response.data));
+    } on ServerException {
+      rethrow;
+    } catch (e, stackTrace) {
+      log('refreshToken Error', error: e, stackTrace: stackTrace);
       throw ServerException(e.toString());
     }
   }
