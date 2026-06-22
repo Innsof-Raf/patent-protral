@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
@@ -8,7 +9,7 @@ import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/reports/domain/usecases/params/reports_params.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
-import 'package:patient_portal/feature/reports/presentation/widgets/report_tile.dart';
+import 'package:patient_portal/feature/reports/presentation/widgets/reports_list_view.dart';
 
 @RoutePage(name: 'ReportsRoute')
 class ReportsScreen extends StatefulWidget {
@@ -26,11 +27,13 @@ class _ReportsScreenState extends State<ReportsScreen> {
   }
 
   void _fetchReports() {
-    final User user = context.read<UserBloc>().state.user!;
+    final User? user = context.read<UserBloc>().state.user;
+    if (user == null) return;
+
     context.read<ReportsBloc>().add(
       GetReports(
         params: ReportsParams.getReports(
-          memberId: 0,
+          memberId: context.read<ReportsBloc>().state.selectedMemberId,
           token: user.accessToken,
           mobileNumber: user.mobileNumber,
         ),
@@ -43,37 +46,57 @@ class _ReportsScreenState extends State<ReportsScreen> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: BlocBuilder<ReportsBloc, ReportsState>(
-          builder: (context, state) {
-            return state.isFetchingReports
-                ? const CommonLoadingView()
-                : state.isFetchingFailed
-                ? CommonErrorView(
-                    title: AppStaticTexts.unableToLoadReports,
-                    message: state.error.message,
-                    onRetry: _fetchReports,
-                  )
-                : state.reports.isEmpty
-                ? Center(
-                    child: Text(
-                      AppStaticTexts.noReportsAvailable,
-                      style: theme.textTheme.titleMedium,
+      backgroundColor: theme.colorScheme.surface,
+      body: BlocBuilder<ReportsBloc, ReportsState>(
+        builder: (context, state) {
+          if (state.isFetchingReports) {
+            return const CommonLoadingView();
+          }
+
+          if (state.isFetchingFailed) {
+            return CommonErrorView(
+              title: AppStaticTexts.unableToLoadReports,
+              message: state.error.message,
+              onRetry: _fetchReports,
+            );
+          }
+
+          if (state.reports.isEmpty) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.assignment_outlined,
+                    size: 64,
+                    color: theme.colorScheme.primary.withValues(alpha: 0.2),
+                  ),
+                  const Gap(16),
+                  Text(
+                    AppStaticTexts.noReportsAvailable,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
                     ),
-                  )
-                : ListView.separated(
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(height: 10),
-                    padding: const EdgeInsets.only(top: 10, bottom: 90),
-                    shrinkWrap: true,
-                    itemCount: state.reports.length,
-                    itemBuilder: (context, index) {
-                      return MyReportTile(report: state.reports[index]);
-                    },
-                  );
-          },
-        ),
+                  ),
+                  const Gap(8),
+                  Text(
+                    'Your medical reports will appear here.',
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant.withValues(
+                        alpha: 0.7,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
+
+          return RefreshIndicator(
+            onRefresh: () async => _fetchReports(),
+            child: ReportsListView(reports: state.reports),
+          );
+        },
       ),
     );
   }

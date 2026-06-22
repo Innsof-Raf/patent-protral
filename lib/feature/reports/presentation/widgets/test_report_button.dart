@@ -11,6 +11,7 @@ class TestReportButton extends StatelessWidget {
   final String doctorName;
   final int memberId;
   final DateTime consultedDateTime;
+
   const TestReportButton({
     super.key,
     required this.url,
@@ -23,58 +24,68 @@ class TestReportButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final bool isAvailable = url != null && url!.isNotEmpty;
 
-    return url != null
-        ? ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              elevation: 0,
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 22),
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              minimumSize: const Size(0, 0),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4),
-              ),
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: isAvailable
+            ? () {
+                context.read<ReportsBloc>().add(const ClearReport());
+                context.router.push(
+                  ReportRoute(
+                    pdfUrl: '${ConstantUrls.baseUrl}$url',
+                    consultedDateTime: consultedDateTime,
+                    doctorName: doctorName,
+                  ),
+                );
+              }
+            : null,
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          constraints: const BoxConstraints(minWidth: 80),
+          decoration: BoxDecoration(
+            color: isAvailable
+                ? theme.colorScheme.primaryContainer.withValues(alpha: 0.4)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: isAvailable
+                  ? theme.colorScheme.primary.withValues(alpha: 0.3)
+                  : theme.colorScheme.outlineVariant.withValues(alpha: 0.6),
+              width: 1.2,
             ),
-            onPressed: () {
-              context.read<ReportsBloc>().add(const ClearReport());
-              context.router.push(
-                ReportRoute(
-                  pdfUrl: '${ConstantUrls.baseUrl}$url',
-                  consultedDateTime: consultedDateTime,
-                  doctorName: doctorName,
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                isAvailable
+                    ? Icons.description_outlined
+                    : Icons.lock_outline_rounded,
+                size: 14,
+                color: isAvailable
+                    ? theme.colorScheme.primary
+                    : theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
+              ),
+              const SizedBox(width: 6),
+              Text(
+                title,
+                style: theme.textTheme.labelLarge?.copyWith(
+                  fontWeight: isAvailable ? FontWeight.bold : FontWeight.normal,
+                  color: isAvailable
+                      ? theme.colorScheme.primary
+                      : theme.colorScheme.onSurfaceVariant.withValues(
+                          alpha: 0.5,
+                        ),
                 ),
-              );
-            },
-            child: Text(
-              title,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onPrimary,
-                fontWeight: FontWeight.w700,
               ),
-            ),
-          )
-        : OutlinedButton(
-            style: OutlinedButton.styleFrom(
-              elevation: 0,
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 22),
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              minimumSize: const Size(0, 0),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4),
-              ),
-              side: BorderSide(
-                width: .5,
-                color: theme.colorScheme.primary.withValues(alpha: .3),
-              ),
-            ),
-            onPressed: () {},
-            child: Text(
-              title,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.primary.withValues(alpha: .3),
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          );
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
