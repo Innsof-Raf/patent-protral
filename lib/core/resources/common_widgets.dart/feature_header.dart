@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class FeatureHeader extends StatelessWidget {
   const FeatureHeader({
@@ -32,19 +33,18 @@ class FeatureHeader extends StatelessWidget {
         children: [
           Text(
             title,
-            style: theme.textTheme.headlineSmall?.copyWith(
+            style: AppTextStyles.extraLargeRobotoBold.copyWith(
               color: theme.colorScheme.onSurface,
-              fontWeight: FontWeight.w800,
-              height: 1.1,
+              fontSize: 16,
             ),
           ),
           const Gap(8),
           Text(
             subtitle,
-            style: theme.textTheme.bodyMedium?.copyWith(
+            style: AppTextStyles.largeRobotoNormal.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w500,
-              height: 1.35,
+              fontSize: 13,
             ),
           ),
           if (badgeText != null) ...[
@@ -61,9 +61,10 @@ class FeatureHeader extends StatelessWidget {
                 ),
                 child: Text(
                   badgeText!,
-                  style: theme.textTheme.labelLarge?.copyWith(
+                  style: AppTextStyles.bodyLargeSemiBoldTextInter.copyWith(
                     color: theme.colorScheme.primary,
                     fontWeight: FontWeight.w800,
+                    fontSize: 10,
                   ),
                 ),
               ),
