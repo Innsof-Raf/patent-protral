@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:gap/gap.dart';
 
 class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -28,31 +26,53 @@ class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
         foregroundColor ?? theme.colorScheme.onSurface;
 
     return AppBar(
-      systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarColor: AppColors.black,
-        statusBarIconBrightness: Brightness.light,
-        statusBarBrightness: Brightness.dark,
-      ),
-      backgroundColor: backgroundColor ?? AppColors.white,
+      backgroundColor: backgroundColor ?? theme.colorScheme.surface,
+      surfaceTintColor: theme.colorScheme.surface,
       elevation: 0,
+      scrolledUnderElevation: 3,
+      shadowColor: theme.colorScheme.shadow.withValues(alpha: 0.1),
+      toolbarHeight: 70,
       titleSpacing: 0,
       centerTitle: centerTitle,
       automaticallyImplyLeading: false,
-      title: Text(
-        title,
-        style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-          color: effectiveForegroundColor,
+      leadingWidth: 72,
+      leading: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: IconButton(
+            tooltip: 'Back',
+            style: IconButton.styleFrom(
+              backgroundColor: theme.colorScheme.surfaceContainerHighest
+                  .withValues(alpha: .4),
+              foregroundColor: effectiveForegroundColor,
+              fixedSize: const Size.square(46),
+              padding: EdgeInsets.zero,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+                side: BorderSide(
+                  color: theme.colorScheme.outlineVariant.withValues(
+                    alpha: 0.2,
+                  ),
+                ),
+              ),
+            ),
+            icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
+            onPressed: onLeadingPressed ?? () => Navigator.of(context).pop(),
+          ),
         ),
       ),
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
-        color: effectiveForegroundColor,
-        onPressed: onLeadingPressed ?? () => Navigator.of(context).pop(),
+      title: Text(
+        title,
+        style: theme.textTheme.titleLarge?.copyWith(
+          color: effectiveForegroundColor,
+          fontWeight: FontWeight.w800,
+          letterSpacing: -0.5,
+        ),
       ),
-      actions: actions,
+      actions: [...?actions, const Gap(12)],
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(56.0);
+  Size get preferredSize => const Size.fromHeight(70.0);
 }

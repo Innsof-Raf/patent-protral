@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/main_shell_icon_button.dart';
 
@@ -24,16 +25,19 @@ class MainShellAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: theme.colorScheme.surface,
       surfaceTintColor: theme.colorScheme.surface,
       elevation: 0,
-      scrolledUnderElevation: 0,
-      toolbarHeight: 63,
+      scrolledUnderElevation: 3,
+      shadowColor: theme.colorScheme.shadow.withValues(alpha: 0.1),
+      toolbarHeight: 70,
       titleSpacing: 0,
       centerTitle: centerTitle,
-      leadingWidth: 64,
-      leading: Builder(
-        builder: (context) => MainShellIconButton(
-          iconPath: Assets.icons.drawerIcon.path,
-          tooltip: 'Menu',
-          onPressed: Scaffold.of(context).openDrawer,
+      leadingWidth: 72,
+      leading: Center(
+        child: Builder(
+          builder: (context) => MainShellIconButton(
+            iconPath: Assets.icons.drawerIcon.path,
+            tooltip: 'Menu',
+            onPressed: Scaffold.of(context).openDrawer,
+          ),
         ),
       ),
       title:
@@ -42,27 +46,18 @@ class MainShellAppBar extends StatelessWidget implements PreferredSizeWidget {
             title!,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: theme.textTheme.titleMedium?.copyWith(
+            style: theme.textTheme.titleLarge?.copyWith(
               color: theme.colorScheme.onSurface,
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w800,
+              letterSpacing: -0.5,
             ),
           ),
-      actions: actions.isEmpty
-          ? const [SizedBox(width: 8)]
-          : [...actions, const SizedBox(width: 8)],
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(1),
-        child: Divider(
-          height: 1,
-          thickness: 1,
-          color: theme.colorScheme.outlineVariant.withValues(alpha: .55),
-        ),
-      ),
+      actions: [...actions, const Gap(12)],
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(64);
+  Size get preferredSize => const Size.fromHeight(70);
 }
 
 class MainShellLogoTitle extends StatelessWidget {
@@ -73,7 +68,7 @@ class MainShellLogoTitle extends StatelessWidget {
     return Image.asset(
       Assets.logos.alleviaLogoGray.path,
       fit: BoxFit.contain,
-      width: 86,
+      width: 100,
     );
   }
 }

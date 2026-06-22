@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/main_shell_app_bar.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -20,22 +21,22 @@ class ReportsAppBar extends StatelessWidget implements PreferredSizeWidget {
           style: IconButton.styleFrom(
             backgroundColor: Theme.of(
               context,
-            ).colorScheme.surfaceContainerHighest.withValues(alpha: .55),
-            fixedSize: const Size.square(42),
+            ).colorScheme.surfaceContainerHighest.withValues(alpha: .4),
+            fixedSize: const Size.square(46),
             padding: EdgeInsets.zero,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(15),
             ),
           ),
           onPressed: () {},
-          icon: const Icon(Icons.search_rounded, size: 21),
+          icon: const Icon(Icons.search_rounded, size: 24),
         ),
       ],
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(64);
+  Size get preferredSize => const Size.fromHeight(70);
 }
 
 class _ReportsMemberSelector extends StatelessWidget {
@@ -60,7 +61,7 @@ class _ReportsMemberSelector extends StatelessWidget {
             return PopupMenuButton<int>(
               initialValue: state.selectedMemberId,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(20),
               ),
               position: PopupMenuPosition.under,
               padding: EdgeInsets.zero,
@@ -79,52 +80,68 @@ class _ReportsMemberSelector extends StatelessWidget {
                   ReportsAppbarHelpers.createPopupMenuItem(
                     userState.user!.members,
                   ),
-              child: DecoratedBox(
+              child: Container(
                 decoration: BoxDecoration(
                   color: theme.colorScheme.surfaceContainerHighest.withValues(
-                    alpha: .55,
+                    alpha: .4,
                   ),
-                  borderRadius: BorderRadius.circular(18),
-                  border: Border.all(color: theme.colorScheme.outlineVariant),
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(
+                    color: theme.colorScheme.outlineVariant.withValues(
+                      alpha: 0.5,
+                    ),
+                  ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 6, 10, 6),
+                  padding: const EdgeInsets.fromLTRB(10, 8, 12, 8),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      ClipOval(
-                        child: Image.network(
-                          'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
-                          height: 30,
-                          width: 30,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) {
-                            return Image.asset(
-                              Assets.images.memberDefaultProfileImage.path,
-                              height: 30,
-                              width: 30,
-                              fit: BoxFit.cover,
-                            );
-                          },
+                      Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: theme.colorScheme.primary.withValues(
+                              alpha: 0.2,
+                            ),
+                            width: 1.5,
+                          ),
+                        ),
+                        child: ClipOval(
+                          child: Image.network(
+                            'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+                            height: 28,
+                            width: 28,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Image.asset(
+                                Assets.images.memberDefaultProfileImage.path,
+                                height: 28,
+                                width: 28,
+                                fit: BoxFit.cover,
+                              );
+                            },
+                          ),
                         ),
                       ),
-                      const SizedBox(width: 10),
+                      const Gap(10),
                       ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 150),
+                        constraints: const BoxConstraints(maxWidth: 130),
                         child: Text(
                           selectedName,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: theme.textTheme.bodyMedium?.copyWith(
+                          style: theme.textTheme.titleSmall?.copyWith(
                             color: theme.colorScheme.onSurface,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),
-                      const SizedBox(width: 2),
+                      const Gap(4),
                       Icon(
                         Icons.keyboard_arrow_down_rounded,
-                        color: theme.colorScheme.onSurfaceVariant,
+                        color: theme.colorScheme.primary,
+                        size: 20,
                       ),
                     ],
                   ),
