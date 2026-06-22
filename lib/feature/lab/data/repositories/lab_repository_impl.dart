@@ -8,6 +8,7 @@ import 'package:patient_portal/feature/lab/data/datasources/lab_remote_data_sour
 import 'package:patient_portal/feature/lab/domain/entities/item.dart';
 import 'package:patient_portal/feature/lab/domain/entities/package.dart';
 import 'package:patient_portal/feature/lab/domain/repositories/lab_repository.dart';
+import 'package:patient_portal/feature/lab/domain/usecases/params/lab_params.dart';
 
 class LabRepositoryImpl implements LabRepository {
   final LabRemoteDataSource remoteDataSource;
@@ -17,7 +18,9 @@ class LabRepositoryImpl implements LabRepository {
   @override
   Future<Either<Failure, List<Item>>> getItems({required String token}) async {
     try {
-      final items = await remoteDataSource.getItems(token: token);
+      final items = await remoteDataSource.getItems(
+        LabParams.getItems(token: token),
+      );
       return Right(items.map((item) => item.toEntity()).toList());
     } on SocketException {
       return const Left(NetworkFailure(ConstantMessages.noNetworkErrorMessage));
@@ -39,9 +42,11 @@ class LabRepositoryImpl implements LabRepository {
     try {
       return Right(
         await remoteDataSource.updateItemInCart(
-          idUser: idUser,
-          idItem: idItem,
-          token: token,
+          LabParams.updateItemInCart(
+            idUser: idUser,
+            idItem: idItem,
+            token: token,
+          ),
         ),
       );
     } on SocketException {
@@ -62,8 +67,7 @@ class LabRepositoryImpl implements LabRepository {
   }) async {
     try {
       final item = await remoteDataSource.getItemDetail(
-        idItem: idItem,
-        token: token,
+        LabParams.getItemDetail(idItem: idItem, token: token),
       );
       return Right(item.toEntity());
     } on SocketException {
@@ -82,7 +86,9 @@ class LabRepositoryImpl implements LabRepository {
     required String token,
   }) async {
     try {
-      final packages = await remoteDataSource.getPackages(token: token);
+      final packages = await remoteDataSource.getPackages(
+        LabParams.getPackages(token: token),
+      );
       return Right(packages.map((package) => package.toEntity()).toList());
     } on SocketException {
       return const Left(NetworkFailure(ConstantMessages.noNetworkErrorMessage));

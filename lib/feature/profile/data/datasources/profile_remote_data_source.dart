@@ -193,21 +193,14 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     ChangeMemberInsuranceDetailsParams p,
   ) async {
     try {
-      final content = {
-        'id_customer': p.memberId,
-        'id_insurance': p.idInsurance,
-        'insurance_name': p.idInsurance == 0 ? p.memberNumber : null,
-        'expire_date': p.expireDate.toString(),
-        'member_number': p.memberNumber,
-      };
-      final data = serviceRequest(type: 'PP0035', content: content);
+      final data = serviceRequest(type: 'PP0035', content: p.toJson());
       final response = await client.post(
         url: ConstantUrls.serviceUrl,
         body: data,
         token: p.token,
       );
 
-      final Map<String, dynamic> responseData = response.data;
+      final responseData = decodeResponseData(response.data);
       return MemberModel.fromJson(responseData['customer_detail']);
     } on ServerException {
       rethrow;
@@ -233,10 +226,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
 
   Future<MemberModel> _getMemberDetail(GetMemberDetailParams p) async {
     try {
-      final data = serviceRequest(
-        type: 'HMS0034',
-        content: {'id_customer': p.memberId},
-      );
+      final data = serviceRequest(type: 'HMS0034', content: p.toJson());
       final response = await client.post(
         url: ConstantUrls.serviceUrl,
         body: data,

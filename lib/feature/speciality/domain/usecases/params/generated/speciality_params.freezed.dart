@@ -16,6 +16,8 @@ mixin _$SpecialityParams {
 
 
 
+  /// Serializes this SpecialityParams to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -23,7 +25,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is SpecialityParams);
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => runtimeType.hashCode;
 
@@ -119,7 +121,7 @@ return searchSpecialities(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String token,  int idBusUnit)?  fetchSpecialities,TResult Function( String searchKey,  List<Speciality> specialities)?  searchSpecialities,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'id_busunit')  int idBusUnit)?  fetchSpecialities,TResult Function(@JsonKey(includeToJson: false)  String searchKey, @JsonKey(includeToJson: false, includeFromJson: false)  List<Speciality> specialities)?  searchSpecialities,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case FetchSpecialitiesParams() when fetchSpecialities != null:
 return fetchSpecialities(_that.token,_that.idBusUnit);case SearchSpecialitiesParams() when searchSpecialities != null:
@@ -141,7 +143,7 @@ return searchSpecialities(_that.searchKey,_that.specialities);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String token,  int idBusUnit)  fetchSpecialities,required TResult Function( String searchKey,  List<Speciality> specialities)  searchSpecialities,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'id_busunit')  int idBusUnit)  fetchSpecialities,required TResult Function(@JsonKey(includeToJson: false)  String searchKey, @JsonKey(includeToJson: false, includeFromJson: false)  List<Speciality> specialities)  searchSpecialities,}) {final _that = this;
 switch (_that) {
 case FetchSpecialitiesParams():
 return fetchSpecialities(_that.token,_that.idBusUnit);case SearchSpecialitiesParams():
@@ -159,7 +161,7 @@ return searchSpecialities(_that.searchKey,_that.specialities);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String token,  int idBusUnit)?  fetchSpecialities,TResult? Function( String searchKey,  List<Speciality> specialities)?  searchSpecialities,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'id_busunit')  int idBusUnit)?  fetchSpecialities,TResult? Function(@JsonKey(includeToJson: false)  String searchKey, @JsonKey(includeToJson: false, includeFromJson: false)  List<Speciality> specialities)?  searchSpecialities,}) {final _that = this;
 switch (_that) {
 case FetchSpecialitiesParams() when fetchSpecialities != null:
 return fetchSpecialities(_that.token,_that.idBusUnit);case SearchSpecialitiesParams() when searchSpecialities != null:
@@ -172,14 +174,18 @@ return searchSpecialities(_that.searchKey,_that.specialities);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable(createFactory: false)
 
 class FetchSpecialitiesParams implements SpecialityParams {
-  const FetchSpecialitiesParams({required this.token, required this.idBusUnit});
+  const FetchSpecialitiesParams({@JsonKey(includeToJson: false) required this.token, @JsonKey(name: 'id_busunit') required this.idBusUnit, final  String? $type}): $type = $type ?? 'fetchSpecialities';
   
 
- final  String token;
- final  int idBusUnit;
+@JsonKey(includeToJson: false) final  String token;
+@JsonKey(name: 'id_busunit') final  int idBusUnit;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of SpecialityParams
 /// with the given fields replaced by the non-null parameter values.
@@ -187,14 +193,17 @@ class FetchSpecialitiesParams implements SpecialityParams {
 @pragma('vm:prefer-inline')
 $FetchSpecialitiesParamsCopyWith<FetchSpecialitiesParams> get copyWith => _$FetchSpecialitiesParamsCopyWithImpl<FetchSpecialitiesParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$FetchSpecialitiesParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is FetchSpecialitiesParams&&(identical(other.token, token) || other.token == token)&&(identical(other.idBusUnit, idBusUnit) || other.idBusUnit == idBusUnit));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,token,idBusUnit);
 
@@ -211,7 +220,7 @@ abstract mixin class $FetchSpecialitiesParamsCopyWith<$Res> implements $Speciali
   factory $FetchSpecialitiesParamsCopyWith(FetchSpecialitiesParams value, $Res Function(FetchSpecialitiesParams) _then) = _$FetchSpecialitiesParamsCopyWithImpl;
 @useResult
 $Res call({
- String token, int idBusUnit
+@JsonKey(includeToJson: false) String token,@JsonKey(name: 'id_busunit') int idBusUnit
 });
 
 
@@ -240,19 +249,23 @@ as int,
 }
 
 /// @nodoc
-
+@JsonSerializable(createFactory: false)
 
 class SearchSpecialitiesParams implements SpecialityParams {
-  const SearchSpecialitiesParams({required this.searchKey, required final  List<Speciality> specialities}): _specialities = specialities;
+  const SearchSpecialitiesParams({@JsonKey(includeToJson: false) required this.searchKey, @JsonKey(includeToJson: false, includeFromJson: false) required final  List<Speciality> specialities, final  String? $type}): _specialities = specialities,$type = $type ?? 'searchSpecialities';
   
 
- final  String searchKey;
+@JsonKey(includeToJson: false) final  String searchKey;
  final  List<Speciality> _specialities;
- List<Speciality> get specialities {
+@JsonKey(includeToJson: false, includeFromJson: false) List<Speciality> get specialities {
   if (_specialities is EqualUnmodifiableListView) return _specialities;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_specialities);
 }
+
+
+@JsonKey(name: 'runtimeType')
+final String $type;
 
 
 /// Create a copy of SpecialityParams
@@ -261,14 +274,17 @@ class SearchSpecialitiesParams implements SpecialityParams {
 @pragma('vm:prefer-inline')
 $SearchSpecialitiesParamsCopyWith<SearchSpecialitiesParams> get copyWith => _$SearchSpecialitiesParamsCopyWithImpl<SearchSpecialitiesParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$SearchSpecialitiesParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchSpecialitiesParams&&(identical(other.searchKey, searchKey) || other.searchKey == searchKey)&&const DeepCollectionEquality().equals(other._specialities, _specialities));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,searchKey,const DeepCollectionEquality().hash(_specialities));
 
@@ -285,7 +301,7 @@ abstract mixin class $SearchSpecialitiesParamsCopyWith<$Res> implements $Special
   factory $SearchSpecialitiesParamsCopyWith(SearchSpecialitiesParams value, $Res Function(SearchSpecialitiesParams) _then) = _$SearchSpecialitiesParamsCopyWithImpl;
 @useResult
 $Res call({
- String searchKey, List<Speciality> specialities
+@JsonKey(includeToJson: false) String searchKey,@JsonKey(includeToJson: false, includeFromJson: false) List<Speciality> specialities
 });
 
 

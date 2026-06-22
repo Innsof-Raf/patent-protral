@@ -11,16 +11,26 @@ part of '../documents_params.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+DocumentsParams _$DocumentsParamsFromJson(
+  Map<String, dynamic> json
+) {
+    return _GetDocumentsParams.fromJson(
+      json
+    );
+}
+
 /// @nodoc
 mixin _$DocumentsParams {
 
- int get memberId; String get mobileNumber; String get token;
+@JsonKey(name: 'id_customer') int get memberId;@JsonKey(name: 'mobile_number') String get mobileNumber;@JsonKey(includeToJson: false) String get token;
 /// Create a copy of DocumentsParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $DocumentsParamsCopyWith<DocumentsParams> get copyWith => _$DocumentsParamsCopyWithImpl<DocumentsParams>(this as DocumentsParams, _$identity);
 
+  /// Serializes this DocumentsParams to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +38,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentsParams&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.token, token) || other.token == token));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,memberId,mobileNumber,token);
 
@@ -45,7 +55,7 @@ abstract mixin class $DocumentsParamsCopyWith<$Res>  {
   factory $DocumentsParamsCopyWith(DocumentsParams value, $Res Function(DocumentsParams) _then) = _$DocumentsParamsCopyWithImpl;
 @useResult
 $Res call({
- int memberId, String mobileNumber, String token
+@JsonKey(name: 'id_customer') int memberId,@JsonKey(name: 'mobile_number') String mobileNumber,@JsonKey(includeToJson: false) String token
 });
 
 
@@ -149,7 +159,7 @@ return getDocuments(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int memberId,  String mobileNumber,  String token)?  getDocuments,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(name: 'mobile_number')  String mobileNumber, @JsonKey(includeToJson: false)  String token)?  getDocuments,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GetDocumentsParams() when getDocuments != null:
 return getDocuments(_that.memberId,_that.mobileNumber,_that.token);case _:
@@ -170,7 +180,7 @@ return getDocuments(_that.memberId,_that.mobileNumber,_that.token);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int memberId,  String mobileNumber,  String token)  getDocuments,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(name: 'mobile_number')  String mobileNumber, @JsonKey(includeToJson: false)  String token)  getDocuments,}) {final _that = this;
 switch (_that) {
 case _GetDocumentsParams():
 return getDocuments(_that.memberId,_that.mobileNumber,_that.token);}
@@ -187,7 +197,7 @@ return getDocuments(_that.memberId,_that.mobileNumber,_that.token);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int memberId,  String mobileNumber,  String token)?  getDocuments,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(name: 'mobile_number')  String mobileNumber, @JsonKey(includeToJson: false)  String token)?  getDocuments,}) {final _that = this;
 switch (_that) {
 case _GetDocumentsParams() when getDocuments != null:
 return getDocuments(_that.memberId,_that.mobileNumber,_that.token);case _:
@@ -199,15 +209,15 @@ return getDocuments(_that.memberId,_that.mobileNumber,_that.token);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _GetDocumentsParams implements DocumentsParams {
-  const _GetDocumentsParams({required this.memberId, required this.mobileNumber, required this.token});
-  
+  const _GetDocumentsParams({@JsonKey(name: 'id_customer') required this.memberId, @JsonKey(name: 'mobile_number') required this.mobileNumber, @JsonKey(includeToJson: false) required this.token});
+  factory _GetDocumentsParams.fromJson(Map<String, dynamic> json) => _$GetDocumentsParamsFromJson(json);
 
-@override final  int memberId;
-@override final  String mobileNumber;
-@override final  String token;
+@override@JsonKey(name: 'id_customer') final  int memberId;
+@override@JsonKey(name: 'mobile_number') final  String mobileNumber;
+@override@JsonKey(includeToJson: false) final  String token;
 
 /// Create a copy of DocumentsParams
 /// with the given fields replaced by the non-null parameter values.
@@ -215,14 +225,17 @@ class _GetDocumentsParams implements DocumentsParams {
 @pragma('vm:prefer-inline')
 _$GetDocumentsParamsCopyWith<_GetDocumentsParams> get copyWith => __$GetDocumentsParamsCopyWithImpl<_GetDocumentsParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$GetDocumentsParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetDocumentsParams&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.token, token) || other.token == token));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,memberId,mobileNumber,token);
 
@@ -239,7 +252,7 @@ abstract mixin class _$GetDocumentsParamsCopyWith<$Res> implements $DocumentsPar
   factory _$GetDocumentsParamsCopyWith(_GetDocumentsParams value, $Res Function(_GetDocumentsParams) _then) = __$GetDocumentsParamsCopyWithImpl;
 @override @useResult
 $Res call({
- int memberId, String mobileNumber, String token
+@JsonKey(name: 'id_customer') int memberId,@JsonKey(name: 'mobile_number') String mobileNumber,@JsonKey(includeToJson: false) String token
 });
 
 

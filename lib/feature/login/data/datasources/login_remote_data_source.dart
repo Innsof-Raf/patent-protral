@@ -5,19 +5,15 @@ import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/login/data/models/otp_response_model.dart';
+import 'package:patient_portal/feature/login/domain/usecases/params/login_params.dart';
 import 'package:patient_portal/feature/profile/data/models/user_model.dart';
 
 abstract class LoginRemoteDataSource {
-  Future<OtpResponseModel> generateOtp(String mobileNumber);
-  Future<UserModel> verifyOtp({
-    required String idOtp,
-    required String mobileNumber,
-    required String otp,
-  });
-  Future<UserModel> loginWithPassword({
-    required String mobileNumber,
-    required String password,
-  });
+  Future<OtpResponseModel> generateOtp(LoginParams params);
+
+  Future<UserModel> verifyOtp(LoginParams params);
+
+  Future<UserModel> loginWithPassword(LoginParams params);
 }
 
 class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
@@ -26,13 +22,16 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
   LoginRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<OtpResponseModel> generateOtp(String mobileNumber) async {
+  Future<OtpResponseModel> generateOtp(LoginParams params) async {
     try {
-      final data = {'mobileNo': mobileNumber};
+      final p = params.maybeMap(
+        generateOtp: (value) => value,
+        orElse: () => throw ServerException('Invalid params'),
+      );
 
       final response = await client.post(
         url: ConstantUrls.otpGenerationUrl,
-        body: data,
+        body: p.toJson(),
       );
 
       return OtpResponseModel.fromJson(response.data);
@@ -45,20 +44,20 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
   }
 
   @override
-  Future<UserModel> verifyOtp({
-    required String idOtp,
-    required String mobileNumber,
-    required String otp,
-  }) async {
+  Future<UserModel> verifyOtp(LoginParams params) async {
     try {
-      final Map<String, dynamic> data = {'mobileNo': mobileNumber, 'otp': otp};
+      final p = params.maybeMap(
+        verifyOtp: (value) => value,
+        orElse: () => throw ServerException('Invalid params'),
+      );
+
       log(
-        'OTP Verification Request Data: $data',
+        'OTP Verification Request Data: ${p.toJson()}',
         name: 'LoginRemoteDataSourceImpl.verifyOtp',
       );
       final response = await client.post(
         url: ConstantUrls.otpVerificationUrl,
-        body: data,
+        body: p.toJson(),
       );
 
       return UserModel.fromJson(decodeResponseData(response.data));
@@ -71,19 +70,16 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
   }
 
   @override
-  Future<UserModel> loginWithPassword({
-    required String mobileNumber,
-    required String password,
-  }) async {
+  Future<UserModel> loginWithPassword(LoginParams params) async {
     try {
-      final Map<String, dynamic> data = {
-        'username': mobileNumber,
-        'password': password,
-      };
+      final p = params.maybeMap(
+        loginWithPassword: (value) => value,
+        orElse: () => throw ServerException('Invalid params'),
+      );
 
       final response = await client.post(
         url: ConstantUrls.loginWithPasswordUrl,
-        body: data,
+        body: p.toJson(),
       );
 
       final responseData = decodeResponseData(response.data);

@@ -6,17 +6,14 @@ import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/my_appointments/data/models/my_appointment_model.dart';
+import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
 
 abstract class MyAppointmentsRemoteDataSource {
-  Future<List<MyAppointmentModel>> getMyAppointments({
-    required String mobileNumber,
-    required String token,
-  });
+  Future<List<MyAppointmentModel>> getMyAppointments(
+    MyAppointmentsParams params,
+  );
 
-  Future<Map<String, dynamic>> cancelAppointment({
-    required int appointmentId,
-    required String token,
-  });
+  Future<Map<String, dynamic>> cancelAppointment(MyAppointmentsParams params);
 }
 
 class MyAppointmentsRemoteDataSourceImpl
@@ -26,19 +23,20 @@ class MyAppointmentsRemoteDataSourceImpl
   MyAppointmentsRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<List<MyAppointmentModel>> getMyAppointments({
-    required String mobileNumber,
-    required String token,
-  }) async {
+  Future<List<MyAppointmentModel>> getMyAppointments(
+    MyAppointmentsParams params,
+  ) async {
     try {
-      final data = serviceRequest(
-        type: 'PP0016',
-        content: {'mobile_no': mobileNumber, 'status': 'ALL'},
+      final p = params.maybeMap(
+        getMyAppointments: (value) => value,
+        orElse: () => throw ServerException('Invalid params'),
       );
+
+      final data = serviceRequest(type: 'PP0016', content: p.toJson());
       final response = await client.post(
         url: ConstantUrls.serviceUrl,
         body: data,
-        token: token,
+        token: p.token,
       );
 
       final List responseData = decodeResponseData(response.data);
@@ -54,19 +52,20 @@ class MyAppointmentsRemoteDataSourceImpl
   }
 
   @override
-  Future<Map<String, dynamic>> cancelAppointment({
-    required int appointmentId,
-    required String token,
-  }) async {
+  Future<Map<String, dynamic>> cancelAppointment(
+    MyAppointmentsParams params,
+  ) async {
     try {
-      final data = serviceRequest(
-        type: 'HMS0089',
-        content: {'id_appmnt': appointmentId},
+      final p = params.maybeMap(
+        cancelAppointment: (value) => value,
+        orElse: () => throw ServerException('Invalid params'),
       );
+
+      final data = serviceRequest(type: 'HMS0089', content: p.toJson());
       final response = await client.post(
         url: ConstantUrls.serviceUrl,
         body: data,
-        token: token,
+        token: p.token,
       );
 
       final responseData = decodeResponseData(response.data);

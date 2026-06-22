@@ -13,8 +13,9 @@ class GetDocumentTypesUseCase
 
   @override
   Future<Either<Failure, List<DocumentType>>> call(AddDocumentParams params) {
-    return params.when(
+    return params.maybeWhen(
       getDocumentTypes: (token) => repository.getDocumentTypes(token: token),
+      orElse: () => throw UnimplementedError(),
     );
   }
 }

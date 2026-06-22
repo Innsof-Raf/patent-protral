@@ -16,6 +16,8 @@ mixin _$AddMemberParams {
 
 
 
+  /// Serializes this AddMemberParams to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -23,7 +25,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is AddMemberParams);
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => runtimeType.hashCode;
 
@@ -122,11 +124,11 @@ return updateInsurance(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String token)?  getInsurances,TResult Function( String accessToken,  String mobileNumber,  String patientName,  String nationalId,  String gender,  DateTime dob,  String? email,  File? profileImage,  int? idInsurance,  String? memberNumber,  DateTime? expireDate,  String? otherInsuranceName)?  addMember,TResult Function( int memberId,  int idInsurance,  String? insuranceName,  String memberNumber,  DateTime expireDate,  String token)?  updateInsurance,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@JsonKey(includeToJson: false)  String token)?  getInsurances,TResult Function(@JsonKey(includeToJson: false)  String accessToken, @JsonKey(name: 'mobile_no')  String mobileNumber, @JsonKey(name: 'customer_name')  String patientName, @JsonKey(name: 'national_id')  String nationalId,  String gender,  DateTime dob,  String? email, @JsonKey(includeToJson: false, includeFromJson: false)  File? profileImage, @JsonKey(name: 'id_insurance')  int? idInsurance, @JsonKey(name: 'member_no')  String? memberNumber, @JsonKey(name: 'expiry_dt')  DateTime? expireDate, @JsonKey(name: 'others')  String? otherInsuranceName, @JsonKey(name: 'id_customer')  int idCustomer, @JsonKey(name: 'customer_id')  String customerId, @JsonKey(name: 'id_setid')  int idSetid, @JsonKey(name: 'customer_status')  String customerStatus, @JsonKey(name: 'customer_type')  String customerType)?  addMember,TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(name: 'id_insurance')  int idInsurance, @JsonKey(name: 'insurance_name')  String? insuranceName, @JsonKey(name: 'member_number')  String memberNumber, @JsonKey(name: 'expire_date')  DateTime expireDate, @JsonKey(includeToJson: false)  String token)?  updateInsurance,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GetInsurancesParams() when getInsurances != null:
 return getInsurances(_that.token);case _AddMemberAddMemberParams() when addMember != null:
-return addMember(_that.accessToken,_that.mobileNumber,_that.patientName,_that.nationalId,_that.gender,_that.dob,_that.email,_that.profileImage,_that.idInsurance,_that.memberNumber,_that.expireDate,_that.otherInsuranceName);case _AddMemberUpdateInsuranceParams() when updateInsurance != null:
+return addMember(_that.accessToken,_that.mobileNumber,_that.patientName,_that.nationalId,_that.gender,_that.dob,_that.email,_that.profileImage,_that.idInsurance,_that.memberNumber,_that.expireDate,_that.otherInsuranceName,_that.idCustomer,_that.customerId,_that.idSetid,_that.customerStatus,_that.customerType);case _AddMemberUpdateInsuranceParams() when updateInsurance != null:
 return updateInsurance(_that.memberId,_that.idInsurance,_that.insuranceName,_that.memberNumber,_that.expireDate,_that.token);case _:
   return orElse();
 
@@ -145,11 +147,11 @@ return updateInsurance(_that.memberId,_that.idInsurance,_that.insuranceName,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String token)  getInsurances,required TResult Function( String accessToken,  String mobileNumber,  String patientName,  String nationalId,  String gender,  DateTime dob,  String? email,  File? profileImage,  int? idInsurance,  String? memberNumber,  DateTime? expireDate,  String? otherInsuranceName)  addMember,required TResult Function( int memberId,  int idInsurance,  String? insuranceName,  String memberNumber,  DateTime expireDate,  String token)  updateInsurance,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@JsonKey(includeToJson: false)  String token)  getInsurances,required TResult Function(@JsonKey(includeToJson: false)  String accessToken, @JsonKey(name: 'mobile_no')  String mobileNumber, @JsonKey(name: 'customer_name')  String patientName, @JsonKey(name: 'national_id')  String nationalId,  String gender,  DateTime dob,  String? email, @JsonKey(includeToJson: false, includeFromJson: false)  File? profileImage, @JsonKey(name: 'id_insurance')  int? idInsurance, @JsonKey(name: 'member_no')  String? memberNumber, @JsonKey(name: 'expiry_dt')  DateTime? expireDate, @JsonKey(name: 'others')  String? otherInsuranceName, @JsonKey(name: 'id_customer')  int idCustomer, @JsonKey(name: 'customer_id')  String customerId, @JsonKey(name: 'id_setid')  int idSetid, @JsonKey(name: 'customer_status')  String customerStatus, @JsonKey(name: 'customer_type')  String customerType)  addMember,required TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(name: 'id_insurance')  int idInsurance, @JsonKey(name: 'insurance_name')  String? insuranceName, @JsonKey(name: 'member_number')  String memberNumber, @JsonKey(name: 'expire_date')  DateTime expireDate, @JsonKey(includeToJson: false)  String token)  updateInsurance,}) {final _that = this;
 switch (_that) {
 case _GetInsurancesParams():
 return getInsurances(_that.token);case _AddMemberAddMemberParams():
-return addMember(_that.accessToken,_that.mobileNumber,_that.patientName,_that.nationalId,_that.gender,_that.dob,_that.email,_that.profileImage,_that.idInsurance,_that.memberNumber,_that.expireDate,_that.otherInsuranceName);case _AddMemberUpdateInsuranceParams():
+return addMember(_that.accessToken,_that.mobileNumber,_that.patientName,_that.nationalId,_that.gender,_that.dob,_that.email,_that.profileImage,_that.idInsurance,_that.memberNumber,_that.expireDate,_that.otherInsuranceName,_that.idCustomer,_that.customerId,_that.idSetid,_that.customerStatus,_that.customerType);case _AddMemberUpdateInsuranceParams():
 return updateInsurance(_that.memberId,_that.idInsurance,_that.insuranceName,_that.memberNumber,_that.expireDate,_that.token);}
 }
 /// A variant of `when` that fallback to returning `null`
@@ -164,11 +166,11 @@ return updateInsurance(_that.memberId,_that.idInsurance,_that.insuranceName,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String token)?  getInsurances,TResult? Function( String accessToken,  String mobileNumber,  String patientName,  String nationalId,  String gender,  DateTime dob,  String? email,  File? profileImage,  int? idInsurance,  String? memberNumber,  DateTime? expireDate,  String? otherInsuranceName)?  addMember,TResult? Function( int memberId,  int idInsurance,  String? insuranceName,  String memberNumber,  DateTime expireDate,  String token)?  updateInsurance,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@JsonKey(includeToJson: false)  String token)?  getInsurances,TResult? Function(@JsonKey(includeToJson: false)  String accessToken, @JsonKey(name: 'mobile_no')  String mobileNumber, @JsonKey(name: 'customer_name')  String patientName, @JsonKey(name: 'national_id')  String nationalId,  String gender,  DateTime dob,  String? email, @JsonKey(includeToJson: false, includeFromJson: false)  File? profileImage, @JsonKey(name: 'id_insurance')  int? idInsurance, @JsonKey(name: 'member_no')  String? memberNumber, @JsonKey(name: 'expiry_dt')  DateTime? expireDate, @JsonKey(name: 'others')  String? otherInsuranceName, @JsonKey(name: 'id_customer')  int idCustomer, @JsonKey(name: 'customer_id')  String customerId, @JsonKey(name: 'id_setid')  int idSetid, @JsonKey(name: 'customer_status')  String customerStatus, @JsonKey(name: 'customer_type')  String customerType)?  addMember,TResult? Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(name: 'id_insurance')  int idInsurance, @JsonKey(name: 'insurance_name')  String? insuranceName, @JsonKey(name: 'member_number')  String memberNumber, @JsonKey(name: 'expire_date')  DateTime expireDate, @JsonKey(includeToJson: false)  String token)?  updateInsurance,}) {final _that = this;
 switch (_that) {
 case _GetInsurancesParams() when getInsurances != null:
 return getInsurances(_that.token);case _AddMemberAddMemberParams() when addMember != null:
-return addMember(_that.accessToken,_that.mobileNumber,_that.patientName,_that.nationalId,_that.gender,_that.dob,_that.email,_that.profileImage,_that.idInsurance,_that.memberNumber,_that.expireDate,_that.otherInsuranceName);case _AddMemberUpdateInsuranceParams() when updateInsurance != null:
+return addMember(_that.accessToken,_that.mobileNumber,_that.patientName,_that.nationalId,_that.gender,_that.dob,_that.email,_that.profileImage,_that.idInsurance,_that.memberNumber,_that.expireDate,_that.otherInsuranceName,_that.idCustomer,_that.customerId,_that.idSetid,_that.customerStatus,_that.customerType);case _AddMemberUpdateInsuranceParams() when updateInsurance != null:
 return updateInsurance(_that.memberId,_that.idInsurance,_that.insuranceName,_that.memberNumber,_that.expireDate,_that.token);case _:
   return null;
 
@@ -178,13 +180,17 @@ return updateInsurance(_that.memberId,_that.idInsurance,_that.insuranceName,_tha
 }
 
 /// @nodoc
-
+@JsonSerializable(createFactory: false)
 
 class _GetInsurancesParams implements AddMemberParams {
-  const _GetInsurancesParams({required this.token});
+  const _GetInsurancesParams({@JsonKey(includeToJson: false) required this.token, final  String? $type}): $type = $type ?? 'getInsurances';
   
 
- final  String token;
+@JsonKey(includeToJson: false) final  String token;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of AddMemberParams
 /// with the given fields replaced by the non-null parameter values.
@@ -192,14 +198,17 @@ class _GetInsurancesParams implements AddMemberParams {
 @pragma('vm:prefer-inline')
 _$GetInsurancesParamsCopyWith<_GetInsurancesParams> get copyWith => __$GetInsurancesParamsCopyWithImpl<_GetInsurancesParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$GetInsurancesParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetInsurancesParams&&(identical(other.token, token) || other.token == token));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,token);
 
@@ -216,7 +225,7 @@ abstract mixin class _$GetInsurancesParamsCopyWith<$Res> implements $AddMemberPa
   factory _$GetInsurancesParamsCopyWith(_GetInsurancesParams value, $Res Function(_GetInsurancesParams) _then) = __$GetInsurancesParamsCopyWithImpl;
 @useResult
 $Res call({
- String token
+@JsonKey(includeToJson: false) String token
 });
 
 
@@ -244,24 +253,33 @@ as String,
 }
 
 /// @nodoc
-
+@JsonSerializable(createFactory: false)
 
 class _AddMemberAddMemberParams implements AddMemberParams {
-  const _AddMemberAddMemberParams({required this.accessToken, required this.mobileNumber, required this.patientName, required this.nationalId, required this.gender, required this.dob, this.email, this.profileImage, this.idInsurance, this.memberNumber, this.expireDate, this.otherInsuranceName});
+  const _AddMemberAddMemberParams({@JsonKey(includeToJson: false) required this.accessToken, @JsonKey(name: 'mobile_no') required this.mobileNumber, @JsonKey(name: 'customer_name') required this.patientName, @JsonKey(name: 'national_id') required this.nationalId, required this.gender, required this.dob, this.email, @JsonKey(includeToJson: false, includeFromJson: false) this.profileImage, @JsonKey(name: 'id_insurance') this.idInsurance, @JsonKey(name: 'member_no') this.memberNumber, @JsonKey(name: 'expiry_dt') this.expireDate, @JsonKey(name: 'others') this.otherInsuranceName, @JsonKey(name: 'id_customer') this.idCustomer = 0, @JsonKey(name: 'customer_id') this.customerId = 'New', @JsonKey(name: 'id_setid') this.idSetid = 4, @JsonKey(name: 'customer_status') this.customerStatus = 'ACTIVE', @JsonKey(name: 'customer_type') this.customerType = 'PATIENT', final  String? $type}): $type = $type ?? 'addMember';
   
 
- final  String accessToken;
- final  String mobileNumber;
- final  String patientName;
- final  String nationalId;
+@JsonKey(includeToJson: false) final  String accessToken;
+@JsonKey(name: 'mobile_no') final  String mobileNumber;
+@JsonKey(name: 'customer_name') final  String patientName;
+@JsonKey(name: 'national_id') final  String nationalId;
  final  String gender;
  final  DateTime dob;
  final  String? email;
- final  File? profileImage;
- final  int? idInsurance;
- final  String? memberNumber;
- final  DateTime? expireDate;
- final  String? otherInsuranceName;
+@JsonKey(includeToJson: false, includeFromJson: false) final  File? profileImage;
+@JsonKey(name: 'id_insurance') final  int? idInsurance;
+@JsonKey(name: 'member_no') final  String? memberNumber;
+@JsonKey(name: 'expiry_dt') final  DateTime? expireDate;
+@JsonKey(name: 'others') final  String? otherInsuranceName;
+@JsonKey(name: 'id_customer') final  int idCustomer;
+@JsonKey(name: 'customer_id') final  String customerId;
+@JsonKey(name: 'id_setid') final  int idSetid;
+@JsonKey(name: 'customer_status') final  String customerStatus;
+@JsonKey(name: 'customer_type') final  String customerType;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of AddMemberParams
 /// with the given fields replaced by the non-null parameter values.
@@ -269,20 +287,23 @@ class _AddMemberAddMemberParams implements AddMemberParams {
 @pragma('vm:prefer-inline')
 _$AddMemberAddMemberParamsCopyWith<_AddMemberAddMemberParams> get copyWith => __$AddMemberAddMemberParamsCopyWithImpl<_AddMemberAddMemberParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$AddMemberAddMemberParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AddMemberAddMemberParams&&(identical(other.accessToken, accessToken) || other.accessToken == accessToken)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.patientName, patientName) || other.patientName == patientName)&&(identical(other.nationalId, nationalId) || other.nationalId == nationalId)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.dob, dob) || other.dob == dob)&&(identical(other.email, email) || other.email == email)&&(identical(other.profileImage, profileImage) || other.profileImage == profileImage)&&(identical(other.idInsurance, idInsurance) || other.idInsurance == idInsurance)&&(identical(other.memberNumber, memberNumber) || other.memberNumber == memberNumber)&&(identical(other.expireDate, expireDate) || other.expireDate == expireDate)&&(identical(other.otherInsuranceName, otherInsuranceName) || other.otherInsuranceName == otherInsuranceName));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AddMemberAddMemberParams&&(identical(other.accessToken, accessToken) || other.accessToken == accessToken)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.patientName, patientName) || other.patientName == patientName)&&(identical(other.nationalId, nationalId) || other.nationalId == nationalId)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.dob, dob) || other.dob == dob)&&(identical(other.email, email) || other.email == email)&&(identical(other.profileImage, profileImage) || other.profileImage == profileImage)&&(identical(other.idInsurance, idInsurance) || other.idInsurance == idInsurance)&&(identical(other.memberNumber, memberNumber) || other.memberNumber == memberNumber)&&(identical(other.expireDate, expireDate) || other.expireDate == expireDate)&&(identical(other.otherInsuranceName, otherInsuranceName) || other.otherInsuranceName == otherInsuranceName)&&(identical(other.idCustomer, idCustomer) || other.idCustomer == idCustomer)&&(identical(other.customerId, customerId) || other.customerId == customerId)&&(identical(other.idSetid, idSetid) || other.idSetid == idSetid)&&(identical(other.customerStatus, customerStatus) || other.customerStatus == customerStatus)&&(identical(other.customerType, customerType) || other.customerType == customerType));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,accessToken,mobileNumber,patientName,nationalId,gender,dob,email,profileImage,idInsurance,memberNumber,expireDate,otherInsuranceName);
+int get hashCode => Object.hash(runtimeType,accessToken,mobileNumber,patientName,nationalId,gender,dob,email,profileImage,idInsurance,memberNumber,expireDate,otherInsuranceName,idCustomer,customerId,idSetid,customerStatus,customerType);
 
 @override
 String toString() {
-  return 'AddMemberParams.addMember(accessToken: $accessToken, mobileNumber: $mobileNumber, patientName: $patientName, nationalId: $nationalId, gender: $gender, dob: $dob, email: $email, profileImage: $profileImage, idInsurance: $idInsurance, memberNumber: $memberNumber, expireDate: $expireDate, otherInsuranceName: $otherInsuranceName)';
+  return 'AddMemberParams.addMember(accessToken: $accessToken, mobileNumber: $mobileNumber, patientName: $patientName, nationalId: $nationalId, gender: $gender, dob: $dob, email: $email, profileImage: $profileImage, idInsurance: $idInsurance, memberNumber: $memberNumber, expireDate: $expireDate, otherInsuranceName: $otherInsuranceName, idCustomer: $idCustomer, customerId: $customerId, idSetid: $idSetid, customerStatus: $customerStatus, customerType: $customerType)';
 }
 
 
@@ -293,7 +314,7 @@ abstract mixin class _$AddMemberAddMemberParamsCopyWith<$Res> implements $AddMem
   factory _$AddMemberAddMemberParamsCopyWith(_AddMemberAddMemberParams value, $Res Function(_AddMemberAddMemberParams) _then) = __$AddMemberAddMemberParamsCopyWithImpl;
 @useResult
 $Res call({
- String accessToken, String mobileNumber, String patientName, String nationalId, String gender, DateTime dob, String? email, File? profileImage, int? idInsurance, String? memberNumber, DateTime? expireDate, String? otherInsuranceName
+@JsonKey(includeToJson: false) String accessToken,@JsonKey(name: 'mobile_no') String mobileNumber,@JsonKey(name: 'customer_name') String patientName,@JsonKey(name: 'national_id') String nationalId, String gender, DateTime dob, String? email,@JsonKey(includeToJson: false, includeFromJson: false) File? profileImage,@JsonKey(name: 'id_insurance') int? idInsurance,@JsonKey(name: 'member_no') String? memberNumber,@JsonKey(name: 'expiry_dt') DateTime? expireDate,@JsonKey(name: 'others') String? otherInsuranceName,@JsonKey(name: 'id_customer') int idCustomer,@JsonKey(name: 'customer_id') String customerId,@JsonKey(name: 'id_setid') int idSetid,@JsonKey(name: 'customer_status') String customerStatus,@JsonKey(name: 'customer_type') String customerType
 });
 
 
@@ -310,7 +331,7 @@ class __$AddMemberAddMemberParamsCopyWithImpl<$Res>
 
 /// Create a copy of AddMemberParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? accessToken = null,Object? mobileNumber = null,Object? patientName = null,Object? nationalId = null,Object? gender = null,Object? dob = null,Object? email = freezed,Object? profileImage = freezed,Object? idInsurance = freezed,Object? memberNumber = freezed,Object? expireDate = freezed,Object? otherInsuranceName = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? accessToken = null,Object? mobileNumber = null,Object? patientName = null,Object? nationalId = null,Object? gender = null,Object? dob = null,Object? email = freezed,Object? profileImage = freezed,Object? idInsurance = freezed,Object? memberNumber = freezed,Object? expireDate = freezed,Object? otherInsuranceName = freezed,Object? idCustomer = null,Object? customerId = null,Object? idSetid = null,Object? customerStatus = null,Object? customerType = null,}) {
   return _then(_AddMemberAddMemberParams(
 accessToken: null == accessToken ? _self.accessToken : accessToken // ignore: cast_nullable_to_non_nullable
 as String,mobileNumber: null == mobileNumber ? _self.mobileNumber : mobileNumber // ignore: cast_nullable_to_non_nullable
@@ -324,7 +345,12 @@ as File?,idInsurance: freezed == idInsurance ? _self.idInsurance : idInsurance /
 as int?,memberNumber: freezed == memberNumber ? _self.memberNumber : memberNumber // ignore: cast_nullable_to_non_nullable
 as String?,expireDate: freezed == expireDate ? _self.expireDate : expireDate // ignore: cast_nullable_to_non_nullable
 as DateTime?,otherInsuranceName: freezed == otherInsuranceName ? _self.otherInsuranceName : otherInsuranceName // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,idCustomer: null == idCustomer ? _self.idCustomer : idCustomer // ignore: cast_nullable_to_non_nullable
+as int,customerId: null == customerId ? _self.customerId : customerId // ignore: cast_nullable_to_non_nullable
+as String,idSetid: null == idSetid ? _self.idSetid : idSetid // ignore: cast_nullable_to_non_nullable
+as int,customerStatus: null == customerStatus ? _self.customerStatus : customerStatus // ignore: cast_nullable_to_non_nullable
+as String,customerType: null == customerType ? _self.customerType : customerType // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -332,18 +358,22 @@ as String?,
 }
 
 /// @nodoc
-
+@JsonSerializable(createFactory: false)
 
 class _AddMemberUpdateInsuranceParams implements AddMemberParams {
-  const _AddMemberUpdateInsuranceParams({required this.memberId, required this.idInsurance, required this.insuranceName, required this.memberNumber, required this.expireDate, required this.token});
+  const _AddMemberUpdateInsuranceParams({@JsonKey(name: 'id_customer') required this.memberId, @JsonKey(name: 'id_insurance') required this.idInsurance, @JsonKey(name: 'insurance_name') required this.insuranceName, @JsonKey(name: 'member_number') required this.memberNumber, @JsonKey(name: 'expire_date') required this.expireDate, @JsonKey(includeToJson: false) required this.token, final  String? $type}): $type = $type ?? 'updateInsurance';
   
 
- final  int memberId;
- final  int idInsurance;
- final  String? insuranceName;
- final  String memberNumber;
- final  DateTime expireDate;
- final  String token;
+@JsonKey(name: 'id_customer') final  int memberId;
+@JsonKey(name: 'id_insurance') final  int idInsurance;
+@JsonKey(name: 'insurance_name') final  String? insuranceName;
+@JsonKey(name: 'member_number') final  String memberNumber;
+@JsonKey(name: 'expire_date') final  DateTime expireDate;
+@JsonKey(includeToJson: false) final  String token;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of AddMemberParams
 /// with the given fields replaced by the non-null parameter values.
@@ -351,14 +381,17 @@ class _AddMemberUpdateInsuranceParams implements AddMemberParams {
 @pragma('vm:prefer-inline')
 _$AddMemberUpdateInsuranceParamsCopyWith<_AddMemberUpdateInsuranceParams> get copyWith => __$AddMemberUpdateInsuranceParamsCopyWithImpl<_AddMemberUpdateInsuranceParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$AddMemberUpdateInsuranceParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _AddMemberUpdateInsuranceParams&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.idInsurance, idInsurance) || other.idInsurance == idInsurance)&&(identical(other.insuranceName, insuranceName) || other.insuranceName == insuranceName)&&(identical(other.memberNumber, memberNumber) || other.memberNumber == memberNumber)&&(identical(other.expireDate, expireDate) || other.expireDate == expireDate)&&(identical(other.token, token) || other.token == token));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,memberId,idInsurance,insuranceName,memberNumber,expireDate,token);
 
@@ -375,7 +408,7 @@ abstract mixin class _$AddMemberUpdateInsuranceParamsCopyWith<$Res> implements $
   factory _$AddMemberUpdateInsuranceParamsCopyWith(_AddMemberUpdateInsuranceParams value, $Res Function(_AddMemberUpdateInsuranceParams) _then) = __$AddMemberUpdateInsuranceParamsCopyWithImpl;
 @useResult
 $Res call({
- int memberId, int idInsurance, String? insuranceName, String memberNumber, DateTime expireDate, String token
+@JsonKey(name: 'id_customer') int memberId,@JsonKey(name: 'id_insurance') int idInsurance,@JsonKey(name: 'insurance_name') String? insuranceName,@JsonKey(name: 'member_number') String memberNumber,@JsonKey(name: 'expire_date') DateTime expireDate,@JsonKey(includeToJson: false) String token
 });
 
 

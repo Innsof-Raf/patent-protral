@@ -16,6 +16,8 @@ mixin _$MyAppointmentsParams {
 
 
 
+  /// Serializes this MyAppointmentsParams to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -23,7 +25,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is MyAppointmentsParams);
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => runtimeType.hashCode;
 
@@ -125,10 +127,10 @@ return cancelAppointment(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String token,  String mobileNumber)?  getMyAppointments,TResult Function( MyAppointment appointment)?  storeBookedAppointment,TResult Function( MyAppointment appointment,  DateTime currentSlot)?  changeRescheduledAppointmentDetails,TResult Function( int appointmentId,  String token)?  cancelAppointment,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber,  String status)?  getMyAppointments,TResult Function(@JsonKey(includeToJson: false, includeFromJson: false)  MyAppointment appointment)?  storeBookedAppointment,TResult Function(@JsonKey(includeToJson: false, includeFromJson: false)  MyAppointment appointment,  DateTime currentSlot)?  changeRescheduledAppointmentDetails,TResult Function(@JsonKey(name: 'id_appmnt')  int appointmentId, @JsonKey(includeToJson: false)  String token)?  cancelAppointment,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case GetMyAppointmentsParams() when getMyAppointments != null:
-return getMyAppointments(_that.token,_that.mobileNumber);case StoreBookedAppointmentParams() when storeBookedAppointment != null:
+return getMyAppointments(_that.token,_that.mobileNumber,_that.status);case StoreBookedAppointmentParams() when storeBookedAppointment != null:
 return storeBookedAppointment(_that.appointment);case ChangeRescheduledAppointmentDetailsParams() when changeRescheduledAppointmentDetails != null:
 return changeRescheduledAppointmentDetails(_that.appointment,_that.currentSlot);case CancelAppointmentParams() when cancelAppointment != null:
 return cancelAppointment(_that.appointmentId,_that.token);case _:
@@ -149,10 +151,10 @@ return cancelAppointment(_that.appointmentId,_that.token);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String token,  String mobileNumber)  getMyAppointments,required TResult Function( MyAppointment appointment)  storeBookedAppointment,required TResult Function( MyAppointment appointment,  DateTime currentSlot)  changeRescheduledAppointmentDetails,required TResult Function( int appointmentId,  String token)  cancelAppointment,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber,  String status)  getMyAppointments,required TResult Function(@JsonKey(includeToJson: false, includeFromJson: false)  MyAppointment appointment)  storeBookedAppointment,required TResult Function(@JsonKey(includeToJson: false, includeFromJson: false)  MyAppointment appointment,  DateTime currentSlot)  changeRescheduledAppointmentDetails,required TResult Function(@JsonKey(name: 'id_appmnt')  int appointmentId, @JsonKey(includeToJson: false)  String token)  cancelAppointment,}) {final _that = this;
 switch (_that) {
 case GetMyAppointmentsParams():
-return getMyAppointments(_that.token,_that.mobileNumber);case StoreBookedAppointmentParams():
+return getMyAppointments(_that.token,_that.mobileNumber,_that.status);case StoreBookedAppointmentParams():
 return storeBookedAppointment(_that.appointment);case ChangeRescheduledAppointmentDetailsParams():
 return changeRescheduledAppointmentDetails(_that.appointment,_that.currentSlot);case CancelAppointmentParams():
 return cancelAppointment(_that.appointmentId,_that.token);}
@@ -169,10 +171,10 @@ return cancelAppointment(_that.appointmentId,_that.token);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String token,  String mobileNumber)?  getMyAppointments,TResult? Function( MyAppointment appointment)?  storeBookedAppointment,TResult? Function( MyAppointment appointment,  DateTime currentSlot)?  changeRescheduledAppointmentDetails,TResult? Function( int appointmentId,  String token)?  cancelAppointment,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber,  String status)?  getMyAppointments,TResult? Function(@JsonKey(includeToJson: false, includeFromJson: false)  MyAppointment appointment)?  storeBookedAppointment,TResult? Function(@JsonKey(includeToJson: false, includeFromJson: false)  MyAppointment appointment,  DateTime currentSlot)?  changeRescheduledAppointmentDetails,TResult? Function(@JsonKey(name: 'id_appmnt')  int appointmentId, @JsonKey(includeToJson: false)  String token)?  cancelAppointment,}) {final _that = this;
 switch (_that) {
 case GetMyAppointmentsParams() when getMyAppointments != null:
-return getMyAppointments(_that.token,_that.mobileNumber);case StoreBookedAppointmentParams() when storeBookedAppointment != null:
+return getMyAppointments(_that.token,_that.mobileNumber,_that.status);case StoreBookedAppointmentParams() when storeBookedAppointment != null:
 return storeBookedAppointment(_that.appointment);case ChangeRescheduledAppointmentDetailsParams() when changeRescheduledAppointmentDetails != null:
 return changeRescheduledAppointmentDetails(_that.appointment,_that.currentSlot);case CancelAppointmentParams() when cancelAppointment != null:
 return cancelAppointment(_that.appointmentId,_that.token);case _:
@@ -184,14 +186,19 @@ return cancelAppointment(_that.appointmentId,_that.token);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable(createFactory: false)
 
 class GetMyAppointmentsParams implements MyAppointmentsParams {
-  const GetMyAppointmentsParams({required this.token, required this.mobileNumber});
+  const GetMyAppointmentsParams({@JsonKey(includeToJson: false) required this.token, @JsonKey(name: 'mobile_no') required this.mobileNumber, this.status = 'ALL', final  String? $type}): $type = $type ?? 'getMyAppointments';
   
 
- final  String token;
- final  String mobileNumber;
+@JsonKey(includeToJson: false) final  String token;
+@JsonKey(name: 'mobile_no') final  String mobileNumber;
+@JsonKey() final  String status;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of MyAppointmentsParams
 /// with the given fields replaced by the non-null parameter values.
@@ -199,20 +206,23 @@ class GetMyAppointmentsParams implements MyAppointmentsParams {
 @pragma('vm:prefer-inline')
 $GetMyAppointmentsParamsCopyWith<GetMyAppointmentsParams> get copyWith => _$GetMyAppointmentsParamsCopyWithImpl<GetMyAppointmentsParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$GetMyAppointmentsParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetMyAppointmentsParams&&(identical(other.token, token) || other.token == token)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetMyAppointmentsParams&&(identical(other.token, token) || other.token == token)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.status, status) || other.status == status));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,token,mobileNumber);
+int get hashCode => Object.hash(runtimeType,token,mobileNumber,status);
 
 @override
 String toString() {
-  return 'MyAppointmentsParams.getMyAppointments(token: $token, mobileNumber: $mobileNumber)';
+  return 'MyAppointmentsParams.getMyAppointments(token: $token, mobileNumber: $mobileNumber, status: $status)';
 }
 
 
@@ -223,7 +233,7 @@ abstract mixin class $GetMyAppointmentsParamsCopyWith<$Res> implements $MyAppoin
   factory $GetMyAppointmentsParamsCopyWith(GetMyAppointmentsParams value, $Res Function(GetMyAppointmentsParams) _then) = _$GetMyAppointmentsParamsCopyWithImpl;
 @useResult
 $Res call({
- String token, String mobileNumber
+@JsonKey(includeToJson: false) String token,@JsonKey(name: 'mobile_no') String mobileNumber, String status
 });
 
 
@@ -240,10 +250,11 @@ class _$GetMyAppointmentsParamsCopyWithImpl<$Res>
 
 /// Create a copy of MyAppointmentsParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? token = null,Object? mobileNumber = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? token = null,Object? mobileNumber = null,Object? status = null,}) {
   return _then(GetMyAppointmentsParams(
 token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
 as String,mobileNumber: null == mobileNumber ? _self.mobileNumber : mobileNumber // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -252,13 +263,17 @@ as String,
 }
 
 /// @nodoc
-
+@JsonSerializable(createFactory: false)
 
 class StoreBookedAppointmentParams implements MyAppointmentsParams {
-  const StoreBookedAppointmentParams({required this.appointment});
+  const StoreBookedAppointmentParams({@JsonKey(includeToJson: false, includeFromJson: false) required this.appointment, final  String? $type}): $type = $type ?? 'storeBookedAppointment';
   
 
- final  MyAppointment appointment;
+@JsonKey(includeToJson: false, includeFromJson: false) final  MyAppointment appointment;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of MyAppointmentsParams
 /// with the given fields replaced by the non-null parameter values.
@@ -266,14 +281,17 @@ class StoreBookedAppointmentParams implements MyAppointmentsParams {
 @pragma('vm:prefer-inline')
 $StoreBookedAppointmentParamsCopyWith<StoreBookedAppointmentParams> get copyWith => _$StoreBookedAppointmentParamsCopyWithImpl<StoreBookedAppointmentParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$StoreBookedAppointmentParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is StoreBookedAppointmentParams&&(identical(other.appointment, appointment) || other.appointment == appointment));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,appointment);
 
@@ -290,7 +308,7 @@ abstract mixin class $StoreBookedAppointmentParamsCopyWith<$Res> implements $MyA
   factory $StoreBookedAppointmentParamsCopyWith(StoreBookedAppointmentParams value, $Res Function(StoreBookedAppointmentParams) _then) = _$StoreBookedAppointmentParamsCopyWithImpl;
 @useResult
 $Res call({
- MyAppointment appointment
+@JsonKey(includeToJson: false, includeFromJson: false) MyAppointment appointment
 });
 
 
@@ -327,14 +345,18 @@ $MyAppointmentCopyWith<$Res> get appointment {
 }
 
 /// @nodoc
-
+@JsonSerializable(createFactory: false)
 
 class ChangeRescheduledAppointmentDetailsParams implements MyAppointmentsParams {
-  const ChangeRescheduledAppointmentDetailsParams({required this.appointment, required this.currentSlot});
+  const ChangeRescheduledAppointmentDetailsParams({@JsonKey(includeToJson: false, includeFromJson: false) required this.appointment, required this.currentSlot, final  String? $type}): $type = $type ?? 'changeRescheduledAppointmentDetails';
   
 
- final  MyAppointment appointment;
+@JsonKey(includeToJson: false, includeFromJson: false) final  MyAppointment appointment;
  final  DateTime currentSlot;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of MyAppointmentsParams
 /// with the given fields replaced by the non-null parameter values.
@@ -342,14 +364,17 @@ class ChangeRescheduledAppointmentDetailsParams implements MyAppointmentsParams 
 @pragma('vm:prefer-inline')
 $ChangeRescheduledAppointmentDetailsParamsCopyWith<ChangeRescheduledAppointmentDetailsParams> get copyWith => _$ChangeRescheduledAppointmentDetailsParamsCopyWithImpl<ChangeRescheduledAppointmentDetailsParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$ChangeRescheduledAppointmentDetailsParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangeRescheduledAppointmentDetailsParams&&(identical(other.appointment, appointment) || other.appointment == appointment)&&(identical(other.currentSlot, currentSlot) || other.currentSlot == currentSlot));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,appointment,currentSlot);
 
@@ -366,7 +391,7 @@ abstract mixin class $ChangeRescheduledAppointmentDetailsParamsCopyWith<$Res> im
   factory $ChangeRescheduledAppointmentDetailsParamsCopyWith(ChangeRescheduledAppointmentDetailsParams value, $Res Function(ChangeRescheduledAppointmentDetailsParams) _then) = _$ChangeRescheduledAppointmentDetailsParamsCopyWithImpl;
 @useResult
 $Res call({
- MyAppointment appointment, DateTime currentSlot
+@JsonKey(includeToJson: false, includeFromJson: false) MyAppointment appointment, DateTime currentSlot
 });
 
 
@@ -404,14 +429,18 @@ $MyAppointmentCopyWith<$Res> get appointment {
 }
 
 /// @nodoc
-
+@JsonSerializable(createFactory: false)
 
 class CancelAppointmentParams implements MyAppointmentsParams {
-  const CancelAppointmentParams({required this.appointmentId, required this.token});
+  const CancelAppointmentParams({@JsonKey(name: 'id_appmnt') required this.appointmentId, @JsonKey(includeToJson: false) required this.token, final  String? $type}): $type = $type ?? 'cancelAppointment';
   
 
- final  int appointmentId;
- final  String token;
+@JsonKey(name: 'id_appmnt') final  int appointmentId;
+@JsonKey(includeToJson: false) final  String token;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of MyAppointmentsParams
 /// with the given fields replaced by the non-null parameter values.
@@ -419,14 +448,17 @@ class CancelAppointmentParams implements MyAppointmentsParams {
 @pragma('vm:prefer-inline')
 $CancelAppointmentParamsCopyWith<CancelAppointmentParams> get copyWith => _$CancelAppointmentParamsCopyWithImpl<CancelAppointmentParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$CancelAppointmentParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is CancelAppointmentParams&&(identical(other.appointmentId, appointmentId) || other.appointmentId == appointmentId)&&(identical(other.token, token) || other.token == token));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,appointmentId,token);
 
@@ -443,7 +475,7 @@ abstract mixin class $CancelAppointmentParamsCopyWith<$Res> implements $MyAppoin
   factory $CancelAppointmentParamsCopyWith(CancelAppointmentParams value, $Res Function(CancelAppointmentParams) _then) = _$CancelAppointmentParamsCopyWithImpl;
 @useResult
 $Res call({
- int appointmentId, String token
+@JsonKey(name: 'id_appmnt') int appointmentId,@JsonKey(includeToJson: false) String token
 });
 
 

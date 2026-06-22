@@ -8,16 +8,12 @@ import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/add_document/data/models/document_type_model.dart';
 
-abstract class AddDocumentRemoteDataSource {
-  Future<List<DocumentTypeModel>> getDocumentTypes({required String token});
+import 'package:patient_portal/feature/add_document/domain/usecases/params/add_document_params.dart';
 
-  Future<String> uploadDocument({
-    required String documentName,
-    required String documentPath,
-    required DateTime? expireDate,
-    required String token,
-    required int memberId,
-  });
+abstract class AddDocumentRemoteDataSource {
+  Future<List<DocumentTypeModel>> getDocumentTypes(AddDocumentParams params);
+
+  Future<String> uploadDocument(AddDocumentParams params);
 }
 
 class AddDocumentRemoteDataSourceImpl implements AddDocumentRemoteDataSource {
@@ -26,16 +22,21 @@ class AddDocumentRemoteDataSourceImpl implements AddDocumentRemoteDataSource {
   AddDocumentRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<List<DocumentTypeModel>> getDocumentTypes({
-    required String token,
-  }) async {
+  Future<List<DocumentTypeModel>> getDocumentTypes(
+    AddDocumentParams params,
+  ) async {
     try {
+      final p = params.maybeMap(
+        getDocumentTypes: (value) => value,
+        orElse: () => throw ServerException('Invalid params'),
+      );
+
       final data = serviceRequest(type: 'PP0026');
 
       final response = await client.post(
         url: ConstantUrls.serviceUrl,
         body: data,
-        token: token,
+        token: p.token,
       );
 
       final List<dynamic> responseData = decodeResponseData(response.data);
@@ -51,42 +52,32 @@ class AddDocumentRemoteDataSourceImpl implements AddDocumentRemoteDataSource {
   }
 
   @override
-  Future<String> uploadDocument({
-    required String documentName,
-    required String documentPath,
-    required DateTime? expireDate,
-    required String token,
-    required int memberId,
-  }) async {
+  Future<String> uploadDocument(AddDocumentParams params) async {
     try {
+      final p = params.maybeMap(
+        uploadDocument: (value) => value,
+        orElse: () => throw ServerException('Invalid params'),
+      );
+
       final FormData formData = FormData.fromMap({
         'saveRequest': jsonEncode(
           serviceRequest(
             type: 'PP0025',
-            content: {
-              'seq_no': 0,
-              'id_customer': memberId,
-              'id_document': '',
-              'expiry_dt': expireDate?.toIso8601String() ?? '',
-              'doc_path': documentPath,
-              'doc_name': documentName,
-              'doc_ext': '{Ext}',
-              'isself': true,
-            },
+            content: p.toJson()..addAll({'doc_path': p.documentPath}),
           ),
         ),
         'pathidentifier': 'PatientProfileImage',
-        'folderidentifier': '$memberId\\selfdoc',
+        'folderidentifier': '${p.memberId}\\selfdoc',
       });
 
       formData.files.add(
-        MapEntry('uploads', await MultipartFile.fromFile(documentPath)),
+        MapEntry('uploads', await MultipartFile.fromFile(p.documentPath)),
       );
 
       final response = await client.post(
         url: ConstantUrls.uploadDocumentUrl,
         body: formData,
-        token: token,
+        token: p.token,
       );
 
       return response.data.toString();

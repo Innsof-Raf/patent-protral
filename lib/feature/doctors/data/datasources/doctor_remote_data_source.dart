@@ -6,8 +6,10 @@ import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/doctors/data/models/doctor_model.dart';
 
+import 'package:patient_portal/feature/doctors/domain/usecases/params/doctor_params.dart';
+
 abstract class DoctorRemoteDataSource {
-  Future<List<DoctorModel>> getAvailableDoctors(int specialityId, String token);
+  Future<List<DoctorModel>> getAvailableDoctors(DoctorParams params);
 }
 
 class DoctorRemoteDataSourceImpl implements DoctorRemoteDataSource {
@@ -16,20 +18,19 @@ class DoctorRemoteDataSourceImpl implements DoctorRemoteDataSource {
   DoctorRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<List<DoctorModel>> getAvailableDoctors(
-    int specialityId,
-    String token,
-  ) async {
+  Future<List<DoctorModel>> getAvailableDoctors(DoctorParams params) async {
     try {
-      final data = serviceRequest(
-        type: 'PP0001',
-        content: {'id_dept': specialityId},
+      final p = params.maybeMap(
+        getAvailableDoctors: (value) => value,
+        orElse: () => throw ServerException('Invalid params'),
       );
+
+      final data = serviceRequest(type: 'PP0001', content: p.toJson());
 
       final response = await client.post(
         url: ConstantUrls.serviceUrl,
         body: data,
-        token: token,
+        token: p.token,
       );
 
       final List<dynamic> responseData = decodeResponseData(response.data);

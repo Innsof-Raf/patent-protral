@@ -8,27 +8,14 @@ import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/core/resources/common_models/appointment_model.dart/appointment_model.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/book_appointment/data/models/shift_model.dart';
+import 'package:patient_portal/feature/book_appointment/domain/usecases/params/book_appointment_params.dart';
 
 abstract class BookAppointmentRemoteDataSource {
-  Future<ShiftModel> getAvailableSlots({
-    required DateTime date,
-    required int idDoctor,
-    required String token,
-  });
+  Future<ShiftModel> getAvailableSlots(BookAppointmentParams params);
 
-  Future<AppointmentModel> bookAppointment({
-    required int idDoctor,
-    required DateTime appointmentDateTime,
-    required String mobileNo,
-    required int idMember,
-    required String token,
-  });
+  Future<AppointmentModel> bookAppointment(BookAppointmentParams params);
 
-  Future<AppointmentModel> rescheduleAppointment({
-    required DateTime appointmentDateTime,
-    required int idAppointment,
-    required String token,
-  });
+  Future<AppointmentModel> rescheduleAppointment(BookAppointmentParams params);
 }
 
 class BookAppointmentRemoteDataSourceImpl
@@ -38,18 +25,17 @@ class BookAppointmentRemoteDataSourceImpl
   BookAppointmentRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<ShiftModel> getAvailableSlots({
-    required DateTime date,
-    required int idDoctor,
-    required String token,
-  }) async {
+  Future<ShiftModel> getAvailableSlots(BookAppointmentParams params) async {
     try {
+      final p = params.maybeMap(
+        getAvailableSlots: (value) => value,
+        orElse: () => throw ServerException('Invalid params'),
+      );
+
       final data = serviceRequest(
         type: 'PP0003',
-        content: {
-          'id_doctor': idDoctor,
-          'shift_dt': DateFormat('yyyy-MM-dd').format(date),
-        },
+        content: p.toJson()
+          ..addAll({'shift_dt': DateFormat('yyyy-MM-dd').format(p.date)}),
       );
       final response = await client.post(
         url: ConstantUrls.serviceUrl,
@@ -69,33 +55,26 @@ class BookAppointmentRemoteDataSourceImpl
   }
 
   @override
-  Future<AppointmentModel> bookAppointment({
-    required int idDoctor,
-    required DateTime appointmentDateTime,
-    required String mobileNo,
-    required int idMember,
-    required String token,
-  }) async {
+  Future<AppointmentModel> bookAppointment(BookAppointmentParams params) async {
     try {
+      final p = params.maybeMap(
+        bookAppointment: (value) => value,
+        orElse: () => throw ServerException('Invalid params'),
+      );
+
       final data = serviceRequest(
         type: 'PP0008',
-        content: {
-          'id': 0,
-          'id_employee': idDoctor,
-          'id_busunit': 1,
-          'appmnt_mode': 'Offline',
-          'appmnt_dttm': appointmentDateTime.toIso8601String(),
-          'appmnt_dt': DateFormat('yyyy-MM-dd').format(appointmentDateTime),
-          'appmnt_time': DateFormat('hh:mm a').format(appointmentDateTime),
-          'id_customer': idMember,
-          'mobile_no': mobileNo,
-          'patient_mobileno': mobileNo,
-        },
+        content: p.toJson()
+          ..addAll({
+            'appmnt_dt': DateFormat('yyyy-MM-dd').format(p.appointmentDateTime),
+            'appmnt_time': DateFormat('hh:mm a').format(p.appointmentDateTime),
+            'patient_mobileno': p.mobileNo,
+          }),
       );
       final response = await client.post(
         url: ConstantUrls.serviceUrl,
         body: data,
-        token: token,
+        token: p.token,
       );
 
       final responseData = decodeResponseData(response.data);
@@ -140,25 +119,27 @@ class BookAppointmentRemoteDataSourceImpl
   }
 
   @override
-  Future<AppointmentModel> rescheduleAppointment({
-    required DateTime appointmentDateTime,
-    required int idAppointment,
-    required String token,
-  }) async {
+  Future<AppointmentModel> rescheduleAppointment(
+    BookAppointmentParams params,
+  ) async {
     try {
+      final p = params.maybeMap(
+        rescheduleAppointment: (value) => value,
+        orElse: () => throw ServerException('Invalid params'),
+      );
+
       final data = serviceRequest(
         type: 'PP0009',
-        content: {
-          'id': idAppointment,
-          'appmnt_dttm': appointmentDateTime.toIso8601String(),
-          'appmnt_dt': DateFormat('yyyy-MM-dd').format(appointmentDateTime),
-          'appmnt_time': DateFormat('hh:mm a').format(appointmentDateTime),
-        },
+        content: p.toJson()
+          ..addAll({
+            'appmnt_dt': DateFormat('yyyy-MM-dd').format(p.appointmentDateTime),
+            'appmnt_time': DateFormat('hh:mm a').format(p.appointmentDateTime),
+          }),
       );
       final response = await client.post(
         url: ConstantUrls.serviceUrl,
         body: data,
-        token: token,
+        token: p.token,
       );
 
       final responseData = decodeResponseData(response.data);

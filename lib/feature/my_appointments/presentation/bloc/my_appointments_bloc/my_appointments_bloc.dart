@@ -396,13 +396,13 @@ class MyAppointmentsBloc
 
 extension _MyAppointmentsParamsX on MyAppointmentsParams {
   String get token => maybeWhen(
-    getMyAppointments: (token, mobileNumber) => token,
+    getMyAppointments: (token, mobileNumber, status) => token,
     cancelAppointment: (appointmentId, token) => token,
     orElse: () => throw Exception('Invalid token params'),
   );
 
   String get mobileNumber => maybeWhen(
-    getMyAppointments: (token, mobileNumber) => mobileNumber,
+    getMyAppointments: (token, mobileNumber, status) => mobileNumber,
     orElse: () => throw Exception('Invalid mobile number params'),
   );
 

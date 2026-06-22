@@ -57,26 +57,14 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
     return params.maybeMap(
       addMember: (p) async {
         try {
-          final contentMap = {
-            'id_customer': 0,
-            'customer_id': 'New',
-            'id_setid': 4,
-            'customer_name': p.patientName,
-            'customer_status': 'ACTIVE',
-            'customer_type': 'PATIENT',
-            'mobile_no': p.mobileNumber,
-            'national_id': p.nationalId,
-            'email': p.email,
-            'dob': DateFormat('yyyy-MM-dd').format(p.dob),
-            'gender': p.gender,
-            'id_insurance': p.idInsurance,
-            'member_no': p.memberNumber,
-            'expiry_dt': p.expireDate != null
-                ? DateFormat('yyyy-MM-dd').format(p.expireDate!)
-                : null,
-            'others': p.otherInsuranceName?.toUpperCase(),
-            'profile_img': p.profileImage != null ? 'profile.png' : null,
-          };
+          final contentMap = p.toJson()
+            ..addAll({
+              'dob': DateFormat('yyyy-MM-dd').format(p.dob),
+              'expiry_dt': p.expireDate != null
+                  ? DateFormat('yyyy-MM-dd').format(p.expireDate!)
+                  : null,
+              'profile_img': p.profileImage != null ? 'profile.png' : null,
+            });
 
           final FormData formData = FormData.fromMap({
             'saveRequest': jsonEncode(
@@ -225,13 +213,10 @@ class AddMemberRemoteDataSourceImpl implements AddMemberRemoteDataSource {
         try {
           final data = serviceRequest(
             type: 'PP0035',
-            content: {
-              'id_customer': p.memberId,
-              'id_insurance': p.idInsurance,
-              'insurance_name': p.idInsurance == 0 ? p.insuranceName : null,
-              'expire_date': DateFormat('yyyy-MM-dd').format(p.expireDate),
-              'member_number': p.memberNumber,
-            },
+            content: p.toJson()
+              ..addAll({
+                'expire_date': DateFormat('yyyy-MM-dd').format(p.expireDate),
+              }),
           );
           final response = await client.post(
             url: ConstantUrls.serviceUrl,

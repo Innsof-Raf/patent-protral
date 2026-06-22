@@ -23,10 +23,7 @@ class NotificationRemoteDataSourceImpl implements NotificationRemoteDataSource {
     required NotificationParams params,
   }) async {
     try {
-      final data = serviceRequest(
-        type: '', //TODO : complete type
-        content: params.toJson(),
-      );
+      final data = serviceRequest(type: 'WRK0012', content: params.toJson());
 
       final response = await client.post(
         url: ConstantUrls.serviceUrl,

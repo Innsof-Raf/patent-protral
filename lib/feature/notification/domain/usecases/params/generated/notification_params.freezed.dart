@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$NotificationParams {
 
- String get token; String get mobileNumber;
+@JsonKey(includeToJson: false) String get token;@JsonKey(name: 'mobile_no') String get mobileNumber;
 /// Create a copy of NotificationParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $NotificationParamsCopyWith<$Res>  {
   factory $NotificationParamsCopyWith(NotificationParams value, $Res Function(NotificationParams) _then) = _$NotificationParamsCopyWithImpl;
 @useResult
 $Res call({
- String token, String mobileNumber
+@JsonKey(includeToJson: false) String token,@JsonKey(name: 'mobile_no') String mobileNumber
 });
 
 
@@ -151,7 +151,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String token,  String mobileNumber)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _NotificationParams() when $default != null:
 return $default(_that.token,_that.mobileNumber);case _:
@@ -172,7 +172,7 @@ return $default(_that.token,_that.mobileNumber);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String token,  String mobileNumber)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber)  $default,) {final _that = this;
 switch (_that) {
 case _NotificationParams():
 return $default(_that.token,_that.mobileNumber);}
@@ -189,7 +189,7 @@ return $default(_that.token,_that.mobileNumber);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String token,  String mobileNumber)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber)?  $default,) {final _that = this;
 switch (_that) {
 case _NotificationParams() when $default != null:
 return $default(_that.token,_that.mobileNumber);case _:
@@ -204,11 +204,11 @@ return $default(_that.token,_that.mobileNumber);case _:
 @JsonSerializable()
 
 class _NotificationParams extends NotificationParams {
-  const _NotificationParams({required this.token, required this.mobileNumber}): super._();
+  const _NotificationParams({@JsonKey(includeToJson: false) required this.token, @JsonKey(name: 'mobile_no') required this.mobileNumber}): super._();
   factory _NotificationParams.fromJson(Map<String, dynamic> json) => _$NotificationParamsFromJson(json);
 
-@override final  String token;
-@override final  String mobileNumber;
+@override@JsonKey(includeToJson: false) final  String token;
+@override@JsonKey(name: 'mobile_no') final  String mobileNumber;
 
 /// Create a copy of NotificationParams
 /// with the given fields replaced by the non-null parameter values.
@@ -243,7 +243,7 @@ abstract mixin class _$NotificationParamsCopyWith<$Res> implements $Notification
   factory _$NotificationParamsCopyWith(_NotificationParams value, $Res Function(_NotificationParams) _then) = __$NotificationParamsCopyWithImpl;
 @override @useResult
 $Res call({
- String token, String mobileNumber
+@JsonKey(includeToJson: false) String token,@JsonKey(name: 'mobile_no') String mobileNumber
 });
 
 

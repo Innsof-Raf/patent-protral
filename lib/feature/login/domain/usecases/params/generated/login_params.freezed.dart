@@ -11,16 +11,46 @@ part of '../login_params.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+LoginParams _$LoginParamsFromJson(
+  Map<String, dynamic> json
+) {
+        switch (json['runtimeType']) {
+                  case 'generateOtp':
+          return GenerateOtpParams.fromJson(
+            json
+          );
+                case 'verifyOtp':
+          return VerifyOtpParams.fromJson(
+            json
+          );
+                case 'loginWithPassword':
+          return LoginWithPasswordParams.fromJson(
+            json
+          );
+        
+          default:
+            throw CheckedFromJsonException(
+  json,
+  'runtimeType',
+  'LoginParams',
+  'Invalid union type "${json['runtimeType']}"!'
+);
+        }
+      
+}
+
 /// @nodoc
 mixin _$LoginParams {
 
- String get mobileNumber;
+@JsonKey(name: 'mobileNo')@JsonKey(name: 'username') String get mobileNumber;
 /// Create a copy of LoginParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $LoginParamsCopyWith<LoginParams> get copyWith => _$LoginParamsCopyWithImpl<LoginParams>(this as LoginParams, _$identity);
 
+  /// Serializes this LoginParams to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +58,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginParams&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,mobileNumber);
 
@@ -45,7 +75,7 @@ abstract mixin class $LoginParamsCopyWith<$Res>  {
   factory $LoginParamsCopyWith(LoginParams value, $Res Function(LoginParams) _then) = _$LoginParamsCopyWithImpl;
 @useResult
 $Res call({
- String mobileNumber
+@JsonKey(name: 'mobileNo') String mobileNumber
 });
 
 
@@ -153,7 +183,7 @@ return loginWithPassword(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String mobileNumber)?  generateOtp,TResult Function( String idOtp,  String mobileNumber,  String otp)?  verifyOtp,TResult Function( String mobileNumber,  String password)?  loginWithPassword,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@JsonKey(name: 'mobileNo')  String mobileNumber)?  generateOtp,TResult Function(@JsonKey(includeToJson: false)  String idOtp, @JsonKey(name: 'mobileNo')  String mobileNumber,  String otp)?  verifyOtp,TResult Function(@JsonKey(name: 'username')  String mobileNumber,  String password)?  loginWithPassword,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case GenerateOtpParams() when generateOtp != null:
 return generateOtp(_that.mobileNumber);case VerifyOtpParams() when verifyOtp != null:
@@ -176,7 +206,7 @@ return loginWithPassword(_that.mobileNumber,_that.password);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String mobileNumber)  generateOtp,required TResult Function( String idOtp,  String mobileNumber,  String otp)  verifyOtp,required TResult Function( String mobileNumber,  String password)  loginWithPassword,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@JsonKey(name: 'mobileNo')  String mobileNumber)  generateOtp,required TResult Function(@JsonKey(includeToJson: false)  String idOtp, @JsonKey(name: 'mobileNo')  String mobileNumber,  String otp)  verifyOtp,required TResult Function(@JsonKey(name: 'username')  String mobileNumber,  String password)  loginWithPassword,}) {final _that = this;
 switch (_that) {
 case GenerateOtpParams():
 return generateOtp(_that.mobileNumber);case VerifyOtpParams():
@@ -195,7 +225,7 @@ return loginWithPassword(_that.mobileNumber,_that.password);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String mobileNumber)?  generateOtp,TResult? Function( String idOtp,  String mobileNumber,  String otp)?  verifyOtp,TResult? Function( String mobileNumber,  String password)?  loginWithPassword,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@JsonKey(name: 'mobileNo')  String mobileNumber)?  generateOtp,TResult? Function(@JsonKey(includeToJson: false)  String idOtp, @JsonKey(name: 'mobileNo')  String mobileNumber,  String otp)?  verifyOtp,TResult? Function(@JsonKey(name: 'username')  String mobileNumber,  String password)?  loginWithPassword,}) {final _that = this;
 switch (_that) {
 case GenerateOtpParams() when generateOtp != null:
 return generateOtp(_that.mobileNumber);case VerifyOtpParams() when verifyOtp != null:
@@ -209,13 +239,17 @@ return loginWithPassword(_that.mobileNumber,_that.password);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class GenerateOtpParams implements LoginParams {
-  const GenerateOtpParams({required this.mobileNumber});
-  
+  const GenerateOtpParams({@JsonKey(name: 'mobileNo') required this.mobileNumber, final  String? $type}): $type = $type ?? 'generateOtp';
+  factory GenerateOtpParams.fromJson(Map<String, dynamic> json) => _$GenerateOtpParamsFromJson(json);
 
-@override final  String mobileNumber;
+@override@JsonKey(name: 'mobileNo') final  String mobileNumber;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of LoginParams
 /// with the given fields replaced by the non-null parameter values.
@@ -223,14 +257,17 @@ class GenerateOtpParams implements LoginParams {
 @pragma('vm:prefer-inline')
 $GenerateOtpParamsCopyWith<GenerateOtpParams> get copyWith => _$GenerateOtpParamsCopyWithImpl<GenerateOtpParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$GenerateOtpParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is GenerateOtpParams&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,mobileNumber);
 
@@ -247,7 +284,7 @@ abstract mixin class $GenerateOtpParamsCopyWith<$Res> implements $LoginParamsCop
   factory $GenerateOtpParamsCopyWith(GenerateOtpParams value, $Res Function(GenerateOtpParams) _then) = _$GenerateOtpParamsCopyWithImpl;
 @override @useResult
 $Res call({
- String mobileNumber
+@JsonKey(name: 'mobileNo') String mobileNumber
 });
 
 
@@ -275,15 +312,19 @@ as String,
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class VerifyOtpParams implements LoginParams {
-  const VerifyOtpParams({required this.idOtp, required this.mobileNumber, required this.otp});
-  
+  const VerifyOtpParams({@JsonKey(includeToJson: false) required this.idOtp, @JsonKey(name: 'mobileNo') required this.mobileNumber, required this.otp, final  String? $type}): $type = $type ?? 'verifyOtp';
+  factory VerifyOtpParams.fromJson(Map<String, dynamic> json) => _$VerifyOtpParamsFromJson(json);
 
- final  String idOtp;
-@override final  String mobileNumber;
+@JsonKey(includeToJson: false) final  String idOtp;
+@override@JsonKey(name: 'mobileNo') final  String mobileNumber;
  final  String otp;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of LoginParams
 /// with the given fields replaced by the non-null parameter values.
@@ -291,14 +332,17 @@ class VerifyOtpParams implements LoginParams {
 @pragma('vm:prefer-inline')
 $VerifyOtpParamsCopyWith<VerifyOtpParams> get copyWith => _$VerifyOtpParamsCopyWithImpl<VerifyOtpParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$VerifyOtpParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is VerifyOtpParams&&(identical(other.idOtp, idOtp) || other.idOtp == idOtp)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.otp, otp) || other.otp == otp));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,idOtp,mobileNumber,otp);
 
@@ -315,7 +359,7 @@ abstract mixin class $VerifyOtpParamsCopyWith<$Res> implements $LoginParamsCopyW
   factory $VerifyOtpParamsCopyWith(VerifyOtpParams value, $Res Function(VerifyOtpParams) _then) = _$VerifyOtpParamsCopyWithImpl;
 @override @useResult
 $Res call({
- String idOtp, String mobileNumber, String otp
+@JsonKey(includeToJson: false) String idOtp,@JsonKey(name: 'mobileNo') String mobileNumber, String otp
 });
 
 
@@ -345,14 +389,18 @@ as String,
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class LoginWithPasswordParams implements LoginParams {
-  const LoginWithPasswordParams({required this.mobileNumber, required this.password});
-  
+  const LoginWithPasswordParams({@JsonKey(name: 'username') required this.mobileNumber, required this.password, final  String? $type}): $type = $type ?? 'loginWithPassword';
+  factory LoginWithPasswordParams.fromJson(Map<String, dynamic> json) => _$LoginWithPasswordParamsFromJson(json);
 
-@override final  String mobileNumber;
+@override@JsonKey(name: 'username') final  String mobileNumber;
  final  String password;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of LoginParams
 /// with the given fields replaced by the non-null parameter values.
@@ -360,14 +408,17 @@ class LoginWithPasswordParams implements LoginParams {
 @pragma('vm:prefer-inline')
 $LoginWithPasswordParamsCopyWith<LoginWithPasswordParams> get copyWith => _$LoginWithPasswordParamsCopyWithImpl<LoginWithPasswordParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$LoginWithPasswordParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginWithPasswordParams&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.password, password) || other.password == password));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,mobileNumber,password);
 
@@ -384,7 +435,7 @@ abstract mixin class $LoginWithPasswordParamsCopyWith<$Res> implements $LoginPar
   factory $LoginWithPasswordParamsCopyWith(LoginWithPasswordParams value, $Res Function(LoginWithPasswordParams) _then) = _$LoginWithPasswordParamsCopyWithImpl;
 @override @useResult
 $Res call({
- String mobileNumber, String password
+@JsonKey(name: 'username') String mobileNumber, String password
 });
 
 

@@ -8,6 +8,8 @@ import 'package:patient_portal/feature/add_document/data/datasources/add_documen
 import 'package:patient_portal/feature/add_document/domain/entities/document_type.dart';
 import 'package:patient_portal/feature/add_document/domain/repositories/add_document_repository.dart';
 
+import 'package:patient_portal/feature/add_document/domain/usecases/params/add_document_params.dart';
+
 class AddDocumentRepositoryImpl implements AddDocumentRepository {
   final AddDocumentRemoteDataSource remoteDataSource;
 
@@ -19,7 +21,7 @@ class AddDocumentRepositoryImpl implements AddDocumentRepository {
   }) async {
     try {
       final documentTypes = await remoteDataSource.getDocumentTypes(
-        token: token,
+        AddDocumentParams.getDocumentTypes(token: token),
       );
       return Right(documentTypes.map((type) => type.toEntity()).toList());
     } on SocketException {

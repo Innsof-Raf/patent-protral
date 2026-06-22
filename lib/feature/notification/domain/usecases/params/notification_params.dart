@@ -6,8 +6,8 @@ part 'generated/notification_params.g.dart';
 @freezed
 sealed class NotificationParams with _$NotificationParams {
   const factory NotificationParams({
-    required String token,
-    required String mobileNumber,
+    @JsonKey(includeToJson: false) required String token,
+    @JsonKey(name: 'mobile_no') required String mobileNumber,
   }) = _NotificationParams;
 
   const NotificationParams._();

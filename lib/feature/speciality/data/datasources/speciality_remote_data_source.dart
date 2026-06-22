@@ -27,7 +27,10 @@ class SpecialityRemoteDataSourceImpl implements SpecialityRemoteDataSource {
         orElse: () => throw ServerException('Invalid speciality fetch params'),
       );
 
-      final data = serviceRequest(type: 'PP0013');
+      final data = serviceRequest(
+        type: 'PP0013',
+        content: fetchParams.toJson(),
+      );
 
       final response = await client.post(
         url: ConstantUrls.serviceUrl,

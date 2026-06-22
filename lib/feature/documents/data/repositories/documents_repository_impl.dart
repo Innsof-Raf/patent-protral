@@ -8,6 +8,8 @@ import 'package:patient_portal/feature/documents/data/datasources/documents_remo
 import 'package:patient_portal/feature/documents/domain/entities/document.dart';
 import 'package:patient_portal/feature/documents/domain/repositories/documents_repository.dart';
 
+import 'package:patient_portal/feature/documents/domain/usecases/params/documents_params.dart';
+
 class DocumentsRepositoryImpl implements DocumentsRepository {
   final DocumentsRemoteDataSource remoteDataSource;
 
@@ -21,9 +23,11 @@ class DocumentsRepositoryImpl implements DocumentsRepository {
   }) async {
     try {
       final documents = await remoteDataSource.getDocuments(
-        memberId: memberId,
-        mobileNumber: mobileNumber,
-        token: token,
+        DocumentsParams.getDocuments(
+          memberId: memberId,
+          mobileNumber: mobileNumber,
+          token: token,
+        ),
       );
       return Right(documents.map((document) => document.toEntity()).toList());
     } on SocketException {

@@ -5,14 +5,16 @@ import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 
 part 'generated/profile_params.freezed.dart';
+part 'generated/profile_params.g.dart';
 
-@freezed
+@Freezed(toJson: true, fromJson: false)
 sealed class ProfileParams with _$ProfileParams {
-  const factory ProfileParams.storeUserDetails({required User user}) =
-      StoreUserDetailsParams;
+  const factory ProfileParams.storeUserDetails({
+    @JsonKey(includeToJson: false, includeFromJson: false) required User user,
+  }) = StoreUserDetailsParams;
 
   const factory ProfileParams.addMember({
-    User? user,
+    @JsonKey(includeToJson: false, includeFromJson: false) User? user,
     required String patientName,
     required String nationalId,
     String? email,
@@ -21,28 +23,32 @@ sealed class ProfileParams with _$ProfileParams {
     required DateTime dob,
     int? idInsurance,
     String? memberNumber,
-    File? profileImage,
+    @JsonKey(includeToJson: false, includeFromJson: false) File? profileImage,
     DateTime? expireDate,
     String? otherInsuranceName,
   }) = AddMemberParams;
 
   const factory ProfileParams.changeMemberInsuranceDetails({
-    String? token,
-    required int idInsurance,
-    required int memberId,
-    required String? insuranceName,
-    required String memberNumber,
-    required DateTime expireDate,
+    @JsonKey(includeToJson: false) String? token,
+    @JsonKey(name: 'id_insurance') required int idInsurance,
+    @JsonKey(name: 'id_customer') required int memberId,
+    @JsonKey(name: 'insurance_name') required String? insuranceName,
+    @JsonKey(name: 'member_no') required String memberNumber,
+    @JsonKey(name: 'expiry_dt') required DateTime expireDate,
   }) = ChangeMemberInsuranceDetailsParams;
 
   const factory ProfileParams.getMemberDetail({
-    required int memberId,
-    String? token,
+    @JsonKey(name: 'id_customer') required int memberId,
+    @JsonKey(includeToJson: false) String? token,
   }) = GetMemberDetailParams;
 
-  const factory ProfileParams.addMemberToLocal({required Member member}) =
-      AddMemberToLocalParams;
+  const factory ProfileParams.addMemberToLocal({
+    @JsonKey(includeToJson: false, includeFromJson: false)
+    required Member member,
+  }) = AddMemberToLocalParams;
 
-  const factory ProfileParams.updateMemberInLocal({required Member member}) =
-      UpdateMemberInLocalParams;
+  const factory ProfileParams.updateMemberInLocal({
+    @JsonKey(includeToJson: false, includeFromJson: false)
+    required Member member,
+  }) = UpdateMemberInLocalParams;
 }

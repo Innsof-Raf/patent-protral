@@ -13,32 +13,9 @@ class GetInsurancesUseCase
 
   @override
   Future<Either<Failure, List<InsuranceModel>>> call(AddMemberParams params) {
-    return params.when(
+    return params.maybeWhen(
       getInsurances: (token) => repository.getInsuranceTypes(token: token),
-      addMember:
-          (
-            accessToken,
-            mobileNumber,
-            patientName,
-            nationalId,
-            gender,
-            dob,
-            email,
-            profileImage,
-            idInsurance,
-            memberNumber,
-            expireDate,
-            otherInsuranceName,
-          ) => throw UnimplementedError(),
-      updateInsurance:
-          (
-            memberId,
-            idInsurance,
-            insuranceName,
-            memberNumber,
-            expireDate,
-            token,
-          ) => throw UnimplementedError(),
+      orElse: () => throw UnimplementedError(),
     );
   }
 }

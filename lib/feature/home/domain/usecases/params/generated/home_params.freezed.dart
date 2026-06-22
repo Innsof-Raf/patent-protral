@@ -11,16 +11,26 @@ part of '../home_params.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+HomeParams _$HomeParamsFromJson(
+  Map<String, dynamic> json
+) {
+    return _GetHomeDataParams.fromJson(
+      json
+    );
+}
+
 /// @nodoc
 mixin _$HomeParams {
 
- String get token; int get idBusunit;
+@JsonKey(includeToJson: false) String get token;@JsonKey(name: 'id_client') int get idBusunit;
 /// Create a copy of HomeParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $HomeParamsCopyWith<HomeParams> get copyWith => _$HomeParamsCopyWithImpl<HomeParams>(this as HomeParams, _$identity);
 
+  /// Serializes this HomeParams to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +38,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeParams&&(identical(other.token, token) || other.token == token)&&(identical(other.idBusunit, idBusunit) || other.idBusunit == idBusunit));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,token,idBusunit);
 
@@ -45,7 +55,7 @@ abstract mixin class $HomeParamsCopyWith<$Res>  {
   factory $HomeParamsCopyWith(HomeParams value, $Res Function(HomeParams) _then) = _$HomeParamsCopyWithImpl;
 @useResult
 $Res call({
- String token, int idBusunit
+@JsonKey(includeToJson: false) String token,@JsonKey(name: 'id_client') int idBusunit
 });
 
 
@@ -148,7 +158,7 @@ return getHomeData(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String token,  int idBusunit)?  getHomeData,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'id_client')  int idBusunit)?  getHomeData,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GetHomeDataParams() when getHomeData != null:
 return getHomeData(_that.token,_that.idBusunit);case _:
@@ -169,7 +179,7 @@ return getHomeData(_that.token,_that.idBusunit);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String token,  int idBusunit)  getHomeData,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'id_client')  int idBusunit)  getHomeData,}) {final _that = this;
 switch (_that) {
 case _GetHomeDataParams():
 return getHomeData(_that.token,_that.idBusunit);}
@@ -186,7 +196,7 @@ return getHomeData(_that.token,_that.idBusunit);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String token,  int idBusunit)?  getHomeData,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'id_client')  int idBusunit)?  getHomeData,}) {final _that = this;
 switch (_that) {
 case _GetHomeDataParams() when getHomeData != null:
 return getHomeData(_that.token,_that.idBusunit);case _:
@@ -198,14 +208,14 @@ return getHomeData(_that.token,_that.idBusunit);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _GetHomeDataParams implements HomeParams {
-  const _GetHomeDataParams({required this.token, required this.idBusunit});
-  
+  const _GetHomeDataParams({@JsonKey(includeToJson: false) required this.token, @JsonKey(name: 'id_client') required this.idBusunit});
+  factory _GetHomeDataParams.fromJson(Map<String, dynamic> json) => _$GetHomeDataParamsFromJson(json);
 
-@override final  String token;
-@override final  int idBusunit;
+@override@JsonKey(includeToJson: false) final  String token;
+@override@JsonKey(name: 'id_client') final  int idBusunit;
 
 /// Create a copy of HomeParams
 /// with the given fields replaced by the non-null parameter values.
@@ -213,14 +223,17 @@ class _GetHomeDataParams implements HomeParams {
 @pragma('vm:prefer-inline')
 _$GetHomeDataParamsCopyWith<_GetHomeDataParams> get copyWith => __$GetHomeDataParamsCopyWithImpl<_GetHomeDataParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$GetHomeDataParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetHomeDataParams&&(identical(other.token, token) || other.token == token)&&(identical(other.idBusunit, idBusunit) || other.idBusunit == idBusunit));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,token,idBusunit);
 
@@ -237,7 +250,7 @@ abstract mixin class _$GetHomeDataParamsCopyWith<$Res> implements $HomeParamsCop
   factory _$GetHomeDataParamsCopyWith(_GetHomeDataParams value, $Res Function(_GetHomeDataParams) _then) = __$GetHomeDataParamsCopyWithImpl;
 @override @useResult
 $Res call({
- String token, int idBusunit
+@JsonKey(includeToJson: false) String token,@JsonKey(name: 'id_client') int idBusunit
 });
 
 

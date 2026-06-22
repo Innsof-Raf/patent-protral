@@ -7,18 +7,16 @@ import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/lab/data/models/item_model.dart';
 import 'package:patient_portal/feature/lab/data/models/package_model.dart';
 
+import 'package:patient_portal/feature/lab/domain/usecases/params/lab_params.dart';
+
 abstract class LabRemoteDataSource {
-  Future<List<ItemModel>> getItems({required String token});
+  Future<List<ItemModel>> getItems(LabParams params);
 
-  Future<Map<String, dynamic>> updateItemInCart({
-    required int idUser,
-    required int idItem,
-    required String token,
-  });
+  Future<Map<String, dynamic>> updateItemInCart(LabParams params);
 
-  Future<ItemModel> getItemDetail({required int idItem, required String token});
+  Future<ItemModel> getItemDetail(LabParams params);
 
-  Future<List<PackageModel>> getPackages({required String token});
+  Future<List<PackageModel>> getPackages(LabParams params);
 }
 
 class LabRemoteDataSourceImpl implements LabRemoteDataSource {
@@ -27,13 +25,18 @@ class LabRemoteDataSourceImpl implements LabRemoteDataSource {
   LabRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<List<ItemModel>> getItems({required String token}) async {
+  Future<List<ItemModel>> getItems(LabParams params) async {
     try {
+      final p = params.maybeMap(
+        getItems: (value) => value,
+        orElse: () => throw ServerException('Invalid params'),
+      );
+
       final data = serviceRequest(type: 'PP0029', content: {'id_bus_unit': 1});
       final response = await client.post(
         url: ConstantUrls.serviceUrl,
         body: data,
-        token: token,
+        token: p.token,
       );
 
       final List<dynamic> responseData = decodeResponseData(response.data);
@@ -49,20 +52,18 @@ class LabRemoteDataSourceImpl implements LabRemoteDataSource {
   }
 
   @override
-  Future<Map<String, dynamic>> updateItemInCart({
-    required int idUser,
-    required int idItem,
-    required String token,
-  }) async {
+  Future<Map<String, dynamic>> updateItemInCart(LabParams params) async {
     try {
-      final data = serviceRequest(
-        type: 'PP0037',
-        content: {'id_item': idItem, 'id_user': idUser},
+      final p = params.maybeMap(
+        updateItemInCart: (value) => value,
+        orElse: () => throw ServerException('Invalid params'),
       );
+
+      final data = serviceRequest(type: 'PP0037', content: p.toJson());
       final response = await client.post(
         url: ConstantUrls.serviceUrl,
         body: data,
-        token: token,
+        token: p.token,
       );
 
       return decodeResponseData(response.data) as Map<String, dynamic>;
@@ -75,16 +76,18 @@ class LabRemoteDataSourceImpl implements LabRemoteDataSource {
   }
 
   @override
-  Future<ItemModel> getItemDetail({
-    required int idItem,
-    required String token,
-  }) async {
+  Future<ItemModel> getItemDetail(LabParams params) async {
     try {
-      final data = serviceRequest(type: 'PP0037', content: {'id_item': idItem});
+      final p = params.maybeMap(
+        getItemDetail: (value) => value,
+        orElse: () => throw ServerException('Invalid params'),
+      );
+
+      final data = serviceRequest(type: 'PP0037', content: p.toJson());
       final response = await client.post(
         url: ConstantUrls.serviceUrl,
         body: data,
-        token: token,
+        token: p.token,
       );
 
       final responseData = decodeResponseData(response.data);
@@ -98,13 +101,18 @@ class LabRemoteDataSourceImpl implements LabRemoteDataSource {
   }
 
   @override
-  Future<List<PackageModel>> getPackages({required String token}) async {
+  Future<List<PackageModel>> getPackages(LabParams params) async {
     try {
+      final p = params.maybeMap(
+        getPackages: (value) => value,
+        orElse: () => throw ServerException('Invalid params'),
+      );
+
       final data = serviceRequest(type: 'PP0029', content: {'id_bus_unit': 1});
       final response = await client.post(
         url: ConstantUrls.serviceUrl,
         body: data,
-        token: token,
+        token: p.token,
       );
 
       final List<dynamic> responseData = decodeResponseData(response.data);

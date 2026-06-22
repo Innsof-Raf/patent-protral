@@ -18,28 +18,17 @@ class DoctorRepositoryImpl implements DoctorRepository {
   Future<Either<Failure, List<Doctor>>> getAvailableDoctors(
     DoctorParams params,
   ) async {
-    return await params.when(
-      getAvailableDoctors: (specialityId, token) async {
-        try {
-          final remoteDoctors = await remoteDataSource.getAvailableDoctors(
-            specialityId,
-            token,
-          );
-          return Right(remoteDoctors.map((model) => model.toEntity()).toList());
-        } on SocketException {
-          return const Left(
-            NetworkFailure(ConstantMessages.noNetworkErrorMessage),
-          );
-        } on TimeoutException {
-          return const Left(
-            ServerFailure(ConstantMessages.connectionTimeOutFailureMessage),
-          );
-        } catch (e) {
-          return const Left(
-            ServerFailure(ConstantMessages.serverFailureMessage),
-          );
-        }
-      },
-    );
+    try {
+      final remoteDoctors = await remoteDataSource.getAvailableDoctors(params);
+      return Right(remoteDoctors.map((model) => model.toEntity()).toList());
+    } on SocketException {
+      return const Left(NetworkFailure(ConstantMessages.noNetworkErrorMessage));
+    } on TimeoutException {
+      return const Left(
+        ServerFailure(ConstantMessages.connectionTimeOutFailureMessage),
+      );
+    } catch (e) {
+      return const Left(ServerFailure(ConstantMessages.serverFailureMessage));
+    }
   }
 }

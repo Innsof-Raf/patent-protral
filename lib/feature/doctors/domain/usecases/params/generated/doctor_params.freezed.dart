@@ -11,16 +11,26 @@ part of '../doctor_params.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+DoctorParams _$DoctorParamsFromJson(
+  Map<String, dynamic> json
+) {
+    return GetAvailableDoctorsParams.fromJson(
+      json
+    );
+}
+
 /// @nodoc
 mixin _$DoctorParams {
 
- int get specialityId; String get token;
+@JsonKey(name: 'id_dept') int get specialityId;@JsonKey(includeToJson: false) String get token;
 /// Create a copy of DoctorParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $DoctorParamsCopyWith<DoctorParams> get copyWith => _$DoctorParamsCopyWithImpl<DoctorParams>(this as DoctorParams, _$identity);
 
+  /// Serializes this DoctorParams to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +38,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is DoctorParams&&(identical(other.specialityId, specialityId) || other.specialityId == specialityId)&&(identical(other.token, token) || other.token == token));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,specialityId,token);
 
@@ -45,7 +55,7 @@ abstract mixin class $DoctorParamsCopyWith<$Res>  {
   factory $DoctorParamsCopyWith(DoctorParams value, $Res Function(DoctorParams) _then) = _$DoctorParamsCopyWithImpl;
 @useResult
 $Res call({
- int specialityId, String token
+@JsonKey(name: 'id_dept') int specialityId,@JsonKey(includeToJson: false) String token
 });
 
 
@@ -148,7 +158,7 @@ return getAvailableDoctors(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int specialityId,  String token)?  getAvailableDoctors,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@JsonKey(name: 'id_dept')  int specialityId, @JsonKey(includeToJson: false)  String token)?  getAvailableDoctors,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case GetAvailableDoctorsParams() when getAvailableDoctors != null:
 return getAvailableDoctors(_that.specialityId,_that.token);case _:
@@ -169,7 +179,7 @@ return getAvailableDoctors(_that.specialityId,_that.token);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int specialityId,  String token)  getAvailableDoctors,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@JsonKey(name: 'id_dept')  int specialityId, @JsonKey(includeToJson: false)  String token)  getAvailableDoctors,}) {final _that = this;
 switch (_that) {
 case GetAvailableDoctorsParams():
 return getAvailableDoctors(_that.specialityId,_that.token);}
@@ -186,7 +196,7 @@ return getAvailableDoctors(_that.specialityId,_that.token);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int specialityId,  String token)?  getAvailableDoctors,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@JsonKey(name: 'id_dept')  int specialityId, @JsonKey(includeToJson: false)  String token)?  getAvailableDoctors,}) {final _that = this;
 switch (_that) {
 case GetAvailableDoctorsParams() when getAvailableDoctors != null:
 return getAvailableDoctors(_that.specialityId,_that.token);case _:
@@ -198,14 +208,14 @@ return getAvailableDoctors(_that.specialityId,_that.token);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class GetAvailableDoctorsParams implements DoctorParams {
-  const GetAvailableDoctorsParams({required this.specialityId, required this.token});
-  
+  const GetAvailableDoctorsParams({@JsonKey(name: 'id_dept') required this.specialityId, @JsonKey(includeToJson: false) required this.token});
+  factory GetAvailableDoctorsParams.fromJson(Map<String, dynamic> json) => _$GetAvailableDoctorsParamsFromJson(json);
 
-@override final  int specialityId;
-@override final  String token;
+@override@JsonKey(name: 'id_dept') final  int specialityId;
+@override@JsonKey(includeToJson: false) final  String token;
 
 /// Create a copy of DoctorParams
 /// with the given fields replaced by the non-null parameter values.
@@ -213,14 +223,17 @@ class GetAvailableDoctorsParams implements DoctorParams {
 @pragma('vm:prefer-inline')
 $GetAvailableDoctorsParamsCopyWith<GetAvailableDoctorsParams> get copyWith => _$GetAvailableDoctorsParamsCopyWithImpl<GetAvailableDoctorsParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$GetAvailableDoctorsParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is GetAvailableDoctorsParams&&(identical(other.specialityId, specialityId) || other.specialityId == specialityId)&&(identical(other.token, token) || other.token == token));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,specialityId,token);
 
@@ -237,7 +250,7 @@ abstract mixin class $GetAvailableDoctorsParamsCopyWith<$Res> implements $Doctor
   factory $GetAvailableDoctorsParamsCopyWith(GetAvailableDoctorsParams value, $Res Function(GetAvailableDoctorsParams) _then) = _$GetAvailableDoctorsParamsCopyWithImpl;
 @override @useResult
 $Res call({
- int specialityId, String token
+@JsonKey(name: 'id_dept') int specialityId,@JsonKey(includeToJson: false) String token
 });
 
 

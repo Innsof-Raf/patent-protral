@@ -7,6 +7,8 @@ import 'package:patient_portal/feature/book_appointment/data/datasources/book_ap
 import 'package:patient_portal/feature/book_appointment/domain/entities/shift.dart';
 import 'package:patient_portal/feature/book_appointment/domain/repositories/book_appointment_repository.dart';
 
+import 'package:patient_portal/feature/book_appointment/domain/usecases/params/book_appointment_params.dart';
+
 class BookAppointmentRepositoryImpl implements BookAppointmentRepository {
   final BookAppointmentRemoteDataSource remoteDataSource;
 
@@ -20,9 +22,11 @@ class BookAppointmentRepositoryImpl implements BookAppointmentRepository {
   }) async {
     try {
       final result = await remoteDataSource.getAvailableSlots(
-        date: date,
-        idDoctor: idDoctor,
-        token: token,
+        BookAppointmentParams.getAvailableSlots(
+          date: date,
+          idDoctor: idDoctor,
+          token: token,
+        ),
       );
       return Right(result.toEntity());
     } on SocketException {
@@ -42,11 +46,13 @@ class BookAppointmentRepositoryImpl implements BookAppointmentRepository {
   }) async {
     try {
       final result = await remoteDataSource.bookAppointment(
-        idDoctor: idDoctor,
-        appointmentDateTime: appointmentDateTime,
-        mobileNo: mobileNo,
-        idMember: idMember,
-        token: token,
+        BookAppointmentParams.bookAppointment(
+          idDoctor: idDoctor,
+          appointmentDateTime: appointmentDateTime,
+          mobileNo: mobileNo,
+          idMember: idMember,
+          token: token,
+        ),
       );
       return Right(result);
     } on SocketException {
@@ -64,9 +70,11 @@ class BookAppointmentRepositoryImpl implements BookAppointmentRepository {
   }) async {
     try {
       final result = await remoteDataSource.rescheduleAppointment(
-        appointmentDateTime: appointmentDateTime,
-        idAppointment: idAppointment,
-        token: token,
+        BookAppointmentParams.rescheduleAppointment(
+          appointmentDateTime: appointmentDateTime,
+          idAppointment: idAppointment,
+          token: token,
+        ),
       );
       return Right(result);
     } on SocketException {

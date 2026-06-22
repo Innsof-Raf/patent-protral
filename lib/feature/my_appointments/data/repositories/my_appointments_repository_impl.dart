@@ -4,6 +4,8 @@ import 'package:patient_portal/feature/my_appointments/data/datasources/my_appoi
 import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
 import 'package:patient_portal/feature/my_appointments/domain/repositories/my_appointments_repository.dart';
 
+import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
+
 class MyAppointmentsRepositoryImpl implements MyAppointmentsRepository {
   final MyAppointmentsRemoteDataSource remoteDataSource;
 
@@ -16,8 +18,10 @@ class MyAppointmentsRepositoryImpl implements MyAppointmentsRepository {
   }) async {
     try {
       final models = await remoteDataSource.getMyAppointments(
-        mobileNumber: mobileNumber,
-        token: token,
+        MyAppointmentsParams.getMyAppointments(
+          mobileNumber: mobileNumber,
+          token: token,
+        ),
       );
       return Right(
         models.map((appointment) => appointment.toEntity()).toList(),
@@ -36,8 +40,10 @@ class MyAppointmentsRepositoryImpl implements MyAppointmentsRepository {
   }) async {
     try {
       final result = await remoteDataSource.cancelAppointment(
-        appointmentId: appointmentId,
-        token: token,
+        MyAppointmentsParams.cancelAppointment(
+          appointmentId: appointmentId,
+          token: token,
+        ),
       );
       return Right(result);
     } catch (e) {

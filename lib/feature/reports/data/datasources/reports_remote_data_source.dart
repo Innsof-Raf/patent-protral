@@ -24,23 +24,16 @@ class ReportsRemoteDataSourceImpl implements ReportsRemoteDataSource {
   @override
   Future<List<ReportModel>> getReports(ReportsParams params) async {
     try {
-      final getReportsParams = params.maybeMap(
+      final p = params.maybeMap(
         getReports: (value) => value,
         orElse: () => throw ServerException('Invalid reports params'),
       );
 
-      final data = serviceRequest(
-        type: 'PP0016',
-        content: {
-          'id_customer': getReportsParams.memberId,
-          'mobile_no': getReportsParams.mobileNumber,
-          'status': 'ALL',
-        },
-      );
+      final data = serviceRequest(type: 'PP0016', content: p.toJson());
       final response = await client.post(
         url: ConstantUrls.serviceUrl,
         body: data,
-        token: getReportsParams.token,
+        token: p.token,
       );
 
       final List responseList = decodeResponseData(response.data);

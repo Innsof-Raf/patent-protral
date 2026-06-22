@@ -1,20 +1,25 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'generated/login_params.freezed.dart';
+part 'generated/login_params.g.dart';
 
 @freezed
 sealed class LoginParams with _$LoginParams {
-  const factory LoginParams.generateOtp({required String mobileNumber}) =
-      GenerateOtpParams;
+  const factory LoginParams.generateOtp({
+    @JsonKey(name: 'mobileNo') required String mobileNumber,
+  }) = GenerateOtpParams;
 
   const factory LoginParams.verifyOtp({
-    required String idOtp,
-    required String mobileNumber,
+    @JsonKey(includeToJson: false) required String idOtp,
+    @JsonKey(name: 'mobileNo') required String mobileNumber,
     required String otp,
   }) = VerifyOtpParams;
 
   const factory LoginParams.loginWithPassword({
-    required String mobileNumber,
+    @JsonKey(name: 'username') required String mobileNumber,
     required String password,
   }) = LoginWithPasswordParams;
+
+  factory LoginParams.fromJson(Map<String, dynamic> json) =>
+      _$LoginParamsFromJson(json);
 }

@@ -11,16 +11,50 @@ part of '../lab_params.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+LabParams _$LabParamsFromJson(
+  Map<String, dynamic> json
+) {
+        switch (json['runtimeType']) {
+                  case 'getItems':
+          return _GetItemsParams.fromJson(
+            json
+          );
+                case 'updateItemInCart':
+          return _UpdateItemInCartParams.fromJson(
+            json
+          );
+                case 'getItemDetail':
+          return _GetItemDetailParams.fromJson(
+            json
+          );
+                case 'getPackages':
+          return _GetPackagesParams.fromJson(
+            json
+          );
+        
+          default:
+            throw CheckedFromJsonException(
+  json,
+  'runtimeType',
+  'LabParams',
+  'Invalid union type "${json['runtimeType']}"!'
+);
+        }
+      
+}
+
 /// @nodoc
 mixin _$LabParams {
 
- String get token;
+@JsonKey(includeToJson: false) String get token;
 /// Create a copy of LabParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $LabParamsCopyWith<LabParams> get copyWith => _$LabParamsCopyWithImpl<LabParams>(this as LabParams, _$identity);
 
+  /// Serializes this LabParams to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +62,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is LabParams&&(identical(other.token, token) || other.token == token));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,token);
 
@@ -45,7 +79,7 @@ abstract mixin class $LabParamsCopyWith<$Res>  {
   factory $LabParamsCopyWith(LabParams value, $Res Function(LabParams) _then) = _$LabParamsCopyWithImpl;
 @useResult
 $Res call({
- String token
+@JsonKey(includeToJson: false) String token
 });
 
 
@@ -156,7 +190,7 @@ return getPackages(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String token)?  getItems,TResult Function( int idItem,  int idUser,  String token)?  updateItemInCart,TResult Function( int idItem,  String token)?  getItemDetail,TResult Function( String token)?  getPackages,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@JsonKey(includeToJson: false)  String token)?  getItems,TResult Function(@JsonKey(name: 'id_item')  int idItem, @JsonKey(name: 'id_user')  int idUser, @JsonKey(includeToJson: false)  String token)?  updateItemInCart,TResult Function(@JsonKey(name: 'id_item')  int idItem, @JsonKey(includeToJson: false)  String token)?  getItemDetail,TResult Function(@JsonKey(includeToJson: false)  String token)?  getPackages,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GetItemsParams() when getItems != null:
 return getItems(_that.token);case _UpdateItemInCartParams() when updateItemInCart != null:
@@ -180,7 +214,7 @@ return getPackages(_that.token);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String token)  getItems,required TResult Function( int idItem,  int idUser,  String token)  updateItemInCart,required TResult Function( int idItem,  String token)  getItemDetail,required TResult Function( String token)  getPackages,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@JsonKey(includeToJson: false)  String token)  getItems,required TResult Function(@JsonKey(name: 'id_item')  int idItem, @JsonKey(name: 'id_user')  int idUser, @JsonKey(includeToJson: false)  String token)  updateItemInCart,required TResult Function(@JsonKey(name: 'id_item')  int idItem, @JsonKey(includeToJson: false)  String token)  getItemDetail,required TResult Function(@JsonKey(includeToJson: false)  String token)  getPackages,}) {final _that = this;
 switch (_that) {
 case _GetItemsParams():
 return getItems(_that.token);case _UpdateItemInCartParams():
@@ -200,7 +234,7 @@ return getPackages(_that.token);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String token)?  getItems,TResult? Function( int idItem,  int idUser,  String token)?  updateItemInCart,TResult? Function( int idItem,  String token)?  getItemDetail,TResult? Function( String token)?  getPackages,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@JsonKey(includeToJson: false)  String token)?  getItems,TResult? Function(@JsonKey(name: 'id_item')  int idItem, @JsonKey(name: 'id_user')  int idUser, @JsonKey(includeToJson: false)  String token)?  updateItemInCart,TResult? Function(@JsonKey(name: 'id_item')  int idItem, @JsonKey(includeToJson: false)  String token)?  getItemDetail,TResult? Function(@JsonKey(includeToJson: false)  String token)?  getPackages,}) {final _that = this;
 switch (_that) {
 case _GetItemsParams() when getItems != null:
 return getItems(_that.token);case _UpdateItemInCartParams() when updateItemInCart != null:
@@ -215,13 +249,17 @@ return getPackages(_that.token);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _GetItemsParams implements LabParams {
-  const _GetItemsParams({required this.token});
-  
+  const _GetItemsParams({@JsonKey(includeToJson: false) required this.token, final  String? $type}): $type = $type ?? 'getItems';
+  factory _GetItemsParams.fromJson(Map<String, dynamic> json) => _$GetItemsParamsFromJson(json);
 
-@override final  String token;
+@override@JsonKey(includeToJson: false) final  String token;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of LabParams
 /// with the given fields replaced by the non-null parameter values.
@@ -229,14 +267,17 @@ class _GetItemsParams implements LabParams {
 @pragma('vm:prefer-inline')
 _$GetItemsParamsCopyWith<_GetItemsParams> get copyWith => __$GetItemsParamsCopyWithImpl<_GetItemsParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$GetItemsParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetItemsParams&&(identical(other.token, token) || other.token == token));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,token);
 
@@ -253,7 +294,7 @@ abstract mixin class _$GetItemsParamsCopyWith<$Res> implements $LabParamsCopyWit
   factory _$GetItemsParamsCopyWith(_GetItemsParams value, $Res Function(_GetItemsParams) _then) = __$GetItemsParamsCopyWithImpl;
 @override @useResult
 $Res call({
- String token
+@JsonKey(includeToJson: false) String token
 });
 
 
@@ -281,15 +322,19 @@ as String,
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _UpdateItemInCartParams implements LabParams {
-  const _UpdateItemInCartParams({required this.idItem, required this.idUser, required this.token});
-  
+  const _UpdateItemInCartParams({@JsonKey(name: 'id_item') required this.idItem, @JsonKey(name: 'id_user') required this.idUser, @JsonKey(includeToJson: false) required this.token, final  String? $type}): $type = $type ?? 'updateItemInCart';
+  factory _UpdateItemInCartParams.fromJson(Map<String, dynamic> json) => _$UpdateItemInCartParamsFromJson(json);
 
- final  int idItem;
- final  int idUser;
-@override final  String token;
+@JsonKey(name: 'id_item') final  int idItem;
+@JsonKey(name: 'id_user') final  int idUser;
+@override@JsonKey(includeToJson: false) final  String token;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of LabParams
 /// with the given fields replaced by the non-null parameter values.
@@ -297,14 +342,17 @@ class _UpdateItemInCartParams implements LabParams {
 @pragma('vm:prefer-inline')
 _$UpdateItemInCartParamsCopyWith<_UpdateItemInCartParams> get copyWith => __$UpdateItemInCartParamsCopyWithImpl<_UpdateItemInCartParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$UpdateItemInCartParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateItemInCartParams&&(identical(other.idItem, idItem) || other.idItem == idItem)&&(identical(other.idUser, idUser) || other.idUser == idUser)&&(identical(other.token, token) || other.token == token));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,idItem,idUser,token);
 
@@ -321,7 +369,7 @@ abstract mixin class _$UpdateItemInCartParamsCopyWith<$Res> implements $LabParam
   factory _$UpdateItemInCartParamsCopyWith(_UpdateItemInCartParams value, $Res Function(_UpdateItemInCartParams) _then) = __$UpdateItemInCartParamsCopyWithImpl;
 @override @useResult
 $Res call({
- int idItem, int idUser, String token
+@JsonKey(name: 'id_item') int idItem,@JsonKey(name: 'id_user') int idUser,@JsonKey(includeToJson: false) String token
 });
 
 
@@ -351,14 +399,18 @@ as String,
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _GetItemDetailParams implements LabParams {
-  const _GetItemDetailParams({required this.idItem, required this.token});
-  
+  const _GetItemDetailParams({@JsonKey(name: 'id_item') required this.idItem, @JsonKey(includeToJson: false) required this.token, final  String? $type}): $type = $type ?? 'getItemDetail';
+  factory _GetItemDetailParams.fromJson(Map<String, dynamic> json) => _$GetItemDetailParamsFromJson(json);
 
- final  int idItem;
-@override final  String token;
+@JsonKey(name: 'id_item') final  int idItem;
+@override@JsonKey(includeToJson: false) final  String token;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of LabParams
 /// with the given fields replaced by the non-null parameter values.
@@ -366,14 +418,17 @@ class _GetItemDetailParams implements LabParams {
 @pragma('vm:prefer-inline')
 _$GetItemDetailParamsCopyWith<_GetItemDetailParams> get copyWith => __$GetItemDetailParamsCopyWithImpl<_GetItemDetailParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$GetItemDetailParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetItemDetailParams&&(identical(other.idItem, idItem) || other.idItem == idItem)&&(identical(other.token, token) || other.token == token));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,idItem,token);
 
@@ -390,7 +445,7 @@ abstract mixin class _$GetItemDetailParamsCopyWith<$Res> implements $LabParamsCo
   factory _$GetItemDetailParamsCopyWith(_GetItemDetailParams value, $Res Function(_GetItemDetailParams) _then) = __$GetItemDetailParamsCopyWithImpl;
 @override @useResult
 $Res call({
- int idItem, String token
+@JsonKey(name: 'id_item') int idItem,@JsonKey(includeToJson: false) String token
 });
 
 
@@ -419,13 +474,17 @@ as String,
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _GetPackagesParams implements LabParams {
-  const _GetPackagesParams({required this.token});
-  
+  const _GetPackagesParams({@JsonKey(includeToJson: false) required this.token, final  String? $type}): $type = $type ?? 'getPackages';
+  factory _GetPackagesParams.fromJson(Map<String, dynamic> json) => _$GetPackagesParamsFromJson(json);
 
-@override final  String token;
+@override@JsonKey(includeToJson: false) final  String token;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of LabParams
 /// with the given fields replaced by the non-null parameter values.
@@ -433,14 +492,17 @@ class _GetPackagesParams implements LabParams {
 @pragma('vm:prefer-inline')
 _$GetPackagesParamsCopyWith<_GetPackagesParams> get copyWith => __$GetPackagesParamsCopyWithImpl<_GetPackagesParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$GetPackagesParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetPackagesParams&&(identical(other.token, token) || other.token == token));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,token);
 
@@ -457,7 +519,7 @@ abstract mixin class _$GetPackagesParamsCopyWith<$Res> implements $LabParamsCopy
   factory _$GetPackagesParamsCopyWith(_GetPackagesParams value, $Res Function(_GetPackagesParams) _then) = __$GetPackagesParamsCopyWithImpl;
 @override @useResult
 $Res call({
- String token
+@JsonKey(includeToJson: false) String token
 });
 
 

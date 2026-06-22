@@ -16,6 +16,8 @@ mixin _$ProfileParams {
 
 
 
+  /// Serializes this ProfileParams to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -23,7 +25,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileParams);
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => runtimeType.hashCode;
 
@@ -131,7 +133,7 @@ return updateMemberInLocal(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( User user)?  storeUserDetails,TResult Function( User? user,  String patientName,  String nationalId,  String? email,  String? mobileNumber,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber,  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)?  addMember,TResult Function( String? token,  int idInsurance,  int memberId,  String? insuranceName,  String memberNumber,  DateTime expireDate)?  changeMemberInsuranceDetails,TResult Function( int memberId,  String? token)?  getMemberDetail,TResult Function( Member member)?  addMemberToLocal,TResult Function( Member member)?  updateMemberInLocal,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@JsonKey(includeToJson: false, includeFromJson: false)  User user)?  storeUserDetails,TResult Function(@JsonKey(includeToJson: false, includeFromJson: false)  User? user,  String patientName,  String nationalId,  String? email,  String? mobileNumber,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber, @JsonKey(includeToJson: false, includeFromJson: false)  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)?  addMember,TResult Function(@JsonKey(includeToJson: false)  String? token, @JsonKey(name: 'id_insurance')  int idInsurance, @JsonKey(name: 'id_customer')  int memberId, @JsonKey(name: 'insurance_name')  String? insuranceName, @JsonKey(name: 'member_no')  String memberNumber, @JsonKey(name: 'expiry_dt')  DateTime expireDate)?  changeMemberInsuranceDetails,TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String? token)?  getMemberDetail,TResult Function(@JsonKey(includeToJson: false, includeFromJson: false)  Member member)?  addMemberToLocal,TResult Function(@JsonKey(includeToJson: false, includeFromJson: false)  Member member)?  updateMemberInLocal,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case StoreUserDetailsParams() when storeUserDetails != null:
 return storeUserDetails(_that.user);case AddMemberParams() when addMember != null:
@@ -157,7 +159,7 @@ return updateMemberInLocal(_that.member);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( User user)  storeUserDetails,required TResult Function( User? user,  String patientName,  String nationalId,  String? email,  String? mobileNumber,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber,  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)  addMember,required TResult Function( String? token,  int idInsurance,  int memberId,  String? insuranceName,  String memberNumber,  DateTime expireDate)  changeMemberInsuranceDetails,required TResult Function( int memberId,  String? token)  getMemberDetail,required TResult Function( Member member)  addMemberToLocal,required TResult Function( Member member)  updateMemberInLocal,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@JsonKey(includeToJson: false, includeFromJson: false)  User user)  storeUserDetails,required TResult Function(@JsonKey(includeToJson: false, includeFromJson: false)  User? user,  String patientName,  String nationalId,  String? email,  String? mobileNumber,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber, @JsonKey(includeToJson: false, includeFromJson: false)  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)  addMember,required TResult Function(@JsonKey(includeToJson: false)  String? token, @JsonKey(name: 'id_insurance')  int idInsurance, @JsonKey(name: 'id_customer')  int memberId, @JsonKey(name: 'insurance_name')  String? insuranceName, @JsonKey(name: 'member_no')  String memberNumber, @JsonKey(name: 'expiry_dt')  DateTime expireDate)  changeMemberInsuranceDetails,required TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String? token)  getMemberDetail,required TResult Function(@JsonKey(includeToJson: false, includeFromJson: false)  Member member)  addMemberToLocal,required TResult Function(@JsonKey(includeToJson: false, includeFromJson: false)  Member member)  updateMemberInLocal,}) {final _that = this;
 switch (_that) {
 case StoreUserDetailsParams():
 return storeUserDetails(_that.user);case AddMemberParams():
@@ -179,7 +181,7 @@ return updateMemberInLocal(_that.member);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( User user)?  storeUserDetails,TResult? Function( User? user,  String patientName,  String nationalId,  String? email,  String? mobileNumber,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber,  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)?  addMember,TResult? Function( String? token,  int idInsurance,  int memberId,  String? insuranceName,  String memberNumber,  DateTime expireDate)?  changeMemberInsuranceDetails,TResult? Function( int memberId,  String? token)?  getMemberDetail,TResult? Function( Member member)?  addMemberToLocal,TResult? Function( Member member)?  updateMemberInLocal,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@JsonKey(includeToJson: false, includeFromJson: false)  User user)?  storeUserDetails,TResult? Function(@JsonKey(includeToJson: false, includeFromJson: false)  User? user,  String patientName,  String nationalId,  String? email,  String? mobileNumber,  String gender,  DateTime dob,  int? idInsurance,  String? memberNumber, @JsonKey(includeToJson: false, includeFromJson: false)  File? profileImage,  DateTime? expireDate,  String? otherInsuranceName)?  addMember,TResult? Function(@JsonKey(includeToJson: false)  String? token, @JsonKey(name: 'id_insurance')  int idInsurance, @JsonKey(name: 'id_customer')  int memberId, @JsonKey(name: 'insurance_name')  String? insuranceName, @JsonKey(name: 'member_no')  String memberNumber, @JsonKey(name: 'expiry_dt')  DateTime expireDate)?  changeMemberInsuranceDetails,TResult? Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String? token)?  getMemberDetail,TResult? Function(@JsonKey(includeToJson: false, includeFromJson: false)  Member member)?  addMemberToLocal,TResult? Function(@JsonKey(includeToJson: false, includeFromJson: false)  Member member)?  updateMemberInLocal,}) {final _that = this;
 switch (_that) {
 case StoreUserDetailsParams() when storeUserDetails != null:
 return storeUserDetails(_that.user);case AddMemberParams() when addMember != null:
@@ -196,13 +198,17 @@ return updateMemberInLocal(_that.member);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable(createFactory: false)
 
 class StoreUserDetailsParams implements ProfileParams {
-  const StoreUserDetailsParams({required this.user});
+  const StoreUserDetailsParams({@JsonKey(includeToJson: false, includeFromJson: false) required this.user, final  String? $type}): $type = $type ?? 'storeUserDetails';
   
 
- final  User user;
+@JsonKey(includeToJson: false, includeFromJson: false) final  User user;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of ProfileParams
 /// with the given fields replaced by the non-null parameter values.
@@ -210,14 +216,17 @@ class StoreUserDetailsParams implements ProfileParams {
 @pragma('vm:prefer-inline')
 $StoreUserDetailsParamsCopyWith<StoreUserDetailsParams> get copyWith => _$StoreUserDetailsParamsCopyWithImpl<StoreUserDetailsParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$StoreUserDetailsParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is StoreUserDetailsParams&&(identical(other.user, user) || other.user == user));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,user);
 
@@ -234,7 +243,7 @@ abstract mixin class $StoreUserDetailsParamsCopyWith<$Res> implements $ProfilePa
   factory $StoreUserDetailsParamsCopyWith(StoreUserDetailsParams value, $Res Function(StoreUserDetailsParams) _then) = _$StoreUserDetailsParamsCopyWithImpl;
 @useResult
 $Res call({
- User user
+@JsonKey(includeToJson: false, includeFromJson: false) User user
 });
 
 
@@ -271,13 +280,13 @@ $UserCopyWith<$Res> get user {
 }
 
 /// @nodoc
-
+@JsonSerializable(createFactory: false)
 
 class AddMemberParams implements ProfileParams {
-  const AddMemberParams({this.user, required this.patientName, required this.nationalId, this.email, this.mobileNumber, required this.gender, required this.dob, this.idInsurance, this.memberNumber, this.profileImage, this.expireDate, this.otherInsuranceName});
+  const AddMemberParams({@JsonKey(includeToJson: false, includeFromJson: false) this.user, required this.patientName, required this.nationalId, this.email, this.mobileNumber, required this.gender, required this.dob, this.idInsurance, this.memberNumber, @JsonKey(includeToJson: false, includeFromJson: false) this.profileImage, this.expireDate, this.otherInsuranceName, final  String? $type}): $type = $type ?? 'addMember';
   
 
- final  User? user;
+@JsonKey(includeToJson: false, includeFromJson: false) final  User? user;
  final  String patientName;
  final  String nationalId;
  final  String? email;
@@ -286,9 +295,13 @@ class AddMemberParams implements ProfileParams {
  final  DateTime dob;
  final  int? idInsurance;
  final  String? memberNumber;
- final  File? profileImage;
+@JsonKey(includeToJson: false, includeFromJson: false) final  File? profileImage;
  final  DateTime? expireDate;
  final  String? otherInsuranceName;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of ProfileParams
 /// with the given fields replaced by the non-null parameter values.
@@ -296,14 +309,17 @@ class AddMemberParams implements ProfileParams {
 @pragma('vm:prefer-inline')
 $AddMemberParamsCopyWith<AddMemberParams> get copyWith => _$AddMemberParamsCopyWithImpl<AddMemberParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$AddMemberParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is AddMemberParams&&(identical(other.user, user) || other.user == user)&&(identical(other.patientName, patientName) || other.patientName == patientName)&&(identical(other.nationalId, nationalId) || other.nationalId == nationalId)&&(identical(other.email, email) || other.email == email)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.dob, dob) || other.dob == dob)&&(identical(other.idInsurance, idInsurance) || other.idInsurance == idInsurance)&&(identical(other.memberNumber, memberNumber) || other.memberNumber == memberNumber)&&(identical(other.profileImage, profileImage) || other.profileImage == profileImage)&&(identical(other.expireDate, expireDate) || other.expireDate == expireDate)&&(identical(other.otherInsuranceName, otherInsuranceName) || other.otherInsuranceName == otherInsuranceName));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,user,patientName,nationalId,email,mobileNumber,gender,dob,idInsurance,memberNumber,profileImage,expireDate,otherInsuranceName);
 
@@ -320,7 +336,7 @@ abstract mixin class $AddMemberParamsCopyWith<$Res> implements $ProfileParamsCop
   factory $AddMemberParamsCopyWith(AddMemberParams value, $Res Function(AddMemberParams) _then) = _$AddMemberParamsCopyWithImpl;
 @useResult
 $Res call({
- User? user, String patientName, String nationalId, String? email, String? mobileNumber, String gender, DateTime dob, int? idInsurance, String? memberNumber, File? profileImage, DateTime? expireDate, String? otherInsuranceName
+@JsonKey(includeToJson: false, includeFromJson: false) User? user, String patientName, String nationalId, String? email, String? mobileNumber, String gender, DateTime dob, int? idInsurance, String? memberNumber,@JsonKey(includeToJson: false, includeFromJson: false) File? profileImage, DateTime? expireDate, String? otherInsuranceName
 });
 
 
@@ -371,18 +387,22 @@ $UserCopyWith<$Res>? get user {
 }
 
 /// @nodoc
-
+@JsonSerializable(createFactory: false)
 
 class ChangeMemberInsuranceDetailsParams implements ProfileParams {
-  const ChangeMemberInsuranceDetailsParams({this.token, required this.idInsurance, required this.memberId, required this.insuranceName, required this.memberNumber, required this.expireDate});
+  const ChangeMemberInsuranceDetailsParams({@JsonKey(includeToJson: false) this.token, @JsonKey(name: 'id_insurance') required this.idInsurance, @JsonKey(name: 'id_customer') required this.memberId, @JsonKey(name: 'insurance_name') required this.insuranceName, @JsonKey(name: 'member_no') required this.memberNumber, @JsonKey(name: 'expiry_dt') required this.expireDate, final  String? $type}): $type = $type ?? 'changeMemberInsuranceDetails';
   
 
- final  String? token;
- final  int idInsurance;
- final  int memberId;
- final  String? insuranceName;
- final  String memberNumber;
- final  DateTime expireDate;
+@JsonKey(includeToJson: false) final  String? token;
+@JsonKey(name: 'id_insurance') final  int idInsurance;
+@JsonKey(name: 'id_customer') final  int memberId;
+@JsonKey(name: 'insurance_name') final  String? insuranceName;
+@JsonKey(name: 'member_no') final  String memberNumber;
+@JsonKey(name: 'expiry_dt') final  DateTime expireDate;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of ProfileParams
 /// with the given fields replaced by the non-null parameter values.
@@ -390,14 +410,17 @@ class ChangeMemberInsuranceDetailsParams implements ProfileParams {
 @pragma('vm:prefer-inline')
 $ChangeMemberInsuranceDetailsParamsCopyWith<ChangeMemberInsuranceDetailsParams> get copyWith => _$ChangeMemberInsuranceDetailsParamsCopyWithImpl<ChangeMemberInsuranceDetailsParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$ChangeMemberInsuranceDetailsParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangeMemberInsuranceDetailsParams&&(identical(other.token, token) || other.token == token)&&(identical(other.idInsurance, idInsurance) || other.idInsurance == idInsurance)&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.insuranceName, insuranceName) || other.insuranceName == insuranceName)&&(identical(other.memberNumber, memberNumber) || other.memberNumber == memberNumber)&&(identical(other.expireDate, expireDate) || other.expireDate == expireDate));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,token,idInsurance,memberId,insuranceName,memberNumber,expireDate);
 
@@ -414,7 +437,7 @@ abstract mixin class $ChangeMemberInsuranceDetailsParamsCopyWith<$Res> implement
   factory $ChangeMemberInsuranceDetailsParamsCopyWith(ChangeMemberInsuranceDetailsParams value, $Res Function(ChangeMemberInsuranceDetailsParams) _then) = _$ChangeMemberInsuranceDetailsParamsCopyWithImpl;
 @useResult
 $Res call({
- String? token, int idInsurance, int memberId, String? insuranceName, String memberNumber, DateTime expireDate
+@JsonKey(includeToJson: false) String? token,@JsonKey(name: 'id_insurance') int idInsurance,@JsonKey(name: 'id_customer') int memberId,@JsonKey(name: 'insurance_name') String? insuranceName,@JsonKey(name: 'member_no') String memberNumber,@JsonKey(name: 'expiry_dt') DateTime expireDate
 });
 
 
@@ -447,14 +470,18 @@ as DateTime,
 }
 
 /// @nodoc
-
+@JsonSerializable(createFactory: false)
 
 class GetMemberDetailParams implements ProfileParams {
-  const GetMemberDetailParams({required this.memberId, this.token});
+  const GetMemberDetailParams({@JsonKey(name: 'id_customer') required this.memberId, @JsonKey(includeToJson: false) this.token, final  String? $type}): $type = $type ?? 'getMemberDetail';
   
 
- final  int memberId;
- final  String? token;
+@JsonKey(name: 'id_customer') final  int memberId;
+@JsonKey(includeToJson: false) final  String? token;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of ProfileParams
 /// with the given fields replaced by the non-null parameter values.
@@ -462,14 +489,17 @@ class GetMemberDetailParams implements ProfileParams {
 @pragma('vm:prefer-inline')
 $GetMemberDetailParamsCopyWith<GetMemberDetailParams> get copyWith => _$GetMemberDetailParamsCopyWithImpl<GetMemberDetailParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$GetMemberDetailParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is GetMemberDetailParams&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.token, token) || other.token == token));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,memberId,token);
 
@@ -486,7 +516,7 @@ abstract mixin class $GetMemberDetailParamsCopyWith<$Res> implements $ProfilePar
   factory $GetMemberDetailParamsCopyWith(GetMemberDetailParams value, $Res Function(GetMemberDetailParams) _then) = _$GetMemberDetailParamsCopyWithImpl;
 @useResult
 $Res call({
- int memberId, String? token
+@JsonKey(name: 'id_customer') int memberId,@JsonKey(includeToJson: false) String? token
 });
 
 
@@ -515,13 +545,17 @@ as String?,
 }
 
 /// @nodoc
-
+@JsonSerializable(createFactory: false)
 
 class AddMemberToLocalParams implements ProfileParams {
-  const AddMemberToLocalParams({required this.member});
+  const AddMemberToLocalParams({@JsonKey(includeToJson: false, includeFromJson: false) required this.member, final  String? $type}): $type = $type ?? 'addMemberToLocal';
   
 
- final  Member member;
+@JsonKey(includeToJson: false, includeFromJson: false) final  Member member;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of ProfileParams
 /// with the given fields replaced by the non-null parameter values.
@@ -529,14 +563,17 @@ class AddMemberToLocalParams implements ProfileParams {
 @pragma('vm:prefer-inline')
 $AddMemberToLocalParamsCopyWith<AddMemberToLocalParams> get copyWith => _$AddMemberToLocalParamsCopyWithImpl<AddMemberToLocalParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$AddMemberToLocalParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is AddMemberToLocalParams&&(identical(other.member, member) || other.member == member));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,member);
 
@@ -553,7 +590,7 @@ abstract mixin class $AddMemberToLocalParamsCopyWith<$Res> implements $ProfilePa
   factory $AddMemberToLocalParamsCopyWith(AddMemberToLocalParams value, $Res Function(AddMemberToLocalParams) _then) = _$AddMemberToLocalParamsCopyWithImpl;
 @useResult
 $Res call({
- Member member
+@JsonKey(includeToJson: false, includeFromJson: false) Member member
 });
 
 
@@ -590,13 +627,17 @@ $MemberCopyWith<$Res> get member {
 }
 
 /// @nodoc
-
+@JsonSerializable(createFactory: false)
 
 class UpdateMemberInLocalParams implements ProfileParams {
-  const UpdateMemberInLocalParams({required this.member});
+  const UpdateMemberInLocalParams({@JsonKey(includeToJson: false, includeFromJson: false) required this.member, final  String? $type}): $type = $type ?? 'updateMemberInLocal';
   
 
- final  Member member;
+@JsonKey(includeToJson: false, includeFromJson: false) final  Member member;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of ProfileParams
 /// with the given fields replaced by the non-null parameter values.
@@ -604,14 +645,17 @@ class UpdateMemberInLocalParams implements ProfileParams {
 @pragma('vm:prefer-inline')
 $UpdateMemberInLocalParamsCopyWith<UpdateMemberInLocalParams> get copyWith => _$UpdateMemberInLocalParamsCopyWithImpl<UpdateMemberInLocalParams>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$UpdateMemberInLocalParamsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateMemberInLocalParams&&(identical(other.member, member) || other.member == member));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,member);
 
@@ -628,7 +672,7 @@ abstract mixin class $UpdateMemberInLocalParamsCopyWith<$Res> implements $Profil
   factory $UpdateMemberInLocalParamsCopyWith(UpdateMemberInLocalParams value, $Res Function(UpdateMemberInLocalParams) _then) = _$UpdateMemberInLocalParamsCopyWithImpl;
 @useResult
 $Res call({
- Member member
+@JsonKey(includeToJson: false, includeFromJson: false) Member member
 });
 
 

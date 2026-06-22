@@ -6,11 +6,10 @@ import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/home/data/models/home_data_model.dart';
 
+import 'package:patient_portal/feature/home/domain/usecases/params/home_params.dart';
+
 abstract class HomeRemoteDataSource {
-  Future<HomeDataModel> getHomeData({
-    required String token,
-    required int idBusunit,
-  });
+  Future<HomeDataModel> getHomeData(HomeParams params);
 }
 
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
@@ -19,17 +18,19 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   HomeRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<HomeDataModel> getHomeData({
-    required String token,
-    required int idBusunit,
-  }) async {
+  Future<HomeDataModel> getHomeData(HomeParams params) async {
     try {
-      final data = serviceRequest(type: 'PP0038', content: {'id_client': 1});
+      final p = params.maybeMap(
+        getHomeData: (value) => value,
+        orElse: () => throw ServerException('Invalid params'),
+      );
+
+      final data = serviceRequest(type: 'PP0038', content: p.toJson());
 
       final response = await client.post(
         url: ConstantUrls.serviceUrl,
         body: data,
-        token: token,
+        token: p.token,
       );
 
       final responseData = decodeResponseData(response.data);

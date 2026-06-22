@@ -6,12 +6,10 @@ import 'package:patient_portal/core/resources/api_helpers.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/documents/data/models/documents_model/document_model.dart';
 
+import 'package:patient_portal/feature/documents/domain/usecases/params/documents_params.dart';
+
 abstract class DocumentsRemoteDataSource {
-  Future<List<DocumentModel>> getDocuments({
-    required int memberId,
-    required String mobileNumber,
-    required String token,
-  });
+  Future<List<DocumentModel>> getDocuments(DocumentsParams params);
 }
 
 class DocumentsRemoteDataSourceImpl implements DocumentsRemoteDataSource {
@@ -20,21 +18,19 @@ class DocumentsRemoteDataSourceImpl implements DocumentsRemoteDataSource {
   DocumentsRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<List<DocumentModel>> getDocuments({
-    required int memberId,
-    required String mobileNumber,
-    required String token,
-  }) async {
+  Future<List<DocumentModel>> getDocuments(DocumentsParams params) async {
     try {
-      final data = serviceRequest(
-        type: 'PP0027',
-        content: {'id_customer': memberId, 'mobile_number': mobileNumber},
+      final p = params.maybeMap(
+        getDocuments: (value) => value,
+        orElse: () => throw ServerException('Invalid params'),
       );
+
+      final data = serviceRequest(type: 'PP0027', content: p.toJson());
 
       final response = await client.post(
         url: ConstantUrls.serviceUrl,
         body: data,
-        token: token,
+        token: p.token,
       );
 
       final List<dynamic> responseData = decodeResponseData(response.data);

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:json_annotation/json_annotation.dart';
+
 Map<String, dynamic> serviceRequest({required String type, Object? content}) {
   return {
     'type': type,
@@ -32,4 +34,12 @@ bool boolFromJson(Object? value) {
   if (value is bool) return value;
   final normalized = value?.toString().toLowerCase();
   return normalized == 'true' || normalized == '1';
+}
+
+class IgnoreConverter<T> implements JsonConverter<T, Object?> {
+  const IgnoreConverter();
+  @override
+  T fromJson(Object? json) => null as T;
+  @override
+  Object? toJson(T object) => null;
 }
