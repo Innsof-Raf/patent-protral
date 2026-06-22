@@ -14,9 +14,9 @@ _MyAppointmentModel _$MyAppointmentModelFromJson(Map<String, dynamic> json) =>
       email: json['email'] == null ? '' : stringFromJson(json['email']),
       mobileNumber: stringFromJson(_readMobileNumber(json, 'mobileNumber')),
       departName: json['dept_name'] as String? ?? '',
-      doctorId: json['employee_id'] == null
+      doctorId: _readDoctorId(json, 'doctorId') == null
           ? ''
-          : stringFromJson(json['employee_id']),
+          : stringFromJson(_readDoctorId(json, 'doctorId')),
       doctorName: json['employee_name'] as String? ?? '',
       speciality: json['speciality'] as String? ?? '',
       branch: json['branch'] as String? ?? '',
@@ -28,6 +28,9 @@ _MyAppointmentModel _$MyAppointmentModelFromJson(Map<String, dynamic> json) =>
       idDoctor: json['id_employee'] == null
           ? 0
           : intFromJson(json['id_employee']),
+      status: json['appmnt_status'] as String? ?? '',
+      tokenNo: json['token_no'] as String? ?? '',
+      stars: json['stars'] == null ? 0 : intFromJson(json['stars']),
       isCanceling: json['isCanceling'] as bool? ?? false,
     );
 
@@ -39,7 +42,7 @@ Map<String, dynamic> _$MyAppointmentModelToJson(_MyAppointmentModel instance) =>
       'email': instance.email,
       'mobileNumber': instance.mobileNumber,
       'dept_name': instance.departName,
-      'employee_id': instance.doctorId,
+      'doctorId': instance.doctorId,
       'employee_name': instance.doctorName,
       'speciality': instance.speciality,
       'branch': instance.branch,
@@ -47,5 +50,8 @@ Map<String, dynamic> _$MyAppointmentModelToJson(_MyAppointmentModel instance) =>
       'busunit_name': instance.busUnitName,
       'Appmnt_Dttm': instance.appointmentDateTime.toIso8601String(),
       'id_employee': instance.idDoctor,
+      'appmnt_status': instance.status,
+      'token_no': instance.tokenNo,
+      'stars': instance.stars,
       'isCanceling': instance.isCanceling,
     };

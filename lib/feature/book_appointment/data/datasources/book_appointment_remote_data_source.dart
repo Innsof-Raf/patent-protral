@@ -98,22 +98,39 @@ class BookAppointmentRemoteDataSourceImpl
         token: token,
       );
 
-      final Map<String, dynamic> responseData = decodeResponseData(
-        response.data,
-      );
-      if (responseData['status'] == true ||
-          responseData['status'] == '1' ||
-          responseData['status'] == 1 ||
-          responseData.containsKey('data')) {
-        final appointmentData = responseData['data'] is Map
-            ? responseData['data']
-            : responseData;
-        return AppointmentModel.fromJson(
-          appointmentData as Map<String, dynamic>,
-        );
-      } else {
-        throw ServerException('Appointment Booking Failed');
+      final responseData = decodeResponseData(response.data);
+
+      if (responseData is Map) {
+        if (responseData['status'] == true ||
+            responseData['status'] == '1' ||
+            responseData['status'] == 1 ||
+            responseData.containsKey('data')) {
+          final appointmentData = responseData['data'] is Map
+              ? responseData['data']
+              : responseData;
+
+          if (appointmentData is Map<String, dynamic>) {
+            return AppointmentModel.fromJson(appointmentData);
+          } else if (appointmentData is Map) {
+            return AppointmentModel.fromJson(
+              Map<String, dynamic>.from(appointmentData),
+            );
+          }
+        }
+      } else if (responseData is List && responseData.isNotEmpty) {
+        final firstItem = responseData.first;
+        if (firstItem is Map<String, dynamic>) {
+          return AppointmentModel.fromJson(firstItem);
+        } else if (firstItem is Map) {
+          return AppointmentModel.fromJson(
+            Map<String, dynamic>.from(firstItem),
+          );
+        }
       }
+
+      throw ServerException(
+        responseData is String ? responseData : 'Appointment Booking Failed',
+      );
     } on ServerException {
       rethrow;
     } catch (e, stackTrace) {
@@ -144,22 +161,39 @@ class BookAppointmentRemoteDataSourceImpl
         token: token,
       );
 
-      final Map<String, dynamic> responseData = decodeResponseData(
-        response.data,
-      );
-      if (responseData['status'] == true ||
-          responseData['status'] == 1 ||
-          responseData['status'] == '1' ||
-          responseData.containsKey('data')) {
-        final appointmentData = responseData['data'] is Map
-            ? responseData['data']
-            : responseData;
-        return AppointmentModel.fromJson(
-          appointmentData as Map<String, dynamic>,
-        );
-      } else {
-        throw ServerException('Reschedule Appointment Failed');
+      final responseData = decodeResponseData(response.data);
+
+      if (responseData is Map) {
+        if (responseData['status'] == true ||
+            responseData['status'] == 1 ||
+            responseData['status'] == '1' ||
+            responseData.containsKey('data')) {
+          final appointmentData = responseData['data'] is Map
+              ? responseData['data']
+              : responseData;
+
+          if (appointmentData is Map<String, dynamic>) {
+            return AppointmentModel.fromJson(appointmentData);
+          } else if (appointmentData is Map) {
+            return AppointmentModel.fromJson(
+              Map<String, dynamic>.from(appointmentData),
+            );
+          }
+        }
+      } else if (responseData is List && responseData.isNotEmpty) {
+        final firstItem = responseData.first;
+        if (firstItem is Map<String, dynamic>) {
+          return AppointmentModel.fromJson(firstItem);
+        } else if (firstItem is Map) {
+          return AppointmentModel.fromJson(
+            Map<String, dynamic>.from(firstItem),
+          );
+        }
       }
+
+      throw ServerException(
+        responseData is String ? responseData : 'Reschedule Appointment Failed',
+      );
     } on ServerException {
       rethrow;
     } catch (e, stackTrace) {

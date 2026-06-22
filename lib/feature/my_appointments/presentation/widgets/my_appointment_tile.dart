@@ -160,6 +160,9 @@ class MyAppointmentTile extends StatelessWidget {
   }
 
   String get _doctorImageUrl {
+    if (appointment.profileUrl.startsWith('http')) {
+      return appointment.profileUrl;
+    }
     return '${ConstantUrls.doctorImageUrl}/${appointment.idDoctor}/${appointment.profileUrl}';
   }
 
@@ -262,13 +265,57 @@ class MyAppointmentTile extends StatelessWidget {
   }
 
   Member? _findMember(BuildContext context) {
-    final members =
-        context.read<UserBloc>().state.user?.members ?? const <Member>[];
+    final user = context.read<UserBloc>().state.user;
+    if (user == null) return null;
+
+    final members = user.members;
+
+    // 1. Try to find by ID matching
+    if (appointment.memberId != 0) {
+      for (final member in members) {
+        if (member.id == appointment.memberId) {
+          return member;
+        }
+      }
+    }
+
+    // 2. Try to find by name matching (fallback if IDs differ between services)
+    final appointmentMemberName = appointment.memberName.trim();
+    final mainUserName = '${user.firstName} ${user.lastName}'.trim();
+
+    final targetName = appointmentMemberName.isEmpty
+        ? mainUserName
+        : appointmentMemberName;
+
     for (final member in members) {
-      if (member.id == appointment.memberId) {
+      if (member.name.trim().toLowerCase() == targetName.toLowerCase()) {
         return member;
       }
     }
+
+    // 3. Fallback for "Self"
+    if (appointmentMemberName.isEmpty ||
+        appointmentMemberName.toLowerCase() == mainUserName.toLowerCase() ||
+        (appointment.memberId != 0 && appointment.memberId == user.idMember)) {
+      for (final member in members) {
+        if (member.id == user.idMember) {
+          return member;
+        }
+      }
+
+      // If still not found, return a synthetic member for the primary user
+      return Member(
+        id: appointment.memberId != 0 ? appointment.memberId : user.idMember,
+        name: mainUserName,
+        age: '',
+        nationalId: '',
+        isInsurance: false,
+        isInsuranceExpired: false,
+        mobileNo: user.mobileNumber,
+        emailId: user.emailId,
+      );
+    }
+
     return null;
   }
 

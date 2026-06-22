@@ -20,7 +20,7 @@ sealed class MyAppointmentModel with _$MyAppointmentModel {
     required String mobileNumber,
     @Default('') @JsonKey(name: 'dept_name') String departName,
     @Default('')
-    @JsonKey(name: 'employee_id', fromJson: stringFromJson)
+    @JsonKey(readValue: _readDoctorId, fromJson: stringFromJson)
     String doctorId,
     @Default('') @JsonKey(name: 'employee_name') String doctorName,
     @Default('') String speciality,
@@ -36,6 +36,9 @@ sealed class MyAppointmentModel with _$MyAppointmentModel {
     @Default(0)
     @JsonKey(name: 'id_employee', fromJson: intFromJson)
     int idDoctor,
+    @Default('') @JsonKey(name: 'appmnt_status') String status,
+    @Default('') @JsonKey(name: 'token_no') String tokenNo,
+    @Default(0) @JsonKey(fromJson: intFromJson) int stars,
     @Default(false) bool isCanceling,
   }) = _MyAppointmentModel;
 
@@ -57,20 +60,30 @@ sealed class MyAppointmentModel with _$MyAppointmentModel {
     busUnitName: busUnitName,
     appointmentDateTime: appointmentDateTime,
     idDoctor: idDoctor,
+    status: status,
+    tokenNo: tokenNo,
+    stars: stars,
     isCanceling: isCanceling,
   );
 }
 
 Object? _readId(Map json, String key) =>
     json['Id'] ?? json['id'] ?? json['id_cons'] ?? json['app_id'];
+
 Object? _readMemberId(Map json, String key) =>
-    json['id_customer'] ?? json['ID_CUSTOMER'];
+    json['id_customer'] ?? json['ID_CUSTOMER'] ?? json['ID_Customer'];
+
 Object? _readMemberName(Map json, String key) =>
-    json['customer_name'] ?? json['Customer_Name'];
+    json['customer_name'] ?? json['Customer_Name'] ?? json['Member_Name'];
+
 Object? _readMobileNumber(Map json, String key) =>
     json['mobile_no'] ?? json['Mobile_No'] ?? json['Patient_MobileNo'];
+
 Object? _readAppointmentDateTime(Map json, String key) =>
     json['appmnt_dttm'] ?? json['Appmnt_Dttm'];
+
+Object? _readDoctorId(Map json, String key) =>
+    json['employee_id'] ?? json['employee_Id'] ?? json['appmt_id'];
 
 DateTime _dateTimeFromJson(Object? value) =>
     DateTime.tryParse(value?.toString() ?? '') ??

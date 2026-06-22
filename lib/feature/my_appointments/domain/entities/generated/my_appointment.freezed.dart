@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MyAppointment {
 
- int get id; int get memberId; String get memberName; String get email; String get mobileNumber; String get departName; String get doctorId; String get doctorName; String get speciality; String get branch; String get profileUrl; String get busUnitName; DateTime get appointmentDateTime; int get idDoctor; bool get isCanceling;
+ int get id; int get memberId; String get memberName; String get email; String get mobileNumber; String get departName; String get doctorId; String get doctorName; String get speciality; String get branch; String get profileUrl; String get busUnitName; DateTime get appointmentDateTime; int get idDoctor; String get status; String get tokenNo; int get stars; bool get isCanceling;
 /// Create a copy of MyAppointment
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $MyAppointmentCopyWith<MyAppointment> get copyWith => _$MyAppointmentCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MyAppointment&&(identical(other.id, id) || other.id == id)&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.memberName, memberName) || other.memberName == memberName)&&(identical(other.email, email) || other.email == email)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.departName, departName) || other.departName == departName)&&(identical(other.doctorId, doctorId) || other.doctorId == doctorId)&&(identical(other.doctorName, doctorName) || other.doctorName == doctorName)&&(identical(other.speciality, speciality) || other.speciality == speciality)&&(identical(other.branch, branch) || other.branch == branch)&&(identical(other.profileUrl, profileUrl) || other.profileUrl == profileUrl)&&(identical(other.busUnitName, busUnitName) || other.busUnitName == busUnitName)&&(identical(other.appointmentDateTime, appointmentDateTime) || other.appointmentDateTime == appointmentDateTime)&&(identical(other.idDoctor, idDoctor) || other.idDoctor == idDoctor)&&(identical(other.isCanceling, isCanceling) || other.isCanceling == isCanceling));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MyAppointment&&(identical(other.id, id) || other.id == id)&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.memberName, memberName) || other.memberName == memberName)&&(identical(other.email, email) || other.email == email)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.departName, departName) || other.departName == departName)&&(identical(other.doctorId, doctorId) || other.doctorId == doctorId)&&(identical(other.doctorName, doctorName) || other.doctorName == doctorName)&&(identical(other.speciality, speciality) || other.speciality == speciality)&&(identical(other.branch, branch) || other.branch == branch)&&(identical(other.profileUrl, profileUrl) || other.profileUrl == profileUrl)&&(identical(other.busUnitName, busUnitName) || other.busUnitName == busUnitName)&&(identical(other.appointmentDateTime, appointmentDateTime) || other.appointmentDateTime == appointmentDateTime)&&(identical(other.idDoctor, idDoctor) || other.idDoctor == idDoctor)&&(identical(other.status, status) || other.status == status)&&(identical(other.tokenNo, tokenNo) || other.tokenNo == tokenNo)&&(identical(other.stars, stars) || other.stars == stars)&&(identical(other.isCanceling, isCanceling) || other.isCanceling == isCanceling));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,memberId,memberName,email,mobileNumber,departName,doctorId,doctorName,speciality,branch,profileUrl,busUnitName,appointmentDateTime,idDoctor,isCanceling);
+int get hashCode => Object.hash(runtimeType,id,memberId,memberName,email,mobileNumber,departName,doctorId,doctorName,speciality,branch,profileUrl,busUnitName,appointmentDateTime,idDoctor,status,tokenNo,stars,isCanceling);
 
 @override
 String toString() {
-  return 'MyAppointment(id: $id, memberId: $memberId, memberName: $memberName, email: $email, mobileNumber: $mobileNumber, departName: $departName, doctorId: $doctorId, doctorName: $doctorName, speciality: $speciality, branch: $branch, profileUrl: $profileUrl, busUnitName: $busUnitName, appointmentDateTime: $appointmentDateTime, idDoctor: $idDoctor, isCanceling: $isCanceling)';
+  return 'MyAppointment(id: $id, memberId: $memberId, memberName: $memberName, email: $email, mobileNumber: $mobileNumber, departName: $departName, doctorId: $doctorId, doctorName: $doctorName, speciality: $speciality, branch: $branch, profileUrl: $profileUrl, busUnitName: $busUnitName, appointmentDateTime: $appointmentDateTime, idDoctor: $idDoctor, status: $status, tokenNo: $tokenNo, stars: $stars, isCanceling: $isCanceling)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $MyAppointmentCopyWith<$Res>  {
   factory $MyAppointmentCopyWith(MyAppointment value, $Res Function(MyAppointment) _then) = _$MyAppointmentCopyWithImpl;
 @useResult
 $Res call({
- int id, int memberId, String memberName, String email, String mobileNumber, String departName, String doctorId, String doctorName, String speciality, String branch, String profileUrl, String busUnitName, DateTime appointmentDateTime, int idDoctor, bool isCanceling
+ int id, int memberId, String memberName, String email, String mobileNumber, String departName, String doctorId, String doctorName, String speciality, String branch, String profileUrl, String busUnitName, DateTime appointmentDateTime, int idDoctor, String status, String tokenNo, int stars, bool isCanceling
 });
 
 
@@ -62,7 +62,7 @@ class _$MyAppointmentCopyWithImpl<$Res>
 
 /// Create a copy of MyAppointment
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? memberId = null,Object? memberName = null,Object? email = null,Object? mobileNumber = null,Object? departName = null,Object? doctorId = null,Object? doctorName = null,Object? speciality = null,Object? branch = null,Object? profileUrl = null,Object? busUnitName = null,Object? appointmentDateTime = null,Object? idDoctor = null,Object? isCanceling = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? memberId = null,Object? memberName = null,Object? email = null,Object? mobileNumber = null,Object? departName = null,Object? doctorId = null,Object? doctorName = null,Object? speciality = null,Object? branch = null,Object? profileUrl = null,Object? busUnitName = null,Object? appointmentDateTime = null,Object? idDoctor = null,Object? status = null,Object? tokenNo = null,Object? stars = null,Object? isCanceling = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
@@ -78,6 +78,9 @@ as String,profileUrl: null == profileUrl ? _self.profileUrl : profileUrl // igno
 as String,busUnitName: null == busUnitName ? _self.busUnitName : busUnitName // ignore: cast_nullable_to_non_nullable
 as String,appointmentDateTime: null == appointmentDateTime ? _self.appointmentDateTime : appointmentDateTime // ignore: cast_nullable_to_non_nullable
 as DateTime,idDoctor: null == idDoctor ? _self.idDoctor : idDoctor // ignore: cast_nullable_to_non_nullable
+as int,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,tokenNo: null == tokenNo ? _self.tokenNo : tokenNo // ignore: cast_nullable_to_non_nullable
+as String,stars: null == stars ? _self.stars : stars // ignore: cast_nullable_to_non_nullable
 as int,isCanceling: null == isCanceling ? _self.isCanceling : isCanceling // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
@@ -161,10 +164,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int memberId,  String memberName,  String email,  String mobileNumber,  String departName,  String doctorId,  String doctorName,  String speciality,  String branch,  String profileUrl,  String busUnitName,  DateTime appointmentDateTime,  int idDoctor,  bool isCanceling)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int memberId,  String memberName,  String email,  String mobileNumber,  String departName,  String doctorId,  String doctorName,  String speciality,  String branch,  String profileUrl,  String busUnitName,  DateTime appointmentDateTime,  int idDoctor,  String status,  String tokenNo,  int stars,  bool isCanceling)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MyAppointment() when $default != null:
-return $default(_that.id,_that.memberId,_that.memberName,_that.email,_that.mobileNumber,_that.departName,_that.doctorId,_that.doctorName,_that.speciality,_that.branch,_that.profileUrl,_that.busUnitName,_that.appointmentDateTime,_that.idDoctor,_that.isCanceling);case _:
+return $default(_that.id,_that.memberId,_that.memberName,_that.email,_that.mobileNumber,_that.departName,_that.doctorId,_that.doctorName,_that.speciality,_that.branch,_that.profileUrl,_that.busUnitName,_that.appointmentDateTime,_that.idDoctor,_that.status,_that.tokenNo,_that.stars,_that.isCanceling);case _:
   return orElse();
 
 }
@@ -182,10 +185,10 @@ return $default(_that.id,_that.memberId,_that.memberName,_that.email,_that.mobil
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int memberId,  String memberName,  String email,  String mobileNumber,  String departName,  String doctorId,  String doctorName,  String speciality,  String branch,  String profileUrl,  String busUnitName,  DateTime appointmentDateTime,  int idDoctor,  bool isCanceling)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int memberId,  String memberName,  String email,  String mobileNumber,  String departName,  String doctorId,  String doctorName,  String speciality,  String branch,  String profileUrl,  String busUnitName,  DateTime appointmentDateTime,  int idDoctor,  String status,  String tokenNo,  int stars,  bool isCanceling)  $default,) {final _that = this;
 switch (_that) {
 case _MyAppointment():
-return $default(_that.id,_that.memberId,_that.memberName,_that.email,_that.mobileNumber,_that.departName,_that.doctorId,_that.doctorName,_that.speciality,_that.branch,_that.profileUrl,_that.busUnitName,_that.appointmentDateTime,_that.idDoctor,_that.isCanceling);}
+return $default(_that.id,_that.memberId,_that.memberName,_that.email,_that.mobileNumber,_that.departName,_that.doctorId,_that.doctorName,_that.speciality,_that.branch,_that.profileUrl,_that.busUnitName,_that.appointmentDateTime,_that.idDoctor,_that.status,_that.tokenNo,_that.stars,_that.isCanceling);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -199,10 +202,10 @@ return $default(_that.id,_that.memberId,_that.memberName,_that.email,_that.mobil
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int memberId,  String memberName,  String email,  String mobileNumber,  String departName,  String doctorId,  String doctorName,  String speciality,  String branch,  String profileUrl,  String busUnitName,  DateTime appointmentDateTime,  int idDoctor,  bool isCanceling)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int memberId,  String memberName,  String email,  String mobileNumber,  String departName,  String doctorId,  String doctorName,  String speciality,  String branch,  String profileUrl,  String busUnitName,  DateTime appointmentDateTime,  int idDoctor,  String status,  String tokenNo,  int stars,  bool isCanceling)?  $default,) {final _that = this;
 switch (_that) {
 case _MyAppointment() when $default != null:
-return $default(_that.id,_that.memberId,_that.memberName,_that.email,_that.mobileNumber,_that.departName,_that.doctorId,_that.doctorName,_that.speciality,_that.branch,_that.profileUrl,_that.busUnitName,_that.appointmentDateTime,_that.idDoctor,_that.isCanceling);case _:
+return $default(_that.id,_that.memberId,_that.memberName,_that.email,_that.mobileNumber,_that.departName,_that.doctorId,_that.doctorName,_that.speciality,_that.branch,_that.profileUrl,_that.busUnitName,_that.appointmentDateTime,_that.idDoctor,_that.status,_that.tokenNo,_that.stars,_that.isCanceling);case _:
   return null;
 
 }
@@ -214,7 +217,7 @@ return $default(_that.id,_that.memberId,_that.memberName,_that.email,_that.mobil
 
 
 class _MyAppointment implements MyAppointment {
-  const _MyAppointment({required this.id, required this.memberId, required this.memberName, required this.email, required this.mobileNumber, required this.departName, required this.doctorId, required this.doctorName, required this.speciality, required this.branch, required this.profileUrl, required this.busUnitName, required this.appointmentDateTime, required this.idDoctor, this.isCanceling = false});
+  const _MyAppointment({required this.id, required this.memberId, required this.memberName, required this.email, required this.mobileNumber, required this.departName, required this.doctorId, required this.doctorName, required this.speciality, required this.branch, required this.profileUrl, required this.busUnitName, required this.appointmentDateTime, required this.idDoctor, this.status = '', this.tokenNo = '', this.stars = 0, this.isCanceling = false});
   
 
 @override final  int id;
@@ -231,6 +234,9 @@ class _MyAppointment implements MyAppointment {
 @override final  String busUnitName;
 @override final  DateTime appointmentDateTime;
 @override final  int idDoctor;
+@override@JsonKey() final  String status;
+@override@JsonKey() final  String tokenNo;
+@override@JsonKey() final  int stars;
 @override@JsonKey() final  bool isCanceling;
 
 /// Create a copy of MyAppointment
@@ -243,16 +249,16 @@ _$MyAppointmentCopyWith<_MyAppointment> get copyWith => __$MyAppointmentCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MyAppointment&&(identical(other.id, id) || other.id == id)&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.memberName, memberName) || other.memberName == memberName)&&(identical(other.email, email) || other.email == email)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.departName, departName) || other.departName == departName)&&(identical(other.doctorId, doctorId) || other.doctorId == doctorId)&&(identical(other.doctorName, doctorName) || other.doctorName == doctorName)&&(identical(other.speciality, speciality) || other.speciality == speciality)&&(identical(other.branch, branch) || other.branch == branch)&&(identical(other.profileUrl, profileUrl) || other.profileUrl == profileUrl)&&(identical(other.busUnitName, busUnitName) || other.busUnitName == busUnitName)&&(identical(other.appointmentDateTime, appointmentDateTime) || other.appointmentDateTime == appointmentDateTime)&&(identical(other.idDoctor, idDoctor) || other.idDoctor == idDoctor)&&(identical(other.isCanceling, isCanceling) || other.isCanceling == isCanceling));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MyAppointment&&(identical(other.id, id) || other.id == id)&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.memberName, memberName) || other.memberName == memberName)&&(identical(other.email, email) || other.email == email)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.departName, departName) || other.departName == departName)&&(identical(other.doctorId, doctorId) || other.doctorId == doctorId)&&(identical(other.doctorName, doctorName) || other.doctorName == doctorName)&&(identical(other.speciality, speciality) || other.speciality == speciality)&&(identical(other.branch, branch) || other.branch == branch)&&(identical(other.profileUrl, profileUrl) || other.profileUrl == profileUrl)&&(identical(other.busUnitName, busUnitName) || other.busUnitName == busUnitName)&&(identical(other.appointmentDateTime, appointmentDateTime) || other.appointmentDateTime == appointmentDateTime)&&(identical(other.idDoctor, idDoctor) || other.idDoctor == idDoctor)&&(identical(other.status, status) || other.status == status)&&(identical(other.tokenNo, tokenNo) || other.tokenNo == tokenNo)&&(identical(other.stars, stars) || other.stars == stars)&&(identical(other.isCanceling, isCanceling) || other.isCanceling == isCanceling));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,memberId,memberName,email,mobileNumber,departName,doctorId,doctorName,speciality,branch,profileUrl,busUnitName,appointmentDateTime,idDoctor,isCanceling);
+int get hashCode => Object.hash(runtimeType,id,memberId,memberName,email,mobileNumber,departName,doctorId,doctorName,speciality,branch,profileUrl,busUnitName,appointmentDateTime,idDoctor,status,tokenNo,stars,isCanceling);
 
 @override
 String toString() {
-  return 'MyAppointment(id: $id, memberId: $memberId, memberName: $memberName, email: $email, mobileNumber: $mobileNumber, departName: $departName, doctorId: $doctorId, doctorName: $doctorName, speciality: $speciality, branch: $branch, profileUrl: $profileUrl, busUnitName: $busUnitName, appointmentDateTime: $appointmentDateTime, idDoctor: $idDoctor, isCanceling: $isCanceling)';
+  return 'MyAppointment(id: $id, memberId: $memberId, memberName: $memberName, email: $email, mobileNumber: $mobileNumber, departName: $departName, doctorId: $doctorId, doctorName: $doctorName, speciality: $speciality, branch: $branch, profileUrl: $profileUrl, busUnitName: $busUnitName, appointmentDateTime: $appointmentDateTime, idDoctor: $idDoctor, status: $status, tokenNo: $tokenNo, stars: $stars, isCanceling: $isCanceling)';
 }
 
 
@@ -263,7 +269,7 @@ abstract mixin class _$MyAppointmentCopyWith<$Res> implements $MyAppointmentCopy
   factory _$MyAppointmentCopyWith(_MyAppointment value, $Res Function(_MyAppointment) _then) = __$MyAppointmentCopyWithImpl;
 @override @useResult
 $Res call({
- int id, int memberId, String memberName, String email, String mobileNumber, String departName, String doctorId, String doctorName, String speciality, String branch, String profileUrl, String busUnitName, DateTime appointmentDateTime, int idDoctor, bool isCanceling
+ int id, int memberId, String memberName, String email, String mobileNumber, String departName, String doctorId, String doctorName, String speciality, String branch, String profileUrl, String busUnitName, DateTime appointmentDateTime, int idDoctor, String status, String tokenNo, int stars, bool isCanceling
 });
 
 
@@ -280,7 +286,7 @@ class __$MyAppointmentCopyWithImpl<$Res>
 
 /// Create a copy of MyAppointment
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? memberId = null,Object? memberName = null,Object? email = null,Object? mobileNumber = null,Object? departName = null,Object? doctorId = null,Object? doctorName = null,Object? speciality = null,Object? branch = null,Object? profileUrl = null,Object? busUnitName = null,Object? appointmentDateTime = null,Object? idDoctor = null,Object? isCanceling = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? memberId = null,Object? memberName = null,Object? email = null,Object? mobileNumber = null,Object? departName = null,Object? doctorId = null,Object? doctorName = null,Object? speciality = null,Object? branch = null,Object? profileUrl = null,Object? busUnitName = null,Object? appointmentDateTime = null,Object? idDoctor = null,Object? status = null,Object? tokenNo = null,Object? stars = null,Object? isCanceling = null,}) {
   return _then(_MyAppointment(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
@@ -296,6 +302,9 @@ as String,profileUrl: null == profileUrl ? _self.profileUrl : profileUrl // igno
 as String,busUnitName: null == busUnitName ? _self.busUnitName : busUnitName // ignore: cast_nullable_to_non_nullable
 as String,appointmentDateTime: null == appointmentDateTime ? _self.appointmentDateTime : appointmentDateTime // ignore: cast_nullable_to_non_nullable
 as DateTime,idDoctor: null == idDoctor ? _self.idDoctor : idDoctor // ignore: cast_nullable_to_non_nullable
+as int,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,tokenNo: null == tokenNo ? _self.tokenNo : tokenNo // ignore: cast_nullable_to_non_nullable
+as String,stars: null == stars ? _self.stars : stars // ignore: cast_nullable_to_non_nullable
 as int,isCanceling: null == isCanceling ? _self.isCanceling : isCanceling // ignore: cast_nullable_to_non_nullable
 as bool,
   ));

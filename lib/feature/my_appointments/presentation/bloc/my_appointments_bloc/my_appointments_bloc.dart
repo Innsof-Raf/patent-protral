@@ -63,8 +63,7 @@ class MyAppointmentsBloc
                 ),
               );
             }
-            if (appointment.appointmentDateTime == DateTime.now() ||
-                appointment.appointmentDateTime.isAfter(DateTime.now())) {
+            if (!appointment.appointmentDateTime.isBefore(DateTime.now())) {
               notConsultedAppointments.add(appointment);
               if (!monthTimelineListOfNotConsulted.contains(
                 DateTime(
@@ -152,8 +151,7 @@ class MyAppointmentsBloc
             ),
           );
         }
-        if (appointment.appointmentDateTime == DateTime.now() ||
-            appointment.appointmentDateTime.isAfter(DateTime.now())) {
+        if (!appointment.appointmentDateTime.isBefore(DateTime.now())) {
           notConsultedAppointments.add(appointment);
           if (!monthTimelineListOfNotConsulted.contains(
             DateTime(
@@ -193,6 +191,24 @@ class MyAppointmentsBloc
               return appointment;
             }
           }).toList(),
+          myNotConsultedAppointments: state.myNotConsultedAppointments.map((
+            appointment,
+          ) {
+            if (appointment.id == event.params.appointmentId) {
+              return appointment.copyWith(isCanceling: true);
+            } else {
+              return appointment;
+            }
+          }).toList(),
+          myConsultedAppointments: state.myConsultedAppointments.map((
+            appointment,
+          ) {
+            if (appointment.id == event.params.appointmentId) {
+              return appointment.copyWith(isCanceling: true);
+            } else {
+              return appointment;
+            }
+          }).toList(),
         ),
       );
       final Either<ErrorModel, Map> appointmentCancellationOptions =
@@ -202,7 +218,35 @@ class MyAppointmentsBloc
           );
       appointmentCancellationOptions.fold(
         (error) => emit(
-          state.copyWith(isAppointmentsCancellationFailed: false, error: error),
+          state.copyWith(
+            isAppointmentsCancellationFailed: true,
+            error: error,
+            myAppointments: state.myAppointments.map((appointment) {
+              if (appointment.id == event.params.appointmentId) {
+                return appointment.copyWith(isCanceling: false);
+              } else {
+                return appointment;
+              }
+            }).toList(),
+            myNotConsultedAppointments: state.myNotConsultedAppointments.map((
+              appointment,
+            ) {
+              if (appointment.id == event.params.appointmentId) {
+                return appointment.copyWith(isCanceling: false);
+              } else {
+                return appointment;
+              }
+            }).toList(),
+            myConsultedAppointments: state.myConsultedAppointments.map((
+              appointment,
+            ) {
+              if (appointment.id == event.params.appointmentId) {
+                return appointment.copyWith(isCanceling: false);
+              } else {
+                return appointment;
+              }
+            }).toList(),
+          ),
         ),
         (successResponse) {
           final List<MyAppointment> myAppointments = List.from(
@@ -210,50 +254,47 @@ class MyAppointmentsBloc
           );
 
           final List<DateTime> monthTimelineList = [];
+          final List<DateTime> monthTimelineListOfConsulted = [];
           final List<DateTime> monthTimelineListOfNotConsulted = [];
+          final List<MyAppointment> consultedAppointments = [];
           final List<MyAppointment> notConsultedAppointments = [];
+
           myAppointments.removeWhere(
             (appointment) => appointment.id == event.params.appointmentId,
           );
+
           for (MyAppointment appointment in myAppointments) {
-            if (!monthTimelineList.contains(
-              DateTime(
-                appointment.appointmentDateTime.year,
-                appointment.appointmentDateTime.month,
-              ),
-            )) {
-              monthTimelineList.add(
-                DateTime(
-                  appointment.appointmentDateTime.year,
-                  appointment.appointmentDateTime.month,
-                ),
-              );
+            final monthDate = DateTime(
+              appointment.appointmentDateTime.year,
+              appointment.appointmentDateTime.month,
+            );
+
+            if (!monthTimelineList.contains(monthDate)) {
+              monthTimelineList.add(monthDate);
             }
-            if (appointment.appointmentDateTime == DateTime.now() ||
-                appointment.appointmentDateTime.isAfter(DateTime.now())) {
+
+            if (!appointment.appointmentDateTime.isBefore(DateTime.now())) {
               notConsultedAppointments.add(appointment);
-              if (!monthTimelineListOfNotConsulted.contains(
-                DateTime(
-                  appointment.appointmentDateTime.year,
-                  appointment.appointmentDateTime.month,
-                ),
-              )) {
-                monthTimelineListOfNotConsulted.add(
-                  DateTime(
-                    appointment.appointmentDateTime.year,
-                    appointment.appointmentDateTime.month,
-                  ),
-                );
+              if (!monthTimelineListOfNotConsulted.contains(monthDate)) {
+                monthTimelineListOfNotConsulted.add(monthDate);
+              }
+            } else {
+              consultedAppointments.add(appointment);
+              if (!monthTimelineListOfConsulted.contains(monthDate)) {
+                monthTimelineListOfConsulted.add(monthDate);
               }
             }
           }
+
           return emit(
             state.copyWith(
               isAppointmentsCancellationSuccess: true,
-              monthTimelineListOfNotConsulted: monthTimelineListOfNotConsulted,
-              myNotConsultedAppointments: notConsultedAppointments,
               monthTimelineList: monthTimelineList,
+              monthTimelineListOfConsulted: monthTimelineListOfConsulted,
+              monthTimelineListOfNotConsulted: monthTimelineListOfNotConsulted,
               myAppointments: myAppointments,
+              myConsultedAppointments: consultedAppointments,
+              myNotConsultedAppointments: notConsultedAppointments,
             ),
           );
         },

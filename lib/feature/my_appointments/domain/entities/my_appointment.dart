@@ -19,6 +19,9 @@ sealed class MyAppointment with _$MyAppointment {
     required String busUnitName,
     required DateTime appointmentDateTime,
     required int idDoctor,
+    @Default('') String status,
+    @Default('') String tokenNo,
+    @Default(0) int stars,
     @Default(false) bool isCanceling,
   }) = _MyAppointment;
 }
