@@ -43,8 +43,8 @@ class TestReportButton extends StatelessWidget {
             : null,
         borderRadius: BorderRadius.circular(12),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-          constraints: const BoxConstraints(minWidth: 80),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          constraints: const BoxConstraints(minWidth: 72),
           decoration: BoxDecoration(
             color: isAvailable
                 ? theme.colorScheme.primaryContainer.withValues(alpha: 0.4)
@@ -68,17 +68,17 @@ class TestReportButton extends StatelessWidget {
                 size: 14,
                 color: isAvailable
                     ? theme.colorScheme.primary
-                    : theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
+                    : theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
               ),
               const SizedBox(width: 6),
               Text(
                 title,
                 style: theme.textTheme.labelLarge?.copyWith(
-                  fontWeight: isAvailable ? FontWeight.bold : FontWeight.normal,
+                  fontWeight: isAvailable ? FontWeight.bold : FontWeight.w600,
                   color: isAvailable
                       ? theme.colorScheme.primary
                       : theme.colorScheme.onSurfaceVariant.withValues(
-                          alpha: 0.5,
+                          alpha: 0.6,
                         ),
                 ),
               ),

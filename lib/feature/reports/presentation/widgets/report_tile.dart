@@ -70,14 +70,15 @@ class MyReportTile extends StatelessWidget {
                             ).format(report.appointmentDate),
                             style: theme.textTheme.bodySmall?.copyWith(
                               color: theme.colorScheme.onSurfaceVariant,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           const Gap(12),
                           Icon(
                             Icons.schedule_rounded,
                             size: 14,
-                            color: theme.colorScheme.onSurfaceVariant,
+                            color: theme.colorScheme.onSurfaceVariant
+                                .withValues(alpha: 0.7),
                           ),
                           const Gap(4),
                           Text(
@@ -86,6 +87,7 @@ class MyReportTile extends StatelessWidget {
                             ).format(report.appointmentDate),
                             style: theme.textTheme.bodySmall?.copyWith(
                               color: theme.colorScheme.onSurfaceVariant,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ],
@@ -97,7 +99,6 @@ class MyReportTile extends StatelessWidget {
             ),
           ),
           Container(
-            padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: theme.colorScheme.surfaceContainerHighest.withValues(
                 alpha: 0.2,
@@ -115,6 +116,7 @@ class MyReportTile extends StatelessWidget {
             ),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               physics: const BouncingScrollPhysics(),
               child: Row(
                 children: [
