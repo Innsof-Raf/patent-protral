@@ -38,5 +38,4 @@ sealed class AddMemberParams with _$AddMemberParams {
     @JsonKey(name: 'expire_date') required DateTime expireDate,
     @JsonKey(includeToJson: false) required String token,
   }) = _AddMemberUpdateInsuranceParams;
-
 }
