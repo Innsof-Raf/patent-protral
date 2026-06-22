@@ -50,8 +50,8 @@ class MyAppointmentTile extends StatelessWidget {
       ),
       child: Material(
         color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(24),
+        child: GestureDetector(
+          //borderRadius: BorderRadius.circular(24),
           onTap: () {},
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -78,7 +78,7 @@ class MyAppointmentTile extends StatelessWidget {
                           ),
                           const Gap(2),
                           Text(
-                            appointment.departName,
+                            '${appointment.departName}${appointment.branch.isNotEmpty && appointment.branch != '0' ? ' • ${appointment.branch}' : ''}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: theme.textTheme.bodySmall?.copyWith(
@@ -86,6 +86,26 @@ class MyAppointmentTile extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
+                          if (appointment.stars > 0) ...[
+                            const Gap(4),
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.star_rounded,
+                                  size: 14,
+                                  color: Colors.amber,
+                                ),
+                                const Gap(2),
+                                Text(
+                                  appointment.stars.toString(),
+                                  style: theme.textTheme.labelSmall?.copyWith(
+                                    fontWeight: FontWeight.w700,
+                                    color: colorScheme.onSurfaceVariant,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ],
                       ),
                     ),
@@ -97,7 +117,10 @@ class MyAppointmentTile extends StatelessWidget {
                 ),
                 const Gap(16),
                 Container(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 12,
+                  ),
                   decoration: BoxDecoration(
                     color: colorScheme.surfaceContainerHighest.withValues(
                       alpha: 0.3,
@@ -106,44 +129,81 @@ class MyAppointmentTile extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Icon(
-                        Icons.person_outline_rounded,
-                        size: 16,
-                        color: colorScheme.primary,
-                      ),
-                      const Gap(8),
-                      Expanded(
-                        child: Text(
-                          appointment.memberName.isEmpty
-                              ? AppStaticTexts.self
-                              : appointment.memberName,
-                          style: theme.textTheme.labelLarge?.copyWith(
-                            fontWeight: FontWeight.w800,
-                            color: colorScheme.onSurface,
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.person_outline_rounded,
+                            size: 16,
+                            color: colorScheme.primary,
                           ),
-                        ),
+                          const Gap(8),
+                          Text(
+                            appointment.memberName.isEmpty
+                                ? AppStaticTexts.self
+                                : appointment.memberName,
+                            style: theme.textTheme.labelLarge?.copyWith(
+                              fontWeight: FontWeight.w800,
+                              color: colorScheme.onSurface,
+                            ),
+                          ),
+                        ],
                       ),
+                      const Spacer(),
                       Container(
                         width: 1,
-                        height: 12,
-                        margin: const EdgeInsets.symmetric(horizontal: 12),
+                        height: 14,
                         color: colorScheme.outlineVariant,
                       ),
-                      Icon(
-                        Icons.access_time_rounded,
-                        size: 16,
-                        color: colorScheme.onSurfaceVariant,
+                      const Spacer(),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.access_time_rounded,
+                            size: 16,
+                            color: colorScheme.onSurfaceVariant,
+                          ),
+                          const Gap(6),
+                          Text(
+                            DateFormat(
+                              'dd MMM, hh:mm a',
+                            ).format(appointment.appointmentDateTime),
+                            style: theme.textTheme.labelLarge?.copyWith(
+                              color: colorScheme.onSurfaceVariant,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
                       ),
-                      const Gap(6),
-                      Text(
-                        DateFormat(
-                          'dd MMM, hh:mm a',
-                        ).format(appointment.appointmentDateTime),
-                        style: theme.textTheme.labelLarge?.copyWith(
-                          color: colorScheme.onSurfaceVariant,
-                          fontWeight: FontWeight.w600,
+                      if (appointment.tokenNo.isNotEmpty &&
+                          appointment.tokenNo != '0') ...[
+                        const Spacer(),
+                        Container(
+                          width: 1,
+                          height: 14,
+                          color: colorScheme.outlineVariant,
                         ),
-                      ),
+                        const Spacer(),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.confirmation_number_outlined,
+                              size: 16,
+                              color: colorScheme.onSurfaceVariant,
+                            ),
+                            const Gap(6),
+                            Text(
+                              appointment.tokenNo,
+                              style: theme.textTheme.labelLarge?.copyWith(
+                                color: colorScheme.onSurfaceVariant,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ],
                   ),
                 ),
