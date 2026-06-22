@@ -6,12 +6,12 @@ import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/feature_header.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/delete_member_bloc/delete_member_bloc.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/member_search_bloc/member_search_bloc.dart';
 import 'package:patient_portal/feature/members/presentation/widgets/deletable_member_tile.dart';
-import 'package:patient_portal/feature/members/presentation/widgets/members_header.dart';
 import 'package:patient_portal/feature/members/presentation/widgets/members_state_view.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -145,7 +145,13 @@ class _MembersScreenState extends State<MembersScreen> {
               SliverPadding(
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 10),
                 sliver: SliverToBoxAdapter(
-                  child: MembersHeader(count: members.length),
+                  child: FeatureHeader(
+                    title: AppStaticTexts.memberList,
+                    subtitle: AppStaticTexts.memberListSubtitle,
+                    badgeText: members.isEmpty
+                        ? AppStaticTexts.noMembersAdded
+                        : '${members.length} ${AppStaticTexts.membersLinked}',
+                  ),
                 ),
               ),
               if (members.isNotEmpty)

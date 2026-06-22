@@ -4,12 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/feature_header.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
 import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
 import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc/doctor_bloc.dart';
 import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc/search_doctor_bloc.dart';
 import 'package:patient_portal/feature/doctors/presentation/widgets/doctor_tile.dart';
-import 'package:patient_portal/feature/doctors/presentation/widgets/doctors_header.dart';
 import 'package:patient_portal/feature/doctors/presentation/widgets/doctors_state_view.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
@@ -75,7 +75,15 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
               SliverPadding(
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 10),
                 sliver: SliverToBoxAdapter(
-                  child: DoctorsHeader(count: state.doctors.length),
+                  child: FeatureHeader(
+                    title: AppStaticTexts.findDoctor,
+                    subtitle: AppStaticTexts.findSpecialistSubtitle,
+                    badgeText: state.doctors.isEmpty
+                        ? null
+                        : state.doctors.length == 1
+                        ? '1 ${AppStaticTexts.doctorAvailable}'
+                        : '${state.doctors.length} ${AppStaticTexts.doctorsAvailable}',
+                  ),
                 ),
               ),
               if (state.doctors.isNotEmpty)

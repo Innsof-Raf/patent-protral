@@ -4,13 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/feature_header.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/params/speciality_params.dart';
 import 'package:patient_portal/feature/speciality/presentation/bloc/speciality_bloc/speciality_bloc.dart';
 import 'package:patient_portal/feature/speciality/presentation/widgets/speciality_grid.dart';
-import 'package:patient_portal/feature/speciality/presentation/widgets/speciality_header.dart';
 import 'package:patient_portal/feature/speciality/presentation/widgets/speciality_state_view.dart';
 
 @RoutePage(name: 'SpecialityRoute')
@@ -73,7 +73,12 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
               SliverPadding(
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 10),
                 sliver: SliverToBoxAdapter(
-                  child: SpecialityHeader(count: state.specialities.length),
+                  child: FeatureHeader(
+                    title: AppStaticTexts.findSpecialist,
+                    subtitle: AppStaticTexts.specialistSubtitle,
+                    badgeText:
+                        '${state.specialities.length} ${AppStaticTexts.specialitiesAvailable}',
+                  ),
                 ),
               ),
               if (state.specialities.isNotEmpty)

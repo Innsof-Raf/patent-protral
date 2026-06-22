@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 
-class SpecialityHeader extends StatelessWidget {
-  const SpecialityHeader({super.key, required this.count});
+class FeatureHeader extends StatelessWidget {
+  const FeatureHeader({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    this.badgeText,
+  });
 
-  final int count;
+  final String title;
+  final String subtitle;
+  final String? badgeText;
 
   @override
   Widget build(BuildContext context) {
@@ -25,38 +31,44 @@ class SpecialityHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            AppStaticTexts.findSpecialist,
+            title,
             style: theme.textTheme.headlineSmall?.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w800,
-              height: 1.08,
+              height: 1.1,
             ),
           ),
           const Gap(8),
           Text(
-            AppStaticTexts.specialistSubtitle,
+            subtitle,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w500,
+              height: 1.35,
             ),
           ),
-          const Gap(16),
-          DecoratedBox(
-            decoration: BoxDecoration(
-              color: theme.colorScheme.surface,
-              borderRadius: BorderRadius.circular(999),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-              child: Text(
-                '$count ${AppStaticTexts.specialitiesAvailable}',
-                style: theme.textTheme.labelMedium?.copyWith(
-                  color: theme.colorScheme.primary,
-                  fontWeight: FontWeight.w800,
+          if (badgeText != null) ...[
+            const Gap(16),
+            DecoratedBox(
+              decoration: BoxDecoration(
+                color: theme.colorScheme.surface,
+                borderRadius: BorderRadius.circular(999),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 8,
+                ),
+                child: Text(
+                  badgeText!,
+                  style: theme.textTheme.labelLarge?.copyWith(
+                    color: theme.colorScheme.primary,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
               ),
             ),
-          ),
+          ],
         ],
       ),
     );
