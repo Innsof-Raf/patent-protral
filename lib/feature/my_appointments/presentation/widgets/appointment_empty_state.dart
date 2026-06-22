@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class AppointmentEmptyState extends StatelessWidget {
   final String title;
@@ -49,7 +50,7 @@ class AppointmentEmptyState extends StatelessWidget {
                 size: 48,
               ),
             ),
-            const SizedBox(height: 24),
+            const Gap(24),
             Text(
               title,
               textAlign: TextAlign.center,
@@ -58,7 +59,7 @@ class AppointmentEmptyState extends StatelessWidget {
                 letterSpacing: -0.5,
               ),
             ),
-            const SizedBox(height: 10),
+            const Gap(10),
             Text(
               message,
               textAlign: TextAlign.center,

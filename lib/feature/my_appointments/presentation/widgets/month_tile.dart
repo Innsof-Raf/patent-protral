@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 
 class MonthTile extends StatelessWidget {
@@ -26,7 +27,7 @@ class MonthTile extends StatelessWidget {
             size: 16,
             color: colorScheme.primary,
           ),
-          const SizedBox(width: 8),
+          const Gap(8),
           Text(
             DateFormat('MMMM yyyy').format(month),
             style: theme.textTheme.labelLarge?.copyWith(

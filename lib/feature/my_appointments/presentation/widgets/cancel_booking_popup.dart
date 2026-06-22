@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -63,7 +64,7 @@ class CancelBookingPopUp extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            const Gap(20),
             Text(
               AppStaticTexts.cancelBooking,
               style: theme.textTheme.headlineSmall?.copyWith(
@@ -71,7 +72,7 @@ class CancelBookingPopUp extends StatelessWidget {
                 letterSpacing: -0.5,
               ),
             ),
-            const SizedBox(height: 8),
+            const Gap(8),
             Text(
               AppStaticTexts.cancelBookingMessage,
               style: theme.textTheme.bodyMedium?.copyWith(
@@ -79,7 +80,7 @@ class CancelBookingPopUp extends StatelessWidget {
                 height: 1.5,
               ),
             ),
-            const SizedBox(height: 24),
+            const Gap(24),
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(20),
@@ -126,7 +127,7 @@ class CancelBookingPopUp extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  const Gap(20),
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(
@@ -150,7 +151,7 @@ class CancelBookingPopUp extends StatelessWidget {
                           size: 16,
                           color: colorScheme.primary,
                         ),
-                        const SizedBox(width: 10),
+                        const Gap(10),
                         Text(
                           '${DateFormat('dd MMM yyyy').format(appointmentDateTime)} ${AppStaticTexts.at} ${DateFormat.jm().format(appointmentDateTime)}',
                           style: theme.textTheme.titleSmall?.copyWith(
@@ -164,7 +165,7 @@ class CancelBookingPopUp extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 28),
+            const Gap(28),
             Row(
               children: [
                 Expanded(
@@ -179,7 +180,7 @@ class CancelBookingPopUp extends StatelessWidget {
                     child: const Text(AppStaticTexts.keepBooking),
                   ),
                 ),
-                const SizedBox(width: 12),
+                const Gap(12),
                 Expanded(
                   child: FilledButton(
                     onPressed: () {
@@ -261,7 +262,7 @@ class _ProfilePreview extends StatelessWidget {
                 : null,
           ),
         ),
-        const SizedBox(height: 12),
+        const Gap(12),
         Text(
           title,
           maxLines: 1,
@@ -272,7 +273,7 @@ class _ProfilePreview extends StatelessWidget {
             letterSpacing: -0.2,
           ),
         ),
-        const SizedBox(height: 4),
+        const Gap(4),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
           decoration: BoxDecoration(

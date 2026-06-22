@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
@@ -31,6 +33,50 @@ class _MembersScreenState extends State<MembersScreen> {
     super.dispose();
   }
 
+  void _showDeleteConfirmation(BuildContext context, List<int> selectedIds) {
+    showDialog(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(
+          AppStaticTexts.deleteMembers,
+          style: AppTextStyles.subHeadingSemiBoldRoboto,
+        ),
+        content: Text(
+          AppStaticTexts.deleteMembersMessage,
+          style: AppTextStyles.largeRobotoNormal,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext),
+            child: Text(
+              AppStaticTexts.cancel,
+              style: AppTextStyles.largeSemiBoldRoboto.copyWith(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              context.read<UserBloc>().add(
+                UserEvent.deleteMembers(memberIds: selectedIds),
+              );
+              context.read<DeleteMemberBloc>().add(
+                const ClearSelectedMemberList(),
+              );
+              Navigator.pop(dialogContext);
+            },
+            child: Text(
+              AppStaticTexts.delete,
+              style: AppTextStyles.largeSemiBoldRoboto.copyWith(
+                color: Colors.red,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -41,20 +87,51 @@ class _MembersScreenState extends State<MembersScreen> {
       appBar: CommonAppbar(
         title: AppStaticTexts.members,
         actions: [
-          TextButton(
-            onPressed: () {
-              final membersIdList = context
-                  .read<UserBloc>()
-                  .state
-                  .user!
-                  .members
-                  .map((m) => m.id)
-                  .toList();
-              context.read<DeleteMemberBloc>().add(
-                SelectAllMembers(membersIdList: membersIdList),
+          BlocBuilder<DeleteMemberBloc, DeleteMemberState>(
+            builder: (context, state) {
+              if (state.selectedMebersList.isNotEmpty) {
+                return Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        context.read<DeleteMemberBloc>().add(
+                          const ClearSelectedMemberList(),
+                        );
+                      },
+                      icon: const Icon(Icons.close_rounded),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        _showDeleteConfirmation(
+                          context,
+                          state.selectedMebersList,
+                        );
+                      },
+                      icon: const Icon(
+                        Icons.delete_outline_rounded,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ],
+                );
+              }
+
+              return TextButton(
+                onPressed: () {
+                  final membersIdList = context
+                      .read<UserBloc>()
+                      .state
+                      .user!
+                      .members
+                      .map((m) => m.id)
+                      .toList();
+                  context.read<DeleteMemberBloc>().add(
+                    SelectAllMembers(membersIdList: membersIdList),
+                  );
+                },
+                child: const Text(AppStaticTexts.selectAll),
               );
             },
-            child: const Text(AppStaticTexts.selectAll),
           ),
         ],
       ),
@@ -151,10 +228,9 @@ class _MembersResultSliver extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 104),
           sliver: SliverList.separated(
             itemCount: members.length,
-            separatorBuilder: (context, index) => const SizedBox(height: 12),
-            itemBuilder: (context, index) {
-              return DeletableMemberTile(member: members[index]);
-            },
+            separatorBuilder: (context, index) => const Gap(12),
+            itemBuilder: (context, index) =>
+                DeletableMemberTile(member: members[index]),
           ),
         );
       },

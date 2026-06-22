@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class AppointmentsOverviewCard extends StatelessWidget {
   final int totalCount;
@@ -44,7 +45,7 @@ class AppointmentsOverviewCard extends StatelessWidget {
               letterSpacing: -0.5,
             ),
           ),
-          const SizedBox(height: 16),
+          const Gap(16),
           Row(
             children: [
               Expanded(
@@ -55,7 +56,7 @@ class AppointmentsOverviewCard extends StatelessWidget {
                   color: colorScheme.primary,
                 ),
               ),
-              const SizedBox(width: 8),
+              const Gap(8),
               Expanded(
                 child: _MetricChip(
                   label: 'Done',
@@ -64,7 +65,7 @@ class AppointmentsOverviewCard extends StatelessWidget {
                   color: Colors.green,
                 ),
               ),
-              const SizedBox(width: 8),
+              const Gap(8),
               Expanded(
                 child: _MetricChip(
                   label: 'Next',
@@ -110,7 +111,7 @@ class _MetricChip extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, size: 18, color: color),
-          const SizedBox(height: 6),
+          const Gap(6),
           Text(
             '$value',
             style: theme.textTheme.titleLarge?.copyWith(

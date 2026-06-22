@@ -5,8 +5,10 @@ sealed class DeleteMemberEvent with _$DeleteMemberEvent {
   const factory DeleteMemberEvent.updateSelectedMemberList({
     required int memberId,
   }) = UpdateSelectedMemberList;
+
   const factory DeleteMemberEvent.clearSelectedMemberList() =
       ClearSelectedMemberList;
+
   const factory DeleteMemberEvent.selectAllMembers({
     required List<int> membersIdList,
   }) = SelectAllMembers;

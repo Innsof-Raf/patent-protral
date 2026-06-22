@@ -55,7 +55,7 @@ extension UserEventPatterns on UserEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( StoreUserDetails value)?  storeUserDetails,TResult Function( AddMember value)?  addMember,TResult Function( ChangememberInsuranceDetails value)?  changememberInsuranceDetails,TResult Function( ChangeMemberAddingSateToInitial value)?  changeMemberAddingSateToInitial,TResult Function( GetMemberDetail value)?  getMemberDetail,TResult Function( AddMemberToLocal value)?  addMemberToLocal,TResult Function( UpdateMemberInLocal value)?  updateMemberInLocal,TResult Function( LogOut value)?  logOut,TResult Function( InitializeUser value)?  initializeUser,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( StoreUserDetails value)?  storeUserDetails,TResult Function( AddMember value)?  addMember,TResult Function( ChangememberInsuranceDetails value)?  changememberInsuranceDetails,TResult Function( ChangeMemberAddingSateToInitial value)?  changeMemberAddingSateToInitial,TResult Function( GetMemberDetail value)?  getMemberDetail,TResult Function( AddMemberToLocal value)?  addMemberToLocal,TResult Function( UpdateMemberInLocal value)?  updateMemberInLocal,TResult Function( DeleteMembers value)?  deleteMembers,TResult Function( LogOut value)?  logOut,TResult Function( InitializeUser value)?  initializeUser,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case StoreUserDetails() when storeUserDetails != null:
@@ -65,7 +65,8 @@ return changememberInsuranceDetails(_that);case ChangeMemberAddingSateToInitial(
 return changeMemberAddingSateToInitial(_that);case GetMemberDetail() when getMemberDetail != null:
 return getMemberDetail(_that);case AddMemberToLocal() when addMemberToLocal != null:
 return addMemberToLocal(_that);case UpdateMemberInLocal() when updateMemberInLocal != null:
-return updateMemberInLocal(_that);case LogOut() when logOut != null:
+return updateMemberInLocal(_that);case DeleteMembers() when deleteMembers != null:
+return deleteMembers(_that);case LogOut() when logOut != null:
 return logOut(_that);case InitializeUser() when initializeUser != null:
 return initializeUser(_that);case _:
   return orElse();
@@ -85,7 +86,7 @@ return initializeUser(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( StoreUserDetails value)  storeUserDetails,required TResult Function( AddMember value)  addMember,required TResult Function( ChangememberInsuranceDetails value)  changememberInsuranceDetails,required TResult Function( ChangeMemberAddingSateToInitial value)  changeMemberAddingSateToInitial,required TResult Function( GetMemberDetail value)  getMemberDetail,required TResult Function( AddMemberToLocal value)  addMemberToLocal,required TResult Function( UpdateMemberInLocal value)  updateMemberInLocal,required TResult Function( LogOut value)  logOut,required TResult Function( InitializeUser value)  initializeUser,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( StoreUserDetails value)  storeUserDetails,required TResult Function( AddMember value)  addMember,required TResult Function( ChangememberInsuranceDetails value)  changememberInsuranceDetails,required TResult Function( ChangeMemberAddingSateToInitial value)  changeMemberAddingSateToInitial,required TResult Function( GetMemberDetail value)  getMemberDetail,required TResult Function( AddMemberToLocal value)  addMemberToLocal,required TResult Function( UpdateMemberInLocal value)  updateMemberInLocal,required TResult Function( DeleteMembers value)  deleteMembers,required TResult Function( LogOut value)  logOut,required TResult Function( InitializeUser value)  initializeUser,}){
 final _that = this;
 switch (_that) {
 case StoreUserDetails():
@@ -95,7 +96,8 @@ return changememberInsuranceDetails(_that);case ChangeMemberAddingSateToInitial(
 return changeMemberAddingSateToInitial(_that);case GetMemberDetail():
 return getMemberDetail(_that);case AddMemberToLocal():
 return addMemberToLocal(_that);case UpdateMemberInLocal():
-return updateMemberInLocal(_that);case LogOut():
+return updateMemberInLocal(_that);case DeleteMembers():
+return deleteMembers(_that);case LogOut():
 return logOut(_that);case InitializeUser():
 return initializeUser(_that);case _:
   throw StateError('Unexpected subclass');
@@ -114,7 +116,7 @@ return initializeUser(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( StoreUserDetails value)?  storeUserDetails,TResult? Function( AddMember value)?  addMember,TResult? Function( ChangememberInsuranceDetails value)?  changememberInsuranceDetails,TResult? Function( ChangeMemberAddingSateToInitial value)?  changeMemberAddingSateToInitial,TResult? Function( GetMemberDetail value)?  getMemberDetail,TResult? Function( AddMemberToLocal value)?  addMemberToLocal,TResult? Function( UpdateMemberInLocal value)?  updateMemberInLocal,TResult? Function( LogOut value)?  logOut,TResult? Function( InitializeUser value)?  initializeUser,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( StoreUserDetails value)?  storeUserDetails,TResult? Function( AddMember value)?  addMember,TResult? Function( ChangememberInsuranceDetails value)?  changememberInsuranceDetails,TResult? Function( ChangeMemberAddingSateToInitial value)?  changeMemberAddingSateToInitial,TResult? Function( GetMemberDetail value)?  getMemberDetail,TResult? Function( AddMemberToLocal value)?  addMemberToLocal,TResult? Function( UpdateMemberInLocal value)?  updateMemberInLocal,TResult? Function( DeleteMembers value)?  deleteMembers,TResult? Function( LogOut value)?  logOut,TResult? Function( InitializeUser value)?  initializeUser,}){
 final _that = this;
 switch (_that) {
 case StoreUserDetails() when storeUserDetails != null:
@@ -124,7 +126,8 @@ return changememberInsuranceDetails(_that);case ChangeMemberAddingSateToInitial(
 return changeMemberAddingSateToInitial(_that);case GetMemberDetail() when getMemberDetail != null:
 return getMemberDetail(_that);case AddMemberToLocal() when addMemberToLocal != null:
 return addMemberToLocal(_that);case UpdateMemberInLocal() when updateMemberInLocal != null:
-return updateMemberInLocal(_that);case LogOut() when logOut != null:
+return updateMemberInLocal(_that);case DeleteMembers() when deleteMembers != null:
+return deleteMembers(_that);case LogOut() when logOut != null:
 return logOut(_that);case InitializeUser() when initializeUser != null:
 return initializeUser(_that);case _:
   return null;
@@ -143,7 +146,7 @@ return initializeUser(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( ProfileParams params)?  storeUserDetails,TResult Function( ProfileParams params)?  addMember,TResult Function( ProfileParams params)?  changememberInsuranceDetails,TResult Function()?  changeMemberAddingSateToInitial,TResult Function( ProfileParams params)?  getMemberDetail,TResult Function( ProfileParams params)?  addMemberToLocal,TResult Function( ProfileParams params)?  updateMemberInLocal,TResult Function()?  logOut,TResult Function()?  initializeUser,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( ProfileParams params)?  storeUserDetails,TResult Function( ProfileParams params)?  addMember,TResult Function( ProfileParams params)?  changememberInsuranceDetails,TResult Function()?  changeMemberAddingSateToInitial,TResult Function( ProfileParams params)?  getMemberDetail,TResult Function( ProfileParams params)?  addMemberToLocal,TResult Function( ProfileParams params)?  updateMemberInLocal,TResult Function( List<int> memberIds)?  deleteMembers,TResult Function()?  logOut,TResult Function()?  initializeUser,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case StoreUserDetails() when storeUserDetails != null:
 return storeUserDetails(_that.params);case AddMember() when addMember != null:
@@ -152,7 +155,8 @@ return changememberInsuranceDetails(_that.params);case ChangeMemberAddingSateToI
 return changeMemberAddingSateToInitial();case GetMemberDetail() when getMemberDetail != null:
 return getMemberDetail(_that.params);case AddMemberToLocal() when addMemberToLocal != null:
 return addMemberToLocal(_that.params);case UpdateMemberInLocal() when updateMemberInLocal != null:
-return updateMemberInLocal(_that.params);case LogOut() when logOut != null:
+return updateMemberInLocal(_that.params);case DeleteMembers() when deleteMembers != null:
+return deleteMembers(_that.memberIds);case LogOut() when logOut != null:
 return logOut();case InitializeUser() when initializeUser != null:
 return initializeUser();case _:
   return orElse();
@@ -172,7 +176,7 @@ return initializeUser();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( ProfileParams params)  storeUserDetails,required TResult Function( ProfileParams params)  addMember,required TResult Function( ProfileParams params)  changememberInsuranceDetails,required TResult Function()  changeMemberAddingSateToInitial,required TResult Function( ProfileParams params)  getMemberDetail,required TResult Function( ProfileParams params)  addMemberToLocal,required TResult Function( ProfileParams params)  updateMemberInLocal,required TResult Function()  logOut,required TResult Function()  initializeUser,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( ProfileParams params)  storeUserDetails,required TResult Function( ProfileParams params)  addMember,required TResult Function( ProfileParams params)  changememberInsuranceDetails,required TResult Function()  changeMemberAddingSateToInitial,required TResult Function( ProfileParams params)  getMemberDetail,required TResult Function( ProfileParams params)  addMemberToLocal,required TResult Function( ProfileParams params)  updateMemberInLocal,required TResult Function( List<int> memberIds)  deleteMembers,required TResult Function()  logOut,required TResult Function()  initializeUser,}) {final _that = this;
 switch (_that) {
 case StoreUserDetails():
 return storeUserDetails(_that.params);case AddMember():
@@ -181,7 +185,8 @@ return changememberInsuranceDetails(_that.params);case ChangeMemberAddingSateToI
 return changeMemberAddingSateToInitial();case GetMemberDetail():
 return getMemberDetail(_that.params);case AddMemberToLocal():
 return addMemberToLocal(_that.params);case UpdateMemberInLocal():
-return updateMemberInLocal(_that.params);case LogOut():
+return updateMemberInLocal(_that.params);case DeleteMembers():
+return deleteMembers(_that.memberIds);case LogOut():
 return logOut();case InitializeUser():
 return initializeUser();case _:
   throw StateError('Unexpected subclass');
@@ -200,7 +205,7 @@ return initializeUser();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( ProfileParams params)?  storeUserDetails,TResult? Function( ProfileParams params)?  addMember,TResult? Function( ProfileParams params)?  changememberInsuranceDetails,TResult? Function()?  changeMemberAddingSateToInitial,TResult? Function( ProfileParams params)?  getMemberDetail,TResult? Function( ProfileParams params)?  addMemberToLocal,TResult? Function( ProfileParams params)?  updateMemberInLocal,TResult? Function()?  logOut,TResult? Function()?  initializeUser,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( ProfileParams params)?  storeUserDetails,TResult? Function( ProfileParams params)?  addMember,TResult? Function( ProfileParams params)?  changememberInsuranceDetails,TResult? Function()?  changeMemberAddingSateToInitial,TResult? Function( ProfileParams params)?  getMemberDetail,TResult? Function( ProfileParams params)?  addMemberToLocal,TResult? Function( ProfileParams params)?  updateMemberInLocal,TResult? Function( List<int> memberIds)?  deleteMembers,TResult? Function()?  logOut,TResult? Function()?  initializeUser,}) {final _that = this;
 switch (_that) {
 case StoreUserDetails() when storeUserDetails != null:
 return storeUserDetails(_that.params);case AddMember() when addMember != null:
@@ -209,7 +214,8 @@ return changememberInsuranceDetails(_that.params);case ChangeMemberAddingSateToI
 return changeMemberAddingSateToInitial();case GetMemberDetail() when getMemberDetail != null:
 return getMemberDetail(_that.params);case AddMemberToLocal() when addMemberToLocal != null:
 return addMemberToLocal(_that.params);case UpdateMemberInLocal() when updateMemberInLocal != null:
-return updateMemberInLocal(_that.params);case LogOut() when logOut != null:
+return updateMemberInLocal(_that.params);case DeleteMembers() when deleteMembers != null:
+return deleteMembers(_that.memberIds);case LogOut() when logOut != null:
 return logOut();case InitializeUser() when initializeUser != null:
 return initializeUser();case _:
   return null;
@@ -699,6 +705,78 @@ $ProfileParamsCopyWith<$Res> get params {
     return _then(_self.copyWith(params: value));
   });
 }
+}
+
+/// @nodoc
+
+
+class DeleteMembers implements UserEvent {
+  const DeleteMembers({required final  List<int> memberIds}): _memberIds = memberIds;
+  
+
+ final  List<int> _memberIds;
+ List<int> get memberIds {
+  if (_memberIds is EqualUnmodifiableListView) return _memberIds;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_memberIds);
+}
+
+
+/// Create a copy of UserEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$DeleteMembersCopyWith<DeleteMembers> get copyWith => _$DeleteMembersCopyWithImpl<DeleteMembers>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DeleteMembers&&const DeepCollectionEquality().equals(other._memberIds, _memberIds));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_memberIds));
+
+@override
+String toString() {
+  return 'UserEvent.deleteMembers(memberIds: $memberIds)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $DeleteMembersCopyWith<$Res> implements $UserEventCopyWith<$Res> {
+  factory $DeleteMembersCopyWith(DeleteMembers value, $Res Function(DeleteMembers) _then) = _$DeleteMembersCopyWithImpl;
+@useResult
+$Res call({
+ List<int> memberIds
+});
+
+
+
+
+}
+/// @nodoc
+class _$DeleteMembersCopyWithImpl<$Res>
+    implements $DeleteMembersCopyWith<$Res> {
+  _$DeleteMembersCopyWithImpl(this._self, this._then);
+
+  final DeleteMembers _self;
+  final $Res Function(DeleteMembers) _then;
+
+/// Create a copy of UserEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? memberIds = null,}) {
+  return _then(DeleteMembers(
+memberIds: null == memberIds ? _self._memberIds : memberIds // ignore: cast_nullable_to_non_nullable
+as List<int>,
+  ));
+}
+
+
 }
 
 /// @nodoc

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
 
 import 'my_appointment_tile.dart';
@@ -20,7 +21,7 @@ class MyAppointmentsListView extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: sortedAppointments.length,
-      separatorBuilder: (context, index) => const SizedBox(height: 12),
+      separatorBuilder: (context, index) => const Gap(12),
       itemBuilder: (context, index) {
         final appointment = sortedAppointments[index];
         return MyAppointmentTile(

@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/delete_member_bloc/delete_member_bloc.dart';
@@ -93,12 +95,12 @@ class _MemberCard extends StatelessWidget {
             child: Row(
               children: [
                 _MemberAvatar(member: member),
-                const SizedBox(width: 12),
+                const Gap(12),
                 Expanded(child: _MemberDetails(member: member)),
-                const SizedBox(width: 10),
+                const Gap(10),
                 if (member.isInsurance && !member.isInsuranceExpired)
                   const _InsuranceBadge(),
-                const SizedBox(width: 8),
+                const Gap(8),
                 AnimatedSwitcher(
                   duration: const Duration(milliseconds: 160),
                   child: isSelected
@@ -143,7 +145,7 @@ class _MemberAvatar extends StatelessWidget {
               member.name.trim().isEmpty
                   ? '?'
                   : member.name.trim()[0].toUpperCase(),
-              style: theme.textTheme.titleLarge?.copyWith(
+              style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                 color: theme.colorScheme.onPrimaryContainer,
                 fontWeight: FontWeight.w900,
               ),
@@ -175,17 +177,17 @@ class _MemberDetails extends StatelessWidget {
           member.name,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: theme.textTheme.titleSmall?.copyWith(
+          style: AppTextStyles.largeSemiBoldRoboto.copyWith(
             color: theme.colorScheme.onSurface,
             fontWeight: FontWeight.w800,
           ),
         ),
-        const SizedBox(height: 5),
+        const Gap(5),
         Text(
           subtitle.isEmpty ? AppStaticTexts.memberProfile : subtitle,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: theme.textTheme.bodySmall?.copyWith(
+          style: AppTextStyles.bodyTextInter.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
             fontWeight: FontWeight.w600,
           ),
@@ -210,7 +212,7 @@ class _InsuranceBadge extends StatelessWidget {
       ),
       child: Text(
         AppStaticTexts.insured,
-        style: theme.textTheme.labelSmall?.copyWith(
+        style: AppTextStyles.bodySmallInterNormal.copyWith(
           color: theme.colorScheme.primary,
           fontWeight: FontWeight.w800,
         ),

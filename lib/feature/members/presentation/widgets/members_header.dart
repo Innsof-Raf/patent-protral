@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class MembersHeader extends StatelessWidget {
   const MembersHeader({super.key, required this.count});
@@ -25,21 +27,20 @@ class MembersHeader extends StatelessWidget {
         children: [
           Text(
             AppStaticTexts.memberList,
-            style: theme.textTheme.headlineSmall?.copyWith(
+            style: AppTextStyles.extraLargeRobotoBold.copyWith(
               color: theme.colorScheme.onSurface,
-              fontWeight: FontWeight.w800,
               height: 1.08,
             ),
           ),
-          const SizedBox(height: 8),
+          const Gap(8),
           Text(
             AppStaticTexts.memberListSubtitle,
-            style: theme.textTheme.bodyMedium?.copyWith(
+            style: AppTextStyles.largeRobotoNormal.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w500,
             ),
           ),
-          const SizedBox(height: 16),
+          const Gap(16),
           DecoratedBox(
             decoration: BoxDecoration(
               color: theme.colorScheme.surface,
@@ -51,7 +52,7 @@ class MembersHeader extends StatelessWidget {
                 count == 0
                     ? AppStaticTexts.noMembersAdded
                     : '$count ${AppStaticTexts.membersLinked}',
-                style: theme.textTheme.labelMedium?.copyWith(
+                style: AppTextStyles.bodyLargeSemiBoldTextInter.copyWith(
                   color: theme.colorScheme.primary,
                   fontWeight: FontWeight.w800,
                 ),

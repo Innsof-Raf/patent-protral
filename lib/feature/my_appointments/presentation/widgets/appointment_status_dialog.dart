@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class AppointmentStatusDialog extends StatelessWidget {
   final String title;
@@ -36,7 +37,7 @@ class AppointmentStatusDialog extends StatelessWidget {
               size: 34,
             ),
           ),
-          const SizedBox(height: 18),
+          const Gap(18),
           Text(
             title,
             textAlign: TextAlign.center,
@@ -44,7 +45,7 @@ class AppointmentStatusDialog extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
           ),
-          const SizedBox(height: 8),
+          const Gap(8),
           Text(
             message,
             textAlign: TextAlign.center,
@@ -52,7 +53,7 @@ class AppointmentStatusDialog extends StatelessWidget {
               color: colorScheme.onSurfaceVariant,
             ),
           ),
-          const SizedBox(height: 24),
+          const Gap(24),
           SizedBox(
             width: double.infinity,
             child: FilledButton(

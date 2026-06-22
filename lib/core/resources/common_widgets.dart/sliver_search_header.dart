@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class SliverSearchHeader extends StatelessWidget {
   const SliverSearchHeader({
@@ -113,10 +114,11 @@ class _SliverSearchHeaderDelegate extends SliverPersistentHeaderDelegate {
                           title!,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: theme.textTheme.labelMedium?.copyWith(
-                            color: theme.colorScheme.onSurfaceVariant,
-                            fontWeight: FontWeight.w700,
-                          ),
+                          style: AppTextStyles.bodyLargeSemiBoldTextInter
+                              .copyWith(
+                                color: theme.colorScheme.onSurfaceVariant,
+                                fontWeight: FontWeight.w700,
+                              ),
                         ),
                       ),
                     ),
@@ -131,7 +133,7 @@ class _SliverSearchHeaderDelegate extends SliverPersistentHeaderDelegate {
                         textInputAction: TextInputAction.search,
                         onChanged: onChanged,
                         cursorColor: theme.colorScheme.primary,
-                        style: theme.textTheme.bodyMedium?.copyWith(
+                        style: AppTextStyles.largeRobotoNormal.copyWith(
                           color: theme.colorScheme.onSurface,
                           fontWeight: FontWeight.w600,
                         ),
@@ -148,7 +150,7 @@ class _SliverSearchHeaderDelegate extends SliverPersistentHeaderDelegate {
                             horizontal: 14,
                             vertical: 12,
                           ),
-                          hintStyle: theme.textTheme.bodyMedium?.copyWith(
+                          hintStyle: AppTextStyles.largeRobotoNormal.copyWith(
                             color: theme.colorScheme.onSurfaceVariant,
                           ),
                           enabledBorder: OutlineInputBorder(

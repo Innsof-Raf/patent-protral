@@ -170,6 +170,14 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         emit(state.copyWith(user: state.user!.copyWith(members: members)));
       }
     });
+    on<DeleteMembers>((event, emit) {
+      if (state.user != null) {
+        final members = state.user!.members
+            .where((m) => !event.memberIds.contains(m.id))
+            .toList();
+        emit(state.copyWith(user: state.user!.copyWith(members: members)));
+      }
+    });
     on<LogOut>((event, emit) async {
       emit(state.copyWith(user: null));
       await userLocalDataSource.clearUser();

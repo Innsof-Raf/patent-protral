@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/widgets/appointment_empty_state.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/widgets/month_tile.dart';
@@ -32,7 +33,7 @@ class AppointmentsTabbarView extends StatelessWidget {
     return ListView.separated(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       itemCount: monthTimelineList.length + 1,
-      separatorBuilder: (context, index) => const SizedBox(height: 16),
+      separatorBuilder: (context, index) => const Gap(16),
       itemBuilder: (context, index) {
         if (index == 0) {
           return Padding(
@@ -47,7 +48,7 @@ class AppointmentsTabbarView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
-                const SizedBox(width: 12),
+                const Gap(12),
                 Text(
                   title,
                   style: theme.textTheme.titleMedium?.copyWith(
@@ -71,7 +72,7 @@ class AppointmentsTabbarView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MonthTile(month: month),
-            const SizedBox(height: 10),
+            const Gap(10),
             MyAppointmentsListView(appointments: monthlyAppointments),
           ],
         );

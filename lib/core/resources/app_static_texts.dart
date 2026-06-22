@@ -151,6 +151,10 @@ class AppStaticTexts {
   static const String membersLinked = 'members linked';
   static const String memberProfile = 'Member profile';
   static const String insured = 'Insured';
+  static const String deleteMembers = 'Delete Members?';
+  static const String deleteMembersMessage =
+      'Are you sure you want to remove the selected member(s)?';
+  static const String delete = 'Delete';
 
   // Reports
   static const String unableToLoadReports = 'Unable to load reports';

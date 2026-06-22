@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
@@ -61,7 +62,7 @@ class MyAppointmentTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     _DoctorImage(imageUrl: _doctorImageUrl),
-                    const SizedBox(width: 14),
+                    const Gap(14),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +76,7 @@ class MyAppointmentTile extends StatelessWidget {
                               letterSpacing: -0.2,
                             ),
                           ),
-                          const SizedBox(height: 2),
+                          const Gap(2),
                           Text(
                             appointment.departName,
                             maxLines: 1,
@@ -94,7 +95,7 @@ class MyAppointmentTile extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
+                const Gap(16),
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
@@ -110,7 +111,7 @@ class MyAppointmentTile extends StatelessWidget {
                         size: 16,
                         color: colorScheme.primary,
                       ),
-                      const SizedBox(width: 8),
+                      const Gap(8),
                       Expanded(
                         child: Text(
                           appointment.memberName.isEmpty
@@ -133,7 +134,7 @@ class MyAppointmentTile extends StatelessWidget {
                         size: 16,
                         color: colorScheme.onSurfaceVariant,
                       ),
-                      const SizedBox(width: 6),
+                      const Gap(6),
                       Text(
                         DateFormat(
                           'dd MMM, hh:mm a',
@@ -146,7 +147,7 @@ class MyAppointmentTile extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 16),
+                const Gap(16),
                 _ActionBar(
                   isConsulted: isConsulted,
                   status: appointment.status,
@@ -171,9 +172,7 @@ class MyAppointmentTile extends StatelessWidget {
   }
 
   void _onReschedulePressed(BuildContext context) {
-    if (appointment.isCanceling) {
-      return;
-    }
+    if (appointment.isCanceling) return;
 
     final member = _findMember(context);
     if (member == null) {
@@ -209,9 +208,7 @@ class MyAppointmentTile extends StatelessWidget {
         .myAppointments
         .any((appointment) => appointment.isCanceling);
 
-    if (isAnotherCancellationRunning) {
-      return;
-    }
+    if (isAnotherCancellationRunning) return;
 
     final member = _findMember(context);
     if (member == null) {
@@ -425,7 +422,7 @@ class _StatusBadge extends StatelessWidget {
             height: 8,
             decoration: BoxDecoration(color: color, shape: BoxShape.circle),
           ),
-          const SizedBox(width: 8),
+          const Gap(8),
           Text(
             isCancelled
                 ? 'Cancelled'
@@ -505,7 +502,7 @@ class _ActionBar extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 12),
+        const Gap(12),
         Expanded(
           child: FilledButton.icon(
             onPressed: isCanceling ? null : onReschedule,
