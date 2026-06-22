@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 
 class DoctorsHeader extends StatelessWidget {
   const DoctorsHeader({required this.count, super.key});
@@ -23,7 +24,7 @@ class DoctorsHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Find Doctor',
+            AppStaticTexts.findDoctor,
             style: theme.textTheme.titleLarge?.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w800,
@@ -32,7 +33,7 @@ class DoctorsHeader extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Consult top doctors online for any health concern',
+            AppStaticTexts.findSpecialistSubtitle,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
               height: 1.35,
@@ -52,8 +53,8 @@ class DoctorsHeader extends StatelessWidget {
                 ),
                 child: Text(
                   count == 1
-                      ? '1 doctor available'
-                      : '$count doctors available',
+                      ? '1 ${AppStaticTexts.doctorAvailable}'
+                      : '$count ${AppStaticTexts.doctorsAvailable}',
                   style: theme.textTheme.labelMedium?.copyWith(
                     color: theme.colorScheme.primary,
                     fontWeight: FontWeight.w700,

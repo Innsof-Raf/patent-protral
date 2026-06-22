@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 
 class HomeSectionHeader extends StatelessWidget {
   const HomeSectionHeader({
@@ -53,7 +54,7 @@ class HomeSectionHeader extends StatelessWidget {
         if (onViewAll != null) ...[
           const SizedBox(width: 12),
           Tooltip(
-            message: actionTooltip ?? 'View all',
+            message: actionTooltip ?? AppStaticTexts.viewAll,
             child: IconButton(
               style: IconButton.styleFrom(
                 backgroundColor: inverse

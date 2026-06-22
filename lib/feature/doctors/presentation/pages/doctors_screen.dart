@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
@@ -53,7 +54,7 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      appBar: const CommonAppbar(title: 'Doctors'),
+      appBar: const CommonAppbar(title: AppStaticTexts.doctors),
       body: BlocBuilder<DoctorBloc, DoctorState>(
         builder: (context, state) {
           if (state.isDoctorsFetching) {
@@ -62,7 +63,7 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
 
           if (state.isDoctorsFetchingFailed) {
             return CommonErrorView(
-              title: 'Unable to load doctors',
+              title: AppStaticTexts.unableToLoadDoctors,
               message: state.error.message,
               onRetry: _fetchDoctors,
             );
@@ -80,8 +81,8 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
               if (state.doctors.isNotEmpty)
                 SliverSearchHeader(
                   controller: searchController,
-                  title: 'Search doctor by name or speciality',
-                  hintText: 'Search doctors',
+                  title: AppStaticTexts.searchDoctorHint,
+                  hintText: AppStaticTexts.searchDoctors,
                   onChanged: (value) {
                     context.read<SearchDoctorBloc>().add(
                       SearchDoctor(
@@ -118,8 +119,8 @@ class _DoctorsResultSliver extends StatelessWidget {
       return const SliverFillRemaining(
         hasScrollBody: false,
         child: DoctorsMessageView(
-          title: 'No doctors found',
-          message: 'Try another speciality or check again later.',
+          title: AppStaticTexts.noDoctorsFound,
+          message: AppStaticTexts.noDoctorsFoundMessage,
         ),
       );
     }
@@ -134,8 +135,8 @@ class _DoctorsResultSliver extends StatelessWidget {
           return const SliverFillRemaining(
             hasScrollBody: false,
             child: DoctorsMessageView(
-              title: 'No matching doctor',
-              message: 'Try searching by another name or speciality.',
+              title: AppStaticTexts.noMatchingDoctor,
+              message: AppStaticTexts.noMatchingDoctorMessage,
             ),
           );
         }

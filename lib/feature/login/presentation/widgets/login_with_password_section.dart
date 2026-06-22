@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/login_with_password_bloc/login_with_password_bloc.dart';
@@ -54,7 +55,7 @@ class _LoginWithPasswordSectionState extends State<LoginWithPasswordSection> {
               Expanded(
                 child: LoginFormField(
                   controller: _passwordController,
-                  label: 'Password',
+                  label: AppStaticTexts.passwordLabel,
                   keyboardType: TextInputType.visiblePassword,
                   textInputAction: TextInputAction.done,
                   obscureText: true,
@@ -109,7 +110,7 @@ class _LoginWithPasswordSectionState extends State<LoginWithPasswordSection> {
                       builder: (context, state) {
                         return LoginActionButton(
                           icon: Icons.login_rounded,
-                          tooltip: 'Login',
+                          tooltip: AppStaticTexts.loginTooltip,
                           isLoading: state.isLogingin,
                           onPressed: () => _login(context, state),
                         );

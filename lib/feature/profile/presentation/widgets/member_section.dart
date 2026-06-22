@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/widgets/profile_member_tile.dart';
@@ -29,7 +30,7 @@ class MemberSection extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          'Members',
+                          AppStaticTexts.members,
                           style: theme.textTheme.titleMedium?.copyWith(
                             color: theme.colorScheme.onSurface,
                             fontWeight: FontWeight.w800,
@@ -38,8 +39,8 @@ class MemberSection extends StatelessWidget {
                         const SizedBox(height: 4),
                         Text(
                           members.isEmpty
-                              ? 'No members added yet'
-                              : '${members.length} members linked',
+                              ? AppStaticTexts.noMembersAddedYet
+                              : '${members.length} ${AppStaticTexts.membersLinked}',
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: theme.colorScheme.onSurfaceVariant,
                             fontWeight: FontWeight.w600,
@@ -53,7 +54,7 @@ class MemberSection extends StatelessWidget {
                       context.router.root.push(const MembersRoute());
                     },
                     icon: const Icon(Icons.arrow_forward_rounded),
-                    tooltip: 'View members',
+                    tooltip: AppStaticTexts.viewMembersTooltip,
                   ),
                 ],
               ),
@@ -104,7 +105,7 @@ class _EmptyMembersView extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(
-            'No member found',
+            AppStaticTexts.noMembersFound,
             style: theme.textTheme.titleSmall?.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w800,
@@ -112,7 +113,7 @@ class _EmptyMembersView extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            'Add family members to manage appointments and documents faster.',
+            AppStaticTexts.addMembersSubtitle,
             textAlign: TextAlign.center,
             style: theme.textTheme.bodySmall?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,

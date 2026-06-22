@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginTermsRow extends StatelessWidget {
@@ -31,7 +32,7 @@ class LoginTermsRow extends StatelessWidget {
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        Text('By continuing, you agree to our ', style: bodyStyle),
+        Text(AppStaticTexts.byContinuing, style: bodyStyle),
         TextButton(
           style: TextButton.styleFrom(
             padding: EdgeInsets.zero,
@@ -40,7 +41,7 @@ class LoginTermsRow extends StatelessWidget {
             foregroundColor: theme.colorScheme.primary,
           ),
           onPressed: _openTerms,
-          child: Text('Terms & Conditions', style: linkStyle),
+          child: Text(AppStaticTexts.termsAndConditions, style: linkStyle),
         ),
       ],
     );

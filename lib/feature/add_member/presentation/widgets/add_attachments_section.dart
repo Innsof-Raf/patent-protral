@@ -34,7 +34,7 @@ class AddAttachmentsSection extends StatelessWidget {
                 child: SvgPicture.asset(Assets.icons.attachmentIcon.path),
               ),
               const SizedBox(width: 10),
-              const Flexible(
+              Flexible(
                 child: Text(
                   'Add Document',
                   style: AppTextStyles.largeRobotoNormal,

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -32,7 +33,7 @@ class _LabScreenState extends State<LabScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppbar(
-        title: 'Lab Test Categories',
+        title: AppStaticTexts.labTestCategories,
         actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
       ),
       body: DefaultTabController(
@@ -43,8 +44,8 @@ class _LabScreenState extends State<LabScreen> {
               indicatorColor: AppColors.vilot,
               indicatorWeight: 3,
               tabs: [
-                LabTabBar(title: 'Packages'),
-                LabTabBar(title: 'Test'),
+                LabTabBar(title: AppStaticTexts.packages),
+                LabTabBar(title: AppStaticTexts.test),
               ],
             ),
             Container(
@@ -59,7 +60,7 @@ class _LabScreenState extends State<LabScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
-                        'Cart updating failed due to ${state.error}',
+                        '${AppStaticTexts.cartUpdatingFailed} ${state.error}',
                       ),
                     ),
                   );
@@ -101,7 +102,7 @@ class _LabScreenState extends State<LabScreen> {
                   elevation: 0,
                 ),
                 child: Text(
-                  'VIEW CART',
+                  AppStaticTexts.viewCart,
                   style: AppTextStyles.largeBoldRoboto.copyWith(
                     color: AppColors.vilot,
                   ),
@@ -125,7 +126,7 @@ class _LabScreenState extends State<LabScreen> {
                   elevation: 0,
                 ),
                 child: Text(
-                  'CHECK OUT',
+                  AppStaticTexts.checkOut,
                   style: AppTextStyles.largeBoldRoboto.copyWith(
                     color: AppColors.white,
                   ),

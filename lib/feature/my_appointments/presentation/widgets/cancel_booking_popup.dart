@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
@@ -64,7 +65,7 @@ class CancelBookingPopUp extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Text(
-              'Cancel booking?',
+              AppStaticTexts.cancelBooking,
               style: theme.textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.w800,
                 letterSpacing: -0.5,
@@ -72,7 +73,7 @@ class CancelBookingPopUp extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'This will remove the scheduled appointment from your account. You can reschedule instead if you prefer.',
+              AppStaticTexts.cancelBookingMessage,
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: colorScheme.onSurfaceVariant,
                 height: 1.5,
@@ -100,7 +101,7 @@ class CancelBookingPopUp extends StatelessWidget {
                         child: _ProfilePreview(
                           imageUrl: doctorImage,
                           title: doctorName,
-                          subtitle: 'Doctor',
+                          subtitle: AppStaticTexts.doctor,
                         ),
                       ),
                       Padding(
@@ -117,7 +118,7 @@ class CancelBookingPopUp extends StatelessWidget {
                               ? null
                               : '${ConstantUrls.memberImageUrl}/${member.id}/${member.profileImage}',
                           title: member.name,
-                          subtitle: 'Member',
+                          subtitle: AppStaticTexts.member,
                           fallbackText: member.name.isEmpty
                               ? '?'
                               : member.name[0],
@@ -151,7 +152,7 @@ class CancelBookingPopUp extends StatelessWidget {
                         ),
                         const SizedBox(width: 10),
                         Text(
-                          '${DateFormat('dd MMM yyyy').format(appointmentDateTime)} at ${DateFormat.jm().format(appointmentDateTime)}',
+                          '${DateFormat('dd MMM yyyy').format(appointmentDateTime)} ${AppStaticTexts.at} ${DateFormat.jm().format(appointmentDateTime)}',
                           style: theme.textTheme.titleSmall?.copyWith(
                             fontWeight: FontWeight.w800,
                             color: colorScheme.onSurface,
@@ -175,7 +176,7 @@ class CancelBookingPopUp extends StatelessWidget {
                         borderRadius: BorderRadius.circular(18),
                       ),
                     ),
-                    child: const Text('Keep Booking'),
+                    child: const Text(AppStaticTexts.keepBooking),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -204,7 +205,7 @@ class CancelBookingPopUp extends StatelessWidget {
                         borderRadius: BorderRadius.circular(18),
                       ),
                     ),
-                    child: const Text('Cancel It'),
+                    child: const Text(AppStaticTexts.cancelIt),
                   ),
                 ),
               ],

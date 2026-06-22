@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/presentation/widgets/profile_section_card.dart';
@@ -19,7 +20,7 @@ class QuickMenuSection extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'Quick actions',
+            AppStaticTexts.quickActions,
             style: theme.textTheme.titleMedium?.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w800,
@@ -27,7 +28,7 @@ class QuickMenuSection extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            'Jump to the most used profile tasks.',
+            AppStaticTexts.quickActionsSubtitle,
             style: theme.textTheme.bodySmall?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w600,
@@ -43,16 +44,16 @@ class QuickMenuSection extends StatelessWidget {
                 onPressed: () {
                   MainScreenHelpers.mainScreenNotifier.value = 3;
                 },
-                title: 'Reports',
-                subtitle: 'View files',
+                title: AppStaticTexts.reports,
+                subtitle: AppStaticTexts.viewFiles,
               ),
               QuickMenuButton(
                 imagePath: Assets.icons.lockIconDart.path,
                 onPressed: () {
                   context.router.root.push(const SetPasswordRoute());
                 },
-                title: 'Password',
-                subtitle: 'Change login',
+                title: AppStaticTexts.password,
+                subtitle: AppStaticTexts.changeLogin,
               ),
             ],
           ),

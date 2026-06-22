@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
@@ -55,10 +56,9 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
             await showDialog<void>(
               context: context,
               builder: (context) => const AppointmentStatusDialog(
-                title: 'Appointment canceled',
-                message:
-                    'The appointment has been removed from your upcoming schedule.',
-                actionLabel: 'Done',
+                title: AppStaticTexts.appointmentCanceled,
+                message: AppStaticTexts.appointmentCanceledMessage,
+                actionLabel: AppStaticTexts.done,
               ),
             );
           } else if (state.isAppointmentsCancellationFailed &&
@@ -73,7 +73,7 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
 
           if (state.isAppointmentsFetchingFailed) {
             return CommonErrorView(
-              title: 'Unable to load appointments',
+              title: AppStaticTexts.unableToLoadAppointments,
               message: state.error.message,
               onRetry: _fetchAppointments,
             );
@@ -114,28 +114,25 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 AppointmentsTabbarView(
-                  title: 'All appointments',
+                  title: AppStaticTexts.allAppointments,
                   appointments: state.myAppointments,
                   monthTimelineList: state.monthTimelineList,
-                  emptyTitle: 'No appointments yet',
-                  emptyMessage:
-                      'Your bookings will appear here once available.',
+                  emptyTitle: AppStaticTexts.noAppointmentsYet,
+                  emptyMessage: AppStaticTexts.noAppointmentsMessage,
                 ),
                 AppointmentsTabbarView(
-                  title: 'Consulted appointments',
+                  title: AppStaticTexts.consultedAppointments,
                   appointments: state.myConsultedAppointments,
                   monthTimelineList: state.monthTimelineListOfConsulted,
-                  emptyTitle: 'No consulted appointments',
-                  emptyMessage:
-                      'Completed visits will appear here after consultation.',
+                  emptyTitle: AppStaticTexts.noConsultedAppointments,
+                  emptyMessage: AppStaticTexts.noConsultedAppointmentsMessage,
                 ),
                 AppointmentsTabbarView(
-                  title: 'Upcoming appointments',
+                  title: AppStaticTexts.upcomingAppointments,
                   appointments: state.myNotConsultedAppointments,
                   monthTimelineList: state.monthTimelineListOfNotConsulted,
-                  emptyTitle: 'No upcoming appointments',
-                  emptyMessage:
-                      'You do not have any scheduled visits right now.',
+                  emptyTitle: AppStaticTexts.noUpcomingAppointments,
+                  emptyMessage: AppStaticTexts.noUpcomingAppointmentsMessage,
                 ),
               ],
             ),
@@ -201,13 +198,16 @@ class _AppointmentsTabBar extends StatelessWidget {
           labelPadding: const EdgeInsets.only(right: 8),
           padding: EdgeInsets.zero,
           tabs: [
-            MyAppointmentScreenTabBar(title: 'All', isSelected: index == 0),
             MyAppointmentScreenTabBar(
-              title: 'Consulted',
+              title: AppStaticTexts.all,
+              isSelected: index == 0,
+            ),
+            MyAppointmentScreenTabBar(
+              title: AppStaticTexts.consulted,
               isSelected: index == 1,
             ),
             MyAppointmentScreenTabBar(
-              title: 'Upcoming',
+              title: AppStaticTexts.upcoming,
               isSelected: index == 2,
             ),
           ],

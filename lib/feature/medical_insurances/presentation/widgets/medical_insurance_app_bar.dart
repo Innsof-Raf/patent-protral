@@ -19,7 +19,7 @@ class MedicalInsuranceAppBar extends StatelessWidget
       elevation: 0,
       titleSpacing: 0,
       automaticallyImplyLeading: false,
-      title: const Text(
+      title: Text(
         'Medical Insurance',
         style: AppTextStyles.largeSemiBoldRoboto,
       ),

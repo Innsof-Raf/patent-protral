@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/helpers/login_screen_form_helpers.dart';
@@ -79,7 +80,7 @@ class _LoginOtpGenerationSectionState extends State<LoginOtpGenerationSection> {
                   Expanded(
                     child: LoginFormField(
                       controller: _mobileNumberController,
-                      label: 'Mobile number',
+                      label: AppStaticTexts.mobileNumberLabel,
                       prefixText: '+974 ',
                       keyboardType: TextInputType.phone,
                       textInputAction: TextInputAction.send,
@@ -96,7 +97,7 @@ class _LoginOtpGenerationSectionState extends State<LoginOtpGenerationSection> {
                     padding: const EdgeInsets.only(top: 3),
                     child: LoginActionButton(
                       icon: Icons.arrow_forward_rounded,
-                      tooltip: 'Send OTP',
+                      tooltip: AppStaticTexts.sendOtpTooltip,
                       isLoading: state.isOtpGenerating,
                       onPressed: () => _generateOtp(context, state),
                     ),

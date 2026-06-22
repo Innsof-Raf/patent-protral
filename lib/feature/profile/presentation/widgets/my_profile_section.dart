@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
@@ -23,11 +24,11 @@ class ProfileDetailsSection extends StatelessWidget {
         final fullName = _fullName(user);
 
         final age = (primaryMember?.age.isNotEmpty ?? false)
-            ? 'Age ${primaryMember!.age}'
-            : 'Age Not Provided';
+            ? '${AppStaticTexts.age} ${primaryMember!.age}'
+            : AppStaticTexts.ageNotProvided;
         final nationalId = (primaryMember?.nationalId.isNotEmpty ?? false)
-            ? 'National ID ${primaryMember!.nationalId}'
-            : 'ID Not Provided';
+            ? '${AppStaticTexts.nationalId} ${primaryMember!.nationalId}'
+            : AppStaticTexts.idNotProvided;
         final supportingDetails = '$age  |  $nationalId';
 
         return ProfileSectionCard(
@@ -76,13 +77,13 @@ class ProfileDetailsSection extends StatelessWidget {
                               icon: Icons.mail_outline_rounded,
                               label: user.emailId.isNotEmpty
                                   ? user.emailId
-                                  : 'Email Not Provided',
+                                  : AppStaticTexts.emailNotProvided,
                             ),
                             _ProfileInfoChip(
                               icon: Icons.call_outlined,
                               label: user.mobileNumber.isNotEmpty
                                   ? user.mobileNumber
-                                  : 'Mobile Not Provided',
+                                  : AppStaticTexts.mobileNotProvided,
                             ),
                           ],
                         ),
@@ -107,7 +108,7 @@ class ProfileDetailsSection extends StatelessWidget {
                     context.router.root.push(const EditProfileDetailsRoute());
                   },
                   icon: const Icon(Icons.edit_outlined, size: 19),
-                  label: const Text('Edit Profile'),
+                  label: const Text(AppStaticTexts.editProfile),
                 ),
               ),
             ],

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/app_drawer_tile.dart';
@@ -48,56 +49,56 @@ class AppDrawer extends StatelessWidget {
                     const SizedBox(height: 18),
                     AppDrawerTile(
                       iconPath: Assets.icons.homeIcon.path,
-                      tileName: 'Home',
+                      tileName: AppStaticTexts.home,
                       isSelected: selectedIndex == 0,
                       onPress: () => _selectTab(context, 0),
                     ),
                     AppDrawerTile(
                       iconPath: Assets.icons.doctorIcon.path,
-                      tileName: 'Book Appointment',
+                      tileName: AppStaticTexts.bookAppointment,
                       isSelected: selectedIndex == 2,
                       onPress: () => _selectTab(context, 2),
                     ),
                     AppDrawerTile(
                       iconPath: Assets.icons.calenderIcon.path,
-                      tileName: 'Appointments',
+                      tileName: AppStaticTexts.appointments,
                       isSelected: selectedIndex == 1,
                       onPress: () => _selectTab(context, 1),
                     ),
                     AppDrawerTile(
                       iconPath: Assets.icons.membersIcon.path,
-                      tileName: 'Members',
+                      tileName: AppStaticTexts.members,
                       onPress: () {
                         _openRoute(context, const MembersRoute());
                       },
                     ),
                     AppDrawerTile(
                       iconPath: Assets.icons.labIcon.path,
-                      tileName: 'Laboratory',
+                      tileName: AppStaticTexts.laboratory,
                       onPress: () {
                         _openRoute(context, const LabRoute());
                       },
                     ),
                     AppDrawerTile(
                       iconPath: Assets.icons.reportsIcon.path,
-                      tileName: 'Reports',
+                      tileName: AppStaticTexts.reports,
                       isSelected: selectedIndex == 3,
                       onPress: () => _selectTab(context, 3),
                     ),
                     AppDrawerTile(
                       iconPath: Assets.icons.profileIcon.path,
-                      tileName: 'Profile',
+                      tileName: AppStaticTexts.profile,
                       isSelected: selectedIndex == 4,
                       onPress: () => _selectTab(context, 4),
                     ),
                     AppDrawerTile(
                       iconPath: Assets.icons.ordersIcon.path,
-                      tileName: 'Orders',
+                      tileName: AppStaticTexts.orders,
                       onPress: () {},
                     ),
                     AppDrawerTile(
                       iconPath: Assets.icons.mailIcon.path,
-                      tileName: 'Mail Us',
+                      tileName: AppStaticTexts.mailUs,
                       onPress: () async {
                         final url = Uri.parse('mailto:info@innsof.com');
                         await launchUrl(url);

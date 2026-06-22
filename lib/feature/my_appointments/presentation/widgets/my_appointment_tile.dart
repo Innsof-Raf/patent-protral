@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/helpers.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -110,7 +111,7 @@ class MyAppointmentTile extends StatelessWidget {
                       Expanded(
                         child: Text(
                           appointment.memberName.isEmpty
-                              ? 'Self'
+                              ? AppStaticTexts.self
                               : appointment.memberName,
                           style: theme.textTheme.labelLarge?.copyWith(
                             fontWeight: FontWeight.w800,
@@ -169,10 +170,7 @@ class MyAppointmentTile extends StatelessWidget {
 
     final member = _findMember(context);
     if (member == null) {
-      _showMessage(
-        context,
-        'Unable to find the selected member for this appointment.',
-      );
+      _showMessage(context, AppStaticTexts.memberNotFound);
       return;
     }
 
@@ -181,10 +179,7 @@ class MyAppointmentTile extends StatelessWidget {
 
     final selectedDate = _resolveSelectedDate();
     if (selectedDate == null) {
-      _showMessage(
-        context,
-        'No available dates found for rescheduling right now.',
-      );
+      _showMessage(context, AppStaticTexts.noAvailableDatesReschedule);
       return;
     }
 
@@ -213,10 +208,7 @@ class MyAppointmentTile extends StatelessWidget {
 
     final member = _findMember(context);
     if (member == null) {
-      _showMessage(
-        context,
-        'Unable to find the selected member for this appointment.',
-      );
+      _showMessage(context, AppStaticTexts.memberNotFound);
       return;
     }
 
@@ -243,10 +235,7 @@ class MyAppointmentTile extends StatelessWidget {
   void _onBookAgainPressed(BuildContext context) {
     final member = _findMember(context);
     if (member == null) {
-      _showMessage(
-        context,
-        'Unable to find the selected member for this appointment.',
-      );
+      _showMessage(context, AppStaticTexts.memberNotFound);
       return;
     }
 
@@ -255,7 +244,7 @@ class MyAppointmentTile extends StatelessWidget {
     BookAppointmentScreenHelpers.createDateList();
 
     if (BookAppointmentScreenHelpers.dateList.isEmpty) {
-      _showMessage(context, 'No available dates found for booking right now.');
+      _showMessage(context, AppStaticTexts.noAvailableDatesBooking);
       return;
     }
 
@@ -382,7 +371,7 @@ class _StatusBadge extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           Text(
-            isConsulted ? 'Done' : 'Upcoming',
+            isConsulted ? AppStaticTexts.done : AppStaticTexts.upcoming,
             style: theme.textTheme.labelSmall?.copyWith(
               color: color,
               fontWeight: FontWeight.w900,
@@ -421,7 +410,7 @@ class _ActionBar extends StatelessWidget {
         child: FilledButton.icon(
           onPressed: onBookAgain,
           icon: const Icon(Icons.reorder_rounded, size: 18),
-          label: const Text('Book Appointment Again'),
+          label: const Text(AppStaticTexts.bookAgain),
           style: FilledButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 12),
             shape: RoundedRectangleBorder(
@@ -444,7 +433,7 @@ class _ActionBar extends StatelessWidget {
                     child: CircularProgressIndicator(strokeWidth: 2),
                   )
                 : const Icon(Icons.close_rounded, size: 18),
-            label: const Text('Cancel'),
+            label: const Text(AppStaticTexts.cancel),
             style: OutlinedButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 12),
               side: BorderSide(color: colorScheme.error.withValues(alpha: 0.5)),
@@ -460,7 +449,7 @@ class _ActionBar extends StatelessWidget {
           child: FilledButton.icon(
             onPressed: isCanceling ? null : onReschedule,
             icon: const Icon(Icons.calendar_month_rounded, size: 18),
-            label: const Text('Reschedule'),
+            label: const Text(AppStaticTexts.reschedule),
             style: FilledButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 12),
               shape: RoundedRectangleBorder(

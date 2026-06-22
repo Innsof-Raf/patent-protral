@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
@@ -59,7 +60,7 @@ class _LoginOtpVerificationSectionState
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          'Enter OTP',
+          AppStaticTexts.enterOtp,
           style: theme.textTheme.bodyMedium?.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
             fontWeight: FontWeight.w600,
@@ -113,7 +114,7 @@ class _LoginOtpVerificationSectionState
                     builder: (context, state) {
                       return LoginActionButton(
                         icon: Icons.arrow_forward_rounded,
-                        tooltip: 'Verify OTP',
+                        tooltip: AppStaticTexts.verifyOtpTooltip,
                         isLoading: state.isVerifying,
                         onPressed: () => _verifyOtp(context),
                       );
@@ -206,7 +207,7 @@ class _OtpSecondaryActions extends StatelessWidget {
           builder: (context, value, _) {
             if (value != 0) {
               return Text(
-                'Resend 00:$value',
+                '${AppStaticTexts.resend} 00:$value',
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                   fontWeight: FontWeight.w600,
@@ -223,7 +224,9 @@ class _OtpSecondaryActions extends StatelessWidget {
               },
               builder: (context, state) {
                 return _TextAction(
-                  label: state.isResenting ? 'Resending...' : 'Resend',
+                  label: state.isResenting
+                      ? AppStaticTexts.resending
+                      : AppStaticTexts.resend,
                   onPressed: state.isResenting
                       ? null
                       : () {
@@ -238,7 +241,7 @@ class _OtpSecondaryActions extends StatelessWidget {
         ),
         if (generationState.showPasswordSection)
           _TextAction(
-            label: 'Login with password',
+            label: AppStaticTexts.loginWithPassword,
             onPressed: () {
               if (!context.read<OtpVerificationBloc>().state.isVerifying) {
                 LoginScreenHelpers.loginSectionNotifer.value = 2;

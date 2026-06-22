@@ -19,10 +19,7 @@ class SetPasswordAppBar extends StatelessWidget implements PreferredSizeWidget {
       titleSpacing: 0,
       centerTitle: false,
       automaticallyImplyLeading: false,
-      title: const Text(
-        'Set Password',
-        style: AppTextStyles.largeSemiBoldRoboto,
-      ),
+      title: Text('Set Password', style: AppTextStyles.largeSemiBoldRoboto),
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios, color: AppColors.textDark),
         onPressed: () {

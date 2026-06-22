@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
@@ -60,7 +61,7 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
 
           if (state.isFetchingError) {
             return CommonErrorView(
-              title: 'Unable to load specialities',
+              title: AppStaticTexts.unableToLoadSpecialities,
               message: state.error.message,
               onRetry: _fetchSpecialities,
             );
@@ -78,8 +79,8 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
               if (state.specialities.isNotEmpty)
                 SliverSearchHeader(
                   controller: searchController,
-                  title: 'Search speciality by department',
-                  hintText: 'Search specialities',
+                  title: AppStaticTexts.searchSpecialityHint,
+                  hintText: AppStaticTexts.searchSpecialities,
                   onChanged: (value) {
                     context.read<SpecialityBloc>().add(
                       SearchSpecialities(
@@ -118,8 +119,8 @@ class _SpecialityResultSliver extends StatelessWidget {
       return const SliverFillRemaining(
         hasScrollBody: false,
         child: SpecialityMessageView(
-          title: 'No specialities found',
-          message: 'Please check again later.',
+          title: AppStaticTexts.noSpecialitiesFound,
+          message: AppStaticTexts.noSpecialitiesFoundMessage,
         ),
       );
     }
@@ -134,8 +135,8 @@ class _SpecialityResultSliver extends StatelessWidget {
           return const SliverFillRemaining(
             hasScrollBody: false,
             child: SpecialityMessageView(
-              title: 'No matching speciality',
-              message: 'Try searching with another department name.',
+              title: AppStaticTexts.noMatchingSpeciality,
+              message: AppStaticTexts.noMatchingSpecialityMessage,
             ),
           );
         }

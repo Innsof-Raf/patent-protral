@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_models/insurance/insurance_model.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_insurance_card.dart';
@@ -18,9 +19,9 @@ class HomeInsuranceSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         HomeSectionHeader(
-          title: 'Medical Insurance',
-          subtitle: 'We are providing following medical insurance',
-          actionTooltip: 'View insurance',
+          title: AppStaticTexts.medicalInsurance,
+          subtitle: AppStaticTexts.medicalInsuranceSubtitle,
+          actionTooltip: AppStaticTexts.viewInsurance,
           onViewAll: () {
             context.router.root.push(const MedicalInsuranceRoute());
           },

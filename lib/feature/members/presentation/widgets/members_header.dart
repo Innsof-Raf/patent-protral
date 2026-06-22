@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 
 class MembersHeader extends StatelessWidget {
   const MembersHeader({super.key, required this.count});
@@ -23,7 +24,7 @@ class MembersHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Member list',
+            AppStaticTexts.memberList,
             style: theme.textTheme.headlineSmall?.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w800,
@@ -32,7 +33,7 @@ class MembersHeader extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Manage family profiles, insurance status, and patient details.',
+            AppStaticTexts.memberListSubtitle,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w500,
@@ -47,7 +48,9 @@ class MembersHeader extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
               child: Text(
-                count == 0 ? 'No members added' : '$count members linked',
+                count == 0
+                    ? AppStaticTexts.noMembersAdded
+                    : '$count ${AppStaticTexts.membersLinked}',
                 style: theme.textTheme.labelMedium?.copyWith(
                   color: theme.colorScheme.primary,
                   fontWeight: FontWeight.w800,

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:patient_portal/feature/home/presentation/pages/home_screen.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
@@ -27,8 +28,8 @@ const List<Widget> screens = [
 
 const List<PreferredSizeWidget?> appBars = [
   HomeAppBar(),
-  MainAppBar(title: 'My Appointments'),
-  MainAppBar(title: 'Specialist'),
+  MainAppBar(title: AppStaticTexts.myAppointments),
+  MainAppBar(title: AppStaticTexts.specialist),
   ReportsAppBar(),
   ProfileAppBar(),
 ];

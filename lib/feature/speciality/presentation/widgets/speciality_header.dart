@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 
 class SpecialityHeader extends StatelessWidget {
   const SpecialityHeader({super.key, required this.count});
@@ -23,7 +24,7 @@ class SpecialityHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Find Specialist',
+            AppStaticTexts.findSpecialist,
             style: theme.textTheme.headlineSmall?.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w800,
@@ -32,7 +33,7 @@ class SpecialityHeader extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Choose a department and book with the right doctor faster.',
+            AppStaticTexts.specialistSubtitle,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w500,
@@ -47,7 +48,7 @@ class SpecialityHeader extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
               child: Text(
-                '$count specialities available',
+                '$count ${AppStaticTexts.specialitiesAvailable}',
                 style: theme.textTheme.labelMedium?.copyWith(
                   color: theme.colorScheme.primary,
                   fontWeight: FontWeight.w800,

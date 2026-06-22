@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
@@ -38,7 +39,7 @@ class _MembersScreenState extends State<MembersScreen> {
       resizeToAvoidBottomInset: false,
       backgroundColor: theme.colorScheme.surface,
       appBar: CommonAppbar(
-        title: 'Members',
+        title: AppStaticTexts.members,
         actions: [
           TextButton(
             onPressed: () {
@@ -53,7 +54,7 @@ class _MembersScreenState extends State<MembersScreen> {
                 SelectAllMembers(membersIdList: membersIdList),
               );
             },
-            child: const Text('Select All'),
+            child: const Text(AppStaticTexts.selectAll),
           ),
         ],
       ),
@@ -73,8 +74,8 @@ class _MembersScreenState extends State<MembersScreen> {
               if (members.isNotEmpty)
                 SliverSearchHeader(
                   controller: searchController,
-                  title: 'Search member by name',
-                  hintText: 'Search members',
+                  title: AppStaticTexts.searchMemberHint,
+                  hintText: AppStaticTexts.searchMembers,
                   onChanged: (value) {
                     context.read<MemberSearchBloc>().add(
                       SearchMember(
@@ -101,7 +102,7 @@ class _MembersScreenState extends State<MembersScreen> {
           context.router.root.push(AddMemberRoute());
         },
         icon: const Icon(Icons.person_add_alt_1_rounded),
-        label: const Text('Add Member'),
+        label: const Text(AppStaticTexts.addMember),
       ),
     );
   }
@@ -122,8 +123,8 @@ class _MembersResultSliver extends StatelessWidget {
       return const SliverFillRemaining(
         hasScrollBody: false,
         child: MembersStateView(
-          title: 'No members found',
-          message: 'Add a member to manage appointments, documents, and care.',
+          title: AppStaticTexts.noMembersFound,
+          message: AppStaticTexts.noMembersFoundMessage,
           icon: Icons.group_add_outlined,
         ),
       );
@@ -139,8 +140,8 @@ class _MembersResultSliver extends StatelessWidget {
           return const SliverFillRemaining(
             hasScrollBody: false,
             child: MembersStateView(
-              title: 'No matching member',
-              message: 'Try another name or clear the search field.',
+              title: AppStaticTexts.noMatchingMember,
+              message: AppStaticTexts.noMatchingMemberMessage,
               icon: Icons.manage_search_rounded,
             ),
           );

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
@@ -187,12 +188,13 @@ class _DoctorDetails extends StatelessWidget {
           children: [
             DoctorMetaChip(
               icon: Icons.work_history_outlined,
-              label: '${doctor.experience} yrs',
+              label: '${doctor.experience} ${AppStaticTexts.yearsExperience}',
               compact: compact,
             ),
             DoctorMetaChip(
               icon: Icons.payments_outlined,
-              label: 'QAR ${doctor.consultationFee.toStringAsFixed(0)}',
+              label:
+                  '${AppStaticTexts.qar} ${doctor.consultationFee.toStringAsFixed(0)}',
               compact: compact,
             ),
             DoctorMetaChip(
@@ -204,7 +206,7 @@ class _DoctorDetails extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         Text(
-          'Next available today',
+          AppStaticTexts.nextAvailableToday,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: theme.textTheme.labelSmall?.copyWith(
@@ -250,7 +252,7 @@ class _BookDoctorButton extends StatelessWidget {
           ),
         );
       },
-      child: const Text('Book'),
+      child: const Text(AppStaticTexts.book),
     );
   }
 }
