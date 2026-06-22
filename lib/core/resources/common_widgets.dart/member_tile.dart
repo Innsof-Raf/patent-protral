@@ -6,7 +6,6 @@ import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 
 import '../app_colors.dart';
-import '../app_text_styles.dart';
 import '../dimens.dart';
 import '../urls.dart';
 
@@ -16,6 +15,8 @@ class MemberTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
         side: const BorderSide(width: .5, color: AppColors.borderColor),
@@ -42,7 +43,7 @@ class MemberTile extends StatelessWidget {
             child: member.profileImage == null
                 ? Text(
                     member.name[0],
-                    style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
+                    style: theme.textTheme.headlineSmall?.copyWith(
                       fontSize: 18,
                       color: AppColors.white,
                     ),
@@ -56,16 +57,16 @@ class MemberTile extends StatelessWidget {
             children: [
               Text(
                 member.name,
-                style: AppTextStyles.bodyLargeRobotoSemiBold.copyWith(
+                style: theme.textTheme.titleSmall?.copyWith(
                   fontSize: 12,
-                  color: AppColors.textLight,
+                  color: theme.colorScheme.onSurfaceVariant,
                 ),
               ),
               const SizedBox(height: 4),
               Text(
                 member.age,
-                style: AppTextStyles.bodyTextInter.copyWith(
-                  color: AppColors.textLight,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
                 ),
               ),
             ],

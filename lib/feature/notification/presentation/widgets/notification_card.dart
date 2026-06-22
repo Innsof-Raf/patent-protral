@@ -133,7 +133,7 @@ class NotificationCard extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       subtitle,
-                      style: theme.textTheme.labelMedium?.copyWith(
+                      style: theme.textTheme.bodySmall?.copyWith(
                         color: isRead
                             ? colorScheme.onSurfaceVariant
                             : colorScheme.primary,

@@ -126,9 +126,20 @@ class MyApp extends StatelessWidget {
           ),
           primarySwatch: Colors.blue,
           textTheme: TextTheme(
-            titleMedium: AppTextStyles.largeRobotoNormal.copyWith(
-              color: AppColors.textDark,
-            ),
+            displayLarge: AppTextStyles.xXXLargeRobotoSemiBold,
+            displayMedium: AppTextStyles.xXLargeRobotoSemiBold,
+            headlineLarge: AppTextStyles.extraLargeRobotoBold,
+            headlineMedium: AppTextStyles.extraLargeRobotoSemiBold,
+            headlineSmall: AppTextStyles.subHeadingSemiBoldRoboto,
+            titleLarge: AppTextStyles.largeBoldRoboto,
+            titleMedium: AppTextStyles.largeSemiBoldRoboto,
+            titleSmall: AppTextStyles.largeRobotoNormal,
+            bodyLarge: AppTextStyles.bodyLargeRobotoBold,
+            bodyMedium: AppTextStyles.bodyLargeRobotoSemiBold,
+            bodySmall: AppTextStyles.bodyTextInter,
+            labelLarge: AppTextStyles.bodyTextRobotoSemiBold,
+            labelMedium: AppTextStyles.bodySemiBoldRoboto,
+            labelSmall: AppTextStyles.bodySmallRobotoNormal,
           ),
           inputDecorationTheme: InputDecorationTheme(
             contentPadding: const EdgeInsets.all(15),

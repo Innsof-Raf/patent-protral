@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -19,6 +19,8 @@ class LabItemDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return BlocBuilder<ItemsBloc, ItemsState>(
       builder: (context, state) {
         final int itemIndex = state.items.indexWhere(
@@ -29,7 +31,7 @@ class LabItemDetailScreen extends StatelessWidget {
             ? state.items[itemIndex]
             : null;
         return Scaffold(
-          appBar: const CommonAppbar(title: 'Lab'),
+          appBar: const CommonAppbar(title: AppStaticTexts.laboratory),
           body: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
@@ -72,18 +74,23 @@ class LabItemDetailScreen extends StatelessWidget {
                 Dimens.constHeight,
                 Text(
                   selectedItem != null ? selectedItem.itemNmae : '',
-                  style: AppTextStyles.bodyLargeRobotoSemiBold,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'Package Description',
-                  style: AppTextStyles.bodySmallRobotoNormal,
+                  AppStaticTexts.packageDescription,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: theme.colorScheme.onSurface,
+                  ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   'subtitle subtitle subttilte subtitlte jhwhdfjfjfji efujiejfij bfuhufujnj\njfjjjfjfjj\ndjfjigjigjijhfhfh',
-                  style: AppTextStyles.bodySmallInterNormal.copyWith(
-                    color: AppColors.textLight,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
                   ),
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
@@ -97,13 +104,15 @@ class LabItemDetailScreen extends StatelessWidget {
                       children: [
                         CircleAvatar(
                           radius: 4,
-                          backgroundColor: AppColors.vilot,
+                          backgroundColor: theme.colorScheme.primary,
                         ),
-                        SizedBox(width: 5),
+                        const SizedBox(width: 5),
                         Flexible(
                           child: Text(
                             'Lorem ipsum dolor sit amet, consectetuer',
-                            style: AppTextStyles.bodyTextBoldRoboto,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                       ],
@@ -134,14 +143,15 @@ class LabItemDetailScreen extends StatelessWidget {
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       padding: const EdgeInsets.symmetric(vertical: 25),
                       minimumSize: const Size(0, 0),
-                      foregroundColor: AppColors.vilot,
-                      backgroundColor: AppColors.white,
+                      foregroundColor: theme.colorScheme.primary,
+                      backgroundColor: theme.colorScheme.surface,
                       elevation: 0,
                     ),
                     child: Text(
-                      'VIEW CART',
-                      style: AppTextStyles.largeBoldRoboto.copyWith(
-                        color: AppColors.vilot,
+                      AppStaticTexts.viewCart,
+                      style: theme.textTheme.labelLarge?.copyWith(
+                        color: theme.colorScheme.primary,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                     onPressed: () {},
@@ -156,18 +166,19 @@ class LabItemDetailScreen extends StatelessWidget {
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       padding: const EdgeInsets.symmetric(vertical: 25),
                       minimumSize: const Size(0, 0),
-                      foregroundColor: AppColors.white,
+                      foregroundColor: theme.colorScheme.onPrimary,
                       backgroundColor: selectedItem != null
                           ? selectedItem.isChangingCartStatus
-                                ? AppColors.white
-                                : AppColors.vilot
-                          : AppColors.vilot,
+                                ? theme.colorScheme.surface
+                                : theme.colorScheme.primary
+                          : theme.colorScheme.primary,
                       elevation: 0,
                     ),
                     child: Text(
-                      'ADD TO CART',
-                      style: AppTextStyles.largeBoldRoboto.copyWith(
-                        color: AppColors.white,
+                      AppStaticTexts.addToCart,
+                      style: theme.textTheme.labelLarge?.copyWith(
+                        color: theme.colorScheme.onPrimary,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                     onPressed: () {

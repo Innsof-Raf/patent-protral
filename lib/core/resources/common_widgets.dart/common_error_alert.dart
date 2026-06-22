@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
-
-import '../app_colors.dart';
-import '../app_text_styles.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 
 class CommonErrorAlert extends StatelessWidget {
   final String content;
@@ -11,6 +10,8 @@ class CommonErrorAlert extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       child: Container(
@@ -34,12 +35,18 @@ class CommonErrorAlert extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 4),
-            const Text('Failed !', style: AppTextStyles.xXLargeRobotoSemiBold),
+            Text(
+              AppStaticTexts.failed,
+              style: theme.textTheme.displayMedium?.copyWith(
+                color: theme.colorScheme.onSurface,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
             const SizedBox(height: 4),
             Text(
               content,
               textAlign: TextAlign.center,
-              style: AppTextStyles.largeRobotoNormal,
+              style: theme.textTheme.titleMedium,
             ),
             const SizedBox(height: 30),
             SvgPicture.asset(Assets.icons.errorIcon.path),
@@ -48,7 +55,7 @@ class CommonErrorAlert extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.vilot,
+                  backgroundColor: theme.colorScheme.primary,
                   minimumSize: const Size(0, 0),
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   shape: RoundedRectangleBorder(
@@ -60,9 +67,10 @@ class CommonErrorAlert extends StatelessWidget {
                   Navigator.pop(context);
                 },
                 child: Text(
-                  'OK',
-                  style: AppTextStyles.bodyLargeRobotoBold.copyWith(
-                    color: AppColors.white,
+                  AppStaticTexts.ok,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    color: theme.colorScheme.onPrimary,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ),

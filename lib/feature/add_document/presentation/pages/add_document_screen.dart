@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
@@ -50,23 +50,25 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       extendBody: true,
-      appBar: const CommonAppbar(title: 'Add Document'),
+      appBar: const CommonAppbar(title: AppStaticTexts.addDocument),
       body: BlocBuilder<AddDocumentBloc, AddDocumentState>(
         builder: (context, state) {
           return state.isFetchingDocumentTypes
               ? const CommonLoadingView()
               : state.isFetchingDocumentTypesFailed
               ? CommonErrorView(
-                  title: 'Unable to load document types',
+                  title: AppStaticTexts.unableToLoadDocumentTypes,
                   message: state.error.message,
                   onRetry: _fetchDocumentTypes,
                 )
               : state.documentTypes.isEmpty
               ? CommonErrorView(
-                  title: 'Document types unavailable',
-                  message: 'You cannot add documents right now.',
+                  title: AppStaticTexts.documentTypesUnavailable,
+                  message: AppStaticTexts.documentTypesUnavailableMessage,
                   onRetry: _fetchDocumentTypes,
                 )
               : Padding(
@@ -81,9 +83,9 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                                 value: value,
                               ),
                           isExpanded: true,
-                          decoration: const InputDecoration(
-                            labelStyle: AppTextStyles.textFormFieldStyle,
-                            labelText: 'Member',
+                          decoration: InputDecoration(
+                            labelStyle: theme.textTheme.titleMedium,
+                            labelText: AppStaticTexts.member,
                           ),
                           items: context
                               .read<UserBloc>()
@@ -94,6 +96,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                                 (member) =>
                                     AddDocumentScreenHelpers.createMemberDropDownItem(
                                       member: member,
+                                      textTheme: theme.textTheme,
                                     ),
                               )
                               .toList(),
@@ -107,9 +110,9 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                               AddDocumentScreenHelpers.validateDocumentType(
                                 value: value,
                               ),
-                          decoration: const InputDecoration(
-                            labelStyle: AppTextStyles.textFormFieldStyle,
-                            labelText: 'Document type',
+                          decoration: InputDecoration(
+                            labelStyle: theme.textTheme.titleMedium,
+                            labelText: AppStaticTexts.documentType,
                           ),
                           items: context
                               .read<AddDocumentBloc>()
@@ -119,6 +122,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                                 (documentType) =>
                                     AddDocumentScreenHelpers.createDocumentTypeDropDownItem(
                                       document: documentType,
+                                      textTheme: theme.textTheme,
                                     ),
                               )
                               .toList(),
@@ -152,9 +156,9 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                                   ).format(AddDocumentScreen.expireDate!);
                             }
                           },
-                          decoration: const InputDecoration(
-                            labelStyle: AppTextStyles.textFormFieldStyle,
-                            labelText: 'ExpireDate',
+                          decoration: InputDecoration(
+                            labelStyle: theme.textTheme.titleMedium,
+                            labelText: AppStaticTexts.expireDate,
                           ),
                         ),
                         const SizedBox(height: 10),
@@ -176,10 +180,9 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                                   },
                                   controller:
                                       AddDocumentScreen.documentNameController,
-                                  decoration: const InputDecoration(
-                                    labelStyle:
-                                        AppTextStyles.textFormFieldStyle,
-                                    labelText: 'Document',
+                                  decoration: InputDecoration(
+                                    labelStyle: theme.textTheme.titleMedium,
+                                    labelText: AppStaticTexts.document,
                                   ),
                                 ),
                               ),
@@ -237,9 +240,10 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
             ),
             onPressed: () {},
             child: Text(
-              'Add',
-              style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                color: AppColors.white,
+              AppStaticTexts.add,
+              style: theme.textTheme.titleMedium?.copyWith(
+                color: theme.colorScheme.onPrimary,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),

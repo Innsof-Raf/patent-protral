@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
@@ -52,7 +53,10 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CommonAppbar(title: 'Book Appointment', centerTitle: true),
+      appBar: const CommonAppbar(
+        title: AppStaticTexts.bookAppointment,
+        centerTitle: true,
+      ),
       body: Column(
         children: [
           _DateSelector(
@@ -71,7 +75,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
               builder: (context, state) {
                 if (state.isFetchingError) {
                   return CommonErrorView(
-                    title: 'Unable to load appointment slots',
+                    title: AppStaticTexts.unableToLoadAppointmentSlots,
                     message: state.error.message,
                     onRetry: () => _fetchSlots(
                       BookAppointmentScreenHelpers.selectedDateNotifier.value,
@@ -83,9 +87,9 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                   child: Column(
                     children: [
                       if (state.isSlotLoading)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
-                          child: const CommonLoadingView(
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 20),
+                          child: CommonLoadingView(
                             size: 80,
                             padding: EdgeInsets.all(20),
                           ),

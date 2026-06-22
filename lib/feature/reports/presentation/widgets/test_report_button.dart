@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
@@ -24,6 +22,8 @@ class TestReportButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return url != null
         ? ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -47,8 +47,9 @@ class TestReportButton extends StatelessWidget {
             },
             child: Text(
               title,
-              style: AppTextStyles.bodyTextBoldRoboto.copyWith(
-                color: AppColors.white,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onPrimary,
+                fontWeight: FontWeight.w700,
               ),
             ),
           )
@@ -63,14 +64,15 @@ class TestReportButton extends StatelessWidget {
               ),
               side: BorderSide(
                 width: .5,
-                color: AppColors.vilot.withValues(alpha: .3),
+                color: theme.colorScheme.primary.withValues(alpha: .3),
               ),
             ),
             onPressed: () {},
             child: Text(
               title,
-              style: AppTextStyles.bodyTextBoldRoboto.copyWith(
-                color: AppColors.vilot.withValues(alpha: .3),
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.primary.withValues(alpha: .3),
+                fontWeight: FontWeight.w700,
               ),
             ),
           );

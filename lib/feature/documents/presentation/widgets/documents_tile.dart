@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/feature/documents/domain/entities/document.dart';
 
 class DocumentTile extends StatelessWidget {
@@ -12,6 +12,8 @@ class DocumentTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
         foregroundColor: AppColors.borderColor,
@@ -35,14 +37,17 @@ class DocumentTile extends StatelessWidget {
                   document.docName,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.bodyLargeRobotoSemiBold,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    color: theme.colorScheme.onSurface,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
                 const SizedBox(height: 1),
                 Text(
-                  DateFormat(
-                    'expire on dd/MM/yyyy',
-                  ).format(document.expireDate),
-                  style: AppTextStyles.bodyTextInter,
+                  '${AppStaticTexts.expireOn} ${DateFormat('dd/MM/yyyy').format(document.expireDate)}',
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
                 ),
               ],
             ),

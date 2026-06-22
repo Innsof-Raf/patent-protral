@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/delete_member_bloc/delete_member_bloc.dart';
@@ -161,8 +162,9 @@ class _MemberDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final subtitle = [
-      if (member.age.isNotEmpty) 'Age ${member.age}',
-      if (member.nationalId.isNotEmpty) 'ID ${member.nationalId}',
+      if (member.age.isNotEmpty) '${AppStaticTexts.age} ${member.age}',
+      if (member.nationalId.isNotEmpty)
+        '${AppStaticTexts.nationalId} ${member.nationalId}',
     ].join('  |  ');
 
     return Column(
@@ -180,7 +182,7 @@ class _MemberDetails extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         Text(
-          subtitle.isEmpty ? 'Member profile' : subtitle,
+          subtitle.isEmpty ? AppStaticTexts.memberProfile : subtitle,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: theme.textTheme.bodySmall?.copyWith(
@@ -207,7 +209,7 @@ class _InsuranceBadge extends StatelessWidget {
         borderRadius: BorderRadius.circular(999),
       ),
       child: Text(
-        'Insured',
+        AppStaticTexts.insured,
         style: theme.textTheme.labelSmall?.copyWith(
           color: theme.colorScheme.primary,
           fontWeight: FontWeight.w800,

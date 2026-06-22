@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
@@ -18,7 +19,7 @@ class HomeSpecialityCard extends StatelessWidget {
 
     return Semantics(
       button: true,
-      label: 'View doctors in ${speciality.specialityName}',
+      label: '${AppStaticTexts.viewDoctorsIn} ${speciality.specialityName}',
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: borderRadius,
@@ -77,7 +78,7 @@ class HomeSpecialityCard extends StatelessWidget {
                     textAlign: TextAlign.center,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.labelMedium?.copyWith(
+                    style: theme.textTheme.bodyMedium?.copyWith(
                       color: theme.colorScheme.onSurface,
                       fontWeight: FontWeight.w800,
                       height: 1.15,

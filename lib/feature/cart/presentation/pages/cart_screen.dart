@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/feature/cart/presentation/widgets/cart_item_tile.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
@@ -13,15 +13,17 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      appBar: const CommonAppbar(title: 'My Cart'),
+      appBar: const CommonAppbar(title: AppStaticTexts.myCart),
       body: BlocBuilder<ItemsBloc, ItemsState>(
         builder: (context, state) {
           return state.cart.isEmpty
               ? Center(
                   child: Text(
-                    'Your cart is empty',
-                    style: AppTextStyles.largeRobotoNormal,
+                    AppStaticTexts.yourCartIsEmpty,
+                    style: theme.textTheme.titleMedium,
                   ),
                 )
               : GridView.builder(
@@ -42,7 +44,7 @@ class CartScreen extends StatelessWidget {
         builder: (context, state) {
           return Container(
             decoration: BoxDecoration(
-              color: AppColors.white,
+              color: theme.colorScheme.surface,
               boxShadow: [
                 BoxShadow(
                   blurRadius: 1,
@@ -57,13 +59,17 @@ class CartScreen extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'Total',
-                        style: AppTextStyles.bodyLargeSemiBoldTextInter,
+                        AppStaticTexts.total,
+                        style: theme.textTheme.titleSmall?.copyWith(
+                          color: theme.colorScheme.onSurface,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       Text(
-                        'QR ${state.cartTotal}',
-                        style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
+                        '${AppStaticTexts.qr} ${state.cartTotal}',
+                        style: theme.textTheme.headlineSmall?.copyWith(
                           color: AppColors.lightGreen,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                     ],
@@ -78,14 +84,15 @@ class CartScreen extends StatelessWidget {
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       padding: const EdgeInsets.symmetric(vertical: 25),
                       minimumSize: const Size(0, 0),
-                      foregroundColor: AppColors.white,
-                      backgroundColor: AppColors.vilot,
+                      foregroundColor: theme.colorScheme.onPrimary,
+                      backgroundColor: theme.colorScheme.primary,
                       elevation: 0,
                     ),
                     child: Text(
-                      'CHECK OUT',
-                      style: AppTextStyles.largeBoldRoboto.copyWith(
-                        color: AppColors.white,
+                      AppStaticTexts.checkOut,
+                      style: theme.textTheme.labelLarge?.copyWith(
+                        color: theme.colorScheme.onPrimary,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                     onPressed: () {},

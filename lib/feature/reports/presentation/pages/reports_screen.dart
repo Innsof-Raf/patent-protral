@@ -41,6 +41,8 @@ class _ReportsScreenState extends State<ReportsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -58,7 +60,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                 ? Center(
                     child: Text(
                       AppStaticTexts.noReportsAvailable,
-                      style: AppTextStyles.largeRobotoNormal,
+                      style: theme.textTheme.titleMedium,
                     ),
                   )
                 : ListView.separated(

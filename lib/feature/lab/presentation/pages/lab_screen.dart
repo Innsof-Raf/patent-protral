@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
@@ -31,6 +30,8 @@ class _LabScreenState extends State<LabScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: CommonAppbar(
         title: AppStaticTexts.labTestCategories,
@@ -40,10 +41,10 @@ class _LabScreenState extends State<LabScreen> {
         length: 2,
         child: Column(
           children: [
-            const TabBar(
-              indicatorColor: AppColors.vilot,
+            TabBar(
+              indicatorColor: theme.colorScheme.primary,
               indicatorWeight: 3,
-              tabs: [
+              tabs: const [
                 LabTabBar(title: AppStaticTexts.packages),
                 LabTabBar(title: AppStaticTexts.test),
               ],
@@ -97,14 +98,15 @@ class _LabScreenState extends State<LabScreen> {
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   padding: const EdgeInsets.symmetric(vertical: 25),
                   minimumSize: const Size(0, 0),
-                  foregroundColor: AppColors.vilot,
-                  backgroundColor: AppColors.white,
+                  foregroundColor: theme.colorScheme.primary,
+                  backgroundColor: theme.colorScheme.surface,
                   elevation: 0,
                 ),
                 child: Text(
                   AppStaticTexts.viewCart,
-                  style: AppTextStyles.largeBoldRoboto.copyWith(
-                    color: AppColors.vilot,
+                  style: theme.textTheme.labelLarge?.copyWith(
+                    color: theme.colorScheme.primary,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 onPressed: () {
@@ -121,14 +123,15 @@ class _LabScreenState extends State<LabScreen> {
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   padding: const EdgeInsets.symmetric(vertical: 25),
                   minimumSize: const Size(0, 0),
-                  foregroundColor: AppColors.white,
-                  backgroundColor: AppColors.vilot,
+                  foregroundColor: theme.colorScheme.onPrimary,
+                  backgroundColor: theme.colorScheme.primary,
                   elevation: 0,
                 ),
                 child: Text(
                   AppStaticTexts.checkOut,
-                  style: AppTextStyles.largeBoldRoboto.copyWith(
-                    color: AppColors.white,
+                  style: theme.textTheme.labelLarge?.copyWith(
+                    color: theme.colorScheme.onPrimary,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 onPressed: () {},

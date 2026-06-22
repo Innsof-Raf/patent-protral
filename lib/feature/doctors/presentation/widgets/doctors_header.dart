@@ -25,7 +25,7 @@ class DoctorsHeader extends StatelessWidget {
         children: [
           Text(
             AppStaticTexts.findDoctor,
-            style: theme.textTheme.titleLarge?.copyWith(
+            style: theme.textTheme.headlineSmall?.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w800,
               height: 1.12,
@@ -55,7 +55,7 @@ class DoctorsHeader extends StatelessWidget {
                   count == 1
                       ? '1 ${AppStaticTexts.doctorAvailable}'
                       : '$count ${AppStaticTexts.doctorsAvailable}',
-                  style: theme.textTheme.labelMedium?.copyWith(
+                  style: theme.textTheme.labelLarge?.copyWith(
                     color: theme.colorScheme.primary,
                     fontWeight: FontWeight.w700,
                   ),

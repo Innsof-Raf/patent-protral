@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/feature/notification/presentation/bloc/notification_bloc.dart';
@@ -39,7 +40,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CommonAppbar(title: 'Notifications'),
+      appBar: const CommonAppbar(title: AppStaticTexts.notifications),
       body: BlocBuilder<NotificationBloc, NotificationState>(
         builder: (context, state) {
           if (state.isLoading) {
@@ -48,7 +49,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
           if (state.isError) {
             return CommonErrorView(
-              title: 'Unable to load notifications',
+              title: AppStaticTexts.unableToLoadNotifications,
               message: state.errorMessage,
               onRetry: _fetchNotifications,
             );

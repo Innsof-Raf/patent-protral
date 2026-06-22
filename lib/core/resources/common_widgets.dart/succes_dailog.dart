@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
-
-import '../app_colors.dart';
-import '../app_text_styles.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 
 class SuccessDialog extends StatelessWidget {
   final VoidCallback onPressed;
@@ -16,6 +15,8 @@ class SuccessDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       child: Container(
@@ -39,12 +40,18 @@ class SuccessDialog extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 4),
-            const Text('Success !', style: AppTextStyles.xXLargeRobotoSemiBold),
+            Text(
+              AppStaticTexts.success,
+              style: theme.textTheme.displayMedium?.copyWith(
+                color: theme.colorScheme.onSurface,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
             const SizedBox(height: 4),
             Text(
               title,
               textAlign: TextAlign.center,
-              style: AppTextStyles.largeRobotoNormal,
+              style: theme.textTheme.titleMedium,
             ),
             const SizedBox(height: 30),
             SvgPicture.asset(Assets.icons.doneIcon.path),
@@ -53,7 +60,7 @@ class SuccessDialog extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.vilot,
+                  backgroundColor: theme.colorScheme.primary,
                   minimumSize: const Size(0, 0),
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   shape: RoundedRectangleBorder(
@@ -63,9 +70,10 @@ class SuccessDialog extends StatelessWidget {
                 ),
                 onPressed: onPressed,
                 child: Text(
-                  'DONE',
-                  style: AppTextStyles.bodyLargeRobotoBold.copyWith(
-                    color: AppColors.white,
+                  AppStaticTexts.done.toUpperCase(),
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    color: theme.colorScheme.onPrimary,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ),

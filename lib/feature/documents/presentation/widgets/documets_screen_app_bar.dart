@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/documents/presentation/bloc/documents_bloc/documents_bloc.dart';
 import 'package:patient_portal/feature/documents/presentation/helpers/documents_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -14,6 +13,8 @@ class DocumentsScreenAppBar extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return AppBar(
       systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarColor: AppColors.black,
@@ -53,6 +54,7 @@ class DocumentsScreenAppBar extends StatelessWidget
                 itemBuilder: (context) =>
                     DocumentsScreenHelpers.createPopupMenuItem(
                       userState.user!.members,
+                      theme.textTheme,
                     ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -83,7 +85,9 @@ class DocumentsScreenAppBar extends StatelessWidget
                                       element.id == state.selectedMemberId,
                                 )
                                 .name,
-                      style: AppTextStyles.largeSemiBoldRoboto,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                     const Icon(
                       Icons.keyboard_arrow_down,

@@ -149,6 +149,8 @@ class AppStaticTexts {
       'Manage family profiles, insurance status, and patient details.';
   static const String noMembersAdded = 'No members added';
   static const String membersLinked = 'members linked';
+  static const String memberProfile = 'Member profile';
+  static const String insured = 'Insured';
 
   // Reports
   static const String unableToLoadReports = 'Unable to load reports';
@@ -180,4 +182,47 @@ class AppStaticTexts {
   static const String cartUpdatingFailed = 'Cart updating failed due to';
   static const String viewCart = 'VIEW CART';
   static const String checkOut = 'CHECK OUT';
+  static const String packageDescription = 'Package Description';
+  static const String addToCart = 'ADD TO CART';
+
+  // Common
+  static const String failed = 'Failed !';
+  static const String success = 'Success !';
+  static const String ok = 'OK';
+  static const String add = 'Add';
+  static const String camera = 'Camera';
+  static const String files = 'Files';
+  static const String expireOn = 'expire on';
+  static const String unableToLoadDocuments = 'Unable to load documents';
+  static const String total = 'Total';
+  static const String qr = 'QR';
+
+  // Documents/Add Document
+  static const String addDocument = 'Add Document';
+  static const String documentType = 'Document type';
+  static const String expireDate = 'ExpireDate';
+  static const String document = 'Document';
+  static const String unableToLoadDocumentTypes =
+      'Unable to load document types';
+  static const String documentTypesUnavailable = 'Document types unavailable';
+  static const String documentTypesUnavailableMessage =
+      'You cannot add documents right now.';
+  static const String noDocumentsFound = 'No documents Found';
+  static const String selectDocumentType = 'Select document type';
+  static const String selectMember = 'Select member';
+  static const String selectExpireDate = 'Select expire date';
+  static const String selectDocumentToUpload = 'Select document to upload';
+
+  // Cart
+  static const String myCart = 'My Cart';
+  static const String yourCartIsEmpty = 'Your cart is empty';
+
+  // Book Appointment
+  static const String unableToLoadAppointmentSlots =
+      'Unable to load appointment slots';
+
+  // Notifications
+  static const String notifications = 'Notifications';
+  static const String unableToLoadNotifications =
+      'Unable to load notifications';
 }

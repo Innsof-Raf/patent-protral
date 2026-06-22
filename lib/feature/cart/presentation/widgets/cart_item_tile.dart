@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/lab/domain/entities/item.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
@@ -15,6 +14,8 @@ class CartItemTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return OutlinedButton(
       onPressed: () {},
       style: OutlinedButton.styleFrom(
@@ -57,20 +58,26 @@ class CartItemTile extends StatelessWidget {
                   textAlign: TextAlign.center,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.bodyLargeRobotoSemiBold.copyWith(
+                  style: theme.textTheme.titleSmall?.copyWith(
                     fontSize: 12,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
                   item.itemShortDesc,
-                  style: AppTextStyles.bodyXSmallInterNormal,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
                 ),
                 Text(
                   '${item.itemPrice}',
-                  style: AppTextStyles.bodyTextRobotoSemiBold,
+                  style: theme.textTheme.labelLarge?.copyWith(
+                    color: theme.colorScheme.primary,
+                    fontWeight: FontWeight.w700,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 item.isChangingCartStatus
@@ -104,9 +111,9 @@ class CartItemTile extends StatelessWidget {
                             ),
                           );
                         },
-                        child: const Icon(
+                        child: Icon(
                           Icons.close,
-                          color: AppColors.textDark,
+                          color: theme.colorScheme.onSurface,
                           size: 10,
                         ),
                       ),

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/image_picker_tile.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
 import 'package:patient_portal/feature/add_document/domain/entities/document_type.dart';
@@ -15,22 +15,21 @@ import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 class AddDocumentScreenHelpers {
   static DropdownMenuItem<int> createMemberDropDownItem({
     required Member member,
+    required TextTheme textTheme,
   }) {
     return DropdownMenuItem(
       value: member.id,
-      child: Text(member.name, style: AppTextStyles.textFormFieldStyle),
+      child: Text(member.name, style: textTheme.titleMedium),
     );
   }
 
   static DropdownMenuItem<int> createDocumentTypeDropDownItem({
     required DocumentType document,
+    required TextTheme textTheme,
   }) {
     return DropdownMenuItem(
       value: document.idDocument,
-      child: Text(
-        document.documentType,
-        style: AppTextStyles.textFormFieldStyle,
-      ),
+      child: Text(document.documentType, style: textTheme.titleMedium),
     );
   }
 
@@ -57,6 +56,7 @@ class AddDocumentScreenHelpers {
   }
 
   static void pickDocument({required BuildContext context}) {
+    final theme = Theme.of(context);
     showModalBottomSheet(
       context: context,
       builder: (context) => Container(
@@ -65,12 +65,17 @@ class AddDocumentScreenHelpers {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Document', style: AppTextStyles.largeSemiBoldRoboto),
+            Text(
+              AppStaticTexts.document,
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
             const SizedBox(height: 15),
             Row(
               children: [
                 ImagePickerTile(
-                  title: 'Camera',
+                  title: AppStaticTexts.camera,
                   iconPath: Assets.icons.cameraIcon.path,
                   onPressed: () async {
                     final image = await ImagePicker().pickImage(
@@ -86,7 +91,7 @@ class AddDocumentScreenHelpers {
                 ),
                 const SizedBox(width: 15),
                 ImagePickerTile(
-                  title: 'Files',
+                  title: AppStaticTexts.files,
                   iconPath: Assets.icons.folderIcon.path,
                   onPressed: () async {
                     final value = await FilePicker.pickFiles(
@@ -116,7 +121,7 @@ class AddDocumentScreenHelpers {
 
   static String? validateDocumentType({required int? value}) {
     if (value == null || AddDocumentScreen.selectedDocumentType == null) {
-      return 'Select documentType';
+      return AppStaticTexts.selectDocumentType;
     } else {
       return null;
     }
@@ -124,7 +129,7 @@ class AddDocumentScreenHelpers {
 
   static String? validateSelectedMember({required int? value}) {
     if (value == null || AddDocumentScreen.selectedMember == null) {
-      return 'Select member';
+      return AppStaticTexts.selectMember;
     } else {
       return null;
     }
@@ -132,7 +137,7 @@ class AddDocumentScreenHelpers {
 
   static String? validateExpireDate({required String? value}) {
     if (value == null || AddDocumentScreen.expireDate == null) {
-      return 'Select expireDate';
+      return AppStaticTexts.selectExpireDate;
     } else {
       return null;
     }
@@ -140,7 +145,7 @@ class AddDocumentScreenHelpers {
 
   static String? validateSelectedDocument({required String? value}) {
     if (value == null || AddDocumentScreen.selectedDocument == null) {
-      return 'Select document to upload';
+      return AppStaticTexts.selectDocumentToUpload;
     } else {
       return null;
     }

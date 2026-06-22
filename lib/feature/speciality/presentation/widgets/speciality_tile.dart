@@ -105,7 +105,7 @@ class SpecialityTile extends StatelessWidget {
                         children: [
                           Text(
                             AppStaticTexts.findDoctors,
-                            style: theme.textTheme.labelMedium?.copyWith(
+                            style: theme.textTheme.labelLarge?.copyWith(
                               color: theme.colorScheme.primary,
                               fontWeight: FontWeight.w800,
                             ),

@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/reports/domain/entities/report.dart';
 
 import 'test_report_button.dart';
@@ -14,6 +13,8 @@ class MyReportTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
         elevation: 0,
@@ -43,13 +44,16 @@ class MyReportTile extends StatelessWidget {
                     Text(
                       report.doctorName,
                       overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.bodyTextRobotoSemiBold.copyWith(
-                        color: AppColors.textDark,
+                      style: theme.textTheme.bodyLarge?.copyWith(
+                        color: theme.colorScheme.onSurface,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                     Text(
                       "Consulted on : ${DateFormat('dd/MM/yyyy  |  ').add_jm().format(report.appointmentDate)}",
-                      style: AppTextStyles.bodySmallInterNormal,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ],
