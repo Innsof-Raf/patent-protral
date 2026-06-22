@@ -9,5 +9,6 @@ sealed class AdBanner with _$AdBanner {
     required String? url,
     required int idPrimary,
     required String bannerType,
+    String? description,
   }) = _AdBanner;
 }

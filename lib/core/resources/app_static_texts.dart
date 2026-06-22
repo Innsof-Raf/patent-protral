@@ -64,6 +64,10 @@ class AppStaticTexts {
   static const String findSpecialistSubtitle =
       'Consult top doctors online for any health concern';
   static const String viewAllSpecialities = 'View all specialities';
+  static const String topDoctors = 'Top Doctors';
+  static const String topDoctorsSubtitle =
+      'Expert care from our best medical professionals';
+  static const String viewAllDoctors = 'View all doctors';
   static const String medicalInsurance = 'Medical Insurance';
   static const String medicalInsuranceSubtitle =
       'We are providing following medical insurance';

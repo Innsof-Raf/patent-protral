@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_models/insurance/insurance_model.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -26,7 +27,7 @@ class HomeInsuranceSection extends StatelessWidget {
             context.router.root.push(const MedicalInsuranceRoute());
           },
         ),
-        const SizedBox(height: 14),
+        const Gap(14),
         GridView.builder(
           padding: EdgeInsets.zero,
           shrinkWrap: true,

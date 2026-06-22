@@ -31,7 +31,11 @@ sealed class DoctorModel with _$DoctorModel {
     required String doctorSpeciality,
     @JsonKey(fromJson: stringFromJson) required String experience,
     @JsonKey(fromJson: stringFromJson) required String branch,
-    @JsonKey(name: 'Language_Known', fromJson: _languagesFromJson)
+    @JsonKey(
+      name: 'Language_Known',
+      readValue: _readLanguages,
+      fromJson: _languagesFromJson,
+    )
     required List<LanguageKnownModel> languages,
     @JsonKey(name: 'profileUrl', fromJson: stringFromJson)
     required String doctorImage,
@@ -71,6 +75,9 @@ sealed class DoctorModel with _$DoctorModel {
 
 Object? _readDoctorSpeciality(Map json, String key) =>
     json['speciality'] ?? json['dept_name'];
+
+Object? _readLanguages(Map json, String key) =>
+    json['Language_Known'] ?? json['lang'];
 
 List<LanguageKnownModel> _languagesFromJson(Object? value) {
   if (value is! List) return const [];

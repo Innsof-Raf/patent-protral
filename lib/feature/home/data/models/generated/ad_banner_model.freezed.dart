@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AdBannerModel {
 
-@JsonKey(readValue: _readImageName) String? get imageName;@JsonKey(name: 'url') String? get url;@JsonKey(readValue: _readIdPrimary, fromJson: intFromJson) int get idPrimary;@JsonKey(readValue: _readBannerType, fromJson: stringFromJson) String get bannerType;
+@JsonKey(readValue: _readImageName) String? get imageName;@JsonKey(name: 'url') String? get url;@JsonKey(readValue: _readIdPrimary, fromJson: intFromJson) int get idPrimary;@JsonKey(readValue: _readBannerType, fromJson: stringFromJson) String get bannerType;@JsonKey(name: 'description') String? get description;
 /// Create a copy of AdBannerModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $AdBannerModelCopyWith<AdBannerModel> get copyWith => _$AdBannerModelCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AdBannerModel&&(identical(other.imageName, imageName) || other.imageName == imageName)&&(identical(other.url, url) || other.url == url)&&(identical(other.idPrimary, idPrimary) || other.idPrimary == idPrimary)&&(identical(other.bannerType, bannerType) || other.bannerType == bannerType));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AdBannerModel&&(identical(other.imageName, imageName) || other.imageName == imageName)&&(identical(other.url, url) || other.url == url)&&(identical(other.idPrimary, idPrimary) || other.idPrimary == idPrimary)&&(identical(other.bannerType, bannerType) || other.bannerType == bannerType)&&(identical(other.description, description) || other.description == description));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,imageName,url,idPrimary,bannerType);
+int get hashCode => Object.hash(runtimeType,imageName,url,idPrimary,bannerType,description);
 
 @override
 String toString() {
-  return 'AdBannerModel(imageName: $imageName, url: $url, idPrimary: $idPrimary, bannerType: $bannerType)';
+  return 'AdBannerModel(imageName: $imageName, url: $url, idPrimary: $idPrimary, bannerType: $bannerType, description: $description)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $AdBannerModelCopyWith<$Res>  {
   factory $AdBannerModelCopyWith(AdBannerModel value, $Res Function(AdBannerModel) _then) = _$AdBannerModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(readValue: _readImageName) String? imageName,@JsonKey(name: 'url') String? url,@JsonKey(readValue: _readIdPrimary, fromJson: intFromJson) int idPrimary,@JsonKey(readValue: _readBannerType, fromJson: stringFromJson) String bannerType
+@JsonKey(readValue: _readImageName) String? imageName,@JsonKey(name: 'url') String? url,@JsonKey(readValue: _readIdPrimary, fromJson: intFromJson) int idPrimary,@JsonKey(readValue: _readBannerType, fromJson: stringFromJson) String bannerType,@JsonKey(name: 'description') String? description
 });
 
 
@@ -65,13 +65,14 @@ class _$AdBannerModelCopyWithImpl<$Res>
 
 /// Create a copy of AdBannerModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? imageName = freezed,Object? url = freezed,Object? idPrimary = null,Object? bannerType = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? imageName = freezed,Object? url = freezed,Object? idPrimary = null,Object? bannerType = null,Object? description = freezed,}) {
   return _then(_self.copyWith(
 imageName: freezed == imageName ? _self.imageName : imageName // ignore: cast_nullable_to_non_nullable
 as String?,url: freezed == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String?,idPrimary: null == idPrimary ? _self.idPrimary : idPrimary // ignore: cast_nullable_to_non_nullable
 as int,bannerType: null == bannerType ? _self.bannerType : bannerType // ignore: cast_nullable_to_non_nullable
-as String,
+as String,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -153,10 +154,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(readValue: _readImageName)  String? imageName, @JsonKey(name: 'url')  String? url, @JsonKey(readValue: _readIdPrimary, fromJson: intFromJson)  int idPrimary, @JsonKey(readValue: _readBannerType, fromJson: stringFromJson)  String bannerType)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(readValue: _readImageName)  String? imageName, @JsonKey(name: 'url')  String? url, @JsonKey(readValue: _readIdPrimary, fromJson: intFromJson)  int idPrimary, @JsonKey(readValue: _readBannerType, fromJson: stringFromJson)  String bannerType, @JsonKey(name: 'description')  String? description)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AdBannerModel() when $default != null:
-return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType);case _:
+return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType,_that.description);case _:
   return orElse();
 
 }
@@ -174,10 +175,10 @@ return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType);case
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(readValue: _readImageName)  String? imageName, @JsonKey(name: 'url')  String? url, @JsonKey(readValue: _readIdPrimary, fromJson: intFromJson)  int idPrimary, @JsonKey(readValue: _readBannerType, fromJson: stringFromJson)  String bannerType)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(readValue: _readImageName)  String? imageName, @JsonKey(name: 'url')  String? url, @JsonKey(readValue: _readIdPrimary, fromJson: intFromJson)  int idPrimary, @JsonKey(readValue: _readBannerType, fromJson: stringFromJson)  String bannerType, @JsonKey(name: 'description')  String? description)  $default,) {final _that = this;
 switch (_that) {
 case _AdBannerModel():
-return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType);}
+return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType,_that.description);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -191,10 +192,10 @@ return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(readValue: _readImageName)  String? imageName, @JsonKey(name: 'url')  String? url, @JsonKey(readValue: _readIdPrimary, fromJson: intFromJson)  int idPrimary, @JsonKey(readValue: _readBannerType, fromJson: stringFromJson)  String bannerType)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(readValue: _readImageName)  String? imageName, @JsonKey(name: 'url')  String? url, @JsonKey(readValue: _readIdPrimary, fromJson: intFromJson)  int idPrimary, @JsonKey(readValue: _readBannerType, fromJson: stringFromJson)  String bannerType, @JsonKey(name: 'description')  String? description)?  $default,) {final _that = this;
 switch (_that) {
 case _AdBannerModel() when $default != null:
-return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType);case _:
+return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType,_that.description);case _:
   return null;
 
 }
@@ -206,13 +207,14 @@ return $default(_that.imageName,_that.url,_that.idPrimary,_that.bannerType);case
 @JsonSerializable()
 
 class _AdBannerModel extends AdBannerModel {
-  const _AdBannerModel({@JsonKey(readValue: _readImageName) required this.imageName, @JsonKey(name: 'url') required this.url, @JsonKey(readValue: _readIdPrimary, fromJson: intFromJson) required this.idPrimary, @JsonKey(readValue: _readBannerType, fromJson: stringFromJson) required this.bannerType}): super._();
+  const _AdBannerModel({@JsonKey(readValue: _readImageName) required this.imageName, @JsonKey(name: 'url') required this.url, @JsonKey(readValue: _readIdPrimary, fromJson: intFromJson) required this.idPrimary, @JsonKey(readValue: _readBannerType, fromJson: stringFromJson) required this.bannerType, @JsonKey(name: 'description') this.description}): super._();
   factory _AdBannerModel.fromJson(Map<String, dynamic> json) => _$AdBannerModelFromJson(json);
 
 @override@JsonKey(readValue: _readImageName) final  String? imageName;
 @override@JsonKey(name: 'url') final  String? url;
 @override@JsonKey(readValue: _readIdPrimary, fromJson: intFromJson) final  int idPrimary;
 @override@JsonKey(readValue: _readBannerType, fromJson: stringFromJson) final  String bannerType;
+@override@JsonKey(name: 'description') final  String? description;
 
 /// Create a copy of AdBannerModel
 /// with the given fields replaced by the non-null parameter values.
@@ -227,16 +229,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AdBannerModel&&(identical(other.imageName, imageName) || other.imageName == imageName)&&(identical(other.url, url) || other.url == url)&&(identical(other.idPrimary, idPrimary) || other.idPrimary == idPrimary)&&(identical(other.bannerType, bannerType) || other.bannerType == bannerType));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AdBannerModel&&(identical(other.imageName, imageName) || other.imageName == imageName)&&(identical(other.url, url) || other.url == url)&&(identical(other.idPrimary, idPrimary) || other.idPrimary == idPrimary)&&(identical(other.bannerType, bannerType) || other.bannerType == bannerType)&&(identical(other.description, description) || other.description == description));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,imageName,url,idPrimary,bannerType);
+int get hashCode => Object.hash(runtimeType,imageName,url,idPrimary,bannerType,description);
 
 @override
 String toString() {
-  return 'AdBannerModel(imageName: $imageName, url: $url, idPrimary: $idPrimary, bannerType: $bannerType)';
+  return 'AdBannerModel(imageName: $imageName, url: $url, idPrimary: $idPrimary, bannerType: $bannerType, description: $description)';
 }
 
 
@@ -247,7 +249,7 @@ abstract mixin class _$AdBannerModelCopyWith<$Res> implements $AdBannerModelCopy
   factory _$AdBannerModelCopyWith(_AdBannerModel value, $Res Function(_AdBannerModel) _then) = __$AdBannerModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(readValue: _readImageName) String? imageName,@JsonKey(name: 'url') String? url,@JsonKey(readValue: _readIdPrimary, fromJson: intFromJson) int idPrimary,@JsonKey(readValue: _readBannerType, fromJson: stringFromJson) String bannerType
+@JsonKey(readValue: _readImageName) String? imageName,@JsonKey(name: 'url') String? url,@JsonKey(readValue: _readIdPrimary, fromJson: intFromJson) int idPrimary,@JsonKey(readValue: _readBannerType, fromJson: stringFromJson) String bannerType,@JsonKey(name: 'description') String? description
 });
 
 
@@ -264,13 +266,14 @@ class __$AdBannerModelCopyWithImpl<$Res>
 
 /// Create a copy of AdBannerModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? imageName = freezed,Object? url = freezed,Object? idPrimary = null,Object? bannerType = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? imageName = freezed,Object? url = freezed,Object? idPrimary = null,Object? bannerType = null,Object? description = freezed,}) {
   return _then(_AdBannerModel(
 imageName: freezed == imageName ? _self.imageName : imageName // ignore: cast_nullable_to_non_nullable
 as String?,url: freezed == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String?,idPrimary: null == idPrimary ? _self.idPrimary : idPrimary // ignore: cast_nullable_to_non_nullable
 as int,bannerType: null == bannerType ? _self.bannerType : bannerType // ignore: cast_nullable_to_non_nullable
-as String,
+as String,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

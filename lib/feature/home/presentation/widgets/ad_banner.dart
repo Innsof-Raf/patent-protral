@@ -14,7 +14,6 @@ class AdBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
     return Material(
       color: Colors.transparent,
       borderRadius: BorderRadius.circular(22),
@@ -39,7 +38,9 @@ class AdBanner extends StatelessWidget {
             borderRadius: BorderRadius.circular(22),
             child: adBanner.imageName != null
                 ? CachedNetworkImage(
-                    imageUrl: adBanner.bannerType == 'AD'
+                    imageUrl:
+                        (adBanner.bannerType == 'AD' ||
+                            adBanner.bannerType == 'HOMEBANNER')
                         ? '${ConstantUrls.bannerImageUrl}/${adBanner.idPrimary}/${adBanner.imageName}'
                         : '${ConstantUrls.packageImageUrl}/${adBanner.idPrimary}/${adBanner.imageName}',
                     fadeInDuration: Duration.zero,

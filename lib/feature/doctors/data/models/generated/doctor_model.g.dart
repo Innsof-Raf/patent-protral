@@ -17,7 +17,7 @@ _DoctorModel _$DoctorModelFromJson(Map<String, dynamic> json) => _DoctorModel(
   doctorSpeciality: stringFromJson(_readDoctorSpeciality(json, 'speciality')),
   experience: stringFromJson(json['experience']),
   branch: stringFromJson(json['branch']),
-  languages: _languagesFromJson(json['Language_Known']),
+  languages: _languagesFromJson(_readLanguages(json, 'Language_Known')),
   doctorImage: stringFromJson(json['profileUrl']),
   consultationFee: doubleFromJson(json['cons_fee']),
   onlineConsultationFee: doubleFromJson(json['online_cons_fee']),

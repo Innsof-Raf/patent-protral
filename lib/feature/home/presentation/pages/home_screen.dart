@@ -2,12 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:patient_portal/feature/home/presentation/helpers/home_helpers.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_banner_carousel.dart';
+import 'package:patient_portal/feature/home/presentation/widgets/home_doctors_section.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_insurance_section.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_packages_section.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_quick_actions_section.dart';
@@ -53,18 +55,24 @@ class HomeScreen extends StatelessWidget {
           body: ListView(
             padding: const EdgeInsets.fromLTRB(14, 14, 14, 104),
             children: [
-              HomeBannerCarousel(banners: homeData.ads),
-              if (homeData.ads.isNotEmpty) const SizedBox(height: 22),
+              HomeBannerCarousel(
+                banners: homeData.ads
+                    .where((e) => e.bannerType == 'HOMEBANNER')
+                    .toList(),
+              ),
+              if (homeData.ads.any((e) => e.bannerType == 'HOMEBANNER'))
+                const Gap(22),
               HomeSpecialitiesSection(specialities: homeData.topSpecialities),
-              if (homeData.topSpecialities.isNotEmpty)
-                const SizedBox(height: 24),
+              if (homeData.topSpecialities.isNotEmpty) const Gap(24),
               HomeInsuranceSection(insurances: homeData.topInsurances),
-              if (homeData.topInsurances.isNotEmpty) const SizedBox(height: 24),
+              if (homeData.topInsurances.isNotEmpty) const Gap(24),
+              HomeDoctorsSection(doctors: homeData.topDoctors),
+              if (homeData.topDoctors.isNotEmpty) const Gap(24),
               HomePackagesSection(
                 packages: homeData.topPackages,
                 carouselController: packageCarouselController,
               ),
-              if (homeData.topPackages.isNotEmpty) const SizedBox(height: 24),
+              if (homeData.topPackages.isNotEmpty) const Gap(24),
               const HomeQuickActionsSection(),
             ],
           ),

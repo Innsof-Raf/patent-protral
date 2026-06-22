@@ -16,6 +16,7 @@ sealed class AdBannerModel with _$AdBannerModel {
     required int idPrimary,
     @JsonKey(readValue: _readBannerType, fromJson: stringFromJson)
     required String bannerType,
+    @JsonKey(name: 'description') String? description,
   }) = _AdBannerModel;
 
   factory AdBannerModel.fromJson(Map<String, dynamic> json) =>
@@ -26,11 +27,15 @@ sealed class AdBannerModel with _$AdBannerModel {
     url: url,
     idPrimary: idPrimary,
     bannerType: bannerType,
+    description: description,
   );
 }
 
 Object? _readImageName(Map json, String key) =>
-    json['Image_nm'] ?? json['image_nm'] ?? json['imageName'];
+    json['Image_nm'] ??
+    json['image_nm'] ??
+    json['imageName'] ??
+    json['image_name'];
 Object? _readIdPrimary(Map json, String key) =>
     json['id_primary'] ?? json['id'];
 Object? _readBannerType(Map json, String key) =>

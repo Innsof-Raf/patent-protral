@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 
 class HomeSectionHeader extends StatelessWidget {
@@ -40,7 +41,7 @@ class HomeSectionHeader extends StatelessWidget {
                   height: 1.15,
                 ),
               ),
-              const SizedBox(height: 5),
+              const Gap(5),
               Text(
                 subtitle,
                 style: theme.textTheme.bodySmall?.copyWith(
@@ -52,7 +53,7 @@ class HomeSectionHeader extends StatelessWidget {
           ),
         ),
         if (onViewAll != null) ...[
-          const SizedBox(width: 12),
+          const Gap(12),
           Tooltip(
             message: actionTooltip ?? AppStaticTexts.viewAll,
             child: IconButton(

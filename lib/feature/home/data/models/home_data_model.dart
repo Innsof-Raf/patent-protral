@@ -41,7 +41,7 @@ Map<String, dynamic> _normalizeHomeDataJson(Map<String, dynamic> json) {
     'speciality': json['speciality'] ?? json['department'] ?? const [],
     'insurance': json['insurance'] ?? const [],
     'package_banner': json['package_banner'] ?? const [],
-    'doctors': json['doctors'] ?? const [],
+    'doctors': json['doctors'] ?? json['DOCTOR'] ?? const [],
     'notification_count': json['notification_count'] ?? 0,
   };
 }
