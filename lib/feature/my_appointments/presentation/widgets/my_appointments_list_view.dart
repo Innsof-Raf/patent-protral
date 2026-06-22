@@ -18,6 +18,7 @@ class MyAppointmentsListView extends StatelessWidget {
       );
 
     return ListView.separated(
+      padding: EdgeInsets.only(bottom: 90),
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: sortedAppointments.length,
