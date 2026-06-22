@@ -20,6 +20,7 @@ sealed class Doctor with _$Doctor {
     required double consultationFee,
     required double onlineConsultationFee,
     required bool isOnline,
+    @Default('') String availability,
     String? doctorBio,
   }) = _Doctor;
 }

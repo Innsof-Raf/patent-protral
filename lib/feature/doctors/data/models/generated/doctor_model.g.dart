@@ -22,6 +22,9 @@ _DoctorModel _$DoctorModelFromJson(Map<String, dynamic> json) => _DoctorModel(
   consultationFee: doubleFromJson(json['cons_fee']),
   onlineConsultationFee: doubleFromJson(json['online_cons_fee']),
   isOnline: boolFromJson(json['isOnline']),
+  availability: json['availability'] == null
+      ? ''
+      : stringFromJson(json['availability']),
   doctorBio: _nullableStringFromJson(json['employee_bio']),
 );
 
@@ -42,5 +45,6 @@ Map<String, dynamic> _$DoctorModelToJson(_DoctorModel instance) =>
       'cons_fee': instance.consultationFee,
       'online_cons_fee': instance.onlineConsultationFee,
       'isOnline': instance.isOnline,
+      'availability': instance.availability,
       'employee_bio': instance.doctorBio,
     };

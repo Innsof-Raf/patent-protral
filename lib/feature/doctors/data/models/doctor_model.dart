@@ -44,6 +44,7 @@ sealed class DoctorModel with _$DoctorModel {
     @JsonKey(name: 'online_cons_fee', fromJson: doubleFromJson)
     required double onlineConsultationFee,
     @JsonKey(name: 'isOnline', fromJson: boolFromJson) required bool isOnline,
+    @JsonKey(fromJson: stringFromJson) @Default('') String availability,
     @JsonKey(name: 'employee_bio', fromJson: _nullableStringFromJson)
     String? doctorBio,
   }) = _DoctorModel;
@@ -68,6 +69,7 @@ sealed class DoctorModel with _$DoctorModel {
       consultationFee: consultationFee,
       onlineConsultationFee: onlineConsultationFee,
       isOnline: isOnline,
+      availability: availability,
       doctorBio: doctorBio,
     );
   }

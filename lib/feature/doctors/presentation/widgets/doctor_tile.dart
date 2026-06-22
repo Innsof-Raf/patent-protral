@@ -182,31 +182,48 @@ class _DoctorDetails extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        Wrap(
-          spacing: 7,
-          runSpacing: 7,
-          children: [
-            DoctorMetaChip(
-              icon: Icons.work_history_outlined,
-              label: '${doctor.experience} ${AppStaticTexts.yearsExperience}',
-              compact: compact,
-            ),
-            DoctorMetaChip(
-              icon: Icons.payments_outlined,
-              label:
-                  '${AppStaticTexts.qar} ${doctor.consultationFee.toStringAsFixed(0)}',
-              compact: compact,
-            ),
-            DoctorMetaChip(
-              icon: Icons.location_on_outlined,
-              label: doctor.branch,
-              compact: compact,
-            ),
-          ],
-        ),
+        if ((doctor.experience.trim().isNotEmpty && doctor.experience != '0') ||
+            doctor.consultationFee > 0 ||
+            (doctor.branch.trim().isNotEmpty && doctor.branch != '0') ||
+            doctor.knownLanguages.isNotEmpty)
+          Wrap(
+            spacing: 7,
+            runSpacing: 7,
+            children: [
+              if (doctor.experience.trim().isNotEmpty &&
+                  doctor.experience != '0')
+                DoctorMetaChip(
+                  icon: Icons.work_history_outlined,
+                  label:
+                      '${doctor.experience} ${AppStaticTexts.yearsExperience}',
+                  compact: compact,
+                ),
+              if (doctor.consultationFee > 0)
+                DoctorMetaChip(
+                  icon: Icons.payments_outlined,
+                  label:
+                      '${AppStaticTexts.qar} ${doctor.consultationFee.toStringAsFixed(0)}',
+                  compact: compact,
+                ),
+              if (doctor.branch.trim().isNotEmpty && doctor.branch != '0')
+                DoctorMetaChip(
+                  icon: Icons.location_on_outlined,
+                  label: doctor.branch,
+                  compact: compact,
+                ),
+              if (doctor.knownLanguages.isNotEmpty)
+                DoctorMetaChip(
+                  icon: Icons.translate_rounded,
+                  label: doctor.knownLanguages.join(', '),
+                  compact: compact,
+                ),
+            ],
+          ),
         const SizedBox(height: 10),
         Text(
-          AppStaticTexts.nextAvailableToday,
+          doctor.availability.isNotEmpty
+              ? 'Next available ${doctor.availability.toLowerCase()}'
+              : AppStaticTexts.nextAvailableToday,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: theme.textTheme.labelSmall?.copyWith(
