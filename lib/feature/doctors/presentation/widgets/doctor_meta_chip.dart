@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class DoctorMetaChip extends StatelessWidget {
   const DoctorMetaChip({
@@ -29,13 +31,13 @@ class DoctorMetaChip extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, size: compact ? 13 : 15, color: theme.colorScheme.primary),
-          const SizedBox(width: 5),
+          const Gap(5),
           Flexible(
             child: Text(
               label,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.labelSmall?.copyWith(
+              style: AppTextStyles.bodySmallRobotoNormal.copyWith(
                 color: theme.colorScheme.onSurface,
                 fontWeight: FontWeight.w600,
               ),

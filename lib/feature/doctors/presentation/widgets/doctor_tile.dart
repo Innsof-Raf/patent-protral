@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
@@ -65,9 +67,9 @@ class _WideDoctorTileContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _DoctorAvatar(doctor: doctor, size: 92),
-        const SizedBox(width: 14),
+        const Gap(14),
         Expanded(child: _DoctorDetails(doctor: doctor)),
-        const SizedBox(width: 12),
+        const Gap(12),
         Align(
           alignment: Alignment.topRight,
           child: _BookDoctorButton(doctor: doctor),
@@ -91,11 +93,11 @@ class _CompactDoctorTileContent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _DoctorAvatar(doctor: doctor, size: 78),
-            const SizedBox(width: 12),
+            const Gap(12),
             Expanded(child: _DoctorDetails(doctor: doctor, compact: true)),
           ],
         ),
-        const SizedBox(height: 12),
+        const Gap(12),
         SizedBox(
           width: double.infinity,
           child: _BookDoctorButton(doctor: doctor, expanded: true),
@@ -165,23 +167,22 @@ class _DoctorDetails extends StatelessWidget {
           doctor.doctorName,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
-          style: theme.textTheme.titleSmall?.copyWith(
+          style: AppTextStyles.largeBoldRoboto.copyWith(
             color: theme.colorScheme.onSurface,
-            fontWeight: FontWeight.w800,
             height: 1.15,
           ),
         ),
-        const SizedBox(height: 5),
+        const Gap(5),
         Text(
           doctor.doctorSpeciality,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: theme.textTheme.bodySmall?.copyWith(
+          style: AppTextStyles.bodyTextInter.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
             fontWeight: FontWeight.w600,
           ),
         ),
-        const SizedBox(height: 10),
+        const Gap(10),
         if ((doctor.experience.trim().isNotEmpty && doctor.experience != '0') ||
             doctor.consultationFee > 0 ||
             (doctor.branch.trim().isNotEmpty && doctor.branch != '0') ||
@@ -219,16 +220,15 @@ class _DoctorDetails extends StatelessWidget {
                 ),
             ],
           ),
-        const SizedBox(height: 10),
+        const Gap(10),
         Text(
           doctor.availability.isNotEmpty
-              ? 'Next available ${doctor.availability.toLowerCase()}'
+              ? '${AppStaticTexts.nextAvailable} ${doctor.availability.toLowerCase()}'
               : AppStaticTexts.nextAvailableToday,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: theme.textTheme.labelSmall?.copyWith(
+          style: AppTextStyles.bodyTextBoldRoboto.copyWith(
             color: theme.colorScheme.primary,
-            fontWeight: FontWeight.w700,
           ),
         ),
       ],
