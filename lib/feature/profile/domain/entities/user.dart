@@ -15,6 +15,7 @@ sealed class User with _$User {
     required String mobileNumber,
     required String emailId,
     required String accessToken,
+    @Default('') String refreshToken,
     @Default('') String fcmToken,
     required List<Member> members,
     @Default(0) int idMember,

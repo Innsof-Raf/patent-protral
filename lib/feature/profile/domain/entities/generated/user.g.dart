@@ -14,6 +14,7 @@ _User _$UserFromJson(Map<String, dynamic> json) => _User(
   mobileNumber: json['mobileNumber'] as String,
   emailId: json['emailId'] as String,
   accessToken: json['accessToken'] as String,
+  refreshToken: json['refreshToken'] as String? ?? '',
   fcmToken: json['fcmToken'] as String? ?? '',
   members: (json['members'] as List<dynamic>)
       .map((e) => Member.fromJson(e as Map<String, dynamic>))
@@ -29,6 +30,7 @@ Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
   'mobileNumber': instance.mobileNumber,
   'emailId': instance.emailId,
   'accessToken': instance.accessToken,
+  'refreshToken': instance.refreshToken,
   'fcmToken': instance.fcmToken,
   'members': instance.members,
   'idMember': instance.idMember,

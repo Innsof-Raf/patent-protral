@@ -183,7 +183,7 @@ return loginWithPassword(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@JsonKey(name: 'mobileNo')  String mobileNumber)?  generateOtp,TResult Function(@JsonKey(includeToJson: false)  String idOtp, @JsonKey(name: 'mobileNo')  String mobileNumber,  String otp)?  verifyOtp,TResult Function(@JsonKey(name: 'username')  String mobileNumber,  String password)?  loginWithPassword,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@JsonKey(name: 'mobileNo')  String mobileNumber)?  generateOtp,TResult Function(@JsonKey(name: 'id_otp')  String idOtp, @JsonKey(name: 'mobileNo')  String mobileNumber,  String otp)?  verifyOtp,TResult Function(@JsonKey(name: 'username')  String mobileNumber,  String password)?  loginWithPassword,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case GenerateOtpParams() when generateOtp != null:
 return generateOtp(_that.mobileNumber);case VerifyOtpParams() when verifyOtp != null:
@@ -206,7 +206,7 @@ return loginWithPassword(_that.mobileNumber,_that.password);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@JsonKey(name: 'mobileNo')  String mobileNumber)  generateOtp,required TResult Function(@JsonKey(includeToJson: false)  String idOtp, @JsonKey(name: 'mobileNo')  String mobileNumber,  String otp)  verifyOtp,required TResult Function(@JsonKey(name: 'username')  String mobileNumber,  String password)  loginWithPassword,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@JsonKey(name: 'mobileNo')  String mobileNumber)  generateOtp,required TResult Function(@JsonKey(name: 'id_otp')  String idOtp, @JsonKey(name: 'mobileNo')  String mobileNumber,  String otp)  verifyOtp,required TResult Function(@JsonKey(name: 'username')  String mobileNumber,  String password)  loginWithPassword,}) {final _that = this;
 switch (_that) {
 case GenerateOtpParams():
 return generateOtp(_that.mobileNumber);case VerifyOtpParams():
@@ -225,7 +225,7 @@ return loginWithPassword(_that.mobileNumber,_that.password);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@JsonKey(name: 'mobileNo')  String mobileNumber)?  generateOtp,TResult? Function(@JsonKey(includeToJson: false)  String idOtp, @JsonKey(name: 'mobileNo')  String mobileNumber,  String otp)?  verifyOtp,TResult? Function(@JsonKey(name: 'username')  String mobileNumber,  String password)?  loginWithPassword,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@JsonKey(name: 'mobileNo')  String mobileNumber)?  generateOtp,TResult? Function(@JsonKey(name: 'id_otp')  String idOtp, @JsonKey(name: 'mobileNo')  String mobileNumber,  String otp)?  verifyOtp,TResult? Function(@JsonKey(name: 'username')  String mobileNumber,  String password)?  loginWithPassword,}) {final _that = this;
 switch (_that) {
 case GenerateOtpParams() when generateOtp != null:
 return generateOtp(_that.mobileNumber);case VerifyOtpParams() when verifyOtp != null:
@@ -315,10 +315,10 @@ as String,
 @JsonSerializable()
 
 class VerifyOtpParams implements LoginParams {
-  const VerifyOtpParams({@JsonKey(includeToJson: false) required this.idOtp, @JsonKey(name: 'mobileNo') required this.mobileNumber, required this.otp, final  String? $type}): $type = $type ?? 'verifyOtp';
+  const VerifyOtpParams({@JsonKey(name: 'id_otp') required this.idOtp, @JsonKey(name: 'mobileNo') required this.mobileNumber, required this.otp, final  String? $type}): $type = $type ?? 'verifyOtp';
   factory VerifyOtpParams.fromJson(Map<String, dynamic> json) => _$VerifyOtpParamsFromJson(json);
 
-@JsonKey(includeToJson: false) final  String idOtp;
+@JsonKey(name: 'id_otp') final  String idOtp;
 @override@JsonKey(name: 'mobileNo') final  String mobileNumber;
  final  String otp;
 
@@ -359,7 +359,7 @@ abstract mixin class $VerifyOtpParamsCopyWith<$Res> implements $LoginParamsCopyW
   factory $VerifyOtpParamsCopyWith(VerifyOtpParams value, $Res Function(VerifyOtpParams) _then) = _$VerifyOtpParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(includeToJson: false) String idOtp,@JsonKey(name: 'mobileNo') String mobileNumber, String otp
+@JsonKey(name: 'id_otp') String idOtp,@JsonKey(name: 'mobileNo') String mobileNumber, String otp
 });
 
 

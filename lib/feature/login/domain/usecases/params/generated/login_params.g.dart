@@ -20,7 +20,7 @@ Map<String, dynamic> _$GenerateOtpParamsToJson(GenerateOtpParams instance) =>
 
 VerifyOtpParams _$VerifyOtpParamsFromJson(Map<String, dynamic> json) =>
     VerifyOtpParams(
-      idOtp: json['idOtp'] as String,
+      idOtp: json['id_otp'] as String,
       mobileNumber: json['mobileNo'] as String,
       otp: json['otp'] as String,
       $type: json['runtimeType'] as String?,
@@ -28,6 +28,7 @@ VerifyOtpParams _$VerifyOtpParamsFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$VerifyOtpParamsToJson(VerifyOtpParams instance) =>
     <String, dynamic>{
+      'id_otp': instance.idOtp,
       'mobileNo': instance.mobileNumber,
       'otp': instance.otp,
       'runtimeType': instance.$type,

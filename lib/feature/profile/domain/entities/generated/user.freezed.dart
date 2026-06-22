@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$User {
 
- int get id; String get firstName; String get lastName; String get userName; String get mobileNumber; String get emailId; String get accessToken; String get fcmToken; List<Member> get members; int get idMember;
+ int get id; String get firstName; String get lastName; String get userName; String get mobileNumber; String get emailId; String get accessToken; String get refreshToken; String get fcmToken; List<Member> get members; int get idMember;
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $UserCopyWith<User> get copyWith => _$UserCopyWithImpl<User>(this as User, _$ide
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is User&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.userName, userName) || other.userName == userName)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.emailId, emailId) || other.emailId == emailId)&&(identical(other.accessToken, accessToken) || other.accessToken == accessToken)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&const DeepCollectionEquality().equals(other.members, members)&&(identical(other.idMember, idMember) || other.idMember == idMember));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is User&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.userName, userName) || other.userName == userName)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.emailId, emailId) || other.emailId == emailId)&&(identical(other.accessToken, accessToken) || other.accessToken == accessToken)&&(identical(other.refreshToken, refreshToken) || other.refreshToken == refreshToken)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&const DeepCollectionEquality().equals(other.members, members)&&(identical(other.idMember, idMember) || other.idMember == idMember));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,firstName,lastName,userName,mobileNumber,emailId,accessToken,fcmToken,const DeepCollectionEquality().hash(members),idMember);
+int get hashCode => Object.hash(runtimeType,id,firstName,lastName,userName,mobileNumber,emailId,accessToken,refreshToken,fcmToken,const DeepCollectionEquality().hash(members),idMember);
 
 @override
 String toString() {
-  return 'User(id: $id, firstName: $firstName, lastName: $lastName, userName: $userName, mobileNumber: $mobileNumber, emailId: $emailId, accessToken: $accessToken, fcmToken: $fcmToken, members: $members, idMember: $idMember)';
+  return 'User(id: $id, firstName: $firstName, lastName: $lastName, userName: $userName, mobileNumber: $mobileNumber, emailId: $emailId, accessToken: $accessToken, refreshToken: $refreshToken, fcmToken: $fcmToken, members: $members, idMember: $idMember)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $UserCopyWith<$Res>  {
   factory $UserCopyWith(User value, $Res Function(User) _then) = _$UserCopyWithImpl;
 @useResult
 $Res call({
- int id, String firstName, String lastName, String userName, String mobileNumber, String emailId, String accessToken, String fcmToken, List<Member> members, int idMember
+ int id, String firstName, String lastName, String userName, String mobileNumber, String emailId, String accessToken, String refreshToken, String fcmToken, List<Member> members, int idMember
 });
 
 
@@ -65,7 +65,7 @@ class _$UserCopyWithImpl<$Res>
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? userName = null,Object? mobileNumber = null,Object? emailId = null,Object? accessToken = null,Object? fcmToken = null,Object? members = null,Object? idMember = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? userName = null,Object? mobileNumber = null,Object? emailId = null,Object? accessToken = null,Object? refreshToken = null,Object? fcmToken = null,Object? members = null,Object? idMember = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
@@ -74,6 +74,7 @@ as String,userName: null == userName ? _self.userName : userName // ignore: cast
 as String,mobileNumber: null == mobileNumber ? _self.mobileNumber : mobileNumber // ignore: cast_nullable_to_non_nullable
 as String,emailId: null == emailId ? _self.emailId : emailId // ignore: cast_nullable_to_non_nullable
 as String,accessToken: null == accessToken ? _self.accessToken : accessToken // ignore: cast_nullable_to_non_nullable
+as String,refreshToken: null == refreshToken ? _self.refreshToken : refreshToken // ignore: cast_nullable_to_non_nullable
 as String,fcmToken: null == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
 as String,members: null == members ? _self.members : members // ignore: cast_nullable_to_non_nullable
 as List<Member>,idMember: null == idMember ? _self.idMember : idMember // ignore: cast_nullable_to_non_nullable
@@ -159,10 +160,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String firstName,  String lastName,  String userName,  String mobileNumber,  String emailId,  String accessToken,  String fcmToken,  List<Member> members,  int idMember)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String firstName,  String lastName,  String userName,  String mobileNumber,  String emailId,  String accessToken,  String refreshToken,  String fcmToken,  List<Member> members,  int idMember)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
-return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mobileNumber,_that.emailId,_that.accessToken,_that.fcmToken,_that.members,_that.idMember);case _:
+return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mobileNumber,_that.emailId,_that.accessToken,_that.refreshToken,_that.fcmToken,_that.members,_that.idMember);case _:
   return orElse();
 
 }
@@ -180,10 +181,10 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mob
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String firstName,  String lastName,  String userName,  String mobileNumber,  String emailId,  String accessToken,  String fcmToken,  List<Member> members,  int idMember)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String firstName,  String lastName,  String userName,  String mobileNumber,  String emailId,  String accessToken,  String refreshToken,  String fcmToken,  List<Member> members,  int idMember)  $default,) {final _that = this;
 switch (_that) {
 case _User():
-return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mobileNumber,_that.emailId,_that.accessToken,_that.fcmToken,_that.members,_that.idMember);}
+return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mobileNumber,_that.emailId,_that.accessToken,_that.refreshToken,_that.fcmToken,_that.members,_that.idMember);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -197,10 +198,10 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mob
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String firstName,  String lastName,  String userName,  String mobileNumber,  String emailId,  String accessToken,  String fcmToken,  List<Member> members,  int idMember)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String firstName,  String lastName,  String userName,  String mobileNumber,  String emailId,  String accessToken,  String refreshToken,  String fcmToken,  List<Member> members,  int idMember)?  $default,) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
-return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mobileNumber,_that.emailId,_that.accessToken,_that.fcmToken,_that.members,_that.idMember);case _:
+return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mobileNumber,_that.emailId,_that.accessToken,_that.refreshToken,_that.fcmToken,_that.members,_that.idMember);case _:
   return null;
 
 }
@@ -212,7 +213,7 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mob
 @JsonSerializable()
 
 class _User implements User {
-  const _User({required this.id, required this.firstName, required this.lastName, required this.userName, required this.mobileNumber, required this.emailId, required this.accessToken, this.fcmToken = '', required final  List<Member> members, this.idMember = 0}): _members = members;
+  const _User({required this.id, required this.firstName, required this.lastName, required this.userName, required this.mobileNumber, required this.emailId, required this.accessToken, this.refreshToken = '', this.fcmToken = '', required final  List<Member> members, this.idMember = 0}): _members = members;
   factory _User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
 @override final  int id;
@@ -222,6 +223,7 @@ class _User implements User {
 @override final  String mobileNumber;
 @override final  String emailId;
 @override final  String accessToken;
+@override@JsonKey() final  String refreshToken;
 @override@JsonKey() final  String fcmToken;
  final  List<Member> _members;
 @override List<Member> get members {
@@ -245,16 +247,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _User&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.userName, userName) || other.userName == userName)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.emailId, emailId) || other.emailId == emailId)&&(identical(other.accessToken, accessToken) || other.accessToken == accessToken)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&const DeepCollectionEquality().equals(other._members, _members)&&(identical(other.idMember, idMember) || other.idMember == idMember));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _User&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.userName, userName) || other.userName == userName)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.emailId, emailId) || other.emailId == emailId)&&(identical(other.accessToken, accessToken) || other.accessToken == accessToken)&&(identical(other.refreshToken, refreshToken) || other.refreshToken == refreshToken)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&const DeepCollectionEquality().equals(other._members, _members)&&(identical(other.idMember, idMember) || other.idMember == idMember));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,firstName,lastName,userName,mobileNumber,emailId,accessToken,fcmToken,const DeepCollectionEquality().hash(_members),idMember);
+int get hashCode => Object.hash(runtimeType,id,firstName,lastName,userName,mobileNumber,emailId,accessToken,refreshToken,fcmToken,const DeepCollectionEquality().hash(_members),idMember);
 
 @override
 String toString() {
-  return 'User(id: $id, firstName: $firstName, lastName: $lastName, userName: $userName, mobileNumber: $mobileNumber, emailId: $emailId, accessToken: $accessToken, fcmToken: $fcmToken, members: $members, idMember: $idMember)';
+  return 'User(id: $id, firstName: $firstName, lastName: $lastName, userName: $userName, mobileNumber: $mobileNumber, emailId: $emailId, accessToken: $accessToken, refreshToken: $refreshToken, fcmToken: $fcmToken, members: $members, idMember: $idMember)';
 }
 
 
@@ -265,7 +267,7 @@ abstract mixin class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) _then) = __$UserCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String firstName, String lastName, String userName, String mobileNumber, String emailId, String accessToken, String fcmToken, List<Member> members, int idMember
+ int id, String firstName, String lastName, String userName, String mobileNumber, String emailId, String accessToken, String refreshToken, String fcmToken, List<Member> members, int idMember
 });
 
 
@@ -282,7 +284,7 @@ class __$UserCopyWithImpl<$Res>
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? userName = null,Object? mobileNumber = null,Object? emailId = null,Object? accessToken = null,Object? fcmToken = null,Object? members = null,Object? idMember = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? userName = null,Object? mobileNumber = null,Object? emailId = null,Object? accessToken = null,Object? refreshToken = null,Object? fcmToken = null,Object? members = null,Object? idMember = null,}) {
   return _then(_User(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
@@ -291,6 +293,7 @@ as String,userName: null == userName ? _self.userName : userName // ignore: cast
 as String,mobileNumber: null == mobileNumber ? _self.mobileNumber : mobileNumber // ignore: cast_nullable_to_non_nullable
 as String,emailId: null == emailId ? _self.emailId : emailId // ignore: cast_nullable_to_non_nullable
 as String,accessToken: null == accessToken ? _self.accessToken : accessToken // ignore: cast_nullable_to_non_nullable
+as String,refreshToken: null == refreshToken ? _self.refreshToken : refreshToken // ignore: cast_nullable_to_non_nullable
 as String,fcmToken: null == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
 as String,members: null == members ? _self._members : members // ignore: cast_nullable_to_non_nullable
 as List<Member>,idMember: null == idMember ? _self.idMember : idMember // ignore: cast_nullable_to_non_nullable

@@ -10,7 +10,7 @@ sealed class LoginParams with _$LoginParams {
   }) = GenerateOtpParams;
 
   const factory LoginParams.verifyOtp({
-    @JsonKey(includeToJson: false) required String idOtp,
+    @JsonKey(name: 'id_otp') required String idOtp,
     @JsonKey(name: 'mobileNo') required String mobileNumber,
     required String otp,
   }) = VerifyOtpParams;

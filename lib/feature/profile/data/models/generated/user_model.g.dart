@@ -14,6 +14,7 @@ _UserModel _$UserModelFromJson(Map<String, dynamic> json) => _UserModel(
   mobileNumber: json['MobileNo'] as String? ?? '',
   emailId: json['EmailID'] as String? ?? '',
   accessToken: json['accessToken'] as String,
+  refreshToken: json['refreshToken'] as String? ?? '',
   fcmToken: json['FCM_Token'] as String? ?? '',
   members:
       (json['Members'] as List<dynamic>?)
@@ -32,6 +33,7 @@ Map<String, dynamic> _$UserModelToJson(_UserModel instance) =>
       'MobileNo': instance.mobileNumber,
       'EmailID': instance.emailId,
       'accessToken': instance.accessToken,
+      'refreshToken': instance.refreshToken,
       'FCM_Token': instance.fcmToken,
       'Members': instance.members,
       'IdMember': instance.idMember,

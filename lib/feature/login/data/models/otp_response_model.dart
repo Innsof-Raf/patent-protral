@@ -21,6 +21,7 @@ sealed class OtpResponseModel with _$OtpResponseModel {
       OtpResponse(showPasswordSection: showPasswordSection, otp: otp);
 }
 
-Object? _readOtp(Map json, String key) => json['otp'] ?? json['Otp'];
+Object? _readOtp(Map json, String key) =>
+    json['otp'] ?? json['Otp'] ?? json['id_otp'];
 
 String _otpFromJson(Object? value) => value?.toString() ?? '';

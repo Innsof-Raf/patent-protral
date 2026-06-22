@@ -19,7 +19,14 @@ class UserLocalDataSourceImpl implements UserLocalDataSource {
 
   @override
   Future<void> saveUser(User user) async {
-    final String userJson = jsonEncode(user.toJson());
+    User userToSave = user;
+    if (user.refreshToken.isEmpty) {
+      final existingUser = await getUser();
+      if (existingUser != null && existingUser.refreshToken.isNotEmpty) {
+        userToSave = user.copyWith(refreshToken: existingUser.refreshToken);
+      }
+    }
+    final String userJson = jsonEncode(userToSave.toJson());
     await sharedPreferences.setString(_userKey, userJson);
   }
 

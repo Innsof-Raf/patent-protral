@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserModel {
 
-@JsonKey(name: 'Id', fromJson: intFromJson) int get id;@JsonKey(name: 'FirstName') String get firstName;@JsonKey(name: 'LastName') String get lastName;@JsonKey(name: 'Username') String get userName;@JsonKey(name: 'MobileNo') String get mobileNumber;@JsonKey(name: 'EmailID') String get emailId;@JsonKey(name: 'accessToken') String get accessToken;@JsonKey(name: 'FCM_Token') String get fcmToken;@JsonKey(name: 'Members') List<MemberModel> get members;@JsonKey(name: 'IdMember', fromJson: intFromJson) int get idMember;
+@JsonKey(name: 'Id', fromJson: intFromJson) int get id;@JsonKey(name: 'FirstName') String get firstName;@JsonKey(name: 'LastName') String get lastName;@JsonKey(name: 'Username') String get userName;@JsonKey(name: 'MobileNo') String get mobileNumber;@JsonKey(name: 'EmailID') String get emailId;@JsonKey(name: 'accessToken') String get accessToken;@JsonKey(name: 'refreshToken') String get refreshToken;@JsonKey(name: 'FCM_Token') String get fcmToken;@JsonKey(name: 'Members') List<MemberModel> get members;@JsonKey(name: 'IdMember', fromJson: intFromJson) int get idMember;
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $UserModelCopyWith<UserModel> get copyWith => _$UserModelCopyWithImpl<UserModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.userName, userName) || other.userName == userName)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.emailId, emailId) || other.emailId == emailId)&&(identical(other.accessToken, accessToken) || other.accessToken == accessToken)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&const DeepCollectionEquality().equals(other.members, members)&&(identical(other.idMember, idMember) || other.idMember == idMember));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.userName, userName) || other.userName == userName)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.emailId, emailId) || other.emailId == emailId)&&(identical(other.accessToken, accessToken) || other.accessToken == accessToken)&&(identical(other.refreshToken, refreshToken) || other.refreshToken == refreshToken)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&const DeepCollectionEquality().equals(other.members, members)&&(identical(other.idMember, idMember) || other.idMember == idMember));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,firstName,lastName,userName,mobileNumber,emailId,accessToken,fcmToken,const DeepCollectionEquality().hash(members),idMember);
+int get hashCode => Object.hash(runtimeType,id,firstName,lastName,userName,mobileNumber,emailId,accessToken,refreshToken,fcmToken,const DeepCollectionEquality().hash(members),idMember);
 
 @override
 String toString() {
-  return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, userName: $userName, mobileNumber: $mobileNumber, emailId: $emailId, accessToken: $accessToken, fcmToken: $fcmToken, members: $members, idMember: $idMember)';
+  return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, userName: $userName, mobileNumber: $mobileNumber, emailId: $emailId, accessToken: $accessToken, refreshToken: $refreshToken, fcmToken: $fcmToken, members: $members, idMember: $idMember)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $UserModelCopyWith<$Res>  {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) _then) = _$UserModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'Id', fromJson: intFromJson) int id,@JsonKey(name: 'FirstName') String firstName,@JsonKey(name: 'LastName') String lastName,@JsonKey(name: 'Username') String userName,@JsonKey(name: 'MobileNo') String mobileNumber,@JsonKey(name: 'EmailID') String emailId,@JsonKey(name: 'accessToken') String accessToken,@JsonKey(name: 'FCM_Token') String fcmToken,@JsonKey(name: 'Members') List<MemberModel> members,@JsonKey(name: 'IdMember', fromJson: intFromJson) int idMember
+@JsonKey(name: 'Id', fromJson: intFromJson) int id,@JsonKey(name: 'FirstName') String firstName,@JsonKey(name: 'LastName') String lastName,@JsonKey(name: 'Username') String userName,@JsonKey(name: 'MobileNo') String mobileNumber,@JsonKey(name: 'EmailID') String emailId,@JsonKey(name: 'accessToken') String accessToken,@JsonKey(name: 'refreshToken') String refreshToken,@JsonKey(name: 'FCM_Token') String fcmToken,@JsonKey(name: 'Members') List<MemberModel> members,@JsonKey(name: 'IdMember', fromJson: intFromJson) int idMember
 });
 
 
@@ -65,7 +65,7 @@ class _$UserModelCopyWithImpl<$Res>
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? userName = null,Object? mobileNumber = null,Object? emailId = null,Object? accessToken = null,Object? fcmToken = null,Object? members = null,Object? idMember = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? userName = null,Object? mobileNumber = null,Object? emailId = null,Object? accessToken = null,Object? refreshToken = null,Object? fcmToken = null,Object? members = null,Object? idMember = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
@@ -74,6 +74,7 @@ as String,userName: null == userName ? _self.userName : userName // ignore: cast
 as String,mobileNumber: null == mobileNumber ? _self.mobileNumber : mobileNumber // ignore: cast_nullable_to_non_nullable
 as String,emailId: null == emailId ? _self.emailId : emailId // ignore: cast_nullable_to_non_nullable
 as String,accessToken: null == accessToken ? _self.accessToken : accessToken // ignore: cast_nullable_to_non_nullable
+as String,refreshToken: null == refreshToken ? _self.refreshToken : refreshToken // ignore: cast_nullable_to_non_nullable
 as String,fcmToken: null == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
 as String,members: null == members ? _self.members : members // ignore: cast_nullable_to_non_nullable
 as List<MemberModel>,idMember: null == idMember ? _self.idMember : idMember // ignore: cast_nullable_to_non_nullable
@@ -159,10 +160,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'Id', fromJson: intFromJson)  int id, @JsonKey(name: 'FirstName')  String firstName, @JsonKey(name: 'LastName')  String lastName, @JsonKey(name: 'Username')  String userName, @JsonKey(name: 'MobileNo')  String mobileNumber, @JsonKey(name: 'EmailID')  String emailId, @JsonKey(name: 'accessToken')  String accessToken, @JsonKey(name: 'FCM_Token')  String fcmToken, @JsonKey(name: 'Members')  List<MemberModel> members, @JsonKey(name: 'IdMember', fromJson: intFromJson)  int idMember)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'Id', fromJson: intFromJson)  int id, @JsonKey(name: 'FirstName')  String firstName, @JsonKey(name: 'LastName')  String lastName, @JsonKey(name: 'Username')  String userName, @JsonKey(name: 'MobileNo')  String mobileNumber, @JsonKey(name: 'EmailID')  String emailId, @JsonKey(name: 'accessToken')  String accessToken, @JsonKey(name: 'refreshToken')  String refreshToken, @JsonKey(name: 'FCM_Token')  String fcmToken, @JsonKey(name: 'Members')  List<MemberModel> members, @JsonKey(name: 'IdMember', fromJson: intFromJson)  int idMember)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
-return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mobileNumber,_that.emailId,_that.accessToken,_that.fcmToken,_that.members,_that.idMember);case _:
+return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mobileNumber,_that.emailId,_that.accessToken,_that.refreshToken,_that.fcmToken,_that.members,_that.idMember);case _:
   return orElse();
 
 }
@@ -180,10 +181,10 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mob
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'Id', fromJson: intFromJson)  int id, @JsonKey(name: 'FirstName')  String firstName, @JsonKey(name: 'LastName')  String lastName, @JsonKey(name: 'Username')  String userName, @JsonKey(name: 'MobileNo')  String mobileNumber, @JsonKey(name: 'EmailID')  String emailId, @JsonKey(name: 'accessToken')  String accessToken, @JsonKey(name: 'FCM_Token')  String fcmToken, @JsonKey(name: 'Members')  List<MemberModel> members, @JsonKey(name: 'IdMember', fromJson: intFromJson)  int idMember)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'Id', fromJson: intFromJson)  int id, @JsonKey(name: 'FirstName')  String firstName, @JsonKey(name: 'LastName')  String lastName, @JsonKey(name: 'Username')  String userName, @JsonKey(name: 'MobileNo')  String mobileNumber, @JsonKey(name: 'EmailID')  String emailId, @JsonKey(name: 'accessToken')  String accessToken, @JsonKey(name: 'refreshToken')  String refreshToken, @JsonKey(name: 'FCM_Token')  String fcmToken, @JsonKey(name: 'Members')  List<MemberModel> members, @JsonKey(name: 'IdMember', fromJson: intFromJson)  int idMember)  $default,) {final _that = this;
 switch (_that) {
 case _UserModel():
-return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mobileNumber,_that.emailId,_that.accessToken,_that.fcmToken,_that.members,_that.idMember);}
+return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mobileNumber,_that.emailId,_that.accessToken,_that.refreshToken,_that.fcmToken,_that.members,_that.idMember);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -197,10 +198,10 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mob
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'Id', fromJson: intFromJson)  int id, @JsonKey(name: 'FirstName')  String firstName, @JsonKey(name: 'LastName')  String lastName, @JsonKey(name: 'Username')  String userName, @JsonKey(name: 'MobileNo')  String mobileNumber, @JsonKey(name: 'EmailID')  String emailId, @JsonKey(name: 'accessToken')  String accessToken, @JsonKey(name: 'FCM_Token')  String fcmToken, @JsonKey(name: 'Members')  List<MemberModel> members, @JsonKey(name: 'IdMember', fromJson: intFromJson)  int idMember)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'Id', fromJson: intFromJson)  int id, @JsonKey(name: 'FirstName')  String firstName, @JsonKey(name: 'LastName')  String lastName, @JsonKey(name: 'Username')  String userName, @JsonKey(name: 'MobileNo')  String mobileNumber, @JsonKey(name: 'EmailID')  String emailId, @JsonKey(name: 'accessToken')  String accessToken, @JsonKey(name: 'refreshToken')  String refreshToken, @JsonKey(name: 'FCM_Token')  String fcmToken, @JsonKey(name: 'Members')  List<MemberModel> members, @JsonKey(name: 'IdMember', fromJson: intFromJson)  int idMember)?  $default,) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
-return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mobileNumber,_that.emailId,_that.accessToken,_that.fcmToken,_that.members,_that.idMember);case _:
+return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mobileNumber,_that.emailId,_that.accessToken,_that.refreshToken,_that.fcmToken,_that.members,_that.idMember);case _:
   return null;
 
 }
@@ -212,7 +213,7 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.userName,_that.mob
 @JsonSerializable()
 
 class _UserModel extends UserModel {
-  const _UserModel({@JsonKey(name: 'Id', fromJson: intFromJson) required this.id, @JsonKey(name: 'FirstName') this.firstName = '', @JsonKey(name: 'LastName') this.lastName = '', @JsonKey(name: 'Username') this.userName = '', @JsonKey(name: 'MobileNo') this.mobileNumber = '', @JsonKey(name: 'EmailID') this.emailId = '', @JsonKey(name: 'accessToken') required this.accessToken, @JsonKey(name: 'FCM_Token') this.fcmToken = '', @JsonKey(name: 'Members') final  List<MemberModel> members = const [], @JsonKey(name: 'IdMember', fromJson: intFromJson) this.idMember = 0}): _members = members,super._();
+  const _UserModel({@JsonKey(name: 'Id', fromJson: intFromJson) required this.id, @JsonKey(name: 'FirstName') this.firstName = '', @JsonKey(name: 'LastName') this.lastName = '', @JsonKey(name: 'Username') this.userName = '', @JsonKey(name: 'MobileNo') this.mobileNumber = '', @JsonKey(name: 'EmailID') this.emailId = '', @JsonKey(name: 'accessToken') required this.accessToken, @JsonKey(name: 'refreshToken') this.refreshToken = '', @JsonKey(name: 'FCM_Token') this.fcmToken = '', @JsonKey(name: 'Members') final  List<MemberModel> members = const [], @JsonKey(name: 'IdMember', fromJson: intFromJson) this.idMember = 0}): _members = members,super._();
   factory _UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
 @override@JsonKey(name: 'Id', fromJson: intFromJson) final  int id;
@@ -222,6 +223,7 @@ class _UserModel extends UserModel {
 @override@JsonKey(name: 'MobileNo') final  String mobileNumber;
 @override@JsonKey(name: 'EmailID') final  String emailId;
 @override@JsonKey(name: 'accessToken') final  String accessToken;
+@override@JsonKey(name: 'refreshToken') final  String refreshToken;
 @override@JsonKey(name: 'FCM_Token') final  String fcmToken;
  final  List<MemberModel> _members;
 @override@JsonKey(name: 'Members') List<MemberModel> get members {
@@ -245,16 +247,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.userName, userName) || other.userName == userName)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.emailId, emailId) || other.emailId == emailId)&&(identical(other.accessToken, accessToken) || other.accessToken == accessToken)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&const DeepCollectionEquality().equals(other._members, _members)&&(identical(other.idMember, idMember) || other.idMember == idMember));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.userName, userName) || other.userName == userName)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.emailId, emailId) || other.emailId == emailId)&&(identical(other.accessToken, accessToken) || other.accessToken == accessToken)&&(identical(other.refreshToken, refreshToken) || other.refreshToken == refreshToken)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&const DeepCollectionEquality().equals(other._members, _members)&&(identical(other.idMember, idMember) || other.idMember == idMember));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,firstName,lastName,userName,mobileNumber,emailId,accessToken,fcmToken,const DeepCollectionEquality().hash(_members),idMember);
+int get hashCode => Object.hash(runtimeType,id,firstName,lastName,userName,mobileNumber,emailId,accessToken,refreshToken,fcmToken,const DeepCollectionEquality().hash(_members),idMember);
 
 @override
 String toString() {
-  return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, userName: $userName, mobileNumber: $mobileNumber, emailId: $emailId, accessToken: $accessToken, fcmToken: $fcmToken, members: $members, idMember: $idMember)';
+  return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, userName: $userName, mobileNumber: $mobileNumber, emailId: $emailId, accessToken: $accessToken, refreshToken: $refreshToken, fcmToken: $fcmToken, members: $members, idMember: $idMember)';
 }
 
 
@@ -265,7 +267,7 @@ abstract mixin class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Re
   factory _$UserModelCopyWith(_UserModel value, $Res Function(_UserModel) _then) = __$UserModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'Id', fromJson: intFromJson) int id,@JsonKey(name: 'FirstName') String firstName,@JsonKey(name: 'LastName') String lastName,@JsonKey(name: 'Username') String userName,@JsonKey(name: 'MobileNo') String mobileNumber,@JsonKey(name: 'EmailID') String emailId,@JsonKey(name: 'accessToken') String accessToken,@JsonKey(name: 'FCM_Token') String fcmToken,@JsonKey(name: 'Members') List<MemberModel> members,@JsonKey(name: 'IdMember', fromJson: intFromJson) int idMember
+@JsonKey(name: 'Id', fromJson: intFromJson) int id,@JsonKey(name: 'FirstName') String firstName,@JsonKey(name: 'LastName') String lastName,@JsonKey(name: 'Username') String userName,@JsonKey(name: 'MobileNo') String mobileNumber,@JsonKey(name: 'EmailID') String emailId,@JsonKey(name: 'accessToken') String accessToken,@JsonKey(name: 'refreshToken') String refreshToken,@JsonKey(name: 'FCM_Token') String fcmToken,@JsonKey(name: 'Members') List<MemberModel> members,@JsonKey(name: 'IdMember', fromJson: intFromJson) int idMember
 });
 
 
@@ -282,7 +284,7 @@ class __$UserModelCopyWithImpl<$Res>
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? userName = null,Object? mobileNumber = null,Object? emailId = null,Object? accessToken = null,Object? fcmToken = null,Object? members = null,Object? idMember = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? userName = null,Object? mobileNumber = null,Object? emailId = null,Object? accessToken = null,Object? refreshToken = null,Object? fcmToken = null,Object? members = null,Object? idMember = null,}) {
   return _then(_UserModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
@@ -291,6 +293,7 @@ as String,userName: null == userName ? _self.userName : userName // ignore: cast
 as String,mobileNumber: null == mobileNumber ? _self.mobileNumber : mobileNumber // ignore: cast_nullable_to_non_nullable
 as String,emailId: null == emailId ? _self.emailId : emailId // ignore: cast_nullable_to_non_nullable
 as String,accessToken: null == accessToken ? _self.accessToken : accessToken // ignore: cast_nullable_to_non_nullable
+as String,refreshToken: null == refreshToken ? _self.refreshToken : refreshToken // ignore: cast_nullable_to_non_nullable
 as String,fcmToken: null == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
 as String,members: null == members ? _self._members : members // ignore: cast_nullable_to_non_nullable
 as List<MemberModel>,idMember: null == idMember ? _self.idMember : idMember // ignore: cast_nullable_to_non_nullable
