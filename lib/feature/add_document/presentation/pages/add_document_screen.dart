@@ -18,6 +18,7 @@ import 'package:patient_portal/feature/add_document/domain/usecases/params/add_d
 import 'package:patient_portal/feature/add_document/presentation/bloc/add_document_bloc.dart';
 import 'package:patient_portal/feature/add_document/presentation/widgets/add_document_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
+import 'package:patient_portal/feature/profile/presentation/widgets/profile_section_card.dart';
 
 @RoutePage(name: 'AddDocumentRoute')
 class AddDocumentScreen extends StatefulWidget {
@@ -111,196 +112,220 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
           }
 
           return SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 112),
             child: Form(
               key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  ValueListenableBuilder<int?>(
-                    valueListenable: _selectedMemberNotifier,
-                    builder: (context, selectedMember, child) {
-                      return CommonDropdownField<int>(
-                        labelText: AppStaticTexts.member,
-                        value: selectedMember,
-                        validator: (value) =>
-                            AddDocumentScreenHelpers.validateSelectedMember(
-                              value: value,
-                              selectedMember: _selectedMemberNotifier.value,
-                            ),
-                        items: context
-                            .read<UserBloc>()
-                            .state
-                            .user!
-                            .members
-                            .map(
-                              (member) =>
-                                  AddDocumentScreenHelpers.createMemberDropDownItem(
-                                    member: member,
-                                  ),
-                            )
-                            .toList(),
-                        onChanged: (value) {
-                          _selectedMemberNotifier.value = value;
-                        },
-                      );
-                    },
-                  ),
-                  const Gap(24),
-                  ValueListenableBuilder<int?>(
-                    valueListenable: _selectedDocumentTypeNotifier,
-                    builder: (context, selectedDocumentType, child) {
-                      return CommonDropdownField<int>(
-                        labelText: AppStaticTexts.documentType,
-                        value: selectedDocumentType,
-                        validator: (value) =>
-                            AddDocumentScreenHelpers.validateDocumentType(
-                              value: value,
-                              selectedDocumentType:
-                                  _selectedDocumentTypeNotifier.value,
-                            ),
-                        items: state.documentTypes
-                            .map(
-                              (documentType) =>
-                                  AddDocumentScreenHelpers.createDocumentTypeDropDownItem(
-                                    document: documentType,
-                                  ),
-                            )
-                            .toList(),
-                        onChanged: (value) {
-                          _selectedDocumentTypeNotifier.value = value;
-                        },
-                      );
-                    },
-                  ),
-                  const Gap(24),
-                  CommonTextField(
-                    labelText: AppStaticTexts.expireDate,
-                    controller: _expireDateController,
-                    readOnly: true,
-                    validator: (value) =>
-                        AddDocumentScreenHelpers.validateExpireDate(
-                          value: value,
-                          expireDate: _expireDateNotifier.value,
-                        ),
-                    onTap: () async {
-                      final date = await AddDocumentScreenHelpers.getExpireDate(
-                        initialDate:
-                            _expireDateNotifier.value ??
-                            DateTime.now().add(const Duration(days: 1)),
-                        context: context,
-                      );
-                      if (date != null) {
-                        _expireDateNotifier.value = date;
-                        _expireDateController.text = DateFormat(
-                          'dd/MM/yyyy',
-                        ).format(date);
-                      }
-                    },
-                    suffixIcon: Icon(
-                      Icons.calendar_today_outlined,
-                      color: theme.colorScheme.primary.withValues(alpha: 0.6),
-                      size: 24,
+              child: ProfileSectionCard(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      AppStaticTexts.documents,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: theme.colorScheme.primary,
+                      ),
                     ),
-                  ),
-                  const Gap(24),
-                  CommonTextField(
-                    labelText: AppStaticTexts.document,
-                    controller: _documentNameController,
-                    readOnly: true,
-                    validator: (value) =>
-                        AddDocumentScreenHelpers.validateSelectedDocument(
-                          value: value,
-                          selectedDocument: _selectedDocumentNotifier.value,
-                        ),
-                    onTap: () async {
-                      final result =
-                          await AddDocumentScreenHelpers.pickDocument(
-                            context: context,
-                          );
-                      if (result != null) {
-                        _selectedDocumentNotifier.value = result.file;
-                        _documentNameController.text = result.name;
-                      }
-                    },
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: SvgPicture.asset(
-                        Assets.icons.attachmentIcon.path,
-                        colorFilter: ColorFilter.mode(
-                          theme.colorScheme.primary.withValues(alpha: 0.6),
-                          BlendMode.srcIn,
+                    const Gap(4),
+                    Text(
+                      AppStaticTexts.documentsSubtitle,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                    const Gap(24),
+                    ValueListenableBuilder<int?>(
+                      valueListenable: _selectedMemberNotifier,
+                      builder: (context, selectedMember, child) {
+                        return CommonDropdownField<int>(
+                          labelText: AppStaticTexts.member,
+                          value: selectedMember,
+                          validator: (value) =>
+                              AddDocumentScreenHelpers.validateSelectedMember(
+                                value: value,
+                                selectedMember: _selectedMemberNotifier.value,
+                              ),
+                          items: context
+                              .read<UserBloc>()
+                              .state
+                              .user!
+                              .members
+                              .map(
+                                (member) =>
+                                    AddDocumentScreenHelpers.createMemberDropDownItem(
+                                      member: member,
+                                    ),
+                              )
+                              .toList(),
+                          onChanged: (value) {
+                            _selectedMemberNotifier.value = value;
+                          },
+                        );
+                      },
+                    ),
+                    const Gap(24),
+                    ValueListenableBuilder<int?>(
+                      valueListenable: _selectedDocumentTypeNotifier,
+                      builder: (context, selectedDocumentType, child) {
+                        return CommonDropdownField<int>(
+                          labelText: AppStaticTexts.documentType,
+                          value: selectedDocumentType,
+                          validator: (value) =>
+                              AddDocumentScreenHelpers.validateDocumentType(
+                                value: value,
+                                selectedDocumentType:
+                                    _selectedDocumentTypeNotifier.value,
+                              ),
+                          items: state.documentTypes
+                              .map(
+                                (documentType) =>
+                                    AddDocumentScreenHelpers.createDocumentTypeDropDownItem(
+                                      document: documentType,
+                                    ),
+                              )
+                              .toList(),
+                          onChanged: (value) {
+                            _selectedDocumentTypeNotifier.value = value;
+                          },
+                        );
+                      },
+                    ),
+                    const Gap(24),
+                    CommonTextField(
+                      labelText: AppStaticTexts.expireDate,
+                      controller: _expireDateController,
+                      readOnly: true,
+                      validator: (value) =>
+                          AddDocumentScreenHelpers.validateExpireDate(
+                            value: value,
+                            expireDate: _expireDateNotifier.value,
+                          ),
+                      onTap: () async {
+                        final date =
+                            await AddDocumentScreenHelpers.getExpireDate(
+                              initialDate:
+                                  _expireDateNotifier.value ??
+                                  DateTime.now().add(const Duration(days: 1)),
+                              context: context,
+                            );
+                        if (date != null) {
+                          _expireDateNotifier.value = date;
+                          _expireDateController.text = DateFormat(
+                            'dd/MM/yyyy',
+                          ).format(date);
+                        }
+                      },
+                      suffixIcon: Icon(
+                        Icons.calendar_today_outlined,
+                        color: theme.colorScheme.primary.withValues(alpha: 0.6),
+                        size: 24,
+                      ),
+                    ),
+                    const Gap(24),
+                    CommonTextField(
+                      labelText: AppStaticTexts.document,
+                      controller: _documentNameController,
+                      readOnly: true,
+                      validator: (value) =>
+                          AddDocumentScreenHelpers.validateSelectedDocument(
+                            value: value,
+                            selectedDocument: _selectedDocumentNotifier.value,
+                          ),
+                      onTap: () async {
+                        final result =
+                            await AddDocumentScreenHelpers.pickDocument(
+                              context: context,
+                            );
+                        if (result != null) {
+                          _selectedDocumentNotifier.value = result.file;
+                          _documentNameController.text = result.name;
+                        }
+                      },
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: SvgPicture.asset(
+                          Assets.icons.attachmentIcon.path,
+                          colorFilter: ColorFilter.mode(
+                            theme.colorScheme.primary.withValues(alpha: 0.6),
+                            BlendMode.srcIn,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  const Gap(40),
-                ],
+                  ],
+                ),
               ),
             ),
           );
         },
       ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(24, 0, 24, 20),
-          child: BlocBuilder<AddDocumentBloc, AddDocumentState>(
-            builder: (context, state) {
-              return ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: theme.colorScheme.primary.withValues(
-                    alpha: 0.8,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, -5),
+            ),
+          ],
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
+            child: BlocBuilder<AddDocumentBloc, AddDocumentState>(
+              builder: (context, state) {
+                return FilledButton(
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size.fromHeight(56),
+                    backgroundColor: theme.colorScheme.primary,
+                    foregroundColor: theme.colorScheme.onPrimary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
                   ),
-                  foregroundColor: theme.colorScheme.onPrimary,
-                  minimumSize: const Size(double.infinity, 60),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  elevation: 0,
-                ),
-                onPressed: state.isUploadingDocument
-                    ? null
-                    : () {
-                        if (_formKey.currentState?.validate() ?? false) {
-                          context.read<AddDocumentBloc>().add(
-                            UploadDocument(
-                              params: AddDocumentParams.uploadDocument(
-                                token: context
-                                    .read<UserBloc>()
-                                    .state
-                                    .user!
-                                    .accessToken,
-                                memberId: _selectedMemberNotifier.value!,
-                                documentName: _documentNameController.text,
-                                documentPath:
-                                    _selectedDocumentNotifier.value!.path,
-                                expireDate: _expireDateNotifier.value,
-                                idDocument: _selectedDocumentTypeNotifier.value!
-                                    .toString(),
-                              ),
+                  onPressed: state.isUploadingDocument ? null : _onSubmit,
+                  child: state.isUploadingDocument
+                      ? const SizedBox(
+                          height: 24,
+                          width: 24,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              Colors.white,
                             ),
-                          );
-                        }
-                      },
-                child: state.isUploadingDocument
-                    ? SizedBox(
-                        height: 24,
-                        width: 24,
-                        child: CircularProgressIndicator(
-                          color: theme.colorScheme.onPrimary,
-                          strokeWidth: 2,
+                          ),
+                        )
+                      : Text(
+                          AppStaticTexts.addDocument,
+                          style: AppTextStyles.subHeadingSemiBoldRoboto
+                              .copyWith(
+                                color: theme.colorScheme.onPrimary,
+                                fontWeight: FontWeight.bold,
+                              ),
                         ),
-                      )
-                    : Text(
-                        AppStaticTexts.add,
-                        style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
-                          color: theme.colorScheme.onPrimary,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-              );
-            },
+                );
+              },
+            ),
           ),
+        ),
+      ),
+    );
+  }
+
+  void _onSubmit() {
+    if (!(_formKey.currentState?.validate() ?? false)) return;
+
+    context.read<AddDocumentBloc>().add(
+      UploadDocument(
+        params: AddDocumentParams.uploadDocument(
+          token: context.read<UserBloc>().state.user!.accessToken,
+          memberId: _selectedMemberNotifier.value!,
+          documentName: _documentNameController.text,
+          documentPath: _selectedDocumentNotifier.value!.path,
+          expireDate: _expireDateNotifier.value,
+          idDocument: _selectedDocumentTypeNotifier.value!.toString(),
         ),
       ),
     );

@@ -241,6 +241,7 @@ class AppStaticTexts {
   static const String documentTypesUnavailable = 'Document types unavailable';
   static const String documentTypesUnavailableMessage =
       'You cannot add documents right now.';
+  static const String allDocuments = 'All documents';
   static const String noDocumentsFound = 'No documents Found';
   static const String selectDocumentType = 'Select document type';
   static const String selectMember = 'Select member';
