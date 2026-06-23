@@ -26,7 +26,7 @@ class RadioButton extends StatelessWidget {
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   alignment: Alignment.centerLeft,
                   elevation: 0,
-                  backgroundColor: AppColors.vilot,
+                  backgroundColor: AppColors.violet,
                   minimumSize: const Size(0, 0),
                   padding: const EdgeInsets.all(7.5),
                   shape: const CircleBorder(),
@@ -37,7 +37,7 @@ class RadioButton extends StatelessWidget {
             : OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  foregroundColor: AppColors.vilot,
+                  foregroundColor: AppColors.violet,
                   shape: const CircleBorder(
                     side: BorderSide(width: 1, color: AppColors.textLight),
                   ),

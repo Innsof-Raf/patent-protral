@@ -25,7 +25,7 @@ class LoginBackgroundCarousel extends StatelessWidget {
           itemCount: images.length,
           options: CarouselOptions(
             onPageChanged: (index, reason) {
-              LoginScreenHelpers.bagroundImageNotifier.value = index;
+              LoginScreenHelpers.backgroundImageNotifier.value = index;
             },
             height: double.infinity,
             viewportFraction: 1,
@@ -74,7 +74,7 @@ class LoginCarouselIndicator extends StatelessWidget {
     final theme = Theme.of(context);
 
     return ValueListenableBuilder<int>(
-      valueListenable: LoginScreenHelpers.bagroundImageNotifier,
+      valueListenable: LoginScreenHelpers.backgroundImageNotifier,
       builder: (context, index, _) => AnimatedSmoothIndicator(
         onDotClicked: controller.animateToPage,
         effect: ExpandingDotsEffect(

@@ -3,7 +3,7 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_models/insurance/insurance_model.dart';
 
-class EditMemberInuranceHelpers {
+class EditMemberInsuranceHelpers {
   static DropdownMenuItem<int> createDropDownItem({
     required InsuranceModel insurance,
   }) {
@@ -17,7 +17,7 @@ class EditMemberInuranceHelpers {
     );
   }
 
-  static ValueNotifier<int?> selectedInsuranceNotifer = ValueNotifier(null);
+  static ValueNotifier<int?> selectedInsuranceNotifier = ValueNotifier(null);
   static Future<DateTime?> getExpireDate({
     required DateTime initialDate,
     required BuildContext context,
@@ -31,7 +31,7 @@ class EditMemberInuranceHelpers {
       builder: (context, child) => Theme(
         data: Theme.of(context).copyWith(
           textButtonTheme: TextButtonThemeData(
-            style: TextButton.styleFrom(foregroundColor: AppColors.vilot),
+            style: TextButton.styleFrom(foregroundColor: AppColors.violet),
           ),
         ),
         child: child!,

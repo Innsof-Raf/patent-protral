@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/gender_form_helpers.dart';
@@ -26,9 +27,9 @@ class EditmemberDetailSection extends StatelessWidget {
           decoration: const InputDecoration(labelText: 'Date of birth'),
           style: AppTextStyles.textFormFieldStyle,
         ),
-        const SizedBox(height: 10),
+        const Gap(10),
         Text('Gender', style: AppTextStyles.bodyTextRoboto),
-        const SizedBox(height: 5),
+        const Gap(5),
         Row(
           children: [
             ValueListenableBuilder(
@@ -44,7 +45,7 @@ class EditmemberDetailSection extends StatelessWidget {
                 title: 'Male',
               ),
             ),
-            const SizedBox(width: 20),
+            const Gap(20),
             ValueListenableBuilder(
               valueListenable: GenderFormHelpers.genderNotifier,
               builder: (context, value, child) => RadioButton(
@@ -60,7 +61,7 @@ class EditmemberDetailSection extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 20),
+        const Gap(20),
         TextFormField(
           controller: nationalIdController,
           inputFormatters: [
@@ -73,9 +74,9 @@ class EditmemberDetailSection extends StatelessWidget {
           textInputAction: TextInputAction.next,
           decoration: const InputDecoration(labelText: 'National ID'),
           style: AppTextStyles.textFormFieldStyle,
-          cursorColor: AppColors.textFormFiledStyleColor,
+          cursorColor: AppColors.textFormFieldStyleColor,
         ),
-        const SizedBox(height: 10),
+        const Gap(10),
         TextFormField(
           controller: emailController,
           keyboardType: TextInputType.emailAddress,
@@ -83,9 +84,9 @@ class EditmemberDetailSection extends StatelessWidget {
           style: AppTextStyles.textFormFieldStyle,
           validator: (value) =>
               MemeberFormValidationHelpers.emailValidator(value: value),
-          cursorColor: AppColors.textFormFiledStyleColor,
+          cursorColor: AppColors.textFormFieldStyleColor,
         ),
-        const SizedBox(height: 20),
+        const Gap(20),
       ],
     );
   }

@@ -2,8 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/feature/documents/presentation/bloc/documents_bloc/documents_bloc.dart';
 import 'package:patient_portal/feature/documents/presentation/helpers/documents_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -77,10 +79,10 @@ class DocumentsScreenAppBar extends StatelessWidget
                         },
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    const Gap(8),
                     Text(
                       state.selectedMemberId == 0
-                          ? 'All'
+                          ? AppStaticTexts.all
                           : userState.user!.members
                                 .singleWhere(
                                   (element) =>

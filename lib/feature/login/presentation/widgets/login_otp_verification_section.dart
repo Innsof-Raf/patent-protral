@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -66,7 +67,7 @@ class _LoginOtpVerificationSectionState
             fontWeight: FontWeight.w600,
           ),
         ),
-        const SizedBox(height: 10),
+        const Gap(10),
         LayoutBuilder(
           builder: (context, constraints) {
             final rowWidth = constraints.maxWidth.clamp(0.0, 340.0).toDouble();
@@ -77,7 +78,7 @@ class _LoginOtpVerificationSectionState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(child: _OtpInput(controller: _otpController)),
-                  const SizedBox(width: 12),
+                  const Gap(12),
                   BlocConsumer<OtpVerificationBloc, OtpVerificationState>(
                     listener: (context, state) {
                       if (state.isVerifyingFailed &&
@@ -125,7 +126,7 @@ class _LoginOtpVerificationSectionState
             );
           },
         ),
-        const SizedBox(height: 18),
+        const Gap(18),
         const _OtpSecondaryActions(),
       ],
     );
@@ -203,7 +204,7 @@ class _OtpSecondaryActions extends StatelessWidget {
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
         ValueListenableBuilder<int>(
-          valueListenable: LoginScreenHelpers.timerNotifer,
+          valueListenable: LoginScreenHelpers.timerNotifier,
           builder: (context, value, _) {
             if (value != 0) {
               return Text(
@@ -218,7 +219,7 @@ class _OtpSecondaryActions extends StatelessWidget {
             return BlocConsumer<OtpGenerationBloc, OtpGenerationState>(
               listener: (context, state) {
                 if (state.isOtpResentingSucess && !state.isOtpResentingFailed) {
-                  LoginScreenHelpers.timerNotifer.value = 30;
+                  LoginScreenHelpers.timerNotifier.value = 30;
                   LoginScreenHelpers.addTimer();
                 }
               },
@@ -244,7 +245,7 @@ class _OtpSecondaryActions extends StatelessWidget {
             label: AppStaticTexts.loginWithPassword,
             onPressed: () {
               if (!context.read<OtpVerificationBloc>().state.isVerifying) {
-                LoginScreenHelpers.loginSectionNotifer.value = 2;
+                LoginScreenHelpers.loginSectionNotifier.value = 2;
               }
             },
           ),

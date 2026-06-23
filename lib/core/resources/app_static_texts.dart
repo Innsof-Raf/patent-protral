@@ -140,6 +140,7 @@ class AppStaticTexts {
   static const String searchMemberHint = 'Search member by name';
   static const String searchMembers = 'Search members';
   static const String addMember = 'Add Member';
+  static const String editInsuranceDetails = 'Edit Insurance Details';
   static const String noMembersFound = 'No members found';
   static const String noMembersFoundMessage =
       'Add a member to manage appointments, documents, and care.';
@@ -180,6 +181,33 @@ class AppStaticTexts {
   static const String viewMembersTooltip = 'View members';
   static const String addMembersSubtitle =
       'Add family members to manage appointments and documents faster.';
+  static const String profilePicture = 'Profile Picture';
+  static const String uploadMemberPhoto =
+      'Upload a photo of the member (Max 1MB)';
+  static const String addPhoto = 'Add Photo';
+  static const String uploadProfilePhoto = 'Upload Profile Photo';
+  static const String selectImageSource = 'Select a source to pick an image';
+  static const String gallery = 'Gallery';
+  static const String insuranceInformation = 'Insurance Information';
+  static const String iHaveInsurance = 'I have insurance';
+  static const String saveMember = 'Save Member';
+  static const String updateDetails = 'Update Details';
+  static const String memberAddingFailed = 'Member Adding failed';
+  static const String insuranceUpdateFailed = 'Insurance Update failed';
+  static const String memberAddedSuccessfully = 'Member added successfully!';
+  static const String insuranceDetailsUpdatedSuccessfully =
+      'Insurance details updated successfully!';
+  static const String insuranceProvider = 'Insurance Provider';
+  static const String insuranceName = 'Insurance Name';
+  static const String memberNumber = 'Member Number';
+  static const String expirationDate = 'Expiration Date';
+  static const String selectYourInsurance = 'Select your insurance';
+  static const String enterInsuranceName = 'Enter insurance name';
+  static const String enterMemberNumber = 'Enter member number';
+  static const String enterExpireDate = 'Enter expire date';
+  static const String cannotAddInsuranceRightNow =
+      'Can\'t add insurance right now';
+  static const String notProvided = 'Not provided';
 
   // Lab
   static const String labTestCategories = 'Lab Test Categories';
@@ -193,7 +221,7 @@ class AppStaticTexts {
 
   // Common
   static const String failed = 'Failed !';
-  static const String success = 'Success !';
+  static const String success = 'Success!';
   static const String ok = 'OK';
   static const String add = 'Add';
   static const String camera = 'Camera';
@@ -228,6 +256,22 @@ class AppStaticTexts {
   // Book Appointment
   static const String unableToLoadAppointmentSlots =
       'Unable to load appointment slots';
+  static const String appointmentBookingFailed = 'Appointment booking failed';
+  static const String confirmBooking = 'Confirm Booking';
+  static const String rescheduleAppointment = 'Reschedule Appointment';
+  static const String appointmentBookedSuccessfully =
+      'Appointment booked successfully';
+  static const String appointmentRescheduledSuccessfully =
+      'Appointment rescheduled successfully';
+
+  // Set Password
+  static const String setPassword = 'Set Password';
+  static const String createNewPassword = 'Create new password';
+  static const String createNewPasswordMessage =
+      'Your new password must be at least 8 characters long and include a mix of letters and numbers.';
+  static const String savePassword = 'Save Password';
+  static const String passwordChangedSuccessfully =
+      'Password changed successfully';
 
   // Notifications
   static const String notifications = 'Notifications';

@@ -21,7 +21,7 @@ class MembersTile extends StatelessWidget {
           subtitle: memberCount == 1
               ? '1 ${AppStaticTexts.memberFound}'
               : '$memberCount ${AppStaticTexts.membersFound}',
-          backgroundImage: Assets.images.homeMemberTileBagroundImage.path,
+          backgroundImage: Assets.images.homeMemberTileBackgroundImage.path,
           onTap: () {
             context.router.root.push(const MembersRoute());
           },

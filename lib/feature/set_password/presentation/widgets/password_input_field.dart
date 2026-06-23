@@ -113,10 +113,7 @@ class _PasswordInputFieldState extends State<PasswordInputField> {
                 ),
                 focusedErrorBorder: OutlineInputBorder(
                   borderRadius: borderRadius,
-                  borderSide: BorderSide(
-                    color: colorScheme.error,
-                    width: 1.5,
-                  ),
+                  borderSide: BorderSide(color: colorScheme.error, width: 1.5),
                 ),
               ),
             );

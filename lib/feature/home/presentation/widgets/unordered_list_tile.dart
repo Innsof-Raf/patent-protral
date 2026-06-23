@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
-class UnorderdListTile extends StatelessWidget {
-  const UnorderdListTile({required this.title, super.key});
+class UnorderedListTile extends StatelessWidget {
+  const UnorderedListTile({required this.title, super.key});
 
   final String title;
 
@@ -17,7 +18,7 @@ class UnorderdListTile extends StatelessWidget {
             radius: 2,
             backgroundColor: theme.colorScheme.onSurfaceVariant,
           ),
-          const SizedBox(width: 6),
+          const Gap(6),
           Expanded(
             child: Text(
               title,

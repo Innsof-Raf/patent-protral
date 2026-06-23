@@ -19,9 +19,9 @@ class ChangePasswordBloc
     on<ChangePassword>((event, emit) async {
       emit(
         state.copyWith(
-          isPasswordChnaging: true,
+          isPasswordChanging: true,
           isPasswordChangingFailed: false,
-          isPasswordChangingSucces: false,
+          isPasswordChangingSuccess: false,
         ),
       );
       final Either<ErrorModel, ChangePasswordResponse> changePasswordOptions =
@@ -29,15 +29,15 @@ class ChangePasswordBloc
       changePasswordOptions.fold(
         (error) => emit(
           state.copyWith(
-            isPasswordChnaging: false,
+            isPasswordChanging: false,
             isPasswordChangingFailed: true,
             error: error,
           ),
         ),
-        (succes) => emit(
+        (success) => emit(
           state.copyWith(
-            isPasswordChnaging: false,
-            isPasswordChangingSucces: true,
+            isPasswordChanging: false,
+            isPasswordChangingSuccess: true,
           ),
         ),
       );

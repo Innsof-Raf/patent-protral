@@ -15,7 +15,7 @@ class EditMemberDetailsScreenHelpers {
       builder: (context, child) => Theme(
         data: Theme.of(context).copyWith(
           textButtonTheme: TextButtonThemeData(
-            style: TextButton.styleFrom(foregroundColor: AppColors.vilot),
+            style: TextButton.styleFrom(foregroundColor: AppColors.violet),
           ),
         ),
         child: child!,

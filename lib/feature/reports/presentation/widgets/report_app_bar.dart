@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
@@ -56,7 +57,7 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
           ),
-          const SizedBox(width: 12),
+          const Gap(12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,7 +87,7 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         BlocBuilder<ReportsBloc, ReportsState>(
           builder: (context, state) {
-            if (state.isRepoertSaving ||
+            if (state.isReportSaving ||
                 state.isReportSavingFailed ||
                 state.report == null) {
               return const SizedBox.shrink();
@@ -105,7 +106,7 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
             );
           },
         ),
-        const SizedBox(width: 8),
+        const Gap(8),
       ],
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(1),

@@ -5,7 +5,7 @@ sealed class LoginWithPasswordState with _$LoginWithPasswordState {
   const factory LoginWithPasswordState({
     required bool isLogingin,
     required bool isLoginFailed,
-    required bool isLoginSucces,
+    required bool isLoginSuccess,
     User? user,
     required ErrorModel error,
   }) = _LoginWithPasswordState;
@@ -13,7 +13,7 @@ sealed class LoginWithPasswordState with _$LoginWithPasswordState {
   factory LoginWithPasswordState.initial() => LoginWithPasswordState(
     isLogingin: false,
     isLoginFailed: false,
-    isLoginSucces: false,
+    isLoginSuccess: false,
     error: ErrorModel(message: ''),
   );
 }

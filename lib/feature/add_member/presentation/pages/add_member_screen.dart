@@ -1,11 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/insurance_form_scetion.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/succes_dailog.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/insurance_form_section.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/success_dialog.dart';
 import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
 import 'package:patient_portal/feature/add_member/presentation/widgets/add_member_screen_helpers.dart';
 import 'package:patient_portal/feature/add_member/presentation/widgets/member_details_section.dart';
@@ -43,7 +45,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
       MemberDetailsSection.nationalIdController.text = '';
       MemberDetailsSection.dob = null;
       MemberDetailsSection.emailController.text = '';
-      AddMemberScreenHelpers.profileImageNotifer.value = null;
+      AddMemberScreenHelpers.profileImageNotifier.value = null;
     }
   }
 
@@ -54,7 +56,9 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
 
     return Scaffold(
       appBar: CommonAppbar(
-        title: widget.member == null ? 'Add Member' : 'Edit Insurance Details',
+        title: widget.member == null
+            ? AppStaticTexts.addMember
+            : AppStaticTexts.editInsuranceDetails,
       ),
       body: BlocListener<AddMemberBloc, AddMemberState>(
         listener: (context, state) {
@@ -63,7 +67,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
               context: context,
               builder: (context) => CommonErrorAlert(
                 content:
-                    '${widget.member == null ? 'Member Adding' : 'Insurance Update'} failed\n${state.error.message}',
+                    '${widget.member == null ? AppStaticTexts.memberAddingFailed : AppStaticTexts.insuranceUpdateFailed}\n${state.error.message}',
               ),
             );
           } else if (state.isMemberAddingSuccess) {
@@ -88,29 +92,29 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 16),
+                const Gap(16),
                 _buildInsuranceToggle(colorScheme),
               ],
               ValueListenableBuilder(
-                valueListenable: InsuranceHelpers.insuranceCheackBoxNotifier,
+                valueListenable: InsuranceHelpers.insuranceCheckBoxNotifier,
                 builder: (context, hasInsurance, child) {
-                  if (!hasInsurance) return const SizedBox(height: 100);
+                  if (!hasInsurance) return const Gap(100);
                   return Column(
                     children: [
-                      const SizedBox(height: 16),
+                      const Gap(16),
                       ProfileSectionCard(
                         padding: const EdgeInsets.all(20),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Insurance Information',
+                              AppStaticTexts.insuranceInformation,
                               style: theme.textTheme.titleMedium?.copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: colorScheme.primary,
                               ),
                             ),
-                            const SizedBox(height: 8),
+                            const Gap(8),
                             InsuranceFormSection(
                               idInsurance: widget.member?.insuranceId,
                               insuranceName:
@@ -118,14 +122,14 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                                       widget.member!.insuranceId == 0
                                   ? widget.member!.insuranceName
                                   : null,
-                              memberInsuranvceExpireDate:
+                              memberInsuranceExpireDate:
                                   widget.member?.insuranceExpDttm,
                               memberNumber: widget.member?.memberNo,
                             ),
                           ],
                         ),
                       ),
-                      const SizedBox(height: 100),
+                      const Gap(100),
                     ],
                   );
                 },
@@ -141,9 +145,9 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
   Widget _buildInsuranceToggle(ColorScheme colorScheme) {
     final theme = Theme.of(context);
     return ValueListenableBuilder(
-      valueListenable: InsuranceHelpers.insuranceCheackBoxNotifier,
+      valueListenable: InsuranceHelpers.insuranceCheckBoxNotifier,
       builder: (context, value, child) => InkWell(
-        onTap: () => InsuranceHelpers.insuranceCheackBoxNotifier.value = !value,
+        onTap: () => InsuranceHelpers.insuranceCheckBoxNotifier.value = !value,
         borderRadius: BorderRadius.circular(16),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
@@ -177,9 +181,9 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                     ? const Icon(Icons.check, size: 16, color: Colors.white)
                     : null,
               ),
-              const SizedBox(width: 12),
+              const Gap(12),
               Text(
-                'I have insurance',
+                AppStaticTexts.iHaveInsurance,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   fontWeight: value ? FontWeight.bold : FontWeight.normal,
                   color: value ? colorScheme.primary : colorScheme.onSurface,
@@ -232,8 +236,8 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                       )
                     : Text(
                         widget.member == null
-                            ? 'Save Member'
-                            : 'Update Details',
+                            ? AppStaticTexts.saveMember
+                            : AppStaticTexts.updateDetails,
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                           color: theme.colorScheme.onPrimary,
@@ -277,8 +281,8 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
       context: context,
       builder: (context) => SuccessDialog(
         title: widget.member == null
-            ? 'Member added successfully!'
-            : 'Insurance details updated successfully!',
+            ? AppStaticTexts.memberAddedSuccessfully
+            : AppStaticTexts.insuranceDetailsUpdatedSuccessfully,
         onPressed: () {
           Navigator.pop(context); // Close dialog
           context.router.back(); // Go back

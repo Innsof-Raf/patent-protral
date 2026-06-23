@@ -98,7 +98,7 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
             }).toList(),
           ),
         ),
-        (succes) {
+        (success) {
           double cartTotal = state.cartTotal;
           final List<Item> cart = List.from(state.cart);
           if (cart.any((item) => item.idItem == event.idItem)) {

@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
@@ -78,7 +80,7 @@ class MemberSelectionTile extends StatelessWidget {
                     )
                   : null,
             ),
-            const SizedBox(width: 12),
+            const Gap(12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,9 +92,9 @@ class MemberSelectionTile extends StatelessWidget {
                       color: colorScheme.onSurface,
                     ),
                   ),
-                  const SizedBox(height: 2),
+                  const Gap(2),
                   Text(
-                    'Age: ${member.age}',
+                    '${AppStaticTexts.age}: ${member.age}',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: colorScheme.onSurfaceVariant,
                     ),
@@ -115,7 +117,7 @@ class MemberSelectionTile extends StatelessWidget {
                   ),
                 ),
               ),
-            const SizedBox(width: 8),
+            const Gap(8),
             RadioGroup<Member?>(
               groupValue: isSelected ? member : null,
               onChanged: (value) =>

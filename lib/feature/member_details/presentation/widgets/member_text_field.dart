@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 
-class MemberTextFiled extends StatelessWidget {
-  const MemberTextFiled({
+class MemberTextField extends StatelessWidget {
+  const MemberTextField({
     super.key,
     required this.title,
     required this.value,
@@ -30,7 +32,7 @@ class MemberTextFiled extends StatelessWidget {
         children: [
           if (icon != null) ...[
             Icon(icon, color: theme.colorScheme.primary, size: 20),
-            const SizedBox(width: 10),
+            const Gap(10),
           ],
           Expanded(
             child: Column(
@@ -44,9 +46,9 @@ class MemberTextFiled extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const Gap(4),
                 Text(
-                  value.isEmpty ? 'Not provided' : value,
+                  value.isEmpty ? AppStaticTexts.notProvided : value,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.bodyMedium?.copyWith(

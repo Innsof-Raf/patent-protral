@@ -3,16 +3,16 @@ part of 'change_password_bloc.dart';
 @freezed
 sealed class ChangePasswordState with _$ChangePasswordState {
   const factory ChangePasswordState({
-    required bool isPasswordChnaging,
+    required bool isPasswordChanging,
     required bool isPasswordChangingFailed,
-    required bool isPasswordChangingSucces,
+    required bool isPasswordChangingSuccess,
     required ErrorModel error,
   }) = _ChangePasswordState;
 
   factory ChangePasswordState.initial() => ChangePasswordState(
-    isPasswordChnaging: false,
+    isPasswordChanging: false,
     isPasswordChangingFailed: false,
-    isPasswordChangingSucces: false,
+    isPasswordChangingSuccess: false,
     error: ErrorModel(message: ''),
   );
 }

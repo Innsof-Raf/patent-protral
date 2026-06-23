@@ -12,7 +12,7 @@ class AppHelpers {
     }
     return Center(
       child: CircularProgressIndicator(
-        color: AppColors.vilot,
+        color: AppColors.violet,
         value: loadingProgress.expectedTotalBytes != null
             ? loadingProgress.cumulativeBytesLoaded /
                   loadingProgress.expectedTotalBytes!

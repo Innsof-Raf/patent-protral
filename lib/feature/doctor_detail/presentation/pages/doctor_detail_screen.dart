@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
@@ -16,7 +17,7 @@ class DoctorDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: const CommonAppbar(
         title: AppStaticTexts.doctor,
-        backgroundColor: AppColors.vilot,
+        backgroundColor: AppColors.violet,
         foregroundColor: AppColors.white,
       ),
       body: Column(
@@ -25,7 +26,7 @@ class DoctorDetailScreen extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
               width: double.infinity,
-              color: AppColors.vilot,
+              color: AppColors.violet,
               child: LayoutBuilder(
                 builder: (context, constraints) => Stack(
                   clipBehavior: Clip.none,
@@ -50,7 +51,7 @@ class DoctorDetailScreen extends StatelessWidget {
                               },
                             ),
                           ),
-                          const SizedBox(width: 10),
+                          const Gap(10),
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [

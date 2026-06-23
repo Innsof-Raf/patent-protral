@@ -181,7 +181,7 @@ class _MembersScreenState extends State<MembersScreen> {
         foregroundColor: theme.colorScheme.onPrimary,
         elevation: 0,
         onPressed: () {
-          InsuranceHelpers.insuranceCheackBoxNotifier.value = false;
+          InsuranceHelpers.insuranceCheckBoxNotifier.value = false;
           context.router.root.push(AddMemberRoute());
         },
         icon: const Icon(Icons.person_add_alt_1_rounded),

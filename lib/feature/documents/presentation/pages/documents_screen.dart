@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
@@ -8,8 +9,8 @@ import 'package:patient_portal/core/resources/common_widgets.dart/common_loading
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/documents/domain/entities/document.dart';
 import 'package:patient_portal/feature/documents/presentation/bloc/documents_bloc/documents_bloc.dart';
+import 'package:patient_portal/feature/documents/presentation/widgets/documents_screen_app_bar.dart';
 import 'package:patient_portal/feature/documents/presentation/widgets/documents_tile.dart';
-import 'package:patient_portal/feature/documents/presentation/widgets/documets_screen_app_bar.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
 @RoutePage(name: 'DocumentsRoute')
@@ -74,8 +75,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
               );
             } else {
               return ListView.separated(
-                separatorBuilder: (context, index) =>
-                    const SizedBox(height: 10),
+                separatorBuilder: (context, index) => const Gap(10),
                 padding: const EdgeInsets.only(
                   right: 10,
                   top: 10,
@@ -91,7 +91,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.vilot,
+        backgroundColor: AppColors.violet,
         onPressed: () {
           context.router.push(const AddDocumentRoute());
         },

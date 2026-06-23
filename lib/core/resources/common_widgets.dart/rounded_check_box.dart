@@ -4,11 +4,11 @@ import 'package:patient_portal/core/resources/dimens.dart';
 import '../app_colors.dart';
 import '../app_text_styles.dart';
 
-class RoundedCheackBoxTile extends StatelessWidget {
+class RoundedCheckBoxTile extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onChanged;
   final String title;
-  const RoundedCheackBoxTile({
+  const RoundedCheckBoxTile({
     super.key,
     required this.isSelected,
     required this.onChanged,
@@ -40,7 +40,7 @@ class RoundedCheackBoxTile extends StatelessWidget {
             : OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  foregroundColor: AppColors.vilot,
+                  foregroundColor: AppColors.violet,
                   shape: const CircleBorder(
                     side: BorderSide(width: 1, color: AppColors.textLight),
                   ),

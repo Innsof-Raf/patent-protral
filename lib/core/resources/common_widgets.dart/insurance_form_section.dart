@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
-import 'package:patient_portal/core/resources/common_helpers/inurance_validation_helpers.dart';
+import 'package:patient_portal/core/resources/common_helpers/insurance_validation_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
 import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
@@ -13,7 +15,7 @@ class InsuranceFormSection extends StatefulWidget {
   final int? idInsurance;
   final String? insuranceName;
   final String? memberNumber;
-  final DateTime? memberInsuranvceExpireDate;
+  final DateTime? memberInsuranceExpireDate;
   static DateTime? expireDate;
 
   static GlobalKey<FormState> insuranceFormKey = GlobalKey<FormState>();
@@ -28,7 +30,7 @@ class InsuranceFormSection extends StatefulWidget {
     this.idInsurance,
     this.insuranceName,
     this.memberNumber,
-    this.memberInsuranvceExpireDate,
+    this.memberInsuranceExpireDate,
   });
 
   @override
@@ -45,20 +47,20 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
 
   void _initializeData() {
     if (widget.idInsurance != null) {
-      InsuranceHelpers.selectedInsuranceNotifer.value = widget.idInsurance;
-      InsuranceFormSection.expireDate = widget.memberInsuranvceExpireDate;
+      InsuranceHelpers.selectedInsuranceNotifier.value = widget.idInsurance;
+      InsuranceFormSection.expireDate = widget.memberInsuranceExpireDate;
       InsuranceFormSection.memberNumberController.text =
           widget.memberNumber ?? '';
-      if (widget.memberInsuranvceExpireDate != null) {
+      if (widget.memberInsuranceExpireDate != null) {
         InsuranceFormSection.expireDateController.text = DateFormat(
           'dd-MM-yyyy',
-        ).format(widget.memberInsuranvceExpireDate!);
+        ).format(widget.memberInsuranceExpireDate!);
       }
     } else {
       InsuranceFormSection.expireDateController.text = '';
       InsuranceFormSection.memberNumberController.text = '';
       InsuranceFormSection.expireDate = null;
-      InsuranceHelpers.selectedInsuranceNotifer.value = null;
+      InsuranceHelpers.selectedInsuranceNotifier.value = null;
     }
   }
 
@@ -74,18 +76,19 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
     return BlocConsumer<AddMemberBloc, AddMemberState>(
       listener: (context, state) {
         if (state.isInsuranceFetchingFailed) {
-          InsuranceHelpers.insuranceCheackBoxNotifier.value = false;
-          InsuranceHelpers.showInsuranceFetrchingFailedSnakBar(
+          InsuranceHelpers.insuranceCheckBoxNotifier.value = false;
+          InsuranceHelpers.showInsuranceFetchingFailedSnackBar(
             context: context,
-            contant: '${state.error.message}\nCan\'t add insurance right now',
+            content:
+                '${state.error.message}\n${AppStaticTexts.cannotAddInsuranceRightNow}',
           );
         }
         if (state.isInsuranceFetchingSuccess && state.insurances.isEmpty) {
-          InsuranceHelpers.insuranceCheackBoxNotifier.value = false;
-          InsuranceHelpers.showInsuranceFetrchingFailedSnakBar(
+          InsuranceHelpers.insuranceCheckBoxNotifier.value = false;
+          InsuranceHelpers.showInsuranceFetchingFailedSnackBar(
             context: context,
-            contant:
-                '${ConstantMessages.serverFailureMessage}\nCan\'t add insurance right now',
+            content:
+                '${ConstantMessages.serverFailureMessage}\n${AppStaticTexts.cannotAddInsuranceRightNow}',
           );
         }
       },
@@ -101,7 +104,7 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
             children: [
               DropdownButtonFormField<int>(
                 isExpanded: true,
-                initialValue: InsuranceHelpers.selectedInsuranceNotifer.value,
+                initialValue: InsuranceHelpers.selectedInsuranceNotifier.value,
                 items: state.insurances
                     .map(
                       (insurance) => InsuranceHelpers.createDropDownItem(
@@ -114,15 +117,15 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
                       value: value,
                     ),
                 decoration: const InputDecoration(
-                  labelText: 'Insurance Provider',
+                  labelText: AppStaticTexts.insuranceProvider,
                   prefixIcon: Icon(Icons.business_rounded),
                 ),
                 onChanged: (value) {
-                  InsuranceHelpers.selectedInsuranceNotifer.value = value;
+                  InsuranceHelpers.selectedInsuranceNotifier.value = value;
                 },
               ),
               ValueListenableBuilder<int?>(
-                valueListenable: InsuranceHelpers.selectedInsuranceNotifer,
+                valueListenable: InsuranceHelpers.selectedInsuranceNotifier,
                 builder: (context, value, child) {
                   if (value != 0) return const SizedBox.shrink();
 
@@ -152,7 +155,7 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
                             ),
                         textCapitalization: TextCapitalization.words,
                         decoration: const InputDecoration(
-                          labelText: 'Insurance Name',
+                          labelText: AppStaticTexts.insuranceName,
                           prefixIcon: Icon(
                             Icons.drive_file_rename_outline_rounded,
                           ),
@@ -162,7 +165,7 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
                   );
                 },
               ),
-              const SizedBox(height: 16),
+              const Gap(16),
               TextFormField(
                 validator: (value) =>
                     InsuranceValidationHelpers.validateMemberNumber(
@@ -176,11 +179,11 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
                   FilteringTextInputFormatter.allow(RegExp(r'[A-Za-z0-9]')),
                 ],
                 decoration: const InputDecoration(
-                  labelText: 'Member Number',
+                  labelText: AppStaticTexts.memberNumber,
                   prefixIcon: Icon(Icons.pin_rounded),
                 ),
               ),
-              const SizedBox(height: 16),
+              const Gap(16),
               TextFormField(
                 readOnly: true,
                 validator: (value) =>
@@ -188,7 +191,7 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
                       value: value,
                     ),
                 decoration: const InputDecoration(
-                  labelText: 'Expiration Date',
+                  labelText: AppStaticTexts.expirationDate,
                   prefixIcon: Icon(Icons.event_busy_rounded),
                 ),
                 controller: InsuranceFormSection.expireDateController,

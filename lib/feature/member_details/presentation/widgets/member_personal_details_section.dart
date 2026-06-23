@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_section_card.dart';
-import 'package:patient_portal/feature/member_details/presentation/widgets/member_text_filed.dart';
+import 'package:patient_portal/feature/member_details/presentation/widgets/member_text_field.dart';
 
 class MemberPersonalDetailsSection extends StatelessWidget {
   const MemberPersonalDetailsSection({
@@ -33,26 +34,26 @@ class MemberPersonalDetailsSection extends StatelessWidget {
               fontWeight: FontWeight.w800,
             ),
           ),
-          const SizedBox(height: 14),
-          MemberTextFiled(
+          const Gap(14),
+          MemberTextField(
             title: 'Date of birth',
             value: dob != null ? DateFormat('dd-MM-yyyy').format(dob!) : '',
             icon: Icons.calendar_today_outlined,
           ),
-          const SizedBox(height: 10),
-          MemberTextFiled(
+          const Gap(10),
+          MemberTextField(
             title: 'Gender',
             value: gender,
             icon: Icons.wc_rounded,
           ),
-          const SizedBox(height: 10),
-          MemberTextFiled(
+          const Gap(10),
+          MemberTextField(
             title: 'National ID',
             value: nationalId,
             icon: Icons.badge_outlined,
           ),
-          const SizedBox(height: 10),
-          MemberTextFiled(
+          const Gap(10),
+          MemberTextField(
             title: 'Email',
             value: email ?? '',
             icon: Icons.mail_outline_rounded,

@@ -137,7 +137,7 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
             );
             if (member == null) return;
 
-            InsuranceHelpers.insuranceCheackBoxNotifier.value = true;
+            InsuranceHelpers.insuranceCheckBoxNotifier.value = true;
             context.router.root.push(AddMemberRoute(member: member));
           },
           icon: const Icon(Icons.edit_outlined),

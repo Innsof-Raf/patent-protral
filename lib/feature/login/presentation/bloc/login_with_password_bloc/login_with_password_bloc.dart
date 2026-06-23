@@ -20,7 +20,7 @@ class LoginWithPasswordBloc
         state.copyWith(
           isLogingin: true,
           isLoginFailed: false,
-          isLoginSucces: false,
+          isLoginSuccess: false,
         ),
       );
 
@@ -40,7 +40,7 @@ class LoginWithPasswordBloc
           ),
         ),
         (user) => emit(
-          state.copyWith(isLogingin: false, isLoginSucces: true, user: user),
+          state.copyWith(isLogingin: false, isLoginSuccess: true, user: user),
         ),
       );
     });

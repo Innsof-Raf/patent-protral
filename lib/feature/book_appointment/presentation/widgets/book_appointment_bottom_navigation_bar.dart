@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/succes_dailog.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/success_dialog.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
 import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
@@ -41,7 +42,7 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                 context: context,
                 builder: (context) => CommonErrorAlert(
                   content:
-                      'Appointment booking failed\n ${state.error.message}',
+                      '${AppStaticTexts.appointmentBookingFailed}\n ${state.error.message}',
                 ),
               );
             } else if (state.isAppointmentSavingSuccses &&
@@ -86,8 +87,8 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                         )
                       : Text(
                           appointmentId == 0
-                              ? 'Confirm Booking'
-                              : 'Reschedule Appointment',
+                              ? AppStaticTexts.confirmBooking
+                              : AppStaticTexts.rescheduleAppointment,
                           style: theme.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: theme.colorScheme.onPrimary,
@@ -123,8 +124,8 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
 
   void _handleSuccess(BuildContext context, BookAppointmentState state) {
     final title = appointmentId == 0
-        ? 'Appointment booked Successfully'
-        : 'Appointment Rescheduled Successfully';
+        ? AppStaticTexts.appointmentBookedSuccessfully
+        : AppStaticTexts.appointmentRescheduledSuccessfully;
 
     showGeneralDialog(
       transitionDuration: const Duration(milliseconds: 300),

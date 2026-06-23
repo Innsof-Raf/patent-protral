@@ -103,9 +103,9 @@ class $AssetsIconsGen {
   SvgGenImage get insuranceCartIcon =>
       const SvgGenImage('assets/icons/insurance_cart_icon.svg');
 
-  /// File path: assets/icons/insurance_icon_vilot.svg
-  SvgGenImage get insuranceIconVilot =>
-      const SvgGenImage('assets/icons/insurance_icon_vilot.svg');
+  /// File path: assets/icons/insurance_icon_violet.svg
+  SvgGenImage get insuranceIconViolet =>
+      const SvgGenImage('assets/icons/insurance_icon_violet.svg');
 
   /// File path: assets/icons/lab_icon.svg
   SvgGenImage get labIcon => const SvgGenImage('assets/icons/lab_icon.svg');
@@ -172,7 +172,7 @@ class $AssetsIconsGen {
     galleryIcon,
     homeIcon,
     insuranceCartIcon,
-    insuranceIconVilot,
+    insuranceIconViolet,
     labIcon,
     lockIconDart,
     logOutIcon,
@@ -195,22 +195,23 @@ class $AssetsImagesGen {
   SvgGenImage get doctorImageLoadingFailedImage =>
       const SvgGenImage('assets/images/doctor_image_loading_failed_image.svg');
 
-  /// File path: assets/images/home_documents_tile_baground_image.png
-  AssetGenImage get homeDocumentsTileBagroundImage => const AssetGenImage(
-    'assets/images/home_documents_tile_baground_image.png',
+  /// File path: assets/images/home_documents_tile_background_image.png
+  AssetGenImage get homeDocumentsTileBackgroundImage => const AssetGenImage(
+    'assets/images/home_documents_tile_background_image.png',
   );
 
-  /// File path: assets/images/home_member_tile_baground_image.png
-  AssetGenImage get homeMemberTileBagroundImage =>
-      const AssetGenImage('assets/images/home_member_tile_baground_image.png');
+  /// File path: assets/images/home_member_tile_background_image.png
+  AssetGenImage get homeMemberTileBackgroundImage => const AssetGenImage(
+    'assets/images/home_member_tile_background_image.png',
+  );
 
   /// File path: assets/images/image_loading_failed_image.png
   AssetGenImage get imageLoadingFailedImage =>
       const AssetGenImage('assets/images/image_loading_failed_image.png');
 
-  /// File path: assets/images/login_baground_image.png
-  AssetGenImage get loginBagroundImage =>
-      const AssetGenImage('assets/images/login_baground_image.png');
+  /// File path: assets/images/login_background_image.png
+  AssetGenImage get loginBackgroundImage =>
+      const AssetGenImage('assets/images/login_background_image.png');
 
   /// File path: assets/images/member_default_profile_image.png
   AssetGenImage get memberDefaultProfileImage =>
@@ -223,10 +224,10 @@ class $AssetsImagesGen {
   /// List of all assets
   List<dynamic> get values => [
     doctorImageLoadingFailedImage,
-    homeDocumentsTileBagroundImage,
-    homeMemberTileBagroundImage,
+    homeDocumentsTileBackgroundImage,
+    homeMemberTileBackgroundImage,
     imageLoadingFailedImage,
-    loginBagroundImage,
+    loginBackgroundImage,
     memberDefaultProfileImage,
     profilePhotoImage,
   ];

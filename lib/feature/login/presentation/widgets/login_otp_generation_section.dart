@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
@@ -62,9 +63,9 @@ class _LoginOtpGenerationSectionState extends State<LoginOtpGenerationSection> {
           );
         } else if (state.isOtpGenerationSuccess &&
             state.isOtpGenerationFailed == false &&
-            LoginScreenHelpers.loginSectionNotifer.value == 0) {
-          LoginScreenHelpers.timerNotifer.value = 30;
-          LoginScreenHelpers.loginSectionNotifer.value = 1;
+            LoginScreenHelpers.loginSectionNotifier.value == 0) {
+          LoginScreenHelpers.timerNotifier.value = 30;
+          LoginScreenHelpers.loginSectionNotifier.value = 1;
         }
       },
       builder: (context, state) {
@@ -92,7 +93,7 @@ class _LoginOtpGenerationSectionState extends State<LoginOtpGenerationSection> {
                       onFieldSubmitted: (_) => _generateOtp(context, state),
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  const Gap(12),
                   Padding(
                     padding: const EdgeInsets.only(top: 3),
                     child: LoginActionButton(
@@ -104,7 +105,7 @@ class _LoginOtpGenerationSectionState extends State<LoginOtpGenerationSection> {
                   ),
                 ],
               ),
-              const SizedBox(height: 18),
+              const Gap(18),
               const LoginTermsRow(),
             ],
           ),

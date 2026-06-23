@@ -2,10 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/gender_form_helpers.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/insurance_form_scetion.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/insurance_form_section.dart';
 import 'package:patient_portal/feature/add_member/domain/usecases/params/params.dart';
 import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
 import 'package:patient_portal/feature/add_member/presentation/widgets/member_details_section.dart';
@@ -40,35 +42,35 @@ class AddMemberScreenHelpers {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Upload Profile Photo',
+                AppStaticTexts.uploadProfilePhoto,
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 8),
+              const Gap(8),
               Text(
-                'Select a source to pick an image',
+                AppStaticTexts.selectImageSource,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
               ),
-              const SizedBox(height: 24),
+              const Gap(24),
               Row(
                 children: [
                   Expanded(
                     child: _buildImageSourceTile(
                       context,
-                      title: 'Camera',
+                      title: AppStaticTexts.camera,
                       icon: Icons.camera_alt_rounded,
                       source: ImageSource.camera,
                       color: theme.colorScheme.primary,
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  const Gap(16),
                   Expanded(
                     child: _buildImageSourceTile(
                       context,
-                      title: 'Gallery',
+                      title: AppStaticTexts.gallery,
                       icon: Icons.photo_library_rounded,
                       source: ImageSource.gallery,
                       color: theme.colorScheme.primary,
@@ -95,7 +97,7 @@ class AddMemberScreenHelpers {
       onTap: () async {
         final image = await ImagePicker().pickImage(source: source);
         if (image != null) {
-          profileImageNotifer.value = File(image.path);
+          profileImageNotifier.value = File(image.path);
         }
         if (context.mounted) Navigator.pop(context);
       },
@@ -109,7 +111,7 @@ class AddMemberScreenHelpers {
         child: Column(
           children: [
             Icon(icon, size: 32, color: color),
-            const SizedBox(height: 8),
+            const Gap(8),
             Text(title, style: theme.textTheme.labelLarge),
           ],
         ),
@@ -117,14 +119,14 @@ class AddMemberScreenHelpers {
     );
   }
 
-  static ValueNotifier<File?> profileImageNotifer = ValueNotifier<File?>(null);
+  static ValueNotifier<File?> profileImageNotifier = ValueNotifier<File?>(null);
 
   static void ediMemberInsuranceDetail({
     required BuildContext context,
     required int memberId,
   }) {
     final token = context.read<UserBloc>().state.user!.accessToken;
-    final idInsurance = InsuranceHelpers.selectedInsuranceNotifer.value!;
+    final idInsurance = InsuranceHelpers.selectedInsuranceNotifier.value!;
 
     if (idInsurance == 0) {
       if (InsuranceFormSection.insuranceFormKey.currentState!.validate() &&
@@ -162,10 +164,10 @@ class AddMemberScreenHelpers {
 
   static void saveMember({required BuildContext context}) {
     final user = context.read<UserBloc>().state.user!;
-    final hasInsurance = InsuranceHelpers.insuranceCheackBoxNotifier.value;
+    final hasInsurance = InsuranceHelpers.insuranceCheckBoxNotifier.value;
 
     if (hasInsurance) {
-      final idInsurance = InsuranceHelpers.selectedInsuranceNotifer.value;
+      final idInsurance = InsuranceHelpers.selectedInsuranceNotifier.value;
       if (idInsurance == 0) {
         if (MemberDetailsSection.memberFormKey.currentState!.validate() &&
             InsuranceFormSection.insuranceFormKey.currentState!.validate() &&
@@ -186,7 +188,7 @@ class AddMemberScreenHelpers {
                 memberNumber: InsuranceFormSection.memberNumberController.text,
                 otherInsuranceName:
                     InsuranceFormSection.insuranceNameController.text,
-                profileImage: profileImageNotifer.value,
+                profileImage: profileImageNotifier.value,
               ),
             ),
           );
@@ -207,7 +209,7 @@ class AddMemberScreenHelpers {
                 expireDate: InsuranceFormSection.expireDate!,
                 idInsurance: idInsurance!,
                 memberNumber: InsuranceFormSection.memberNumberController.text,
-                profileImage: profileImageNotifer.value,
+                profileImage: profileImageNotifier.value,
               ),
             ),
           );
@@ -225,7 +227,7 @@ class AddMemberScreenHelpers {
               gender: GenderFormHelpers.genderNotifier.value,
               dob: MemberDetailsSection.dob!,
               email: MemberDetailsSection.emailController.text,
-              profileImage: profileImageNotifer.value,
+              profileImage: profileImageNotifier.value,
             ),
           ),
         );

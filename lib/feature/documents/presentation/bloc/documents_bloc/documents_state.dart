@@ -6,7 +6,7 @@ sealed class DocumentsState with _$DocumentsState {
     required List<Document> documents,
     required bool isFetching,
     required bool isFetchingFailed,
-    required bool isFetchingSucces,
+    required bool isFetchingSuccess,
     required ErrorModel error,
     required int selectedMemberId,
   }) = _DocumentsState;
@@ -17,6 +17,6 @@ sealed class DocumentsState with _$DocumentsState {
     isFetching: false,
     error: ErrorModel(message: ''),
     isFetchingFailed: false,
-    isFetchingSucces: false,
+    isFetchingSuccess: false,
   );
 }

@@ -15,7 +15,7 @@ class ActiveButton extends StatelessWidget {
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         padding: const EdgeInsets.all(10),
-        backgroundColor: AppColors.vilot,
+        backgroundColor: AppColors.violet,
       ),
       onPressed: onPressed,
       child: child,

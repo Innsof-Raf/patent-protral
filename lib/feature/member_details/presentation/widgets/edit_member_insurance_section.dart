@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
-import 'package:patient_portal/core/resources/common_helpers/inurance_validation_helpers.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/rounded_cheack_box.dart';
+import 'package:patient_portal/core/resources/common_helpers/insurance_validation_helpers.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/rounded_check_box.dart';
 import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
-import 'package:patient_portal/feature/member_details/presentation/helpers/eidt_member_insurance_helpers.dart';
+import 'package:patient_portal/feature/member_details/presentation/helpers/edit_member_insurance_helpers.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
 class EditMemberInsuranceSection extends StatefulWidget {
@@ -38,7 +39,7 @@ class _EditMemberInsuranceSectionState
     EditMemberInsuranceSection.expireDate = null;
     EditMemberInsuranceSection.memberNumberController.text = '';
     EditMemberInsuranceSection.expireDateController.text = '';
-    EditMemberInuranceHelpers.selectedInsuranceNotifer.value = null;
+    EditMemberInsuranceHelpers.selectedInsuranceNotifier.value = null;
   }
 
   @override
@@ -47,7 +48,7 @@ class _EditMemberInsuranceSectionState
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        RoundedCheackBoxTile(
+        RoundedCheckBoxTile(
           isSelected: true,
           onChanged: () {},
           title: 'I have insurance',
@@ -57,7 +58,7 @@ class _EditMemberInsuranceSectionState
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SizedBox(height: 10),
+              const Gap(10),
               DropdownButtonFormField<int>(
                 focusColor: AppColors.white,
                 isExpanded: true,
@@ -66,15 +67,15 @@ class _EditMemberInsuranceSectionState
                     InsuranceValidationHelpers.validateInsuranceType(
                       value: value,
                     ),
-                decoration: const InputDecoration(labelText: 'Insurence'),
+                decoration: const InputDecoration(labelText: 'Insurance'),
                 onChanged: (value) {
-                  EditMemberInuranceHelpers.selectedInsuranceNotifer.value =
+                  EditMemberInsuranceHelpers.selectedInsuranceNotifier.value =
                       value;
                 },
               ),
               ValueListenableBuilder(
                 valueListenable:
-                    EditMemberInuranceHelpers.selectedInsuranceNotifer,
+                    EditMemberInsuranceHelpers.selectedInsuranceNotifier,
                 builder: (context, value, child) {
                   EditMemberInsuranceSection.insuranceNameController.text = '';
                   return value == 0
@@ -83,7 +84,7 @@ class _EditMemberInsuranceSectionState
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              const SizedBox(height: 10),
+                              const Gap(10),
                               TextFormField(
                                 controller: EditMemberInsuranceSection
                                     .insuranceNameController,
@@ -105,7 +106,7 @@ class _EditMemberInsuranceSectionState
                                   labelText: 'Insurance Name',
                                 ),
                                 style: AppTextStyles.textFormFieldStyle,
-                                cursorColor: AppColors.textFormFiledStyleColor,
+                                cursorColor: AppColors.textFormFieldStyleColor,
                               ),
                             ],
                           ),
@@ -113,7 +114,7 @@ class _EditMemberInsuranceSectionState
                       : const SizedBox.shrink();
                 },
               ),
-              const SizedBox(height: 10),
+              const Gap(10),
               TextFormField(
                 validator: (value) =>
                     InsuranceValidationHelpers.validateMemberNumber(
@@ -128,9 +129,9 @@ class _EditMemberInsuranceSectionState
                 ],
                 decoration: const InputDecoration(labelText: 'Member Number'),
                 style: AppTextStyles.textFormFieldStyle,
-                cursorColor: AppColors.textFormFiledStyleColor,
+                cursorColor: AppColors.textFormFieldStyleColor,
               ),
-              const SizedBox(height: 10),
+              const Gap(10),
               TextFormField(
                 readOnly: true,
                 validator: (value) =>
@@ -142,7 +143,7 @@ class _EditMemberInsuranceSectionState
                 controller: EditMemberInsuranceSection.expireDateController,
                 onTap: () async {
                   final DateTime? selectedDate =
-                      await EditMemberInuranceHelpers.getExpireDate(
+                      await EditMemberInsuranceHelpers.getExpireDate(
                         initialDate:
                             EditMemberInsuranceSection.expireDate ??
                             DateTime.now().add(const Duration(days: 1)),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 
 import 'add_member_screen_helpers.dart';
 
@@ -13,7 +15,7 @@ class ProfileImageSection extends StatelessWidget {
     return Row(
       children: [
         ValueListenableBuilder(
-          valueListenable: AddMemberScreenHelpers.profileImageNotifer,
+          valueListenable: AddMemberScreenHelpers.profileImageNotifier,
           builder: (context, file, child) {
             return Container(
               width: 80,
@@ -41,31 +43,31 @@ class ProfileImageSection extends StatelessWidget {
             );
           },
         ),
-        const SizedBox(width: 20),
+        const Gap(20),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Profile Picture',
+                AppStaticTexts.profilePicture,
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: colorScheme.onSurface,
                 ),
               ),
-              const SizedBox(height: 4),
+              const Gap(4),
               Text(
-                'Upload a photo of the member (Max 1MB)',
+                AppStaticTexts.uploadMemberPhoto,
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 ),
               ),
-              const SizedBox(height: 12),
+              const Gap(12),
               FilledButton.icon(
                 onPressed: () =>
                     AddMemberScreenHelpers.pickImage(context: context),
                 icon: const Icon(Icons.add_a_photo_rounded, size: 18),
-                label: const Text('Add Photo'),
+                label: const Text(AppStaticTexts.addPhoto),
                 style: FilledButton.styleFrom(
                   backgroundColor: colorScheme.primary,
                   foregroundColor: colorScheme.onPrimary,

@@ -1,7 +1,9 @@
+import 'package:patient_portal/core/resources/app_static_texts.dart';
+
 class InsuranceValidationHelpers {
   static String? validateInsuranceType({required int? value}) {
     if (value == null) {
-      return 'Select your insurance';
+      return AppStaticTexts.selectYourInsurance;
     } else {
       return null;
     }
@@ -9,7 +11,7 @@ class InsuranceValidationHelpers {
 
   static String? validateInsuranceName({required String? value}) {
     if (value == null || value.isEmpty) {
-      return 'Enter insurance name';
+      return AppStaticTexts.enterInsuranceName;
     } else {
       return null;
     }
@@ -17,7 +19,7 @@ class InsuranceValidationHelpers {
 
   static String? validateMemberNumber({required String? value}) {
     if (value == null || value.isEmpty) {
-      return 'Enter member number';
+      return AppStaticTexts.enterMemberNumber;
     } else {
       return null;
     }
@@ -25,7 +27,7 @@ class InsuranceValidationHelpers {
 
   static String? expireDateValidator({required String? value}) {
     if (value == null || value.isEmpty) {
-      return 'Enter expire date';
+      return AppStaticTexts.enterExpireDate;
     } else {
       return null;
     }

@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/succes_dailog.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/success_dialog.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/helpers/edit_profile_detail_screen_helpers.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/widgets/edit_profile_details_section.dart';
@@ -189,7 +190,7 @@ class _EditProfileIntroCard extends StatelessWidget {
               height: 1.08,
             ),
           ),
-          const SizedBox(height: 8),
+          const Gap(8),
           Text(
             'Review the essentials before continuing back to your profile.',
             style: theme.textTheme.bodyMedium?.copyWith(

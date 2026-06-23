@@ -1,12 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
-import 'member__selection_tile.dart';
+import 'member_selection_tile.dart';
 
 class MemberSelectionSection extends StatelessWidget {
   const MemberSelectionSection({super.key});
@@ -35,7 +36,7 @@ class MemberSelectionSection extends StatelessWidget {
                         color: colorScheme.onSurface,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const Gap(4),
                     BlocBuilder<UserBloc, UserState>(
                       builder: (context, state) {
                         final memberCount = state.user?.members.length ?? 0;
@@ -54,7 +55,7 @@ class MemberSelectionSection extends StatelessWidget {
               ),
               IconButton.filled(
                 onPressed: () {
-                  InsuranceHelpers.insuranceCheackBoxNotifier.value = false;
+                  InsuranceHelpers.insuranceCheckBoxNotifier.value = false;
                   context.router.push(AddMemberRoute());
                 },
                 icon: const Icon(Icons.add_rounded),
@@ -62,7 +63,7 @@ class MemberSelectionSection extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          const Gap(16),
           BlocBuilder<UserBloc, UserState>(
             builder: (context, state) {
               final members = state.user?.members ?? [];
@@ -75,8 +76,7 @@ class MemberSelectionSection extends StatelessWidget {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: members.length,
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(height: 12),
+                  separatorBuilder: (context, index) => const Gap(12),
                   itemBuilder: (context, index) => MemberSelectionTile(
                     isSelected: selectedMember == members[index],
                     member: members[index],
@@ -85,7 +85,7 @@ class MemberSelectionSection extends StatelessWidget {
               );
             },
           ),
-          const SizedBox(height: 80), // Space for bottom bar
+          const Gap(80), // Space for bottom bar
         ],
       ),
     );

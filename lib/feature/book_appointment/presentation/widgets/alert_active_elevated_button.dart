@@ -16,10 +16,10 @@ class AlertActiveElevatedButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         elevation: 0,
         padding: const EdgeInsets.all(20),
-        backgroundColor: AppColors.vilot,
+        backgroundColor: AppColors.violet,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6),
-          side: const BorderSide(color: AppColors.vilot),
+          side: const BorderSide(color: AppColors.violet),
         ),
       ),
       onPressed: onPressed,

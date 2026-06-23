@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
@@ -52,7 +53,7 @@ class LabGridItemTile extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 5),
+          const Gap(5),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -87,11 +88,11 @@ class LabGridItemTile extends StatelessWidget {
                             style: ElevatedButton.styleFrom(
                               shape: const CircleBorder(),
                               backgroundColor: item.isCart
-                                  ? AppColors.vilot
+                                  ? AppColors.violet
                                   : AppColors.white,
                               side: BorderSide(
                                 color: item.isCart
-                                    ? AppColors.vilot
+                                    ? AppColors.violet
                                     : AppColors.borderColor,
                                 width: .5,
                               ),
@@ -125,7 +126,7 @@ class LabGridItemTile extends StatelessWidget {
                               width: 10,
                             ),
                           ),
-                    const SizedBox(width: 6),
+                    const Gap(6),
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
                         shape: const CircleBorder(),

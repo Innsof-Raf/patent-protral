@@ -4,7 +4,7 @@ import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_quick_action_card.dart';
-import 'package:patient_portal/feature/home/presentation/widgets/unorderd_list_tile.dart';
+import 'package:patient_portal/feature/home/presentation/widgets/unordered_list_tile.dart';
 
 class DocumentsTile extends StatelessWidget {
   const DocumentsTile({super.key});
@@ -14,17 +14,17 @@ class DocumentsTile extends StatelessWidget {
     return HomeQuickActionCard(
       title: AppStaticTexts.documents,
       subtitle: AppStaticTexts.documentsSubtitle,
-      backgroundImage: Assets.images.homeDocumentsTileBagroundImage.path,
+      backgroundImage: Assets.images.homeDocumentsTileBackgroundImage.path,
       onTap: () {
         context.router.root.push(const DocumentsRoute());
       },
       child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          UnorderdListTile(title: AppStaticTexts.insuranceDocuments),
-          UnorderdListTile(title: AppStaticTexts.passport),
-          UnorderdListTile(title: AppStaticTexts.residentPermit),
-          UnorderdListTile(title: AppStaticTexts.drivingLicence),
+          UnorderedListTile(title: AppStaticTexts.insuranceDocuments),
+          UnorderedListTile(title: AppStaticTexts.passport),
+          UnorderedListTile(title: AppStaticTexts.residentPermit),
+          UnorderedListTile(title: AppStaticTexts.drivingLicence),
         ],
       ),
     );

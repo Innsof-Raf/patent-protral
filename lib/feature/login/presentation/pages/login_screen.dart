@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
@@ -12,10 +13,10 @@ import 'package:patient_portal/feature/login/presentation/widgets/login_otp_veri
 import 'package:patient_portal/feature/login/presentation/widgets/login_with_password_section.dart';
 
 final List<String> bgImages = [
-  Assets.images.loginBagroundImage.path,
-  Assets.images.loginBagroundImage.path,
-  Assets.images.loginBagroundImage.path,
-  Assets.images.loginBagroundImage.path,
+  Assets.images.loginBackgroundImage.path,
+  Assets.images.loginBackgroundImage.path,
+  Assets.images.loginBackgroundImage.path,
+  Assets.images.loginBackgroundImage.path,
 ];
 
 final CarouselSliderController bgImageCarouselController =
@@ -30,16 +31,16 @@ class LogInScreen extends StatelessWidget {
     final theme = Theme.of(context);
 
     return ValueListenableBuilder<int>(
-      valueListenable: LoginScreenHelpers.loginSectionNotifer,
+      valueListenable: LoginScreenHelpers.loginSectionNotifier,
       builder: (context, value, child) {
         return PopScope(
           canPop: value == 0,
           onPopInvokedWithResult: (didPop, result) {
             if (didPop) return;
             if (value == 1) {
-              LoginScreenHelpers.loginSectionNotifer.value = 0;
+              LoginScreenHelpers.loginSectionNotifier.value = 0;
             } else if (value == 2) {
-              LoginScreenHelpers.loginSectionNotifer.value = 1;
+              LoginScreenHelpers.loginSectionNotifier.value = 1;
             }
           },
           child: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -103,7 +104,7 @@ class _LoginBottomPanel extends StatelessWidget {
               count: bgImages.length,
             ),
           ),
-          const SizedBox(height: 18),
+          const Gap(18),
           LoginAuthCard(
             child: AnimatedSwitcher(
               duration: const Duration(milliseconds: 280),

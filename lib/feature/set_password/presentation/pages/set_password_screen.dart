@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/succes_dailog.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/success_dialog.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/set_password/domain/usecases/params/set_password_params.dart';
@@ -36,12 +38,12 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
     final colorScheme = theme.colorScheme;
 
     return Scaffold(
-      appBar: const CommonAppbar(title: 'Set Password'),
+      appBar: const CommonAppbar(title: AppStaticTexts.setPassword),
       body: BlocListener<ChangePasswordBloc, ChangePasswordState>(
         listener: (context, state) {
           if (state.isPasswordChangingFailed) {
             _showErrorDialog(context, state.error.message);
-          } else if (state.isPasswordChangingSucces) {
+          } else if (state.isPasswordChangingSuccess) {
             _showSuccessDialog(context);
           }
         },
@@ -52,20 +54,20 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Create new password',
+                AppStaticTexts.createNewPassword,
                 style: theme.textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: colorScheme.onSurface,
                 ),
               ),
-              const SizedBox(height: 8),
+              const Gap(8),
               Text(
-                'Your new password must be at least 8 characters long and include a mix of letters and numbers.',
+                AppStaticTexts.createNewPasswordMessage,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 ),
               ),
-              const SizedBox(height: 32),
+              const Gap(32),
               SetPasswordSection(
                 formKey: _formKey,
                 newPasswordController: _newPasswordController,
@@ -95,14 +97,14 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
       child: BlocBuilder<ChangePasswordBloc, ChangePasswordState>(
         builder: (context, state) {
           return FilledButton(
-            onPressed: state.isPasswordChnaging ? null : _onSavePressed,
+            onPressed: state.isPasswordChanging ? null : _onSavePressed,
             style: FilledButton.styleFrom(
               minimumSize: const Size.fromHeight(56),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
             ),
-            child: state.isPasswordChnaging
+            child: state.isPasswordChanging
                 ? const SizedBox(
                     height: 24,
                     width: 24,
@@ -112,7 +114,7 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
                     ),
                   )
                 : const Text(
-                    'Save Password',
+                    AppStaticTexts.savePassword,
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
           );
@@ -151,7 +153,7 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
       context: context,
       barrierDismissible: false,
       builder: (context) => SuccessDialog(
-        title: 'Password changed successfully',
+        title: AppStaticTexts.passwordChangedSuccessfully,
         onPressed: () {
           context.router.popUntilRouteWithName(MainRoute.name);
         },

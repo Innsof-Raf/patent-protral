@@ -283,7 +283,7 @@ $SetPasswordParamsCopyWith<$Res> get params {
 /// @nodoc
 mixin _$ChangePasswordState {
 
- bool get isPasswordChnaging; bool get isPasswordChangingFailed; bool get isPasswordChangingSucces; ErrorModel get error;
+ bool get isPasswordChanging; bool get isPasswordChangingFailed; bool get isPasswordChangingSuccess; ErrorModel get error;
 /// Create a copy of ChangePasswordState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -294,16 +294,16 @@ $ChangePasswordStateCopyWith<ChangePasswordState> get copyWith => _$ChangePasswo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePasswordState&&(identical(other.isPasswordChnaging, isPasswordChnaging) || other.isPasswordChnaging == isPasswordChnaging)&&(identical(other.isPasswordChangingFailed, isPasswordChangingFailed) || other.isPasswordChangingFailed == isPasswordChangingFailed)&&(identical(other.isPasswordChangingSucces, isPasswordChangingSucces) || other.isPasswordChangingSucces == isPasswordChangingSucces)&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePasswordState&&(identical(other.isPasswordChanging, isPasswordChanging) || other.isPasswordChanging == isPasswordChanging)&&(identical(other.isPasswordChangingFailed, isPasswordChangingFailed) || other.isPasswordChangingFailed == isPasswordChangingFailed)&&(identical(other.isPasswordChangingSuccess, isPasswordChangingSuccess) || other.isPasswordChangingSuccess == isPasswordChangingSuccess)&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isPasswordChnaging,isPasswordChangingFailed,isPasswordChangingSucces,error);
+int get hashCode => Object.hash(runtimeType,isPasswordChanging,isPasswordChangingFailed,isPasswordChangingSuccess,error);
 
 @override
 String toString() {
-  return 'ChangePasswordState(isPasswordChnaging: $isPasswordChnaging, isPasswordChangingFailed: $isPasswordChangingFailed, isPasswordChangingSucces: $isPasswordChangingSucces, error: $error)';
+  return 'ChangePasswordState(isPasswordChanging: $isPasswordChanging, isPasswordChangingFailed: $isPasswordChangingFailed, isPasswordChangingSuccess: $isPasswordChangingSuccess, error: $error)';
 }
 
 
@@ -314,7 +314,7 @@ abstract mixin class $ChangePasswordStateCopyWith<$Res>  {
   factory $ChangePasswordStateCopyWith(ChangePasswordState value, $Res Function(ChangePasswordState) _then) = _$ChangePasswordStateCopyWithImpl;
 @useResult
 $Res call({
- bool isPasswordChnaging, bool isPasswordChangingFailed, bool isPasswordChangingSucces, ErrorModel error
+ bool isPasswordChanging, bool isPasswordChangingFailed, bool isPasswordChangingSuccess, ErrorModel error
 });
 
 
@@ -331,11 +331,11 @@ class _$ChangePasswordStateCopyWithImpl<$Res>
 
 /// Create a copy of ChangePasswordState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isPasswordChnaging = null,Object? isPasswordChangingFailed = null,Object? isPasswordChangingSucces = null,Object? error = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isPasswordChanging = null,Object? isPasswordChangingFailed = null,Object? isPasswordChangingSuccess = null,Object? error = null,}) {
   return _then(_self.copyWith(
-isPasswordChnaging: null == isPasswordChnaging ? _self.isPasswordChnaging : isPasswordChnaging // ignore: cast_nullable_to_non_nullable
+isPasswordChanging: null == isPasswordChanging ? _self.isPasswordChanging : isPasswordChanging // ignore: cast_nullable_to_non_nullable
 as bool,isPasswordChangingFailed: null == isPasswordChangingFailed ? _self.isPasswordChangingFailed : isPasswordChangingFailed // ignore: cast_nullable_to_non_nullable
-as bool,isPasswordChangingSucces: null == isPasswordChangingSucces ? _self.isPasswordChangingSucces : isPasswordChangingSucces // ignore: cast_nullable_to_non_nullable
+as bool,isPasswordChangingSuccess: null == isPasswordChangingSuccess ? _self.isPasswordChangingSuccess : isPasswordChangingSuccess // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,
   ));
@@ -428,10 +428,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isPasswordChnaging,  bool isPasswordChangingFailed,  bool isPasswordChangingSucces,  ErrorModel error)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isPasswordChanging,  bool isPasswordChangingFailed,  bool isPasswordChangingSuccess,  ErrorModel error)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ChangePasswordState() when $default != null:
-return $default(_that.isPasswordChnaging,_that.isPasswordChangingFailed,_that.isPasswordChangingSucces,_that.error);case _:
+return $default(_that.isPasswordChanging,_that.isPasswordChangingFailed,_that.isPasswordChangingSuccess,_that.error);case _:
   return orElse();
 
 }
@@ -449,10 +449,10 @@ return $default(_that.isPasswordChnaging,_that.isPasswordChangingFailed,_that.is
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isPasswordChnaging,  bool isPasswordChangingFailed,  bool isPasswordChangingSucces,  ErrorModel error)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isPasswordChanging,  bool isPasswordChangingFailed,  bool isPasswordChangingSuccess,  ErrorModel error)  $default,) {final _that = this;
 switch (_that) {
 case _ChangePasswordState():
-return $default(_that.isPasswordChnaging,_that.isPasswordChangingFailed,_that.isPasswordChangingSucces,_that.error);}
+return $default(_that.isPasswordChanging,_that.isPasswordChangingFailed,_that.isPasswordChangingSuccess,_that.error);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -466,10 +466,10 @@ return $default(_that.isPasswordChnaging,_that.isPasswordChangingFailed,_that.is
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isPasswordChnaging,  bool isPasswordChangingFailed,  bool isPasswordChangingSucces,  ErrorModel error)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isPasswordChanging,  bool isPasswordChangingFailed,  bool isPasswordChangingSuccess,  ErrorModel error)?  $default,) {final _that = this;
 switch (_that) {
 case _ChangePasswordState() when $default != null:
-return $default(_that.isPasswordChnaging,_that.isPasswordChangingFailed,_that.isPasswordChangingSucces,_that.error);case _:
+return $default(_that.isPasswordChanging,_that.isPasswordChangingFailed,_that.isPasswordChangingSuccess,_that.error);case _:
   return null;
 
 }
@@ -481,12 +481,12 @@ return $default(_that.isPasswordChnaging,_that.isPasswordChangingFailed,_that.is
 
 
 class _ChangePasswordState implements ChangePasswordState {
-  const _ChangePasswordState({required this.isPasswordChnaging, required this.isPasswordChangingFailed, required this.isPasswordChangingSucces, required this.error});
+  const _ChangePasswordState({required this.isPasswordChanging, required this.isPasswordChangingFailed, required this.isPasswordChangingSuccess, required this.error});
   
 
-@override final  bool isPasswordChnaging;
+@override final  bool isPasswordChanging;
 @override final  bool isPasswordChangingFailed;
-@override final  bool isPasswordChangingSucces;
+@override final  bool isPasswordChangingSuccess;
 @override final  ErrorModel error;
 
 /// Create a copy of ChangePasswordState
@@ -499,16 +499,16 @@ _$ChangePasswordStateCopyWith<_ChangePasswordState> get copyWith => __$ChangePas
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChangePasswordState&&(identical(other.isPasswordChnaging, isPasswordChnaging) || other.isPasswordChnaging == isPasswordChnaging)&&(identical(other.isPasswordChangingFailed, isPasswordChangingFailed) || other.isPasswordChangingFailed == isPasswordChangingFailed)&&(identical(other.isPasswordChangingSucces, isPasswordChangingSucces) || other.isPasswordChangingSucces == isPasswordChangingSucces)&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChangePasswordState&&(identical(other.isPasswordChanging, isPasswordChanging) || other.isPasswordChanging == isPasswordChanging)&&(identical(other.isPasswordChangingFailed, isPasswordChangingFailed) || other.isPasswordChangingFailed == isPasswordChangingFailed)&&(identical(other.isPasswordChangingSuccess, isPasswordChangingSuccess) || other.isPasswordChangingSuccess == isPasswordChangingSuccess)&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isPasswordChnaging,isPasswordChangingFailed,isPasswordChangingSucces,error);
+int get hashCode => Object.hash(runtimeType,isPasswordChanging,isPasswordChangingFailed,isPasswordChangingSuccess,error);
 
 @override
 String toString() {
-  return 'ChangePasswordState(isPasswordChnaging: $isPasswordChnaging, isPasswordChangingFailed: $isPasswordChangingFailed, isPasswordChangingSucces: $isPasswordChangingSucces, error: $error)';
+  return 'ChangePasswordState(isPasswordChanging: $isPasswordChanging, isPasswordChangingFailed: $isPasswordChangingFailed, isPasswordChangingSuccess: $isPasswordChangingSuccess, error: $error)';
 }
 
 
@@ -519,7 +519,7 @@ abstract mixin class _$ChangePasswordStateCopyWith<$Res> implements $ChangePassw
   factory _$ChangePasswordStateCopyWith(_ChangePasswordState value, $Res Function(_ChangePasswordState) _then) = __$ChangePasswordStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isPasswordChnaging, bool isPasswordChangingFailed, bool isPasswordChangingSucces, ErrorModel error
+ bool isPasswordChanging, bool isPasswordChangingFailed, bool isPasswordChangingSuccess, ErrorModel error
 });
 
 
@@ -536,11 +536,11 @@ class __$ChangePasswordStateCopyWithImpl<$Res>
 
 /// Create a copy of ChangePasswordState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isPasswordChnaging = null,Object? isPasswordChangingFailed = null,Object? isPasswordChangingSucces = null,Object? error = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isPasswordChanging = null,Object? isPasswordChangingFailed = null,Object? isPasswordChangingSuccess = null,Object? error = null,}) {
   return _then(_ChangePasswordState(
-isPasswordChnaging: null == isPasswordChnaging ? _self.isPasswordChnaging : isPasswordChnaging // ignore: cast_nullable_to_non_nullable
+isPasswordChanging: null == isPasswordChanging ? _self.isPasswordChanging : isPasswordChanging // ignore: cast_nullable_to_non_nullable
 as bool,isPasswordChangingFailed: null == isPasswordChangingFailed ? _self.isPasswordChangingFailed : isPasswordChangingFailed // ignore: cast_nullable_to_non_nullable
-as bool,isPasswordChangingSucces: null == isPasswordChangingSucces ? _self.isPasswordChangingSucces : isPasswordChangingSucces // ignore: cast_nullable_to_non_nullable
+as bool,isPasswordChangingSuccess: null == isPasswordChangingSuccess ? _self.isPasswordChangingSuccess : isPasswordChangingSuccess // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,
   ));

@@ -36,7 +36,7 @@ class _ReportScreenState extends State<ReportScreen> {
 
   void _downloadReport() {
     context.read<ReportsBloc>().add(
-      StroeRport(params: ReportsParams.downloadReport(url: widget.pdfUrl)),
+      StoreReport(params: ReportsParams.downloadReport(url: widget.pdfUrl)),
     );
   }
 
@@ -51,7 +51,7 @@ class _ReportScreenState extends State<ReportScreen> {
       ),
       body: BlocBuilder<ReportsBloc, ReportsState>(
         builder: (context, state) {
-          return state.isRepoertSaving
+          return state.isReportSaving
               ? const CommonLoadingView()
               : state.isReportSavingFailed
               ? CommonErrorView(

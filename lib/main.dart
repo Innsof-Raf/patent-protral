@@ -109,11 +109,11 @@ class MyApp extends StatelessWidget {
         },
         theme: ThemeData(
           colorScheme: const ColorScheme.light(
-            primary: AppColors.vilot,
+            primary: AppColors.violet,
             onPrimary: AppColors.white,
             onSurface: AppColors.textDark,
           ),
-          primaryColor: AppColors.vilot,
+          primaryColor: AppColors.violet,
           scaffoldBackgroundColor: AppColors.white,
           appBarTheme: const AppBarTheme(
             systemOverlayStyle: _systemUiOverlayStyle,
@@ -152,7 +152,7 @@ class MyApp extends StatelessWidget {
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(4),
               borderSide: const BorderSide(
-                color: AppColors.textFormFIeldBagroundColor,
+                color: AppColors.textFormFieldBackgroundColor,
               ),
             ),
             errorBorder: OutlineInputBorder(
@@ -165,7 +165,7 @@ class MyApp extends StatelessWidget {
             ),
             focusedBorder: OutlineInputBorder(
               borderSide: const BorderSide(
-                color: AppColors.textFormFIeldBagroundColor,
+                color: AppColors.textFormFieldBackgroundColor,
               ),
               borderRadius: BorderRadius.circular(4),
             ),

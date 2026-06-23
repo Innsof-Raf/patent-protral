@@ -268,7 +268,7 @@ as int,
 /// @nodoc
 mixin _$HomeState {
 
- bool get isDataFetching; bool get isDataFetchingFailed; bool get isDataFetchingsuccess; ErrorModel get error; HomeData get homeData;
+ bool get isDataFetching; bool get isDataFetchingFailed; bool get isDataFetchingSuccess; ErrorModel get error; HomeData get homeData;
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -279,16 +279,16 @@ $HomeStateCopyWith<HomeState> get copyWith => _$HomeStateCopyWithImpl<HomeState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeState&&(identical(other.isDataFetching, isDataFetching) || other.isDataFetching == isDataFetching)&&(identical(other.isDataFetchingFailed, isDataFetchingFailed) || other.isDataFetchingFailed == isDataFetchingFailed)&&(identical(other.isDataFetchingsuccess, isDataFetchingsuccess) || other.isDataFetchingsuccess == isDataFetchingsuccess)&&(identical(other.error, error) || other.error == error)&&(identical(other.homeData, homeData) || other.homeData == homeData));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeState&&(identical(other.isDataFetching, isDataFetching) || other.isDataFetching == isDataFetching)&&(identical(other.isDataFetchingFailed, isDataFetchingFailed) || other.isDataFetchingFailed == isDataFetchingFailed)&&(identical(other.isDataFetchingSuccess, isDataFetchingSuccess) || other.isDataFetchingSuccess == isDataFetchingSuccess)&&(identical(other.error, error) || other.error == error)&&(identical(other.homeData, homeData) || other.homeData == homeData));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isDataFetching,isDataFetchingFailed,isDataFetchingsuccess,error,homeData);
+int get hashCode => Object.hash(runtimeType,isDataFetching,isDataFetchingFailed,isDataFetchingSuccess,error,homeData);
 
 @override
 String toString() {
-  return 'HomeState(isDataFetching: $isDataFetching, isDataFetchingFailed: $isDataFetchingFailed, isDataFetchingsuccess: $isDataFetchingsuccess, error: $error, homeData: $homeData)';
+  return 'HomeState(isDataFetching: $isDataFetching, isDataFetchingFailed: $isDataFetchingFailed, isDataFetchingSuccess: $isDataFetchingSuccess, error: $error, homeData: $homeData)';
 }
 
 
@@ -299,7 +299,7 @@ abstract mixin class $HomeStateCopyWith<$Res>  {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) _then) = _$HomeStateCopyWithImpl;
 @useResult
 $Res call({
- bool isDataFetching, bool isDataFetchingFailed, bool isDataFetchingsuccess, ErrorModel error, HomeData homeData
+ bool isDataFetching, bool isDataFetchingFailed, bool isDataFetchingSuccess, ErrorModel error, HomeData homeData
 });
 
 
@@ -316,11 +316,11 @@ class _$HomeStateCopyWithImpl<$Res>
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isDataFetching = null,Object? isDataFetchingFailed = null,Object? isDataFetchingsuccess = null,Object? error = null,Object? homeData = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isDataFetching = null,Object? isDataFetchingFailed = null,Object? isDataFetchingSuccess = null,Object? error = null,Object? homeData = null,}) {
   return _then(_self.copyWith(
 isDataFetching: null == isDataFetching ? _self.isDataFetching : isDataFetching // ignore: cast_nullable_to_non_nullable
 as bool,isDataFetchingFailed: null == isDataFetchingFailed ? _self.isDataFetchingFailed : isDataFetchingFailed // ignore: cast_nullable_to_non_nullable
-as bool,isDataFetchingsuccess: null == isDataFetchingsuccess ? _self.isDataFetchingsuccess : isDataFetchingsuccess // ignore: cast_nullable_to_non_nullable
+as bool,isDataFetchingSuccess: null == isDataFetchingSuccess ? _self.isDataFetchingSuccess : isDataFetchingSuccess // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,homeData: null == homeData ? _self.homeData : homeData // ignore: cast_nullable_to_non_nullable
 as HomeData,
@@ -423,10 +423,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isDataFetching,  bool isDataFetchingFailed,  bool isDataFetchingsuccess,  ErrorModel error,  HomeData homeData)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isDataFetching,  bool isDataFetchingFailed,  bool isDataFetchingSuccess,  ErrorModel error,  HomeData homeData)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _HomeState() when $default != null:
-return $default(_that.isDataFetching,_that.isDataFetchingFailed,_that.isDataFetchingsuccess,_that.error,_that.homeData);case _:
+return $default(_that.isDataFetching,_that.isDataFetchingFailed,_that.isDataFetchingSuccess,_that.error,_that.homeData);case _:
   return orElse();
 
 }
@@ -444,10 +444,10 @@ return $default(_that.isDataFetching,_that.isDataFetchingFailed,_that.isDataFetc
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isDataFetching,  bool isDataFetchingFailed,  bool isDataFetchingsuccess,  ErrorModel error,  HomeData homeData)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isDataFetching,  bool isDataFetchingFailed,  bool isDataFetchingSuccess,  ErrorModel error,  HomeData homeData)  $default,) {final _that = this;
 switch (_that) {
 case _HomeState():
-return $default(_that.isDataFetching,_that.isDataFetchingFailed,_that.isDataFetchingsuccess,_that.error,_that.homeData);}
+return $default(_that.isDataFetching,_that.isDataFetchingFailed,_that.isDataFetchingSuccess,_that.error,_that.homeData);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -461,10 +461,10 @@ return $default(_that.isDataFetching,_that.isDataFetchingFailed,_that.isDataFetc
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isDataFetching,  bool isDataFetchingFailed,  bool isDataFetchingsuccess,  ErrorModel error,  HomeData homeData)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isDataFetching,  bool isDataFetchingFailed,  bool isDataFetchingSuccess,  ErrorModel error,  HomeData homeData)?  $default,) {final _that = this;
 switch (_that) {
 case _HomeState() when $default != null:
-return $default(_that.isDataFetching,_that.isDataFetchingFailed,_that.isDataFetchingsuccess,_that.error,_that.homeData);case _:
+return $default(_that.isDataFetching,_that.isDataFetchingFailed,_that.isDataFetchingSuccess,_that.error,_that.homeData);case _:
   return null;
 
 }
@@ -476,12 +476,12 @@ return $default(_that.isDataFetching,_that.isDataFetchingFailed,_that.isDataFetc
 
 
 class _HomeState implements HomeState {
-  const _HomeState({required this.isDataFetching, required this.isDataFetchingFailed, required this.isDataFetchingsuccess, required this.error, required this.homeData});
+  const _HomeState({required this.isDataFetching, required this.isDataFetchingFailed, required this.isDataFetchingSuccess, required this.error, required this.homeData});
   
 
 @override final  bool isDataFetching;
 @override final  bool isDataFetchingFailed;
-@override final  bool isDataFetchingsuccess;
+@override final  bool isDataFetchingSuccess;
 @override final  ErrorModel error;
 @override final  HomeData homeData;
 
@@ -495,16 +495,16 @@ _$HomeStateCopyWith<_HomeState> get copyWith => __$HomeStateCopyWithImpl<_HomeSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeState&&(identical(other.isDataFetching, isDataFetching) || other.isDataFetching == isDataFetching)&&(identical(other.isDataFetchingFailed, isDataFetchingFailed) || other.isDataFetchingFailed == isDataFetchingFailed)&&(identical(other.isDataFetchingsuccess, isDataFetchingsuccess) || other.isDataFetchingsuccess == isDataFetchingsuccess)&&(identical(other.error, error) || other.error == error)&&(identical(other.homeData, homeData) || other.homeData == homeData));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeState&&(identical(other.isDataFetching, isDataFetching) || other.isDataFetching == isDataFetching)&&(identical(other.isDataFetchingFailed, isDataFetchingFailed) || other.isDataFetchingFailed == isDataFetchingFailed)&&(identical(other.isDataFetchingSuccess, isDataFetchingSuccess) || other.isDataFetchingSuccess == isDataFetchingSuccess)&&(identical(other.error, error) || other.error == error)&&(identical(other.homeData, homeData) || other.homeData == homeData));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isDataFetching,isDataFetchingFailed,isDataFetchingsuccess,error,homeData);
+int get hashCode => Object.hash(runtimeType,isDataFetching,isDataFetchingFailed,isDataFetchingSuccess,error,homeData);
 
 @override
 String toString() {
-  return 'HomeState(isDataFetching: $isDataFetching, isDataFetchingFailed: $isDataFetchingFailed, isDataFetchingsuccess: $isDataFetchingsuccess, error: $error, homeData: $homeData)';
+  return 'HomeState(isDataFetching: $isDataFetching, isDataFetchingFailed: $isDataFetchingFailed, isDataFetchingSuccess: $isDataFetchingSuccess, error: $error, homeData: $homeData)';
 }
 
 
@@ -515,7 +515,7 @@ abstract mixin class _$HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Re
   factory _$HomeStateCopyWith(_HomeState value, $Res Function(_HomeState) _then) = __$HomeStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isDataFetching, bool isDataFetchingFailed, bool isDataFetchingsuccess, ErrorModel error, HomeData homeData
+ bool isDataFetching, bool isDataFetchingFailed, bool isDataFetchingSuccess, ErrorModel error, HomeData homeData
 });
 
 
@@ -532,11 +532,11 @@ class __$HomeStateCopyWithImpl<$Res>
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isDataFetching = null,Object? isDataFetchingFailed = null,Object? isDataFetchingsuccess = null,Object? error = null,Object? homeData = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isDataFetching = null,Object? isDataFetchingFailed = null,Object? isDataFetchingSuccess = null,Object? error = null,Object? homeData = null,}) {
   return _then(_HomeState(
 isDataFetching: null == isDataFetching ? _self.isDataFetching : isDataFetching // ignore: cast_nullable_to_non_nullable
 as bool,isDataFetchingFailed: null == isDataFetchingFailed ? _self.isDataFetchingFailed : isDataFetchingFailed // ignore: cast_nullable_to_non_nullable
-as bool,isDataFetchingsuccess: null == isDataFetchingsuccess ? _self.isDataFetchingsuccess : isDataFetchingsuccess // ignore: cast_nullable_to_non_nullable
+as bool,isDataFetchingSuccess: null == isDataFetchingSuccess ? _self.isDataFetchingSuccess : isDataFetchingSuccess // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,homeData: null == homeData ? _self.homeData : homeData // ignore: cast_nullable_to_non_nullable
 as HomeData,

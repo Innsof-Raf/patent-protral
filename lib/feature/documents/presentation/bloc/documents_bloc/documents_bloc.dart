@@ -20,7 +20,7 @@ class DocumentsBloc extends Bloc<DocumentsEvent, DocumentsState> {
           state.copyWith(
             isFetching: true,
             isFetchingFailed: false,
-            isFetchingSucces: false,
+            isFetchingSuccess: false,
             selectedMemberId: event.memberId,
           ),
         );
@@ -43,7 +43,7 @@ class DocumentsBloc extends Bloc<DocumentsEvent, DocumentsState> {
           (documents) => emit(
             state.copyWith(
               isFetching: false,
-              isFetchingSucces: true,
+              isFetchingSuccess: true,
               documents: documents,
             ),
           ),

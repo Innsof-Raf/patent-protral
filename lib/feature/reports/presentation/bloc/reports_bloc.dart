@@ -47,12 +47,12 @@ class ReportsBloc extends Bloc<ReportsEvent, ReportsState> {
         ),
       );
     });
-    on<StroeRport>((event, emit) async {
+    on<StoreReport>((event, emit) async {
       emit(
         state.copyWith(
-          isRepoertSaving: true,
+          isReportSaving: true,
           isReportSavingFailed: false,
-          isReportSavingSucces: false,
+          isReportSavingSuccess: false,
         ),
       );
       final Either<ErrorModel, ReportFile> reportSavingResponses =
@@ -60,15 +60,15 @@ class ReportsBloc extends Bloc<ReportsEvent, ReportsState> {
       reportSavingResponses.fold(
         (error) => emit(
           state.copyWith(
-            isRepoertSaving: false,
+            isReportSaving: false,
             isReportSavingFailed: true,
             error: error,
           ),
         ),
         (file) => emit(
           state.copyWith(
-            isRepoertSaving: false,
-            isReportSavingSucces: true,
+            isReportSaving: false,
+            isReportSavingSuccess: true,
             report: file,
           ),
         ),

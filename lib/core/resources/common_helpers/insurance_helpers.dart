@@ -6,9 +6,9 @@ import '../common_models/insurance/insurance_model.dart';
 import '../dimens.dart';
 
 class InsuranceHelpers {
-  static void showInsuranceFetrchingFailedSnakBar({
+  static void showInsuranceFetchingFailedSnackBar({
     required BuildContext context,
-    required String contant,
+    required String content,
   }) {
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
@@ -21,7 +21,7 @@ class InsuranceHelpers {
           right: Dimens.constPadding,
         ),
         content: Text(
-          contant,
+          content,
           style: AppTextStyles.bodyLargeRobotoSemiBold.copyWith(
             color: AppColors.white,
           ),
@@ -30,7 +30,8 @@ class InsuranceHelpers {
     );
   }
 
-  static ValueNotifier<int?> selectedInsuranceNotifer = ValueNotifier(null);
+  static ValueNotifier<int?> selectedInsuranceNotifier = ValueNotifier(null);
+
   static DropdownMenuItem<int> createDropDownItem({
     required InsuranceModel insurance,
   }) {
@@ -44,9 +45,10 @@ class InsuranceHelpers {
     );
   }
 
-  static ValueNotifier<bool> insuranceCheackBoxNotifier = ValueNotifier<bool>(
+  static ValueNotifier<bool> insuranceCheckBoxNotifier = ValueNotifier<bool>(
     false,
   );
+
   static Future<DateTime?> getExpireDate({
     required DateTime initialDate,
     required BuildContext context,
@@ -60,7 +62,7 @@ class InsuranceHelpers {
       builder: (context, child) => Theme(
         data: Theme.of(context).copyWith(
           textButtonTheme: TextButtonThemeData(
-            style: TextButton.styleFrom(foregroundColor: AppColors.vilot),
+            style: TextButton.styleFrom(foregroundColor: AppColors.violet),
           ),
         ),
         child: child!,

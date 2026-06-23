@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
@@ -33,7 +34,7 @@ class LogOutTile extends StatelessWidget {
               borderRadius: BorderRadius.circular(18),
               onTap: () {
                 context.read<UserBloc>().add(const LogOut());
-                LoginScreenHelpers.loginSectionNotifer.value = 0;
+                LoginScreenHelpers.loginSectionNotifier.value = 0;
                 context.router.replaceAll([const LoginRoute()]);
               },
               child: Padding(
@@ -52,7 +53,7 @@ class LogOutTile extends StatelessWidget {
                       width: 21,
                       height: 21,
                     ),
-                    const SizedBox(width: 14),
+                    const Gap(14),
                     Text(
                       'Logout',
                       style: theme.textTheme.bodyMedium?.copyWith(

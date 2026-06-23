@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_section_card.dart';
-import 'package:patient_portal/feature/member_details/presentation/widgets/member_text_filed.dart';
+import 'package:patient_portal/feature/member_details/presentation/widgets/member_text_field.dart';
 
 class MemberInsuranceSection extends StatelessWidget {
   const MemberInsuranceSection({
@@ -40,7 +41,7 @@ class MemberInsuranceSection extends StatelessWidget {
               _InsuranceStatusBadge(isActive: hasInsurance),
             ],
           ),
-          const SizedBox(height: 14),
+          const Gap(14),
           if (!hasInsurance)
             Text(
               'No active insurance details are linked to this member.',
@@ -50,19 +51,19 @@ class MemberInsuranceSection extends StatelessWidget {
               ),
             )
           else ...[
-            MemberTextFiled(
+            MemberTextField(
               title: 'Insurance',
               value: insuranceName,
               icon: Icons.health_and_safety_outlined,
             ),
-            const SizedBox(height: 10),
-            MemberTextFiled(
+            const Gap(10),
+            MemberTextField(
               title: 'Member ID',
               value: memberNo,
               icon: Icons.confirmation_number_outlined,
             ),
-            const SizedBox(height: 10),
-            MemberTextFiled(
+            const Gap(10),
+            MemberTextField(
               title: 'Expire date',
               value: expireDate != null
                   ? DateFormat('dd-MM-yyyy').format(expireDate!)

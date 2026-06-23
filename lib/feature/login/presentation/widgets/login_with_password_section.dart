@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -65,13 +66,13 @@ class _LoginWithPasswordSectionState extends State<LoginWithPasswordSection> {
                   },
                 ),
               ),
-              const SizedBox(width: 12),
+              const Gap(12),
               Padding(
                 padding: const EdgeInsets.only(top: 3),
                 child:
                     BlocConsumer<LoginWithPasswordBloc, LoginWithPasswordState>(
                       listener: (context, state) {
-                        if (state.isLoginFailed && !state.isLoginSucces) {
+                        if (state.isLoginFailed && !state.isLoginSuccess) {
                           showGeneralDialog(
                             context: context,
                             pageBuilder:
@@ -95,7 +96,7 @@ class _LoginWithPasswordSectionState extends State<LoginWithPasswordSection> {
                                   ),
                                 ),
                           );
-                        } else if (state.isLoginSucces &&
+                        } else if (state.isLoginSuccess &&
                             !state.isLoginFailed) {
                           context.read<UserBloc>().add(
                             StoreUserDetails(
@@ -119,7 +120,7 @@ class _LoginWithPasswordSectionState extends State<LoginWithPasswordSection> {
               ),
             ],
           ),
-          const SizedBox(height: 18),
+          const Gap(18),
           const LoginTermsRow(),
         ],
       ),

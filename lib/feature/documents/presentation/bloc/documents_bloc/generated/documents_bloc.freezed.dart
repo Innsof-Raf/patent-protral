@@ -271,7 +271,7 @@ as String,
 /// @nodoc
 mixin _$DocumentsState {
 
- List<Document> get documents; bool get isFetching; bool get isFetchingFailed; bool get isFetchingSucces; ErrorModel get error; int get selectedMemberId;
+ List<Document> get documents; bool get isFetching; bool get isFetchingFailed; bool get isFetchingSuccess; ErrorModel get error; int get selectedMemberId;
 /// Create a copy of DocumentsState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -282,16 +282,16 @@ $DocumentsStateCopyWith<DocumentsState> get copyWith => _$DocumentsStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentsState&&const DeepCollectionEquality().equals(other.documents, documents)&&(identical(other.isFetching, isFetching) || other.isFetching == isFetching)&&(identical(other.isFetchingFailed, isFetchingFailed) || other.isFetchingFailed == isFetchingFailed)&&(identical(other.isFetchingSucces, isFetchingSucces) || other.isFetchingSucces == isFetchingSucces)&&(identical(other.error, error) || other.error == error)&&(identical(other.selectedMemberId, selectedMemberId) || other.selectedMemberId == selectedMemberId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocumentsState&&const DeepCollectionEquality().equals(other.documents, documents)&&(identical(other.isFetching, isFetching) || other.isFetching == isFetching)&&(identical(other.isFetchingFailed, isFetchingFailed) || other.isFetchingFailed == isFetchingFailed)&&(identical(other.isFetchingSuccess, isFetchingSuccess) || other.isFetchingSuccess == isFetchingSuccess)&&(identical(other.error, error) || other.error == error)&&(identical(other.selectedMemberId, selectedMemberId) || other.selectedMemberId == selectedMemberId));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(documents),isFetching,isFetchingFailed,isFetchingSucces,error,selectedMemberId);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(documents),isFetching,isFetchingFailed,isFetchingSuccess,error,selectedMemberId);
 
 @override
 String toString() {
-  return 'DocumentsState(documents: $documents, isFetching: $isFetching, isFetchingFailed: $isFetchingFailed, isFetchingSucces: $isFetchingSucces, error: $error, selectedMemberId: $selectedMemberId)';
+  return 'DocumentsState(documents: $documents, isFetching: $isFetching, isFetchingFailed: $isFetchingFailed, isFetchingSuccess: $isFetchingSuccess, error: $error, selectedMemberId: $selectedMemberId)';
 }
 
 
@@ -302,7 +302,7 @@ abstract mixin class $DocumentsStateCopyWith<$Res>  {
   factory $DocumentsStateCopyWith(DocumentsState value, $Res Function(DocumentsState) _then) = _$DocumentsStateCopyWithImpl;
 @useResult
 $Res call({
- List<Document> documents, bool isFetching, bool isFetchingFailed, bool isFetchingSucces, ErrorModel error, int selectedMemberId
+ List<Document> documents, bool isFetching, bool isFetchingFailed, bool isFetchingSuccess, ErrorModel error, int selectedMemberId
 });
 
 
@@ -319,12 +319,12 @@ class _$DocumentsStateCopyWithImpl<$Res>
 
 /// Create a copy of DocumentsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? documents = null,Object? isFetching = null,Object? isFetchingFailed = null,Object? isFetchingSucces = null,Object? error = null,Object? selectedMemberId = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? documents = null,Object? isFetching = null,Object? isFetchingFailed = null,Object? isFetchingSuccess = null,Object? error = null,Object? selectedMemberId = null,}) {
   return _then(_self.copyWith(
 documents: null == documents ? _self.documents : documents // ignore: cast_nullable_to_non_nullable
 as List<Document>,isFetching: null == isFetching ? _self.isFetching : isFetching // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingFailed: null == isFetchingFailed ? _self.isFetchingFailed : isFetchingFailed // ignore: cast_nullable_to_non_nullable
-as bool,isFetchingSucces: null == isFetchingSucces ? _self.isFetchingSucces : isFetchingSucces // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingSuccess: null == isFetchingSuccess ? _self.isFetchingSuccess : isFetchingSuccess // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,selectedMemberId: null == selectedMemberId ? _self.selectedMemberId : selectedMemberId // ignore: cast_nullable_to_non_nullable
 as int,
@@ -418,10 +418,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<Document> documents,  bool isFetching,  bool isFetchingFailed,  bool isFetchingSucces,  ErrorModel error,  int selectedMemberId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<Document> documents,  bool isFetching,  bool isFetchingFailed,  bool isFetchingSuccess,  ErrorModel error,  int selectedMemberId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DocumentsState() when $default != null:
-return $default(_that.documents,_that.isFetching,_that.isFetchingFailed,_that.isFetchingSucces,_that.error,_that.selectedMemberId);case _:
+return $default(_that.documents,_that.isFetching,_that.isFetchingFailed,_that.isFetchingSuccess,_that.error,_that.selectedMemberId);case _:
   return orElse();
 
 }
@@ -439,10 +439,10 @@ return $default(_that.documents,_that.isFetching,_that.isFetchingFailed,_that.is
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<Document> documents,  bool isFetching,  bool isFetchingFailed,  bool isFetchingSucces,  ErrorModel error,  int selectedMemberId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<Document> documents,  bool isFetching,  bool isFetchingFailed,  bool isFetchingSuccess,  ErrorModel error,  int selectedMemberId)  $default,) {final _that = this;
 switch (_that) {
 case _DocumentsState():
-return $default(_that.documents,_that.isFetching,_that.isFetchingFailed,_that.isFetchingSucces,_that.error,_that.selectedMemberId);}
+return $default(_that.documents,_that.isFetching,_that.isFetchingFailed,_that.isFetchingSuccess,_that.error,_that.selectedMemberId);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -456,10 +456,10 @@ return $default(_that.documents,_that.isFetching,_that.isFetchingFailed,_that.is
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<Document> documents,  bool isFetching,  bool isFetchingFailed,  bool isFetchingSucces,  ErrorModel error,  int selectedMemberId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<Document> documents,  bool isFetching,  bool isFetchingFailed,  bool isFetchingSuccess,  ErrorModel error,  int selectedMemberId)?  $default,) {final _that = this;
 switch (_that) {
 case _DocumentsState() when $default != null:
-return $default(_that.documents,_that.isFetching,_that.isFetchingFailed,_that.isFetchingSucces,_that.error,_that.selectedMemberId);case _:
+return $default(_that.documents,_that.isFetching,_that.isFetchingFailed,_that.isFetchingSuccess,_that.error,_that.selectedMemberId);case _:
   return null;
 
 }
@@ -471,7 +471,7 @@ return $default(_that.documents,_that.isFetching,_that.isFetchingFailed,_that.is
 
 
 class _DocumentsState implements DocumentsState {
-  const _DocumentsState({required final  List<Document> documents, required this.isFetching, required this.isFetchingFailed, required this.isFetchingSucces, required this.error, required this.selectedMemberId}): _documents = documents;
+  const _DocumentsState({required final  List<Document> documents, required this.isFetching, required this.isFetchingFailed, required this.isFetchingSuccess, required this.error, required this.selectedMemberId}): _documents = documents;
   
 
  final  List<Document> _documents;
@@ -483,7 +483,7 @@ class _DocumentsState implements DocumentsState {
 
 @override final  bool isFetching;
 @override final  bool isFetchingFailed;
-@override final  bool isFetchingSucces;
+@override final  bool isFetchingSuccess;
 @override final  ErrorModel error;
 @override final  int selectedMemberId;
 
@@ -497,16 +497,16 @@ _$DocumentsStateCopyWith<_DocumentsState> get copyWith => __$DocumentsStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentsState&&const DeepCollectionEquality().equals(other._documents, _documents)&&(identical(other.isFetching, isFetching) || other.isFetching == isFetching)&&(identical(other.isFetchingFailed, isFetchingFailed) || other.isFetchingFailed == isFetchingFailed)&&(identical(other.isFetchingSucces, isFetchingSucces) || other.isFetchingSucces == isFetchingSucces)&&(identical(other.error, error) || other.error == error)&&(identical(other.selectedMemberId, selectedMemberId) || other.selectedMemberId == selectedMemberId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocumentsState&&const DeepCollectionEquality().equals(other._documents, _documents)&&(identical(other.isFetching, isFetching) || other.isFetching == isFetching)&&(identical(other.isFetchingFailed, isFetchingFailed) || other.isFetchingFailed == isFetchingFailed)&&(identical(other.isFetchingSuccess, isFetchingSuccess) || other.isFetchingSuccess == isFetchingSuccess)&&(identical(other.error, error) || other.error == error)&&(identical(other.selectedMemberId, selectedMemberId) || other.selectedMemberId == selectedMemberId));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_documents),isFetching,isFetchingFailed,isFetchingSucces,error,selectedMemberId);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_documents),isFetching,isFetchingFailed,isFetchingSuccess,error,selectedMemberId);
 
 @override
 String toString() {
-  return 'DocumentsState(documents: $documents, isFetching: $isFetching, isFetchingFailed: $isFetchingFailed, isFetchingSucces: $isFetchingSucces, error: $error, selectedMemberId: $selectedMemberId)';
+  return 'DocumentsState(documents: $documents, isFetching: $isFetching, isFetchingFailed: $isFetchingFailed, isFetchingSuccess: $isFetchingSuccess, error: $error, selectedMemberId: $selectedMemberId)';
 }
 
 
@@ -517,7 +517,7 @@ abstract mixin class _$DocumentsStateCopyWith<$Res> implements $DocumentsStateCo
   factory _$DocumentsStateCopyWith(_DocumentsState value, $Res Function(_DocumentsState) _then) = __$DocumentsStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<Document> documents, bool isFetching, bool isFetchingFailed, bool isFetchingSucces, ErrorModel error, int selectedMemberId
+ List<Document> documents, bool isFetching, bool isFetchingFailed, bool isFetchingSuccess, ErrorModel error, int selectedMemberId
 });
 
 
@@ -534,12 +534,12 @@ class __$DocumentsStateCopyWithImpl<$Res>
 
 /// Create a copy of DocumentsState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? documents = null,Object? isFetching = null,Object? isFetchingFailed = null,Object? isFetchingSucces = null,Object? error = null,Object? selectedMemberId = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? documents = null,Object? isFetching = null,Object? isFetchingFailed = null,Object? isFetchingSuccess = null,Object? error = null,Object? selectedMemberId = null,}) {
   return _then(_DocumentsState(
 documents: null == documents ? _self._documents : documents // ignore: cast_nullable_to_non_nullable
 as List<Document>,isFetching: null == isFetching ? _self.isFetching : isFetching // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingFailed: null == isFetchingFailed ? _self.isFetchingFailed : isFetchingFailed // ignore: cast_nullable_to_non_nullable
-as bool,isFetchingSucces: null == isFetchingSucces ? _self.isFetchingSucces : isFetchingSucces // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingSuccess: null == isFetchingSuccess ? _self.isFetchingSuccess : isFetchingSuccess // ignore: cast_nullable_to_non_nullable
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,selectedMemberId: null == selectedMemberId ? _self.selectedMemberId : selectedMemberId // ignore: cast_nullable_to_non_nullable
 as int,

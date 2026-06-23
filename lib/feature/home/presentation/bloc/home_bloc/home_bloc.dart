@@ -18,7 +18,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         state.copyWith(
           isDataFetching: true,
           isDataFetchingFailed: false,
-          isDataFetchingsuccess: false,
+          isDataFetchingSuccess: false,
         ),
       );
       final result = await getHomeDataUseCase(
@@ -36,7 +36,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         (homeData) => emit(
           state.copyWith(
             isDataFetching: false,
-            isDataFetchingsuccess: true,
+            isDataFetchingSuccess: true,
             homeData: homeData,
           ),
         ),

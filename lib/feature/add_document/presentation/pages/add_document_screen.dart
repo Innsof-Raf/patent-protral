@@ -161,8 +161,8 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                             ),
                         items: state.documentTypes
                             .map(
-                              (documentType) => AddDocumentScreenHelpers
-                                  .createDocumentTypeDropDownItem(
+                              (documentType) =>
+                                  AddDocumentScreenHelpers.createDocumentTypeDropDownItem(
                                     document: documentType,
                                   ),
                             )
@@ -275,9 +275,8 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                                 documentPath:
                                     _selectedDocumentNotifier.value!.path,
                                 expireDate: _expireDateNotifier.value,
-                                idDocument:
-                                    _selectedDocumentTypeNotifier.value!
-                                        .toString(),
+                                idDocument: _selectedDocumentTypeNotifier.value!
+                                    .toString(),
                               ),
                             ),
                           );

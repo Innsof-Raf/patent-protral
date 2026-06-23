@@ -5,8 +5,8 @@ sealed class ReportsEvent with _$ReportsEvent {
   const factory ReportsEvent.getReports({required ReportsParams params}) =
       GetReports;
 
-  const factory ReportsEvent.stroeRport({required ReportsParams params}) =
-      StroeRport;
+  const factory ReportsEvent.storeReport({required ReportsParams params}) =
+      StoreReport;
 
   const factory ReportsEvent.clearReport() = ClearReport;
 }
