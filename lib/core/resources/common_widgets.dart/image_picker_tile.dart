@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
-
-import '../app_colors.dart';
 
 class ImagePickerTile extends StatelessWidget {
   final String iconPath;
@@ -17,29 +16,43 @@ class ImagePickerTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        elevation: 0,
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        padding: EdgeInsets.zero,
-        backgroundColor: AppColors.white,
-        minimumSize: const Size(0, 0),
-      ),
-      onPressed: onPressed,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              color: AppColors.dividerGrayColor,
-              shape: BoxShape.circle,
+    final theme = Theme.of(context);
+    return InkWell(
+      onTap: onPressed,
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: theme.colorScheme.outlineVariant, width: 1),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: theme.colorScheme.primaryContainer,
+                shape: BoxShape.circle,
+              ),
+              padding: const EdgeInsets.all(12),
+              child: SvgPicture.asset(
+                iconPath,
+                colorFilter: ColorFilter.mode(
+                  theme.colorScheme.onPrimaryContainer,
+                  BlendMode.srcIn,
+                ),
+              ),
             ),
-            padding: const EdgeInsets.all(12),
-            child: SvgPicture.asset(iconPath),
-          ),
-          const SizedBox(height: 4),
-          Text(title, style: AppTextStyles.bodyTextRoboto),
-        ],
+            const Gap(12),
+            Text(
+              title,
+              style: AppTextStyles.bodyTextRoboto.copyWith(
+                fontWeight: FontWeight.w600,
+                color: theme.colorScheme.onSurface,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

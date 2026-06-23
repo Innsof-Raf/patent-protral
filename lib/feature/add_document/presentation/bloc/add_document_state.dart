@@ -6,6 +6,9 @@ sealed class AddDocumentState with _$AddDocumentState {
     required bool isFetchingDocumentTypes,
     required bool isFetchingDocumentTypesFailed,
     required bool isFetchingDocumentTypesSuccess,
+    required bool isUploadingDocument,
+    required bool isUploadingDocumentFailed,
+    required bool isUploadingDocumentSuccess,
     required ErrorModel error,
     required List<DocumentType> documentTypes,
   }) = _AddDocumentState;
@@ -14,6 +17,9 @@ sealed class AddDocumentState with _$AddDocumentState {
     isFetchingDocumentTypes: false,
     isFetchingDocumentTypesFailed: false,
     isFetchingDocumentTypesSuccess: false,
+    isUploadingDocument: false,
+    isUploadingDocumentFailed: false,
+    isUploadingDocumentSuccess: false,
     documentTypes: [],
     error: ErrorModel(message: ''),
   );

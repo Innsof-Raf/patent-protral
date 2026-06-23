@@ -218,6 +218,8 @@ class AppStaticTexts {
   static const String selectMember = 'Select member';
   static const String selectExpireDate = 'Select expire date';
   static const String selectDocumentToUpload = 'Select document to upload';
+  static const String documentUploadedSuccessfully =
+      'Document uploaded successfully';
 
   // Cart
   static const String myCart = 'My Cart';

@@ -7,7 +7,6 @@ import 'package:patient_portal/core/resources/constant_messages.dart';
 import 'package:patient_portal/feature/add_document/data/datasources/add_document_remote_data_source.dart';
 import 'package:patient_portal/feature/add_document/domain/entities/document_type.dart';
 import 'package:patient_portal/feature/add_document/domain/repositories/add_document_repository.dart';
-
 import 'package:patient_portal/feature/add_document/domain/usecases/params/add_document_params.dart';
 
 class AddDocumentRepositoryImpl implements AddDocumentRepository {
@@ -24,6 +23,24 @@ class AddDocumentRepositoryImpl implements AddDocumentRepository {
         AddDocumentParams.getDocumentTypes(token: token),
       );
       return Right(documentTypes.map((type) => type.toEntity()).toList());
+    } on SocketException {
+      return const Left(NetworkFailure(ConstantMessages.noNetworkErrorMessage));
+    } on TimeoutException {
+      return const Left(
+        ServerFailure(ConstantMessages.connectionTimeOutFailureMessage),
+      );
+    } catch (e) {
+      return const Left(ServerFailure(ConstantMessages.serverFailureMessage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> uploadDocument({
+    required AddDocumentParams params,
+  }) async {
+    try {
+      final result = await remoteDataSource.uploadDocument(params);
+      return Right(result);
     } on SocketException {
       return const Left(NetworkFailure(ConstantMessages.noNetworkErrorMessage));
     } on TimeoutException {

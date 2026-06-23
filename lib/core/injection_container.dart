@@ -9,6 +9,7 @@ import 'package:patient_portal/feature/add_document/data/datasources/add_documen
 import 'package:patient_portal/feature/add_document/data/repositories/add_document_repository_impl.dart';
 import 'package:patient_portal/feature/add_document/domain/repositories/add_document_repository.dart';
 import 'package:patient_portal/feature/add_document/domain/usecases/get_document_types_usecase.dart';
+import 'package:patient_portal/feature/add_document/domain/usecases/upload_document_usecase.dart';
 import 'package:patient_portal/feature/add_document/presentation/bloc/add_document_bloc.dart';
 import 'package:patient_portal/feature/add_member/data/datasources/add_member_remote_data_source.dart';
 import 'package:patient_portal/feature/add_member/data/repositories/add_member_repository_impl.dart';
@@ -102,10 +103,16 @@ final sl = GetIt.instance;
 Future<void> init() async {
   //! Features - Add document
   // Bloc
-  sl.registerFactory(() => AddDocumentBloc(getDocumentTypesUseCase: sl()));
+  sl.registerFactory(
+    () => AddDocumentBloc(
+      getDocumentTypesUseCase: sl(),
+      uploadDocumentUseCase: sl(),
+    ),
+  );
 
   // Use cases
   sl.registerLazySingleton(() => GetDocumentTypesUseCase(sl()));
+  sl.registerLazySingleton(() => UploadDocumentUseCase(repository: sl()));
 
   // Repository
   sl.registerLazySingleton<AddDocumentRepository>(
