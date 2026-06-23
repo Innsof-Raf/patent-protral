@@ -26,19 +26,15 @@ class MainShellAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: theme.colorScheme.surface,
       surfaceTintColor: theme.colorScheme.surface,
       elevation: 0,
-      scrolledUnderElevation: 3,
+      scrolledUnderElevation: 2,
       shadowColor: theme.colorScheme.shadow.withValues(alpha: 0.1),
-      toolbarHeight: 70,
-      titleSpacing: 0,
+      toolbarHeight: 64,
       centerTitle: centerTitle,
-      leadingWidth: 72,
-      leading: Center(
-        child: Builder(
-          builder: (context) => MainShellIconButton(
-            iconPath: Assets.icons.drawerIcon.path,
-            tooltip: 'Menu',
-            onPressed: Scaffold.of(context).openDrawer,
-          ),
+      leading: Builder(
+        builder: (context) => MainShellIconButton(
+          iconPath: Assets.icons.drawerIcon.path,
+          tooltip: 'Menu',
+          onPressed: Scaffold.of(context).openDrawer,
         ),
       ),
       title:
@@ -49,16 +45,16 @@ class MainShellAppBar extends StatelessWidget implements PreferredSizeWidget {
             overflow: TextOverflow.ellipsis,
             style: AppTextStyles.extraLargeRobotoBold.copyWith(
               color: theme.colorScheme.onSurface,
-              fontWeight: FontWeight.w800,
-              letterSpacing: -0.5,
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
             ),
           ),
-      actions: [...actions, const Gap(12)],
+      actions: [...actions, const Gap(8)],
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(70);
+  Size get preferredSize => const Size.fromHeight(64);
 }
 
 class MainShellLogoTitle extends StatelessWidget {

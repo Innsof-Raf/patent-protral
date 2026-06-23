@@ -33,11 +33,13 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
             : Brightness.dark,
       ),
       backgroundColor: theme.colorScheme.surface,
+      surfaceTintColor: theme.colorScheme.surface,
       elevation: 0,
+      scrolledUnderElevation: 2,
       centerTitle: false,
-      titleSpacing: 0,
+      toolbarHeight: 64,
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios_new_rounded),
+        icon: const Icon(Icons.chevron_left_rounded, size: 30),
         onPressed: () => Navigator.of(context).pop(),
       ),
       title: Row(
@@ -69,6 +71,7 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
                   overflow: TextOverflow.ellipsis,
                   style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                     fontWeight: FontWeight.bold,
+                    fontSize: 16,
                   ),
                 ),
                 Text(
@@ -77,6 +80,7 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ).format(consultaionDateTime),
                   style: AppTextStyles.bodyTextRoboto.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
+                    fontSize: 12,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -121,5 +125,5 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 1);
+  Size get preferredSize => const Size.fromHeight(64);
 }

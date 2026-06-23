@@ -7,6 +7,7 @@ import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -47,18 +48,8 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: theme.colorScheme.surface,
-        surfaceTintColor: theme.colorScheme.surface,
-        elevation: 0,
-        scrolledUnderElevation: 3,
-        shadowColor: theme.colorScheme.shadow.withValues(alpha: 0.1),
-        toolbarHeight: 70,
-        centerTitle: false,
-        titleSpacing: 0,
-        automaticallyImplyLeading: false,
-        leadingWidth: 72,
-        title: BlocBuilder<UserBloc, UserState>(
+      appBar: CommonAppbar(
+        titleWidget: BlocBuilder<UserBloc, UserState>(
           builder: (userContext, userState) {
             return BlocBuilder<DocumentsBloc, DocumentsState>(
               builder: (context, state) {
@@ -97,67 +88,53 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
                   child: Container(
                     decoration: BoxDecoration(
                       color: theme.colorScheme.surfaceContainerHighest
-                          .withValues(alpha: .4),
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(
-                        color: theme.colorScheme.outlineVariant.withValues(
-                          alpha: 0.5,
-                        ),
-                      ),
+                          .withValues(alpha: .3),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 8, 12, 8),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 6,
+                      ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: theme.colorScheme.primary.withValues(
-                                  alpha: 0.2,
-                                ),
-                                width: 1.5,
-                              ),
-                            ),
-                            child: ClipOval(
-                              child: CachedNetworkImage(
-                                imageUrl:
-                                    'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
-                                height: 28,
-                                width: 28,
-                                fit: BoxFit.cover,
-                                errorWidget: (context, url, error) {
-                                  return Image.asset(
-                                    Assets
-                                        .images
-                                        .memberDefaultProfileImage
-                                        .path,
-                                    height: 28,
-                                    width: 28,
-                                    fit: BoxFit.cover,
-                                  );
-                                },
-                              ),
+                          ClipOval(
+                            child: CachedNetworkImage(
+                              imageUrl:
+                                  'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+                              height: 24,
+                              width: 24,
+                              fit: BoxFit.cover,
+                              errorWidget: (context, url, error) {
+                                return Image.asset(
+                                  Assets.images.memberDefaultProfileImage.path,
+                                  height: 24,
+                                  width: 24,
+                                  fit: BoxFit.cover,
+                                );
+                              },
                             ),
                           ),
-                          const Gap(10),
+                          const Gap(8),
                           ConstrainedBox(
-                            constraints: const BoxConstraints(maxWidth: 130),
+                            constraints: const BoxConstraints(maxWidth: 120),
                             child: Text(
                               selectedName,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                                 color: theme.colorScheme.onSurface,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),
-                          const Gap(4),
+                          const Gap(2),
                           Icon(
                             Icons.keyboard_arrow_down_rounded,
-                            color: theme.colorScheme.primary,
-                            size: 20,
+                            color: theme.colorScheme.onSurfaceVariant,
+                            size: 18,
                           ),
                         ],
                       ),
@@ -167,31 +144,6 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
               },
             );
           },
-        ),
-        leading: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: IconButton(
-              tooltip: 'Back',
-              style: IconButton.styleFrom(
-                backgroundColor: theme.colorScheme.surfaceContainerHighest
-                    .withValues(alpha: .4),
-                foregroundColor: theme.colorScheme.onSurface,
-                fixedSize: const Size.square(46),
-                padding: EdgeInsets.zero,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  side: BorderSide(
-                    color: theme.colorScheme.outlineVariant.withValues(
-                      alpha: 0.2,
-                    ),
-                  ),
-                ),
-              ),
-              onPressed: () => Navigator.of(context).pop(),
-              icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
-            ),
-          ),
         ),
       ),
       body: BlocBuilder<DocumentsBloc, DocumentsState>(

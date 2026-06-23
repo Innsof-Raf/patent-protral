@@ -20,16 +20,6 @@ class ReportsAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         IconButton(
           tooltip: 'Search reports',
-          style: IconButton.styleFrom(
-            backgroundColor: Theme.of(
-              context,
-            ).colorScheme.surfaceContainerHighest.withValues(alpha: .4),
-            fixedSize: const Size.square(46),
-            padding: EdgeInsets.zero,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
-            ),
-          ),
           onPressed: () {},
           icon: const Icon(Icons.search_rounded, size: 24),
         ),
@@ -38,7 +28,7 @@ class ReportsAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(70);
+  Size get preferredSize => const Size.fromHeight(64);
 }
 
 class _ReportsMemberSelector extends StatelessWidget {
@@ -54,7 +44,7 @@ class _ReportsMemberSelector extends StatelessWidget {
           builder: (context, state) {
             final selectedMember = userState.user!.members
                 .where((element) => element.id == state.selectedMemberId)
-                .cast<dynamic?>()
+                .cast<dynamic>()
                 .firstOrNull;
             final selectedName =
                 state.selectedMemberId == 0 || selectedMember == null
@@ -86,66 +76,54 @@ class _ReportsMemberSelector extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   color: theme.colorScheme.surfaceContainerHighest.withValues(
-                    alpha: .4,
+                    alpha: .3,
                   ),
-                  borderRadius: BorderRadius.circular(15),
-                  border: Border.all(
-                    color: theme.colorScheme.outlineVariant.withValues(
-                      alpha: 0.5,
-                    ),
-                  ),
+                  borderRadius: BorderRadius.circular(12),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 8, 12, 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: theme.colorScheme.primary.withValues(
-                              alpha: 0.2,
-                            ),
-                            width: 1.5,
-                          ),
-                        ),
-                        child: ClipOval(
-                          child: CachedNetworkImage(
-                            imageUrl:
-                                'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
-                            height: 28,
-                            width: 28,
-                            fit: BoxFit.cover,
-                            errorWidget: (context, url, error) {
-                              return Image.asset(
-                                Assets.images.memberDefaultProfileImage.path,
-                                height: 28,
-                                width: 28,
-                                fit: BoxFit.cover,
-                              );
-                            },
-                          ),
+                      ClipOval(
+                        child: CachedNetworkImage(
+                          imageUrl:
+                              'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+                          height: 24,
+                          width: 24,
+                          fit: BoxFit.cover,
+                          errorWidget: (context, url, error) {
+                            return Image.asset(
+                              Assets.images.memberDefaultProfileImage.path,
+                              height: 24,
+                              width: 24,
+                              fit: BoxFit.cover,
+                            );
+                          },
                         ),
                       ),
-                      const Gap(10),
+                      const Gap(8),
                       ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 130),
+                        constraints: const BoxConstraints(maxWidth: 120),
                         child: Text(
                           selectedName,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                             color: theme.colorScheme.onSurface,
-                            fontWeight: FontWeight.w700,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
-                      const Gap(4),
+                      const Gap(2),
                       Icon(
                         Icons.keyboard_arrow_down_rounded,
-                        color: theme.colorScheme.primary,
-                        size: 20,
+                        color: theme.colorScheme.onSurfaceVariant,
+                        size: 18,
                       ),
                     ],
                   ),

@@ -3,7 +3,8 @@ import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
-  final String title;
+  final String? title;
+  final Widget? titleWidget;
   final List<Widget>? actions;
   final bool centerTitle;
   final VoidCallback? onLeadingPressed;
@@ -12,13 +13,14 @@ class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
 
   const CommonAppbar({
     super.key,
-    required this.title,
+    this.title,
+    this.titleWidget,
     this.actions,
     this.centerTitle = false,
     this.onLeadingPressed,
     this.backgroundColor,
     this.foregroundColor,
-  });
+  }) : assert(title != null || titleWidget != null);
 
   @override
   Widget build(BuildContext context) {
@@ -30,50 +32,32 @@ class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: backgroundColor ?? theme.colorScheme.surface,
       surfaceTintColor: theme.colorScheme.surface,
       elevation: 0,
-      scrolledUnderElevation: 3,
+      scrolledUnderElevation: 2,
       shadowColor: theme.colorScheme.shadow.withValues(alpha: 0.1),
-      toolbarHeight: 70,
-      titleSpacing: 0,
+      toolbarHeight: 64,
       centerTitle: centerTitle,
-      automaticallyImplyLeading: false,
-      leadingWidth: 72,
-      leading: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: IconButton(
-            tooltip: 'Back',
-            style: IconButton.styleFrom(
-              backgroundColor: theme.colorScheme.surfaceContainerHighest
-                  .withValues(alpha: .4),
-              foregroundColor: effectiveForegroundColor,
-              fixedSize: const Size.square(46),
-              padding: EdgeInsets.zero,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-                side: BorderSide(
-                  color: theme.colorScheme.outlineVariant.withValues(
-                    alpha: 0.2,
-                  ),
-                ),
-              ),
+      leading: onLeadingPressed != null || Navigator.of(context).canPop()
+          ? IconButton(
+              icon: const Icon(Icons.chevron_left_rounded, size: 30),
+              onPressed: onLeadingPressed ?? () => Navigator.of(context).pop(),
+              color: effectiveForegroundColor,
+              tooltip: 'Back',
+            )
+          : null,
+      title:
+          titleWidget ??
+          Text(
+            title!,
+            style: AppTextStyles.extraLargeRobotoBold.copyWith(
+              color: effectiveForegroundColor,
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
             ),
-            icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
-            onPressed: onLeadingPressed ?? () => Navigator.of(context).pop(),
           ),
-        ),
-      ),
-      title: Text(
-        title,
-        style: AppTextStyles.extraLargeRobotoBold.copyWith(
-          color: effectiveForegroundColor,
-          fontWeight: FontWeight.w800,
-          letterSpacing: -0.5,
-        ),
-      ),
-      actions: [...?actions, const Gap(12)],
+      actions: [...?actions, const Gap(8)],
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(70.0);
+  Size get preferredSize => const Size.fromHeight(55);
 }
