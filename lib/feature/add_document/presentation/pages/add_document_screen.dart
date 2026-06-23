@@ -29,18 +29,22 @@ class AddDocumentScreen extends StatefulWidget {
 
 class _AddDocumentScreenState extends State<AddDocumentScreen> {
   final _formKey = GlobalKey<FormState>();
-  DateTime? _expireDate;
-  int? _selectedMember;
-  int? _selectedDocumentType;
   late final TextEditingController _expireDateController;
   late final TextEditingController _documentNameController;
-  File? _selectedDocument;
+  late final ValueNotifier<DateTime?> _expireDateNotifier;
+  late final ValueNotifier<int?> _selectedMemberNotifier;
+  late final ValueNotifier<int?> _selectedDocumentTypeNotifier;
+  late final ValueNotifier<File?> _selectedDocumentNotifier;
 
   @override
   void initState() {
     super.initState();
     _expireDateController = TextEditingController();
     _documentNameController = TextEditingController();
+    _expireDateNotifier = ValueNotifier<DateTime?>(null);
+    _selectedMemberNotifier = ValueNotifier<int?>(null);
+    _selectedDocumentTypeNotifier = ValueNotifier<int?>(null);
+    _selectedDocumentNotifier = ValueNotifier<File?>(null);
     _fetchDocumentTypes();
   }
 
@@ -48,6 +52,10 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
   void dispose() {
     _expireDateController.dispose();
     _documentNameController.dispose();
+    _expireDateNotifier.dispose();
+    _selectedMemberNotifier.dispose();
+    _selectedDocumentTypeNotifier.dispose();
+    _selectedDocumentNotifier.dispose();
     super.dispose();
   }
 
@@ -109,53 +117,60 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  CommonDropdownField<int>(
-                    labelText: AppStaticTexts.member,
-                    value: _selectedMember,
-                    validator: (value) =>
-                        AddDocumentScreenHelpers.validateSelectedMember(
-                          value: value,
-                          selectedMember: _selectedMember,
-                        ),
-                    items: context
-                        .read<UserBloc>()
-                        .state
-                        .user!
-                        .members
-                        .map(
-                          (member) =>
-                              AddDocumentScreenHelpers.createMemberDropDownItem(
-                                member: member,
-                              ),
-                        )
-                        .toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        _selectedMember = value;
-                      });
+                  ValueListenableBuilder<int?>(
+                    valueListenable: _selectedMemberNotifier,
+                    builder: (context, selectedMember, child) {
+                      return CommonDropdownField<int>(
+                        labelText: AppStaticTexts.member,
+                        value: selectedMember,
+                        validator: (value) =>
+                            AddDocumentScreenHelpers.validateSelectedMember(
+                              value: value,
+                              selectedMember: _selectedMemberNotifier.value,
+                            ),
+                        items: context
+                            .read<UserBloc>()
+                            .state
+                            .user!
+                            .members
+                            .map(
+                              (member) =>
+                                  AddDocumentScreenHelpers.createMemberDropDownItem(
+                                    member: member,
+                                  ),
+                            )
+                            .toList(),
+                        onChanged: (value) {
+                          _selectedMemberNotifier.value = value;
+                        },
+                      );
                     },
                   ),
                   const Gap(24),
-                  CommonDropdownField<int>(
-                    labelText: AppStaticTexts.documentType,
-                    value: _selectedDocumentType,
-                    validator: (value) =>
-                        AddDocumentScreenHelpers.validateDocumentType(
-                          value: value,
-                          selectedDocumentType: _selectedDocumentType,
-                        ),
-                    items: state.documentTypes
-                        .map(
-                          (documentType) =>
-                              AddDocumentScreenHelpers.createDocumentTypeDropDownItem(
-                                document: documentType,
-                              ),
-                        )
-                        .toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        _selectedDocumentType = value;
-                      });
+                  ValueListenableBuilder<int?>(
+                    valueListenable: _selectedDocumentTypeNotifier,
+                    builder: (context, selectedDocumentType, child) {
+                      return CommonDropdownField<int>(
+                        labelText: AppStaticTexts.documentType,
+                        value: selectedDocumentType,
+                        validator: (value) =>
+                            AddDocumentScreenHelpers.validateDocumentType(
+                              value: value,
+                              selectedDocumentType:
+                                  _selectedDocumentTypeNotifier.value,
+                            ),
+                        items: state.documentTypes
+                            .map(
+                              (documentType) => AddDocumentScreenHelpers
+                                  .createDocumentTypeDropDownItem(
+                                    document: documentType,
+                                  ),
+                            )
+                            .toList(),
+                        onChanged: (value) {
+                          _selectedDocumentTypeNotifier.value = value;
+                        },
+                      );
                     },
                   ),
                   const Gap(24),
@@ -166,22 +181,20 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                     validator: (value) =>
                         AddDocumentScreenHelpers.validateExpireDate(
                           value: value,
-                          expireDate: _expireDate,
+                          expireDate: _expireDateNotifier.value,
                         ),
                     onTap: () async {
                       final date = await AddDocumentScreenHelpers.getExpireDate(
                         initialDate:
-                            _expireDate ??
+                            _expireDateNotifier.value ??
                             DateTime.now().add(const Duration(days: 1)),
                         context: context,
                       );
                       if (date != null) {
-                        setState(() {
-                          _expireDate = date;
-                          _expireDateController.text = DateFormat(
-                            'dd/MM/yyyy',
-                          ).format(date);
-                        });
+                        _expireDateNotifier.value = date;
+                        _expireDateController.text = DateFormat(
+                          'dd/MM/yyyy',
+                        ).format(date);
                       }
                     },
                     suffixIcon: Icon(
@@ -198,7 +211,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                     validator: (value) =>
                         AddDocumentScreenHelpers.validateSelectedDocument(
                           value: value,
-                          selectedDocument: _selectedDocument,
+                          selectedDocument: _selectedDocumentNotifier.value,
                         ),
                     onTap: () async {
                       final result =
@@ -206,10 +219,8 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                             context: context,
                           );
                       if (result != null) {
-                        setState(() {
-                          _selectedDocument = result.file;
-                          _documentNameController.text = result.name;
-                        });
+                        _selectedDocumentNotifier.value = result.file;
+                        _documentNameController.text = result.name;
                       }
                     },
                     suffixIcon: Padding(
@@ -259,11 +270,14 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                                     .state
                                     .user!
                                     .accessToken,
-                                memberId: _selectedMember!,
+                                memberId: _selectedMemberNotifier.value!,
                                 documentName: _documentNameController.text,
-                                documentPath: _selectedDocument!.path,
-                                expireDate: _expireDate,
-                                idDocument: _selectedDocumentType!.toString(),
+                                documentPath:
+                                    _selectedDocumentNotifier.value!.path,
+                                expireDate: _expireDateNotifier.value,
+                                idDocument:
+                                    _selectedDocumentTypeNotifier.value!
+                                        .toString(),
                               ),
                             ),
                           );
