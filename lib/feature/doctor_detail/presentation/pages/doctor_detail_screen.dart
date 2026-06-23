@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 
 @RoutePage(name: 'DoctorDetailRoute')
@@ -72,15 +73,14 @@ class DoctorDetailScreen extends StatelessWidget {
                       children: [
                         Text(
                           'Dr.Manu James',
-                          style: theme.textTheme.displayLarge?.copyWith(
+                          style: AppTextStyles.xXLargeRobotoSemiBold.copyWith(
                             color: theme.colorScheme.onPrimary,
                           ),
                         ),
                         Text(
                           'Internal Medicine',
-                          style: theme.textTheme.titleMedium?.copyWith(
-                            color: theme.colorScheme.onPrimary,
-                          ),
+                          style: AppTextStyles.subHeadingSemiBoldRoboto
+                              .copyWith(color: theme.colorScheme.onPrimary),
                         ),
                       ],
                     ),

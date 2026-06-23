@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_section_card.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member_document.dart';
 
@@ -18,7 +19,7 @@ class MemberDocumentsSection extends StatelessWidget {
         children: [
           Text(
             'Documents',
-            style: theme.textTheme.titleMedium?.copyWith(
+            style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w800,
             ),
@@ -27,7 +28,7 @@ class MemberDocumentsSection extends StatelessWidget {
           if (documents.isEmpty)
             Text(
               'No documents uploaded for this member.',
-              style: theme.textTheme.bodyMedium?.copyWith(
+              style: AppTextStyles.largeRobotoNormal.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
                 fontWeight: FontWeight.w500,
               ),
@@ -73,7 +74,7 @@ class _DocumentTile extends StatelessWidget {
               document.docName,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
-              style: theme.textTheme.bodyMedium?.copyWith(
+              style: AppTextStyles.largeRobotoNormal.copyWith(
                 color: theme.colorScheme.onSurface,
                 fontWeight: FontWeight.w800,
               ),

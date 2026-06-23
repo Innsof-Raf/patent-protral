@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/main_shell_app_bar.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/reports/domain/usecases/params/reports_params.dart';
@@ -51,13 +52,14 @@ class _ReportsMemberSelector extends StatelessWidget {
       builder: (userContext, userState) {
         return BlocBuilder<ReportsBloc, ReportsState>(
           builder: (context, state) {
-            final selectedName = state.selectedMemberId == 0
+            final selectedMember = userState.user!.members
+                .where((element) => element.id == state.selectedMemberId)
+                .cast<dynamic?>()
+                .firstOrNull;
+            final selectedName =
+                state.selectedMemberId == 0 || selectedMember == null
                 ? 'All reports'
-                : userState.user!.members
-                      .singleWhere(
-                        (element) => element.id == state.selectedMemberId,
-                      )
-                      .name;
+                : selectedMember.name;
 
             return PopupMenuButton<int>(
               initialValue: state.selectedMemberId,
@@ -133,7 +135,7 @@ class _ReportsMemberSelector extends StatelessWidget {
                           selectedName,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: theme.textTheme.titleSmall?.copyWith(
+                          style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                             color: theme.colorScheme.onSurface,
                             fontWeight: FontWeight.w700,
                           ),

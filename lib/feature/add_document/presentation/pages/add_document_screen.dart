@@ -122,15 +122,14 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                   children: [
                     Text(
                       AppStaticTexts.documents,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
+                      style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                         color: theme.colorScheme.primary,
                       ),
                     ),
                     const Gap(4),
                     Text(
                       AppStaticTexts.documentsSubtitle,
-                      style: theme.textTheme.bodyMedium?.copyWith(
+                      style: AppTextStyles.largeRobotoNormal.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                       ),
                     ),

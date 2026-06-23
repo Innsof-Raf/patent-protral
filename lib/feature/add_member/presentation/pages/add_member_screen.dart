@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
@@ -109,10 +110,11 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                           children: [
                             Text(
                               AppStaticTexts.insuranceInformation,
-                              style: theme.textTheme.titleMedium?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: colorScheme.primary,
-                              ),
+                              style: AppTextStyles.subHeadingSemiBoldRoboto
+                                  .copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: colorScheme.primary,
+                                  ),
                             ),
                             const Gap(8),
                             InsuranceFormSection(
@@ -143,7 +145,6 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
   }
 
   Widget _buildInsuranceToggle(ColorScheme colorScheme) {
-    final theme = Theme.of(context);
     return ValueListenableBuilder(
       valueListenable: InsuranceHelpers.insuranceCheckBoxNotifier,
       builder: (context, value, child) => InkWell(
@@ -184,7 +185,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
               const Gap(12),
               Text(
                 AppStaticTexts.iHaveInsurance,
-                style: theme.textTheme.bodyLarge?.copyWith(
+                style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                   fontWeight: value ? FontWeight.bold : FontWeight.normal,
                   color: value ? colorScheme.primary : colorScheme.onSurface,
                 ),
@@ -238,7 +239,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                         widget.member == null
                             ? AppStaticTexts.saveMember
                             : AppStaticTexts.updateDetails,
-                        style: theme.textTheme.titleMedium?.copyWith(
+                        style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                           fontWeight: FontWeight.bold,
                           color: theme.colorScheme.onPrimary,
                         ),

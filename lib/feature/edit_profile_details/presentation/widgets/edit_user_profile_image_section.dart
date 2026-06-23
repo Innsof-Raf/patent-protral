@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/helpers/edit_profile_detail_screen_helpers.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/widgets/edit_profile_section_card.dart';
 
@@ -32,7 +33,7 @@ class EditUserProfileImageSection extends StatelessWidget {
               children: [
                 Text(
                   'Profile photo',
-                  style: theme.textTheme.titleMedium?.copyWith(
+                  style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                     color: theme.colorScheme.onSurface,
                     fontWeight: FontWeight.w800,
                   ),
@@ -42,7 +43,7 @@ class EditUserProfileImageSection extends StatelessWidget {
                   'Upload a clear photo for easier identification.',
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.bodySmall?.copyWith(
+                  style: AppTextStyles.bodyTextRoboto.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                     fontWeight: FontWeight.w600,
                   ),

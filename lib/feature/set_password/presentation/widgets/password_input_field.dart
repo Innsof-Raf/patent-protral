@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class PasswordInputField extends StatefulWidget {
   const PasswordInputField({
@@ -48,7 +49,7 @@ class _PasswordInputFieldState extends State<PasswordInputField> {
       children: [
         Text(
           widget.label,
-          style: theme.textTheme.labelLarge?.copyWith(
+          style: AppTextStyles.largeSemiBoldRoboto.copyWith(
             fontWeight: FontWeight.bold,
             color: colorScheme.onSurface.withValues(alpha: 0.8),
           ),
@@ -65,7 +66,7 @@ class _PasswordInputFieldState extends State<PasswordInputField> {
               obscuringCharacter: '*',
               textInputAction: widget.textInputAction,
               cursorColor: colorScheme.primary,
-              style: theme.textTheme.bodyLarge?.copyWith(
+              style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                 color: colorScheme.onSurface,
                 fontWeight: FontWeight.w500,
               ),
@@ -79,7 +80,7 @@ class _PasswordInputFieldState extends State<PasswordInputField> {
                   horizontal: 16,
                   vertical: 16,
                 ),
-                hintStyle: theme.textTheme.bodyMedium?.copyWith(
+                hintStyle: AppTextStyles.largeRobotoNormal.copyWith(
                   color: colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
                 ),
                 suffixIcon: IconButton(

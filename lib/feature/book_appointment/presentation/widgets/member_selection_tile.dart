@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
@@ -72,7 +73,7 @@ class MemberSelectionTile extends StatelessWidget {
                         member.name.isNotEmpty
                             ? member.name[0].toUpperCase()
                             : '?',
-                        style: theme.textTheme.titleMedium?.copyWith(
+                        style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                           color: colorScheme.onSecondaryContainer,
                           fontWeight: FontWeight.bold,
                         ),
@@ -87,7 +88,7 @@ class MemberSelectionTile extends StatelessWidget {
                 children: [
                   Text(
                     member.name,
-                    style: theme.textTheme.titleSmall?.copyWith(
+                    style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                       fontWeight: FontWeight.bold,
                       color: colorScheme.onSurface,
                     ),
@@ -95,7 +96,7 @@ class MemberSelectionTile extends StatelessWidget {
                   const Gap(2),
                   Text(
                     '${AppStaticTexts.age}: ${member.age}',
-                    style: theme.textTheme.bodySmall?.copyWith(
+                    style: AppTextStyles.bodyTextRoboto.copyWith(
                       color: colorScheme.onSurfaceVariant,
                     ),
                   ),

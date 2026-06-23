@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class EmptyNotificationsView extends StatelessWidget {
   const EmptyNotificationsView({super.key});
@@ -30,7 +31,7 @@ class EmptyNotificationsView extends StatelessWidget {
             Text(
               'All caught up!',
               textAlign: TextAlign.center,
-              style: theme.textTheme.headlineSmall?.copyWith(
+              style: AppTextStyles.extraLargeRobotoBold.copyWith(
                 fontWeight: FontWeight.w800,
                 color: colorScheme.onSurface,
               ),
@@ -39,7 +40,7 @@ class EmptyNotificationsView extends StatelessWidget {
             Text(
               "You don't have any new notifications at the moment. We'll keep you posted!",
               textAlign: TextAlign.center,
-              style: theme.textTheme.bodyMedium?.copyWith(
+              style: AppTextStyles.largeRobotoNormal.copyWith(
                 color: colorScheme.onSurfaceVariant,
                 height: 1.5,
               ),

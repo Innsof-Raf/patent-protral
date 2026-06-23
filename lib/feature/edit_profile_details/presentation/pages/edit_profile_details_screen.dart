@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/success_dialog.dart';
@@ -184,7 +185,7 @@ class _EditProfileIntroCard extends StatelessWidget {
         children: [
           Text(
             'Edit your profile',
-            style: theme.textTheme.headlineSmall?.copyWith(
+            style: AppTextStyles.extraLargeRobotoBold.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w800,
               height: 1.08,
@@ -193,7 +194,7 @@ class _EditProfileIntroCard extends StatelessWidget {
           const Gap(8),
           Text(
             'Review the essentials before continuing back to your profile.',
-            style: theme.textTheme.bodyMedium?.copyWith(
+            style: AppTextStyles.largeRobotoNormal.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w500,
             ),

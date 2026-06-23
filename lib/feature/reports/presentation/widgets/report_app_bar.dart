@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -66,7 +67,7 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Text(
                   doctorName,
                   overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.titleMedium?.copyWith(
+                  style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -74,7 +75,7 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
                   DateFormat(
                     'dd MMM yyyy, hh:mm a',
                   ).format(consultaionDateTime),
-                  style: theme.textTheme.labelSmall?.copyWith(
+                  style: AppTextStyles.bodyTextRoboto.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
                   overflow: TextOverflow.ellipsis,

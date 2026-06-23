@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -74,14 +75,14 @@ class LabItemDetailScreen extends StatelessWidget {
                 Dimens.constHeight,
                 Text(
                   selectedItem != null ? selectedItem.itemNmae : '',
-                  style: theme.textTheme.titleMedium?.copyWith(
+                  style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   AppStaticTexts.packageDescription,
-                  style: theme.textTheme.bodySmall?.copyWith(
+                  style: AppTextStyles.bodyTextRoboto.copyWith(
                     fontWeight: FontWeight.w600,
                     color: theme.colorScheme.onSurface,
                   ),
@@ -89,7 +90,7 @@ class LabItemDetailScreen extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   'subtitle subtitle subttilte subtitlte jhwhdfjfjfji efujiejfij bfuhufujnj\njfjjjfjfjj\ndjfjigjigjijhfhfh',
-                  style: theme.textTheme.bodySmall?.copyWith(
+                  style: AppTextStyles.bodyTextRoboto.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
                   maxLines: 3,
@@ -110,7 +111,7 @@ class LabItemDetailScreen extends StatelessWidget {
                         Flexible(
                           child: Text(
                             'Lorem ipsum dolor sit amet, consectetuer',
-                            style: theme.textTheme.bodyMedium?.copyWith(
+                            style: AppTextStyles.largeRobotoNormal.copyWith(
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -149,7 +150,7 @@ class LabItemDetailScreen extends StatelessWidget {
                     ),
                     child: Text(
                       AppStaticTexts.viewCart,
-                      style: theme.textTheme.labelLarge?.copyWith(
+                      style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                         color: theme.colorScheme.primary,
                         fontWeight: FontWeight.w700,
                       ),
@@ -176,7 +177,7 @@ class LabItemDetailScreen extends StatelessWidget {
                     ),
                     child: Text(
                       AppStaticTexts.addToCart,
-                      style: theme.textTheme.labelLarge?.copyWith(
+                      style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                         color: theme.colorScheme.onPrimary,
                         fontWeight: FontWeight.w700,
                       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
@@ -165,7 +166,7 @@ class _BottomNavItem extends StatelessWidget {
                   const SizedBox(height: 4),
                   AnimatedDefaultTextStyle(
                     duration: const Duration(milliseconds: 180),
-                    style: theme.textTheme.labelSmall!.copyWith(
+                    style: AppTextStyles.bodyTextRoboto.copyWith(
                       color: theme.colorScheme.onPrimary.withValues(
                         alpha: isSelected ? 1 : .72,
                       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class EditProfileTextField extends StatelessWidget {
   const EditProfileTextField({
@@ -45,7 +46,7 @@ class EditProfileTextField extends StatelessWidget {
       textCapitalization: textCapitalization,
       inputFormatters: inputFormatters,
       cursorColor: theme.colorScheme.primary,
-      style: theme.textTheme.bodyMedium?.copyWith(
+      style: AppTextStyles.largeRobotoNormal.copyWith(
         color: theme.colorScheme.onSurface,
         fontWeight: FontWeight.w700,
       ),
@@ -60,7 +61,7 @@ class EditProfileTextField extends StatelessWidget {
           horizontal: 16,
           vertical: 16,
         ),
-        labelStyle: theme.textTheme.bodyMedium?.copyWith(
+        labelStyle: AppTextStyles.largeRobotoNormal.copyWith(
           color: theme.colorScheme.onSurfaceVariant,
           fontWeight: FontWeight.w600,
         ),

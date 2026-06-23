@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
@@ -68,7 +69,7 @@ class CancelBookingPopUp extends StatelessWidget {
             const Gap(20),
             Text(
               AppStaticTexts.cancelBooking,
-              style: theme.textTheme.headlineSmall?.copyWith(
+              style: AppTextStyles.extraLargeRobotoBold.copyWith(
                 fontWeight: FontWeight.w800,
                 letterSpacing: -0.5,
               ),
@@ -76,7 +77,7 @@ class CancelBookingPopUp extends StatelessWidget {
             const Gap(8),
             Text(
               AppStaticTexts.cancelBookingMessage,
-              style: theme.textTheme.bodyMedium?.copyWith(
+              style: AppTextStyles.largeRobotoNormal.copyWith(
                 color: colorScheme.onSurfaceVariant,
                 height: 1.5,
               ),
@@ -155,7 +156,7 @@ class CancelBookingPopUp extends StatelessWidget {
                         const Gap(10),
                         Text(
                           '${DateFormat('dd MMM yyyy').format(appointmentDateTime)} ${AppStaticTexts.at} ${DateFormat.jm().format(appointmentDateTime)}',
-                          style: theme.textTheme.titleSmall?.copyWith(
+                          style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                             fontWeight: FontWeight.w800,
                             color: colorScheme.onSurface,
                           ),
@@ -257,7 +258,7 @@ class _ProfilePreview extends StatelessWidget {
             child: imageUrl == null
                 ? Text(
                     fallbackText ?? '?',
-                    style: theme.textTheme.headlineSmall?.copyWith(
+                    style: AppTextStyles.extraLargeRobotoBold.copyWith(
                       color: colorScheme.onPrimaryContainer,
                       fontWeight: FontWeight.w800,
                     ),
@@ -271,7 +272,7 @@ class _ProfilePreview extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
-          style: theme.textTheme.titleSmall?.copyWith(
+          style: AppTextStyles.largeSemiBoldRoboto.copyWith(
             fontWeight: FontWeight.w800,
             letterSpacing: -0.2,
           ),
@@ -285,7 +286,7 @@ class _ProfilePreview extends StatelessWidget {
           ),
           child: Text(
             subtitle,
-            style: theme.textTheme.labelSmall?.copyWith(
+            style: AppTextStyles.bodyTextRoboto.copyWith(
               color: colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w700,
               fontSize: 10,

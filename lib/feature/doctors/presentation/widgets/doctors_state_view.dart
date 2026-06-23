@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 
 class DoctorsLoadingView extends StatelessWidget {
@@ -32,7 +33,7 @@ class DoctorsMessageView extends StatelessWidget {
             Text(
               title,
               textAlign: TextAlign.center,
-              style: theme.textTheme.titleSmall?.copyWith(
+              style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                 color: theme.colorScheme.onSurface,
                 fontWeight: FontWeight.w800,
               ),
@@ -42,7 +43,7 @@ class DoctorsMessageView extends StatelessWidget {
               Text(
                 message!,
                 textAlign: TextAlign.center,
-                style: theme.textTheme.bodySmall?.copyWith(
+                style: AppTextStyles.bodyTextRoboto.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                   height: 1.35,
                 ),

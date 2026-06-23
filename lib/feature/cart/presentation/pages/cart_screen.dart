@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/feature/cart/presentation/widgets/cart_item_tile.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
@@ -23,7 +24,7 @@ class CartScreen extends StatelessWidget {
               ? Center(
                   child: Text(
                     AppStaticTexts.yourCartIsEmpty,
-                    style: theme.textTheme.titleMedium,
+                    style: AppTextStyles.subHeadingSemiBoldRoboto,
                   ),
                 )
               : GridView.builder(
@@ -60,14 +61,14 @@ class CartScreen extends StatelessWidget {
                     children: [
                       Text(
                         AppStaticTexts.total,
-                        style: theme.textTheme.titleSmall?.copyWith(
+                        style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                           color: theme.colorScheme.onSurface,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                       Text(
                         '${AppStaticTexts.qr} ${state.cartTotal}',
-                        style: theme.textTheme.headlineSmall?.copyWith(
+                        style: AppTextStyles.extraLargeRobotoBold.copyWith(
                           color: AppColors.lightGreen,
                           fontWeight: FontWeight.w700,
                         ),
@@ -90,7 +91,7 @@ class CartScreen extends StatelessWidget {
                     ),
                     child: Text(
                       AppStaticTexts.checkOut,
-                      style: theme.textTheme.labelLarge?.copyWith(
+                      style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                         color: theme.colorScheme.onPrimary,
                         fontWeight: FontWeight.w700,
                       ),

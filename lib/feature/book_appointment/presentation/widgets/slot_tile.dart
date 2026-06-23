@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/book_appointment/domain/entities/slot.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 
@@ -68,7 +69,7 @@ class SlotTile extends StatelessWidget {
         alignment: Alignment.center,
         child: Text(
           DateFormat.jm().format(slot.appdttm),
-          style: theme.textTheme.labelLarge?.copyWith(
+          style: AppTextStyles.largeSemiBoldRoboto.copyWith(
             color: getForegroundColor(),
             fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
             fontSize: 12,

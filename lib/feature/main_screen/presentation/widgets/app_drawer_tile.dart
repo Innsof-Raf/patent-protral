@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class AppDrawerTile extends StatelessWidget {
   const AppDrawerTile({
@@ -49,7 +50,7 @@ class AppDrawerTile extends StatelessWidget {
                     tileName,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.bodyMedium?.copyWith(
+                    style: AppTextStyles.largeRobotoNormal.copyWith(
                       color: foregroundColor.withValues(
                         alpha: isSelected ? 1 : .86,
                       ),

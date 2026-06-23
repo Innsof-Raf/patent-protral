@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class CommonErrorAlert extends StatelessWidget {
   final String content;
@@ -37,7 +38,7 @@ class CommonErrorAlert extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               AppStaticTexts.failed,
-              style: theme.textTheme.displayMedium?.copyWith(
+              style: AppTextStyles.extraLargeRobotoBold.copyWith(
                 color: theme.colorScheme.onSurface,
                 fontWeight: FontWeight.w700,
               ),
@@ -46,7 +47,7 @@ class CommonErrorAlert extends StatelessWidget {
             Text(
               content,
               textAlign: TextAlign.center,
-              style: theme.textTheme.titleMedium,
+              style: AppTextStyles.subHeadingSemiBoldRoboto,
             ),
             const SizedBox(height: 30),
             SvgPicture.asset(Assets.icons.errorIcon.path),
@@ -68,7 +69,7 @@ class CommonErrorAlert extends StatelessWidget {
                 },
                 child: Text(
                   AppStaticTexts.ok,
-                  style: theme.textTheme.titleSmall?.copyWith(
+                  style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                     color: theme.colorScheme.onPrimary,
                     fontWeight: FontWeight.w700,
                   ),

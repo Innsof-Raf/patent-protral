@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class AppointmentStatusDialog extends StatelessWidget {
   final String title;
@@ -41,7 +42,7 @@ class AppointmentStatusDialog extends StatelessWidget {
           Text(
             title,
             textAlign: TextAlign.center,
-            style: theme.textTheme.titleLarge?.copyWith(
+            style: AppTextStyles.extraLargeRobotoBold.copyWith(
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -49,7 +50,7 @@ class AppointmentStatusDialog extends StatelessWidget {
           Text(
             message,
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyMedium?.copyWith(
+            style: AppTextStyles.largeRobotoNormal.copyWith(
               color: colorScheme.onSurfaceVariant,
             ),
           ),

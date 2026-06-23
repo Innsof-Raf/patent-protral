@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class LoginBrandHeader extends StatelessWidget {
   const LoginBrandHeader({super.key});
@@ -7,12 +8,12 @@ class LoginBrandHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final titleStyle = theme.textTheme.titleMedium?.copyWith(
+    final titleStyle = AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
       fontWeight: FontWeight.w700,
       color: theme.colorScheme.onSurface,
       height: 1.2,
     );
-    final subtitleStyle = theme.textTheme.bodyMedium?.copyWith(
+    final subtitleStyle = AppTextStyles.largeRobotoNormal.copyWith(
       color: theme.colorScheme.onSurfaceVariant,
       height: 1.35,
     );

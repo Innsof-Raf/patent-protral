@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/reports/domain/entities/report.dart';
 
 import 'test_report_button.dart';
@@ -45,7 +46,7 @@ class MyReportTile extends StatelessWidget {
                     children: [
                       Text(
                         report.doctorName,
-                        style: theme.textTheme.titleMedium?.copyWith(
+                        style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                           fontWeight: FontWeight.w800,
                           color: theme.colorScheme.onSurface,
                           letterSpacing: -0.5,
@@ -68,7 +69,7 @@ class MyReportTile extends StatelessWidget {
                             DateFormat(
                               'dd MMM yyyy',
                             ).format(report.appointmentDate),
-                            style: theme.textTheme.bodySmall?.copyWith(
+                            style: AppTextStyles.bodyTextRoboto.copyWith(
                               color: theme.colorScheme.onSurfaceVariant,
                               fontWeight: FontWeight.w600,
                             ),
@@ -85,7 +86,7 @@ class MyReportTile extends StatelessWidget {
                             DateFormat(
                               'hh:mm a',
                             ).format(report.appointmentDate),
-                            style: theme.textTheme.bodySmall?.copyWith(
+                            style: AppTextStyles.bodyTextRoboto.copyWith(
                               color: theme.colorScheme.onSurfaceVariant,
                               fontWeight: FontWeight.w600,
                             ),

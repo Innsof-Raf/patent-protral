@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/widgets/appointment_empty_state.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/widgets/month_tile.dart';
@@ -51,7 +52,7 @@ class AppointmentsTabbarView extends StatelessWidget {
                 const Gap(12),
                 Text(
                   title,
-                  style: theme.textTheme.titleMedium?.copyWith(
+                  style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                     color: colorScheme.onSurface,
                     fontWeight: FontWeight.w800,
                     letterSpacing: -0.2,

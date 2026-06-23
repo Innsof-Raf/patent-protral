@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class MyAppointmentScreenTabBar extends StatelessWidget {
   final bool isSelected;
@@ -39,7 +40,7 @@ class MyAppointmentScreenTabBar extends StatelessWidget {
       ),
       child: Text(
         title,
-        style: theme.textTheme.labelLarge?.copyWith(
+        style: AppTextStyles.largeSemiBoldRoboto.copyWith(
           color: isSelected
               ? colorScheme.onPrimary
               : colorScheme.onSurfaceVariant,

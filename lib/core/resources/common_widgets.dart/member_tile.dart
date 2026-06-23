@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 
@@ -44,7 +45,7 @@ class MemberTile extends StatelessWidget {
             child: member.profileImage == null
                 ? Text(
                     member.name[0],
-                    style: theme.textTheme.headlineSmall?.copyWith(
+                    style: AppTextStyles.extraLargeRobotoBold.copyWith(
                       fontSize: 18,
                       color: AppColors.white,
                     ),
@@ -58,7 +59,7 @@ class MemberTile extends StatelessWidget {
             children: [
               Text(
                 member.name,
-                style: theme.textTheme.titleSmall?.copyWith(
+                style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                   fontSize: 12,
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
@@ -66,7 +67,7 @@ class MemberTile extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 member.age,
-                style: theme.textTheme.bodyMedium?.copyWith(
+                style: AppTextStyles.largeRobotoNormal.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
               ),

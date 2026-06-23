@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/gender_form_helpers.dart';
 import 'package:patient_portal/core/resources/common_helpers/member_form_validation_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/radio_button.dart';
@@ -19,8 +20,6 @@ class MemberDetailsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Form(
       key: memberFormKey,
       child: Column(
@@ -64,7 +63,7 @@ class MemberDetailsSection extends StatelessWidget {
           const SizedBox(height: 24),
           Text(
             'Gender',
-            style: theme.textTheme.titleSmall?.copyWith(
+            style: AppTextStyles.largeSemiBoldRoboto.copyWith(
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -129,7 +128,7 @@ class MemberDetailsSection extends StatelessWidget {
               ),
               Text(
                 value,
-                style: TextStyle(
+                style: AppTextStyles.largeRobotoNormal.copyWith(
                   color: isSelected
                       ? colorScheme.primary
                       : colorScheme.onSurface,

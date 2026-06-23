@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class HomeSectionHeader extends StatelessWidget {
   const HomeSectionHeader({
@@ -35,7 +36,7 @@ class HomeSectionHeader extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: theme.textTheme.titleMedium?.copyWith(
+                style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                   color: foregroundColor,
                   fontWeight: FontWeight.w800,
                   height: 1.15,
@@ -44,7 +45,7 @@ class HomeSectionHeader extends StatelessWidget {
               const Gap(5),
               Text(
                 subtitle,
-                style: theme.textTheme.bodySmall?.copyWith(
+                style: AppTextStyles.bodyTextRoboto.copyWith(
                   color: mutedColor,
                   height: 1.35,
                 ),

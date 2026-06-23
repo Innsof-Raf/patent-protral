@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 import 'add_member_screen_helpers.dart';
 
@@ -50,7 +51,7 @@ class ProfileImageSection extends StatelessWidget {
             children: [
               Text(
                 AppStaticTexts.profilePicture,
-                style: theme.textTheme.titleMedium?.copyWith(
+                style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                   fontWeight: FontWeight.bold,
                   color: colorScheme.onSurface,
                 ),
@@ -58,7 +59,7 @@ class ProfileImageSection extends StatelessWidget {
               const Gap(4),
               Text(
                 AppStaticTexts.uploadMemberPhoto,
-                style: theme.textTheme.bodySmall?.copyWith(
+                style: AppTextStyles.bodyTextRoboto.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 ),
               ),

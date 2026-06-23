@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/main_shell_icon_button.dart';
 
 class MainShellAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -46,7 +47,7 @@ class MainShellAppBar extends StatelessWidget implements PreferredSizeWidget {
             title!,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: theme.textTheme.titleLarge?.copyWith(
+            style: AppTextStyles.extraLargeRobotoBold.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w800,
               letterSpacing: -0.5,

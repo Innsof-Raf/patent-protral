@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
 class DrawerProfileTile extends StatelessWidget {
@@ -73,7 +74,7 @@ class DrawerProfileTile extends StatelessWidget {
                       displayName.isEmpty ? 'Patient' : displayName,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.titleSmall?.copyWith(
+                      style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                         color: theme.colorScheme.onPrimary,
                         fontWeight: FontWeight.w800,
                       ),
@@ -85,7 +86,7 @@ class DrawerProfileTile extends StatelessWidget {
                           : 'Age ${member.age} | ID ${member.nationalId}',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.labelSmall?.copyWith(
+                      style: AppTextStyles.bodyTextRoboto.copyWith(
                         color: theme.colorScheme.onPrimary.withValues(
                           alpha: .72,
                         ),
@@ -97,7 +98,7 @@ class DrawerProfileTile extends StatelessWidget {
                       user?.emailId ?? '',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.bodySmall?.copyWith(
+                      style: AppTextStyles.bodyTextRoboto.copyWith(
                         color: theme.colorScheme.onPrimary,
                         fontWeight: FontWeight.w600,
                       ),

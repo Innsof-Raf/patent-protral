@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
@@ -74,14 +75,14 @@ class _ReportsScreenState extends State<ReportsScreen> {
                   const Gap(16),
                   Text(
                     AppStaticTexts.noReportsAvailable,
-                    style: theme.textTheme.titleMedium?.copyWith(
+                    style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
                     ),
                   ),
                   const Gap(8),
                   Text(
                     'Your medical reports will appear here.',
-                    style: theme.textTheme.bodyMedium?.copyWith(
+                    style: AppTextStyles.largeRobotoNormal.copyWith(
                       color: theme.colorScheme.onSurfaceVariant.withValues(
                         alpha: 0.7,
                       ),

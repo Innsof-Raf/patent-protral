@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class HomeQuickActionCard extends StatelessWidget {
   const HomeQuickActionCard({
@@ -55,7 +56,7 @@ class HomeQuickActionCard extends StatelessWidget {
                       title,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.titleSmall?.copyWith(
+                      style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                         color: theme.colorScheme.onSurface,
                         fontWeight: FontWeight.w800,
                       ),
@@ -73,7 +74,7 @@ class HomeQuickActionCard extends StatelessWidget {
                 subtitle,
                 maxLines: child == null ? 2 : 1,
                 overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.bodySmall?.copyWith(
+                style: AppTextStyles.bodyTextRoboto.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                   height: 1.35,
                 ),

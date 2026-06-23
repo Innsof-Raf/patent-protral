@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class UnorderedListTile extends StatelessWidget {
   const UnorderedListTile({required this.title, super.key});
@@ -24,7 +25,7 @@ class UnorderedListTile extends StatelessWidget {
               title,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.labelSmall?.copyWith(
+              style: AppTextStyles.bodyTextRoboto.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
                 height: 1.2,
               ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/book_appointment/domain/entities/shift.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
+
 import 'slot_tile.dart';
 
 class AppointmentSlotSection extends StatelessWidget {
@@ -36,7 +38,7 @@ class AppointmentSlotSection extends StatelessWidget {
       children: [
         Text(
           'Available Time',
-          style: theme.textTheme.titleMedium?.copyWith(
+          style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
             fontWeight: FontWeight.bold,
             color: colorScheme.onSurface,
           ),
@@ -59,7 +61,7 @@ class AppointmentSlotSection extends StatelessWidget {
                   displayShift,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.labelSmall?.copyWith(
+                  style: AppTextStyles.bodyTextRoboto.copyWith(
                     color: colorScheme.onPrimaryContainer,
                     fontWeight: FontWeight.bold,
                   ),
@@ -108,7 +110,7 @@ class AppointmentSlotSection extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               'No Slots Available',
-              style: theme.textTheme.titleMedium?.copyWith(
+              style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
                 fontWeight: FontWeight.bold,
               ),

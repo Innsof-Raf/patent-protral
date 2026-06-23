@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class MainShellIconButton extends StatelessWidget {
   const MainShellIconButton({
@@ -58,7 +59,7 @@ class MainShellIconButton extends StatelessWidget {
                   child: Text(
                     badgeLabel!,
                     textAlign: TextAlign.center,
-                    style: theme.textTheme.labelSmall?.copyWith(
+                    style: AppTextStyles.bodyTextRoboto.copyWith(
                       color: theme.colorScheme.onError,
                       fontSize: 9,
                       fontWeight: FontWeight.w800,

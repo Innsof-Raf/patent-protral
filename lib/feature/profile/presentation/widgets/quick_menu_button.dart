@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class QuickMenuButton extends StatelessWidget {
   const QuickMenuButton({
@@ -56,7 +57,7 @@ class QuickMenuButton extends StatelessWidget {
                       title,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.labelLarge?.copyWith(
+                      style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                         color: theme.colorScheme.onSurface,
                         fontWeight: FontWeight.w800,
                       ),
@@ -67,7 +68,7 @@ class QuickMenuButton extends StatelessWidget {
                         subtitle!,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: theme.textTheme.labelSmall?.copyWith(
+                        style: AppTextStyles.bodyTextRoboto.copyWith(
                           color: theme.colorScheme.onSurfaceVariant,
                           fontWeight: FontWeight.w600,
                         ),

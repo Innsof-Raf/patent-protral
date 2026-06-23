@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/image_picker_tile.dart';
 
 class PickerSheetAction<T> {
@@ -67,7 +68,7 @@ class ImagePickerHelpers {
           children: [
             Text(
               title,
-              style: theme.textTheme.titleMedium?.copyWith(
+              style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                 color: theme.colorScheme.onSurface,
                 fontWeight: FontWeight.w800,
               ),
@@ -75,7 +76,7 @@ class ImagePickerHelpers {
             const SizedBox(height: 6),
             Text(
               subtitle,
-              style: theme.textTheme.bodySmall?.copyWith(
+              style: AppTextStyles.bodyTextRoboto.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
                 fontWeight: FontWeight.w600,
               ),

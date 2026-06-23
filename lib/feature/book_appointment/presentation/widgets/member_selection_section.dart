@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
@@ -31,7 +32,7 @@ class MemberSelectionSection extends StatelessWidget {
                   children: [
                     Text(
                       'Appointment for',
-                      style: theme.textTheme.titleMedium?.copyWith(
+                      style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                         fontWeight: FontWeight.bold,
                         color: colorScheme.onSurface,
                       ),
@@ -44,7 +45,7 @@ class MemberSelectionSection extends StatelessWidget {
                           memberCount == 0
                               ? 'No members available. Add a member to proceed.'
                               : 'Select a member or add a new one.',
-                          style: theme.textTheme.bodySmall?.copyWith(
+                          style: AppTextStyles.bodyTextRoboto.copyWith(
                             color: colorScheme.onSurfaceVariant,
                           ),
                         );

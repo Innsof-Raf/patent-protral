@@ -7,6 +7,7 @@ import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/helpers.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -72,17 +73,18 @@ class MyAppointmentTile extends StatelessWidget {
                             appointment.doctorName,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: -0.2,
-                            ),
+                            style: AppTextStyles.subHeadingSemiBoldRoboto
+                                .copyWith(
+                                  fontWeight: FontWeight.w800,
+                                  letterSpacing: -0.2,
+                                ),
                           ),
                           const Gap(2),
                           Text(
                             '${appointment.departName}${appointment.branch.isNotEmpty && appointment.branch != '0' ? ' • ${appointment.branch}' : ''}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.bodySmall?.copyWith(
+                            style: AppTextStyles.bodyTextRoboto.copyWith(
                               color: colorScheme.onSurfaceVariant,
                               fontWeight: FontWeight.w500,
                             ),
@@ -99,7 +101,7 @@ class MyAppointmentTile extends StatelessWidget {
                                 const Gap(2),
                                 Text(
                                   appointment.stars.toString(),
-                                  style: theme.textTheme.labelSmall?.copyWith(
+                                  style: AppTextStyles.bodyTextRoboto.copyWith(
                                     fontWeight: FontWeight.w700,
                                     color: colorScheme.onSurfaceVariant,
                                   ),
@@ -143,7 +145,7 @@ class MyAppointmentTile extends StatelessWidget {
                             appointment.memberName.isEmpty
                                 ? AppStaticTexts.self
                                 : appointment.memberName,
-                            style: theme.textTheme.labelLarge?.copyWith(
+                            style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                               fontWeight: FontWeight.w800,
                               color: colorScheme.onSurface,
                             ),
@@ -170,7 +172,7 @@ class MyAppointmentTile extends StatelessWidget {
                             DateFormat(
                               'dd MMM, hh:mm a',
                             ).format(appointment.appointmentDateTime),
-                            style: theme.textTheme.labelLarge?.copyWith(
+                            style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                               color: colorScheme.onSurfaceVariant,
                               fontWeight: FontWeight.w600,
                             ),
@@ -197,7 +199,7 @@ class MyAppointmentTile extends StatelessWidget {
                             const Gap(6),
                             Text(
                               appointment.tokenNo,
-                              style: theme.textTheme.labelLarge?.copyWith(
+                              style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                                 color: colorScheme.onSurfaceVariant,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -488,7 +490,7 @@ class _StatusBadge extends StatelessWidget {
             isCancelled
                 ? 'Cancelled'
                 : (isConsulted ? AppStaticTexts.done : AppStaticTexts.upcoming),
-            style: theme.textTheme.labelSmall?.copyWith(
+            style: AppTextStyles.bodyTextRoboto.copyWith(
               color: color,
               fontWeight: FontWeight.w900,
               letterSpacing: 0.5,

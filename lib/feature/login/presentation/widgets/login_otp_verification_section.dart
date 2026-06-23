@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
@@ -62,7 +63,7 @@ class _LoginOtpVerificationSectionState
       children: [
         Text(
           AppStaticTexts.enterOtp,
-          style: theme.textTheme.bodyMedium?.copyWith(
+          style: AppTextStyles.largeRobotoNormal.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
             fontWeight: FontWeight.w600,
           ),
@@ -165,7 +166,7 @@ class _OtpInput extends StatelessWidget {
             color: theme.colorScheme.primary,
           ),
           defaultPinTheme: PinTheme(
-            textStyle: theme.textTheme.titleMedium?.copyWith(
+            textStyle: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w700,
             ),
@@ -174,7 +175,7 @@ class _OtpInput extends StatelessWidget {
             height: 52,
           ),
           focusedPinTheme: PinTheme(
-            textStyle: theme.textTheme.titleMedium?.copyWith(
+            textStyle: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w700,
             ),
@@ -209,7 +210,7 @@ class _OtpSecondaryActions extends StatelessWidget {
             if (value != 0) {
               return Text(
                 '${AppStaticTexts.resend} 00:$value',
-                style: theme.textTheme.bodySmall?.copyWith(
+                style: AppTextStyles.bodyTextRoboto.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                   fontWeight: FontWeight.w600,
                 ),
@@ -275,7 +276,7 @@ class _TextAction extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         label,
-        style: theme.textTheme.bodySmall?.copyWith(
+        style: AppTextStyles.bodyTextRoboto.copyWith(
           color: onPressed == null
               ? theme.colorScheme.onSurfaceVariant
               : theme.colorScheme.primary,

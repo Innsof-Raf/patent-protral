@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
@@ -78,7 +79,7 @@ class HomeSpecialityCard extends StatelessWidget {
                     textAlign: TextAlign.center,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.bodyMedium?.copyWith(
+                    style: AppTextStyles.largeRobotoNormal.copyWith(
                       color: theme.colorScheme.onSurface,
                       fontWeight: FontWeight.w800,
                       height: 1.15,

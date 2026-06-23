@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -63,7 +64,7 @@ class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
       ),
       title: Text(
         title,
-        style: theme.textTheme.titleLarge?.copyWith(
+        style: AppTextStyles.extraLargeRobotoBold.copyWith(
           color: effectiveForegroundColor,
           fontWeight: FontWeight.w800,
           letterSpacing: -0.5,

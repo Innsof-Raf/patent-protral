@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class NotificationCard extends StatelessWidget {
   final String date;
@@ -69,7 +70,7 @@ class NotificationCard extends StatelessWidget {
                   children: [
                     Text(
                       date,
-                      style: theme.textTheme.titleMedium?.copyWith(
+                      style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                         color: isRead
                             ? colorScheme.onSurface
                             : colorScheme.onPrimary,
@@ -78,7 +79,7 @@ class NotificationCard extends StatelessWidget {
                     ),
                     Text(
                       month.toUpperCase(),
-                      style: theme.textTheme.labelSmall?.copyWith(
+                      style: AppTextStyles.bodyTextRoboto.copyWith(
                         color: isRead
                             ? colorScheme.onSurfaceVariant
                             : colorScheme.onPrimary.withValues(alpha: 0.8),
@@ -101,7 +102,7 @@ class NotificationCard extends StatelessWidget {
                         Expanded(
                           child: Text(
                             title,
-                            style: theme.textTheme.titleSmall?.copyWith(
+                            style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                               fontWeight: FontWeight.w800,
                               color: colorScheme.onSurface,
                             ),
@@ -133,7 +134,7 @@ class NotificationCard extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       subtitle,
-                      style: theme.textTheme.bodySmall?.copyWith(
+                      style: AppTextStyles.bodyTextRoboto.copyWith(
                         color: isRead
                             ? colorScheme.onSurfaceVariant
                             : colorScheme.primary,
@@ -143,7 +144,7 @@ class NotificationCard extends StatelessWidget {
                     const SizedBox(height: 10),
                     Text(
                       description,
-                      style: theme.textTheme.bodyMedium?.copyWith(
+                      style: AppTextStyles.largeRobotoNormal.copyWith(
                         color: colorScheme.onSurfaceVariant,
                         height: 1.5,
                         letterSpacing: 0.1,

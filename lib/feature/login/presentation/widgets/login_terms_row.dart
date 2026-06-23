@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginTermsRow extends StatelessWidget {
@@ -18,11 +19,11 @@ class LoginTermsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final bodyStyle = theme.textTheme.bodySmall?.copyWith(
+    final bodyStyle = AppTextStyles.bodyTextRoboto.copyWith(
       color: theme.colorScheme.onSurfaceVariant,
       height: 1.35,
     );
-    final linkStyle = bodyStyle?.copyWith(
+    final linkStyle = bodyStyle.copyWith(
       color: theme.colorScheme.primary,
       fontWeight: FontWeight.w700,
       decoration: TextDecoration.underline,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class AppointmentsOverviewCard extends StatelessWidget {
   final int totalCount;
@@ -40,7 +41,7 @@ class AppointmentsOverviewCard extends StatelessWidget {
         children: [
           Text(
             'Manage your appointments',
-            style: theme.textTheme.titleMedium?.copyWith(
+            style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
               fontWeight: FontWeight.w800,
               letterSpacing: -0.5,
             ),
@@ -114,14 +115,14 @@ class _MetricChip extends StatelessWidget {
           const Gap(6),
           Text(
             '$value',
-            style: theme.textTheme.titleLarge?.copyWith(
+            style: AppTextStyles.extraLargeRobotoBold.copyWith(
               color: colorScheme.onSurface,
               fontWeight: FontWeight.w800,
             ),
           ),
           Text(
             label,
-            style: theme.textTheme.labelSmall?.copyWith(
+            style: AppTextStyles.bodyTextRoboto.copyWith(
               color: colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w700,
               letterSpacing: 0.5,

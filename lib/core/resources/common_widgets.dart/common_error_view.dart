@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class CommonErrorView extends StatelessWidget {
   const CommonErrorView({
@@ -99,7 +100,7 @@ class CommonErrorView extends StatelessWidget {
                         Text(
                           title,
                           textAlign: TextAlign.center,
-                          style: theme.textTheme.titleLarge?.copyWith(
+                          style: AppTextStyles.extraLargeRobotoBold.copyWith(
                             color: colorScheme.onSurface,
                             fontWeight: FontWeight.w700,
                             height: 1.2,
@@ -110,7 +111,7 @@ class CommonErrorView extends StatelessWidget {
                           Text(
                             message,
                             textAlign: TextAlign.center,
-                            style: theme.textTheme.bodyMedium?.copyWith(
+                            style: AppTextStyles.largeRobotoNormal.copyWith(
                               color: colorScheme.onSurfaceVariant,
                               height: 1.5,
                             ),

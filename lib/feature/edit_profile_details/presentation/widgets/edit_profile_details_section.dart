@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/gender_form_helpers.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/helpers/edit_profile_detail_screen_helpers.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/helpers/edit_profile_details_form_validation_helpers.dart';
@@ -74,7 +75,7 @@ class EditProfileDetailsSection extends StatelessWidget {
           children: [
             Text(
               'Personal details',
-              style: theme.textTheme.titleMedium?.copyWith(
+              style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                 color: theme.colorScheme.onSurface,
                 fontWeight: FontWeight.w800,
               ),
@@ -82,7 +83,7 @@ class EditProfileDetailsSection extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               'Keep your profile information accurate for smoother visits.',
-              style: theme.textTheme.bodySmall?.copyWith(
+              style: AppTextStyles.bodyTextRoboto.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
                 fontWeight: FontWeight.w600,
               ),
@@ -162,7 +163,7 @@ class EditProfileDetailsSection extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               'Gender',
-              style: theme.textTheme.labelLarge?.copyWith(
+              style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                 color: theme.colorScheme.onSurface,
                 fontWeight: FontWeight.w800,
               ),

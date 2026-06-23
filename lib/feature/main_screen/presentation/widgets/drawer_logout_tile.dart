@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -56,7 +57,7 @@ class LogOutTile extends StatelessWidget {
                     const Gap(14),
                     Text(
                       'Logout',
-                      style: theme.textTheme.bodyMedium?.copyWith(
+                      style: AppTextStyles.largeRobotoNormal.copyWith(
                         color: theme.colorScheme.primary,
                         fontWeight: FontWeight.w700,
                       ),

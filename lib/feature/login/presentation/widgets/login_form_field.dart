@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class LoginFormField extends StatelessWidget {
   const LoginFormField({
@@ -43,7 +44,7 @@ class LoginFormField extends StatelessWidget {
       obscuringCharacter: '*',
       textInputAction: textInputAction,
       cursorColor: theme.colorScheme.primary,
-      style: theme.textTheme.bodyLarge?.copyWith(
+      style: AppTextStyles.largeSemiBoldRoboto.copyWith(
         color: theme.colorScheme.onSurface,
         fontWeight: FontWeight.w600,
       ),
@@ -59,14 +60,14 @@ class LoginFormField extends StatelessWidget {
           horizontal: 18,
           vertical: 17,
         ),
-        labelStyle: theme.textTheme.bodyMedium?.copyWith(
+        labelStyle: AppTextStyles.largeRobotoNormal.copyWith(
           color: theme.colorScheme.onSurfaceVariant,
         ),
-        floatingLabelStyle: theme.textTheme.bodyMedium?.copyWith(
+        floatingLabelStyle: AppTextStyles.largeRobotoNormal.copyWith(
           color: theme.colorScheme.primary,
           fontWeight: FontWeight.w600,
         ),
-        prefixStyle: theme.textTheme.bodyLarge?.copyWith(
+        prefixStyle: AppTextStyles.largeSemiBoldRoboto.copyWith(
           color: theme.colorScheme.onSurface,
           fontWeight: FontWeight.w700,
         ),

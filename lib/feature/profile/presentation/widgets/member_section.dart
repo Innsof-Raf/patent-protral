@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/widgets/profile_member_tile.dart';
@@ -31,17 +32,18 @@ class MemberSection extends StatelessWidget {
                       children: [
                         Text(
                           AppStaticTexts.members,
-                          style: theme.textTheme.titleMedium?.copyWith(
-                            color: theme.colorScheme.onSurface,
-                            fontWeight: FontWeight.w800,
-                          ),
+                          style: AppTextStyles.subHeadingSemiBoldRoboto
+                              .copyWith(
+                                color: theme.colorScheme.onSurface,
+                                fontWeight: FontWeight.w800,
+                              ),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           members.isEmpty
                               ? AppStaticTexts.noMembersAddedYet
                               : '${members.length} ${AppStaticTexts.membersLinked}',
-                          style: theme.textTheme.bodySmall?.copyWith(
+                          style: AppTextStyles.bodyTextRoboto.copyWith(
                             color: theme.colorScheme.onSurfaceVariant,
                             fontWeight: FontWeight.w600,
                           ),
@@ -106,7 +108,7 @@ class _EmptyMembersView extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             AppStaticTexts.noMembersFound,
-            style: theme.textTheme.titleSmall?.copyWith(
+            style: AppTextStyles.largeSemiBoldRoboto.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w800,
             ),
@@ -115,7 +117,7 @@ class _EmptyMembersView extends StatelessWidget {
           Text(
             AppStaticTexts.addMembersSubtitle,
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodySmall?.copyWith(
+            style: AppTextStyles.bodyTextRoboto.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w600,
             ),

@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class SuccessDialog extends StatelessWidget {
   final VoidCallback onPressed;
@@ -42,7 +43,7 @@ class SuccessDialog extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               AppStaticTexts.success,
-              style: theme.textTheme.displayMedium?.copyWith(
+              style: AppTextStyles.extraLargeRobotoBold.copyWith(
                 color: theme.colorScheme.onSurface,
                 fontWeight: FontWeight.w700,
               ),
@@ -51,7 +52,7 @@ class SuccessDialog extends StatelessWidget {
             Text(
               title,
               textAlign: TextAlign.center,
-              style: theme.textTheme.titleMedium,
+              style: AppTextStyles.subHeadingSemiBoldRoboto,
             ),
             const SizedBox(height: 30),
             SvgPicture.asset(Assets.icons.doneIcon.path),
@@ -71,7 +72,7 @@ class SuccessDialog extends StatelessWidget {
                 onPressed: onPressed,
                 child: Text(
                   AppStaticTexts.done.toUpperCase(),
-                  style: theme.textTheme.titleSmall?.copyWith(
+                  style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                     color: theme.colorScheme.onPrimary,
                     fontWeight: FontWeight.w700,
                   ),

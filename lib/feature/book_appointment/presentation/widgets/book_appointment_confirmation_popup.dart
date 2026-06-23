@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
@@ -44,7 +45,7 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: theme.textTheme.titleLarge?.copyWith(
+                  style: AppTextStyles.extraLargeRobotoBold.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -76,7 +77,7 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                       const SizedBox(width: 8),
                       Text(
                         DateFormat('dd MMM yyyy').format(appointmentDateTime),
-                        style: theme.textTheme.bodyLarge?.copyWith(
+                        style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -94,7 +95,7 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                       const SizedBox(width: 8),
                       Text(
                         DateFormat.jm().format(appointmentDateTime),
-                        style: theme.textTheme.bodyLarge?.copyWith(
+                        style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -220,7 +221,7 @@ class _UserMiniProfile extends StatelessWidget {
           child: imageUrl == null
               ? Text(
                   name.isNotEmpty ? name[0].toUpperCase() : '?',
-                  style: theme.textTheme.headlineSmall?.copyWith(
+                  style: AppTextStyles.extraLargeRobotoBold.copyWith(
                     color: theme.colorScheme.onSecondaryContainer,
                     fontWeight: FontWeight.bold,
                   ),
@@ -230,7 +231,7 @@ class _UserMiniProfile extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           label,
-          style: theme.textTheme.labelSmall?.copyWith(
+          style: AppTextStyles.bodyTextRoboto.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
           ),
         ),
@@ -239,7 +240,7 @@ class _UserMiniProfile extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
-          style: theme.textTheme.bodySmall?.copyWith(
+          style: AppTextStyles.bodyTextRoboto.copyWith(
             fontWeight: FontWeight.bold,
           ),
         ),

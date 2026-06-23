@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
@@ -37,7 +38,7 @@ class ProfileMemberTile extends StatelessWidget {
                       member.name,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.titleSmall?.copyWith(
+                      style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                         color: theme.colorScheme.onSurface,
                         fontWeight: FontWeight.w800,
                       ),
@@ -47,7 +48,7 @@ class ProfileMemberTile extends StatelessWidget {
                       _subtitle,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.bodySmall?.copyWith(
+                      style: AppTextStyles.bodyTextRoboto.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                         fontWeight: FontWeight.w600,
                       ),
@@ -104,7 +105,7 @@ class _MemberAvatar extends StatelessWidget {
               member.name.trim().isEmpty
                   ? '?'
                   : member.name.trim()[0].toUpperCase(),
-              style: theme.textTheme.titleMedium?.copyWith(
+              style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                 color: theme.colorScheme.onPrimaryContainer,
                 fontWeight: FontWeight.w900,
               ),
@@ -129,7 +130,7 @@ class _InsuranceBadge extends StatelessWidget {
       ),
       child: Text(
         'Insured',
-        style: theme.textTheme.labelSmall?.copyWith(
+        style: AppTextStyles.bodyTextRoboto.copyWith(
           color: theme.colorScheme.primary,
           fontWeight: FontWeight.w800,
         ),

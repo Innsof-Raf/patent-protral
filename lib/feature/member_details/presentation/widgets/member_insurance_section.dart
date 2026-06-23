@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_section_card.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_text_field.dart';
 
@@ -32,7 +33,7 @@ class MemberInsuranceSection extends StatelessWidget {
               Expanded(
                 child: Text(
                   'Insurance',
-                  style: theme.textTheme.titleMedium?.copyWith(
+                  style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                     color: theme.colorScheme.onSurface,
                     fontWeight: FontWeight.w800,
                   ),
@@ -45,7 +46,7 @@ class MemberInsuranceSection extends StatelessWidget {
           if (!hasInsurance)
             Text(
               'No active insurance details are linked to this member.',
-              style: theme.textTheme.bodyMedium?.copyWith(
+              style: AppTextStyles.largeRobotoNormal.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
                 fontWeight: FontWeight.w500,
               ),
@@ -97,7 +98,7 @@ class _InsuranceStatusBadge extends StatelessWidget {
       ),
       child: Text(
         isActive ? 'Active' : 'Not linked',
-        style: theme.textTheme.labelSmall?.copyWith(
+        style: AppTextStyles.bodyTextRoboto.copyWith(
           color: color,
           fontWeight: FontWeight.w800,
         ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/lab/domain/entities/item.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
@@ -58,14 +59,14 @@ class CartItemTile extends StatelessWidget {
                   textAlign: TextAlign.center,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.titleSmall?.copyWith(
+                  style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
                   item.itemShortDesc,
-                  style: theme.textTheme.bodySmall?.copyWith(
+                  style: AppTextStyles.bodyTextRoboto.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
                   maxLines: 2,
@@ -74,7 +75,7 @@ class CartItemTile extends StatelessWidget {
                 ),
                 Text(
                   '${item.itemPrice}',
-                  style: theme.textTheme.labelLarge?.copyWith(
+                  style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                     color: theme.colorScheme.primary,
                     fontWeight: FontWeight.w700,
                   ),

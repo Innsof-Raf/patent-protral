@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_section_card.dart';
 
@@ -36,7 +37,7 @@ class MemberProfileImageSection extends StatelessWidget {
                   title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.titleLarge?.copyWith(
+                  style: AppTextStyles.extraLargeRobotoBold.copyWith(
                     color: theme.colorScheme.onSurface,
                     fontWeight: FontWeight.w800,
                     height: 1.1,
@@ -48,7 +49,7 @@ class MemberProfileImageSection extends StatelessWidget {
                     subtitle!,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.bodySmall?.copyWith(
+                    style: AppTextStyles.bodyTextRoboto.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
                       fontWeight: FontWeight.w600,
                     ),
@@ -97,7 +98,7 @@ class _MemberAvatar extends StatelessWidget {
         child: image == null || image!.isEmpty
             ? Text(
                 initial,
-                style: theme.textTheme.headlineSmall?.copyWith(
+                style: AppTextStyles.extraLargeRobotoBold.copyWith(
                   color: theme.colorScheme.onPrimaryContainer,
                   fontWeight: FontWeight.w900,
                 ),

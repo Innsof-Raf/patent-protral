@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class AppointmentEmptyState extends StatelessWidget {
   final String title;
@@ -54,7 +55,7 @@ class AppointmentEmptyState extends StatelessWidget {
             Text(
               title,
               textAlign: TextAlign.center,
-              style: theme.textTheme.titleLarge?.copyWith(
+              style: AppTextStyles.extraLargeRobotoBold.copyWith(
                 fontWeight: FontWeight.w800,
                 letterSpacing: -0.5,
               ),
@@ -63,7 +64,7 @@ class AppointmentEmptyState extends StatelessWidget {
             Text(
               message,
               textAlign: TextAlign.center,
-              style: theme.textTheme.bodyMedium?.copyWith(
+              style: AppTextStyles.largeRobotoNormal.copyWith(
                 color: colorScheme.onSurfaceVariant,
                 height: 1.5,
               ),

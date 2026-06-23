@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_section_card.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_text_field.dart';
 
@@ -29,7 +30,7 @@ class MemberPersonalDetailsSection extends StatelessWidget {
         children: [
           Text(
             'Personal details',
-            style: theme.textTheme.titleMedium?.copyWith(
+            style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w800,
             ),

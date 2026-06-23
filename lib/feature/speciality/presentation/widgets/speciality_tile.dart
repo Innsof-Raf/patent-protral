@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
@@ -93,7 +94,7 @@ class SpecialityTile extends StatelessWidget {
                         speciality.specialityName,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: theme.textTheme.titleMedium?.copyWith(
+                        style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                           color: theme.colorScheme.onSurface,
                           fontWeight: FontWeight.w900,
                           letterSpacing: -0.5,
@@ -105,7 +106,7 @@ class SpecialityTile extends StatelessWidget {
                         children: [
                           Text(
                             AppStaticTexts.findDoctors,
-                            style: theme.textTheme.labelLarge?.copyWith(
+                            style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                               color: theme.colorScheme.primary,
                               fontWeight: FontWeight.w800,
                             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class DateTab extends StatelessWidget {
   final DateTime date;
@@ -48,7 +49,7 @@ class DateTab extends StatelessWidget {
           children: [
             Text(
               DateFormat('EEE').format(date).toUpperCase(),
-              style: theme.textTheme.labelSmall?.copyWith(
+              style: AppTextStyles.bodyTextRoboto.copyWith(
                 color: isSelected
                     ? colorScheme.onPrimary
                     : colorScheme.onSurfaceVariant,
@@ -59,7 +60,7 @@ class DateTab extends StatelessWidget {
             const SizedBox(height: 6),
             Text(
               DateFormat('dd').format(date),
-              style: theme.textTheme.titleLarge?.copyWith(
+              style: AppTextStyles.extraLargeRobotoBold.copyWith(
                 color: isSelected
                     ? colorScheme.onPrimary
                     : colorScheme.onSurface,

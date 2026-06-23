@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
@@ -50,7 +51,7 @@ class ProfileDetailsSection extends StatelessWidget {
                           fullName,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: theme.textTheme.titleLarge?.copyWith(
+                          style: AppTextStyles.extraLargeRobotoBold.copyWith(
                             color: theme.colorScheme.onSurface,
                             fontWeight: FontWeight.w800,
                             height: 1.12,
@@ -62,7 +63,7 @@ class ProfileDetailsSection extends StatelessWidget {
                             supportingDetails,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.bodySmall?.copyWith(
+                            style: AppTextStyles.bodyTextRoboto.copyWith(
                               color: theme.colorScheme.onSurfaceVariant,
                               fontWeight: FontWeight.w600,
                             ),
@@ -155,7 +156,7 @@ class _ProfileAvatar extends StatelessWidget {
       child: Center(
         child: Text(
           initial,
-          style: theme.textTheme.headlineSmall?.copyWith(
+          style: AppTextStyles.extraLargeRobotoBold.copyWith(
             color: theme.colorScheme.onPrimaryContainer,
             fontWeight: FontWeight.w900,
           ),
@@ -192,7 +193,7 @@ class _ProfileInfoChip extends StatelessWidget {
               label,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.labelMedium?.copyWith(
+              style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
                 fontWeight: FontWeight.w700,
               ),

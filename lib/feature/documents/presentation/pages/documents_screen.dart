@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -92,7 +93,6 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
                   itemBuilder: (context) =>
                       DocumentsScreenHelpers.createPopupMenuItem(
                         userState.user!.members,
-                        theme.textTheme,
                       ),
                   child: Container(
                     decoration: BoxDecoration(
@@ -148,9 +148,8 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
                               selectedName,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: theme.textTheme.titleSmall?.copyWith(
+                              style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                                 color: theme.colorScheme.onSurface,
-                                fontWeight: FontWeight.w700,
                               ),
                             ),
                           ),
@@ -220,7 +219,9 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
               return Center(
                 child: Text(
                   AppStaticTexts.noDocumentsFound,
-                  style: theme.textTheme.titleMedium,
+                  style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
+                    color: theme.colorScheme.onSurface,
+                  ),
                 ),
               );
             } else {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class SpecialityMessageView extends StatelessWidget {
   const SpecialityMessageView({
@@ -35,7 +36,7 @@ class SpecialityMessageView extends StatelessWidget {
             Text(
               title,
               textAlign: TextAlign.center,
-              style: theme.textTheme.titleMedium?.copyWith(
+              style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                 color: theme.colorScheme.onSurface,
                 fontWeight: FontWeight.w800,
               ),
@@ -44,7 +45,7 @@ class SpecialityMessageView extends StatelessWidget {
             Text(
               message,
               textAlign: TextAlign.center,
-              style: theme.textTheme.bodyMedium?.copyWith(
+              style: AppTextStyles.largeRobotoNormal.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),
             ),

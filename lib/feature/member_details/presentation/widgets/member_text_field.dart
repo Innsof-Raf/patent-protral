@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class MemberTextField extends StatelessWidget {
   const MemberTextField({
@@ -41,7 +42,7 @@ class MemberTextField extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: theme.textTheme.labelMedium?.copyWith(
+                  style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                     fontWeight: FontWeight.w700,
                   ),
@@ -51,7 +52,7 @@ class MemberTextField extends StatelessWidget {
                   value.isEmpty ? AppStaticTexts.notProvided : value,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.bodyMedium?.copyWith(
+                  style: AppTextStyles.largeRobotoNormal.copyWith(
                     color: theme.colorScheme.onSurface,
                     fontWeight: FontWeight.w800,
                   ),
