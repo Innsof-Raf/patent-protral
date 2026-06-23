@@ -4,26 +4,23 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_dropdown_field.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_text_field.dart';
+import 'package:patient_portal/feature/add_document/domain/usecases/params/add_document_params.dart';
 import 'package:patient_portal/feature/add_document/presentation/bloc/add_document_bloc.dart';
 import 'package:patient_portal/feature/add_document/presentation/widgets/add_document_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
 @RoutePage(name: 'AddDocumentRoute')
 class AddDocumentScreen extends StatefulWidget {
-  static DateTime? expireDate;
-  static int? selectedMember;
-  static int? selectedDocumentType;
-  static TextEditingController expireDateController = TextEditingController();
-  static TextEditingController documentNameController = TextEditingController();
-  static File? selectedDocument;
-
   const AddDocumentScreen({super.key});
 
   @override
@@ -31,15 +28,27 @@ class AddDocumentScreen extends StatefulWidget {
 }
 
 class _AddDocumentScreenState extends State<AddDocumentScreen> {
+  final _formKey = GlobalKey<FormState>();
+  DateTime? _expireDate;
+  int? _selectedMember;
+  int? _selectedDocumentType;
+  late final TextEditingController _expireDateController;
+  late final TextEditingController _documentNameController;
+  File? _selectedDocument;
+
   @override
   void initState() {
     super.initState();
+    _expireDateController = TextEditingController();
+    _documentNameController = TextEditingController();
     _fetchDocumentTypes();
-    AddDocumentScreen.expireDate = null;
-    AddDocumentScreen.selectedDocumentType = null;
-    AddDocumentScreen.selectedMember = null;
-    AddDocumentScreen.expireDateController.text = '';
-    AddDocumentScreen.documentNameController.text = '';
+  }
+
+  @override
+  void dispose() {
+    _expireDateController.dispose();
+    _documentNameController.dispose();
+    super.dispose();
   }
 
   void _fetchDocumentTypes() {
@@ -53,199 +62,231 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      extendBody: true,
+      backgroundColor: theme.colorScheme.surface,
       appBar: const CommonAppbar(title: AppStaticTexts.addDocument),
-      body: BlocBuilder<AddDocumentBloc, AddDocumentState>(
+      body: BlocConsumer<AddDocumentBloc, AddDocumentState>(
+        listener: (context, state) {
+          if (state.isUploadingDocumentSuccess) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text(AppStaticTexts.documentUploadedSuccessfully),
+              ),
+            );
+            context.router.back();
+          }
+
+          if (state.isUploadingDocumentFailed) {
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(state.error.message)));
+          }
+        },
         builder: (context, state) {
-          return state.isFetchingDocumentTypes
-              ? const CommonLoadingView()
-              : state.isFetchingDocumentTypesFailed
-              ? CommonErrorView(
-                  title: AppStaticTexts.unableToLoadDocumentTypes,
-                  message: state.error.message,
-                  onRetry: _fetchDocumentTypes,
-                )
-              : state.documentTypes.isEmpty
-              ? CommonErrorView(
-                  title: AppStaticTexts.documentTypesUnavailable,
-                  message: AppStaticTexts.documentTypesUnavailableMessage,
-                  onRetry: _fetchDocumentTypes,
-                )
-              : Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Form(
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 15),
-                        DropdownButtonFormField<int>(
-                          validator: (value) =>
-                              AddDocumentScreenHelpers.validateSelectedMember(
-                                value: value,
-                              ),
-                          isExpanded: true,
-                          decoration: InputDecoration(
-                            labelStyle: theme.textTheme.titleMedium,
-                            labelText: AppStaticTexts.member,
-                          ),
-                          items: context
-                              .read<UserBloc>()
-                              .state
-                              .user!
-                              .members
-                              .map(
-                                (member) =>
-                                    AddDocumentScreenHelpers.createMemberDropDownItem(
-                                      member: member,
-                                      textTheme: theme.textTheme,
-                                    ),
-                              )
-                              .toList(),
-                          onChanged: (value) {
-                            AddDocumentScreen.selectedMember = value;
-                          },
+          if (state.isFetchingDocumentTypes) {
+            return const CommonLoadingView();
+          }
+
+          if (state.isFetchingDocumentTypesFailed) {
+            return CommonErrorView(
+              title: AppStaticTexts.unableToLoadDocumentTypes,
+              message: state.error.message,
+              onRetry: _fetchDocumentTypes,
+            );
+          }
+
+          if (state.documentTypes.isEmpty) {
+            return CommonErrorView(
+              title: AppStaticTexts.documentTypesUnavailable,
+              message: AppStaticTexts.documentTypesUnavailableMessage,
+              onRetry: _fetchDocumentTypes,
+            );
+          }
+
+          return SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  CommonDropdownField<int>(
+                    labelText: AppStaticTexts.member,
+                    value: _selectedMember,
+                    validator: (value) =>
+                        AddDocumentScreenHelpers.validateSelectedMember(
+                          value: value,
+                          selectedMember: _selectedMember,
                         ),
-                        const SizedBox(height: 10),
-                        DropdownButtonFormField<int>(
-                          validator: (value) =>
-                              AddDocumentScreenHelpers.validateDocumentType(
-                                value: value,
+                    items: context
+                        .read<UserBloc>()
+                        .state
+                        .user!
+                        .members
+                        .map(
+                          (member) =>
+                              AddDocumentScreenHelpers.createMemberDropDownItem(
+                                member: member,
                               ),
-                          decoration: InputDecoration(
-                            labelStyle: theme.textTheme.titleMedium,
-                            labelText: AppStaticTexts.documentType,
-                          ),
-                          items: context
-                              .read<AddDocumentBloc>()
-                              .state
-                              .documentTypes
-                              .map(
-                                (documentType) =>
-                                    AddDocumentScreenHelpers.createDocumentTypeDropDownItem(
-                                      document: documentType,
-                                      textTheme: theme.textTheme,
-                                    ),
-                              )
-                              .toList(),
-                          onChanged: (value) {
-                            AddDocumentScreen.selectedDocumentType = value;
-                          },
+                        )
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedMember = value;
+                      });
+                    },
+                  ),
+                  const Gap(24),
+                  CommonDropdownField<int>(
+                    labelText: AppStaticTexts.documentType,
+                    value: _selectedDocumentType,
+                    validator: (value) =>
+                        AddDocumentScreenHelpers.validateDocumentType(
+                          value: value,
+                          selectedDocumentType: _selectedDocumentType,
                         ),
-                        const SizedBox(height: 10),
-                        TextFormField(
-                          validator: (value) =>
-                              AddDocumentScreenHelpers.validateExpireDate(
-                                value: value,
+                    items: state.documentTypes
+                        .map(
+                          (documentType) =>
+                              AddDocumentScreenHelpers.createDocumentTypeDropDownItem(
+                                document: documentType,
                               ),
-                          readOnly: true,
-                          controller: AddDocumentScreen.expireDateController,
-                          onTap: () async {
-                            AddDocumentScreen.expireDate =
-                                await AddDocumentScreenHelpers.getExpireDate(
-                                  initialDate:
-                                      AddDocumentScreen.expireDate == null
-                                      ? DateTime.now().add(
-                                          const Duration(days: 1),
-                                        )
-                                      : AddDocumentScreen.expireDate!,
-                                  context: context,
-                                );
-                            if (AddDocumentScreen.expireDate != null) {
-                              AddDocumentScreen.expireDateController.text =
-                                  DateFormat(
-                                    'dd/MM/yyyy',
-                                  ).format(AddDocumentScreen.expireDate!);
-                            }
-                          },
-                          decoration: InputDecoration(
-                            labelStyle: theme.textTheme.titleMedium,
-                            labelText: AppStaticTexts.expireDate,
-                          ),
+                        )
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedDocumentType = value;
+                      });
+                    },
+                  ),
+                  const Gap(24),
+                  CommonTextField(
+                    labelText: AppStaticTexts.expireDate,
+                    controller: _expireDateController,
+                    readOnly: true,
+                    validator: (value) =>
+                        AddDocumentScreenHelpers.validateExpireDate(
+                          value: value,
+                          expireDate: _expireDate,
                         ),
-                        const SizedBox(height: 10),
-                        IntrinsicHeight(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Flexible(
-                                child: TextFormField(
-                                  validator: (value) =>
-                                      AddDocumentScreenHelpers.validateSelectedDocument(
-                                        value: value,
-                                      ),
-                                  readOnly: true,
-                                  onTap: () {
-                                    AddDocumentScreenHelpers.pickDocument(
-                                      context: context,
-                                    );
-                                  },
-                                  controller:
-                                      AddDocumentScreen.documentNameController,
-                                  decoration: InputDecoration(
-                                    labelStyle: theme.textTheme.titleMedium,
-                                    labelText: AppStaticTexts.document,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 10),
-                              OutlinedButton(
-                                style: OutlinedButton.styleFrom(
-                                  side: const BorderSide(
-                                    width: .5,
-                                    color: AppColors.textFormFIeldBagroundColor,
-                                  ),
-                                ),
-                                onPressed: () {
-                                  AddDocumentScreenHelpers.pickDocument(
-                                    context: context,
-                                  );
-                                },
-                                child: SvgPicture.asset(
-                                  Assets.icons.attachmentIcon.path,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 55),
-                      ],
+                    onTap: () async {
+                      final date = await AddDocumentScreenHelpers.getExpireDate(
+                        initialDate:
+                            _expireDate ??
+                            DateTime.now().add(const Duration(days: 1)),
+                        context: context,
+                      );
+                      if (date != null) {
+                        setState(() {
+                          _expireDate = date;
+                          _expireDateController.text = DateFormat(
+                            'dd/MM/yyyy',
+                          ).format(date);
+                        });
+                      }
+                    },
+                    suffixIcon: Icon(
+                      Icons.calendar_today_outlined,
+                      color: theme.colorScheme.primary.withValues(alpha: 0.6),
+                      size: 24,
                     ),
                   ),
-                );
+                  const Gap(24),
+                  CommonTextField(
+                    labelText: AppStaticTexts.document,
+                    controller: _documentNameController,
+                    readOnly: true,
+                    validator: (value) =>
+                        AddDocumentScreenHelpers.validateSelectedDocument(
+                          value: value,
+                          selectedDocument: _selectedDocument,
+                        ),
+                    onTap: () async {
+                      final result =
+                          await AddDocumentScreenHelpers.pickDocument(
+                            context: context,
+                          );
+                      if (result != null) {
+                        setState(() {
+                          _selectedDocument = result.file;
+                          _documentNameController.text = result.name;
+                        });
+                      }
+                    },
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: SvgPicture.asset(
+                        Assets.icons.attachmentIcon.path,
+                        colorFilter: ColorFilter.mode(
+                          theme.colorScheme.primary.withValues(alpha: 0.6),
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const Gap(40),
+                ],
+              ),
+            ),
+          );
         },
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(left: 15, bottom: 16, right: 15),
-        child: Container(
-          decoration: BoxDecoration(
-            color: AppColors.vilot,
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 1,
-                color: AppColors.black.withValues(alpha: .25),
-                offset: const Offset(0, 0),
-              ),
-            ],
-            borderRadius: BorderRadius.circular(6),
-          ),
-          width: double.infinity,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(6),
-              ),
-              backgroundColor: AppColors.vilot,
-              foregroundColor: AppColors.white,
-              padding: const EdgeInsets.all(15),
-            ),
-            onPressed: () {},
-            child: Text(
-              AppStaticTexts.add,
-              style: theme.textTheme.titleMedium?.copyWith(
-                color: theme.colorScheme.onPrimary,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(24, 0, 24, 20),
+          child: BlocBuilder<AddDocumentBloc, AddDocumentState>(
+            builder: (context, state) {
+              return ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: theme.colorScheme.primary.withValues(
+                    alpha: 0.8,
+                  ),
+                  foregroundColor: theme.colorScheme.onPrimary,
+                  minimumSize: const Size(double.infinity, 60),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  elevation: 0,
+                ),
+                onPressed: state.isUploadingDocument
+                    ? null
+                    : () {
+                        if (_formKey.currentState?.validate() ?? false) {
+                          context.read<AddDocumentBloc>().add(
+                            UploadDocument(
+                              params: AddDocumentParams.uploadDocument(
+                                token: context
+                                    .read<UserBloc>()
+                                    .state
+                                    .user!
+                                    .accessToken,
+                                memberId: _selectedMember!,
+                                documentName: _documentNameController.text,
+                                documentPath: _selectedDocument!.path,
+                                expireDate: _expireDate,
+                                idDocument: _selectedDocumentType!.toString(),
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                child: state.isUploadingDocument
+                    ? SizedBox(
+                        height: 24,
+                        width: 24,
+                        child: CircularProgressIndicator(
+                          color: theme.colorScheme.onPrimary,
+                          strokeWidth: 2,
+                        ),
+                      )
+                    : Text(
+                        AppStaticTexts.add,
+                        style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
+                          color: theme.colorScheme.onPrimary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+              );
+            },
           ),
         ),
       ),
