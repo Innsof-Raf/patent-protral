@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -108,12 +109,13 @@ class _ReportsMemberSelector extends StatelessWidget {
                           ),
                         ),
                         child: ClipOval(
-                          child: Image.network(
-                            'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+                          child: CachedNetworkImage(
+                            imageUrl:
+                                'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
                             height: 28,
                             width: 28,
                             fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
+                            errorWidget: (context, url, error) {
                               return Image.asset(
                                 Assets.images.memberDefaultProfileImage.path,
                                 height: 28,

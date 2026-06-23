@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,12 +61,13 @@ class DocumentsScreenAppBar extends StatelessWidget
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     ClipOval(
-                      child: Image.network(
-                        'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
                         height: 26,
                         width: 26,
                         fit: BoxFit.fill,
-                        errorBuilder: (context, error, stackTrace) {
+                        errorWidget: (context, url, error) {
                           return Image.asset(
                             Assets.images.memberDefaultProfileImage.path,
                             height: 26,

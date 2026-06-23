@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/helpers/edit_profile_detail_screen_helpers.dart';
@@ -74,11 +75,11 @@ class _EditableProfileImage extends StatelessWidget {
     final theme = Theme.of(context);
     final pickedImage = localImage;
 
-    ImageProvider provider;
+    ImageProvider<Object> provider;
     if (pickedImage != null) {
       provider = FileImage(pickedImage);
     } else if (image != null) {
-      provider = NetworkImage(image!);
+      provider = CachedNetworkImageProvider(image!);
     } else {
       provider = AssetImage(Assets.images.memberDefaultProfileImage.path);
     }

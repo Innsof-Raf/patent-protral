@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
@@ -56,7 +57,7 @@ class MemberSelectionTile extends StatelessWidget {
                 shape: BoxShape.circle,
                 image: member.profileImage != null
                     ? DecorationImage(
-                        image: NetworkImage(
+                        image: CachedNetworkImageProvider(
                           '${ConstantUrls.memberImageUrl}/${member.id}//${member.profileImage}',
                         ),
                         fit: BoxFit.cover,

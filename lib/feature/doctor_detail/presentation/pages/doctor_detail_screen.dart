@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
@@ -37,13 +38,14 @@ class DoctorDetailScreen extends StatelessWidget {
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(6),
-                            child: Image.network(
-                              'https://www.pinoytechnoguide.com/wp-content/uploads/2021/10/vivo-X70-sample-picture-person-normal-768x576.jpg',
+                            child: CachedNetworkImage(
+                              imageUrl:
+                                  'https://www.pinoytechnoguide.com/wp-content/uploads/2021/10/vivo-X70-sample-picture-person-normal-768x576.jpg',
                               width: constraints.maxWidth * .24,
                               height: constraints.maxWidth * .24,
                               fit: BoxFit.fill,
                               alignment: Alignment.centerLeft,
-                              errorBuilder: (context, error, stackTrace) {
+                              errorWidget: (context, url, error) {
                                 return const CircleAvatar();
                               },
                             ),

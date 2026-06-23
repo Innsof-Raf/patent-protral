@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
@@ -36,7 +37,7 @@ class MemberTile extends StatelessWidget {
                 ? AppColors.orange
                 : null,
             backgroundImage: member.profileImage != null
-                ? NetworkImage(
+                ? CachedNetworkImageProvider(
                     '${ConstantUrls.memberImageUrl}/${member.id}/${member.profileImage}',
                   )
                 : null,

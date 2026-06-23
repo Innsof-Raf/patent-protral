@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -423,17 +424,17 @@ class _DoctorImage extends StatelessWidget {
         child: SizedBox(
           width: 64,
           height: 64,
-          child: Image.network(
-            imageUrl,
+          child: CachedNetworkImage(
+            imageUrl: imageUrl,
             fit: BoxFit.cover,
-            loadingBuilder: (context, child, loadingProgress) {
+            placeholder: (context, url) {
               return AppHelpers.imageLoadingIndicator(
                 context,
-                child,
-                loadingProgress,
+                const SizedBox.expand(),
+                null,
               );
             },
-            errorBuilder: (context, error, stackTrace) {
+            errorWidget: (context, url, error) {
               return ColoredBox(
                 color: colorScheme.surfaceContainerHighest,
                 child: Padding(

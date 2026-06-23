@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_section_card.dart';
@@ -90,7 +91,9 @@ class _MemberAvatar extends StatelessWidget {
         backgroundColor: theme.colorScheme.primaryContainer,
         backgroundImage: image == null || image!.isEmpty
             ? null
-            : NetworkImage('${ConstantUrls.memberImageUrl}/$memberId/$image'),
+            : CachedNetworkImageProvider(
+                '${ConstantUrls.memberImageUrl}/$memberId/$image',
+              ),
         child: image == null || image!.isEmpty
             ? Text(
                 initial,

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
@@ -123,19 +124,17 @@ class _DoctorAvatar extends StatelessWidget {
         width: size,
         height: size,
         color: theme.colorScheme.surfaceContainerHighest,
-        child: Image.network(
-          '${ConstantUrls.doctorImageUrl}/${doctor.idDoctor}/${doctor.doctorImage}',
+        child: CachedNetworkImage(
+          imageUrl:
+              '${ConstantUrls.doctorImageUrl}/${doctor.idDoctor}/${doctor.doctorImage}',
           fit: BoxFit.cover,
-          loadingBuilder: (context, child, loadingProgress) {
-            if (loadingProgress == null) return child;
-            return Center(
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                color: theme.colorScheme.primary,
-              ),
-            );
-          },
-          errorBuilder: (context, error, stackTrace) {
+          placeholder: (context, url) => Center(
+            child: CircularProgressIndicator(
+              strokeWidth: 2,
+              color: theme.colorScheme.primary,
+            ),
+          ),
+          errorWidget: (context, url, error) {
             return Padding(
               padding: const EdgeInsets.all(16),
               child: SvgPicture.asset(

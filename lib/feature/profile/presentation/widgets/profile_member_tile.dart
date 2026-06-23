@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -95,7 +96,9 @@ class _MemberAvatar extends StatelessWidget {
       backgroundColor: theme.colorScheme.primaryContainer,
       backgroundImage: image == null
           ? null
-          : NetworkImage('${ConstantUrls.memberImageUrl}/${member.id}/$image'),
+          : CachedNetworkImageProvider(
+              '${ConstantUrls.memberImageUrl}/${member.id}/$image',
+            ),
       child: image == null
           ? Text(
               member.name.trim().isEmpty
