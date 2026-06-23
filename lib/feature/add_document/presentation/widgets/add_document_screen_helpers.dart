@@ -2,13 +2,11 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/image_picker_tile.dart';
-import 'package:patient_portal/core/resources/dimens.dart';
+import 'package:patient_portal/core/resources/common_helpers/image_picker_helpers.dart';
 import 'package:patient_portal/feature/add_document/domain/entities/document_type.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 
@@ -68,89 +66,44 @@ class AddDocumentScreenHelpers {
   static Future<PickedDocument?> pickDocument({
     required BuildContext context,
   }) async {
-    final theme = Theme.of(context);
-    return await showModalBottomSheet<PickedDocument>(
+    return await ImagePickerHelpers.showPickerSheet<PickedDocument>(
       context: context,
-      backgroundColor: theme.colorScheme.surface,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      builder: (context) => Container(
-        padding: const EdgeInsets.all(Dimens.constPadding),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Center(
-              child: Container(
-                width: 40,
-                height: 4,
-                margin: const EdgeInsets.only(bottom: 20),
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.outlineVariant,
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
-            ),
-            Text(
-              AppStaticTexts.document,
-              style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
-                color: theme.colorScheme.onSurface,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const Gap(24),
-            Row(
-              children: [
-                Expanded(
-                  child: ImagePickerTile(
-                    title: AppStaticTexts.camera,
-                    iconPath: Assets.icons.cameraIcon.path,
-                    onPressed: () async {
-                      final image = await ImagePicker().pickImage(
-                        source: ImageSource.camera,
-                      );
-                      if (image != null && context.mounted) {
-                        Navigator.pop(
-                          context,
-                          PickedDocument(
-                            file: File(image.path),
-                            name: image.name,
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                ),
-                const Gap(16),
-                Expanded(
-                  child: ImagePickerTile(
-                    title: AppStaticTexts.files,
-                    iconPath: Assets.icons.folderIcon.path,
-                    onPressed: () async {
-                      final value = await FilePicker.pickFiles(
-                        type: FileType.custom,
-                        allowMultiple: false,
-                        allowedExtensions: ['jpg', 'png', 'pdf'],
-                      );
-                      if (value != null && context.mounted) {
-                        Navigator.pop(
-                          context,
-                          PickedDocument(
-                            file: File(value.files[0].path!),
-                            name: value.files[0].name,
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                ),
-              ],
-            ),
-            const Gap(16),
-          ],
+      title: AppStaticTexts.document,
+      subtitle: AppStaticTexts.selectImageSource,
+      actions: [
+        PickerSheetAction<PickedDocument>(
+          title: AppStaticTexts.camera,
+          iconPath: Assets.icons.cameraIcon.path,
+          onPressed: () async {
+            final image = await ImagePickerHelpers.pickImageFromSource(
+              source: ImageSource.camera,
+            );
+            return image != null
+                ? PickedDocument(
+                    file: image,
+                    name: image.path.split(Platform.pathSeparator).last,
+                  )
+                : null;
+          },
         ),
-      ),
+        PickerSheetAction<PickedDocument>(
+          title: AppStaticTexts.files,
+          iconPath: Assets.icons.folderIcon.path,
+          onPressed: () async {
+            final value = await FilePicker.pickFiles(
+              type: FileType.custom,
+              allowMultiple: false,
+              allowedExtensions: ['jpg', 'png', 'pdf'],
+            );
+            final filePath = value?.files.single.path;
+            if (filePath == null) return null;
+            return PickedDocument(
+              file: File(filePath),
+              name: value!.files.single.name,
+            );
+          },
+        ),
+      ],
     );
   }
 

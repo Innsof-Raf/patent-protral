@@ -2,10 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gap/gap.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/gender_form_helpers.dart';
+import 'package:patient_portal/core/resources/common_helpers/image_picker_helpers.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/insurance_form_section.dart';
 import 'package:patient_portal/feature/add_member/domain/usecases/params/params.dart';
@@ -27,96 +25,11 @@ class AddMemberScreenHelpers {
     );
   }
 
-  static void pickImage({required BuildContext context}) {
-    final theme = Theme.of(context);
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      builder: (context) => SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                AppStaticTexts.uploadProfilePhoto,
-                style: theme.textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Gap(8),
-              Text(
-                AppStaticTexts.selectImageSource,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: theme.colorScheme.onSurfaceVariant,
-                ),
-              ),
-              const Gap(24),
-              Row(
-                children: [
-                  Expanded(
-                    child: _buildImageSourceTile(
-                      context,
-                      title: AppStaticTexts.camera,
-                      icon: Icons.camera_alt_rounded,
-                      source: ImageSource.camera,
-                      color: theme.colorScheme.primary,
-                    ),
-                  ),
-                  const Gap(16),
-                  Expanded(
-                    child: _buildImageSourceTile(
-                      context,
-                      title: AppStaticTexts.gallery,
-                      icon: Icons.photo_library_rounded,
-                      source: ImageSource.gallery,
-                      color: theme.colorScheme.primary,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  static Widget _buildImageSourceTile(
-    BuildContext context, {
-    required String title,
-    required IconData icon,
-    required ImageSource source,
-    required Color color,
-  }) {
-    final theme = Theme.of(context);
-    return InkWell(
-      onTap: () async {
-        final image = await ImagePicker().pickImage(source: source);
-        if (image != null) {
-          profileImageNotifier.value = File(image.path);
-        }
-        if (context.mounted) Navigator.pop(context);
-      },
-      borderRadius: BorderRadius.circular(16),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: theme.colorScheme.outlineVariant),
-        ),
-        child: Column(
-          children: [
-            Icon(icon, size: 32, color: color),
-            const Gap(8),
-            Text(title, style: theme.textTheme.labelLarge),
-          ],
-        ),
-      ),
-    );
+  static Future<void> pickImage({required BuildContext context}) async {
+    final image = await ImagePickerHelpers.pickImage(context: context);
+    if (image != null) {
+      profileImageNotifier.value = image;
+    }
   }
 
   static ValueNotifier<File?> profileImageNotifier = ValueNotifier<File?>(null);

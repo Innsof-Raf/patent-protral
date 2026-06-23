@@ -2,10 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/common_helpers/gender_form_helpers.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/image_picker_tile.dart';
+import 'package:patient_portal/core/resources/common_helpers/image_picker_helpers.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/widgets/edit_profile_details_section.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -36,71 +34,15 @@ class EditProfileDetailScreenHelpers {
     return selectedDate;
   }
 
-  //show image picker bottom sheet
-  static void pickImage({required BuildContext context}) {
-    final theme = Theme.of(context);
-
-    showModalBottomSheet(
+  static Future<void> pickImage({required BuildContext context}) async {
+    final image = await ImagePickerHelpers.pickImage(
       context: context,
-      showDragHandle: true,
-      backgroundColor: theme.colorScheme.surface,
-      builder: (context) => Padding(
-        padding: const EdgeInsets.fromLTRB(20, 6, 20, 24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Profile photo',
-              style: theme.textTheme.titleMedium?.copyWith(
-                color: theme.colorScheme.onSurface,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              'Choose a source for your new profile image.',
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                ImagePickerTile(
-                  title: 'Camera',
-                  iconPath: Assets.icons.cameraIcon.path,
-                  onPressed: () async {
-                    final XFile? image = await ImagePicker().pickImage(
-                      source: ImageSource.camera,
-                    );
-                    if (image != null) {
-                      profileImage.value = File(image.path);
-                      if (context.mounted) Navigator.pop(context);
-                    }
-                  },
-                ),
-                const SizedBox(width: 15),
-                ImagePickerTile(
-                  title: 'Gallery',
-                  iconPath: Assets.icons.galleryIcon.path,
-                  onPressed: () async {
-                    final XFile? image = await ImagePicker().pickImage(
-                      source: ImageSource.gallery,
-                    );
-                    if (image != null) {
-                      profileImage.value = File(image.path);
-                      if (context.mounted) Navigator.pop(context);
-                    }
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
+      title: 'Profile photo',
+      subtitle: 'Choose a source for your new profile image.',
     );
+    if (image != null) {
+      profileImage.value = image;
+    }
   }
 
   //value Notifier for profile Image
