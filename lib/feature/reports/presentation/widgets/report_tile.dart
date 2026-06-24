@@ -46,6 +46,14 @@ class MyReportTile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
+                        '${AppStaticTexts.patient}: ${report.customerName}',
+                        style: AppTextStyles.bodyTextRoboto.copyWith(
+                          color: theme.colorScheme.primary,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      const Gap(2),
+                      Text(
                         report.doctorName,
                         style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                           fontWeight: FontWeight.w800,

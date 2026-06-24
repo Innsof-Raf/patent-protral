@@ -14,6 +14,8 @@ sealed class ReportModel with _$ReportModel {
     required int idConseltation,
     @JsonKey(name: 'id', fromJson: intFromJson) required int id,
     @JsonKey(name: 'ID_CUSTOMER', fromJson: intFromJson) required int memberId,
+    @JsonKey(name: 'Customer_Name', fromJson: stringFromJson)
+    required String customerName,
     @JsonKey(name: 'employee_name', fromJson: stringFromJson)
     required String doctorName,
     @JsonKey(name: 'speciality', fromJson: stringFromJson)
@@ -35,6 +37,7 @@ sealed class ReportModel with _$ReportModel {
       idConseltation: idConseltation,
       id: id,
       memberId: memberId,
+      customerName: customerName,
       doctorName: doctorName,
       departmentName: departmentName,
       appointmentDate: appointmentDate,

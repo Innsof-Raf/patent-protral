@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Report {
 
- int get idConseltation; int get id; int get memberId; String get doctorName; String get departmentName; DateTime get appointmentDate; String get appointmentTime; String? get labPdfUrl; String? get xRayPdfUrl; String? get ussPdfUrl; String? get ctPdfUrl;
+ int get idConseltation; int get id; int get memberId; String get customerName; String get doctorName; String get departmentName; DateTime get appointmentDate; String get appointmentTime; String? get labPdfUrl; String? get xRayPdfUrl; String? get ussPdfUrl; String? get ctPdfUrl;
 /// Create a copy of Report
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ReportCopyWith<Report> get copyWith => _$ReportCopyWithImpl<Report>(this as Rep
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Report&&(identical(other.idConseltation, idConseltation) || other.idConseltation == idConseltation)&&(identical(other.id, id) || other.id == id)&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.doctorName, doctorName) || other.doctorName == doctorName)&&(identical(other.departmentName, departmentName) || other.departmentName == departmentName)&&(identical(other.appointmentDate, appointmentDate) || other.appointmentDate == appointmentDate)&&(identical(other.appointmentTime, appointmentTime) || other.appointmentTime == appointmentTime)&&(identical(other.labPdfUrl, labPdfUrl) || other.labPdfUrl == labPdfUrl)&&(identical(other.xRayPdfUrl, xRayPdfUrl) || other.xRayPdfUrl == xRayPdfUrl)&&(identical(other.ussPdfUrl, ussPdfUrl) || other.ussPdfUrl == ussPdfUrl)&&(identical(other.ctPdfUrl, ctPdfUrl) || other.ctPdfUrl == ctPdfUrl));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Report&&(identical(other.idConseltation, idConseltation) || other.idConseltation == idConseltation)&&(identical(other.id, id) || other.id == id)&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.customerName, customerName) || other.customerName == customerName)&&(identical(other.doctorName, doctorName) || other.doctorName == doctorName)&&(identical(other.departmentName, departmentName) || other.departmentName == departmentName)&&(identical(other.appointmentDate, appointmentDate) || other.appointmentDate == appointmentDate)&&(identical(other.appointmentTime, appointmentTime) || other.appointmentTime == appointmentTime)&&(identical(other.labPdfUrl, labPdfUrl) || other.labPdfUrl == labPdfUrl)&&(identical(other.xRayPdfUrl, xRayPdfUrl) || other.xRayPdfUrl == xRayPdfUrl)&&(identical(other.ussPdfUrl, ussPdfUrl) || other.ussPdfUrl == ussPdfUrl)&&(identical(other.ctPdfUrl, ctPdfUrl) || other.ctPdfUrl == ctPdfUrl));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,idConseltation,id,memberId,doctorName,departmentName,appointmentDate,appointmentTime,labPdfUrl,xRayPdfUrl,ussPdfUrl,ctPdfUrl);
+int get hashCode => Object.hash(runtimeType,idConseltation,id,memberId,customerName,doctorName,departmentName,appointmentDate,appointmentTime,labPdfUrl,xRayPdfUrl,ussPdfUrl,ctPdfUrl);
 
 @override
 String toString() {
-  return 'Report(idConseltation: $idConseltation, id: $id, memberId: $memberId, doctorName: $doctorName, departmentName: $departmentName, appointmentDate: $appointmentDate, appointmentTime: $appointmentTime, labPdfUrl: $labPdfUrl, xRayPdfUrl: $xRayPdfUrl, ussPdfUrl: $ussPdfUrl, ctPdfUrl: $ctPdfUrl)';
+  return 'Report(idConseltation: $idConseltation, id: $id, memberId: $memberId, customerName: $customerName, doctorName: $doctorName, departmentName: $departmentName, appointmentDate: $appointmentDate, appointmentTime: $appointmentTime, labPdfUrl: $labPdfUrl, xRayPdfUrl: $xRayPdfUrl, ussPdfUrl: $ussPdfUrl, ctPdfUrl: $ctPdfUrl)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $ReportCopyWith<$Res>  {
   factory $ReportCopyWith(Report value, $Res Function(Report) _then) = _$ReportCopyWithImpl;
 @useResult
 $Res call({
- int idConseltation, int id, int memberId, String doctorName, String departmentName, DateTime appointmentDate, String appointmentTime, String? labPdfUrl, String? xRayPdfUrl, String? ussPdfUrl, String? ctPdfUrl
+ int idConseltation, int id, int memberId, String customerName, String doctorName, String departmentName, DateTime appointmentDate, String appointmentTime, String? labPdfUrl, String? xRayPdfUrl, String? ussPdfUrl, String? ctPdfUrl
 });
 
 
@@ -62,12 +62,13 @@ class _$ReportCopyWithImpl<$Res>
 
 /// Create a copy of Report
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? idConseltation = null,Object? id = null,Object? memberId = null,Object? doctorName = null,Object? departmentName = null,Object? appointmentDate = null,Object? appointmentTime = null,Object? labPdfUrl = freezed,Object? xRayPdfUrl = freezed,Object? ussPdfUrl = freezed,Object? ctPdfUrl = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? idConseltation = null,Object? id = null,Object? memberId = null,Object? customerName = null,Object? doctorName = null,Object? departmentName = null,Object? appointmentDate = null,Object? appointmentTime = null,Object? labPdfUrl = freezed,Object? xRayPdfUrl = freezed,Object? ussPdfUrl = freezed,Object? ctPdfUrl = freezed,}) {
   return _then(_self.copyWith(
 idConseltation: null == idConseltation ? _self.idConseltation : idConseltation // ignore: cast_nullable_to_non_nullable
 as int,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
-as int,doctorName: null == doctorName ? _self.doctorName : doctorName // ignore: cast_nullable_to_non_nullable
+as int,customerName: null == customerName ? _self.customerName : customerName // ignore: cast_nullable_to_non_nullable
+as String,doctorName: null == doctorName ? _self.doctorName : doctorName // ignore: cast_nullable_to_non_nullable
 as String,departmentName: null == departmentName ? _self.departmentName : departmentName // ignore: cast_nullable_to_non_nullable
 as String,appointmentDate: null == appointmentDate ? _self.appointmentDate : appointmentDate // ignore: cast_nullable_to_non_nullable
 as DateTime,appointmentTime: null == appointmentTime ? _self.appointmentTime : appointmentTime // ignore: cast_nullable_to_non_nullable
@@ -157,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int idConseltation,  int id,  int memberId,  String doctorName,  String departmentName,  DateTime appointmentDate,  String appointmentTime,  String? labPdfUrl,  String? xRayPdfUrl,  String? ussPdfUrl,  String? ctPdfUrl)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int idConseltation,  int id,  int memberId,  String customerName,  String doctorName,  String departmentName,  DateTime appointmentDate,  String appointmentTime,  String? labPdfUrl,  String? xRayPdfUrl,  String? ussPdfUrl,  String? ctPdfUrl)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Report() when $default != null:
-return $default(_that.idConseltation,_that.id,_that.memberId,_that.doctorName,_that.departmentName,_that.appointmentDate,_that.appointmentTime,_that.labPdfUrl,_that.xRayPdfUrl,_that.ussPdfUrl,_that.ctPdfUrl);case _:
+return $default(_that.idConseltation,_that.id,_that.memberId,_that.customerName,_that.doctorName,_that.departmentName,_that.appointmentDate,_that.appointmentTime,_that.labPdfUrl,_that.xRayPdfUrl,_that.ussPdfUrl,_that.ctPdfUrl);case _:
   return orElse();
 
 }
@@ -178,10 +179,10 @@ return $default(_that.idConseltation,_that.id,_that.memberId,_that.doctorName,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int idConseltation,  int id,  int memberId,  String doctorName,  String departmentName,  DateTime appointmentDate,  String appointmentTime,  String? labPdfUrl,  String? xRayPdfUrl,  String? ussPdfUrl,  String? ctPdfUrl)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int idConseltation,  int id,  int memberId,  String customerName,  String doctorName,  String departmentName,  DateTime appointmentDate,  String appointmentTime,  String? labPdfUrl,  String? xRayPdfUrl,  String? ussPdfUrl,  String? ctPdfUrl)  $default,) {final _that = this;
 switch (_that) {
 case _Report():
-return $default(_that.idConseltation,_that.id,_that.memberId,_that.doctorName,_that.departmentName,_that.appointmentDate,_that.appointmentTime,_that.labPdfUrl,_that.xRayPdfUrl,_that.ussPdfUrl,_that.ctPdfUrl);}
+return $default(_that.idConseltation,_that.id,_that.memberId,_that.customerName,_that.doctorName,_that.departmentName,_that.appointmentDate,_that.appointmentTime,_that.labPdfUrl,_that.xRayPdfUrl,_that.ussPdfUrl,_that.ctPdfUrl);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -195,10 +196,10 @@ return $default(_that.idConseltation,_that.id,_that.memberId,_that.doctorName,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int idConseltation,  int id,  int memberId,  String doctorName,  String departmentName,  DateTime appointmentDate,  String appointmentTime,  String? labPdfUrl,  String? xRayPdfUrl,  String? ussPdfUrl,  String? ctPdfUrl)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int idConseltation,  int id,  int memberId,  String customerName,  String doctorName,  String departmentName,  DateTime appointmentDate,  String appointmentTime,  String? labPdfUrl,  String? xRayPdfUrl,  String? ussPdfUrl,  String? ctPdfUrl)?  $default,) {final _that = this;
 switch (_that) {
 case _Report() when $default != null:
-return $default(_that.idConseltation,_that.id,_that.memberId,_that.doctorName,_that.departmentName,_that.appointmentDate,_that.appointmentTime,_that.labPdfUrl,_that.xRayPdfUrl,_that.ussPdfUrl,_that.ctPdfUrl);case _:
+return $default(_that.idConseltation,_that.id,_that.memberId,_that.customerName,_that.doctorName,_that.departmentName,_that.appointmentDate,_that.appointmentTime,_that.labPdfUrl,_that.xRayPdfUrl,_that.ussPdfUrl,_that.ctPdfUrl);case _:
   return null;
 
 }
@@ -210,12 +211,13 @@ return $default(_that.idConseltation,_that.id,_that.memberId,_that.doctorName,_t
 
 
 class _Report implements Report {
-  const _Report({required this.idConseltation, required this.id, required this.memberId, required this.doctorName, required this.departmentName, required this.appointmentDate, required this.appointmentTime, this.labPdfUrl, this.xRayPdfUrl, this.ussPdfUrl, this.ctPdfUrl});
+  const _Report({required this.idConseltation, required this.id, required this.memberId, required this.customerName, required this.doctorName, required this.departmentName, required this.appointmentDate, required this.appointmentTime, this.labPdfUrl, this.xRayPdfUrl, this.ussPdfUrl, this.ctPdfUrl});
   
 
 @override final  int idConseltation;
 @override final  int id;
 @override final  int memberId;
+@override final  String customerName;
 @override final  String doctorName;
 @override final  String departmentName;
 @override final  DateTime appointmentDate;
@@ -235,16 +237,16 @@ _$ReportCopyWith<_Report> get copyWith => __$ReportCopyWithImpl<_Report>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Report&&(identical(other.idConseltation, idConseltation) || other.idConseltation == idConseltation)&&(identical(other.id, id) || other.id == id)&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.doctorName, doctorName) || other.doctorName == doctorName)&&(identical(other.departmentName, departmentName) || other.departmentName == departmentName)&&(identical(other.appointmentDate, appointmentDate) || other.appointmentDate == appointmentDate)&&(identical(other.appointmentTime, appointmentTime) || other.appointmentTime == appointmentTime)&&(identical(other.labPdfUrl, labPdfUrl) || other.labPdfUrl == labPdfUrl)&&(identical(other.xRayPdfUrl, xRayPdfUrl) || other.xRayPdfUrl == xRayPdfUrl)&&(identical(other.ussPdfUrl, ussPdfUrl) || other.ussPdfUrl == ussPdfUrl)&&(identical(other.ctPdfUrl, ctPdfUrl) || other.ctPdfUrl == ctPdfUrl));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Report&&(identical(other.idConseltation, idConseltation) || other.idConseltation == idConseltation)&&(identical(other.id, id) || other.id == id)&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.customerName, customerName) || other.customerName == customerName)&&(identical(other.doctorName, doctorName) || other.doctorName == doctorName)&&(identical(other.departmentName, departmentName) || other.departmentName == departmentName)&&(identical(other.appointmentDate, appointmentDate) || other.appointmentDate == appointmentDate)&&(identical(other.appointmentTime, appointmentTime) || other.appointmentTime == appointmentTime)&&(identical(other.labPdfUrl, labPdfUrl) || other.labPdfUrl == labPdfUrl)&&(identical(other.xRayPdfUrl, xRayPdfUrl) || other.xRayPdfUrl == xRayPdfUrl)&&(identical(other.ussPdfUrl, ussPdfUrl) || other.ussPdfUrl == ussPdfUrl)&&(identical(other.ctPdfUrl, ctPdfUrl) || other.ctPdfUrl == ctPdfUrl));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,idConseltation,id,memberId,doctorName,departmentName,appointmentDate,appointmentTime,labPdfUrl,xRayPdfUrl,ussPdfUrl,ctPdfUrl);
+int get hashCode => Object.hash(runtimeType,idConseltation,id,memberId,customerName,doctorName,departmentName,appointmentDate,appointmentTime,labPdfUrl,xRayPdfUrl,ussPdfUrl,ctPdfUrl);
 
 @override
 String toString() {
-  return 'Report(idConseltation: $idConseltation, id: $id, memberId: $memberId, doctorName: $doctorName, departmentName: $departmentName, appointmentDate: $appointmentDate, appointmentTime: $appointmentTime, labPdfUrl: $labPdfUrl, xRayPdfUrl: $xRayPdfUrl, ussPdfUrl: $ussPdfUrl, ctPdfUrl: $ctPdfUrl)';
+  return 'Report(idConseltation: $idConseltation, id: $id, memberId: $memberId, customerName: $customerName, doctorName: $doctorName, departmentName: $departmentName, appointmentDate: $appointmentDate, appointmentTime: $appointmentTime, labPdfUrl: $labPdfUrl, xRayPdfUrl: $xRayPdfUrl, ussPdfUrl: $ussPdfUrl, ctPdfUrl: $ctPdfUrl)';
 }
 
 
@@ -255,7 +257,7 @@ abstract mixin class _$ReportCopyWith<$Res> implements $ReportCopyWith<$Res> {
   factory _$ReportCopyWith(_Report value, $Res Function(_Report) _then) = __$ReportCopyWithImpl;
 @override @useResult
 $Res call({
- int idConseltation, int id, int memberId, String doctorName, String departmentName, DateTime appointmentDate, String appointmentTime, String? labPdfUrl, String? xRayPdfUrl, String? ussPdfUrl, String? ctPdfUrl
+ int idConseltation, int id, int memberId, String customerName, String doctorName, String departmentName, DateTime appointmentDate, String appointmentTime, String? labPdfUrl, String? xRayPdfUrl, String? ussPdfUrl, String? ctPdfUrl
 });
 
 
@@ -272,12 +274,13 @@ class __$ReportCopyWithImpl<$Res>
 
 /// Create a copy of Report
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? idConseltation = null,Object? id = null,Object? memberId = null,Object? doctorName = null,Object? departmentName = null,Object? appointmentDate = null,Object? appointmentTime = null,Object? labPdfUrl = freezed,Object? xRayPdfUrl = freezed,Object? ussPdfUrl = freezed,Object? ctPdfUrl = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? idConseltation = null,Object? id = null,Object? memberId = null,Object? customerName = null,Object? doctorName = null,Object? departmentName = null,Object? appointmentDate = null,Object? appointmentTime = null,Object? labPdfUrl = freezed,Object? xRayPdfUrl = freezed,Object? ussPdfUrl = freezed,Object? ctPdfUrl = freezed,}) {
   return _then(_Report(
 idConseltation: null == idConseltation ? _self.idConseltation : idConseltation // ignore: cast_nullable_to_non_nullable
 as int,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
-as int,doctorName: null == doctorName ? _self.doctorName : doctorName // ignore: cast_nullable_to_non_nullable
+as int,customerName: null == customerName ? _self.customerName : customerName // ignore: cast_nullable_to_non_nullable
+as String,doctorName: null == doctorName ? _self.doctorName : doctorName // ignore: cast_nullable_to_non_nullable
 as String,departmentName: null == departmentName ? _self.departmentName : departmentName // ignore: cast_nullable_to_non_nullable
 as String,appointmentDate: null == appointmentDate ? _self.appointmentDate : appointmentDate // ignore: cast_nullable_to_non_nullable
 as DateTime,appointmentTime: null == appointmentTime ? _self.appointmentTime : appointmentTime // ignore: cast_nullable_to_non_nullable

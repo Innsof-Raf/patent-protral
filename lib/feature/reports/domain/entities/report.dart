@@ -8,6 +8,7 @@ sealed class Report with _$Report {
     required int idConseltation,
     required int id,
     required int memberId,
+    required String customerName,
     required String doctorName,
     required String departmentName,
     required DateTime appointmentDate,
