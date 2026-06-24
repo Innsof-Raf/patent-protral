@@ -43,7 +43,7 @@ class AppDrawer extends StatelessWidget {
                       ),
                     ),
                     const DrawerProfileTile(),
-                    const SizedBox(height: 18),
+                    const Gap(18),
                     AppDrawerTile(
                       iconPath: Assets.icons.homeIcon.path,
                       tileName: AppStaticTexts.home,
@@ -101,7 +101,7 @@ class AppDrawer extends StatelessWidget {
                         await launchUrl(url);
                       },
                     ),
-                    const SizedBox(height: 16),
+                    const Gap(16),
                   ],
                 ),
               ),

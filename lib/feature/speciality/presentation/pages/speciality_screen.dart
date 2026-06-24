@@ -67,41 +67,45 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
             );
           }
 
-          return CustomScrollView(
-            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-            slivers: [
-              SliverPadding(
-                padding: const EdgeInsets.fromLTRB(16, 16, 16, 10),
-                sliver: SliverToBoxAdapter(
-                  child: FeatureHeader(
-                    title: AppStaticTexts.findSpecialist,
-                    subtitle: AppStaticTexts.specialistSubtitle,
-                    badgeText:
-                        '${state.specialities.length} ${AppStaticTexts.specialitiesAvailable}',
+          return RefreshIndicator(
+            onRefresh: () async => _fetchSpecialities(),
+            child: CustomScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              slivers: [
+                SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 10),
+                  sliver: SliverToBoxAdapter(
+                    child: FeatureHeader(
+                      title: AppStaticTexts.findSpecialist,
+                      subtitle: AppStaticTexts.specialistSubtitle,
+                      badgeText:
+                          '${state.specialities.length} ${AppStaticTexts.specialitiesAvailable}',
+                    ),
                   ),
                 ),
-              ),
-              if (state.specialities.isNotEmpty)
-                SliverSearchHeader(
-                  controller: searchController,
-                  title: AppStaticTexts.searchSpecialityHint,
-                  hintText: AppStaticTexts.searchSpecialities,
-                  onChanged: (value) {
-                    context.read<SpecialityBloc>().add(
-                      SearchSpecialities(
-                        params: SpecialityParams.searchSpecialities(
-                          searchKey: value,
-                          specialities: state.specialities,
+                if (state.specialities.isNotEmpty)
+                  SliverSearchHeader(
+                    controller: searchController,
+                    title: AppStaticTexts.searchSpecialityHint,
+                    hintText: AppStaticTexts.searchSpecialities,
+                    onChanged: (value) {
+                      context.read<SpecialityBloc>().add(
+                        SearchSpecialities(
+                          params: SpecialityParams.searchSpecialities(
+                            searchKey: value,
+                            specialities: state.specialities,
+                          ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
+                _SpecialityResultSliver(
+                  allSpecialities: state.specialities,
+                  searchController: searchController,
                 ),
-              _SpecialityResultSliver(
-                allSpecialities: state.specialities,
-                searchController: searchController,
-              ),
-            ],
+              ],
+            ),
           );
         },
       ),

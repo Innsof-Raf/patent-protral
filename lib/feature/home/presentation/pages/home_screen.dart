@@ -52,29 +52,39 @@ class HomeScreen extends StatelessWidget {
 
         return Scaffold(
           backgroundColor: theme.colorScheme.surface,
-          body: ListView(
-            padding: const EdgeInsets.fromLTRB(14, 14, 14, 104),
-            children: [
-              HomeBannerCarousel(
-                banners: homeData.ads
-                    .where((e) => e.bannerType == 'HOMEBANNER')
-                    .toList(),
-              ),
-              if (homeData.ads.any((e) => e.bannerType == 'HOMEBANNER'))
-                const Gap(22),
-              HomeSpecialitiesSection(specialities: homeData.topSpecialities),
-              if (homeData.topSpecialities.isNotEmpty) const Gap(24),
-              HomeInsuranceSection(insurances: homeData.topInsurances),
-              if (homeData.topInsurances.isNotEmpty) const Gap(24),
-              HomeDoctorsSection(doctors: homeData.topDoctors),
-              if (homeData.topDoctors.isNotEmpty) const Gap(24),
-              HomePackagesSection(
-                packages: homeData.topPackages,
-                carouselController: packageCarouselController,
-              ),
-              if (homeData.topPackages.isNotEmpty) const Gap(24),
-              const HomeQuickActionsSection(),
-            ],
+          body: RefreshIndicator(
+            onRefresh: () async {
+              final token =
+                  context.read<UserBloc>().state.user?.accessToken ?? '';
+              context.read<HomeBloc>().add(
+                GetHomeData(token: token, idBusunit: 3),
+              );
+            },
+            child: ListView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              padding: const EdgeInsets.fromLTRB(14, 14, 14, 104),
+              children: [
+                HomeBannerCarousel(
+                  banners: homeData.ads
+                      .where((e) => e.bannerType == 'HOMEBANNER')
+                      .toList(),
+                ),
+                if (homeData.ads.any((e) => e.bannerType == 'HOMEBANNER'))
+                  const Gap(22),
+                HomeSpecialitiesSection(specialities: homeData.topSpecialities),
+                if (homeData.topSpecialities.isNotEmpty) const Gap(24),
+                HomeInsuranceSection(insurances: homeData.topInsurances),
+                if (homeData.topInsurances.isNotEmpty) const Gap(24),
+                HomeDoctorsSection(doctors: homeData.topDoctors),
+                if (homeData.topDoctors.isNotEmpty) const Gap(24),
+                HomePackagesSection(
+                  packages: homeData.topPackages,
+                  carouselController: packageCarouselController,
+                ),
+                if (homeData.topPackages.isNotEmpty) const Gap(24),
+                const HomeQuickActionsSection(),
+              ],
+            ),
           ),
         );
       },

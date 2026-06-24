@@ -87,6 +87,9 @@ class AppStaticTexts {
   static const String viewAll = 'View all';
 
   // Login
+  static const String getInvolvedWith = 'Get involved with';
+  static const String loginSubtitle =
+      'Access appointments, records, and care updates securely.';
   static const String mobileNumberLabel = 'Mobile number';
   static const String sendOtpTooltip = 'Send OTP';
   static const String passwordLabel = 'Password';
@@ -166,6 +169,8 @@ class AppStaticTexts {
   // Reports
   static const String unableToLoadReports = 'Unable to load reports';
   static const String noReportsAvailable = 'No Reports Available';
+  static const String noReportsMessage =
+      'Your medical reports will appear here once available.';
 
   // Profile
   static const String age = 'Age';
@@ -234,6 +239,8 @@ class AppStaticTexts {
   static const String unableToLoadDocuments = 'Unable to load documents';
   static const String total = 'Total';
   static const String qr = 'QR';
+  static const String menu = 'Menu';
+  static const String user = 'User';
 
   // Documents/Add Document
   static const String addDocument = 'Add Document';

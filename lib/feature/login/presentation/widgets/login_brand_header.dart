@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class LoginBrandHeader extends StatelessWidget {
@@ -26,21 +28,18 @@ class LoginBrandHeader extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                'Get involved with',
+                AppStaticTexts.getInvolvedWith,
                 style: titleStyle,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            const SizedBox(width: 12),
+            const Gap(12),
             Assets.logos.innsofColor.svg(width: 96, fit: BoxFit.contain),
           ],
         ),
-        const SizedBox(height: 8),
-        Text(
-          'Access appointments, records, and care updates securely.',
-          style: subtitleStyle,
-        ),
+        const Gap(8),
+        Text(AppStaticTexts.loginSubtitle, style: subtitleStyle),
       ],
     );
   }

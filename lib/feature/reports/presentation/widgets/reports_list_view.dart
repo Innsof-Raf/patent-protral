@@ -13,7 +13,9 @@ class ReportsListView extends StatelessWidget {
     return ListView.separated(
       itemCount: reports.length,
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 100),
-      physics: const BouncingScrollPhysics(),
+      physics: const AlwaysScrollableScrollPhysics(
+        parent: BouncingScrollPhysics(),
+      ),
       separatorBuilder: (context, index) => const Gap(16),
       itemBuilder: (context, index) {
         return MyReportTile(report: reports[index]);

@@ -79,63 +79,68 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
             );
           }
 
-          return NestedScrollView(
-            key: const ValueKey('my_appointments_nested_scroll_view'),
-            headerSliverBuilder: (context, innerBoxIsScrolled) {
-              return [
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 10),
-                    child: AppointmentsOverviewCard(
-                      totalCount: state.myAppointments.length,
-                      consultedCount: state.myConsultedAppointments.length,
-                      upcomingCount: state.myNotConsultedAppointments.length,
+          return CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            slivers: [
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 12, 16, 10),
+                  child: AppointmentsOverviewCard(
+                    totalCount: state.myAppointments.length,
+                    consultedCount: state.myConsultedAppointments.length,
+                    upcomingCount: state.myNotConsultedAppointments.length,
+                  ),
+                ),
+              ),
+              SliverPersistentHeader(
+                pinned: true,
+                delegate: _SliverAppBarDelegate(
+                  child: Container(
+                    height: 64,
+                    color: colorScheme.surface,
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
+                    alignment: Alignment.bottomCenter,
+                    child: _AppointmentsTabBar(
+                      selectedIndexListenable:
+                          MyAppointmentScreenHelpers.selectedTabNotifier,
                     ),
                   ),
                 ),
-                SliverPersistentHeader(
-                  pinned: true,
-                  delegate: _SliverAppBarDelegate(
-                    child: Container(
-                      height: 64,
-                      color: colorScheme.surface,
-                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
-                      alignment: Alignment.bottomCenter,
-                      child: _AppointmentsTabBar(
-                        selectedIndexListenable:
-                            MyAppointmentScreenHelpers.selectedTabNotifier,
-                      ),
+              ),
+              SliverFillRemaining(
+                child: TabBarView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    AppointmentsTabbarView(
+                      title: AppStaticTexts.allAppointments,
+                      appointments: state.myAppointments,
+                      monthTimelineList: state.monthTimelineList,
+                      emptyTitle: AppStaticTexts.noAppointmentsYet,
+                      emptyMessage: AppStaticTexts.noAppointmentsMessage,
+                      onRefresh: () async => _fetchAppointments(),
                     ),
-                  ),
+                    AppointmentsTabbarView(
+                      title: AppStaticTexts.consultedAppointments,
+                      appointments: state.myConsultedAppointments,
+                      monthTimelineList: state.monthTimelineListOfConsulted,
+                      emptyTitle: AppStaticTexts.noConsultedAppointments,
+                      emptyMessage:
+                          AppStaticTexts.noConsultedAppointmentsMessage,
+                      onRefresh: () async => _fetchAppointments(),
+                    ),
+                    AppointmentsTabbarView(
+                      title: AppStaticTexts.upcomingAppointments,
+                      appointments: state.myNotConsultedAppointments,
+                      monthTimelineList: state.monthTimelineListOfNotConsulted,
+                      emptyTitle: AppStaticTexts.noUpcomingAppointments,
+                      emptyMessage:
+                          AppStaticTexts.noUpcomingAppointmentsMessage,
+                      onRefresh: () async => _fetchAppointments(),
+                    ),
+                  ],
                 ),
-              ];
-            },
-            body: TabBarView(
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-                AppointmentsTabbarView(
-                  title: AppStaticTexts.allAppointments,
-                  appointments: state.myAppointments,
-                  monthTimelineList: state.monthTimelineList,
-                  emptyTitle: AppStaticTexts.noAppointmentsYet,
-                  emptyMessage: AppStaticTexts.noAppointmentsMessage,
-                ),
-                AppointmentsTabbarView(
-                  title: AppStaticTexts.consultedAppointments,
-                  appointments: state.myConsultedAppointments,
-                  monthTimelineList: state.monthTimelineListOfConsulted,
-                  emptyTitle: AppStaticTexts.noConsultedAppointments,
-                  emptyMessage: AppStaticTexts.noConsultedAppointmentsMessage,
-                ),
-                AppointmentsTabbarView(
-                  title: AppStaticTexts.upcomingAppointments,
-                  appointments: state.myNotConsultedAppointments,
-                  monthTimelineList: state.monthTimelineListOfNotConsulted,
-                  emptyTitle: AppStaticTexts.noUpcomingAppointments,
-                  emptyMessage: AppStaticTexts.noUpcomingAppointmentsMessage,
-                ),
-              ],
-            ),
+              ),
+            ],
           );
         },
       ),

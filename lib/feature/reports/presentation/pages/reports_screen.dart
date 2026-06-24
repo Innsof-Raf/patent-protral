@@ -81,7 +81,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                   ),
                   const Gap(8),
                   Text(
-                    'Your medical reports will appear here.',
+                    AppStaticTexts.noReportsMessage,
                     style: AppTextStyles.largeRobotoNormal.copyWith(
                       color: theme.colorScheme.onSurfaceVariant.withValues(
                         alpha: 0.7,

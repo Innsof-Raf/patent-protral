@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class AppDrawerTile extends StatelessWidget {
@@ -44,7 +45,7 @@ class AppDrawerTile extends StatelessWidget {
                     BlendMode.srcIn,
                   ),
                 ),
-                const SizedBox(width: 14),
+                const Gap(14),
                 Expanded(
                   child: Text(
                     tileName,
