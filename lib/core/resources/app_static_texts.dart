@@ -114,8 +114,12 @@ class AppStaticTexts {
   static const String qar = 'QAR';
   static const String nextAvailableToday = 'Next available today';
   static const String nextAvailable = 'Next available';
+  static const String notAvailable = 'Not available';
   static const String available = 'available';
   static const String book = 'Book';
+  static const String viewInfo = 'View info';
+  static const String doctorInfo = 'Doctor info';
+  static const String close = 'Close';
   static const String findDoctor = 'Find Doctor';
   static const String doctorAvailable = 'doctor available';
   static const String doctorsAvailable = 'doctors available';

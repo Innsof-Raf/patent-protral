@@ -17,9 +17,17 @@ class DoctorTile extends StatelessWidget {
 
   final Doctor doctor;
 
+  static String? normalizedBio(String? bio) {
+    if (bio == null) return null;
+
+    final normalized = bio.replaceAll(RegExp(r'\s+'), ' ').trim();
+    return normalized.isEmpty ? null : normalized;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final bio = normalizedBio(doctor.doctorBio);
 
     return Material(
       color: theme.colorScheme.surface,
@@ -43,13 +51,26 @@ class DoctorTile extends StatelessWidget {
               ),
             ],
           ),
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              final isCompact = constraints.maxWidth < 390;
-              return isCompact
-                  ? _CompactDoctorTileContent(doctor: doctor)
-                  : _WideDoctorTileContent(doctor: doctor);
-            },
+          child: Stack(
+            children: [
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final isCompact = constraints.maxWidth < 390;
+                  return isCompact
+                      ? _CompactDoctorTileContent(
+                          doctor: doctor,
+                          hasInfoButton: bio != null,
+                        )
+                      : _WideDoctorTileContent(doctor: doctor);
+                },
+              ),
+              if (bio != null)
+                Positioned(
+                  top: 4,
+                  right: 4,
+                  child: _DoctorInfoButton(doctor: doctor, bio: bio),
+                ),
+            ],
           ),
         ),
       ),
@@ -71,9 +92,12 @@ class _WideDoctorTileContent extends StatelessWidget {
         const Gap(14),
         Expanded(child: _DoctorDetails(doctor: doctor)),
         const Gap(12),
-        Align(
-          alignment: Alignment.topRight,
-          child: _BookDoctorButton(doctor: doctor),
+        SizedBox(
+          width: 104,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [_BookDoctorButton(doctor: doctor)],
+          ),
         ),
       ],
     );
@@ -81,28 +105,32 @@ class _WideDoctorTileContent extends StatelessWidget {
 }
 
 class _CompactDoctorTileContent extends StatelessWidget {
-  const _CompactDoctorTileContent({required this.doctor});
+  const _CompactDoctorTileContent({
+    required this.doctor,
+    required this.hasInfoButton,
+  });
 
   final Doctor doctor;
+  final bool hasInfoButton;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _DoctorAvatar(doctor: doctor, size: 78),
-            const Gap(12),
-            Expanded(child: _DoctorDetails(doctor: doctor, compact: true)),
-          ],
+        Padding(
+          padding: EdgeInsets.only(right: hasInfoButton ? 42 : 0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _DoctorAvatar(doctor: doctor, size: 78),
+              const Gap(12),
+              Expanded(child: _DoctorDetails(doctor: doctor, compact: true)),
+            ],
+          ),
         ),
         const Gap(12),
-        SizedBox(
-          width: double.infinity,
-          child: _BookDoctorButton(doctor: doctor, expanded: true),
-        ),
+        _BookDoctorButton(doctor: doctor, expanded: true),
       ],
     );
   }
@@ -158,6 +186,14 @@ class _DoctorDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final availability = doctor.availability.trim();
+    final availabilityText = availability.isEmpty
+        ? null
+        : availability.toLowerCase() == 'not available'
+        ? AppStaticTexts.notAvailable
+        : availability.toLowerCase() == 'today'
+        ? AppStaticTexts.nextAvailableToday
+        : '${AppStaticTexts.nextAvailable} ${availability.toLowerCase()}';
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -219,17 +255,17 @@ class _DoctorDetails extends StatelessWidget {
                 ),
             ],
           ),
-        const Gap(10),
-        Text(
-          doctor.availability.isNotEmpty
-              ? '${AppStaticTexts.nextAvailable} ${doctor.availability.toLowerCase()}'
-              : AppStaticTexts.nextAvailableToday,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: AppTextStyles.bodyTextBoldRoboto.copyWith(
-            color: theme.colorScheme.primary,
+        if (availabilityText != null) ...[
+          const Gap(10),
+          Text(
+            availabilityText,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: AppTextStyles.bodyTextBoldRoboto.copyWith(
+              color: theme.colorScheme.primary,
+            ),
           ),
-        ),
+        ],
       ],
     );
   }
@@ -269,6 +305,103 @@ class _BookDoctorButton extends StatelessWidget {
         );
       },
       child: const Text(AppStaticTexts.book),
+    );
+  }
+}
+
+class _DoctorInfoButton extends StatelessWidget {
+  const _DoctorInfoButton({required this.doctor, required this.bio});
+
+  final Doctor doctor;
+  final String bio;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: .4),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: theme.colorScheme.outlineVariant.withValues(alpha: .2),
+        ),
+      ),
+      child: SizedBox(
+        width: 28,
+        height: 28,
+        child: IconButton(
+          padding: EdgeInsets.zero,
+          constraints: const BoxConstraints(minWidth: 28, minHeight: 28),
+          visualDensity: VisualDensity.compact,
+          splashRadius: 14,
+          onPressed: () => showDialog<void>(
+            context: context,
+            builder: (dialogContext) =>
+                _DoctorInfoDialog(doctorName: doctor.doctorName, bio: bio),
+          ),
+          tooltip: AppStaticTexts.viewInfo,
+          icon: Icon(
+            Icons.info_outline_rounded,
+            size: 16,
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _DoctorInfoDialog extends StatelessWidget {
+  const _DoctorInfoDialog({required this.doctorName, required this.bio});
+
+  final String doctorName;
+  final String bio;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      titlePadding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
+      contentPadding: const EdgeInsets.fromLTRB(24, 16, 24, 0),
+      actionsPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            AppStaticTexts.doctorInfo,
+            style: AppTextStyles.largeBoldRoboto.copyWith(
+              color: theme.colorScheme.onSurface,
+            ),
+          ),
+          const Gap(6),
+          Text(
+            doctorName,
+            style: AppTextStyles.bodyTextInter.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
+      ),
+      content: SingleChildScrollView(
+        child: Text(
+          bio,
+          style: AppTextStyles.bodyTextInter.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+            height: 1.5,
+          ),
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: const Text(AppStaticTexts.close),
+        ),
+      ],
     );
   }
 }
