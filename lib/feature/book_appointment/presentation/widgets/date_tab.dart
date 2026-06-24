@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 
@@ -57,7 +58,7 @@ class DateTab extends StatelessWidget {
                 letterSpacing: 1.0,
               ),
             ),
-            const SizedBox(height: 6),
+            const Gap(6),
             Text(
               DateFormat('dd').format(date),
               style: AppTextStyles.extraLargeRobotoBold.copyWith(

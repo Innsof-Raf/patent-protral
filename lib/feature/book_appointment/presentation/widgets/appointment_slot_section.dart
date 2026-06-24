@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/book_appointment/domain/entities/shift.dart';
@@ -24,7 +25,7 @@ class AppointmentSlotSection extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 _buildHeader(theme, colorScheme),
-                const SizedBox(height: 16),
+                const Gap(16),
                 _buildSlotsGrid(),
               ],
             ),
@@ -44,7 +45,7 @@ class AppointmentSlotSection extends StatelessWidget {
             color: colorScheme.onSurface,
           ),
         ),
-        const SizedBox(width: 12),
+        const Gap(12),
         if (displayShift.isNotEmpty)
           Expanded(
             child: Align(
@@ -108,7 +109,7 @@ class AppointmentSlotSection extends StatelessWidget {
               size: 48,
               color: theme.colorScheme.outline.withValues(alpha: 0.5),
             ),
-            const SizedBox(height: 16),
+            const Gap(16),
             Text(
               AppStaticTexts.noSlotsAvailable,
               style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(

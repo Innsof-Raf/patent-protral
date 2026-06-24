@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -252,18 +254,28 @@ class _ProfilePreview extends StatelessWidget {
           child: CircleAvatar(
             radius: 32,
             backgroundColor: colorScheme.primaryContainer,
-            backgroundImage: imageUrl == null
-                ? null
-                : CachedNetworkImageProvider(imageUrl!),
-            child: imageUrl == null
-                ? Text(
-                    fallbackText ?? '?',
-                    style: AppTextStyles.extraLargeRobotoBold.copyWith(
-                      color: colorScheme.onPrimaryContainer,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  )
-                : null,
+            child: ClipOval(
+              child: SizedBox(
+                width: 64,
+                height: 64,
+                child: imageUrl == null
+                    ? _FallbackAvatar(
+                        text: fallbackText,
+                        backgroundColor: colorScheme.primaryContainer,
+                        foregroundColor: colorScheme.onPrimaryContainer,
+                      )
+                    : CachedNetworkImage(
+                        imageUrl: imageUrl!,
+                        fit: BoxFit.cover,
+                        errorWidget: (context, url, error) => _FallbackAvatar(
+                          text: fallbackText,
+                          backgroundColor: colorScheme.surfaceContainerHighest,
+                          foregroundColor: colorScheme.onSurfaceVariant,
+                          showImageErrorIcon: true,
+                        ),
+                      ),
+              ),
+            ),
           ),
         ),
         const Gap(12),
@@ -294,6 +306,44 @@ class _ProfilePreview extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _FallbackAvatar extends StatelessWidget {
+  final String? text;
+  final Color backgroundColor;
+  final Color foregroundColor;
+  final bool showImageErrorIcon;
+
+  const _FallbackAvatar({
+    required this.text,
+    required this.backgroundColor,
+    required this.foregroundColor,
+    this.showImageErrorIcon = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ColoredBox(
+      color: backgroundColor,
+      child: Center(
+        child: showImageErrorIcon
+            ? Padding(
+                padding: const EdgeInsets.all(14),
+                child: SvgPicture.asset(
+                  Assets.images.doctorImageLoadingFailedImage.path,
+                  fit: BoxFit.contain,
+                ),
+              )
+            : Text(
+                (text == null || text!.isEmpty) ? '?' : text!.toUpperCase(),
+                style: AppTextStyles.extraLargeRobotoBold.copyWith(
+                  color: foregroundColor,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+      ),
     );
   }
 }

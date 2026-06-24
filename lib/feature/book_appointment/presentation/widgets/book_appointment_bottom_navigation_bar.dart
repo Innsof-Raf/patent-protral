@@ -131,14 +131,16 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
 
     showGeneralDialog(
       transitionDuration: const Duration(milliseconds: 300),
-      pageBuilder: (context, animation, secondaryAnimation) => Container(),
+      pageBuilder: (_, animation, secondaryAnimation) =>
+          const SizedBox.shrink(),
       context: context,
-      transitionBuilder: (context, animation, secondaryAnimation, child) {
+      transitionBuilder: (dialogContext, animation, secondaryAnimation, child) {
         return ScaleTransition(
           scale: CurvedAnimation(parent: animation, curve: Curves.easeOutBack),
           child: SuccessDialog(
             title: title,
             onPressed: () {
+              Navigator.of(dialogContext).pop();
               context.router.popUntilRouteWithName(MainRoute.name);
             },
           ),
