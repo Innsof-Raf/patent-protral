@@ -264,6 +264,27 @@ class AppStaticTexts {
       'Appointment booked successfully';
   static const String appointmentRescheduledSuccessfully =
       'Appointment rescheduled successfully';
+  static const String availableTime = 'Available Time';
+  static const String noSlotsAvailable = 'No Slots Available';
+  static const String appointmentFor = 'Appointment for';
+  static const String noMembersAvailableToProceed =
+      'No members available. Add a member to proceed.';
+  static const String selectMemberOrAddNew =
+      'Select a member or add a new one.';
+  static const String patient = 'Patient';
+  static const String confirm = 'Confirm';
+  static const String selectSlotForRescheduleAppointment =
+      'Select slot for reschedule appointment';
+  static const String rescheduleSlot = 'Reschedule Slot';
+  static const String addMemberToBookAppointment =
+      'Add a Member to book an appointment';
+  static const String selectSlotAndMemberToBookAppointment =
+      'Select a slot and a member to book appointment';
+  static const String selectSlotToBookAppointment =
+      'Select a slot to book appointment';
+  static const String selectMemberToBookAppointment =
+      'Select a member to book appointment';
+  static const String bookSlot = 'Book Slot';
 
   // Set Password
   static const String setPassword = 'Set Password';

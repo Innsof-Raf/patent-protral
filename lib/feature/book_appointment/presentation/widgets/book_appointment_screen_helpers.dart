@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -28,7 +29,9 @@ class BookAppointmentScreenHelpers {
     ScaffoldMessenger.of(context).clearSnackBars();
     if (BookAppointmentScreenHelpers.selectedSlotNotifier.value == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        alertSnackBar(content: 'Select slot for reschedule appointment'),
+        alertSnackBar(
+          content: AppStaticTexts.selectSlotForRescheduleAppointment,
+        ),
       );
     } else {
       showGeneralDialog(
@@ -47,7 +50,7 @@ class BookAppointmentScreenHelpers {
               scale: Curves.easeOut.transform(animation.value),
               child: BookAppointmentConfirmationPopUp(
                 appointmentId: idAppointment,
-                title: 'Reschedule Slot',
+                title: AppStaticTexts.rescheduleSlot,
                 appointmentDateTime: selectedSlotNotifier.value!,
                 doctorImage: doctorImage,
                 doctorName: doctorName,
@@ -68,25 +71,25 @@ class BookAppointmentScreenHelpers {
     ScaffoldMessenger.of(context).clearSnackBars();
     if (context.read<UserBloc>().state.user!.members.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        alertSnackBar(content: 'Add a Member to book an appointment'),
+        alertSnackBar(content: AppStaticTexts.addMemberToBookAppointment),
       );
     } else if (BookAppointmentScreenHelpers.selectedSlotNotifier.value ==
             null &&
         BookAppointmentScreenHelpers.selectedMemberNotifier.value == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         alertSnackBar(
-          content: 'Select a slot and a member to book appointment',
+          content: AppStaticTexts.selectSlotAndMemberToBookAppointment,
         ),
       );
     } else if (BookAppointmentScreenHelpers.selectedSlotNotifier.value ==
         null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        alertSnackBar(content: 'Select a slot to book appointment'),
+        alertSnackBar(content: AppStaticTexts.selectSlotToBookAppointment),
       );
     } else if (BookAppointmentScreenHelpers.selectedMemberNotifier.value ==
         null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        alertSnackBar(content: 'Select a member to book appointment'),
+        alertSnackBar(content: AppStaticTexts.selectMemberToBookAppointment),
       );
     } else {
       showGeneralDialog(
@@ -105,7 +108,7 @@ class BookAppointmentScreenHelpers {
               scale: Curves.easeOut.transform(animation.value),
               child: BookAppointmentConfirmationPopUp(
                 appointmentId: 0,
-                title: 'Book Slot',
+                title: AppStaticTexts.bookSlot,
                 appointmentDateTime: selectedSlotNotifier.value!,
                 doctorImage: doctorImage,
                 doctorName: doctorName,

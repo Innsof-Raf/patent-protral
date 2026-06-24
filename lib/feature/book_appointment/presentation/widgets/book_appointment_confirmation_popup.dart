@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
@@ -111,7 +112,7 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                   child: _UserMiniProfile(
                     name: doctorName,
                     imageUrl: doctorImage,
-                    label: 'Doctor',
+                    label: AppStaticTexts.doctor,
                   ),
                 ),
                 Icon(Icons.arrow_forward_rounded, color: colorScheme.outline),
@@ -121,7 +122,7 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                     imageUrl: member.profileImage != null
                         ? '${ConstantUrls.memberImageUrl}/${member.id}//${member.profileImage}'
                         : null,
-                    label: 'Patient',
+                    label: AppStaticTexts.patient,
                   ),
                 ),
               ],
@@ -138,7 +139,7 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                       ),
                     ),
                     onPressed: () => Navigator.of(context).pop(),
-                    child: const Text('Cancel'),
+                    child: const Text(AppStaticTexts.cancel),
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -184,7 +185,7 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                       }
                       Navigator.pop(context);
                     },
-                    child: const Text('Confirm'),
+                    child: const Text(AppStaticTexts.confirm),
                   ),
                 ),
               ],

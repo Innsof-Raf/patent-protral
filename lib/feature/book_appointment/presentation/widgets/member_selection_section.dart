@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -31,7 +32,7 @@ class MemberSelectionSection extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Appointment for',
+                      AppStaticTexts.appointmentFor,
                       style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                         fontWeight: FontWeight.bold,
                         color: colorScheme.onSurface,
@@ -43,8 +44,8 @@ class MemberSelectionSection extends StatelessWidget {
                         final memberCount = state.user?.members.length ?? 0;
                         return Text(
                           memberCount == 0
-                              ? 'No members available. Add a member to proceed.'
-                              : 'Select a member or add a new one.',
+                              ? AppStaticTexts.noMembersAvailableToProceed
+                              : AppStaticTexts.selectMemberOrAddNew,
                           style: AppTextStyles.bodyTextRoboto.copyWith(
                             color: colorScheme.onSurfaceVariant,
                           ),
@@ -60,7 +61,7 @@ class MemberSelectionSection extends StatelessWidget {
                   context.router.push(AddMemberRoute());
                 },
                 icon: const Icon(Icons.add_rounded),
-                tooltip: 'Add Member',
+                tooltip: AppStaticTexts.addMember,
               ),
             ],
           ),
@@ -86,7 +87,7 @@ class MemberSelectionSection extends StatelessWidget {
               );
             },
           ),
-          const Gap(80), // Space for bottom bar
+          const Gap(80),
         ],
       ),
     );

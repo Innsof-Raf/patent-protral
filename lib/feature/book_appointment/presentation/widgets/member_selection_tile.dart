@@ -54,9 +54,7 @@ class MemberSelectionTile extends StatelessWidget {
               width: 48,
               height: 48,
               decoration: BoxDecoration(
-                color: member.profileImage == null
-                    ? colorScheme.secondaryContainer
-                    : null,
+                color: member.profileImage == null ? colorScheme.primary : null,
                 shape: BoxShape.circle,
                 image: member.profileImage != null
                     ? DecorationImage(
@@ -74,7 +72,7 @@ class MemberSelectionTile extends StatelessWidget {
                             ? member.name[0].toUpperCase()
                             : '?',
                         style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
-                          color: colorScheme.onSecondaryContainer,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
