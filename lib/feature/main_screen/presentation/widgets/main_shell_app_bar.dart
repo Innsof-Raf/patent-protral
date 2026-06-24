@@ -60,10 +60,6 @@ class MainShellLogoTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      Assets.logos.alleviaLogoGray.path,
-      fit: BoxFit.contain,
-      width: 100,
-    );
+    return Assets.logos.innsofColor.svg(fit: BoxFit.contain, width: 100);
   }
 }

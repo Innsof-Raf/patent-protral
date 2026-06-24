@@ -33,11 +33,7 @@ class LoginBrandHeader extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 12),
-            Image.asset(
-              Assets.logos.alleviaLogoGray.path,
-              width: 96,
-              fit: BoxFit.contain,
-            ),
+            Assets.logos.innsofColor.svg(width: 96, fit: BoxFit.contain),
           ],
         ),
         const SizedBox(height: 8),

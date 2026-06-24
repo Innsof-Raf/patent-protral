@@ -248,11 +248,21 @@ class $AssetsLogosGen {
   SvgGenImage get alleviaLogoWhiteSvg =>
       const SvgGenImage('assets/logos/allevia_logo_white.svg');
 
+  /// File path: assets/logos/innsof_color.svg
+  SvgGenImage get innsofColor =>
+      const SvgGenImage('assets/logos/innsof_color.svg');
+
+  /// File path: assets/logos/innsof_white.svg
+  SvgGenImage get innsofWhite =>
+      const SvgGenImage('assets/logos/innsof_white.svg');
+
   /// List of all assets
   List<dynamic> get values => [
     alleviaLogoGray,
     alleviaLogoWhitePng,
     alleviaLogoWhiteSvg,
+    innsofColor,
+    innsofWhite,
   ];
 }
 

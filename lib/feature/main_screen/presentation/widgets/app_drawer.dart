@@ -33,16 +33,13 @@ class AppDrawer extends StatelessWidget {
                 child: ListView(
                   padding: EdgeInsets.zero,
                   children: [
-                    SafeArea(
-                      bottom: false,
-                      minimum: const EdgeInsets.fromLTRB(24, 22, 24, 18),
-                      child: Align(
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 14),
+                      child: Assets.logos.innsofWhite.svg(
+                        width: 122,
+                        height: 100,
+                        fit: BoxFit.contain,
                         alignment: Alignment.centerLeft,
-                        child: Image.asset(
-                          Assets.logos.alleviaLogoWhitePng.path,
-                          width: 122,
-                          fit: BoxFit.contain,
-                        ),
                       ),
                     ),
                     const DrawerProfileTile(),
