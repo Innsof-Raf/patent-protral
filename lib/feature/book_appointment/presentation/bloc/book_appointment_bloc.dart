@@ -151,6 +151,8 @@ class BookAppointmentBloc
     final List<Slot> slots = state.shift.slots;
     emit(
       state.copyWith(
+        isAppointmentSavingSuccses: false,
+        isAppointmentSavingFailure: false,
         shift: state.shift.copyWith(
           slots: slots.map((slot) {
             if (slot.appdttm == event.slotTime) {
@@ -171,6 +173,8 @@ class BookAppointmentBloc
     final List<Slot> slots = state.shift.slots;
     emit(
       state.copyWith(
+        isAppointmentSavingSuccses: false,
+        isAppointmentSavingFailure: false,
         shift: state.shift.copyWith(
           slots: slots.map((slot) {
             if (slot.appdttm == event.currentSlot) {

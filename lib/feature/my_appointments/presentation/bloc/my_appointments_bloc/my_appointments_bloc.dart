@@ -275,6 +275,11 @@ class MyAppointmentsBloc
       );
     });
     on<StoreBookedAppointment>((event, emit) {
+      if (state.myAppointments.any(
+        (a) => a.id == event.params.appointment.id,
+      )) {
+        return;
+      }
       final List<MyAppointment> myAppointments = List.from(
         state.myAppointments,
       );

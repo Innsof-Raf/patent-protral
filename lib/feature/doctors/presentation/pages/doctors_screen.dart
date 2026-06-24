@@ -73,7 +73,7 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             slivers: [
               SliverPadding(
-                padding: const EdgeInsets.fromLTRB(16, 16, 16, 10),
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 5),
                 sliver: SliverToBoxAdapter(
                   child: FeatureHeader(
                     title: AppStaticTexts.findDoctor,
