@@ -11,6 +11,7 @@ class BookAppointmentScreenHelpers {
   static final List<DateTime> dateList = [];
   static void createDateList() {
     if (dateList.isEmpty || dateList[0].day != DateTime.now().day) {
+      dateList.clear();
       for (int i = 0; i < 14; i++) {
         dateList.add(DateTime.now().add(Duration(days: i)));
       }

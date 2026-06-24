@@ -110,6 +110,11 @@ class BookAppointmentBloc
         isSlotLoading: true,
         isFetchingSuccses: false,
         isFetchingError: false,
+        isAppointmentSavingFailure: false,
+        isAppointmentSavingSuccses: false,
+        isAppointmentLoading: false,
+        error: ErrorModel(message: ''),
+        appointmentDetails: null,
       ),
     );
 

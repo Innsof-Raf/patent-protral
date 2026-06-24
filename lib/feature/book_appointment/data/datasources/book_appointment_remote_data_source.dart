@@ -42,10 +42,24 @@ class BookAppointmentRemoteDataSourceImpl
         body: data,
       );
 
-      final Map<String, dynamic> responseData = decodeResponseData(
-        response.data,
+      final responseData = decodeResponseData(response.data);
+
+      if (responseData is Map) {
+        final data = responseData['data'] is Map
+            ? responseData['data']
+            : responseData;
+        if (data is Map<String, dynamic>) {
+          return ShiftModel.fromJson(data);
+        } else if (data is Map) {
+          return ShiftModel.fromJson(Map<String, dynamic>.from(data));
+        }
+      }
+
+      throw ServerException(
+        responseData is String
+            ? responseData
+            : 'Failed to load available slots',
       );
-      return ShiftModel.fromJson(responseData);
     } on ServerException {
       rethrow;
     } catch (e, stackTrace) {
