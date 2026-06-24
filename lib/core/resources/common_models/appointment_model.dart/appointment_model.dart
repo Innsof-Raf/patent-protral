@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
 
 part 'generated/appointment_model.freezed.dart';
@@ -58,8 +59,14 @@ Object? _readDoctorName(Map json, String key) =>
     json['employee_name'] ?? json['Employee_Name'];
 Object? _readDoctorImage(Map json, String key) =>
     json['profileurl'] ?? json['Employee_Img'];
-Object? _readAppointmentDateTime(Map json, String key) =>
-    json['appmnt_dttm'] ?? json['Appmnt_Dttm'];
+Object? _readAppointmentDateTime(Map json, String key) {
+  final dateTime = json['appmnt_dttm'] ?? json['Appmnt_Dttm'];
+  if (dateTime != null) return dateTime;
+
+  final date = json['appmnt_dt'] ?? json['Appmnt_Dt'];
+  final time = json['appmnt_time'] ?? json['Appmnt_Time'];
+  return _combineAppointmentDateAndTime(date, time);
+}
 Object? _readBusUnitName(Map json, String key) =>
     json['busunit_name'] ?? json['Busunit_Name'];
 Object? _readEmail(Map json, String key) => json['email'] ?? json['Email_ID'];
@@ -71,3 +78,25 @@ Object? _readIdBusUnit(Map json, String key) =>
 DateTime _dateTimeFromJson(Object? value) =>
     DateTime.tryParse(value?.toString() ?? '') ??
     DateTime.fromMillisecondsSinceEpoch(0);
+
+String? _combineAppointmentDateAndTime(Object? date, Object? time) {
+  final dateText = date?.toString().trim() ?? '';
+  if (dateText.isEmpty) return null;
+
+  final timeText = time?.toString().trim() ?? '';
+  if (timeText.isEmpty) return dateText;
+
+  try {
+    final parsedDate = DateTime.parse(dateText);
+    final parsedTime = DateFormat('hh:mm a').parseStrict(timeText);
+    return DateTime(
+      parsedDate.year,
+      parsedDate.month,
+      parsedDate.day,
+      parsedTime.hour,
+      parsedTime.minute,
+    ).toIso8601String();
+  } catch (_) {
+    return '$dateText $timeText';
+  }
+}
