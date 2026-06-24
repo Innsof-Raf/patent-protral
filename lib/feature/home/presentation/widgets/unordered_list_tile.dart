@@ -12,21 +12,24 @@ class UnorderedListTile extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 3),
+      padding: const EdgeInsets.only(bottom: 6),
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 2,
-            backgroundColor: theme.colorScheme.onSurfaceVariant,
+          Icon(
+            Icons.check_circle_outline_rounded,
+            size: 10,
+            color: theme.colorScheme.primary,
           ),
-          const Gap(6),
+          const Gap(8),
           Expanded(
             child: Text(
               title,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: AppTextStyles.bodyTextRoboto.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
+                color: theme.colorScheme.onSurface,
+                fontSize: 10,
+                fontWeight: FontWeight.w600,
                 height: 1.2,
               ),
             ),
