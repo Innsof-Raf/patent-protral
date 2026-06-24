@@ -199,7 +199,7 @@ class _DoctorDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          doctor.doctorName,
+          doctor.doctorName.trim(),
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: AppTextStyles.largeBoldRoboto.copyWith(
@@ -207,24 +207,25 @@ class _DoctorDetails extends StatelessWidget {
             height: 1.15,
           ),
         ),
-        const Gap(5),
+        const Gap(4),
         Text(
-          doctor.doctorSpeciality,
+          doctor.doctorSpeciality.trim(),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: AppTextStyles.bodyTextInter.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
             fontWeight: FontWeight.w600,
+            fontSize: compact ? 9 : 10,
           ),
         ),
-        const Gap(10),
         if ((doctor.experience.trim().isNotEmpty && doctor.experience != '0') ||
             doctor.consultationFee > 0 ||
             (doctor.branch.trim().isNotEmpty && doctor.branch != '0') ||
-            doctor.knownLanguages.isNotEmpty)
+            doctor.knownLanguages.isNotEmpty) ...[
+          const Gap(6),
           Wrap(
-            spacing: 7,
-            runSpacing: 7,
+            spacing: 12,
+            runSpacing: 4,
             children: [
               if (doctor.experience.trim().isNotEmpty &&
                   doctor.experience != '0')
@@ -244,7 +245,7 @@ class _DoctorDetails extends StatelessWidget {
               if (doctor.branch.trim().isNotEmpty && doctor.branch != '0')
                 DoctorMetaChip(
                   icon: Icons.location_on_outlined,
-                  label: doctor.branch,
+                  label: doctor.branch.trim(),
                   compact: compact,
                 ),
               if (doctor.knownLanguages.isNotEmpty)
@@ -255,14 +256,16 @@ class _DoctorDetails extends StatelessWidget {
                 ),
             ],
           ),
+        ],
         if (availabilityText != null) ...[
-          const Gap(10),
+          const Gap(6),
           Text(
             availabilityText,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: AppTextStyles.bodyTextBoldRoboto.copyWith(
               color: theme.colorScheme.primary,
+              fontSize: compact ? 9 : 10,
             ),
           ),
         ],
