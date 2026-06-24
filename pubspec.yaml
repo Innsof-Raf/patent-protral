@@ -52,7 +52,7 @@ dependencies:
   intl: ^0.20.2
   json_annotation: ^4.12.0
   json_serializable: ^6.14.0
-  path_provider: ^2.1.5
+  path_provider: ^2.1.6
   pinput: ^6.0.2
   share_plus: ^12.0.2
   shared_preferences: ^2.5.5
@@ -64,6 +64,7 @@ dev_dependencies:
   auto_route_generator: ^10.5.0
   build_runner: ^2.15.0
   flutter_gen_runner: ^5.14.1
+  flutter_launcher_icons: ^0.14.4
   flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
@@ -73,6 +74,22 @@ flutter_gen:
   output: lib/core/gen/
   integrations:
     flutter_svg: true
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logos/app_logo/app_logo.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/logos/app_logo/app_logo.png"
+  min_sdk_android: 21
+
+flutter_native_splash:
+  color: "#9A73AD"
+  image: "assets/logos/app_logo/app_logo.png"
+  android: true
+  ios: true
+  web: false
+  fullscreen: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
