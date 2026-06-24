@@ -31,86 +31,80 @@ class ProfileDetailsSection extends StatelessWidget {
         final nationalId = (primaryMember?.nationalId.isNotEmpty ?? false)
             ? '${AppStaticTexts.nationalId} ${primaryMember!.nationalId}'
             : AppStaticTexts.idNotProvided;
-        final supportingDetails = '$age  |  $nationalId';
 
         return ProfileSectionCard(
-          padding: const EdgeInsets.all(18),
+          padding: const EdgeInsets.fromLTRB(20, 24, 20, 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _ProfileAvatar(name: fullName),
-                  const Gap(14),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          fullName,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: AppTextStyles.extraLargeRobotoBold.copyWith(
-                            color: theme.colorScheme.onSurface,
-                            fontWeight: FontWeight.w800,
-                            height: 1.12,
-                          ),
-                        ),
-                        if (supportingDetails.isNotEmpty) ...[
-                          const Gap(6),
-                          Text(
-                            supportingDetails,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: AppTextStyles.bodyTextRoboto.copyWith(
-                              color: theme.colorScheme.onSurfaceVariant,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                        const Gap(10),
-                        Wrap(
-                          //spacing: 0,
-                          runSpacing: 8,
-                          children: [
-                            _ProfileInfoChip(
-                              icon: Icons.mail_outline_rounded,
-                              label: user.emailId.isNotEmpty
-                                  ? user.emailId
-                                  : AppStaticTexts.emailNotProvided,
-                            ),
-                            _ProfileInfoChip(
-                              icon: Icons.call_outlined,
-                              label: user.mobileNumber.isNotEmpty
-                                  ? user.mobileNumber
-                                  : AppStaticTexts.mobileNotProvided,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+              _ProfileAvatar(name: fullName),
+              const Gap(16),
+              Text(
+                fullName,
+                textAlign: TextAlign.center,
+                style: theme.textTheme.headlineSmall?.copyWith(
+                  color: theme.colorScheme.onSurface,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: -0.5,
+                ),
               ),
-              const Gap(18),
+              const Gap(4),
+              Text(
+                '$age  •  $nationalId',
+                textAlign: TextAlign.center,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const Gap(20),
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.surfaceContainerHighest.withValues(
+                    alpha: 0.3,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
+                  children: [
+                    _ProfileInfoRow(
+                      icon: Icons.mail_outline_rounded,
+                      label: user.emailId.isNotEmpty
+                          ? user.emailId
+                          : AppStaticTexts.emailNotProvided,
+                    ),
+                    const Divider(height: 20, thickness: 0.5),
+                    _ProfileInfoRow(
+                      icon: Icons.call_outlined,
+                      label: user.mobileNumber.isNotEmpty
+                          ? user.mobileNumber
+                          : AppStaticTexts.mobileNotProvided,
+                    ),
+                  ],
+                ),
+              ),
+              const Gap(20),
               SizedBox(
                 width: double.infinity,
                 child: FilledButton.icon(
                   style: FilledButton.styleFrom(
-                    minimumSize: const Size.fromHeight(48),
+                    minimumSize: const Size.fromHeight(52),
                     backgroundColor: theme.colorScheme.primary,
                     foregroundColor: theme.colorScheme.onPrimary,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
+                    elevation: 0,
                   ),
                   onPressed: () {
                     context.router.root.push(const EditProfileDetailsRoute());
                   },
-                  icon: const Icon(Icons.edit_outlined, size: 19),
-                  label: const Text(AppStaticTexts.editProfile),
+                  icon: const Icon(Icons.edit_outlined, size: 18),
+                  label: const Text(
+                    AppStaticTexts.editProfile,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ],
@@ -148,16 +142,23 @@ class _ProfileAvatar extends StatelessWidget {
     final initial = name.trim().isEmpty ? '?' : name.trim()[0].toUpperCase();
 
     return Container(
-      width: 72,
-      height: 72,
+      width: 90,
+      height: 90,
       decoration: BoxDecoration(
         color: theme.colorScheme.primaryContainer,
-        borderRadius: BorderRadius.circular(24),
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+            color: theme.colorScheme.primary.withValues(alpha: 0.15),
+            blurRadius: 20,
+            offset: const Offset(0, 8),
+          ),
+        ],
       ),
       child: Center(
         child: Text(
           initial,
-          style: AppTextStyles.extraLargeRobotoBold.copyWith(
+          style: theme.textTheme.displaySmall?.copyWith(
             color: theme.colorScheme.onPrimaryContainer,
             fontWeight: FontWeight.w900,
           ),
@@ -167,8 +168,8 @@ class _ProfileAvatar extends StatelessWidget {
   }
 }
 
-class _ProfileInfoChip extends StatelessWidget {
-  const _ProfileInfoChip({required this.icon, required this.label});
+class _ProfileInfoRow extends StatelessWidget {
+  const _ProfileInfoRow({required this.icon, required this.label});
 
   final IconData icon;
   final String label;
@@ -177,31 +178,29 @@ class _ProfileInfoChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Container(
-      constraints: const BoxConstraints(maxWidth: 260),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: .45),
-        borderRadius: BorderRadius.circular(999),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, size: 15, color: theme.colorScheme.primary),
-          const Gap(6),
-          Flexible(
-            child: Text(
-              label,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-                fontWeight: FontWeight.w700,
-              ),
+    return Row(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: theme.colorScheme.primary.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Icon(icon, size: 20, color: theme.colorScheme.primary),
+        ),
+        const Gap(14),
+        Expanded(
+          child: Text(
+            label,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: theme.textTheme.bodyLarge?.copyWith(
+              color: theme.colorScheme.onSurface,
+              fontWeight: FontWeight.w600,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

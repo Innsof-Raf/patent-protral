@@ -311,6 +311,9 @@ class AppStaticTexts {
   static const String passwordChangedSuccessfully =
       'Password changed successfully';
 
+  static const String logout = 'Logout';
+  static const String logoutConfirmation = 'Are you sure you want to logout?';
+
   // Notifications
   static const String notifications = 'Notifications';
   static const String unableToLoadNotifications =
