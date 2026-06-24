@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_section_card.dart';
@@ -79,6 +80,9 @@ class _MemberAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final initial = title.trim().isEmpty ? '?' : title.trim()[0].toUpperCase();
+    final imageUrl = image == null || image!.trim().isEmpty
+        ? null
+        : '${ConstantUrls.memberImageUrl}/$memberId/${image!.trim()}';
 
     return Container(
       width: 78,
@@ -90,20 +94,53 @@ class _MemberAvatar extends StatelessWidget {
       ),
       child: CircleAvatar(
         backgroundColor: theme.colorScheme.primaryContainer,
-        backgroundImage: image == null || image!.isEmpty
-            ? null
-            : CachedNetworkImageProvider(
-                '${ConstantUrls.memberImageUrl}/$memberId/$image',
-              ),
-        child: image == null || image!.isEmpty
-            ? Text(
-                initial,
-                style: AppTextStyles.extraLargeRobotoBold.copyWith(
-                  color: theme.colorScheme.onPrimaryContainer,
-                  fontWeight: FontWeight.w900,
-                ),
-              )
-            : null,
+        child: ClipOval(
+          child: SizedBox.expand(
+            child: imageUrl == null
+                ? _MemberAvatarFallback(
+                    initial: initial,
+                    color: theme.colorScheme.onPrimaryContainer,
+                  )
+                : CachedNetworkImage(
+                    imageUrl: imageUrl,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => Center(
+                      child: SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: theme.colorScheme.primary,
+                        ),
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => Image.asset(
+                      Assets.images.memberDefaultProfileImage.path,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _MemberAvatarFallback extends StatelessWidget {
+  const _MemberAvatarFallback({required this.initial, required this.color});
+
+  final String initial;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        initial,
+        style: AppTextStyles.extraLargeRobotoBold.copyWith(
+          color: color,
+          fontWeight: FontWeight.w900,
+        ),
       ),
     );
   }

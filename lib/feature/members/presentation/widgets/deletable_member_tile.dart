@@ -133,27 +133,60 @@ class _MemberAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final image = member.profileImage;
+    final image = member.profileImage?.trim();
+    final imageUrl = image == null || image.isEmpty
+        ? null
+        : '${ConstantUrls.memberImageUrl}/${member.id}/$image';
 
     return CircleAvatar(
       radius: 26,
       backgroundColor: theme.colorScheme.primaryContainer,
-      backgroundImage: image == null
-          ? null
-          : CachedNetworkImageProvider(
-              '${ConstantUrls.memberImageUrl}/${member.id}/$image',
-            ),
-      child: image == null
-          ? Text(
-              member.name.trim().isEmpty
-                  ? '?'
-                  : member.name.trim()[0].toUpperCase(),
-              style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
-                color: theme.colorScheme.onPrimaryContainer,
-                fontWeight: FontWeight.w900,
-              ),
-            )
-          : null,
+      child: ClipOval(
+        child: SizedBox.expand(
+          child: imageUrl == null
+              ? _MemberAvatarFallback(member: member)
+              : CachedNetworkImage(
+                  imageUrl: imageUrl,
+                  fit: BoxFit.cover,
+                  errorWidget: (context, url, error) =>
+                      _MemberAvatarFallback(member: member),
+                ),
+        ),
+      ),
+    );
+  }
+}
+
+class _MemberAvatarFallback extends StatelessWidget {
+  const _MemberAvatarFallback({required this.member});
+
+  final Member member;
+
+  bool get _isFemale => member.gender?.trim().toLowerCase() == 'female';
+  bool get _isMale => member.gender?.trim().toLowerCase() == 'male';
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    if (_isFemale || _isMale) {
+      return Center(
+        child: Icon(
+          _isFemale ? Icons.female_rounded : Icons.male_rounded,
+          color: theme.colorScheme.onPrimaryContainer,
+          size: 28,
+        ),
+      );
+    }
+
+    return Center(
+      child: Text(
+        member.name.trim().isEmpty ? '?' : member.name.trim()[0].toUpperCase(),
+        style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
+          color: theme.colorScheme.onPrimaryContainer,
+          fontWeight: FontWeight.w900,
+        ),
+      ),
     );
   }
 }

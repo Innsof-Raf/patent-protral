@@ -143,7 +143,7 @@ class BookAppointmentRemoteDataSourceImpl
       );
 
       final data = serviceRequest(
-        type: 'PP0009',
+        type: 'PP0008',
         content: p.toJson()
           ..addAll({
             'appmnt_dt': DateFormat('yyyy-MM-dd').format(p.appointmentDateTime),

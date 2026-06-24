@@ -128,6 +128,7 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
     final title = appointmentId == 0
         ? AppStaticTexts.appointmentBookedSuccessfully
         : AppStaticTexts.appointmentRescheduledSuccessfully;
+    final router = context.router;
 
     showGeneralDialog(
       transitionDuration: const Duration(milliseconds: 300),
@@ -141,7 +142,9 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
             title: title,
             onPressed: () {
               Navigator.of(dialogContext).pop();
-              context.router.popUntilRouteWithName(MainRoute.name);
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                router.popUntilRouteWithName(MainRoute.name);
+              });
             },
           ),
         );

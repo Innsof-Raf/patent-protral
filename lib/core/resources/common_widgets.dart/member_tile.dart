@@ -32,26 +32,7 @@ class MemberTile extends StatelessWidget {
       },
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 18,
-            backgroundColor: member.profileImage == null
-                ? AppColors.orange
-                : null,
-            backgroundImage: member.profileImage != null
-                ? CachedNetworkImageProvider(
-                    '${ConstantUrls.memberImageUrl}/${member.id}/${member.profileImage}',
-                  )
-                : null,
-            child: member.profileImage == null
-                ? Text(
-                    member.name[0],
-                    style: AppTextStyles.extraLargeRobotoBold.copyWith(
-                      fontSize: 18,
-                      color: AppColors.white,
-                    ),
-                  )
-                : null,
-          ),
+          _MemberAvatar(member: member),
           Dimens.constWidth10,
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,6 +59,67 @@ class MemberTile extends StatelessWidget {
               ? SvgPicture.asset(Assets.icons.insuranceCartIcon.path)
               : const SizedBox(),
         ],
+      ),
+    );
+  }
+}
+
+class _MemberAvatar extends StatelessWidget {
+  const _MemberAvatar({required this.member});
+
+  final Member member;
+
+  @override
+  Widget build(BuildContext context) {
+    final image = member.profileImage?.trim();
+    final imageUrl = image == null || image.isEmpty
+        ? null
+        : '${ConstantUrls.memberImageUrl}/${member.id}/$image';
+
+    return CircleAvatar(
+      radius: 18,
+      backgroundColor: AppColors.orange,
+      child: ClipOval(
+        child: SizedBox.expand(
+          child: imageUrl == null
+              ? _MemberAvatarFallback(member: member)
+              : CachedNetworkImage(
+                  imageUrl: imageUrl,
+                  fit: BoxFit.cover,
+                  errorWidget: (context, url, error) =>
+                      _MemberAvatarFallback(member: member),
+                ),
+        ),
+      ),
+    );
+  }
+}
+
+class _MemberAvatarFallback extends StatelessWidget {
+  const _MemberAvatarFallback({required this.member});
+
+  final Member member;
+
+  bool get _isFemale => member.gender?.trim().toLowerCase() == 'female';
+  bool get _isMale => member.gender?.trim().toLowerCase() == 'male';
+
+  @override
+  Widget build(BuildContext context) {
+    if (_isFemale || _isMale) {
+      return Icon(
+        _isFemale ? Icons.female_rounded : Icons.male_rounded,
+        color: AppColors.white,
+        size: 20,
+      );
+    }
+
+    return Center(
+      child: Text(
+        member.name.trim().isEmpty ? '?' : member.name.trim()[0].toUpperCase(),
+        style: AppTextStyles.extraLargeRobotoBold.copyWith(
+          fontSize: 18,
+          color: AppColors.white,
+        ),
       ),
     );
   }

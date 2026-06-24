@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -90,27 +89,60 @@ class _MemberAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final image = member.profileImage;
+    final image = member.profileImage?.trim();
+    final imageUrl = image == null || image.isEmpty
+        ? null
+        : '${ConstantUrls.memberImageUrl}/${member.id}/$image';
 
     return CircleAvatar(
       radius: 22,
       backgroundColor: theme.colorScheme.primaryContainer,
-      backgroundImage: image == null
-          ? null
-          : CachedNetworkImageProvider(
-              '${ConstantUrls.memberImageUrl}/${member.id}/$image',
-            ),
-      child: image == null
-          ? Text(
-              member.name.trim().isEmpty
-                  ? '?'
-                  : member.name.trim()[0].toUpperCase(),
-              style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
-                color: theme.colorScheme.onPrimaryContainer,
-                fontWeight: FontWeight.w900,
-              ),
-            )
-          : null,
+      child: ClipOval(
+        child: SizedBox.expand(
+          child: imageUrl == null
+              ? _MemberAvatarFallback(member: member)
+              : Image.network(
+                  imageUrl,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) =>
+                      _MemberAvatarFallback(member: member),
+                ),
+        ),
+      ),
+    );
+  }
+}
+
+class _MemberAvatarFallback extends StatelessWidget {
+  const _MemberAvatarFallback({required this.member});
+
+  final Member member;
+
+  bool get _isFemale => member.gender?.trim().toLowerCase() == 'female';
+  bool get _isMale => member.gender?.trim().toLowerCase() == 'male';
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    if (_isFemale || _isMale) {
+      return Center(
+        child: Icon(
+          _isFemale ? Icons.female_rounded : Icons.male_rounded,
+          color: theme.colorScheme.onPrimaryContainer,
+          size: 24,
+        ),
+      );
+    }
+
+    return Center(
+      child: Text(
+        member.name.trim().isEmpty ? '?' : member.name.trim()[0].toUpperCase(),
+        style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
+          color: theme.colorScheme.onPrimaryContainer,
+          fontWeight: FontWeight.w900,
+        ),
+      ),
     );
   }
 }
