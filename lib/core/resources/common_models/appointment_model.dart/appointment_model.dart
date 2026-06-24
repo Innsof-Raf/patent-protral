@@ -67,6 +67,7 @@ Object? _readAppointmentDateTime(Map json, String key) {
   final time = json['appmnt_time'] ?? json['Appmnt_Time'];
   return _combineAppointmentDateAndTime(date, time);
 }
+
 Object? _readBusUnitName(Map json, String key) =>
     json['busunit_name'] ?? json['Busunit_Name'];
 Object? _readEmail(Map json, String key) => json['email'] ?? json['Email_ID'];

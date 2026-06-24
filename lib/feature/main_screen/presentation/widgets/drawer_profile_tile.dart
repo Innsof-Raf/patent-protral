@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
@@ -64,14 +66,16 @@ class DrawerProfileTile extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(width: 14),
+              const Gap(14),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      displayName.isEmpty ? 'Patient' : displayName,
+                      displayName.isEmpty
+                          ? AppStaticTexts.patient
+                          : displayName,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: AppTextStyles.largeSemiBoldRoboto.copyWith(
@@ -79,11 +83,11 @@ class DrawerProfileTile extends StatelessWidget {
                         fontWeight: FontWeight.w800,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const Gap(4),
                     Text(
                       member == null
                           ? user?.mobileNumber ?? ''
-                          : 'Age ${member.age} | ID ${member.nationalId}',
+                          : '${AppStaticTexts.age} ${member.age} | ${AppStaticTexts.nationalId} ${member.nationalId}',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: AppTextStyles.bodyTextRoboto.copyWith(
@@ -93,7 +97,7 @@ class DrawerProfileTile extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    const SizedBox(height: 6),
+                    const Gap(6),
                     Text(
                       user?.emailId ?? '',
                       maxLines: 1,

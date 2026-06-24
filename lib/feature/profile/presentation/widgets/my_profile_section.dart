@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -41,7 +42,7 @@ class ProfileDetailsSection extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _ProfileAvatar(name: fullName),
-                  const SizedBox(width: 14),
+                  const Gap(14),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,7 +59,7 @@ class ProfileDetailsSection extends StatelessWidget {
                           ),
                         ),
                         if (supportingDetails.isNotEmpty) ...[
-                          const SizedBox(height: 6),
+                          const Gap(6),
                           Text(
                             supportingDetails,
                             maxLines: 2,
@@ -69,7 +70,7 @@ class ProfileDetailsSection extends StatelessWidget {
                             ),
                           ),
                         ],
-                        const SizedBox(height: 10),
+                        const Gap(10),
                         Wrap(
                           //spacing: 0,
                           runSpacing: 8,
@@ -93,7 +94,7 @@ class ProfileDetailsSection extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 18),
+              const Gap(18),
               SizedBox(
                 width: double.infinity,
                 child: FilledButton.icon(
@@ -122,7 +123,7 @@ class ProfileDetailsSection extends StatelessWidget {
   String _fullName(User user) {
     final name = '${user.firstName} ${user.lastName}'.trim();
     if (name.isNotEmpty) return name;
-    return user.userName.isNotEmpty ? user.userName : 'User';
+    return user.userName.isNotEmpty ? user.userName : AppStaticTexts.user;
   }
 
   Member? _primaryMember(User user) {
@@ -187,7 +188,7 @@ class _ProfileInfoChip extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, size: 15, color: theme.colorScheme.primary),
-          const SizedBox(width: 6),
+          const Gap(6),
           Flexible(
             child: Text(
               label,

@@ -316,7 +316,8 @@ class _UserMiniProfile extends StatelessWidget {
                         imageUrl: imageUrl!,
                         fit: BoxFit.cover,
                         errorWidget: (context, url, error) => _FallbackAvatar(
-                          text: fallbackText ?? (name.isNotEmpty ? name[0] : '?'),
+                          text:
+                              fallbackText ?? (name.isNotEmpty ? name[0] : '?'),
                           backgroundColor: colorScheme.surfaceContainerHighest,
                           foregroundColor: colorScheme.onSurfaceVariant,
                           showImageErrorIcon: true,

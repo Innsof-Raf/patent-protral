@@ -168,6 +168,7 @@ class AppStaticTexts {
 
   // Reports
   static const String unableToLoadReports = 'Unable to load reports';
+  static const String unableToOpenReport = 'Unable to open report';
   static const String noReportsAvailable = 'No Reports Available';
   static const String noReportsMessage =
       'Your medical reports will appear here once available.';
@@ -241,6 +242,10 @@ class AppStaticTexts {
   static const String qr = 'QR';
   static const String menu = 'Menu';
   static const String user = 'User';
+  static const String lab = 'Lab';
+  static const String xRay = 'X-Ray';
+  static const String uss = 'USS';
+  static const String ctScan = 'CT Scan';
 
   // Documents/Add Document
   static const String addDocument = 'Add Document';

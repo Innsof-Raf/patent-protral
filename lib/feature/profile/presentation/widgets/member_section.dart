@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -38,7 +39,7 @@ class MemberSection extends StatelessWidget {
                                 fontWeight: FontWeight.w800,
                               ),
                         ),
-                        const SizedBox(height: 4),
+                        const Gap(4),
                         Text(
                           members.isEmpty
                               ? AppStaticTexts.noMembersAddedYet
@@ -60,7 +61,7 @@ class MemberSection extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 14),
+              const Gap(14),
               if (members.isEmpty)
                 const _EmptyMembersView()
               else
@@ -69,8 +70,7 @@ class MemberSection extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   padding: EdgeInsets.zero,
                   itemCount: members.length > 3 ? 3 : members.length,
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(height: 10),
+                  separatorBuilder: (context, index) => const Gap(10),
                   itemBuilder: (context, index) {
                     return ProfileMemberTile(member: members[index]);
                   },
@@ -105,7 +105,7 @@ class _EmptyMembersView extends StatelessWidget {
             color: theme.colorScheme.primary,
             size: 30,
           ),
-          const SizedBox(height: 10),
+          const Gap(10),
           Text(
             AppStaticTexts.noMembersFound,
             style: AppTextStyles.largeSemiBoldRoboto.copyWith(
@@ -113,7 +113,7 @@ class _EmptyMembersView extends StatelessWidget {
               fontWeight: FontWeight.w800,
             ),
           ),
-          const SizedBox(height: 4),
+          const Gap(4),
           Text(
             AppStaticTexts.addMembersSubtitle,
             textAlign: TextAlign.center,

@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/reports/domain/entities/report.dart';
 
@@ -124,25 +125,25 @@ class MyReportTile extends StatelessWidget {
                   _buildReportAction(
                     context,
                     url: report.labPdfUrl,
-                    title: 'Lab',
+                    title: AppStaticTexts.lab,
                   ),
                   const Gap(8),
                   _buildReportAction(
                     context,
                     url: report.xRayPdfUrl,
-                    title: 'X-Ray',
+                    title: AppStaticTexts.xRay,
                   ),
                   const Gap(8),
                   _buildReportAction(
                     context,
                     url: report.ussPdfUrl,
-                    title: 'USS',
+                    title: AppStaticTexts.uss,
                   ),
                   const Gap(8),
                   _buildReportAction(
                     context,
                     url: report.ctPdfUrl,
-                    title: 'CT Scan',
+                    title: AppStaticTexts.ctScan,
                   ),
                 ],
               ),
