@@ -5,7 +5,7 @@
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
-        android:label="patient_portal"
+        android:label="Patient Portal"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"

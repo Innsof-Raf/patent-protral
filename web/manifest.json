@@ -1,6 +1,6 @@
 {
-    "name": "patient_portal",
-    "short_name": "patient_portal",
+    "name": "Patient Portal",
+    "short_name": "Patient Portal",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
