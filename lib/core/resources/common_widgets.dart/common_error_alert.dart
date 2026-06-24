@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 
 class CommonErrorAlert extends StatelessWidget {
   final String content;
@@ -14,65 +14,69 @@ class CommonErrorAlert extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
       child: Container(
-        width: 230,
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(24),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.1),
+              blurRadius: 20,
+              offset: const Offset(0, 10),
+            ),
+          ],
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  splashRadius: 15,
-                  style: IconButton.styleFrom(minimumSize: const Size(0, 0)),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.close, color: AppColors.black),
-                ),
-              ],
-            ),
-            const SizedBox(height: 4),
-            Text(
-              AppStaticTexts.failed,
-              style: AppTextStyles.extraLargeRobotoBold.copyWith(
-                color: theme.colorScheme.onSurface,
-                fontWeight: FontWeight.w700,
+            Align(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.close_rounded),
+                color: theme.colorScheme.onSurfaceVariant,
+                visualDensity: VisualDensity.compact,
               ),
             ),
-            const SizedBox(height: 4),
+            SvgPicture.asset(
+              Assets.icons.errorIcon.path,
+              height: 80,
+              width: 80,
+            ),
+            const Gap(24),
+            Text(
+              AppStaticTexts.failed,
+              textAlign: TextAlign.center,
+              style: theme.textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: theme.colorScheme.error,
+              ),
+            ),
+            const Gap(12),
             Text(
               content,
               textAlign: TextAlign.center,
-              style: AppTextStyles.subHeadingSemiBoldRoboto,
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
             ),
-            const SizedBox(height: 30),
-            SvgPicture.asset(Assets.icons.errorIcon.path),
-            const SizedBox(height: 30),
-            SizedBox(
+            const Gap(32),
+            ActiveButton(
+              onPressed: () => Navigator.pop(context),
               width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: theme.colorScheme.primary,
-                  minimumSize: const Size(0, 0),
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  padding: const EdgeInsets.all(20),
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  AppStaticTexts.ok,
-                  style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                    color: theme.colorScheme.onPrimary,
-                    fontWeight: FontWeight.w700,
-                  ),
+              height: 56,
+              backgroundColor: theme.colorScheme.errorContainer,
+              foregroundColor: theme.colorScheme.onErrorContainer,
+              child: Text(
+                AppStaticTexts.ok.toUpperCase(),
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.2,
                 ),
               ),
             ),

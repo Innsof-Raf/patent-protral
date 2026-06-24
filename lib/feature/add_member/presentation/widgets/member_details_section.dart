@@ -124,7 +124,7 @@ class MemberDetailsSection extends StatelessWidget {
                 groupValue: currentGender,
                 onChanged: () => GenderFormHelpers.genderNotifier.value = value,
                 value: value,
-                title: '', // We use our own label for better spacing
+                title: '',
               ),
               Text(
                 value,

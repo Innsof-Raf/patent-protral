@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:gap/gap.dart';
 
 class RadioButton extends StatelessWidget {
   final String value;
   final String groupValue;
   final String title;
   final VoidCallback onChanged;
+
   const RadioButton({
     super.key,
     required this.value,
@@ -17,39 +17,55 @@ class RadioButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        value == groupValue
-            ? ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  alignment: Alignment.centerLeft,
-                  elevation: 0,
-                  backgroundColor: AppColors.violet,
-                  minimumSize: const Size(0, 0),
-                  padding: const EdgeInsets.all(7.5),
-                  shape: const CircleBorder(),
+    final theme = Theme.of(context);
+    final isSelected = value == groupValue;
+
+    return InkWell(
+      onTap: onChanged,
+      borderRadius: BorderRadius.circular(12),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              height: 24,
+              width: 24,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: isSelected
+                      ? theme.colorScheme.primary
+                      : theme.colorScheme.outline,
+                  width: 2,
                 ),
-                onPressed: onChanged,
-                child: const SizedBox(),
-              )
-            : OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  foregroundColor: AppColors.violet,
-                  shape: const CircleBorder(
-                    side: BorderSide(width: 1, color: AppColors.textLight),
-                  ),
-                  minimumSize: const Size(0, 0),
-                  padding: const EdgeInsets.all(7.5),
-                ),
-                onPressed: onChanged,
-                child: const SizedBox(),
               ),
-        const SizedBox(width: 5),
-        Text(title, style: AppTextStyles.largeRobotoNormal),
-      ],
+              child: Center(
+                child: isSelected
+                    ? Container(
+                        height: 12,
+                        width: 12,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: theme.colorScheme.primary,
+                        ),
+                      )
+                    : null,
+              ),
+            ),
+            const Gap(12),
+            Text(
+              title,
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: isSelected
+                    ? theme.colorScheme.onSurface
+                    : theme.colorScheme.onSurfaceVariant,
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

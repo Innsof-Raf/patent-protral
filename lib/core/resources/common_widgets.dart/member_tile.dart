@@ -2,14 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
-
-import '../app_colors.dart';
-import '../dimens.dart';
-import '../urls.dart';
 
 class MemberTile extends StatelessWidget {
   final Member member;
@@ -19,46 +18,84 @@ class MemberTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return OutlinedButton(
-      style: OutlinedButton.styleFrom(
-        side: const BorderSide(width: .5, color: AppColors.borderColor),
-        foregroundColor: AppColors.white,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        minimumSize: const Size(0, 0),
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 6),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: theme.colorScheme.outlineVariant.withValues(alpha: 0.5),
+          width: 1,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: theme.colorScheme.shadow.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
-      onPressed: () {
-        context.router.push(MemberDetailsRoute(memberId: member.id));
-      },
-      child: Row(
-        children: [
-          _MemberAvatar(member: member),
-          Dimens.constWidth10,
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(16),
+        onTap: () {
+          context.router.push(MemberDetailsRoute(memberId: member.id));
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Row(
             children: [
-              Text(
-                member.name,
-                style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                  fontSize: 12,
-                  color: theme.colorScheme.onSurfaceVariant,
+              _MemberAvatar(member: member),
+              const Gap(12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      member.name,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: theme.colorScheme.onSurface,
+                      ),
+                    ),
+                    const Gap(2),
+                    Text(
+                      member.age,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 4),
-              Text(
-                member.age,
-                style: AppTextStyles.largeRobotoNormal.copyWith(
-                  color: theme.colorScheme.onSurfaceVariant,
+              if (member.isInsurance && !member.isInsuranceExpired)
+                Tooltip(
+                  message: AppStaticTexts.insured,
+                  child: Container(
+                    padding: const EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.primaryContainer.withValues(
+                        alpha: 0.5,
+                      ),
+                      shape: BoxShape.circle,
+                    ),
+                    child: SvgPicture.asset(
+                      Assets.icons.insuranceCartIcon.path,
+                      width: 18,
+                      height: 18,
+                    ),
+                  ),
+                ),
+              const Gap(8),
+              Icon(
+                Icons.chevron_right_rounded,
+                color: theme.colorScheme.onSurfaceVariant.withValues(
+                  alpha: 0.5,
                 ),
               ),
             ],
           ),
-          const Spacer(),
-          member.isInsurance && !member.isInsuranceExpired
-              ? SvgPicture.asset(Assets.icons.insuranceCartIcon.path)
-              : const SizedBox(),
-        ],
+        ),
       ),
     );
   }
@@ -71,24 +108,34 @@ class _MemberAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final image = member.profileImage?.trim();
     final imageUrl = image == null || image.isEmpty
         ? null
         : '${ConstantUrls.memberImageUrl}/${member.id}/$image';
 
-    return CircleAvatar(
-      radius: 18,
-      backgroundColor: AppColors.orange,
-      child: ClipOval(
-        child: SizedBox.expand(
-          child: imageUrl == null
-              ? _MemberAvatarFallback(member: member)
-              : CachedNetworkImage(
-                  imageUrl: imageUrl,
-                  fit: BoxFit.cover,
-                  errorWidget: (context, url, error) =>
-                      _MemberAvatarFallback(member: member),
-                ),
+    return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: theme.colorScheme.primary.withValues(alpha: 0.2),
+          width: 2,
+        ),
+      ),
+      child: CircleAvatar(
+        radius: 24,
+        backgroundColor: AppColors.orange.withValues(alpha: 0.1),
+        child: ClipOval(
+          child: SizedBox.expand(
+            child: imageUrl == null
+                ? _MemberAvatarFallback(member: member)
+                : CachedNetworkImage(
+                    imageUrl: imageUrl,
+                    fit: BoxFit.cover,
+                    errorWidget: (context, url, error) =>
+                        _MemberAvatarFallback(member: member),
+                  ),
+          ),
         ),
       ),
     );
@@ -105,20 +152,21 @@ class _MemberAvatarFallback extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     if (_isFemale || _isMale) {
       return Icon(
         _isFemale ? Icons.female_rounded : Icons.male_rounded,
-        color: AppColors.white,
-        size: 20,
+        color: AppColors.orange,
+        size: 28,
       );
     }
 
     return Center(
       child: Text(
         member.name.trim().isEmpty ? '?' : member.name.trim()[0].toUpperCase(),
-        style: AppTextStyles.extraLargeRobotoBold.copyWith(
-          fontSize: 18,
-          color: AppColors.white,
+        style: theme.textTheme.titleLarge?.copyWith(
+          fontWeight: FontWeight.bold,
+          color: AppColors.orange,
         ),
       ),
     );

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class SliverSearchHeader extends StatelessWidget {
   const SliverSearchHeader({
     required this.controller,
     required this.onChanged,
-    this.hintText = 'Search',
+    this.hintText = 'Search...',
     this.title,
     this.pinned = true,
-    this.horizontalPadding = 16,
+    this.horizontalPadding = 20,
     super.key,
   });
 
@@ -50,10 +49,10 @@ class _SliverSearchHeaderDelegate extends SliverPersistentHeaderDelegate {
   final double horizontalPadding;
 
   @override
-  double get minExtent => 68;
+  double get minExtent => 80;
 
   @override
-  double get maxExtent => title == null ? 76 : 92;
+  double get maxExtent => title == null ? 80 : 120;
 
   @override
   Widget build(
@@ -63,116 +62,70 @@ class _SliverSearchHeaderDelegate extends SliverPersistentHeaderDelegate {
   ) {
     final theme = Theme.of(context);
     final progress = (shrinkOffset / (maxExtent - minExtent)).clamp(0.0, 1.0);
-    final currentExtent = (maxExtent - shrinkOffset).clamp(
-      minExtent,
-      maxExtent,
-    );
-    final showTitle = title != null && currentExtent >= 88;
-    final radius = BorderRadius.circular(22 - (progress * 6));
-    final fieldRadius = BorderRadius.circular(18);
 
-    return ColoredBox(
+    return Container(
       color: theme.colorScheme.surface,
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(
-          horizontalPadding,
-          8,
-          horizontalPadding,
-          8,
-        ),
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: theme.colorScheme.surface,
-            borderRadius: radius,
-            border: Border.all(
-              color: theme.colorScheme.outlineVariant.withValues(alpha: .58),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: theme.colorScheme.shadow.withValues(
-                  alpha: overlapsContent ? .1 : .04,
-                ),
-                blurRadius: overlapsContent ? 18 : 10,
-                offset: Offset(0, overlapsContent ? 8 : 4),
-              ),
-            ],
-          ),
-          child: ClipRRect(
-            borderRadius: radius,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
-              child: Stack(
-                children: [
-                  if (showTitle) ...[
-                    Positioned(
-                      left: 0,
-                      top: 0,
-                      right: 0,
-                      child: Opacity(
-                        opacity: 1 - progress,
-                        child: Text(
-                          title!,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: AppTextStyles.bodyLargeSemiBoldTextInter
-                              .copyWith(
-                                color: theme.colorScheme.onSurfaceVariant,
-                                fontWeight: FontWeight.w700,
-                              ),
-                        ),
-                      ),
-                    ),
-                  ],
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: SizedBox(
-                      height: 44,
-                      child: TextFormField(
-                        controller: controller,
-                        keyboardType: TextInputType.text,
-                        textInputAction: TextInputAction.search,
-                        onChanged: onChanged,
-                        cursorColor: theme.colorScheme.primary,
-                        style: AppTextStyles.largeRobotoNormal.copyWith(
-                          color: theme.colorScheme.onSurface,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        decoration: InputDecoration(
-                          hintText: hintText,
-                          prefixIcon: Icon(
-                            Icons.search_rounded,
-                            color: theme.colorScheme.onSurfaceVariant,
-                          ),
-                          filled: true,
-                          fillColor: theme.colorScheme.surfaceContainerHighest
-                              .withValues(alpha: .34),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 14,
-                            vertical: 12,
-                          ),
-                          hintStyle: AppTextStyles.largeRobotoNormal.copyWith(
-                            color: theme.colorScheme.onSurfaceVariant,
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: fieldRadius,
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: fieldRadius,
-                            borderSide: BorderSide(
-                              color: theme.colorScheme.primary,
-                              width: 1.3,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+      padding: EdgeInsets.symmetric(
+        horizontal: horizontalPadding,
+        vertical: 12,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (title != null && progress < 0.5)
+            Opacity(
+              opacity: (1 - progress * 2).clamp(0.0, 1.0),
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 12, left: 4),
+                child: Text(
+                  title!,
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: theme.colorScheme.onSurface,
                   ),
-                ],
+                ),
+              ),
+            ),
+          TextField(
+            controller: controller,
+            onChanged: onChanged,
+            decoration: InputDecoration(
+              hintText: hintText,
+              prefixIcon: Icon(
+                Icons.search_rounded,
+                color: theme.colorScheme.primary,
+              ),
+              filled: true,
+              fillColor: theme.colorScheme.surfaceContainerHighest.withValues(
+                alpha: 0.3,
+              ),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 12,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide.none,
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide(
+                  color: theme.colorScheme.outlineVariant.withValues(
+                    alpha: 0.5,
+                  ),
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide(
+                  color: theme.colorScheme.primary,
+                  width: 2,
+                ),
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

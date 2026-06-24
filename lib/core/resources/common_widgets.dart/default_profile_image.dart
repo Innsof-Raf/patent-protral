@@ -1,17 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 
-import '../app_colors.dart';
-
 class DefaultProfileImage extends StatelessWidget {
-  const DefaultProfileImage({super.key});
+  final double radius;
+  const DefaultProfileImage({super.key, this.radius = 24});
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: 22,
-      backgroundColor: AppColors.dividerGrayColor,
-      backgroundImage: AssetImage(Assets.images.memberDefaultProfileImage.path),
+    final theme = Theme.of(context);
+
+    return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: theme.colorScheme.outlineVariant.withValues(alpha: 0.5),
+          width: 2,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: CircleAvatar(
+        radius: radius,
+        backgroundColor: theme.colorScheme.surfaceContainerHighest,
+        child: ClipOval(
+          child: Image.asset(
+            Assets.images.memberDefaultProfileImage.path,
+            fit: BoxFit.cover,
+            width: radius * 2,
+            height: radius * 2,
+          ),
+        ),
+      ),
     );
   }
 }

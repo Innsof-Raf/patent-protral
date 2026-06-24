@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class MainShellIconButton extends StatelessWidget {
   const MainShellIconButton({
@@ -22,14 +21,20 @@ class MainShellIconButton extends StatelessWidget {
     return IconButton(
       tooltip: tooltip,
       onPressed: onPressed,
+      style: IconButton.styleFrom(
+        backgroundColor: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
       icon: Badge(
         isLabelVisible: badgeLabel != null && badgeLabel != '0',
         label: Text(badgeLabel ?? ''),
         backgroundColor: theme.colorScheme.error,
         child: SvgPicture.asset(
           iconPath,
-          height: 24,
-          width: 24,
+          height: 20,
+          width: 20,
           colorFilter: ColorFilter.mode(
             theme.colorScheme.onSurface,
             BlendMode.srcIn,

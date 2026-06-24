@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class FeatureHeader extends StatelessWidget {
   const FeatureHeader({
@@ -20,56 +19,72 @@ class FeatureHeader extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: theme.colorScheme.primaryContainer.withValues(alpha: .22),
+        gradient: LinearGradient(
+          colors: [
+            theme.colorScheme.primaryContainer.withValues(alpha: 0.3),
+            theme.colorScheme.primaryContainer.withValues(alpha: 0.1),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: theme.colorScheme.outlineVariant.withValues(alpha: .55),
+          color: theme.colorScheme.primary.withValues(alpha: 0.1),
         ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: AppTextStyles.extraLargeRobotoBold.copyWith(
-              color: theme.colorScheme.onSurface,
-              fontSize: 16,
-            ),
-          ),
-          const Gap(8),
-          Text(
-            subtitle,
-            style: AppTextStyles.largeRobotoNormal.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-              fontWeight: FontWeight.w500,
-              fontSize: 13,
-            ),
-          ),
-          if (badgeText != null) ...[
-            const Gap(16),
-            DecoratedBox(
-              decoration: BoxDecoration(
-                color: theme.colorScheme.surface,
-                borderRadius: BorderRadius.circular(999),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 14,
-                  vertical: 8,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: theme.colorScheme.onSurface,
+                        letterSpacing: -0.5,
+                      ),
+                    ),
+                    const Gap(8),
+                    Text(
+                      subtitle,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                        height: 1.4,
+                      ),
+                    ),
+                  ],
                 ),
-                child: Text(
-                  badgeText!,
-                  style: AppTextStyles.bodyLargeSemiBoldTextInter.copyWith(
+              ),
+              if (badgeText != null) ...[
+                const Gap(12),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
                     color: theme.colorScheme.primary,
-                    fontWeight: FontWeight.w800,
-                    fontSize: 10,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Text(
+                    badgeText!,
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      color: theme.colorScheme.onPrimary,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ],
+              ],
+            ],
+          ),
         ],
       ),
     );

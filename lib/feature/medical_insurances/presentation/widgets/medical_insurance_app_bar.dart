@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 
 class MedicalInsuranceAppBar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -9,27 +7,38 @@ class MedicalInsuranceAppBar extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return AppBar(
-      systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarColor: AppColors.black,
-        statusBarIconBrightness: Brightness.light,
-        statusBarBrightness: Brightness.dark,
-      ),
-      backgroundColor: AppColors.white,
+      backgroundColor: theme.colorScheme.surface,
+      surfaceTintColor: theme.colorScheme.surface,
       elevation: 0,
-      titleSpacing: 0,
-      automaticallyImplyLeading: false,
-      title: Text(
-        'Medical Insurance',
-        style: AppTextStyles.largeSemiBoldRoboto,
+      scrolledUnderElevation: 3,
+      centerTitle: false,
+      leading: Center(
+        child: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
+          onPressed: () => Navigator.of(context).pop(),
+          color: theme.colorScheme.onSurface,
+          tooltip: 'Back',
+          style: IconButton.styleFrom(
+            backgroundColor: theme.colorScheme.surfaceContainerHighest
+                .withValues(alpha: 0.3),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+        ),
       ),
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios, color: AppColors.textDark),
-        onPressed: () => Navigator.of(context).pop(),
+      title: Text(
+        AppStaticTexts.medicalInsurance,
+        style: theme.textTheme.titleLarge?.copyWith(
+          fontWeight: FontWeight.bold,
+          color: theme.colorScheme.onSurface,
+        ),
       ),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(55);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class CommonErrorView extends StatelessWidget {
   const CommonErrorView({
@@ -24,131 +23,66 @@ class CommonErrorView extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final resolvedPadding = padding.resolve(Directionality.of(context));
 
-    return SafeArea(
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          final availableHeight =
-              constraints.hasBoundedHeight &&
-                  constraints.maxHeight > resolvedPadding.vertical
-              ? constraints.maxHeight - resolvedPadding.vertical
-              : 0.0;
-
-          return SingleChildScrollView(
-            padding: padding,
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: availableHeight),
-              child: Center(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 420),
-                  child: Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.fromLTRB(24, 28, 24, 24),
-                    decoration: BoxDecoration(
-                      color: colorScheme.surface,
-                      borderRadius: BorderRadius.circular(24),
-                      border: Border.all(
-                        color: colorScheme.outlineVariant.withValues(
-                          alpha: .55,
-                        ),
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: colorScheme.shadow.withValues(alpha: .06),
-                          blurRadius: 24,
-                          offset: const Offset(0, 12),
-                        ),
-                      ],
+    return Center(
+      child: SingleChildScrollView(
+        padding: padding,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: colorScheme.errorContainer.withValues(alpha: 0.4),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(icon, color: colorScheme.error, size: 64),
+            ),
+            const Gap(32),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: theme.textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: colorScheme.onSurface,
+              ),
+            ),
+            const Gap(12),
+            Text(
+              message,
+              textAlign: TextAlign.center,
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+                height: 1.5,
+              ),
+            ),
+            if (onRetry != null) ...[
+              const Gap(40),
+              SizedBox(
+                width: 200,
+                height: 56,
+                child: FilledButton.icon(
+                  style: FilledButton.styleFrom(
+                    backgroundColor: colorScheme.primary,
+                    foregroundColor: colorScheme.onPrimary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
                     ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          width: 88,
-                          height: 88,
-                          decoration: BoxDecoration(
-                            color: colorScheme.primary.withValues(alpha: .08),
-                            shape: BoxShape.circle,
-                          ),
-                          child: Center(
-                            child: Container(
-                              width: 58,
-                              height: 58,
-                              decoration: BoxDecoration(
-                                color: colorScheme.surface,
-                                shape: BoxShape.circle,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: colorScheme.primary.withValues(
-                                      alpha: .12,
-                                    ),
-                                    blurRadius: 16,
-                                    offset: const Offset(0, 6),
-                                  ),
-                                ],
-                              ),
-                              child: Icon(
-                                icon,
-                                color: colorScheme.primary,
-                                size: 28,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const Gap(22),
-                        Text(
-                          title,
-                          textAlign: TextAlign.center,
-                          style: AppTextStyles.extraLargeRobotoBold.copyWith(
-                            color: colorScheme.onSurface,
-                            fontWeight: FontWeight.w700,
-                            height: 1.2,
-                          ),
-                        ),
-                        if (message.isNotEmpty) ...[
-                          const Gap(10),
-                          Text(
-                            message,
-                            textAlign: TextAlign.center,
-                            style: AppTextStyles.largeRobotoNormal.copyWith(
-                              color: colorScheme.onSurfaceVariant,
-                              height: 1.5,
-                            ),
-                          ),
-                        ],
-                        if (onRetry != null) ...[
-                          const Gap(24),
-                          SizedBox(
-                            width: double.infinity,
-                            height: 50,
-                            child: FilledButton.icon(
-                              style: FilledButton.styleFrom(
-                                backgroundColor: colorScheme.primary,
-                                foregroundColor: colorScheme.onPrimary,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                              ),
-                              onPressed: onRetry,
-                              icon: const Icon(Icons.refresh_rounded, size: 20),
-                              label: Text(
-                                retryLabel,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ],
+                  ),
+                  onPressed: onRetry,
+                  icon: const Icon(Icons.refresh_rounded),
+                  label: Text(
+                    retryLabel,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
                     ),
                   ),
                 ),
               ),
-            ),
-          );
-        },
+            ],
+          ],
+        ),
       ),
     );
   }

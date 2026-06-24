@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -35,20 +34,31 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: theme.colorScheme.surface,
       surfaceTintColor: theme.colorScheme.surface,
       elevation: 0,
-      scrolledUnderElevation: 2,
+      scrolledUnderElevation: 3,
       centerTitle: false,
-      toolbarHeight: 64,
-      leading: IconButton(
-        icon: const Icon(Icons.chevron_left_rounded, size: 30),
-        onPressed: () => Navigator.of(context).pop(),
+      leading: Center(
+        child: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
+          onPressed: () => Navigator.of(context).pop(),
+          color: theme.colorScheme.onSurface,
+          tooltip: 'Back',
+          style: IconButton.styleFrom(
+            backgroundColor: theme.colorScheme.surfaceContainerHighest
+                .withValues(alpha: 0.3),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+        ),
       ),
+      titleSpacing: 0,
       title: Row(
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: theme.colorScheme.primaryContainer.withValues(alpha: 0.3),
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(12),
             ),
             child: SvgPicture.asset(
               Assets.icons.pdfIcon.path,
@@ -69,18 +79,17 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Text(
                   doctorName,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
+                  style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    color: theme.colorScheme.onSurface,
                   ),
                 ),
                 Text(
                   DateFormat(
                     'dd MMM yyyy, hh:mm a',
                   ).format(consultaionDateTime),
-                  style: AppTextStyles.bodyTextRoboto.copyWith(
+                  style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
-                    fontSize: 12,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -98,6 +107,13 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
               return const SizedBox.shrink();
             }
             return IconButton(
+              style: IconButton.styleFrom(
+                backgroundColor: theme.colorScheme.surfaceContainerHighest
+                    .withValues(alpha: 0.3),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
               onPressed: () async {
                 final XFile file = XFile.fromData(
                   state.report!.bytes,
@@ -107,23 +123,15 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
 
                 await SharePlus.instance.share(ShareParams(files: [file]));
               },
-              icon: const Icon(Icons.share_outlined),
+              icon: const Icon(Icons.share_outlined, size: 20),
             );
           },
         ),
-        const Gap(8),
+        const Gap(12),
       ],
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(1),
-        child: Divider(
-          height: 1,
-          thickness: 1,
-          color: theme.colorScheme.outlineVariant.withValues(alpha: 0.5),
-        ),
-      ),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(64);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

@@ -71,6 +71,41 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
     }
   }
 
+  InputDecoration _getInputDecoration(
+    BuildContext context,
+    String label,
+    IconData icon,
+  ) {
+    final theme = Theme.of(context);
+    return InputDecoration(
+      labelText: label,
+      prefixIcon: Icon(icon, color: theme.colorScheme.primary),
+      filled: true,
+      fillColor: theme.colorScheme.surfaceContainerHighest.withValues(
+        alpha: 0.3,
+      ),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide.none,
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(
+          color: theme.colorScheme.outlineVariant.withValues(alpha: 0.5),
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: theme.colorScheme.primary, width: 2),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: theme.colorScheme.error),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AddMemberBloc, AddMemberState>(
@@ -94,7 +129,11 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
       },
       builder: (context, state) {
         if (state.isFetchingInsurances) {
-          return const CommonLoadingView(size: 80, padding: EdgeInsets.all(20));
+          return const CommonLoadingView(
+            size: 60,
+            padding: EdgeInsets.all(40),
+            showContainer: false,
+          );
         }
 
         return Form(
@@ -116,9 +155,10 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
                     InsuranceValidationHelpers.validateInsuranceType(
                       value: value,
                     ),
-                decoration: const InputDecoration(
-                  labelText: AppStaticTexts.insuranceProvider,
-                  prefixIcon: Icon(Icons.business_rounded),
+                decoration: _getInputDecoration(
+                  context,
+                  AppStaticTexts.insuranceProvider,
+                  Icons.business_rounded,
                 ),
                 onChanged: (value) {
                   InsuranceHelpers.selectedInsuranceNotifier.value = value;
@@ -154,11 +194,10 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
                               value: value,
                             ),
                         textCapitalization: TextCapitalization.words,
-                        decoration: const InputDecoration(
-                          labelText: AppStaticTexts.insuranceName,
-                          prefixIcon: Icon(
-                            Icons.drive_file_rename_outline_rounded,
-                          ),
+                        decoration: _getInputDecoration(
+                          context,
+                          AppStaticTexts.insuranceName,
+                          Icons.drive_file_rename_outline_rounded,
                         ),
                       ),
                     ),
@@ -178,9 +217,10 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
                   LengthLimitingTextInputFormatter(20),
                   FilteringTextInputFormatter.allow(RegExp(r'[A-Za-z0-9]')),
                 ],
-                decoration: const InputDecoration(
-                  labelText: AppStaticTexts.memberNumber,
-                  prefixIcon: Icon(Icons.pin_rounded),
+                decoration: _getInputDecoration(
+                  context,
+                  AppStaticTexts.memberNumber,
+                  Icons.pin_rounded,
                 ),
               ),
               const Gap(16),
@@ -190,9 +230,10 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
                     InsuranceValidationHelpers.expireDateValidator(
                       value: value,
                     ),
-                decoration: const InputDecoration(
-                  labelText: AppStaticTexts.expirationDate,
-                  prefixIcon: Icon(Icons.event_busy_rounded),
+                decoration: _getInputDecoration(
+                  context,
+                  AppStaticTexts.expirationDate,
+                  Icons.event_busy_rounded,
                 ),
                 controller: InsuranceFormSection.expireDateController,
                 onTap: () async {

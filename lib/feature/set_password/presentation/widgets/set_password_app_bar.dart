@@ -1,41 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 
 class SetPasswordAppBar extends StatelessWidget implements PreferredSizeWidget {
   const SetPasswordAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return AppBar(
-      systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarColor: AppColors.black,
-        statusBarIconBrightness: Brightness.light,
-        statusBarBrightness: Brightness.dark,
-      ),
-      backgroundColor: AppColors.white,
+      backgroundColor: theme.colorScheme.surface,
+      surfaceTintColor: theme.colorScheme.surface,
       elevation: 0,
-      titleSpacing: 0,
+      scrolledUnderElevation: 3,
       centerTitle: false,
-      automaticallyImplyLeading: false,
-      title: Text('Set Password', style: AppTextStyles.largeSemiBoldRoboto),
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios, color: AppColors.textDark),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
+      leading: Center(
+        child: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
+          onPressed: () => Navigator.of(context).pop(),
+          color: theme.colorScheme.onSurface,
+          tooltip: 'Back',
+          style: IconButton.styleFrom(
+            backgroundColor: theme.colorScheme.surfaceContainerHighest
+                .withValues(alpha: 0.3),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+        ),
+      ),
+      title: Text(
+        AppStaticTexts.setPassword,
+        style: theme.textTheme.titleLarge?.copyWith(
+          fontWeight: FontWeight.bold,
+          color: theme.colorScheme.onSurface,
+        ),
       ),
       actions: [
         IconButton(
-          splashRadius: 20,
           onPressed: () {},
-          icon: const Icon(Icons.more_vert, color: AppColors.textDark),
+          icon: const Icon(Icons.more_vert_rounded),
+          color: theme.colorScheme.onSurface,
         ),
+        const Gap(8),
       ],
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(35);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
@@ -10,6 +9,7 @@ class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onLeadingPressed;
   final Color? backgroundColor;
   final Color? foregroundColor;
+  final double? elevation;
 
   const CommonAppbar({
     super.key,
@@ -20,6 +20,7 @@ class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.onLeadingPressed,
     this.backgroundColor,
     this.foregroundColor,
+    this.elevation,
   }) : assert(title != null || titleWidget != null);
 
   @override
@@ -31,27 +32,36 @@ class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: backgroundColor ?? theme.colorScheme.surface,
       surfaceTintColor: theme.colorScheme.surface,
-      elevation: 0,
-      scrolledUnderElevation: 2,
+      elevation: elevation ?? 0,
+      scrolledUnderElevation: 3,
       shadowColor: theme.colorScheme.shadow.withValues(alpha: 0.1),
-      toolbarHeight: 64,
       centerTitle: centerTitle,
-      leading: onLeadingPressed != null || Navigator.of(context).canPop()
-          ? IconButton(
-              icon: const Icon(Icons.chevron_left_rounded, size: 30),
-              onPressed: onLeadingPressed ?? () => Navigator.of(context).pop(),
-              color: effectiveForegroundColor,
-              tooltip: 'Back',
+      leading: (onLeadingPressed != null || Navigator.of(context).canPop())
+          ? Center(
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
+                onPressed:
+                    onLeadingPressed ?? () => Navigator.of(context).pop(),
+                color: effectiveForegroundColor,
+                tooltip: 'Back',
+                style: IconButton.styleFrom(
+                  backgroundColor: theme.colorScheme.surfaceContainerHighest
+                      .withValues(alpha: 0.3),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
             )
           : null,
       title:
           titleWidget ??
           Text(
             title!,
-            style: AppTextStyles.extraLargeRobotoBold.copyWith(
+            style: theme.textTheme.titleLarge?.copyWith(
               color: effectiveForegroundColor,
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.bold,
+              letterSpacing: -0.5,
             ),
           ),
       actions: [...?actions, const Gap(8)],
@@ -59,5 +69,5 @@ class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(55);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

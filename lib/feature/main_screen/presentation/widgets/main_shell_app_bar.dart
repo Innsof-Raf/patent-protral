@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/main_shell_icon_button.dart';
 
 class MainShellAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -26,15 +25,14 @@ class MainShellAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: theme.colorScheme.surface,
       surfaceTintColor: theme.colorScheme.surface,
       elevation: 0,
-      scrolledUnderElevation: 2,
+      scrolledUnderElevation: 3,
       shadowColor: theme.colorScheme.shadow.withValues(alpha: 0.1),
-      toolbarHeight: 64,
       centerTitle: centerTitle,
-      leading: Builder(
-        builder: (context) => MainShellIconButton(
+      leading: Center(
+        child: MainShellIconButton(
           iconPath: Assets.icons.drawerIcon.path,
           tooltip: 'Menu',
-          onPressed: Scaffold.of(context).openDrawer,
+          onPressed: () => Scaffold.of(context).openDrawer(),
         ),
       ),
       title:
@@ -43,10 +41,10 @@ class MainShellAppBar extends StatelessWidget implements PreferredSizeWidget {
             title!,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: AppTextStyles.extraLargeRobotoBold.copyWith(
+            style: theme.textTheme.titleLarge?.copyWith(
               color: theme.colorScheme.onSurface,
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.bold,
+              letterSpacing: -0.5,
             ),
           ),
       actions: [...actions, const Gap(8)],
@@ -54,7 +52,7 @@ class MainShellAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(64);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
 class MainShellLogoTitle extends StatelessWidget {

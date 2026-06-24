@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/core/resources/dimens.dart';
-
-import '../app_colors.dart';
-import '../app_text_styles.dart';
+import 'package:gap/gap.dart';
 
 class RoundedCheckBoxTile extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onChanged;
   final String title;
+
   const RoundedCheckBoxTile({
     super.key,
     required this.isSelected,
@@ -17,42 +15,53 @@ class RoundedCheckBoxTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        isSelected
-            ? ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  foregroundColor: AppColors.white,
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  padding: const EdgeInsets.all(5),
-                  minimumSize: const Size(0, 0),
-                  shape: const CircleBorder(),
+    final theme = Theme.of(context);
+
+    return InkWell(
+      onTap: onChanged,
+      borderRadius: BorderRadius.circular(12),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              height: 24,
+              width: 24,
+              decoration: BoxDecoration(
+                color: isSelected
+                    ? theme.colorScheme.primary
+                    : Colors.transparent,
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: isSelected
+                      ? theme.colorScheme.primary
+                      : theme.colorScheme.outline,
+                  width: 2,
                 ),
-                onPressed: onChanged,
-                child: const Icon(
-                  Icons.done,
-                  size: 7.5,
-                  color: AppColors.white,
-                ),
-              )
-            : OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  foregroundColor: AppColors.violet,
-                  shape: const CircleBorder(
-                    side: BorderSide(width: 1, color: AppColors.textLight),
-                  ),
-                  minimumSize: const Size(0, 0),
-                  padding: const EdgeInsets.all(5),
-                ),
-                onPressed: onChanged,
-                child: const Icon(null, size: 7.5, color: AppColors.white),
               ),
-        Dimens.constWidth10,
-        Text(title, style: AppTextStyles.largeRobotoNormal),
-      ],
+              child: isSelected
+                  ? Icon(
+                      Icons.check_rounded,
+                      size: 16,
+                      color: theme.colorScheme.onPrimary,
+                    )
+                  : null,
+            ),
+            const Gap(12),
+            Text(
+              title,
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: isSelected
+                    ? theme.colorScheme.onSurface
+                    : theme.colorScheme.onSurfaceVariant,
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
