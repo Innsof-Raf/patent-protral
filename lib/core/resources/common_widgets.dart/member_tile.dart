@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
@@ -52,7 +53,10 @@ class MemberTile extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      member.name,
+                      (member.name.trim().isEmpty
+                              ? AppStaticTexts.unknown
+                              : member.name)
+                          .toTitleCase(),
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: theme.colorScheme.onSurface,
@@ -163,7 +167,7 @@ class _MemberAvatarFallback extends StatelessWidget {
 
     return Center(
       child: Text(
-        member.name.trim().isEmpty ? '?' : member.name.trim()[0].toUpperCase(),
+        member.name.trim().isEmpty ? 'U' : member.name.trim()[0].toUpperCase(),
         style: theme.textTheme.titleLarge?.copyWith(
           fontWeight: FontWeight.bold,
           color: AppColors.orange,

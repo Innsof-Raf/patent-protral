@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/delete_member_bloc/delete_member_bloc.dart';
@@ -181,7 +182,7 @@ class _MemberAvatarFallback extends StatelessWidget {
 
     return Center(
       child: Text(
-        member.name.trim().isEmpty ? '?' : member.name.trim()[0].toUpperCase(),
+        member.name.trim().isEmpty ? 'U' : member.name.trim()[0].toUpperCase(),
         style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
           color: theme.colorScheme.onPrimaryContainer,
           fontWeight: FontWeight.w900,
@@ -210,7 +211,8 @@ class _MemberDetails extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          member.name,
+          (member.name.trim().isEmpty ? AppStaticTexts.unknown : member.name)
+              .toTitleCase(),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: AppTextStyles.largeSemiBoldRoboto.copyWith(

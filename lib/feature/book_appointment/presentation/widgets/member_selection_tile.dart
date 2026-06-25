@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
@@ -68,9 +69,9 @@ class MemberSelectionTile extends StatelessWidget {
               child: member.profileImage == null
                   ? Center(
                       child: Text(
-                        member.name.isNotEmpty
-                            ? member.name[0].toUpperCase()
-                            : '?',
+                        member.name.trim().isNotEmpty
+                            ? member.name.trim()[0].toUpperCase()
+                            : 'U',
                         style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -85,7 +86,10 @@ class MemberSelectionTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    member.name,
+                    (member.name.trim().isEmpty
+                            ? AppStaticTexts.unknown
+                            : member.name)
+                        .toTitleCase(),
                     style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                       fontWeight: FontWeight.bold,
                       color: colorScheme.onSurface,

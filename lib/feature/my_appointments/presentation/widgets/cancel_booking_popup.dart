@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_outlined_button.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -124,11 +125,15 @@ class CancelBookingPopUp extends StatelessWidget {
                           imageUrl: member.profileImage == null
                               ? null
                               : '${ConstantUrls.memberImageUrl}/${member.id}/${member.profileImage}',
-                          title: member.name,
+                          title:
+                              (member.name.trim().isEmpty
+                                      ? AppStaticTexts.unknown
+                                      : member.name)
+                                  .toTitleCase(),
                           subtitle: AppStaticTexts.member,
-                          fallbackText: member.name.isEmpty
-                              ? '?'
-                              : member.name[0],
+                          fallbackText: member.name.trim().isEmpty
+                              ? 'U'
+                              : member.name.trim()[0],
                         ),
                       ),
                     ],
@@ -328,7 +333,7 @@ class _FallbackAvatar extends StatelessWidget {
                 ),
               )
             : Text(
-                (text == null || text!.isEmpty) ? '?' : text!.toUpperCase(),
+                (text == null || text!.isEmpty) ? 'U' : text!.toUpperCase(),
                 style: AppTextStyles.extraLargeRobotoBold.copyWith(
                   color: foregroundColor,
                   fontWeight: FontWeight.w800,

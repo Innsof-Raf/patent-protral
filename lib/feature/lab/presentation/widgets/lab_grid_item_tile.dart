@@ -6,7 +6,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/lab/domain/entities/item.dart';
@@ -59,7 +61,7 @@ class LabGridItemTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  item.itemNmae,
+                  item.itemNmae.toTitleCase(),
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
@@ -71,7 +73,7 @@ class LabGridItemTile extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  'QAR ${item.itemPrice}',
+                  '${AppStaticTexts.qar} ${item.itemPrice}',
                   style: AppTextStyles.bodyTextRobotoSemiBold,
                   textAlign: TextAlign.center,
                 ),

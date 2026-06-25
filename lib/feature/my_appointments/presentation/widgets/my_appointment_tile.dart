@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_outlined_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_snack_bar.dart';
@@ -72,7 +73,7 @@ class MyAppointmentTile extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            appointment.doctorName,
+                            appointment.doctorName.toTitleCase(),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: AppTextStyles.subHeadingSemiBoldRoboto
@@ -83,7 +84,7 @@ class MyAppointmentTile extends StatelessWidget {
                           ),
                           const Gap(2),
                           Text(
-                            '${appointment.departName}${appointment.branch.isNotEmpty && appointment.branch != '0' ? ' • ${appointment.branch}' : ''}',
+                            '${appointment.departName.toTitleCase()}${appointment.branch.isNotEmpty && appointment.branch != '0' ? ' • ${appointment.branch.toTitleCase()}' : ''}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: AppTextStyles.bodyTextRoboto.copyWith(
@@ -144,9 +145,10 @@ class MyAppointmentTile extends StatelessWidget {
                           ),
                           const Gap(8),
                           Text(
-                            appointment.memberName.isEmpty
-                                ? AppStaticTexts.self
-                                : appointment.memberName,
+                            (appointment.memberName.isEmpty
+                                    ? AppStaticTexts.self
+                                    : appointment.memberName)
+                                .toTitleCase(),
                             style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                               fontWeight: FontWeight.w800,
                               color: colorScheme.onSurface,

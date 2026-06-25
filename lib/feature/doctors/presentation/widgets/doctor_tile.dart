@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_text_button.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -201,7 +202,7 @@ class _DoctorDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          doctor.doctorName.trim(),
+          doctor.doctorName.trim().toTitleCase(),
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: AppTextStyles.largeBoldRoboto.copyWith(
@@ -211,7 +212,7 @@ class _DoctorDetails extends StatelessWidget {
         ),
         const Gap(4),
         Text(
-          doctor.doctorSpeciality.trim(),
+          doctor.doctorSpeciality.trim().toTitleCase(),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: AppTextStyles.bodyTextInter.copyWith(
@@ -336,8 +337,10 @@ class _DoctorInfoButton extends StatelessWidget {
           splashRadius: 14,
           onPressed: () => showDialog<void>(
             context: context,
-            builder: (dialogContext) =>
-                _DoctorInfoDialog(doctorName: doctor.doctorName, bio: bio),
+            builder: (dialogContext) => _DoctorInfoDialog(
+              doctorName: doctor.doctorName.toTitleCase(),
+              bio: bio,
+            ),
           ),
           tooltip: AppStaticTexts.viewInfo,
           icon: Icon(

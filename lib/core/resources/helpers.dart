@@ -7,9 +7,7 @@ class AppHelpers {
     Widget child,
     ImageChunkEvent? loadingProgress,
   ) {
-    if (loadingProgress == null) {
-      return child;
-    }
+    if (loadingProgress == null) return child;
     return Center(
       child: CircularProgressIndicator(
         color: AppColors.violet,

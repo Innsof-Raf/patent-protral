@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
 class DrawerProfileTile extends StatelessWidget {
@@ -73,9 +74,8 @@ class DrawerProfileTile extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      displayName.isEmpty
-                          ? AppStaticTexts.patient
-                          : displayName,
+                      (displayName.isEmpty ? AppStaticTexts.user : displayName)
+                          .toTitleCase(),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: AppTextStyles.largeSemiBoldRoboto.copyWith(

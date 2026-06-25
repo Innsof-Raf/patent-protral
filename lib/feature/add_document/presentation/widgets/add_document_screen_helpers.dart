@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_helpers/image_picker_helpers.dart';
 import 'package:patient_portal/feature/add_document/domain/entities/document_type.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
@@ -23,7 +24,12 @@ class AddDocumentScreenHelpers {
   }) {
     return DropdownMenuItem(
       value: member.id,
-      child: Text(member.name, style: AppTextStyles.largeRobotoNormal),
+      child: Text(
+        member.name.trim().isEmpty
+            ? AppStaticTexts.unknown
+            : member.name.toTitleCase(),
+        style: AppTextStyles.largeRobotoNormal,
+      ),
     );
   }
 
@@ -33,7 +39,7 @@ class AddDocumentScreenHelpers {
     return DropdownMenuItem(
       value: document.idDocument,
       child: Text(
-        document.documentType,
+        document.documentType.toTitleCase(),
         style: AppTextStyles.largeRobotoNormal,
       ),
     );

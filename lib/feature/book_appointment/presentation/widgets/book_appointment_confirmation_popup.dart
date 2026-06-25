@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
@@ -186,14 +187,18 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                       ),
                       Expanded(
                         child: _UserMiniProfile(
-                          name: member.name,
+                          name:
+                              (member.name.trim().isEmpty
+                                      ? AppStaticTexts.unknown
+                                      : member.name)
+                                  .toTitleCase(),
                           imageUrl: member.profileImage == null
                               ? null
                               : '${ConstantUrls.memberImageUrl}/${member.id}/${member.profileImage}',
                           label: AppStaticTexts.patient,
-                          fallbackText: member.name.isEmpty
-                              ? '?'
-                              : member.name[0],
+                          fallbackText: member.name.trim().isEmpty
+                              ? 'U'
+                              : member.name.trim()[0],
                         ),
                       ),
                     ],
@@ -308,7 +313,7 @@ class _UserMiniProfile extends StatelessWidget {
                 height: 64,
                 child: imageUrl == null
                     ? _FallbackAvatar(
-                        text: fallbackText ?? (name.isNotEmpty ? name[0] : '?'),
+                        text: fallbackText ?? (name.isNotEmpty ? name[0] : 'U'),
                         backgroundColor: colorScheme.primaryContainer,
                         foregroundColor: colorScheme.onPrimaryContainer,
                       )
@@ -317,7 +322,7 @@ class _UserMiniProfile extends StatelessWidget {
                         fit: BoxFit.cover,
                         errorWidget: (context, url, error) => _FallbackAvatar(
                           text:
-                              fallbackText ?? (name.isNotEmpty ? name[0] : '?'),
+                              fallbackText ?? (name.isNotEmpty ? name[0] : 'U'),
                           backgroundColor: colorScheme.surfaceContainerHighest,
                           foregroundColor: colorScheme.onSurfaceVariant,
                           showImageErrorIcon: true,
@@ -386,7 +391,7 @@ class _FallbackAvatar extends StatelessWidget {
                 ),
               )
             : Text(
-                (text == null || text!.isEmpty) ? '?' : text!.toUpperCase(),
+                (text == null || text!.isEmpty) ? 'U' : text!.toUpperCase(),
                 style: AppTextStyles.extraLargeRobotoBold.copyWith(
                   color: foregroundColor,
                   fontWeight: FontWeight.w800,

@@ -242,6 +242,7 @@ class AppStaticTexts {
   static const String qr = 'QR';
   static const String menu = 'Menu';
   static const String user = 'User';
+  static const String unknown = 'Unknown';
   static const String lab = 'Lab';
   static const String xRay = 'X-Ray';
   static const String uss = 'USS';

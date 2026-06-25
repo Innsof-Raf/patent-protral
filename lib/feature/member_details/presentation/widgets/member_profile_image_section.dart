@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_section_card.dart';
 
@@ -35,7 +37,8 @@ class MemberProfileImageSection extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  title,
+                  (title.trim().isEmpty ? AppStaticTexts.unknown : title)
+                      .toTitleCase(),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: AppTextStyles.extraLargeRobotoBold.copyWith(
@@ -79,7 +82,7 @@ class _MemberAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final initial = title.trim().isEmpty ? '?' : title.trim()[0].toUpperCase();
+    final initial = title.trim().isEmpty ? 'U' : title.trim()[0].toUpperCase();
     final imageUrl = image == null || image!.trim().isEmpty
         ? null
         : '${ConstantUrls.memberImageUrl}/$memberId/${image!.trim()}';
