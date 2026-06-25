@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/feature/lab/domain/entities/item.dart';
@@ -19,7 +20,7 @@ class PackagesTabBarView extends StatelessWidget {
           return const CommonLoadingView();
         } else if (state.isItemsFetchingFailed) {
           return CommonErrorView(
-            title: 'Unable to load packages',
+            title: AppStaticTexts.unableToLoadPackages,
             message: state.error.message,
             onRetry: () => context.read<ItemsBloc>().add(
               GetItems(token: context.read<UserBloc>().state.user!.accessToken),
@@ -30,21 +31,26 @@ class PackagesTabBarView extends StatelessWidget {
               .where((item) => item.itemType == 'pkg')
               .toList();
           if (packages.isEmpty) {
-            return Center(
-              child: Text(
-                'No packages available right now',
-                style: AppTextStyles.largeRobotoNormal,
+            return CommonEmptyState(
+              title: AppStaticTexts.noPackagesAvailable,
+              description: AppStaticTexts.noPackagesMessage,
+              icon: Icons.inventory_2_outlined,
+              actionLabel: AppStaticTexts.refresh,
+              onAction: () => context.read<ItemsBloc>().add(
+                GetItems(
+                  token: context.read<UserBloc>().state.user!.accessToken,
+                ),
               ),
             );
           } else {
             return GridView.builder(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(16),
               itemCount: packages.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                childAspectRatio: .73,
+                childAspectRatio: 0.7,
                 crossAxisCount: 2,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
               ),
               itemBuilder: (context, index) =>
                   LabGridItemTile(item: packages[index]),

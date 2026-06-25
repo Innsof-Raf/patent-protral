@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
-import 'package:patient_portal/feature/my_appointments/presentation/widgets/appointment_empty_state.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/widgets/month_tile.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/widgets/my_appointments_list_view.dart';
 
@@ -30,10 +31,12 @@ class AppointmentsTabbarView extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     if (appointments.isEmpty) {
-      return AppointmentEmptyState(
+      return CommonEmptyState(
         title: emptyTitle,
-        message: emptyMessage,
-        onRefresh: onRefresh,
+        description: emptyMessage,
+        icon: Icons.calendar_today_outlined,
+        actionLabel: AppStaticTexts.refresh,
+        onAction: onRefresh,
       );
     }
 

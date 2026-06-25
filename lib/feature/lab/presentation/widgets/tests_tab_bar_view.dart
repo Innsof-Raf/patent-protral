@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/feature/lab/domain/entities/item.dart';
@@ -8,8 +9,8 @@ import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bl
 import 'package:patient_portal/feature/lab/presentation/widgets/lab_grid_item_tile.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
-class TsetsTabBarView extends StatelessWidget {
-  const TsetsTabBarView({super.key});
+class TestsTabBarView extends StatelessWidget {
+  const TestsTabBarView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class TsetsTabBarView extends StatelessWidget {
           return const CommonLoadingView();
         } else if (state.isItemsFetchingFailed) {
           return CommonErrorView(
-            title: 'Unable to load tests',
+            title: AppStaticTexts.unableToLoadTests,
             message: state.error.message,
             onRetry: () => context.read<ItemsBloc>().add(
               GetItems(token: context.read<UserBloc>().state.user!.accessToken),
@@ -30,21 +31,26 @@ class TsetsTabBarView extends StatelessWidget {
               .where((item) => item.itemType == 'SERV')
               .toList();
           if (tests.isEmpty) {
-            return Center(
-              child: Text(
-                'No tests available right now',
-                style: AppTextStyles.largeRobotoNormal,
+            return CommonEmptyState(
+              title: AppStaticTexts.noTestsAvailable,
+              description: AppStaticTexts.noTestsMessage,
+              icon: Icons.science_outlined,
+              actionLabel: AppStaticTexts.refresh,
+              onAction: () => context.read<ItemsBloc>().add(
+                GetItems(
+                  token: context.read<UserBloc>().state.user!.accessToken,
+                ),
               ),
             );
           } else {
             return GridView.builder(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(16),
               itemCount: tests.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                childAspectRatio: .9,
+                childAspectRatio: 0.7,
                 crossAxisCount: 2,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
               ),
               itemBuilder: (context, index) =>
                   LabGridItemTile(item: tests[index]),

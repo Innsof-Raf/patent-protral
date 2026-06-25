@@ -6,6 +6,7 @@ import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_bottom_action_button.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/feature/cart/presentation/widgets/cart_item_tile.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
 
@@ -21,25 +22,25 @@ class CartScreen extends StatelessWidget {
       appBar: const CommonAppbar(title: AppStaticTexts.myCart),
       body: BlocBuilder<ItemsBloc, ItemsState>(
         builder: (context, state) {
-          return state.cart.isEmpty
-              ? Center(
-                  child: Text(
-                    AppStaticTexts.yourCartIsEmpty,
-                    style: AppTextStyles.subHeadingSemiBoldRoboto,
-                  ),
-                )
-              : GridView.builder(
-                  padding: const EdgeInsets.all(10),
-                  itemCount: state.cart.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: .9,
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 10,
-                  ),
-                  itemBuilder: (context, index) =>
-                      CartItemTile(item: state.cart[index]),
-                );
+          if (state.cart.isEmpty) {
+            return const CommonEmptyState(
+              title: AppStaticTexts.yourCartIsEmpty,
+              description: AppStaticTexts.yourCartIsEmptyMessage,
+              icon: Icons.shopping_cart_outlined,
+            );
+          }
+          return GridView.builder(
+            padding: const EdgeInsets.all(10),
+            itemCount: state.cart.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: .9,
+              crossAxisCount: 2,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+            ),
+            itemBuilder: (context, index) =>
+                CartItemTile(item: state.cart[index]),
+          );
         },
       ),
       bottomNavigationBar: BlocBuilder<ItemsBloc, ItemsState>(

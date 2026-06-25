@@ -8,6 +8,7 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -168,13 +169,13 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
                   .toList();
             }
             if (documents.isEmpty) {
-              return Center(
-                child: Text(
-                  AppStaticTexts.noDocumentsFound,
-                  style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
-                    color: theme.colorScheme.onSurface,
-                  ),
-                ),
+              return CommonEmptyState(
+                title: AppStaticTexts.noDocumentsFound,
+                description: AppStaticTexts
+                    .noReportsMessage, // Using a descriptive message
+                icon: Icons.folder_open_outlined,
+                actionLabel: AppStaticTexts.refresh,
+                onAction: _fetchDocuments,
               );
             } else {
               return ListView.separated(

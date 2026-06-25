@@ -7,6 +7,7 @@ import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_text_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/confirmation_dialog.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/feature_header.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
@@ -14,7 +15,6 @@ import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/delete_member_bloc/delete_member_bloc.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/member_search_bloc/member_search_bloc.dart';
 import 'package:patient_portal/feature/members/presentation/widgets/deletable_member_tile.dart';
-import 'package:patient_portal/feature/members/presentation/widgets/members_state_view.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
@@ -149,6 +149,9 @@ class _MembersScreenState extends State<MembersScreen> {
               _MembersResultSliver(
                 allMembers: members,
                 searchController: searchController,
+                onRefresh: () {
+                  context.read<UserBloc>().add(const UserEvent.refreshToken());
+                },
               ),
             ],
           );
@@ -173,20 +176,24 @@ class _MembersResultSliver extends StatelessWidget {
   const _MembersResultSliver({
     required this.allMembers,
     required this.searchController,
+    required this.onRefresh,
   });
 
   final List<Member> allMembers;
   final TextEditingController searchController;
+  final VoidCallback onRefresh;
 
   @override
   Widget build(BuildContext context) {
     if (allMembers.isEmpty) {
-      return const SliverFillRemaining(
+      return SliverFillRemaining(
         hasScrollBody: false,
-        child: MembersStateView(
+        child: CommonEmptyState(
           title: AppStaticTexts.noMembersFound,
-          message: AppStaticTexts.noMembersFoundMessage,
+          description: AppStaticTexts.noMembersFoundMessage,
           icon: Icons.group_add_outlined,
+          actionLabel: AppStaticTexts.refresh,
+          onAction: onRefresh,
         ),
       );
     }
@@ -200,9 +207,9 @@ class _MembersResultSliver extends StatelessWidget {
         if (members.isEmpty) {
           return const SliverFillRemaining(
             hasScrollBody: false,
-            child: MembersStateView(
+            child: CommonEmptyState(
               title: AppStaticTexts.noMatchingMember,
-              message: AppStaticTexts.noMatchingMemberMessage,
+              description: AppStaticTexts.noMatchingMemberMessage,
               icon: Icons.manage_search_rounded,
             ),
           );

@@ -12,6 +12,7 @@ import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_dropdown_field.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_snack_bar.dart';
@@ -108,10 +109,12 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
           }
 
           if (state.documentTypes.isEmpty) {
-            return CommonErrorView(
+            return CommonEmptyState(
               title: AppStaticTexts.documentTypesUnavailable,
-              message: AppStaticTexts.documentTypesUnavailableMessage,
-              onRetry: _fetchDocumentTypes,
+              description: AppStaticTexts.documentTypesUnavailableMessage,
+              icon: Icons.folder_off_outlined,
+              actionLabel: AppStaticTexts.refresh,
+              onAction: _fetchDocumentTypes,
             );
           }
 

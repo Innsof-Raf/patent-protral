@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/feature/notification/presentation/bloc/notification_bloc.dart';
-import 'package:patient_portal/feature/notification/presentation/widgets/empty_notifications_view.dart';
 import 'package:patient_portal/feature/notification/presentation/widgets/notification_card.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
@@ -56,7 +56,13 @@ class _NotificationScreenState extends State<NotificationScreen> {
           }
 
           if (state.notifications.isEmpty) {
-            return const EmptyNotificationsView();
+            return CommonEmptyState(
+              title: AppStaticTexts.notificationsAllCaughtUp,
+              description: AppStaticTexts.notificationsEmptyMessage,
+              icon: Icons.notifications_none_rounded,
+              actionLabel: AppStaticTexts.refresh,
+              onAction: _fetchNotifications,
+            );
           }
 
           return ListView.builder(

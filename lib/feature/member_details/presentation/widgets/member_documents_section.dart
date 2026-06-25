@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_section_card.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member_document.dart';
@@ -18,16 +20,16 @@ class MemberDocumentsSection extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'Documents',
+            AppStaticTexts.documents,
             style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w800,
             ),
           ),
-          const SizedBox(height: 14),
+          const Gap(14),
           if (documents.isEmpty)
             Text(
-              'No documents uploaded for this member.',
+              AppStaticTexts.noDocumentsForMember,
               style: AppTextStyles.largeRobotoNormal.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
                 fontWeight: FontWeight.w500,
@@ -35,7 +37,7 @@ class MemberDocumentsSection extends StatelessWidget {
             )
           else
             ListView.separated(
-              separatorBuilder: (context, index) => const SizedBox(height: 10),
+              separatorBuilder: (context, index) => const Gap(10),
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               padding: EdgeInsets.zero,
@@ -68,7 +70,7 @@ class _DocumentTile extends StatelessWidget {
       child: Row(
         children: [
           Icon(Icons.description_outlined, color: theme.colorScheme.primary),
-          const SizedBox(width: 10),
+          const Gap(10),
           Expanded(
             child: Text(
               document.docName,
@@ -80,11 +82,11 @@ class _DocumentTile extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 8),
+          const Gap(8),
           TextButton.icon(
             onPressed: () {},
             icon: const Icon(Icons.download_rounded, size: 18),
-            label: const Text('Download'),
+            label: const Text(AppStaticTexts.download),
           ),
         ],
       ),

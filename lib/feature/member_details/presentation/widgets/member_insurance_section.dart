@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_section_card.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_text_field.dart';
@@ -32,7 +33,7 @@ class MemberInsuranceSection extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  'Insurance',
+                  AppStaticTexts.insurance,
                   style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                     color: theme.colorScheme.onSurface,
                     fontWeight: FontWeight.w800,
@@ -45,7 +46,7 @@ class MemberInsuranceSection extends StatelessWidget {
           const Gap(14),
           if (!hasInsurance)
             Text(
-              'No active insurance details are linked to this member.',
+              AppStaticTexts.noActiveInsurance,
               style: AppTextStyles.largeRobotoNormal.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
                 fontWeight: FontWeight.w500,
@@ -53,19 +54,19 @@ class MemberInsuranceSection extends StatelessWidget {
             )
           else ...[
             MemberTextField(
-              title: 'Insurance',
+              title: AppStaticTexts.insurance,
               value: insuranceName,
               icon: Icons.health_and_safety_outlined,
             ),
             const Gap(10),
             MemberTextField(
-              title: 'Member ID',
+              title: AppStaticTexts.memberIdLabel,
               value: memberNo,
               icon: Icons.confirmation_number_outlined,
             ),
             const Gap(10),
             MemberTextField(
-              title: 'Expire date',
+              title: AppStaticTexts.expirationDate,
               value: expireDate != null
                   ? DateFormat('dd-MM-yyyy').format(expireDate!)
                   : '',
@@ -97,7 +98,7 @@ class _InsuranceStatusBadge extends StatelessWidget {
         borderRadius: BorderRadius.circular(999),
       ),
       child: Text(
-        isActive ? 'Active' : 'Not linked',
+        isActive ? AppStaticTexts.active : AppStaticTexts.notLinked,
         style: AppTextStyles.bodyTextRoboto.copyWith(
           color: color,
           fontWeight: FontWeight.w800,

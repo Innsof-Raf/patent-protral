@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/feature_header.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
@@ -103,6 +105,7 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
               _DoctorsResultSliver(
                 allDoctors: state.doctors,
                 searchController: searchController,
+                onRefresh: _fetchDoctors,
               ),
             ],
           );
@@ -116,19 +119,24 @@ class _DoctorsResultSliver extends StatelessWidget {
   const _DoctorsResultSliver({
     required this.allDoctors,
     required this.searchController,
+    required this.onRefresh,
   });
 
   final List<Doctor> allDoctors;
   final TextEditingController searchController;
+  final VoidCallback onRefresh;
 
   @override
   Widget build(BuildContext context) {
     if (allDoctors.isEmpty) {
-      return const SliverFillRemaining(
+      return SliverFillRemaining(
         hasScrollBody: false,
-        child: DoctorsMessageView(
+        child: CommonEmptyState(
           title: AppStaticTexts.noDoctorsFound,
-          message: AppStaticTexts.noDoctorsFoundMessage,
+          description: AppStaticTexts.noDoctorsFoundMessage,
+          icon: Icons.medical_services_outlined,
+          actionLabel: AppStaticTexts.refresh,
+          onAction: onRefresh,
         ),
       );
     }
@@ -142,9 +150,10 @@ class _DoctorsResultSliver extends StatelessWidget {
         if (doctors.isEmpty) {
           return const SliverFillRemaining(
             hasScrollBody: false,
-            child: DoctorsMessageView(
+            child: CommonEmptyState(
               title: AppStaticTexts.noMatchingDoctor,
-              message: AppStaticTexts.noMatchingDoctorMessage,
+              description: AppStaticTexts.noMatchingDoctorMessage,
+              icon: Icons.search_off_rounded,
             ),
           );
         }
@@ -153,7 +162,7 @@ class _DoctorsResultSliver extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
           sliver: SliverList.separated(
             itemCount: doctors.length,
-            separatorBuilder: (context, index) => const SizedBox(height: 12),
+            separatorBuilder: (context, index) => const Gap(12),
             itemBuilder: (context, index) {
               return DoctorTile(doctor: doctors[index]);
             },

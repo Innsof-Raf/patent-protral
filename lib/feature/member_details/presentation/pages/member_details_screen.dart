@@ -1,11 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/route/app_router.dart';
-import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_state_view.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_documents_section.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_insurance_section.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_personal_details_section.dart';
@@ -45,14 +47,14 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      appBar: const CommonAppbar(title: 'Member Details'),
+      appBar: const CommonAppbar(title: AppStaticTexts.memberDetails),
       body: BlocBuilder<UserBloc, UserState>(
         builder: (context, state) {
           if (state.isFetchingMemberDetail) {
-            return const MemberDetailsLoadingView();
+            return const CommonLoadingView();
           } else if (state.isMemberDetailFetchingFailed) {
             return CommonErrorView(
-              title: 'Unable to load member',
+              title: AppStaticTexts.unableToLoadMember,
               message: state.error.message,
               onRetry: _fetchMemberDetails,
             );
@@ -60,9 +62,12 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
             final Member? member = _findMember(state.user?.members);
 
             if (member == null) {
-              return const MemberDetailsMessageView(
-                title: 'Member details not found',
-                message: 'This member is no longer available in your profile.',
+              return CommonEmptyState(
+                title: AppStaticTexts.memberDetailsNotFound,
+                description: AppStaticTexts.memberDetailsNotFoundMessage,
+                icon: Icons.person_search_outlined,
+                actionLabel: AppStaticTexts.refresh,
+                onAction: _fetchMemberDetails,
               );
             }
 
@@ -80,9 +85,10 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
                       image: member.profileImage,
                       title: member.name,
                       subtitle: [
-                        if (member.age.isNotEmpty) 'Age ${member.age}',
+                        if (member.age.isNotEmpty)
+                          '${AppStaticTexts.age} ${member.age}',
                         if (member.nationalId.isNotEmpty)
-                          'ID ${member.nationalId}',
+                          '${AppStaticTexts.id} ${member.nationalId}',
                       ].join('  |  '),
                     ),
                   ),
@@ -141,7 +147,7 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
             context.router.root.push(AddMemberRoute(member: member));
           },
           icon: const Icon(Icons.edit_outlined),
-          label: const Text('Edit Insurance Details'),
+          label: const Text(AppStaticTexts.editInsuranceDetails),
         ),
       ),
     );

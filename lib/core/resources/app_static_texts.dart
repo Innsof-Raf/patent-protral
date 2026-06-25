@@ -230,6 +230,16 @@ class AppStaticTexts {
   static const String checkOut = 'CHECK OUT';
   static const String packageDescription = 'Package Description';
   static const String addToCart = 'ADD TO CART';
+  static const String searchTests = 'Search tests';
+  static const String added = 'Added';
+  static const String unableToLoadTests = 'Unable to load tests';
+  static const String noTestsAvailable = 'No tests available right now';
+  static const String noTestsMessage =
+      'We couldn\'t find any active tests. Please check back later or browse other categories.';
+  static const String unableToLoadPackages = 'Unable to load packages';
+  static const String noPackagesAvailable = 'No packages available right now';
+  static const String noPackagesMessage =
+      'Comprehensive health packages will appear here soon. Stay tuned!';
 
   // Common
   static const String failed = 'Failed !';
@@ -250,6 +260,7 @@ class AppStaticTexts {
   static const String xRay = 'X-Ray';
   static const String uss = 'USS';
   static const String ctScan = 'CT Scan';
+  static const String refresh = 'Refresh';
 
   // Documents/Add Document
   static const String addDocument = 'Add Document';
@@ -273,6 +284,8 @@ class AppStaticTexts {
   // Cart
   static const String myCart = 'My Cart';
   static const String yourCartIsEmpty = 'Your cart is empty';
+  static const String yourCartIsEmptyMessage =
+      'Start adding items from the lab to see them here.';
 
   // Book Appointment
   static const String unableToLoadAppointmentSlots =
@@ -286,6 +299,8 @@ class AppStaticTexts {
       'Appointment rescheduled successfully';
   static const String availableTime = 'Available Time';
   static const String noSlotsAvailable = 'No Slots Available';
+  static const String noSlotsAvailableMessage =
+      'Please check back later or select another date.';
   static const String appointmentFor = 'Appointment for';
   static const String noMembersAvailableToProceed =
       'No members available. Add a member to proceed.';
@@ -323,8 +338,32 @@ class AppStaticTexts {
   static const String reviewUpdatedSlotDetails =
       'Please review the updated slot details before confirming.';
 
+  // Member Details
+  static const String memberDetails = 'Member Details';
+  static const String memberDetailsNotFound = 'Member details not found';
+  static const String memberDetailsNotFoundMessage =
+      'This member is no longer available in your profile.';
+  static const String unableToLoadMember = 'Unable to load member';
+  static const String id = 'ID';
+  static const String noDocumentsForMember =
+      'No documents uploaded for this member.';
+  static const String download = 'Download';
+  static const String insurance = 'Insurance';
+  static const String noActiveInsurance =
+      'No active insurance details are linked to this member.';
+  static const String active = 'Active';
+  static const String notLinked = 'Not linked';
+  static const String memberIdLabel = 'Member ID';
+  static const String personalDetails = 'Personal details';
+  static const String dobLabel = 'Date of birth';
+  static const String genderLabel = 'Gender';
+  static const String emailLabel = 'Email';
+
   // Notifications
   static const String notifications = 'Notifications';
+  static const String notificationsAllCaughtUp = 'All caught up!';
+  static const String notificationsEmptyMessage =
+      "You don't have any new notifications at the moment. We'll keep you posted!";
   static const String unableToLoadNotifications =
       'Unable to load notifications';
 }

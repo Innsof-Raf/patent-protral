@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
@@ -30,7 +31,7 @@ class MemberProfileImageSection extends StatelessWidget {
       child: Row(
         children: [
           _MemberAvatar(memberId: memberId, image: image, title: title),
-          const SizedBox(width: 14),
+          const Gap(14),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +49,7 @@ class MemberProfileImageSection extends StatelessWidget {
                   ),
                 ),
                 if (subtitle != null && subtitle!.isNotEmpty) ...[
-                  const SizedBox(height: 6),
+                  const Gap(6),
                   Text(
                     subtitle!,
                     maxLines: 2,
@@ -82,7 +83,9 @@ class _MemberAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final initial = title.trim().isEmpty ? 'U' : title.trim()[0].toUpperCase();
+    final initial = title.trim().isEmpty
+        ? AppStaticTexts.unknownInitial
+        : title.trim()[0].toUpperCase();
     final imageUrl = image == null || image!.trim().isEmpty
         ? null
         : '${ConstantUrls.memberImageUrl}/$memberId/${image!.trim()}';

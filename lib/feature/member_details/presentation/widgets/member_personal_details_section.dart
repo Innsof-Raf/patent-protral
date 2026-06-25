@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_section_card.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_text_field.dart';
@@ -29,7 +30,7 @@ class MemberPersonalDetailsSection extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'Personal details',
+            AppStaticTexts.personalDetails,
             style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w800,
@@ -37,25 +38,25 @@ class MemberPersonalDetailsSection extends StatelessWidget {
           ),
           const Gap(14),
           MemberTextField(
-            title: 'Date of birth',
+            title: AppStaticTexts.dobLabel,
             value: dob != null ? DateFormat('dd-MM-yyyy').format(dob!) : '',
             icon: Icons.calendar_today_outlined,
           ),
           const Gap(10),
           MemberTextField(
-            title: 'Gender',
+            title: AppStaticTexts.genderLabel,
             value: gender,
             icon: Icons.wc_rounded,
           ),
           const Gap(10),
           MemberTextField(
-            title: 'National ID',
+            title: AppStaticTexts.nationalId,
             value: nationalId,
             icon: Icons.badge_outlined,
           ),
           const Gap(10),
           MemberTextField(
-            title: 'Email',
+            title: AppStaticTexts.emailLabel,
             value: email ?? '',
             icon: Icons.mail_outline_rounded,
           ),

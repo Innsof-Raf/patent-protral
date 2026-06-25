@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_outlined_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/common_bottom_action_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_snack_bar.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
@@ -21,13 +22,36 @@ class LabScreen extends StatefulWidget {
   State<LabScreen> createState() => _LabScreenState();
 }
 
-class _LabScreenState extends State<LabScreen> {
+class _LabScreenState extends State<LabScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
   @override
   void initState() {
     super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(_onTabChanged);
+
+    _fetchItems();
+  }
+
+  void _onTabChanged() {
+    if (!_tabController.indexIsChanging) {
+      _fetchItems();
+    }
+  }
+
+  void _fetchItems() {
     context.read<ItemsBloc>().add(
       GetItems(token: context.read<UserBloc>().state.user!.accessToken),
     );
+  }
+
+  @override
+  void dispose() {
+    _tabController.removeListener(_onTabChanged);
+    _tabController.dispose();
+    super.dispose();
   }
 
   @override
@@ -37,26 +61,46 @@ class _LabScreenState extends State<LabScreen> {
     return Scaffold(
       appBar: CommonAppbar(
         title: AppStaticTexts.labTestCategories,
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.search_rounded),
+            tooltip: AppStaticTexts.searchTests,
+          ),
+        ],
       ),
-      body: DefaultTabController(
-        length: 2,
-        child: Column(
-          children: [
-            TabBar(
+      body: Column(
+        children: [
+          Material(
+            color: theme.colorScheme.surface,
+            child: TabBar(
+              controller: _tabController,
+              dividerColor: Colors.transparent,
               indicatorColor: theme.colorScheme.primary,
               indicatorWeight: 3,
+              indicatorSize: TabBarIndicatorSize.tab,
+              labelColor: theme.colorScheme.primary,
+              unselectedLabelColor: theme.disabledColor,
+              labelStyle: theme.textTheme.titleSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0.5,
+              ),
+              unselectedLabelStyle: theme.textTheme.titleSmall?.copyWith(
+                fontWeight: FontWeight.w500,
+              ),
               tabs: const [
                 LabTabBar(title: AppStaticTexts.packages),
                 LabTabBar(title: AppStaticTexts.test),
               ],
             ),
-            Container(
-              color: AppColors.dividerGrayColor,
-              height: 1,
-              width: double.infinity,
-            ),
-            BlocListener<ItemsBloc, ItemsState>(
+          ),
+          Divider(
+            height: 1,
+            thickness: 1,
+            color: theme.dividerColor.withValues(alpha: 0.05),
+          ),
+          Expanded(
+            child: BlocListener<ItemsBloc, ItemsState>(
               listener: (context, state) {
                 if (state.isCartUpdatingFailed && !state.isCartUpdatingSucees) {
                   CommonSnackBar.show(
@@ -66,41 +110,49 @@ class _LabScreenState extends State<LabScreen> {
                     type: SnackBarType.error,
                   );
                 }
-                // TODO: implement  remove from cart  confirmation popup
               },
-              child: const Expanded(
-                child: TabBarView(
-                  children: [PackagesTabBarView(), TsetsTabBarView()],
-                ),
+              child: TabBarView(
+                controller: _tabController,
+                children: const [PackagesTabBarView(), TestsTabBarView()],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
       bottomNavigationBar: Container(
+        padding: EdgeInsets.fromLTRB(
+          16,
+          16,
+          16,
+          MediaQuery.paddingOf(context).bottom + 16,
+        ),
         decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
           boxShadow: [
             BoxShadow(
-              blurRadius: 1,
-              color: AppColors.black.withValues(alpha: .25),
+              color: Colors.black.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, -5),
             ),
           ],
         ),
         child: Row(
           children: [
             Expanded(
-              child: CommonBottomActionButton(
-                isPrimary: false,
-                title: AppStaticTexts.viewCart,
+              child: ActiveOutlinedButton(
                 onPressed: () {
                   context.router.push(const CartRoute());
                 },
+                child: const Text(AppStaticTexts.viewCart),
               ),
             ),
+            const Gap(12),
             Expanded(
-              child: CommonBottomActionButton(
-                title: AppStaticTexts.checkOut,
-                onPressed: () {},
+              child: ActiveButton(
+                onPressed: () {
+                  // TODO: Implement Checkout navigation
+                },
+                child: const Text(AppStaticTexts.checkOut),
               ),
             ),
           ],

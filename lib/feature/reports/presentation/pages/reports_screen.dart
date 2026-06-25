@@ -1,9 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
@@ -63,33 +62,12 @@ class _ReportsScreenState extends State<ReportsScreen> {
           }
 
           if (state.reports.isEmpty) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.assignment_outlined,
-                    size: 64,
-                    color: theme.colorScheme.primary.withValues(alpha: 0.2),
-                  ),
-                  const Gap(16),
-                  Text(
-                    AppStaticTexts.noReportsAvailable,
-                    style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
-                      color: theme.colorScheme.onSurfaceVariant,
-                    ),
-                  ),
-                  const Gap(8),
-                  Text(
-                    AppStaticTexts.noReportsMessage,
-                    style: AppTextStyles.largeRobotoNormal.copyWith(
-                      color: theme.colorScheme.onSurfaceVariant.withValues(
-                        alpha: 0.7,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            return CommonEmptyState(
+              title: AppStaticTexts.noReportsAvailable,
+              description: AppStaticTexts.noReportsMessage,
+              icon: Icons.assignment_outlined,
+              actionLabel: AppStaticTexts.refresh,
+              onAction: _fetchReports,
             );
           }
 

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/feature_header.dart';
@@ -11,7 +12,6 @@ import 'package:patient_portal/feature/speciality/domain/entities/speciality.dar
 import 'package:patient_portal/feature/speciality/domain/usecases/params/speciality_params.dart';
 import 'package:patient_portal/feature/speciality/presentation/bloc/speciality_bloc/speciality_bloc.dart';
 import 'package:patient_portal/feature/speciality/presentation/widgets/speciality_grid.dart';
-import 'package:patient_portal/feature/speciality/presentation/widgets/speciality_state_view.dart';
 
 @RoutePage(name: 'SpecialityRoute')
 class SpecialityScreen extends StatefulWidget {
@@ -103,6 +103,7 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
                 _SpecialityResultSliver(
                   allSpecialities: state.specialities,
                   searchController: searchController,
+                  onRefresh: _fetchSpecialities,
                 ),
               ],
             ),
@@ -117,19 +118,24 @@ class _SpecialityResultSliver extends StatelessWidget {
   const _SpecialityResultSliver({
     required this.allSpecialities,
     required this.searchController,
+    required this.onRefresh,
   });
 
   final List<Speciality> allSpecialities;
   final TextEditingController searchController;
+  final VoidCallback onRefresh;
 
   @override
   Widget build(BuildContext context) {
     if (allSpecialities.isEmpty) {
-      return const SliverFillRemaining(
+      return SliverFillRemaining(
         hasScrollBody: false,
-        child: SpecialityMessageView(
+        child: CommonEmptyState(
           title: AppStaticTexts.noSpecialitiesFound,
-          message: AppStaticTexts.noSpecialitiesFoundMessage,
+          description: AppStaticTexts.noSpecialitiesFoundMessage,
+          icon: Icons.medical_information_outlined,
+          actionLabel: AppStaticTexts.refresh,
+          onAction: onRefresh,
         ),
       );
     }
@@ -143,9 +149,10 @@ class _SpecialityResultSliver extends StatelessWidget {
         if (specialities.isEmpty) {
           return const SliverFillRemaining(
             hasScrollBody: false,
-            child: SpecialityMessageView(
+            child: CommonEmptyState(
               title: AppStaticTexts.noMatchingSpeciality,
-              message: AppStaticTexts.noMatchingSpecialityMessage,
+              description: AppStaticTexts.noMatchingSpecialityMessage,
+              icon: Icons.search_off_rounded,
             ),
           );
         }

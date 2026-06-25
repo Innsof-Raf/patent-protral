@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/feature/book_appointment/domain/entities/shift.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 
@@ -9,6 +10,7 @@ import 'slot_tile.dart';
 
 class AppointmentSlotSection extends StatelessWidget {
   final Shift shift;
+
   const AppointmentSlotSection({super.key, required this.shift});
 
   @override
@@ -98,28 +100,10 @@ class AppointmentSlotSection extends StatelessWidget {
   }
 
   Widget _buildEmptyState(ThemeData theme) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 40),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              Icons.event_busy_rounded,
-              size: 48,
-              color: theme.colorScheme.outline.withValues(alpha: 0.5),
-            ),
-            const Gap(16),
-            Text(
-              AppStaticTexts.noSlotsAvailable,
-              style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-      ),
+    return const CommonEmptyState(
+      title: AppStaticTexts.noSlotsAvailable,
+      description: AppStaticTexts.noSlotsAvailableMessage,
+      icon: Icons.event_busy_rounded,
     );
   }
 }
