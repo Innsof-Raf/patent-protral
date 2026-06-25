@@ -878,7 +878,7 @@ String toString() {
 /// @nodoc
 mixin _$UserState {
 
- User? get user; bool get isMemberAdding; bool get isMemberAddingFailed; bool get isMemberAddingSucess; bool get isFetchingMemberDetail; bool get isMemberDetailFetchingFailed; bool get isMemberDetailFetchingSucess; ErrorModel get error;
+ User? get user; bool get isLoading; bool get isMemberAdding; bool get isMemberAddingFailed; bool get isMemberAddingSucess; bool get isFetchingMemberDetail; bool get isMemberDetailFetchingFailed; bool get isMemberDetailFetchingSucess; ErrorModel get error;
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -889,16 +889,16 @@ $UserStateCopyWith<UserState> get copyWith => _$UserStateCopyWithImpl<UserState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserState&&(identical(other.user, user) || other.user == user)&&(identical(other.isMemberAdding, isMemberAdding) || other.isMemberAdding == isMemberAdding)&&(identical(other.isMemberAddingFailed, isMemberAddingFailed) || other.isMemberAddingFailed == isMemberAddingFailed)&&(identical(other.isMemberAddingSucess, isMemberAddingSucess) || other.isMemberAddingSucess == isMemberAddingSucess)&&(identical(other.isFetchingMemberDetail, isFetchingMemberDetail) || other.isFetchingMemberDetail == isFetchingMemberDetail)&&(identical(other.isMemberDetailFetchingFailed, isMemberDetailFetchingFailed) || other.isMemberDetailFetchingFailed == isMemberDetailFetchingFailed)&&(identical(other.isMemberDetailFetchingSucess, isMemberDetailFetchingSucess) || other.isMemberDetailFetchingSucess == isMemberDetailFetchingSucess)&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserState&&(identical(other.user, user) || other.user == user)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isMemberAdding, isMemberAdding) || other.isMemberAdding == isMemberAdding)&&(identical(other.isMemberAddingFailed, isMemberAddingFailed) || other.isMemberAddingFailed == isMemberAddingFailed)&&(identical(other.isMemberAddingSucess, isMemberAddingSucess) || other.isMemberAddingSucess == isMemberAddingSucess)&&(identical(other.isFetchingMemberDetail, isFetchingMemberDetail) || other.isFetchingMemberDetail == isFetchingMemberDetail)&&(identical(other.isMemberDetailFetchingFailed, isMemberDetailFetchingFailed) || other.isMemberDetailFetchingFailed == isMemberDetailFetchingFailed)&&(identical(other.isMemberDetailFetchingSucess, isMemberDetailFetchingSucess) || other.isMemberDetailFetchingSucess == isMemberDetailFetchingSucess)&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,user,isMemberAdding,isMemberAddingFailed,isMemberAddingSucess,isFetchingMemberDetail,isMemberDetailFetchingFailed,isMemberDetailFetchingSucess,error);
+int get hashCode => Object.hash(runtimeType,user,isLoading,isMemberAdding,isMemberAddingFailed,isMemberAddingSucess,isFetchingMemberDetail,isMemberDetailFetchingFailed,isMemberDetailFetchingSucess,error);
 
 @override
 String toString() {
-  return 'UserState(user: $user, isMemberAdding: $isMemberAdding, isMemberAddingFailed: $isMemberAddingFailed, isMemberAddingSucess: $isMemberAddingSucess, isFetchingMemberDetail: $isFetchingMemberDetail, isMemberDetailFetchingFailed: $isMemberDetailFetchingFailed, isMemberDetailFetchingSucess: $isMemberDetailFetchingSucess, error: $error)';
+  return 'UserState(user: $user, isLoading: $isLoading, isMemberAdding: $isMemberAdding, isMemberAddingFailed: $isMemberAddingFailed, isMemberAddingSucess: $isMemberAddingSucess, isFetchingMemberDetail: $isFetchingMemberDetail, isMemberDetailFetchingFailed: $isMemberDetailFetchingFailed, isMemberDetailFetchingSucess: $isMemberDetailFetchingSucess, error: $error)';
 }
 
 
@@ -909,7 +909,7 @@ abstract mixin class $UserStateCopyWith<$Res>  {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) _then) = _$UserStateCopyWithImpl;
 @useResult
 $Res call({
- User? user, bool isMemberAdding, bool isMemberAddingFailed, bool isMemberAddingSucess, bool isFetchingMemberDetail, bool isMemberDetailFetchingFailed, bool isMemberDetailFetchingSucess, ErrorModel error
+ User? user, bool isLoading, bool isMemberAdding, bool isMemberAddingFailed, bool isMemberAddingSucess, bool isFetchingMemberDetail, bool isMemberDetailFetchingFailed, bool isMemberDetailFetchingSucess, ErrorModel error
 });
 
 
@@ -926,10 +926,11 @@ class _$UserStateCopyWithImpl<$Res>
 
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? user = freezed,Object? isMemberAdding = null,Object? isMemberAddingFailed = null,Object? isMemberAddingSucess = null,Object? isFetchingMemberDetail = null,Object? isMemberDetailFetchingFailed = null,Object? isMemberDetailFetchingSucess = null,Object? error = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? user = freezed,Object? isLoading = null,Object? isMemberAdding = null,Object? isMemberAddingFailed = null,Object? isMemberAddingSucess = null,Object? isFetchingMemberDetail = null,Object? isMemberDetailFetchingFailed = null,Object? isMemberDetailFetchingSucess = null,Object? error = null,}) {
   return _then(_self.copyWith(
 user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as User?,isMemberAdding: null == isMemberAdding ? _self.isMemberAdding : isMemberAdding // ignore: cast_nullable_to_non_nullable
+as User?,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,isMemberAdding: null == isMemberAdding ? _self.isMemberAdding : isMemberAdding // ignore: cast_nullable_to_non_nullable
 as bool,isMemberAddingFailed: null == isMemberAddingFailed ? _self.isMemberAddingFailed : isMemberAddingFailed // ignore: cast_nullable_to_non_nullable
 as bool,isMemberAddingSucess: null == isMemberAddingSucess ? _self.isMemberAddingSucess : isMemberAddingSucess // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingMemberDetail: null == isFetchingMemberDetail ? _self.isFetchingMemberDetail : isFetchingMemberDetail // ignore: cast_nullable_to_non_nullable
@@ -1039,10 +1040,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( User? user,  bool isMemberAdding,  bool isMemberAddingFailed,  bool isMemberAddingSucess,  bool isFetchingMemberDetail,  bool isMemberDetailFetchingFailed,  bool isMemberDetailFetchingSucess,  ErrorModel error)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( User? user,  bool isLoading,  bool isMemberAdding,  bool isMemberAddingFailed,  bool isMemberAddingSucess,  bool isFetchingMemberDetail,  bool isMemberDetailFetchingFailed,  bool isMemberDetailFetchingSucess,  ErrorModel error)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserState() when $default != null:
-return $default(_that.user,_that.isMemberAdding,_that.isMemberAddingFailed,_that.isMemberAddingSucess,_that.isFetchingMemberDetail,_that.isMemberDetailFetchingFailed,_that.isMemberDetailFetchingSucess,_that.error);case _:
+return $default(_that.user,_that.isLoading,_that.isMemberAdding,_that.isMemberAddingFailed,_that.isMemberAddingSucess,_that.isFetchingMemberDetail,_that.isMemberDetailFetchingFailed,_that.isMemberDetailFetchingSucess,_that.error);case _:
   return orElse();
 
 }
@@ -1060,10 +1061,10 @@ return $default(_that.user,_that.isMemberAdding,_that.isMemberAddingFailed,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( User? user,  bool isMemberAdding,  bool isMemberAddingFailed,  bool isMemberAddingSucess,  bool isFetchingMemberDetail,  bool isMemberDetailFetchingFailed,  bool isMemberDetailFetchingSucess,  ErrorModel error)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( User? user,  bool isLoading,  bool isMemberAdding,  bool isMemberAddingFailed,  bool isMemberAddingSucess,  bool isFetchingMemberDetail,  bool isMemberDetailFetchingFailed,  bool isMemberDetailFetchingSucess,  ErrorModel error)  $default,) {final _that = this;
 switch (_that) {
 case _UserState():
-return $default(_that.user,_that.isMemberAdding,_that.isMemberAddingFailed,_that.isMemberAddingSucess,_that.isFetchingMemberDetail,_that.isMemberDetailFetchingFailed,_that.isMemberDetailFetchingSucess,_that.error);}
+return $default(_that.user,_that.isLoading,_that.isMemberAdding,_that.isMemberAddingFailed,_that.isMemberAddingSucess,_that.isFetchingMemberDetail,_that.isMemberDetailFetchingFailed,_that.isMemberDetailFetchingSucess,_that.error);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -1077,10 +1078,10 @@ return $default(_that.user,_that.isMemberAdding,_that.isMemberAddingFailed,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( User? user,  bool isMemberAdding,  bool isMemberAddingFailed,  bool isMemberAddingSucess,  bool isFetchingMemberDetail,  bool isMemberDetailFetchingFailed,  bool isMemberDetailFetchingSucess,  ErrorModel error)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( User? user,  bool isLoading,  bool isMemberAdding,  bool isMemberAddingFailed,  bool isMemberAddingSucess,  bool isFetchingMemberDetail,  bool isMemberDetailFetchingFailed,  bool isMemberDetailFetchingSucess,  ErrorModel error)?  $default,) {final _that = this;
 switch (_that) {
 case _UserState() when $default != null:
-return $default(_that.user,_that.isMemberAdding,_that.isMemberAddingFailed,_that.isMemberAddingSucess,_that.isFetchingMemberDetail,_that.isMemberDetailFetchingFailed,_that.isMemberDetailFetchingSucess,_that.error);case _:
+return $default(_that.user,_that.isLoading,_that.isMemberAdding,_that.isMemberAddingFailed,_that.isMemberAddingSucess,_that.isFetchingMemberDetail,_that.isMemberDetailFetchingFailed,_that.isMemberDetailFetchingSucess,_that.error);case _:
   return null;
 
 }
@@ -1092,10 +1093,11 @@ return $default(_that.user,_that.isMemberAdding,_that.isMemberAddingFailed,_that
 
 
 class _UserState implements UserState {
-  const _UserState({required this.user, required this.isMemberAdding, required this.isMemberAddingFailed, required this.isMemberAddingSucess, required this.isFetchingMemberDetail, required this.isMemberDetailFetchingFailed, required this.isMemberDetailFetchingSucess, required this.error});
+  const _UserState({required this.user, required this.isLoading, required this.isMemberAdding, required this.isMemberAddingFailed, required this.isMemberAddingSucess, required this.isFetchingMemberDetail, required this.isMemberDetailFetchingFailed, required this.isMemberDetailFetchingSucess, required this.error});
   
 
 @override final  User? user;
+@override final  bool isLoading;
 @override final  bool isMemberAdding;
 @override final  bool isMemberAddingFailed;
 @override final  bool isMemberAddingSucess;
@@ -1114,16 +1116,16 @@ _$UserStateCopyWith<_UserState> get copyWith => __$UserStateCopyWithImpl<_UserSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserState&&(identical(other.user, user) || other.user == user)&&(identical(other.isMemberAdding, isMemberAdding) || other.isMemberAdding == isMemberAdding)&&(identical(other.isMemberAddingFailed, isMemberAddingFailed) || other.isMemberAddingFailed == isMemberAddingFailed)&&(identical(other.isMemberAddingSucess, isMemberAddingSucess) || other.isMemberAddingSucess == isMemberAddingSucess)&&(identical(other.isFetchingMemberDetail, isFetchingMemberDetail) || other.isFetchingMemberDetail == isFetchingMemberDetail)&&(identical(other.isMemberDetailFetchingFailed, isMemberDetailFetchingFailed) || other.isMemberDetailFetchingFailed == isMemberDetailFetchingFailed)&&(identical(other.isMemberDetailFetchingSucess, isMemberDetailFetchingSucess) || other.isMemberDetailFetchingSucess == isMemberDetailFetchingSucess)&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserState&&(identical(other.user, user) || other.user == user)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isMemberAdding, isMemberAdding) || other.isMemberAdding == isMemberAdding)&&(identical(other.isMemberAddingFailed, isMemberAddingFailed) || other.isMemberAddingFailed == isMemberAddingFailed)&&(identical(other.isMemberAddingSucess, isMemberAddingSucess) || other.isMemberAddingSucess == isMemberAddingSucess)&&(identical(other.isFetchingMemberDetail, isFetchingMemberDetail) || other.isFetchingMemberDetail == isFetchingMemberDetail)&&(identical(other.isMemberDetailFetchingFailed, isMemberDetailFetchingFailed) || other.isMemberDetailFetchingFailed == isMemberDetailFetchingFailed)&&(identical(other.isMemberDetailFetchingSucess, isMemberDetailFetchingSucess) || other.isMemberDetailFetchingSucess == isMemberDetailFetchingSucess)&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,user,isMemberAdding,isMemberAddingFailed,isMemberAddingSucess,isFetchingMemberDetail,isMemberDetailFetchingFailed,isMemberDetailFetchingSucess,error);
+int get hashCode => Object.hash(runtimeType,user,isLoading,isMemberAdding,isMemberAddingFailed,isMemberAddingSucess,isFetchingMemberDetail,isMemberDetailFetchingFailed,isMemberDetailFetchingSucess,error);
 
 @override
 String toString() {
-  return 'UserState(user: $user, isMemberAdding: $isMemberAdding, isMemberAddingFailed: $isMemberAddingFailed, isMemberAddingSucess: $isMemberAddingSucess, isFetchingMemberDetail: $isFetchingMemberDetail, isMemberDetailFetchingFailed: $isMemberDetailFetchingFailed, isMemberDetailFetchingSucess: $isMemberDetailFetchingSucess, error: $error)';
+  return 'UserState(user: $user, isLoading: $isLoading, isMemberAdding: $isMemberAdding, isMemberAddingFailed: $isMemberAddingFailed, isMemberAddingSucess: $isMemberAddingSucess, isFetchingMemberDetail: $isFetchingMemberDetail, isMemberDetailFetchingFailed: $isMemberDetailFetchingFailed, isMemberDetailFetchingSucess: $isMemberDetailFetchingSucess, error: $error)';
 }
 
 
@@ -1134,7 +1136,7 @@ abstract mixin class _$UserStateCopyWith<$Res> implements $UserStateCopyWith<$Re
   factory _$UserStateCopyWith(_UserState value, $Res Function(_UserState) _then) = __$UserStateCopyWithImpl;
 @override @useResult
 $Res call({
- User? user, bool isMemberAdding, bool isMemberAddingFailed, bool isMemberAddingSucess, bool isFetchingMemberDetail, bool isMemberDetailFetchingFailed, bool isMemberDetailFetchingSucess, ErrorModel error
+ User? user, bool isLoading, bool isMemberAdding, bool isMemberAddingFailed, bool isMemberAddingSucess, bool isFetchingMemberDetail, bool isMemberDetailFetchingFailed, bool isMemberDetailFetchingSucess, ErrorModel error
 });
 
 
@@ -1151,10 +1153,11 @@ class __$UserStateCopyWithImpl<$Res>
 
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? user = freezed,Object? isMemberAdding = null,Object? isMemberAddingFailed = null,Object? isMemberAddingSucess = null,Object? isFetchingMemberDetail = null,Object? isMemberDetailFetchingFailed = null,Object? isMemberDetailFetchingSucess = null,Object? error = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? user = freezed,Object? isLoading = null,Object? isMemberAdding = null,Object? isMemberAddingFailed = null,Object? isMemberAddingSucess = null,Object? isFetchingMemberDetail = null,Object? isMemberDetailFetchingFailed = null,Object? isMemberDetailFetchingSucess = null,Object? error = null,}) {
   return _then(_UserState(
 user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as User?,isMemberAdding: null == isMemberAdding ? _self.isMemberAdding : isMemberAdding // ignore: cast_nullable_to_non_nullable
+as User?,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,isMemberAdding: null == isMemberAdding ? _self.isMemberAdding : isMemberAdding // ignore: cast_nullable_to_non_nullable
 as bool,isMemberAddingFailed: null == isMemberAddingFailed ? _self.isMemberAddingFailed : isMemberAddingFailed // ignore: cast_nullable_to_non_nullable
 as bool,isMemberAddingSucess: null == isMemberAddingSucess ? _self.isMemberAddingSucess : isMemberAddingSucess // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingMemberDetail: null == isFetchingMemberDetail ? _self.isFetchingMemberDetail : isFetchingMemberDetail // ignore: cast_nullable_to_non_nullable

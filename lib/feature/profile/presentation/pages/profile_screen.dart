@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_text_button.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -20,30 +21,36 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      body: RefreshIndicator(
-        onRefresh: () async {
-          context.read<UserBloc>().add(const RefreshToken());
+      body: BlocBuilder<UserBloc, UserState>(
+        builder: (context, state) {
+          if (state.isLoading) return const CommonLoadingView();
+
+          return RefreshIndicator(
+            onRefresh: () async {
+              context.read<UserBloc>().add(const RefreshToken());
+            },
+            child: CustomScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              slivers: [
+                const SliverPadding(
+                  padding: EdgeInsets.fromLTRB(16, 16, 16, 12),
+                  sliver: SliverToBoxAdapter(child: ProfileDetailsSection()),
+                ),
+                const SliverPadding(
+                  padding: EdgeInsets.fromLTRB(16, 0, 16, 12),
+                  sliver: SliverToBoxAdapter(child: MemberSection()),
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 120),
+                  sliver: SliverToBoxAdapter(
+                    child: Column(children: [const Gap(8), _LogoutButton()]),
+                  ),
+                ),
+              ],
+            ),
+          );
         },
-        child: CustomScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          slivers: [
-            const SliverPadding(
-              padding: EdgeInsets.fromLTRB(16, 16, 16, 12),
-              sliver: SliverToBoxAdapter(child: ProfileDetailsSection()),
-            ),
-            const SliverPadding(
-              padding: EdgeInsets.fromLTRB(16, 0, 16, 12),
-              sliver: SliverToBoxAdapter(child: MemberSection()),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 120),
-              sliver: SliverToBoxAdapter(
-                child: Column(children: [const Gap(8), _LogoutButton()]),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }

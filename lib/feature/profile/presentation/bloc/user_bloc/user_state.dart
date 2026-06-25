@@ -4,6 +4,7 @@ part of 'user_bloc.dart';
 sealed class UserState with _$UserState {
   const factory UserState({
     required User? user,
+    required bool isLoading,
     required bool isMemberAdding,
     required bool isMemberAddingFailed,
     required bool isMemberAddingSucess,
@@ -15,6 +16,7 @@ sealed class UserState with _$UserState {
 
   factory UserState.initial() => UserState(
     user: null,
+    isLoading: false,
     isMemberAdding: false,
     isMemberAddingFailed: false,
     isMemberAddingSucess: false,

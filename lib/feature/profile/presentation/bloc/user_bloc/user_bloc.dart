@@ -196,6 +196,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<RefreshToken>((event, emit) async {
       if (state.user == null) return;
 
+      emit(state.copyWith(isLoading: true));
+
       final result = await refreshTokenUseCase(
         LoginParams.refreshToken(
           id: state.user!.id,
@@ -206,10 +208,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
       await result.fold(
         (failure) {
+          emit(state.copyWith(isLoading: false));
           add(const LogOut());
         },
         (user) async {
-          emit(state.copyWith(user: user));
+          emit(state.copyWith(user: user, isLoading: false));
           await userLocalDataSource.saveUser(user);
         },
       );
