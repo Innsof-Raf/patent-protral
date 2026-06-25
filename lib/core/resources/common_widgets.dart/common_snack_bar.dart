@@ -12,7 +12,6 @@ class CommonSnackBar {
     SnackBarType type = SnackBarType.info,
     Duration duration = const Duration(seconds: 3),
   }) {
-    final theme = Theme.of(context);
     final messenger = ScaffoldMessenger.of(context);
 
     Color backgroundColor;

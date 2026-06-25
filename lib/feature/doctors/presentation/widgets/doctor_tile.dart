@@ -284,8 +284,6 @@ class _BookDoctorButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return ActiveButton(
       height: expanded ? 44 : 42,
       width: expanded ? double.infinity : 104,

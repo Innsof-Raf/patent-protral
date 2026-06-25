@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
@@ -75,7 +74,11 @@ class ProfileDetailsSection extends StatelessWidget {
                           ? user.emailId
                           : AppStaticTexts.emailNotProvided,
                     ),
-                    const Divider(height: 20, thickness: 0.5),
+                    Divider(
+                      height: 20,
+                      thickness: 0.5,
+                      color: theme.primaryColor.withValues(alpha: .5),
+                    ),
                     _ProfileInfoRow(
                       icon: Icons.call_outlined,
                       label: user.mobileNumber.isNotEmpty

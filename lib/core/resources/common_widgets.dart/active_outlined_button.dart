@@ -44,7 +44,7 @@ class ActiveOutlinedButton extends StatelessWidget {
       visualDensity: VisualDensity.compact,
     );
 
-    Widget content = isLoading
+    final Widget content = isLoading
         ? SizedBox(
             height: 24,
             width: 24,
