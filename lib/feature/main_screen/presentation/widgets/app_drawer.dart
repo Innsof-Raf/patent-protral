@@ -37,7 +37,7 @@ class AppDrawer extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 14),
                       child: Assets.logos.innsofWhite.svg(
                         width: 122,
-                        height: 100,
+                        height: 90,
                         fit: BoxFit.contain,
                         alignment: Alignment.centerLeft,
                       ),
