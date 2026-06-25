@@ -2,11 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_text_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/confirmation_dialog.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/feature_header.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -37,34 +38,19 @@ class _MembersScreenState extends State<MembersScreen> {
   void _showDeleteConfirmation(BuildContext context, List<int> selectedIds) {
     showDialog(
       context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(
-          AppStaticTexts.deleteMembers,
-          style: AppTextStyles.subHeadingSemiBoldRoboto,
-        ),
-        content: Text(
-          AppStaticTexts.deleteMembersMessage,
-          style: AppTextStyles.largeRobotoNormal,
-        ),
-        actions: [
-          ActiveTextButton(
-            onPressed: () => Navigator.pop(dialogContext),
-            child: const Text(AppStaticTexts.cancel),
-          ),
-          ActiveTextButton(
-            foregroundColor: Colors.red,
-            onPressed: () {
-              context.read<UserBloc>().add(
-                UserEvent.deleteMembers(memberIds: selectedIds),
-              );
-              context.read<DeleteMemberBloc>().add(
-                const ClearSelectedMemberList(),
-              );
-              Navigator.pop(dialogContext);
-            },
-            child: const Text(AppStaticTexts.delete),
-          ),
-        ],
+      builder: (dialogContext) => ConfirmationDialog(
+        title: AppStaticTexts.deleteMembers,
+        message: AppStaticTexts.deleteMembersMessage,
+        confirmText: AppStaticTexts.delete,
+        isDestructive: true,
+        iconPath: Assets.icons.deleteIcon.path,
+        onConfirm: () {
+          context.read<UserBloc>().add(
+            UserEvent.deleteMembers(memberIds: selectedIds),
+          );
+          context.read<DeleteMemberBloc>().add(const ClearSelectedMemberList());
+          Navigator.pop(dialogContext);
+        },
       ),
     );
   }

@@ -8,7 +8,6 @@ import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/active_text_button.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
@@ -364,46 +363,82 @@ class _DoctorInfoDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return AlertDialog(
+    return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-      titlePadding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
-      contentPadding: const EdgeInsets.fromLTRB(24, 16, 24, 0),
-      actionsPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-      title: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            AppStaticTexts.doctorInfo,
-            style: AppTextStyles.largeBoldRoboto.copyWith(
-              color: theme.colorScheme.onSurface,
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: Container(
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(24),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.1),
+              blurRadius: 20,
+              offset: const Offset(0, 10),
             ),
-          ),
-          const Gap(6),
-          Text(
-            doctorName,
-            style: AppTextStyles.bodyTextInter.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-              fontWeight: FontWeight.w600,
+          ],
+        ),
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 32, 24, 24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    AppStaticTexts.doctorInfo,
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: theme.colorScheme.onSurface,
+                    ),
+                  ),
+                  const Gap(6),
+                  Text(
+                    doctorName,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      color: theme.colorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Gap(16),
+                  Flexible(
+                    child: SingleChildScrollView(
+                      child: Text(
+                        bio,
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                          height: 1.5,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const Gap(24),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ActiveButton(
+                      onPressed: () => Navigator.pop(context),
+                      height: 50,
+                      child: const Text(AppStaticTexts.close),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
-      content: SingleChildScrollView(
-        child: Text(
-          bio,
-          style: AppTextStyles.bodyTextInter.copyWith(
-            color: theme.colorScheme.onSurfaceVariant,
-            height: 1.5,
-          ),
+            Positioned(
+              top: 8,
+              right: 8,
+              child: IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.close_rounded),
+                color: theme.colorScheme.onSurfaceVariant,
+                visualDensity: VisualDensity.compact,
+              ),
+            ),
+          ],
         ),
       ),
-      actions: [
-        ActiveTextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: const Text(AppStaticTexts.close),
-        ),
-      ],
     );
   }
 }

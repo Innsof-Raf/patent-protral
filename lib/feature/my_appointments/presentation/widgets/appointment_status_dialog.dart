@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 
 class AppointmentStatusDialog extends StatelessWidget {
   final String title;
@@ -17,58 +17,86 @@ class AppointmentStatusDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
 
-    return AlertDialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
-      contentPadding: const EdgeInsets.fromLTRB(24, 24, 24, 20),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            width: 64,
-            height: 64,
-            decoration: BoxDecoration(
-              color: colorScheme.primary.withValues(alpha: 0.1),
-              shape: BoxShape.circle,
+    return Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: Container(
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(24),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.1),
+              blurRadius: 20,
+              offset: const Offset(0, 10),
             ),
-            child: Icon(
-              Icons.check_rounded,
-              color: colorScheme.primary,
-              size: 34,
-            ),
-          ),
-          const Gap(18),
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: AppTextStyles.extraLargeRobotoBold.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          const Gap(8),
-          Text(
-            message,
-            textAlign: TextAlign.center,
-            style: AppTextStyles.largeRobotoNormal.copyWith(
-              color: colorScheme.onSurfaceVariant,
-            ),
-          ),
-          const Gap(24),
-          SizedBox(
-            width: double.infinity,
-            child: FilledButton(
-              onPressed: () => Navigator.of(context).pop(),
-              style: FilledButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18),
-                ),
+          ],
+        ),
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 32, 24, 24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.primaryContainer.withValues(
+                        alpha: 0.2,
+                      ),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      Icons.check_rounded,
+                      color: theme.colorScheme.primary,
+                      size: 40,
+                    ),
+                  ),
+                  const Gap(24),
+                  Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: theme.colorScheme.onSurface,
+                    ),
+                  ),
+                  const Gap(12),
+                  Text(
+                    message,
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.bodyLarge?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                  const Gap(32),
+                  ActiveButton(
+                    onPressed: () => Navigator.pop(context),
+                    width: double.infinity,
+                    height: 50,
+                    child: Text(
+                      actionLabel.toUpperCase(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
               ),
-              child: Text(actionLabel),
             ),
-          ),
-        ],
+            Positioned(
+              top: 8,
+              right: 8,
+              child: IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.close_rounded),
+                color: theme.colorScheme.onSurfaceVariant,
+                visualDensity: VisualDensity.compact,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

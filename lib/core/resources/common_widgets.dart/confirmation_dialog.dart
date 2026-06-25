@@ -1,18 +1,31 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_text_button.dart';
-import 'package:patient_portal/core/route/app_router.dart';
-import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
-import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
-class LogoutDialog extends StatelessWidget {
-  const LogoutDialog({super.key});
+class ConfirmationDialog extends StatelessWidget {
+  final String title;
+  final String message;
+  final String? confirmText;
+  final String? cancelText;
+  final VoidCallback onConfirm;
+  final String? iconPath;
+  final Color? confirmButtonColor;
+  final bool isDestructive;
+
+  const ConfirmationDialog({
+    super.key,
+    required this.title,
+    required this.message,
+    required this.onConfirm,
+    this.confirmText,
+    this.cancelText,
+    this.iconPath,
+    this.confirmButtonColor,
+    this.isDestructive = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,27 +54,33 @@ class LogoutDialog extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.errorContainer.withValues(
-                        alpha: 0.2,
+                  if (iconPath != null) ...[
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color:
+                            (isDestructive
+                                    ? theme.colorScheme.error
+                                    : theme.colorScheme.primary)
+                                .withValues(alpha: 0.2),
+                        shape: BoxShape.circle,
                       ),
-                      shape: BoxShape.circle,
-                    ),
-                    child: SvgPicture.asset(
-                      Assets.icons.logOutIcon.path,
-                      height: 40,
-                      width: 40,
-                      colorFilter: ColorFilter.mode(
-                        theme.colorScheme.error,
-                        BlendMode.srcIn,
+                      child: SvgPicture.asset(
+                        iconPath!,
+                        height: 40,
+                        width: 40,
+                        colorFilter: ColorFilter.mode(
+                          isDestructive
+                              ? theme.colorScheme.error
+                              : theme.colorScheme.primary,
+                          BlendMode.srcIn,
+                        ),
                       ),
                     ),
-                  ),
-                  const Gap(24),
+                    const Gap(24),
+                  ],
                   Text(
-                    AppStaticTexts.logout,
+                    title,
                     textAlign: TextAlign.center,
                     style: theme.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
@@ -70,7 +89,7 @@ class LogoutDialog extends StatelessWidget {
                   ),
                   const Gap(12),
                   Text(
-                    AppStaticTexts.logoutConfirmation,
+                    message,
                     textAlign: TextAlign.center,
                     style: theme.textTheme.bodyLarge?.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
@@ -82,23 +101,25 @@ class LogoutDialog extends StatelessWidget {
                       Expanded(
                         child: ActiveTextButton(
                           onPressed: () => Navigator.pop(context),
-                          child: const Text(AppStaticTexts.cancel),
+                          child: Text(cancelText ?? AppStaticTexts.cancel),
                         ),
                       ),
                       const Gap(12),
                       Expanded(
                         child: ActiveButton(
-                          onPressed: () {
-                            context.read<UserBloc>().add(const LogOut());
-                            LoginScreenHelpers.loginSectionNotifier.value = 0;
-                            context.router.replaceAll([const LoginRoute()]);
-                          },
+                          onPressed: onConfirm,
                           height: 50,
-                          backgroundColor: theme.colorScheme.error,
-                          foregroundColor: theme.colorScheme.onError,
-                          child: const Text(
-                            AppStaticTexts.logout,
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                          backgroundColor:
+                              confirmButtonColor ??
+                              (isDestructive
+                                  ? theme.colorScheme.error
+                                  : theme.colorScheme.primary),
+                          foregroundColor: isDestructive
+                              ? theme.colorScheme.onError
+                              : theme.colorScheme.onPrimary,
+                          child: Text(
+                            confirmText ?? AppStaticTexts.confirm,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),

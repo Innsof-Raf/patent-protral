@@ -6,8 +6,9 @@ import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_outlined_button.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
@@ -40,82 +41,76 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
 
     return Dialog(
       insetPadding: const EdgeInsets.symmetric(horizontal: 24),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: Container(
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(24),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.1),
+              blurRadius: 20,
+              offset: const Offset(0, 10),
+            ),
+          ],
+        ),
+        child: Stack(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: colorScheme.primary.withValues(alpha: 0.1),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    appointmentId == 0
-                        ? Icons.event_available_rounded
-                        : Icons.update_rounded,
-                    color: colorScheme.primary,
-                    size: 24,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  icon: const Icon(Icons.close_rounded),
-                  style: IconButton.styleFrom(
-                    backgroundColor: colorScheme.surfaceContainerHighest
-                        .withValues(alpha: 0.5),
-                  ),
-                ),
-              ],
-            ),
-            const Gap(20),
-            Text(
-              title,
-              style: AppTextStyles.extraLargeRobotoBold.copyWith(
-                fontWeight: FontWeight.w800,
-                letterSpacing: -0.5,
-              ),
-            ),
-            const Gap(8),
-            Text(
-              appointmentId == 0
-                  ? 'Please review the appointment details before confirming.'
-                  : 'Please review the updated slot details before confirming.',
-              style: AppTextStyles.largeRobotoNormal.copyWith(
-                color: colorScheme.onSurfaceVariant,
-                height: 1.5,
-              ),
-            ),
-            const Gap(24),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: colorScheme.surfaceContainerHighest.withValues(
-                  alpha: 0.3,
-                ),
-                borderRadius: BorderRadius.circular(24),
-                border: Border.all(
-                  color: colorScheme.outlineVariant.withValues(alpha: 0.5),
-                ),
-              ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 32, 24, 24),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: colorScheme.primary.withValues(alpha: 0.1),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                          appointmentId == 0
+                              ? Icons.event_available_rounded
+                              : Icons.update_rounded,
+                          color: colorScheme.primary,
+                          size: 24,
+                        ),
+                      ),
+                      const Gap(12),
+                      Expanded(
+                        child: Text(
+                          title,
+                          style: theme.textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: theme.colorScheme.onSurface,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Gap(16),
+                  Text(
+                    appointmentId == 0
+                        ? AppStaticTexts.reviewAppointmentDetails
+                        : AppStaticTexts.reviewUpdatedSlotDetails,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: colorScheme.onSurfaceVariant,
+                      height: 1.5,
+                    ),
+                  ),
+                  const Gap(24),
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 14,
-                    ),
+                    padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: colorScheme.surface,
-                      borderRadius: BorderRadius.circular(18),
+                      color: colorScheme.surfaceContainerHighest.withValues(
+                        alpha: 0.3,
+                      ),
+                      borderRadius: BorderRadius.circular(24),
                       border: Border.all(
                         color: colorScheme.outlineVariant.withValues(
                           alpha: 0.5,
@@ -124,41 +119,102 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.calendar_today_rounded,
-                              size: 18,
-                              color: colorScheme.primary,
-                            ),
-                            const Gap(10),
-                            Text(
-                              DateFormat(
-                                'dd MMM yyyy',
-                              ).format(appointmentDateTime),
-                              style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                                fontWeight: FontWeight.w800,
-                                color: colorScheme.onSurface,
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 14,
+                          ),
+                          decoration: BoxDecoration(
+                            color: colorScheme.surface,
+                            borderRadius: BorderRadius.circular(18),
+                            border: Border.all(
+                              color: colorScheme.outlineVariant.withValues(
+                                alpha: 0.5,
                               ),
                             ),
-                          ],
+                          ),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.calendar_today_rounded,
+                                    size: 18,
+                                    color: colorScheme.primary,
+                                  ),
+                                  const Gap(10),
+                                  Text(
+                                    DateFormat(
+                                      'dd MMM yyyy',
+                                    ).format(appointmentDateTime),
+                                    style: theme.textTheme.titleMedium
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          color: colorScheme.onSurface,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                              const Gap(10),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.access_time_rounded,
+                                    size: 18,
+                                    color: colorScheme.primary,
+                                  ),
+                                  const Gap(10),
+                                  Text(
+                                    DateFormat.jm().format(appointmentDateTime),
+                                    style: theme.textTheme.titleMedium
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          color: colorScheme.onSurface,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                        const Gap(10),
+                        const Gap(20),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Icon(
-                              Icons.access_time_rounded,
-                              size: 18,
-                              color: colorScheme.primary,
+                            Expanded(
+                              child: _UserMiniProfile(
+                                name: doctorName,
+                                imageUrl: doctorImage,
+                                label: AppStaticTexts.doctor,
+                              ),
                             ),
-                            const Gap(10),
-                            Text(
-                              DateFormat.jm().format(appointmentDateTime),
-                              style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                                fontWeight: FontWeight.w800,
-                                color: colorScheme.onSurface,
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                              ),
+                              child: Icon(
+                                Icons.arrow_forward_rounded,
+                                color: colorScheme.outlineVariant,
+                                size: 20,
+                              ),
+                            ),
+                            Expanded(
+                              child: _UserMiniProfile(
+                                name:
+                                    (member.name.trim().isEmpty
+                                            ? AppStaticTexts.unknown
+                                            : member.name)
+                                        .toTitleCase(),
+                                imageUrl: member.profileImage == null
+                                    ? null
+                                    : '${ConstantUrls.memberImageUrl}/${member.id}/${member.profileImage}',
+                                label: AppStaticTexts.patient,
+                                fallbackText: member.name.trim().isEmpty
+                                    ? AppStaticTexts.unknownInitial
+                                    : member.name.trim()[0],
                               ),
                             ),
                           ],
@@ -166,39 +222,53 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Gap(20),
+                  const Gap(28),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Expanded(
-                        child: _UserMiniProfile(
-                          name: doctorName,
-                          imageUrl: doctorImage,
-                          label: AppStaticTexts.doctor,
+                        child: ActiveOutlinedButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: const Text(AppStaticTexts.cancel),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Icon(
-                          Icons.arrow_forward_rounded,
-                          color: colorScheme.outlineVariant,
-                          size: 20,
-                        ),
-                      ),
+                      const Gap(12),
                       Expanded(
-                        child: _UserMiniProfile(
-                          name:
-                              (member.name.trim().isEmpty
-                                      ? AppStaticTexts.unknown
-                                      : member.name)
-                                  .toTitleCase(),
-                          imageUrl: member.profileImage == null
-                              ? null
-                              : '${ConstantUrls.memberImageUrl}/${member.id}/${member.profileImage}',
-                          label: AppStaticTexts.patient,
-                          fallbackText: member.name.trim().isEmpty
-                              ? 'U'
-                              : member.name.trim()[0],
+                        child: ActiveButton(
+                          onPressed: () {
+                            if (appointmentId == 0) {
+                              context.read<BookAppointmentBloc>().add(
+                                BookNewAppointment(
+                                  appointmentDateTime: appointmentDateTime,
+                                  idDoctor: idDoctor,
+                                  idMember: member.id,
+                                  mobileNo: context
+                                      .read<UserBloc>()
+                                      .state
+                                      .user!
+                                      .mobileNumber,
+                                  token: context
+                                      .read<UserBloc>()
+                                      .state
+                                      .user!
+                                      .accessToken,
+                                ),
+                              );
+                            } else {
+                              context.read<BookAppointmentBloc>().add(
+                                RescheduleAppointment(
+                                  idAppointment: appointmentId,
+                                  appointmentDateTime: appointmentDateTime,
+                                  token: context
+                                      .read<UserBloc>()
+                                      .state
+                                      .user!
+                                      .accessToken,
+                                ),
+                              );
+                            }
+                            Navigator.pop(context);
+                          },
+                          child: const Text(AppStaticTexts.confirm),
                         ),
                       ),
                     ],
@@ -206,68 +276,15 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                 ],
               ),
             ),
-            const Gap(28),
-            Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18),
-                      ),
-                    ),
-                    onPressed: () => Navigator.of(context).pop(),
-                    child: const Text(AppStaticTexts.cancel),
-                  ),
-                ),
-                const Gap(12),
-                Expanded(
-                  child: FilledButton(
-                    style: FilledButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18),
-                      ),
-                    ),
-                    onPressed: () {
-                      if (appointmentId == 0) {
-                        context.read<BookAppointmentBloc>().add(
-                          BookNewAppointment(
-                            appointmentDateTime: appointmentDateTime,
-                            idDoctor: idDoctor,
-                            idMember: member.id,
-                            mobileNo: context
-                                .read<UserBloc>()
-                                .state
-                                .user!
-                                .mobileNumber,
-                            token: context
-                                .read<UserBloc>()
-                                .state
-                                .user!
-                                .accessToken,
-                          ),
-                        );
-                      } else {
-                        context.read<BookAppointmentBloc>().add(
-                          RescheduleAppointment(
-                            idAppointment: appointmentId,
-                            appointmentDateTime: appointmentDateTime,
-                            token: context
-                                .read<UserBloc>()
-                                .state
-                                .user!
-                                .accessToken,
-                          ),
-                        );
-                      }
-                      Navigator.pop(context);
-                    },
-                    child: const Text(AppStaticTexts.confirm),
-                  ),
-                ),
-              ],
+            Positioned(
+              top: 8,
+              right: 8,
+              child: IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.close_rounded),
+                color: theme.colorScheme.onSurfaceVariant,
+                visualDensity: VisualDensity.compact,
+              ),
             ),
           ],
         ),
@@ -292,6 +309,7 @@ class _UserMiniProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final theme = Theme.of(context);
 
     return Column(
       children: [
@@ -313,7 +331,11 @@ class _UserMiniProfile extends StatelessWidget {
                 height: 64,
                 child: imageUrl == null
                     ? _FallbackAvatar(
-                        text: fallbackText ?? (name.isNotEmpty ? name[0] : 'U'),
+                        text:
+                            fallbackText ??
+                            (name.isNotEmpty
+                                ? name[0]
+                                : AppStaticTexts.unknownInitial),
                         backgroundColor: colorScheme.primaryContainer,
                         foregroundColor: colorScheme.onPrimaryContainer,
                       )
@@ -322,7 +344,10 @@ class _UserMiniProfile extends StatelessWidget {
                         fit: BoxFit.cover,
                         errorWidget: (context, url, error) => _FallbackAvatar(
                           text:
-                              fallbackText ?? (name.isNotEmpty ? name[0] : 'U'),
+                              fallbackText ??
+                              (name.isNotEmpty
+                                  ? name[0]
+                                  : AppStaticTexts.unknownInitial),
                           backgroundColor: colorScheme.surfaceContainerHighest,
                           foregroundColor: colorScheme.onSurfaceVariant,
                           showImageErrorIcon: true,
@@ -338,9 +363,8 @@ class _UserMiniProfile extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
-          style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-            fontWeight: FontWeight.w800,
-            letterSpacing: -0.2,
+          style: theme.textTheme.bodyLarge?.copyWith(
+            fontWeight: FontWeight.bold,
           ),
         ),
         const Gap(4),
@@ -352,10 +376,9 @@ class _UserMiniProfile extends StatelessWidget {
           ),
           child: Text(
             label,
-            style: AppTextStyles.bodyTextRoboto.copyWith(
+            style: theme.textTheme.labelSmall?.copyWith(
               color: colorScheme.onSurfaceVariant,
-              fontWeight: FontWeight.w700,
-              fontSize: 10,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
@@ -379,6 +402,7 @@ class _FallbackAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return ColoredBox(
       color: backgroundColor,
       child: Center(
@@ -391,10 +415,12 @@ class _FallbackAvatar extends StatelessWidget {
                 ),
               )
             : Text(
-                (text == null || text!.isEmpty) ? 'U' : text!.toUpperCase(),
-                style: AppTextStyles.extraLargeRobotoBold.copyWith(
+                (text == null || text!.isEmpty)
+                    ? AppStaticTexts.unknownInitial
+                    : text!.toUpperCase(),
+                style: theme.textTheme.headlineMedium?.copyWith(
                   color: foregroundColor,
-                  fontWeight: FontWeight.w800,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
       ),

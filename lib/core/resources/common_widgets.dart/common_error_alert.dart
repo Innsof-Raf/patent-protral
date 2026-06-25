@@ -18,7 +18,6 @@ class CommonErrorAlert extends StatelessWidget {
       elevation: 0,
       backgroundColor: Colors.transparent,
       child: Container(
-        padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
         decoration: BoxDecoration(
           color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(24),
@@ -30,54 +29,74 @@ class CommonErrorAlert extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+        child: Stack(
           children: [
-            Align(
-              alignment: Alignment.topRight,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 32, 24, 24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.errorContainer.withValues(
+                        alpha: 0.2,
+                      ),
+                      shape: BoxShape.circle,
+                    ),
+                    child: SvgPicture.asset(
+                      Assets.icons.errorIcon.path,
+                      height: 40,
+                      width: 40,
+                      colorFilter: ColorFilter.mode(
+                        theme.colorScheme.error,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                  const Gap(24),
+                  Text(
+                    AppStaticTexts.failed,
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: theme.colorScheme.onSurface,
+                    ),
+                  ),
+                  const Gap(12),
+                  Text(
+                    content,
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.bodyLarge?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                  const Gap(32),
+                  ActiveButton(
+                    onPressed: () => Navigator.pop(context),
+                    width: double.infinity,
+                    height: 50,
+                    backgroundColor: theme.colorScheme.error,
+                    foregroundColor: theme.colorScheme.onError,
+                    child: Text(
+                      AppStaticTexts.ok.toUpperCase(),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Positioned(
+              top: 8,
+              right: 8,
               child: IconButton(
                 onPressed: () => Navigator.pop(context),
                 icon: const Icon(Icons.close_rounded),
                 color: theme.colorScheme.onSurfaceVariant,
                 visualDensity: VisualDensity.compact,
-              ),
-            ),
-            SvgPicture.asset(
-              Assets.icons.errorIcon.path,
-              height: 80,
-              width: 80,
-            ),
-            const Gap(24),
-            Text(
-              AppStaticTexts.failed,
-              textAlign: TextAlign.center,
-              style: theme.textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: theme.colorScheme.error,
-              ),
-            ),
-            const Gap(12),
-            Text(
-              content,
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
-            ),
-            const Gap(32),
-            ActiveButton(
-              onPressed: () => Navigator.pop(context),
-              width: double.infinity,
-              height: 56,
-              backgroundColor: theme.colorScheme.errorContainer,
-              foregroundColor: theme.colorScheme.onErrorContainer,
-              child: Text(
-                AppStaticTexts.ok.toUpperCase(),
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
-                ),
               ),
             ),
           ],

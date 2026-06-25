@@ -207,6 +207,8 @@ class AppStaticTexts {
   static const String memberAddedSuccessfully = 'Member added successfully!';
   static const String insuranceDetailsUpdatedSuccessfully =
       'Insurance details updated successfully!';
+  static const String profileUpdatedSuccessfully =
+      'Your profile has been updated successfully.';
   static const String insuranceProvider = 'Insurance Provider';
   static const String insuranceName = 'Insurance Name';
   static const String memberNumber = 'Member Number';
@@ -243,6 +245,7 @@ class AppStaticTexts {
   static const String menu = 'Menu';
   static const String user = 'User';
   static const String unknown = 'Unknown';
+  static const String unknownInitial = 'U';
   static const String lab = 'Lab';
   static const String xRay = 'X-Ray';
   static const String uss = 'USS';
@@ -314,6 +317,11 @@ class AppStaticTexts {
 
   static const String logout = 'Logout';
   static const String logoutConfirmation = 'Are you sure you want to logout?';
+
+  static const String reviewAppointmentDetails =
+      'Please review the appointment details before confirming.';
+  static const String reviewUpdatedSlotDetails =
+      'Please review the updated slot details before confirming.';
 
   // Notifications
   static const String notifications = 'Notifications';

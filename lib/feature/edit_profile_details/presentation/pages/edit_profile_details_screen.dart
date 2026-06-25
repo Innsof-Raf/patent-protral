@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
@@ -69,7 +70,7 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
             showDialog(
               context: context,
               builder: (context) => SuccessDialog(
-                title: 'Your profile has been updated successfully.',
+                title: AppStaticTexts.profileUpdatedSuccessfully,
                 onPressed: () {
                   Navigator.pop(context);
                   context.read<UserBloc>().add(

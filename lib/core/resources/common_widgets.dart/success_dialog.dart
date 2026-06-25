@@ -23,7 +23,6 @@ class SuccessDialog extends StatelessWidget {
       elevation: 0,
       backgroundColor: Colors.transparent,
       child: Container(
-        padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
         decoration: BoxDecoration(
           color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(24),
@@ -35,47 +34,72 @@ class SuccessDialog extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+        child: Stack(
           children: [
-            Align(
-              alignment: Alignment.topRight,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 32, 24, 24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.primaryContainer.withValues(
+                        alpha: 0.2,
+                      ),
+                      shape: BoxShape.circle,
+                    ),
+                    child: SvgPicture.asset(
+                      Assets.icons.doneIcon.path,
+                      height: 40,
+                      width: 40,
+                      colorFilter: ColorFilter.mode(
+                        theme.colorScheme.primary,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                  const Gap(24),
+                  Text(
+                    AppStaticTexts.success,
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: theme.colorScheme.onSurface,
+                    ),
+                  ),
+                  const Gap(12),
+                  Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.bodyLarge?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                  const Gap(32),
+                  ActiveButton(
+                    onPressed: onPressed,
+                    width: double.infinity,
+                    height: 50,
+                    child: Text(
+                      AppStaticTexts.done.toUpperCase(),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Positioned(
+              top: 8,
+              right: 8,
               child: IconButton(
                 onPressed: () => Navigator.pop(context),
                 icon: const Icon(Icons.close_rounded),
                 color: theme.colorScheme.onSurfaceVariant,
-              ),
-            ),
-            SvgPicture.asset(Assets.icons.doneIcon.path, height: 80, width: 80),
-            const Gap(24),
-            Text(
-              AppStaticTexts.success,
-              textAlign: TextAlign.center,
-              style: theme.textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: theme.colorScheme.primary,
-              ),
-            ),
-            const Gap(12),
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
-            ),
-            const Gap(32),
-            ActiveButton(
-              onPressed: onPressed,
-              width: double.infinity,
-              height: 56,
-              child: Text(
-                AppStaticTexts.done.toUpperCase(),
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
-                ),
+                visualDensity: VisualDensity.compact,
               ),
             ),
           ],
