@@ -7,16 +7,15 @@ import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_outlined_button.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/helpers.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
-import 'package:patient_portal/feature/my_appointments/presentation/helpers/my_appointments_snackbar.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
@@ -241,7 +240,7 @@ class MyAppointmentTile extends StatelessWidget {
 
     final member = _findMember(context);
     if (member == null) {
-      _showMessage(context, AppStaticTexts.memberNotFound);
+      CommonSnackBar.show(context, message: AppStaticTexts.memberNotFound);
       return;
     }
 
@@ -250,7 +249,10 @@ class MyAppointmentTile extends StatelessWidget {
 
     final selectedDate = _resolveSelectedDate();
     if (selectedDate == null) {
-      _showMessage(context, AppStaticTexts.noAvailableDatesReschedule);
+      CommonSnackBar.show(
+        context,
+        message: AppStaticTexts.noAvailableDatesReschedule,
+      );
       return;
     }
 
@@ -277,7 +279,7 @@ class MyAppointmentTile extends StatelessWidget {
 
     final member = _findMember(context);
     if (member == null) {
-      _showMessage(context, AppStaticTexts.memberNotFound);
+      CommonSnackBar.show(context, message: AppStaticTexts.memberNotFound);
       return;
     }
 
@@ -304,7 +306,7 @@ class MyAppointmentTile extends StatelessWidget {
   void _onBookAgainPressed(BuildContext context) {
     final member = _findMember(context);
     if (member == null) {
-      _showMessage(context, AppStaticTexts.memberNotFound);
+      CommonSnackBar.show(context, message: AppStaticTexts.memberNotFound);
       return;
     }
 
@@ -313,7 +315,10 @@ class MyAppointmentTile extends StatelessWidget {
     BookAppointmentScreenHelpers.createDateList();
 
     if (BookAppointmentScreenHelpers.dateList.isEmpty) {
-      _showMessage(context, AppStaticTexts.noAvailableDatesBooking);
+      CommonSnackBar.show(
+        context,
+        message: AppStaticTexts.noAvailableDatesBooking,
+      );
       return;
     }
 
@@ -400,10 +405,6 @@ class MyAppointmentTile extends StatelessWidget {
     }
 
     return dateList.first;
-  }
-
-  void _showMessage(BuildContext context, String message) {
-    showMyAppointmentsSnackBar(context, message: message);
   }
 }
 

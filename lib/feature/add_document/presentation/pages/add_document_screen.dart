@@ -14,6 +14,7 @@ import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.
 import 'package:patient_portal/core/resources/common_widgets.dart/common_dropdown_field.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_snack_bar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_text_field.dart';
 import 'package:patient_portal/feature/add_document/domain/usecases/params/add_document_params.dart';
 import 'package:patient_portal/feature/add_document/presentation/bloc/add_document_bloc.dart';
@@ -77,18 +78,20 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
       body: BlocConsumer<AddDocumentBloc, AddDocumentState>(
         listener: (context, state) {
           if (state.isUploadingDocumentSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text(AppStaticTexts.documentUploadedSuccessfully),
-              ),
+            CommonSnackBar.show(
+              context,
+              message: AppStaticTexts.documentUploadedSuccessfully,
+              type: SnackBarType.success,
             );
             context.router.back();
           }
 
           if (state.isUploadingDocumentFailed) {
-            ScaffoldMessenger.of(
+            CommonSnackBar.show(
               context,
-            ).showSnackBar(SnackBar(content: Text(state.error.message)));
+              message: state.error.message,
+              type: SnackBarType.error,
+            );
           }
         },
         builder: (context, state) {

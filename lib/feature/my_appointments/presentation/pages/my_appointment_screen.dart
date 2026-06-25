@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_snack_bar.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/helpers/my_appointment_screen_helpers.dart';
-import 'package:patient_portal/feature/my_appointments/presentation/helpers/my_appointments_snackbar.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/widgets/appointment_status_dialog.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/widgets/appointments_overview_card.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/widgets/appointments_tabbar_view.dart';
@@ -63,13 +63,15 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
             );
           } else if (state.isAppointmentsCancellationFailed &&
               !state.isAppointmentsCancellationSuccess) {
-            showMyAppointmentsSnackBar(context, message: state.error.message);
+            CommonSnackBar.show(
+              context,
+              message: state.error.message,
+              type: SnackBarType.error,
+            );
           }
         },
         builder: (context, state) {
-          if (state.isAppointmentsFetching) {
-            return const CommonLoadingView();
-          }
+          if (state.isAppointmentsFetching) return const CommonLoadingView();
 
           if (state.isAppointmentsFetchingFailed) {
             return CommonErrorView(

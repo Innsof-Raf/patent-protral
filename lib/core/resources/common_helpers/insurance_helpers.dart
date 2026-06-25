@@ -1,33 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_snack_bar.dart';
 
 import '../app_colors.dart';
 import '../app_text_styles.dart';
 import '../common_models/insurance/insurance_model.dart';
-import '../dimens.dart';
 
 class InsuranceHelpers {
   static void showInsuranceFetchingFailedSnackBar({
     required BuildContext context,
     required String content,
   }) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: AppColors.black,
-        behavior: SnackBarBehavior.floating,
-        margin: const EdgeInsets.only(
-          bottom: Dimens.constPadding,
-          left: Dimens.constPadding,
-          right: Dimens.constPadding,
-        ),
-        content: Text(
-          content,
-          style: AppTextStyles.bodyLargeRobotoSemiBold.copyWith(
-            color: AppColors.white,
-          ),
-        ),
-      ),
-    );
+    CommonSnackBar.show(context, message: content, type: SnackBarType.error);
   }
 
   static ValueNotifier<int?> selectedInsuranceNotifier = ValueNotifier(null);

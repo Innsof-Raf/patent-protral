@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_snack_bar.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
@@ -26,12 +25,11 @@ class BookAppointmentScreenHelpers {
     required String doctorName,
     required String doctorImage,
   }) {
-    ScaffoldMessenger.of(context).clearSnackBars();
     if (BookAppointmentScreenHelpers.selectedSlotNotifier.value == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        alertSnackBar(
-          content: AppStaticTexts.selectSlotForRescheduleAppointment,
-        ),
+      CommonSnackBar.show(
+        context,
+        message: AppStaticTexts.selectSlotForRescheduleAppointment,
+        type: SnackBarType.error,
       );
     } else {
       showGeneralDialog(
@@ -68,28 +66,33 @@ class BookAppointmentScreenHelpers {
     required String doctorImage,
     required int idDoctor,
   }) {
-    ScaffoldMessenger.of(context).clearSnackBars();
     if (context.read<UserBloc>().state.user!.members.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        alertSnackBar(content: AppStaticTexts.addMemberToBookAppointment),
+      CommonSnackBar.show(
+        context,
+        message: AppStaticTexts.addMemberToBookAppointment,
+        type: SnackBarType.error,
       );
     } else if (BookAppointmentScreenHelpers.selectedSlotNotifier.value ==
             null &&
         BookAppointmentScreenHelpers.selectedMemberNotifier.value == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        alertSnackBar(
-          content: AppStaticTexts.selectSlotAndMemberToBookAppointment,
-        ),
+      CommonSnackBar.show(
+        context,
+        message: AppStaticTexts.selectSlotAndMemberToBookAppointment,
+        type: SnackBarType.error,
       );
     } else if (BookAppointmentScreenHelpers.selectedSlotNotifier.value ==
         null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        alertSnackBar(content: AppStaticTexts.selectSlotToBookAppointment),
+      CommonSnackBar.show(
+        context,
+        message: AppStaticTexts.selectSlotToBookAppointment,
+        type: SnackBarType.error,
       );
     } else if (BookAppointmentScreenHelpers.selectedMemberNotifier.value ==
         null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        alertSnackBar(content: AppStaticTexts.selectMemberToBookAppointment),
+      CommonSnackBar.show(
+        context,
+        message: AppStaticTexts.selectMemberToBookAppointment,
+        type: SnackBarType.error,
       );
     } else {
       showGeneralDialog(
@@ -125,16 +128,4 @@ class BookAppointmentScreenHelpers {
   );
   static ValueNotifier<DateTime?> selectedSlotNotifier = ValueNotifier(null);
   static ValueNotifier<Member?> selectedMemberNotifier = ValueNotifier(null);
-
-  static SnackBar alertSnackBar({required String content}) {
-    return SnackBar(
-      content: Text(
-        content,
-        style: AppTextStyles.bodySemiBoldRoboto.copyWith(
-          color: AppColors.white,
-        ),
-      ),
-      backgroundColor: AppColors.black,
-    );
-  }
 }

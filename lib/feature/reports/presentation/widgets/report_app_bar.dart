@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_snack_bar.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
 
 class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -120,8 +121,10 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
                 );
 
                 if (outputFile != null && context.mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Report saved successfully')),
+                  CommonSnackBar.show(
+                    context,
+                    message: 'Report saved successfully',
+                    type: SnackBarType.success,
                   );
                 }
               },

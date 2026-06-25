@@ -5,6 +5,7 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_bottom_action_button.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_snack_bar.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
 import 'package:patient_portal/feature/lab/presentation/widgets/lab_tab_bar.dart';
@@ -58,13 +59,11 @@ class _LabScreenState extends State<LabScreen> {
             BlocListener<ItemsBloc, ItemsState>(
               listener: (context, state) {
                 if (state.isCartUpdatingFailed && !state.isCartUpdatingSucees) {
-                  ScaffoldMessenger.of(context).clearSnackBars();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
+                  CommonSnackBar.show(
+                    context,
+                    message:
                         '${AppStaticTexts.cartUpdatingFailed} ${state.error}',
-                      ),
-                    ),
+                    type: SnackBarType.error,
                   );
                 }
                 // TODO: implement  remove from cart  confirmation popup
