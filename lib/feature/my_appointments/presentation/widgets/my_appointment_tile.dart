@@ -7,6 +7,8 @@ import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_outlined_button.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/helpers.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -528,16 +530,11 @@ class _ActionBar extends StatelessWidget {
     if (isConsulted || isCancelled) {
       return SizedBox(
         width: double.infinity,
-        child: FilledButton.icon(
+        child: ActiveButton(
           onPressed: onBookAgain,
           icon: const Icon(Icons.reorder_rounded, size: 18),
-          label: const Text(AppStaticTexts.bookAgain),
-          style: FilledButton.styleFrom(
-            padding: const EdgeInsets.symmetric(vertical: 12),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-          ),
+          height: 48,
+          child: const Text(AppStaticTexts.bookAgain),
         ),
       );
     }
@@ -545,38 +542,23 @@ class _ActionBar extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: OutlinedButton.icon(
-            onPressed: isCanceling ? null : onCancel,
-            icon: isCanceling
-                ? const SizedBox(
-                    width: 14,
-                    height: 14,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  )
-                : const Icon(Icons.close_rounded, size: 18),
-            label: const Text(AppStaticTexts.cancel),
-            style: OutlinedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              side: BorderSide(color: colorScheme.error.withValues(alpha: 0.5)),
-              foregroundColor: colorScheme.error,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-            ),
+          child: ActiveOutlinedButton(
+            isLoading: isCanceling,
+            onPressed: onCancel,
+            icon: const Icon(Icons.close_rounded, size: 18),
+            height: 48,
+            foregroundColor: colorScheme.error,
+            borderColor: colorScheme.error.withValues(alpha: 0.5),
+            child: const Text(AppStaticTexts.cancel),
           ),
         ),
         const Gap(12),
         Expanded(
-          child: FilledButton.icon(
+          child: ActiveButton(
             onPressed: isCanceling ? null : onReschedule,
             icon: const Icon(Icons.calendar_month_rounded, size: 18),
-            label: const Text(AppStaticTexts.reschedule),
-            style: FilledButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-            ),
+            height: 48,
+            child: const Text(AppStaticTexts.reschedule),
           ),
         ),
       ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_text_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginTermsRow extends StatelessWidget {
@@ -34,15 +35,10 @@ class LoginTermsRow extends StatelessWidget {
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
         Text(AppStaticTexts.byContinuing, style: bodyStyle),
-        TextButton(
-          style: TextButton.styleFrom(
-            padding: EdgeInsets.zero,
-            minimumSize: const Size(0, 32),
-            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            foregroundColor: theme.colorScheme.primary,
-          ),
+        ActiveTextButton(
           onPressed: _openTerms,
-          child: Text(AppStaticTexts.termsAndConditions, style: linkStyle),
+          style: linkStyle,
+          child: const Text(AppStaticTexts.termsAndConditions),
         ),
       ],
     );

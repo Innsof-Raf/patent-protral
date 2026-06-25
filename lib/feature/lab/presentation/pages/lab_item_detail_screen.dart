@@ -7,6 +7,7 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_bottom_action_button.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/lab/domain/entities/item.dart';
@@ -135,53 +136,20 @@ class LabItemDetailScreen extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                  child: OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide.none,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero,
-                      ),
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      padding: const EdgeInsets.symmetric(vertical: 25),
-                      minimumSize: const Size(0, 0),
-                      foregroundColor: theme.colorScheme.primary,
-                      backgroundColor: theme.colorScheme.surface,
-                      elevation: 0,
-                    ),
-                    child: Text(
-                      AppStaticTexts.viewCart,
-                      style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                        color: theme.colorScheme.primary,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
+                  child: CommonBottomActionButton(
+                    isPrimary: false,
+                    title: AppStaticTexts.viewCart,
                     onPressed: () {},
                   ),
                 ),
                 Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero,
-                      ),
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      padding: const EdgeInsets.symmetric(vertical: 25),
-                      minimumSize: const Size(0, 0),
-                      foregroundColor: theme.colorScheme.onPrimary,
-                      backgroundColor: selectedItem != null
-                          ? selectedItem.isChangingCartStatus
-                                ? theme.colorScheme.surface
-                                : theme.colorScheme.primary
-                          : theme.colorScheme.primary,
-                      elevation: 0,
-                    ),
-                    child: Text(
-                      AppStaticTexts.addToCart,
-                      style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                        color: theme.colorScheme.onPrimary,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
+                  child: CommonBottomActionButton(
+                    backgroundColor:
+                        selectedItem != null &&
+                            selectedItem.isChangingCartStatus
+                        ? theme.colorScheme.surface
+                        : null,
+                    title: AppStaticTexts.addToCart,
                     onPressed: () {
                       if (selectedItem != null) {
                         context.read<ItemsBloc>().add(

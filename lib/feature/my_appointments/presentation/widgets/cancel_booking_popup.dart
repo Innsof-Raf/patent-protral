@@ -6,6 +6,8 @@ import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_outlined_button.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
@@ -173,20 +175,16 @@ class CancelBookingPopUp extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: OutlinedButton(
+                  child: ActiveOutlinedButton(
                     onPressed: () => Navigator.pop(context),
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18),
-                      ),
-                    ),
+                    borderRadius: 18,
                     child: const Text(AppStaticTexts.keepBooking),
                   ),
                 ),
                 const Gap(12),
                 Expanded(
-                  child: FilledButton(
+                  child: ActiveButton(
+                    backgroundColor: colorScheme.error,
                     onPressed: () {
                       Navigator.pop(context);
                       context.read<MyAppointmentsBloc>().add(
@@ -202,14 +200,7 @@ class CancelBookingPopUp extends StatelessWidget {
                         ),
                       );
                     },
-                    style: FilledButton.styleFrom(
-                      backgroundColor: colorScheme.error,
-                      foregroundColor: colorScheme.onError,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18),
-                      ),
-                    ),
+                    borderRadius: 18,
                     child: const Text(AppStaticTexts.cancelIt),
                   ),
                 ),

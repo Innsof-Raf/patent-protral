@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_dropdown_field.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
@@ -275,35 +276,11 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
             child: BlocBuilder<AddDocumentBloc, AddDocumentState>(
               builder: (context, state) {
-                return FilledButton(
-                  style: FilledButton.styleFrom(
-                    minimumSize: const Size.fromHeight(56),
-                    backgroundColor: theme.colorScheme.primary,
-                    foregroundColor: theme.colorScheme.onPrimary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                  onPressed: state.isUploadingDocument ? null : _onSubmit,
-                  child: state.isUploadingDocument
-                      ? const SizedBox(
-                          height: 24,
-                          width: 24,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              Colors.white,
-                            ),
-                          ),
-                        )
-                      : Text(
-                          AppStaticTexts.addDocument,
-                          style: AppTextStyles.subHeadingSemiBoldRoboto
-                              .copyWith(
-                                color: theme.colorScheme.onPrimary,
-                                fontWeight: FontWeight.bold,
-                              ),
-                        ),
+                return ActiveButton(
+                  width: double.infinity,
+                  isLoading: state.isUploadingDocument,
+                  onPressed: _onSubmit,
+                  child: const Text(AppStaticTexts.addDocument),
                 );
               },
             ),

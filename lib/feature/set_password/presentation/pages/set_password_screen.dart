@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
@@ -97,29 +98,11 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
       ),
       child: BlocBuilder<ChangePasswordBloc, ChangePasswordState>(
         builder: (context, state) {
-          return FilledButton(
-            onPressed: state.isPasswordChanging ? null : _onSavePressed,
-            style: FilledButton.styleFrom(
-              minimumSize: const Size.fromHeight(56),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-            ),
-            child: state.isPasswordChanging
-                ? const SizedBox(
-                    height: 24,
-                    width: 24,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                    ),
-                  )
-                : Text(
-                    AppStaticTexts.savePassword,
-                    style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+          return ActiveButton(
+            width: double.infinity,
+            isLoading: state.isPasswordChanging,
+            onPressed: _onSavePressed,
+            child: const Text(AppStaticTexts.savePassword),
           );
         },
       ),

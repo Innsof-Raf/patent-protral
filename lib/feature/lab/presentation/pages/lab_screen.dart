@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_bottom_action_button.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
 import 'package:patient_portal/feature/lab/presentation/widgets/lab_tab_bar.dart';
@@ -90,51 +90,17 @@ class _LabScreenState extends State<LabScreen> {
         child: Row(
           children: [
             Expanded(
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  side: BorderSide.none,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero,
-                  ),
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  padding: const EdgeInsets.symmetric(vertical: 25),
-                  minimumSize: const Size(0, 0),
-                  foregroundColor: theme.colorScheme.primary,
-                  backgroundColor: theme.colorScheme.surface,
-                  elevation: 0,
-                ),
-                child: Text(
-                  AppStaticTexts.viewCart,
-                  style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                    color: theme.colorScheme.primary,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
+              child: CommonBottomActionButton(
+                isPrimary: false,
+                title: AppStaticTexts.viewCart,
                 onPressed: () {
                   context.router.push(const CartRoute());
                 },
               ),
             ),
             Expanded(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero,
-                  ),
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  padding: const EdgeInsets.symmetric(vertical: 25),
-                  minimumSize: const Size(0, 0),
-                  foregroundColor: theme.colorScheme.onPrimary,
-                  backgroundColor: theme.colorScheme.primary,
-                  elevation: 0,
-                ),
-                child: Text(
-                  AppStaticTexts.checkOut,
-                  style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                    color: theme.colorScheme.onPrimary,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
+              child: CommonBottomActionButton(
+                title: AppStaticTexts.checkOut,
                 onPressed: () {},
               ),
             ),

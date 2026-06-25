@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/insurance_form_section.dart';
@@ -214,36 +215,15 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
           child: BlocBuilder<AddMemberBloc, AddMemberState>(
             builder: (context, state) {
-              return FilledButton(
-                style: FilledButton.styleFrom(
-                  minimumSize: const Size.fromHeight(56),
-                  backgroundColor: theme.colorScheme.primary,
-                  foregroundColor: theme.colorScheme.onPrimary,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
+              return ActiveButton(
+                width: double.infinity,
+                isLoading: state.isMemberAdding,
+                onPressed: _onActionPressed,
+                child: Text(
+                  widget.member == null
+                      ? AppStaticTexts.saveMember
+                      : AppStaticTexts.updateDetails,
                 ),
-                onPressed: state.isMemberAdding ? null : _onActionPressed,
-                child: state.isMemberAdding
-                    ? const SizedBox(
-                        height: 24,
-                        width: 24,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            Colors.white,
-                          ),
-                        ),
-                      )
-                    : Text(
-                        widget.member == null
-                            ? AppStaticTexts.saveMember
-                            : AppStaticTexts.updateDetails,
-                        style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: theme.colorScheme.onPrimary,
-                        ),
-                      ),
               );
             },
           ),

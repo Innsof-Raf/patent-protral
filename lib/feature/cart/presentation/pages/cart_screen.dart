@@ -5,6 +5,7 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_bottom_action_button.dart';
 import 'package:patient_portal/feature/cart/presentation/widgets/cart_item_tile.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
 
@@ -77,25 +78,8 @@ class CartScreen extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero,
-                      ),
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      padding: const EdgeInsets.symmetric(vertical: 25),
-                      minimumSize: const Size(0, 0),
-                      foregroundColor: theme.colorScheme.onPrimary,
-                      backgroundColor: theme.colorScheme.primary,
-                      elevation: 0,
-                    ),
-                    child: Text(
-                      AppStaticTexts.checkOut,
-                      style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                        color: theme.colorScheme.onPrimary,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
+                  child: CommonBottomActionButton(
+                    title: AppStaticTexts.checkOut,
                     onPressed: () {},
                   ),
                 ),

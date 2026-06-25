@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/success_dialog.dart';
@@ -65,37 +66,14 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                 ],
               ),
               child: SafeArea(
-                child: FilledButton(
-                  style: FilledButton.styleFrom(
-                    minimumSize: const Size.fromHeight(56),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
+                child: ActiveButton(
+                  isLoading: state.isAppointmentLoading,
+                  onPressed: () => _onPressed(context, state),
+                  child: Text(
+                    appointmentId == 0
+                        ? AppStaticTexts.confirmBooking
+                        : AppStaticTexts.rescheduleAppointment,
                   ),
-                  onPressed: state.isAppointmentLoading
-                      ? null
-                      : () => _onPressed(context, state),
-                  child: state.isAppointmentLoading
-                      ? const SizedBox(
-                          height: 24,
-                          width: 24,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              Colors.white,
-                            ),
-                          ),
-                        )
-                      : Text(
-                          appointmentId == 0
-                              ? AppStaticTexts.confirmBooking
-                              : AppStaticTexts.rescheduleAppointment,
-                          style: AppTextStyles.subHeadingSemiBoldRoboto
-                              .copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: theme.colorScheme.onPrimary,
-                              ),
-                        ),
                 ),
               ),
             );

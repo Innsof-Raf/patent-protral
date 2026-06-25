@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_text_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/feature_header.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
@@ -46,16 +47,12 @@ class _MembersScreenState extends State<MembersScreen> {
           style: AppTextStyles.largeRobotoNormal,
         ),
         actions: [
-          TextButton(
+          ActiveTextButton(
             onPressed: () => Navigator.pop(dialogContext),
-            child: Text(
-              AppStaticTexts.cancel,
-              style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            ),
+            child: const Text(AppStaticTexts.cancel),
           ),
-          TextButton(
+          ActiveTextButton(
+            foregroundColor: Colors.red,
             onPressed: () {
               context.read<UserBloc>().add(
                 UserEvent.deleteMembers(memberIds: selectedIds),
@@ -65,12 +62,7 @@ class _MembersScreenState extends State<MembersScreen> {
               );
               Navigator.pop(dialogContext);
             },
-            child: Text(
-              AppStaticTexts.delete,
-              style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                color: Colors.red,
-              ),
-            ),
+            child: const Text(AppStaticTexts.delete),
           ),
         ],
       ),
@@ -116,7 +108,7 @@ class _MembersScreenState extends State<MembersScreen> {
                 );
               }
 
-              return TextButton(
+              return ActiveTextButton(
                 onPressed: () {
                   final membersIdList = context
                       .read<UserBloc>()

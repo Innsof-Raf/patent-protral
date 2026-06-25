@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_text_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
@@ -265,26 +266,17 @@ class _TextAction extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return TextButton(
-      style: TextButton.styleFrom(
-        padding: EdgeInsets.zero,
-        minimumSize: const Size(0, 32),
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        foregroundColor: theme.colorScheme.primary,
-        disabledForegroundColor: theme.colorScheme.onSurfaceVariant,
-      ),
+    return ActiveTextButton(
       onPressed: onPressed,
-      child: Text(
-        label,
-        style: AppTextStyles.bodyTextRoboto.copyWith(
-          color: onPressed == null
-              ? theme.colorScheme.onSurfaceVariant
-              : theme.colorScheme.primary,
-          fontWeight: FontWeight.w700,
-          decoration: onPressed == null ? null : TextDecoration.underline,
-          decorationColor: theme.colorScheme.primary,
-        ),
+      foregroundColor: onPressed == null
+          ? theme.colorScheme.onSurfaceVariant
+          : theme.colorScheme.primary,
+      style: AppTextStyles.bodyTextRoboto.copyWith(
+        fontWeight: FontWeight.w700,
+        decoration: onPressed == null ? null : TextDecoration.underline,
+        decorationColor: theme.colorScheme.primary,
       ),
+      child: Text(label),
     );
   }
 }

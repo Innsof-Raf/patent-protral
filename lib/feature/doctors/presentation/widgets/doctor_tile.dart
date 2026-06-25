@@ -6,6 +6,8 @@ import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_text_button.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
@@ -284,14 +286,10 @@ class _BookDoctorButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return FilledButton(
-      style: FilledButton.styleFrom(
-        minimumSize: expanded ? const Size.fromHeight(44) : const Size(78, 42),
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-        backgroundColor: theme.colorScheme.primary,
-        foregroundColor: theme.colorScheme.onPrimary,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      ),
+    return ActiveButton(
+      height: expanded ? 44 : 42,
+      width: expanded ? double.infinity : 104,
+      borderRadius: 15,
       onPressed: () {
         BookAppointmentScreenHelpers.selectedMemberNotifier.value = null;
         BookAppointmentScreenHelpers.createDateList();
@@ -400,7 +398,7 @@ class _DoctorInfoDialog extends StatelessWidget {
         ),
       ),
       actions: [
-        TextButton(
+        ActiveTextButton(
           onPressed: () => Navigator.of(context).pop(),
           child: const Text(AppStaticTexts.close),
         ),

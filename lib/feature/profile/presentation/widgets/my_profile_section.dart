@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
@@ -87,24 +88,13 @@ class ProfileDetailsSection extends StatelessWidget {
               const Gap(20),
               SizedBox(
                 width: double.infinity,
-                child: FilledButton.icon(
-                  style: FilledButton.styleFrom(
-                    minimumSize: const Size.fromHeight(52),
-                    backgroundColor: theme.colorScheme.primary,
-                    foregroundColor: theme.colorScheme.onPrimary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    elevation: 0,
-                  ),
+                child: ActiveButton(
                   onPressed: () {
                     context.router.root.push(const EditProfileDetailsRoute());
                   },
+                  height: 52,
                   icon: const Icon(Icons.edit_outlined, size: 18),
-                  label: const Text(
-                    AppStaticTexts.editProfile,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
+                  child: const Text(AppStaticTexts.editProfile),
                 ),
               ),
             ],

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/success_dialog.dart';
@@ -112,32 +113,15 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
         minimum: const EdgeInsets.fromLTRB(16, 8, 16, 16),
         child: BlocBuilder<UserBloc, UserState>(
           builder: (context, state) {
-            return FilledButton(
-              style: FilledButton.styleFrom(
-                minimumSize: const Size.fromHeight(52),
-                backgroundColor: theme.colorScheme.primary,
-                foregroundColor: theme.colorScheme.onPrimary,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18),
-                ),
-              ),
-              onPressed: state.isMemberAdding
-                  ? null
-                  : () {
-                      EditProfileDetailScreenHelpers.saveProfile(
-                        context: context,
-                      );
-                    },
-              child: state.isMemberAdding
-                  ? SizedBox(
-                      width: 22,
-                      height: 22,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2.4,
-                        color: theme.colorScheme.onPrimary,
-                      ),
-                    )
-                  : const Text('Save Changes'),
+            return ActiveButton(
+              width: double.infinity,
+              height: 52,
+              borderRadius: 18,
+              isLoading: state.isMemberAdding,
+              onPressed: () {
+                EditProfileDetailScreenHelpers.saveProfile(context: context);
+              },
+              child: const Text('Save Changes'),
             );
           },
         ),
