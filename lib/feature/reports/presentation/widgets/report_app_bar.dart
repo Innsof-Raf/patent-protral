@@ -64,10 +64,6 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
               Assets.icons.pdfIcon.path,
               height: 20,
               width: 20,
-              colorFilter: ColorFilter.mode(
-                theme.colorScheme.primary,
-                BlendMode.srcIn,
-              ),
             ),
           ),
           const Gap(12),
