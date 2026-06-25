@@ -18,6 +18,7 @@ class ReportScreen extends StatefulWidget {
 
   final String pdfUrl;
   final DateTime consultedDateTime;
+
   const ReportScreen({
     super.key,
     required this.doctorName,
@@ -30,33 +31,31 @@ class ReportScreen extends StatefulWidget {
 }
 
 class _ReportScreenState extends State<ReportScreen> {
+  late String documentUrl = '';
+
   @override
   void initState() {
     super.initState();
+    documentUrl = kDebugMode
+        ? 'https://images.drlogy.com/assets/uploads/lab/pdf/CBC-test-report-format-example-sample-template-Drlogy-lab-report.pdf'
+        : widget.pdfUrl;
     _downloadReport();
   }
 
   void _downloadReport() {
-    final String url = kDebugMode
-        ? 'https://images.drlogy.com/assets/uploads/lab/pdf/CBC-test-report-format-example-sample-template-Drlogy-lab-report.pdf'
-        : widget.pdfUrl;
     context.read<ReportsBloc>().add(
-      StoreReport(params: ReportsParams.downloadReport(url: url)),
+      StoreReport(params: ReportsParams.downloadReport(url: documentUrl)),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final String url = kDebugMode
-        ? 'https://images.drlogy.com/assets/uploads/lab/pdf/CBC-test-report-format-example-sample-template-Drlogy-lab-report.pdf'
-        : widget.pdfUrl;
-
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: ReportAppBar(
         doctorName: widget.doctorName,
         consultaionDateTime: widget.consultedDateTime,
-        documentUrl: url,
+        documentUrl: documentUrl,
       ),
       body: BlocBuilder<ReportsBloc, ReportsState>(
         builder: (context, state) {

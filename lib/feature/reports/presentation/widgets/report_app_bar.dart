@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -118,20 +116,16 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
                 final String? outputFile = await FilePicker.saveFile(
                   dialogTitle: 'Save Report',
                   fileName: fileName,
+                  bytes: state.report!.bytes,
                 );
 
-                if (outputFile != null) {
-                  final File file = File(outputFile);
-                  await file.writeAsBytes(state.report!.bytes);
-
-                  if (context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Report saved to $outputFile')),
-                    );
-                  }
+                if (outputFile != null && context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Report saved successfully')),
+                  );
                 }
               },
-              icon: const Icon(Icons.download_rounded, size: 20),
+              icon: const Icon(Icons.downloading_rounded, size: 20),
             );
           },
         ),
