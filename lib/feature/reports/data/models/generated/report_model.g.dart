@@ -13,7 +13,7 @@ _ReportModel _$ReportModelFromJson(Map<String, dynamic> json) => _ReportModel(
   customerName: stringFromJson(json['Customer_Name']),
   doctorName: stringFromJson(json['employee_name']),
   departmentName: stringFromJson(json['speciality']),
-  appointmentDate: DateTime.parse(json['appmnt_dttm'] as String),
+  appointmentDate: dateTimeFromJson(json['appmnt_dttm']),
   appointmentTime: stringFromJson(json['appmnt_time']),
   labPdfUrl: json['labreport_url'] as String?,
   xRayPdfUrl: json['xrayreport_url'] as String?,

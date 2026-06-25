@@ -30,6 +30,14 @@ double doubleFromJson(Object? value) {
 
 String stringFromJson(Object? value) => value?.toString() ?? '';
 
+DateTime dateTimeFromJson(Object? value) {
+  if (value is DateTime) return value;
+  if (value is String && value.isNotEmpty) {
+    return DateTime.tryParse(value) ?? DateTime(0);
+  }
+  return DateTime(0);
+}
+
 bool boolFromJson(Object? value) {
   if (value is bool) return value;
   final normalized = value?.toString().toLowerCase();

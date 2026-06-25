@@ -20,7 +20,8 @@ sealed class ReportModel with _$ReportModel {
     required String doctorName,
     @JsonKey(name: 'speciality', fromJson: stringFromJson)
     required String departmentName,
-    @JsonKey(name: 'appmnt_dttm') required DateTime appointmentDate,
+    @JsonKey(name: 'appmnt_dttm', fromJson: dateTimeFromJson)
+    required DateTime appointmentDate,
     @JsonKey(name: 'appmnt_time', fromJson: stringFromJson)
     required String appointmentTime,
     @JsonKey(name: 'labreport_url') String? labPdfUrl,
