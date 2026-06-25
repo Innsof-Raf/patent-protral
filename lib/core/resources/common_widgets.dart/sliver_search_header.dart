@@ -52,7 +52,7 @@ class _SliverSearchHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get minExtent => 72;
 
   @override
-  double get maxExtent => title == null ? 72 : 110;
+  double get maxExtent => title == null ? 72 : 100;
 
   @override
   Widget build(
@@ -62,24 +62,24 @@ class _SliverSearchHeaderDelegate extends SliverPersistentHeaderDelegate {
   ) {
     final theme = Theme.of(context);
     final double extentDifference = maxExtent - minExtent;
-    final progress = extentDifference == 0
+    final progress = extentDifference <= 0
         ? 0.0
         : (shrinkOffset / extentDifference).clamp(0.0, 1.0);
 
     return Container(
       color: theme.colorScheme.surface,
       padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 8),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
         children: [
-          if (title != null && progress < 0.5)
+          if (title != null && progress < 0.9)
             Opacity(
-              opacity: (1 - progress * 2).clamp(0.0, 1.0),
+              opacity: (1 - progress * 1.2).clamp(0.0, 1.0),
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 12, left: 4),
+                padding: const EdgeInsets.only(left: 4, top: 6),
                 child: Text(
                   title!,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: theme.colorScheme.onSurface,
@@ -87,41 +87,43 @@ class _SliverSearchHeaderDelegate extends SliverPersistentHeaderDelegate {
                 ),
               ),
             ),
-          SizedBox(
-            height: 48,
-            child: TextField(
-              controller: controller,
-              onChanged: onChanged,
-              textAlignVertical: TextAlignVertical.center,
-              decoration: InputDecoration(
-                hintText: hintText,
-                prefixIcon: Icon(
-                  Icons.search_rounded,
-                  color: theme.colorScheme.primary,
-                  size: 20,
-                ),
-                filled: true,
-                fillColor: theme.colorScheme.surfaceContainerHighest.withValues(
-                  alpha: 0.3,
-                ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(
-                    color: theme.colorScheme.outlineVariant.withValues(
-                      alpha: 0.5,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: SizedBox(
+              height: 48,
+              child: TextField(
+                controller: controller,
+                onChanged: onChanged,
+                textAlignVertical: TextAlignVertical.center,
+                decoration: InputDecoration(
+                  hintText: hintText,
+                  prefixIcon: Icon(
+                    Icons.search_rounded,
+                    color: theme.colorScheme.primary,
+                    size: 20,
+                  ),
+                  filled: true,
+                  fillColor: theme.colorScheme.surfaceContainerHighest
+                      .withValues(alpha: 0.3),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(
+                      color: theme.colorScheme.outlineVariant.withValues(
+                        alpha: 0.5,
+                      ),
                     ),
                   ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(
-                    color: theme.colorScheme.primary,
-                    width: 1.5,
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(
+                      color: theme.colorScheme.primary,
+                      width: 1.5,
+                    ),
                   ),
                 ),
               ),
