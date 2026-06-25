@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
@@ -36,19 +37,26 @@ class _ReportScreenState extends State<ReportScreen> {
   }
 
   void _downloadReport() {
+    final String url = kDebugMode
+        ? 'https://images.drlogy.com/assets/uploads/lab/pdf/CBC-test-report-format-example-sample-template-Drlogy-lab-report.pdf'
+        : widget.pdfUrl;
     context.read<ReportsBloc>().add(
-      StoreReport(params: ReportsParams.downloadReport(url: widget.pdfUrl)),
+      StoreReport(params: ReportsParams.downloadReport(url: url)),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final String url = kDebugMode
+        ? 'https://images.drlogy.com/assets/uploads/lab/pdf/CBC-test-report-format-example-sample-template-Drlogy-lab-report.pdf'
+        : widget.pdfUrl;
+
     return Scaffold(
-      backgroundColor: AppColors.lightGray,
+      backgroundColor: AppColors.white,
       appBar: ReportAppBar(
         doctorName: widget.doctorName,
         consultaionDateTime: widget.consultedDateTime,
-        documentUrl: widget.pdfUrl,
+        documentUrl: url,
       ),
       body: BlocBuilder<ReportsBloc, ReportsState>(
         builder: (context, state) {

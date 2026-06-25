@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,7 +9,6 @@ import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
-import 'package:share_plus/share_plus.dart';
 
 class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String doctorName;
@@ -111,21 +113,42 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
               onPressed: () async {
-                final XFile file = XFile.fromData(
-                  state.report!.bytes,
-                  name: 'report',
-                  mimeType: 'pdf',
+                final String fileName = _getFileName(documentUrl, doctorName);
+
+                final String? outputFile = await FilePicker.saveFile(
+                  dialogTitle: 'Save Report',
+                  fileName: fileName,
                 );
 
-                await SharePlus.instance.share(ShareParams(files: [file]));
+                if (outputFile != null) {
+                  final File file = File(outputFile);
+                  await file.writeAsBytes(state.report!.bytes);
+
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Report saved to $outputFile')),
+                    );
+                  }
+                }
               },
-              icon: const Icon(Icons.share_outlined, size: 20),
+              icon: const Icon(Icons.download_rounded, size: 20),
             );
           },
         ),
         const Gap(12),
       ],
     );
+  }
+
+  String _getFileName(String url, String doctor) {
+    String name = url.split('/').last;
+    if (name.contains('?')) {
+      name = name.split('?').first;
+    }
+    final String sanitizedDoctor = doctor
+        .replaceAll(' ', '_')
+        .replaceAll(RegExp(r'[^\w\s]'), '');
+    return '${sanitizedDoctor}_$name';
   }
 
   @override
