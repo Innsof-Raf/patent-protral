@@ -204,10 +204,15 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         ),
       );
 
-      await result.fold((failure) {}, (user) async {
-        emit(state.copyWith(user: user));
-        await userLocalDataSource.saveUser(user);
-      });
+      await result.fold(
+        (failure) {
+          add(const LogOut());
+        },
+        (user) async {
+          emit(state.copyWith(user: user));
+          await userLocalDataSource.saveUser(user);
+        },
+      );
     });
   }
 }

@@ -107,7 +107,7 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
 
       final response = await client.post(
         url: ConstantUrls.refreshUrl,
-        body: p.toJson(),
+        body: p.toJson()..remove('runtimeType'),
       );
 
       return UserModel.fromJson(decodeResponseData(response.data));
