@@ -1,13 +1,9 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
-import 'package:patient_portal/core/route/app_router.dart';
-import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
-import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/logout_dialog.dart';
 
 class LogOutTile extends StatelessWidget {
   const LogOutTile({super.key});
@@ -17,7 +13,7 @@ class LogOutTile extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: EdgeInsets.fromLTRB(14, 10, 14, 25),
+      padding: const EdgeInsets.fromLTRB(14, 10, 14, 25),
       child: DecoratedBox(
         decoration: BoxDecoration(
           border: Border(
@@ -34,9 +30,10 @@ class LogOutTile extends StatelessWidget {
             child: InkWell(
               borderRadius: BorderRadius.circular(18),
               onTap: () {
-                context.read<UserBloc>().add(const LogOut());
-                LoginScreenHelpers.loginSectionNotifier.value = 0;
-                context.router.replaceAll([const LoginRoute()]);
+                showDialog(
+                  context: context,
+                  builder: (context) => const LogoutDialog(),
+                );
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(

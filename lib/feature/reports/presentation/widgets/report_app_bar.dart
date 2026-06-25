@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_snack_bar.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
 

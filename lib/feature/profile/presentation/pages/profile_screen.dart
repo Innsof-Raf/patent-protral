@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/active_text_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
-import 'package:patient_portal/core/route/app_router.dart';
-import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/logout_dialog.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/widgets/member_section.dart';
 import 'package:patient_portal/feature/profile/presentation/widgets/my_profile_section.dart';
@@ -91,29 +89,9 @@ class _LogoutButton extends StatelessWidget {
   }
 
   void _showLogoutDialog(BuildContext context) {
-    final theme = Theme.of(context);
-
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text(AppStaticTexts.logout),
-        content: const Text(AppStaticTexts.logoutConfirmation),
-        actions: [
-          ActiveTextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text(AppStaticTexts.cancel),
-          ),
-          ActiveTextButton(
-            foregroundColor: theme.colorScheme.error,
-            onPressed: () {
-              context.read<UserBloc>().add(const LogOut());
-              LoginScreenHelpers.loginSectionNotifier.value = 0;
-              context.router.replaceAll([const LoginRoute()]);
-            },
-            child: const Text(AppStaticTexts.logout),
-          ),
-        ],
-      ),
+      builder: (context) => const LogoutDialog(),
     );
   }
 }
