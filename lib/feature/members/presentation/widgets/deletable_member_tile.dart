@@ -249,7 +249,7 @@ class _InsuranceBadge extends StatelessWidget {
       child: Text(
         AppStaticTexts.insured,
         style: AppTextStyles.bodySmallInterNormal.copyWith(
-          color: theme.colorScheme.primary,
+          color: Colors.white,
           fontWeight: FontWeight.w800,
         ),
       ),

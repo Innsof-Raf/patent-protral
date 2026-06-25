@@ -162,13 +162,13 @@ class _InsuranceBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        color: theme.colorScheme.primary.withValues(alpha: .12),
+        color: theme.colorScheme.primary.withValues(alpha: .3),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
         AppStaticTexts.insured,
         style: theme.textTheme.labelSmall?.copyWith(
-          color: theme.colorScheme.primary,
+          color: Colors.white,
           fontWeight: FontWeight.bold,
           letterSpacing: 0.5,
         ),
