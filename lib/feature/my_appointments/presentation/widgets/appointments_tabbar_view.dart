@@ -41,7 +41,7 @@ class AppointmentsTabbarView extends StatelessWidget {
       onRefresh: onRefresh,
       child: ListView.separated(
         physics: const AlwaysScrollableScrollPhysics(),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 100),
         itemCount: monthTimelineList.length + 1,
         separatorBuilder: (context, index) => const Gap(16),
         itemBuilder: (context, index) {
