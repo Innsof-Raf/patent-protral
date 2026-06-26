@@ -1,10 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/lab/domain/entities/item.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -17,108 +20,190 @@ class CartItemTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return OutlinedButton(
-      onPressed: () {},
-      style: OutlinedButton.styleFrom(
-        elevation: 0,
-        foregroundColor: AppColors.borderColor,
-        padding: const EdgeInsets.all(5),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        side: const BorderSide(color: AppColors.borderColor, width: .5),
-      ),
-      child: Column(
-        children: [
-          Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(5),
-              child: CachedNetworkImage(
-                imageUrl:
-                    '${ConstantUrls.packageImageUrl}/${item.idItem}/${item.itemImg}',
-                errorWidget: (context, url, error) {
-                  return Image.asset(
-                    Assets.images.imageLoadingFailedImage.path,
-                  );
-                },
-                fadeInDuration: const Duration(seconds: 0),
-                fadeOutDuration: const Duration(seconds: 0),
-                progressIndicatorBuilder: (context, url, progress) {
-                  return const Center(child: CircularProgressIndicator());
-                },
-                width: double.infinity,
-                fit: BoxFit.fill,
-              ),
-            ),
+    return InkWell(
+      onTap: () {
+        context.router.push(LabItemDetailRoute(idItem: item.idItem));
+      },
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: theme.dividerColor.withValues(alpha: 0.1),
+            width: 1,
           ),
-          const SizedBox(height: 5),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  item.itemNmae,
-                  textAlign: TextAlign.center,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                Text(
-                  item.itemShortDesc,
-                  style: AppTextStyles.bodyTextRoboto.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                ),
-                Text(
-                  '${item.itemPrice}',
-                  style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                    color: theme.colorScheme.primary,
-                    fontWeight: FontWeight.w700,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                item.isChangingCartStatus
-                    ? const SizedBox(
-                        height: 10,
-                        width: 10,
-                        child: CircularProgressIndicator(),
-                      )
-                    : OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          shape: const CircleBorder(),
-                          side: const BorderSide(
-                            color: AppColors.borderColor,
-                            width: .5,
-                          ),
-                          elevation: 0,
-                          padding: const EdgeInsets.all(6),
-                          minimumSize: const Size(0, 0),
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        ),
-                        onPressed: () {
-                          context.read<ItemsBloc>().add(
-                            UpdateItemCartSatus(
-                              idItem: item.idItem,
-                              idUser: context.read<UserBloc>().state.user!.id,
-                              token: context
-                                  .read<UserBloc>()
-                                  .state
-                                  .user!
-                                  .accessToken,
-                            ),
-                          );
-                        },
-                        child: Icon(
-                          Icons.close,
-                          color: theme.colorScheme.onSurface,
-                          size: 10,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.04),
+              blurRadius: 8,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 4,
+              child: Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(16),
+                    ),
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          '${ConstantUrls.packageImageUrl}/${item.idItem}/${item.itemImg}',
+                      placeholder: (context, url) => Container(
+                        color: theme.colorScheme.surfaceContainerHighest
+                            .withValues(alpha: 0.3),
+                        child: const Center(
+                          child: CircularProgressIndicator(strokeWidth: 2),
                         ),
                       ),
-              ],
+                      errorWidget: (context, url, error) => Container(
+                        color: theme.colorScheme.surfaceContainerHighest
+                            .withValues(alpha: 0.3),
+                        child: Image.asset(
+                          Assets.images.imageLoadingFailedImage.path,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Positioned(
+                    top: 8,
+                    right: 8,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.primary.withValues(alpha: 0.9),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(
+                        '${AppStaticTexts.qar} ${item.itemPrice}',
+                        style: theme.textTheme.labelMedium?.copyWith(
+                          color: theme.colorScheme.onPrimary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              flex: 5,
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      item.itemNmae.toTitleCase(),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        height: 1.2,
+                      ),
+                    ),
+                    const Gap(4),
+                    Expanded(
+                      child: Text(
+                        item.itemShortDesc,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: theme.textTheme.bodySmall?.color?.withValues(
+                            alpha: 0.7,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Gap(8),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: item.isChangingCartStatus
+                              ? const Center(
+                                  child: SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                    ),
+                                  ),
+                                )
+                              : _ActionButton(
+                                  onPressed: () {
+                                    context.read<ItemsBloc>().add(
+                                      UpdateItemCartSatus(
+                                        idItem: item.idItem,
+                                        idUser: context
+                                            .read<UserBloc>()
+                                            .state
+                                            .user!
+                                            .id,
+                                        token: context
+                                            .read<UserBloc>()
+                                            .state
+                                            .user!
+                                            .accessToken,
+                                      ),
+                                    );
+                                  },
+                                  label: AppStaticTexts.delete,
+                                ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ActionButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  final String label;
+
+  const _ActionButton({required this.onPressed, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: theme.colorScheme.error,
+        foregroundColor: Colors.white,
+        elevation: 0,
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        minimumSize: const Size(0, 36),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.delete_outline, size: 16, color: Colors.white),
+          const Gap(4),
+          Text(
+            label,
+            style: theme.textTheme.labelLarge?.copyWith(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ],
