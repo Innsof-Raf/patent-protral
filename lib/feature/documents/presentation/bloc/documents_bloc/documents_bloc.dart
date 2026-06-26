@@ -15,42 +15,38 @@ class DocumentsBloc extends Bloc<DocumentsEvent, DocumentsState> {
   DocumentsBloc({required this.getDocumentsUseCase})
     : super(DocumentsState.initial()) {
     on<GetDocuments>((event, emit) async {
-      if (event.memberId == 0) {
-        emit(
-          state.copyWith(
-            isFetching: true,
-            isFetchingFailed: false,
-            isFetchingSuccess: false,
-            selectedMemberId: event.memberId,
-          ),
-        );
-        final result = await getDocumentsUseCase(
-          DocumentsParams.getDocuments(
-            memberId: event.memberId,
-            mobileNumber: event.mobileNumber,
-            token: event.token,
-          ),
-        );
+      emit(
+        state.copyWith(
+          isFetching: true,
+          isFetchingFailed: false,
+          isFetchingSuccess: false,
+          selectedMemberId: event.memberId,
+        ),
+      );
+      final result = await getDocumentsUseCase(
+        DocumentsParams.getDocuments(
+          memberId: event.memberId,
+          mobileNumber: event.mobileNumber,
+          token: event.token,
+        ),
+      );
 
-        result.fold(
-          (failure) => emit(
-            state.copyWith(
-              isFetching: false,
-              isFetchingFailed: true,
-              error: ErrorModel(message: failure.message),
-            ),
+      result.fold(
+        (failure) => emit(
+          state.copyWith(
+            isFetching: false,
+            isFetchingFailed: true,
+            error: ErrorModel(message: failure.message),
           ),
-          (documents) => emit(
-            state.copyWith(
-              isFetching: false,
-              isFetchingSuccess: true,
-              documents: documents,
-            ),
+        ),
+        (documents) => emit(
+          state.copyWith(
+            isFetching: false,
+            isFetchingSuccess: true,
+            documents: documents,
           ),
-        );
-      } else {
-        emit(state.copyWith(selectedMemberId: event.memberId));
-      }
+        ),
+      );
     });
   }
 }

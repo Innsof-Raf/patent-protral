@@ -171,8 +171,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
             if (documents.isEmpty) {
               return CommonEmptyState(
                 title: AppStaticTexts.noDocumentsFound,
-                description: AppStaticTexts
-                    .noReportsMessage, // Using a descriptive message
+                description: AppStaticTexts.noReportsMessage,
                 icon: Icons.folder_open_outlined,
                 actionLabel: AppStaticTexts.refresh,
                 onAction: _fetchDocuments,
