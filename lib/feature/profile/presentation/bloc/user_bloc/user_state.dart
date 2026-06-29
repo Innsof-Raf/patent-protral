@@ -11,6 +11,7 @@ sealed class UserState with _$UserState {
     required bool isFetchingMemberDetail,
     required bool isMemberDetailFetchingFailed,
     required bool isMemberDetailFetchingSucess,
+    required Member? selectedMember,
     required ErrorModel error,
   }) = _UserState;
 
@@ -23,6 +24,7 @@ sealed class UserState with _$UserState {
     isFetchingMemberDetail: false,
     isMemberDetailFetchingFailed: false,
     isMemberDetailFetchingSucess: false,
+    selectedMember: null,
     error: ErrorModel(message: ''),
   );
 }

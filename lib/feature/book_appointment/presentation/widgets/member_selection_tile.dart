@@ -13,10 +13,13 @@ import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 class MemberSelectionTile extends StatelessWidget {
   final Member member;
   final bool isSelected;
+  final VoidCallback? onTap;
+
   const MemberSelectionTile({
     super.key,
     required this.member,
     required this.isSelected,
+    this.onTap,
   });
 
   @override
@@ -25,14 +28,17 @@ class MemberSelectionTile extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     return InkWell(
-      onTap: () {
-        if (BookAppointmentScreenHelpers.selectedMemberNotifier.value ==
-            member) {
-          BookAppointmentScreenHelpers.selectedMemberNotifier.value = null;
-        } else {
-          BookAppointmentScreenHelpers.selectedMemberNotifier.value = member;
-        }
-      },
+      onTap:
+          onTap ??
+          () {
+            if (BookAppointmentScreenHelpers.selectedMemberNotifier.value ==
+                member) {
+              BookAppointmentScreenHelpers.selectedMemberNotifier.value = null;
+            } else {
+              BookAppointmentScreenHelpers.selectedMemberNotifier.value =
+                  member;
+            }
+          },
       borderRadius: BorderRadius.circular(16),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
@@ -51,34 +57,42 @@ class MemberSelectionTile extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Container(
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(
-                color: member.profileImage == null ? colorScheme.primary : null,
-                shape: BoxShape.circle,
-                image: member.profileImage != null
-                    ? DecorationImage(
-                        image: CachedNetworkImageProvider(
-                          '${ConstantUrls.memberImageUrl}/${member.id}//${member.profileImage}',
-                        ),
-                        fit: BoxFit.cover,
-                      )
-                    : null,
-              ),
-              child: member.profileImage == null
-                  ? Center(
-                      child: Text(
-                        member.name.trim().isNotEmpty
-                            ? member.name.trim()[0].toUpperCase()
-                            : 'U',
-                        style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+            ClipOval(
+              child: CachedNetworkImage(
+                imageUrl:
+                    '${ConstantUrls.memberImageUrl}/${member.id}/${member.profileImage}',
+                width: 48,
+                height: 48,
+                fit: BoxFit.cover,
+                placeholder: (context, url) => Container(
+                  width: 48,
+                  height: 48,
+                  color: colorScheme.surfaceContainerHighest,
+                  child: const Center(
+                    child: SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    ),
+                  ),
+                ),
+                errorWidget: (context, url, error) => Container(
+                  width: 48,
+                  height: 48,
+                  color: colorScheme.primary,
+                  child: Center(
+                    child: Text(
+                      member.name.trim().isNotEmpty
+                          ? member.name.trim()[0].toUpperCase()
+                          : AppStaticTexts.unknownInitial,
+                      style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
                       ),
-                    )
-                  : null,
+                    ),
+                  ),
+                ),
+              ),
             ),
             const Gap(12),
             Expanded(
@@ -123,9 +137,14 @@ class MemberSelectionTile extends StatelessWidget {
             const Gap(8),
             RadioGroup<Member?>(
               groupValue: isSelected ? member : null,
-              onChanged: (value) =>
+              onChanged: (value) {
+                if (onTap != null) {
+                  onTap!();
+                } else {
                   BookAppointmentScreenHelpers.selectedMemberNotifier.value =
-                      value,
+                      value;
+                }
+              },
               child: Radio<Member?>(
                 value: member,
                 activeColor: colorScheme.primary,

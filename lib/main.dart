@@ -280,7 +280,11 @@ class MyApp extends StatelessWidget {
         theme: _buildTheme(),
         routerConfig: _appRouter.config(
           deepLinkBuilder: (deepLink) => DeepLink(
-            initialUser != null ? [const MainRoute()] : [const LoginRoute()],
+            initialUser != null
+                ? initialUser!.members.isNotEmpty
+                      ? [const MemberSelectionRoute()]
+                      : [const MainRoute()]
+                : [const LoginRoute()],
           ),
         ),
       ),

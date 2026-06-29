@@ -441,6 +441,22 @@ class MemberDetailsRouteArgs {
 }
 
 /// generated route for
+/// [MemberSelectionScreen]
+class MemberSelectionRoute extends PageRouteInfo<void> {
+  const MemberSelectionRoute({List<PageRouteInfo>? children})
+    : super(MemberSelectionRoute.name, initialChildren: children);
+
+  static const String name = 'MemberSelectionRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MemberSelectionScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [MembersScreen]
 class MembersRoute extends PageRouteInfo<void> {
   const MembersRoute({List<PageRouteInfo>? children})

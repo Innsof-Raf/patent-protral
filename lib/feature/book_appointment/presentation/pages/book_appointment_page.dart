@@ -36,6 +36,9 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
   @override
   void initState() {
     super.initState();
+    final userBloc = context.read<UserBloc>();
+    BookAppointmentScreenHelpers.selectedMemberNotifier.value =
+        userBloc.state.selectedMember;
     BookAppointmentScreenHelpers.createDateList();
     _fetchSlots(BookAppointmentScreenHelpers.selectedDateNotifier.value);
   }

@@ -111,7 +111,13 @@ class _LoginOtpVerificationSectionState
                             ),
                           ),
                         );
-                        context.router.replaceAll([const MainRoute()]);
+                        if (state.user!.members.isNotEmpty) {
+                          context.router.replaceAll([
+                            const MemberSelectionRoute(),
+                          ]);
+                        } else {
+                          context.router.replaceAll([const MainRoute()]);
+                        }
                       }
                     },
                     builder: (context, state) {

@@ -325,6 +325,10 @@ class AppStaticTexts {
   static const String selectMemberToBookAppointment =
       'Select a member to book appointment';
   static const String bookSlot = 'Book Slot';
+  static const String selectMemberToContinue = 'Select member to continue';
+  static const String pleaseChooseAMember =
+      'Please choose a member to proceed with the application.';
+  static const String continueText = 'Continue';
 
   // Set Password
   static const String setPassword = 'Set Password';

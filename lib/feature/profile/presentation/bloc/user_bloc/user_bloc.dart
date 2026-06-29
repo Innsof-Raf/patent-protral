@@ -217,6 +217,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         },
       );
     });
+    on<SelectMember>((event, emit) {
+      emit(state.copyWith(selectedMember: event.member));
+    });
   }
 }
 

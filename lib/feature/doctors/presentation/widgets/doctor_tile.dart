@@ -26,7 +26,6 @@ class DoctorTile extends StatelessWidget {
   }
 
   void _onTileTap(BuildContext context) {
-    BookAppointmentScreenHelpers.selectedMemberNotifier.value = null;
     BookAppointmentScreenHelpers.createDateList();
     BookAppointmentScreenHelpers.selectedDateNotifier.value =
         BookAppointmentScreenHelpers.dateList[0];

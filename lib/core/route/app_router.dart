@@ -15,6 +15,7 @@ import 'package:patient_portal/feature/login/presentation/pages/login_screen.dar
 import 'package:patient_portal/feature/main_screen/presentation/pages/main_screen.dart';
 import 'package:patient_portal/feature/medical_insurances/presentation/pages/medical_insurance_screen.dart';
 import 'package:patient_portal/feature/member_details/presentation/pages/member_details_screen.dart';
+import 'package:patient_portal/feature/members/presentation/pages/member_selection_screen.dart';
 import 'package:patient_portal/feature/members/presentation/pages/members_screen.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/pages/my_appointment_screen.dart';
 import 'package:patient_portal/feature/notification/presentation/pages/notification_screen.dart';
@@ -51,6 +52,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: SetPasswordRoute.page),
     AutoRoute(page: MyProfileRoute.page),
     AutoRoute(page: MembersRoute.page),
+    AutoRoute(page: MemberSelectionRoute.page),
     AutoRoute(page: ReportsRoute.page),
     AutoRoute(page: MemberDetailsRoute.page),
     AutoRoute(page: ReportRoute.page),

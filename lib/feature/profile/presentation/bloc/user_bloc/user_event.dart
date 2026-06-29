@@ -32,4 +32,6 @@ sealed class UserEvent with _$UserEvent {
   const factory UserEvent.initializeUser() = InitializeUser;
 
   const factory UserEvent.refreshToken() = RefreshToken;
+
+  const factory UserEvent.selectMember({required Member member}) = SelectMember;
 }
