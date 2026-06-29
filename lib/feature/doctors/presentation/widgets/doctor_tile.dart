@@ -12,7 +12,6 @@ import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
-import 'package:patient_portal/feature/doctors/presentation/widgets/doctor_meta_chip.dart';
 
 class DoctorTile extends StatelessWidget {
   const DoctorTile({super.key, required this.doctor});
@@ -26,6 +25,22 @@ class DoctorTile extends StatelessWidget {
     return normalized.isEmpty ? null : normalized;
   }
 
+  void _onTileTap(BuildContext context) {
+    BookAppointmentScreenHelpers.selectedMemberNotifier.value = null;
+    BookAppointmentScreenHelpers.createDateList();
+    BookAppointmentScreenHelpers.selectedDateNotifier.value =
+        BookAppointmentScreenHelpers.dateList[0];
+    context.router.push(
+      BookAppointmentRoute(
+        doctorName: doctor.doctorName,
+        idDoctor: doctor.idDoctor,
+        doctorImage:
+            '${ConstantUrls.doctorImageUrl}/${doctor.idDoctor}/${doctor.doctorImage}',
+        appointmentId: 0,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -36,9 +51,9 @@ class DoctorTile extends StatelessWidget {
       borderRadius: BorderRadius.circular(22),
       child: InkWell(
         borderRadius: BorderRadius.circular(22),
-        onTap: () {},
+        onTap: () => _onTileTap(context),
         child: Container(
-          padding: const EdgeInsets.all(12),
+          padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: theme.colorScheme.surface,
             borderRadius: BorderRadius.circular(22),
@@ -55,85 +70,62 @@ class DoctorTile extends StatelessWidget {
           ),
           child: Stack(
             children: [
-              LayoutBuilder(
-                builder: (context, constraints) {
-                  final isCompact = constraints.maxWidth < 390;
-                  return isCompact
-                      ? _CompactDoctorTileContent(
-                          doctor: doctor,
-                          hasInfoButton: bio != null,
-                        )
-                      : _WideDoctorTileContent(doctor: doctor);
-                },
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      _DoctorAvatar(doctor: doctor, size: 84),
+                      const Gap(16),
+                      Expanded(
+                        child: Container(
+                          constraints: const BoxConstraints(minHeight: 84),
+                          alignment: Alignment.centerLeft,
+                          child: _DoctorDetails(doctor: doctor),
+                        ),
+                      ),
+                    ],
+                  ),
+                  if (doctor.branch.trim().isNotEmpty &&
+                      doctor.branch != '0') ...[
+                    const Gap(12),
+                    _LocationChip(branch: doctor.branch.trim()),
+                  ],
+                  if (doctor.isOnline) ...[
+                    const Gap(12),
+                    _AvailabilitySlot(
+                      icon: Icons.videocam_rounded,
+                      title: AppStaticTexts.videoConsultation,
+                      subtitle: doctor.availability.isNotEmpty
+                          ? doctor.availability
+                          : AppStaticTexts.available,
+                      color: const Color(0xFF1976D2),
+                      backgroundColor: const Color(0xFFE3F2FD),
+                    ),
+                  ],
+                  if (doctor.availability.isNotEmpty &&
+                      doctor.availability.toLowerCase() != 'not available') ...[
+                    const Gap(8),
+                    _AvailabilitySlot(
+                      icon: Icons.business_rounded,
+                      title: AppStaticTexts.inPersonConsultation,
+                      subtitle: doctor.availability,
+                      color: const Color(0xFF388E3C),
+                      backgroundColor: const Color(0xFFE8F5E9),
+                    ),
+                  ],
+                ],
               ),
               if (bio != null)
                 Positioned(
-                  top: 4,
-                  right: 4,
+                  top: 0,
+                  right: 0,
                   child: _DoctorInfoButton(doctor: doctor, bio: bio),
                 ),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class _WideDoctorTileContent extends StatelessWidget {
-  const _WideDoctorTileContent({required this.doctor});
-
-  final Doctor doctor;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _DoctorAvatar(doctor: doctor, size: 92),
-        const Gap(14),
-        Expanded(child: _DoctorDetails(doctor: doctor)),
-        const Gap(12),
-        SizedBox(
-          width: 104,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [_BookDoctorButton(doctor: doctor)],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _CompactDoctorTileContent extends StatelessWidget {
-  const _CompactDoctorTileContent({
-    required this.doctor,
-    required this.hasInfoButton,
-  });
-
-  final Doctor doctor;
-  final bool hasInfoButton;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.only(right: hasInfoButton ? 42 : 0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _DoctorAvatar(doctor: doctor, size: 78),
-              const Gap(12),
-              Expanded(child: _DoctorDetails(doctor: doctor, compact: true)),
-            ],
-          ),
-        ),
-        const Gap(12),
-        _BookDoctorButton(doctor: doctor, expanded: true),
-      ],
     );
   }
 }
@@ -148,12 +140,18 @@ class _DoctorAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(18),
-      child: Container(
-        width: size,
-        height: size,
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
         color: theme.colorScheme.surfaceContainerHighest,
+        border: Border.all(
+          color: theme.colorScheme.outlineVariant.withValues(alpha: .5),
+          width: 1,
+        ),
+      ),
+      child: ClipOval(
         child: CachedNetworkImage(
           imageUrl:
               '${ConstantUrls.doctorImageUrl}/${doctor.idDoctor}/${doctor.doctorImage}',
@@ -180,22 +178,30 @@ class _DoctorAvatar extends StatelessWidget {
 }
 
 class _DoctorDetails extends StatelessWidget {
-  const _DoctorDetails({required this.doctor, this.compact = false});
+  const _DoctorDetails({required this.doctor});
 
   final Doctor doctor;
-  final bool compact;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final availability = doctor.availability.trim();
-    final availabilityText = availability.isEmpty
-        ? null
-        : availability.toLowerCase() == 'not available'
-        ? AppStaticTexts.notAvailable
-        : availability.toLowerCase() == 'today'
-        ? AppStaticTexts.nextAvailableToday
-        : '${AppStaticTexts.nextAvailable} ${availability.toLowerCase()}';
+
+    final List<String> metaItems = [];
+    if (doctor.experience.trim().isNotEmpty && doctor.experience != '0') {
+      metaItems.add(
+        '${AppStaticTexts.experiencePrefix} ${doctor.experience} ${AppStaticTexts.yearsExperience}',
+      );
+    }
+    if (doctor.consultationFee > 0) {
+      metaItems.add(
+        '${AppStaticTexts.feePrefix} ${AppStaticTexts.qar} ${doctor.consultationFee.toStringAsFixed(0)}',
+      );
+    }
+    if (doctor.knownLanguages.isNotEmpty) {
+      metaItems.add(
+        '${AppStaticTexts.speaksPrefix} ${doctor.knownLanguages.join(', ')}',
+      );
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -206,7 +212,8 @@ class _DoctorDetails extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: AppTextStyles.largeBoldRoboto.copyWith(
             color: theme.colorScheme.onSurface,
-            height: 1.15,
+            fontSize: 16,
+            height: 1.2,
           ),
         ),
         const Gap(4),
@@ -216,58 +223,20 @@ class _DoctorDetails extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: AppTextStyles.bodyTextInter.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
-            fontWeight: FontWeight.w600,
-            fontSize: compact ? 9 : 10,
+            fontWeight: FontWeight.w500,
+            fontSize: 12,
           ),
         ),
-        if ((doctor.experience.trim().isNotEmpty && doctor.experience != '0') ||
-            doctor.consultationFee > 0 ||
-            (doctor.branch.trim().isNotEmpty && doctor.branch != '0') ||
-            doctor.knownLanguages.isNotEmpty) ...[
-          const Gap(6),
-          Wrap(
-            spacing: 12,
-            runSpacing: 4,
-            children: [
-              if (doctor.experience.trim().isNotEmpty &&
-                  doctor.experience != '0')
-                DoctorMetaChip(
-                  icon: Icons.work_history_outlined,
-                  label:
-                      '${doctor.experience} ${AppStaticTexts.yearsExperience}',
-                  compact: compact,
-                ),
-              if (doctor.consultationFee > 0)
-                DoctorMetaChip(
-                  icon: Icons.payments_outlined,
-                  label:
-                      '${AppStaticTexts.qar} ${doctor.consultationFee.toStringAsFixed(0)}',
-                  compact: compact,
-                ),
-              if (doctor.branch.trim().isNotEmpty && doctor.branch != '0')
-                DoctorMetaChip(
-                  icon: Icons.location_on_outlined,
-                  label: doctor.branch.trim(),
-                  compact: compact,
-                ),
-              if (doctor.knownLanguages.isNotEmpty)
-                DoctorMetaChip(
-                  icon: Icons.translate_rounded,
-                  label: doctor.knownLanguages.join(', '),
-                  compact: compact,
-                ),
-            ],
-          ),
-        ],
-        if (availabilityText != null) ...[
-          const Gap(6),
+        if (metaItems.isNotEmpty) ...[
+          const Gap(4),
           Text(
-            availabilityText,
-            maxLines: 1,
+            metaItems.join(' | '),
+            maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: AppTextStyles.bodyTextBoldRoboto.copyWith(
-              color: theme.colorScheme.primary,
-              fontSize: compact ? 9 : 10,
+            style: AppTextStyles.bodyTextInter.copyWith(
+              color: theme.colorScheme.onSurfaceVariant.withValues(alpha: .7),
+              fontSize: 11,
+              fontWeight: FontWeight.w400,
             ),
           ),
         ],
@@ -276,34 +245,107 @@ class _DoctorDetails extends StatelessWidget {
   }
 }
 
-class _BookDoctorButton extends StatelessWidget {
-  const _BookDoctorButton({required this.doctor, this.expanded = false});
+class _LocationChip extends StatelessWidget {
+  const _LocationChip({required this.branch});
 
-  final Doctor doctor;
-  final bool expanded;
+  final String branch;
 
   @override
   Widget build(BuildContext context) {
-    return ActiveButton(
-      height: expanded ? 44 : 42,
-      width: expanded ? double.infinity : 104,
-      borderRadius: 15,
-      onPressed: () {
-        BookAppointmentScreenHelpers.selectedMemberNotifier.value = null;
-        BookAppointmentScreenHelpers.createDateList();
-        BookAppointmentScreenHelpers.selectedDateNotifier.value =
-            BookAppointmentScreenHelpers.dateList[0];
-        context.router.push(
-          BookAppointmentRoute(
-            doctorName: doctor.doctorName,
-            idDoctor: doctor.idDoctor,
-            doctorImage:
-                '${ConstantUrls.doctorImageUrl}/${doctor.idDoctor}/${doctor.doctorImage}',
-            appointmentId: 0,
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: .4),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            Icons.location_on_rounded,
+            size: 14,
+            color: theme.colorScheme.error,
           ),
-        );
-      },
-      child: const Text(AppStaticTexts.book),
+          const Gap(6),
+          Flexible(
+            child: Text(
+              branch,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: AppTextStyles.bodyTextInter.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+                fontSize: 11,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _AvailabilitySlot extends StatelessWidget {
+  const _AvailabilitySlot({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.color,
+    required this.backgroundColor,
+  });
+
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final Color color;
+  final Color backgroundColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(6),
+            decoration: BoxDecoration(
+              color: color.withValues(alpha: .15),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Icon(icon, size: 20, color: color),
+          ),
+          const Gap(12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: AppTextStyles.bodyTextInter.copyWith(
+                    color: color.withValues(alpha: .7),
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const Gap(2),
+                Text(
+                  subtitle,
+                  style: AppTextStyles.bodyTextInter.copyWith(
+                    color: color,
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

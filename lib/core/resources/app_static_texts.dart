@@ -126,6 +126,11 @@ class AppStaticTexts {
   static const String findDoctor = 'Find Doctor';
   static const String doctorAvailable = 'doctor available';
   static const String doctorsAvailable = 'doctors available';
+  static const String videoConsultation = 'Video Consultation';
+  static const String inPersonConsultation = 'In-Person Consultation';
+  static const String experiencePrefix = 'Exp:';
+  static const String feePrefix = 'Fee:';
+  static const String speaksPrefix = 'Speaks:';
 
   // Speciality
   static const String unableToLoadSpecialities = 'Unable to load specialities';
