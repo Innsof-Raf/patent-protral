@@ -19,36 +19,51 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      body: BlocBuilder<UserBloc, UserState>(
-        builder: (context, state) {
-          if (state.isLoading) return const CommonLoadingView();
+      body: DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              theme.colorScheme.primaryContainer.withValues(alpha: .30),
+              theme.colorScheme.surface,
+              theme.colorScheme.surface,
+            ],
+            stops: const [0, .16, .4],
+          ),
+        ),
+        child: BlocBuilder<UserBloc, UserState>(
+          builder: (context, state) {
+            if (state.isLoading) return const CommonLoadingView();
 
-          return RefreshIndicator(
-            onRefresh: () async {
-              context.read<UserBloc>().add(const RefreshToken());
-            },
-            child: CustomScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              slivers: [
-                const SliverPadding(
-                  padding: EdgeInsets.fromLTRB(16, 16, 16, 12),
-                  sliver: SliverToBoxAdapter(child: ProfileDetailsSection()),
-                ),
-                const SliverPadding(
-                  padding: EdgeInsets.fromLTRB(16, 0, 16, 12),
-                  sliver: SliverToBoxAdapter(child: MemberSection()),
-                ),
-                SliverPadding(
-                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 120),
-                  sliver: SliverToBoxAdapter(
-                    child: Column(children: [const Gap(8), _LogoutButton()]),
+            return RefreshIndicator(
+              onRefresh: () async {
+                context.read<UserBloc>().add(const RefreshToken());
+              },
+              child: CustomScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                slivers: [
+                  const SliverPadding(
+                    padding: EdgeInsets.fromLTRB(16, 16, 16, 12),
+                    sliver: SliverToBoxAdapter(child: ProfileDetailsSection()),
                   ),
-                ),
-              ],
-            ),
-          );
-        },
+                  const SliverPadding(
+                    padding: EdgeInsets.fromLTRB(16, 0, 16, 12),
+                    sliver: SliverToBoxAdapter(child: MemberSection()),
+                  ),
+                  SliverPadding(
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 120),
+                    sliver: SliverToBoxAdapter(
+                      child: Column(children: [const Gap(8), _LogoutButton()]),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -60,7 +75,7 @@ class _LogoutButton extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Material(
-      color: theme.colorScheme.errorContainer.withValues(alpha: 0.2),
+      color: theme.colorScheme.errorContainer.withValues(alpha: 0.28),
       borderRadius: BorderRadius.circular(16),
       child: InkWell(
         borderRadius: BorderRadius.circular(16),

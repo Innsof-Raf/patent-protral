@@ -45,7 +45,7 @@ class InsuranceHelpers {
       builder: (context, child) => Theme(
         data: Theme.of(context).copyWith(
           textButtonTheme: TextButtonThemeData(
-            style: TextButton.styleFrom(foregroundColor: AppColors.violet),
+            style: TextButton.styleFrom(foregroundColor: AppColors.primaryCyan),
           ),
         ),
         child: child!,

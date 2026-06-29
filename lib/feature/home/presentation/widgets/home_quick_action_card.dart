@@ -24,16 +24,23 @@ class HomeQuickActionCard extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            theme.colorScheme.surface,
+            theme.colorScheme.primaryContainer.withValues(alpha: .22),
+          ],
+        ),
         borderRadius: BorderRadius.circular(22),
         border: Border.all(
-          color: theme.colorScheme.outlineVariant.withValues(alpha: .5),
+          color: theme.colorScheme.primary.withValues(alpha: .12),
         ),
         boxShadow: [
           BoxShadow(
-            color: theme.colorScheme.shadow.withValues(alpha: .04),
-            blurRadius: 16,
-            offset: const Offset(0, 8),
+            color: theme.colorScheme.primary.withValues(alpha: .08),
+            blurRadius: 24,
+            offset: const Offset(0, 12),
           ),
         ],
       ),
@@ -63,11 +70,13 @@ class HomeQuickActionCard extends StatelessWidget {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          theme.colorScheme.surface,
-                          theme.colorScheme.surface.withValues(alpha: 0.9),
-                          theme.colorScheme.surface.withValues(alpha: 0.1),
+                          theme.colorScheme.surface.withValues(alpha: 0.96),
+                          theme.colorScheme.primaryContainer.withValues(
+                            alpha: 0.28,
+                          ),
+                          theme.colorScheme.primary.withValues(alpha: 0.04),
                         ],
-                        stops: const [0.4, 0.7, 1.0],
+                        stops: const [0.2, 0.7, 1.0],
                       ),
                     ),
                   ),
@@ -97,7 +106,7 @@ class HomeQuickActionCard extends StatelessWidget {
                             padding: const EdgeInsets.all(4),
                             decoration: BoxDecoration(
                               color: theme.colorScheme.primary.withValues(
-                                alpha: .1,
+                                alpha: .14,
                               ),
                               shape: BoxShape.circle,
                             ),

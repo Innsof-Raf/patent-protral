@@ -194,7 +194,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.violet,
+        backgroundColor: AppColors.primaryCyan,
         onPressed: () {
           context.router.push(const AddDocumentRoute());
         },

@@ -16,14 +16,14 @@ class AlertActiveOutlinedButton extends StatelessWidget {
       style: OutlinedButton.styleFrom(
         padding: const EdgeInsets.all(20),
         backgroundColor: AppColors.white,
-        side: const BorderSide(color: AppColors.violet, width: .5),
+        side: const BorderSide(color: AppColors.primaryCyan, width: .5),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
       ),
       onPressed: onPressed,
       child: Text(
         title,
         style: AppTextStyles.bodyLargeRobotoBold.copyWith(
-          color: AppColors.violet,
+          color: AppColors.primaryCyan,
         ),
       ),
     );

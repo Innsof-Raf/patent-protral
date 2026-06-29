@@ -211,7 +211,9 @@ class _ActionButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: isAdded ? AppColors.violet : theme.colorScheme.surface,
+        backgroundColor: isAdded
+            ? AppColors.primaryCyan
+            : theme.colorScheme.surface,
         foregroundColor: isAdded ? Colors.white : theme.colorScheme.onSurface,
         elevation: 0,
         padding: const EdgeInsets.symmetric(horizontal: 8),

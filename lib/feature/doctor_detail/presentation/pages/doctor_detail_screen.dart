@@ -18,73 +18,81 @@ class DoctorDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: const CommonAppbar(
         title: AppStaticTexts.doctor,
-        backgroundColor: AppColors.violet,
+        backgroundColor: AppColors.primaryCyanDark,
         foregroundColor: AppColors.white,
       ),
       body: Column(
         children: [
           Expanded(
-            child: Container(
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-              width: double.infinity,
-              color: AppColors.violet,
-              child: LayoutBuilder(
-                builder: (context, constraints) => Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    Positioned(
-                      bottom: -constraints.maxWidth * .08,
-                      left: 0,
-                      right: 0,
-                      child: Row(
+            child: DecoratedBox(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [AppColors.primaryCyanDark, AppColors.primaryCyan],
+                ),
+              ),
+              child: Container(
+                padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                width: double.infinity,
+                child: LayoutBuilder(
+                  builder: (context, constraints) => Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Positioned(
+                        bottom: -constraints.maxWidth * .08,
+                        left: 0,
+                        right: 0,
+                        child: Row(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(6),
+                              child: CachedNetworkImage(
+                                imageUrl:
+                                    'https://www.pinoytechnoguide.com/wp-content/uploads/2021/10/vivo-X70-sample-picture-person-normal-768x576.jpg',
+                                width: constraints.maxWidth * .24,
+                                height: constraints.maxWidth * .24,
+                                fit: BoxFit.fill,
+                                alignment: Alignment.centerLeft,
+                                errorWidget: (context, url, error) {
+                                  return const CircleAvatar();
+                                },
+                              ),
+                            ),
+                            const Gap(10),
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SizedBox(
+                                  height:
+                                      constraints.maxWidth * .23 -
+                                      constraints.maxWidth * .08,
+                                  child: const Column(children: []),
+                                ),
+                                Container(height: constraints.maxWidth * .08),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(6),
-                            child: CachedNetworkImage(
-                              imageUrl:
-                                  'https://www.pinoytechnoguide.com/wp-content/uploads/2021/10/vivo-X70-sample-picture-person-normal-768x576.jpg',
-                              width: constraints.maxWidth * .24,
-                              height: constraints.maxWidth * .24,
-                              fit: BoxFit.fill,
-                              alignment: Alignment.centerLeft,
-                              errorWidget: (context, url, error) {
-                                return const CircleAvatar();
-                              },
+                          Text(
+                            'Dr.Manu James',
+                            style: AppTextStyles.xXLargeRobotoSemiBold.copyWith(
+                              color: theme.colorScheme.onPrimary,
                             ),
                           ),
-                          const Gap(10),
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SizedBox(
-                                height:
-                                    constraints.maxWidth * .23 -
-                                    constraints.maxWidth * .08,
-                                child: const Column(children: []),
-                              ),
-                              Container(height: constraints.maxWidth * .08),
-                            ],
+                          Text(
+                            'Internal Medicine',
+                            style: AppTextStyles.subHeadingSemiBoldRoboto
+                                .copyWith(color: theme.colorScheme.onPrimary),
                           ),
                         ],
                       ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Dr.Manu James',
-                          style: AppTextStyles.xXLargeRobotoSemiBold.copyWith(
-                            color: theme.colorScheme.onPrimary,
-                          ),
-                        ),
-                        Text(
-                          'Internal Medicine',
-                          style: AppTextStyles.subHeadingSemiBoldRoboto
-                              .copyWith(color: theme.colorScheme.onPrimary),
-                        ),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

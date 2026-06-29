@@ -65,6 +65,176 @@ class MyApp extends StatelessWidget {
 
   const MyApp({super.key, this.initialUser});
 
+  ThemeData _buildTheme() {
+    final colorScheme =
+        ColorScheme.fromSeed(
+          seedColor: AppColors.primaryCyan,
+          brightness: Brightness.light,
+        ).copyWith(
+          primary: AppColors.primaryCyan,
+          onPrimary: AppColors.white,
+          primaryContainer: const Color(0xffCFF8FF),
+          onPrimaryContainer: const Color(0xff0B3C4A),
+          secondary: const Color(0xff14B8A6),
+          onSecondary: AppColors.white,
+          secondaryContainer: const Color(0xffCCFBF1),
+          surface: AppColors.white,
+          surfaceContainerHighest: const Color(0xffEAF7FA),
+          outline: const Color(0xffA5C4CC),
+          outlineVariant: const Color(0xffD1E6EB),
+          onSurface: AppColors.textDark,
+          onSurfaceVariant: AppColors.textLight,
+          error: AppColors.red,
+          shadow: const Color(0xff0F172A),
+        );
+
+    final baseTheme = ThemeData(
+      useMaterial3: true,
+      colorScheme: colorScheme,
+      primaryColor: AppColors.primaryCyan,
+      scaffoldBackgroundColor: const Color(0xffF6FCFD),
+      canvasColor: AppColors.white,
+      dividerColor: colorScheme.outlineVariant,
+      appBarTheme: const AppBarTheme(
+        systemOverlayStyle: _systemUiOverlayStyle,
+        backgroundColor: Colors.transparent,
+        foregroundColor: AppColors.textDark,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        surfaceTintColor: Colors.transparent,
+        centerTitle: false,
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          foregroundColor: colorScheme.primary,
+          textStyle: AppTextStyles.bodyTextRobotoSemiBold,
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          elevation: 0,
+          backgroundColor: colorScheme.primary,
+          foregroundColor: colorScheme.onPrimary,
+          disabledBackgroundColor: AppColors.disabledBackgroundColor,
+          disabledForegroundColor: AppColors.disabledTextColor,
+          minimumSize: const Size.fromHeight(52),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+          ),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: colorScheme.primary,
+          side: BorderSide(color: colorScheme.primary.withValues(alpha: .2)),
+          minimumSize: const Size.fromHeight(52),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+          ),
+        ),
+      ),
+      filledButtonTheme: FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+          backgroundColor: colorScheme.primary,
+          foregroundColor: colorScheme.onPrimary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+          ),
+        ),
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: colorScheme.primary,
+        foregroundColor: colorScheme.onPrimary,
+        elevation: 0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      ),
+      cardTheme: CardThemeData(
+        color: AppColors.white,
+        elevation: 0,
+        shadowColor: colorScheme.shadow.withValues(alpha: .06),
+        surfaceTintColor: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24),
+          side: BorderSide(
+            color: colorScheme.outlineVariant.withValues(alpha: .8),
+          ),
+        ),
+      ),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        color: colorScheme.primary,
+        linearTrackColor: colorScheme.primaryContainer,
+        circularTrackColor: colorScheme.primaryContainer.withValues(alpha: .45),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        contentPadding: const EdgeInsets.all(15),
+        labelStyle: AppTextStyles.largeRobotoNormal,
+        floatingLabelStyle: AppTextStyles.bodyTextRoboto.copyWith(
+          color: colorScheme.primary,
+        ),
+        hintStyle: AppTextStyles.bodyTextRoboto.copyWith(
+          color: colorScheme.onSurfaceVariant,
+        ),
+        filled: true,
+        fillColor: colorScheme.surfaceContainerHighest.withValues(alpha: .6),
+        errorMaxLines: 2,
+        errorStyle: AppTextStyles.bodyTextInter.copyWith(color: AppColors.red),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: BorderSide(color: colorScheme.outlineVariant),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: const BorderSide(color: AppColors.red),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: const BorderSide(color: AppColors.red, width: 1.4),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: colorScheme.primary, width: 1.4),
+          borderRadius: BorderRadius.circular(18),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: BorderSide(color: colorScheme.outlineVariant),
+        ),
+      ),
+      bottomSheetTheme: const BottomSheetThemeData(
+        backgroundColor: AppColors.white,
+        surfaceTintColor: Colors.transparent,
+      ),
+      snackBarTheme: SnackBarThemeData(
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: colorScheme.inverseSurface,
+        contentTextStyle: AppTextStyles.bodyTextRoboto.copyWith(
+          color: colorScheme.onInverseSurface,
+        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+      ),
+      textTheme: TextTheme(
+        displayLarge: AppTextStyles.xXXLargeRobotoSemiBold,
+        displayMedium: AppTextStyles.xXLargeRobotoSemiBold,
+        headlineLarge: AppTextStyles.extraLargeRobotoBold,
+        headlineMedium: AppTextStyles.extraLargeRobotoSemiBold,
+        headlineSmall: AppTextStyles.subHeadingSemiBoldRoboto,
+        titleLarge: AppTextStyles.largeBoldRoboto,
+        titleMedium: AppTextStyles.largeSemiBoldRoboto,
+        titleSmall: AppTextStyles.largeRobotoNormal,
+        bodyLarge: AppTextStyles.bodyLargeRobotoBold,
+        bodyMedium: AppTextStyles.bodyLargeRobotoSemiBold,
+        bodySmall: AppTextStyles.bodyTextInter,
+        labelLarge: AppTextStyles.bodyTextRobotoSemiBold,
+        labelMedium: AppTextStyles.bodySemiBoldRoboto,
+        labelSmall: AppTextStyles.bodySmallRobotoNormal,
+      ),
+    );
+
+    return baseTheme;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -107,76 +277,7 @@ class MyApp extends StatelessWidget {
           FlutterNativeSplash.remove();
           return child!;
         },
-        theme: ThemeData(
-          colorScheme: const ColorScheme.light(
-            primary: AppColors.violet,
-            onPrimary: AppColors.white,
-            onSurface: AppColors.textDark,
-          ),
-          primaryColor: AppColors.violet,
-          scaffoldBackgroundColor: AppColors.white,
-          appBarTheme: const AppBarTheme(
-            systemOverlayStyle: _systemUiOverlayStyle,
-          ),
-          textButtonTheme: TextButtonThemeData(
-            style: TextButton.styleFrom(
-              padding: EdgeInsets.zero,
-              foregroundColor: AppColors.textLight,
-            ),
-          ),
-          primarySwatch: Colors.blue,
-          textTheme: TextTheme(
-            displayLarge: AppTextStyles.xXXLargeRobotoSemiBold,
-            displayMedium: AppTextStyles.xXLargeRobotoSemiBold,
-            headlineLarge: AppTextStyles.extraLargeRobotoBold,
-            headlineMedium: AppTextStyles.extraLargeRobotoSemiBold,
-            headlineSmall: AppTextStyles.subHeadingSemiBoldRoboto,
-            titleLarge: AppTextStyles.largeBoldRoboto,
-            titleMedium: AppTextStyles.largeSemiBoldRoboto,
-            titleSmall: AppTextStyles.largeRobotoNormal,
-            bodyLarge: AppTextStyles.bodyLargeRobotoBold,
-            bodyMedium: AppTextStyles.bodyLargeRobotoSemiBold,
-            bodySmall: AppTextStyles.bodyTextInter,
-            labelLarge: AppTextStyles.bodyTextRobotoSemiBold,
-            labelMedium: AppTextStyles.bodySemiBoldRoboto,
-            labelSmall: AppTextStyles.bodySmallRobotoNormal,
-          ),
-          inputDecorationTheme: InputDecorationTheme(
-            contentPadding: const EdgeInsets.all(15),
-            labelStyle: AppTextStyles.largeRobotoNormal,
-            floatingLabelStyle: AppTextStyles.bodyTextRoboto,
-            errorMaxLines: 2,
-            errorStyle: AppTextStyles.bodyTextInter.copyWith(
-              color: AppColors.red,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(4),
-              borderSide: const BorderSide(
-                color: AppColors.textFormFieldBackgroundColor,
-              ),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(4),
-              borderSide: const BorderSide(color: AppColors.red),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(4),
-              borderSide: const BorderSide(color: AppColors.red),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: AppColors.textFormFieldBackgroundColor,
-              ),
-              borderRadius: BorderRadius.circular(4),
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(4),
-              borderSide: const BorderSide(
-                color: Color.fromRGBO(202, 212, 224, 1),
-              ),
-            ),
-          ),
-        ),
+        theme: _buildTheme(),
         routerConfig: _appRouter.config(
           deepLinkBuilder: (deepLink) => DeepLink(
             initialUser != null ? [const MainRoute()] : [const LoginRoute()],

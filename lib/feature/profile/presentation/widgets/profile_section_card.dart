@@ -18,16 +18,23 @@ class ProfileSectionCard extends StatelessWidget {
       width: double.infinity,
       padding: padding,
       decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            theme.colorScheme.surface,
+            theme.colorScheme.primaryContainer.withValues(alpha: .18),
+          ],
+        ),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: theme.colorScheme.outlineVariant.withValues(alpha: .55),
+          color: theme.colorScheme.primary.withValues(alpha: .12),
         ),
         boxShadow: [
           BoxShadow(
-            color: theme.colorScheme.shadow.withValues(alpha: .05),
-            blurRadius: 18,
-            offset: const Offset(0, 10),
+            color: theme.colorScheme.primary.withValues(alpha: .08),
+            blurRadius: 26,
+            offset: const Offset(0, 14),
           ),
         ],
       ),
