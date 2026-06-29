@@ -8,6 +8,7 @@ import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/lab/domain/entities/item.dart';
@@ -56,21 +57,8 @@ class LabGridItemTile extends StatelessWidget {
                     child: CachedNetworkImage(
                       imageUrl:
                           '${ConstantUrls.packageImageUrl}/${item.idItem}/${item.itemImg}',
-                      placeholder: (context, url) => Container(
-                        color: theme.colorScheme.surfaceContainerHighest
-                            .withValues(alpha: 0.3),
-                        child: const Center(
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        ),
-                      ),
-                      errorWidget: (context, url, error) => Container(
-                        color: theme.colorScheme.surfaceContainerHighest
-                            .withValues(alpha: 0.3),
-                        child: Image.asset(
-                          Assets.images.imageLoadingFailedImage.path,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                      placeholder: CommonNetworkImage.placeholder,
+                      errorWidget: CommonNetworkImage.errorWidget,
                       width: double.infinity,
                       fit: BoxFit.cover,
                     ),

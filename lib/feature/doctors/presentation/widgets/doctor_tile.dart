@@ -1,13 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
@@ -147,21 +146,8 @@ class _DoctorAvatar extends StatelessWidget {
           imageUrl:
               '${ConstantUrls.doctorImageUrl}/${doctor.idDoctor}/${doctor.doctorImage}',
           fit: BoxFit.cover,
-          placeholder: (context, url) => Center(
-            child: CircularProgressIndicator(
-              strokeWidth: 2,
-              color: theme.colorScheme.primary,
-            ),
-          ),
-          errorWidget: (context, url, error) {
-            return Padding(
-              padding: const EdgeInsets.all(16),
-              child: SvgPicture.asset(
-                Assets.images.doctorImageLoadingFailedImage.path,
-                fit: BoxFit.contain,
-              ),
-            );
-          },
+          placeholder: CommonNetworkImage.placeholder,
+          errorWidget: CommonNetworkImage.errorWidget,
         ),
       ),
     );

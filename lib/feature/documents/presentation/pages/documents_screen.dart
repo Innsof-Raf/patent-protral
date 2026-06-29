@@ -11,6 +11,7 @@ import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.
 import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/documents/domain/entities/document.dart';
 import 'package:patient_portal/feature/documents/presentation/bloc/documents_bloc/documents_bloc.dart';
@@ -107,14 +108,8 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
                               height: 24,
                               width: 24,
                               fit: BoxFit.cover,
-                              errorWidget: (context, url, error) {
-                                return Image.asset(
-                                  Assets.images.memberDefaultProfileImage.path,
-                                  height: 24,
-                                  width: 24,
-                                  fit: BoxFit.cover,
-                                );
-                              },
+                              placeholder: CommonNetworkImage.placeholder,
+                              errorWidget: CommonNetworkImage.errorWidget,
                             ),
                           ),
                           const Gap(8),

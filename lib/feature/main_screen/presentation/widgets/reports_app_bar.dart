@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/main_shell_app_bar.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/reports/domain/usecases/params/reports_params.dart';
@@ -95,14 +96,8 @@ class _ReportsMemberSelector extends StatelessWidget {
                           height: 24,
                           width: 24,
                           fit: BoxFit.cover,
-                          errorWidget: (context, url, error) {
-                            return Image.asset(
-                              Assets.images.memberDefaultProfileImage.path,
-                              height: 24,
-                              width: 24,
-                              fit: BoxFit.cover,
-                            );
-                          },
+                          placeholder: CommonNetworkImage.placeholder,
+                          errorWidget: CommonNetworkImage.errorWidget,
                         ),
                       ),
                       const Gap(8),

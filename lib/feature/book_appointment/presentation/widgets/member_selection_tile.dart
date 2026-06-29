@@ -6,6 +6,7 @@ import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
@@ -64,18 +65,7 @@ class MemberSelectionTile extends StatelessWidget {
                 width: 48,
                 height: 48,
                 fit: BoxFit.cover,
-                placeholder: (context, url) => Container(
-                  width: 48,
-                  height: 48,
-                  color: colorScheme.surfaceContainerHighest,
-                  child: const Center(
-                    child: SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    ),
-                  ),
-                ),
+                placeholder: CommonNetworkImage.placeholder,
                 errorWidget: (context, url, error) => Container(
                   width: 48,
                   height: 48,

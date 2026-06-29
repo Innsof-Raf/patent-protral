@@ -2,12 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_bottom_action_button.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/lab/domain/entities/item.dart';
@@ -49,19 +49,10 @@ class LabItemDetailScreen extends StatelessWidget {
                             child: CachedNetworkImage(
                               imageUrl:
                                   '${ConstantUrls.packageImageUrl}/${selectedItem.idItem}/${selectedItem.itemImg}',
-                              errorWidget: (context, url, error) {
-                                return Image.asset(
-                                  Assets.images.imageLoadingFailedImage.path,
-                                );
-                              },
+                              placeholder: CommonNetworkImage.placeholder,
+                              errorWidget: CommonNetworkImage.errorWidget,
                               fadeInDuration: const Duration(seconds: 0),
                               fadeOutDuration: const Duration(seconds: 0),
-                              progressIndicatorBuilder:
-                                  (context, url, progress) {
-                                    return const Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  },
                               width: double.infinity,
                               fit: BoxFit.fill,
                             ),

@@ -9,6 +9,7 @@ import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_outlined_button.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
@@ -287,6 +288,7 @@ class _ProfilePreview extends StatelessWidget {
                     : CachedNetworkImage(
                         imageUrl: imageUrl!,
                         fit: BoxFit.cover,
+                        placeholder: CommonNetworkImage.placeholder,
                         errorWidget: (context, url, error) => _FallbackAvatar(
                           text: fallbackText,
                           backgroundColor: colorScheme.surfaceContainerHighest,

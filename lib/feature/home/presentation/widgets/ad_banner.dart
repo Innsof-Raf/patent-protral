@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/home/domain/entities/ad_banner.dart'
     as home_entity;
@@ -45,13 +46,15 @@ class AdBanner extends StatelessWidget {
                         : '${ConstantUrls.packageImageUrl}/${adBanner.idPrimary}/${adBanner.imageName}',
                     fadeInDuration: Duration.zero,
                     fadeOutDuration: Duration.zero,
-                    progressIndicatorBuilder: (context, url, progress) =>
-                        const Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) => Image.asset(
-                      Assets.images.imageLoadingFailedImage.path,
-                      width: double.infinity,
-                      fit: BoxFit.contain,
-                    ),
+                    placeholder: CommonNetworkImage.placeholder,
+                    errorWidget: (context, url, error) =>
+                        CommonNetworkImage.errorWidget(
+                          context,
+                          url,
+                          error,
+                          fallbackImage:
+                              Assets.images.imageLoadingFailedImage.path,
+                        ),
                     fit: BoxFit.cover,
                     width: double.infinity,
                   )

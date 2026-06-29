@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/helpers/edit_profile_detail_screen_helpers.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/widgets/edit_profile_section_card.dart';
 
@@ -76,13 +77,21 @@ class _EditableProfileImage extends StatelessWidget {
     final theme = Theme.of(context);
     final pickedImage = localImage;
 
-    ImageProvider<Object> provider;
+    Widget content;
     if (pickedImage != null) {
-      provider = FileImage(pickedImage);
+      content = Image.file(pickedImage, fit: BoxFit.cover);
     } else if (image != null) {
-      provider = CachedNetworkImageProvider(image!);
+      content = CachedNetworkImage(
+        imageUrl: image!,
+        fit: BoxFit.cover,
+        placeholder: CommonNetworkImage.placeholder,
+        errorWidget: CommonNetworkImage.errorWidget,
+      );
     } else {
-      provider = AssetImage(Assets.images.memberDefaultProfileImage.path);
+      content = Image.asset(
+        Assets.images.memberDefaultProfileImage.path,
+        fit: BoxFit.cover,
+      );
     }
 
     return Container(
@@ -93,10 +102,7 @@ class _EditableProfileImage extends StatelessWidget {
         shape: BoxShape.circle,
         color: theme.colorScheme.primaryContainer.withValues(alpha: .46),
       ),
-      child: CircleAvatar(
-        backgroundColor: theme.colorScheme.surfaceContainerHighest,
-        backgroundImage: provider,
-      ),
+      child: ClipOval(child: content),
     );
   }
 }

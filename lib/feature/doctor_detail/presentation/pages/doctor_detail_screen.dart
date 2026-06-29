@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 
 @RoutePage(name: 'DoctorDetailRoute')
@@ -54,9 +55,8 @@ class DoctorDetailScreen extends StatelessWidget {
                                 height: constraints.maxWidth * .24,
                                 fit: BoxFit.fill,
                                 alignment: Alignment.centerLeft,
-                                errorWidget: (context, url, error) {
-                                  return const CircleAvatar();
-                                },
+                                placeholder: CommonNetworkImage.placeholder,
+                                errorWidget: CommonNetworkImage.errorWidget,
                               ),
                             ),
                             const Gap(10),

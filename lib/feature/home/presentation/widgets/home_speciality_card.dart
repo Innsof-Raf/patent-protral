@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
@@ -127,22 +128,8 @@ class _HomeSpecialityImage extends StatelessWidget {
                   '${ConstantUrls.specialityImageUrl}/${speciality.idSpeciality}/$image',
               fadeInDuration: Duration.zero,
               fit: BoxFit.contain,
-              errorWidget: (context, url, error) => Icon(
-                Icons.local_hospital_outlined,
-                size: 25,
-                color: theme.colorScheme.primary,
-              ),
-              progressIndicatorBuilder: (context, url, progress) => Center(
-                child: SizedBox(
-                  width: 16,
-                  height: 16,
-                  child: CircularProgressIndicator(
-                    value: progress.progress,
-                    strokeWidth: 2,
-                    color: theme.colorScheme.primary,
-                  ),
-                ),
-              ),
+              placeholder: CommonNetworkImage.placeholder,
+              errorWidget: CommonNetworkImage.errorWidget,
             ),
     );
   }

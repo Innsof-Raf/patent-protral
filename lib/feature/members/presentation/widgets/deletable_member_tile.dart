@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/members/presentation/bloc/delete_member_bloc/delete_member_bloc.dart';
@@ -149,6 +150,7 @@ class _MemberAvatar extends StatelessWidget {
               : CachedNetworkImage(
                   imageUrl: imageUrl,
                   fit: BoxFit.cover,
+                  placeholder: CommonNetworkImage.placeholder,
                   errorWidget: (context, url, error) =>
                       _MemberAvatarFallback(member: member),
                 ),

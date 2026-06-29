@@ -7,6 +7,7 @@ import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
@@ -136,6 +137,7 @@ class _MemberAvatar extends StatelessWidget {
                 : CachedNetworkImage(
                     imageUrl: imageUrl,
                     fit: BoxFit.cover,
+                    placeholder: CommonNetworkImage.placeholder,
                     errorWidget: (context, url, error) =>
                         _MemberAvatarFallback(member: member),
                   ),

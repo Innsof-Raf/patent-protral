@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 
 class MedicalInsuranceWidget extends StatelessWidget {
@@ -18,10 +18,8 @@ class MedicalInsuranceWidget extends StatelessWidget {
       fit: BoxFit.contain,
       fadeInDuration: const Duration(seconds: 0),
       fadeOutDuration: const Duration(seconds: 0),
-      errorWidget: (context, url, error) => Image.asset(
-        Assets.images.imageLoadingFailedImage.path,
-        fit: BoxFit.contain,
-      ),
+      placeholder: CommonNetworkImage.placeholder,
+      errorWidget: CommonNetworkImage.errorWidget,
     );
   }
 }
