@@ -6,8 +6,6 @@ import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/feature_header.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
 import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
 import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc/doctor_bloc.dart';
 import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc/search_doctor_bloc.dart';
@@ -71,43 +69,71 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
             );
           }
 
-          return CustomScrollView(
-            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-            slivers: [
-              SliverPadding(
-                padding: const EdgeInsets.fromLTRB(16, 16, 16, 5),
-                sliver: SliverToBoxAdapter(
-                  child: FeatureHeader(
-                    title: AppStaticTexts.findDoctor,
-                    subtitle: AppStaticTexts.findSpecialistSubtitle,
-                    badgeText: state.doctors.isEmpty
-                        ? null
-                        : state.doctors.length == 1
-                        ? '1 ${AppStaticTexts.doctorAvailable}'
-                        : '${state.doctors.length} ${AppStaticTexts.doctorsAvailable}',
-                  ),
-                ),
-              ),
-              if (state.doctors.isNotEmpty)
-                SliverSearchHeader(
-                  controller: searchController,
-                  title: AppStaticTexts.searchDoctorHint,
-                  hintText: AppStaticTexts.searchDoctors,
-                  onChanged: (value) {
-                    context.read<SearchDoctorBloc>().add(
-                      SearchDoctor(
-                        searchKey: value.toLowerCase(),
-                        doctors: state.doctors,
+          return RefreshIndicator(
+            onRefresh: () async => _fetchDoctors(),
+            child: CustomScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              slivers: [
+                SliverAppBar(
+                  floating: true,
+                  pinned: true,
+                  elevation: 0,
+                  scrolledUnderElevation: 0,
+                  backgroundColor: theme.colorScheme.surface,
+                  surfaceTintColor: theme.colorScheme.surface,
+                  centerTitle: false,
+                  automaticallyImplyLeading: false,
+                  title: Container(
+                    height: 46,
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                    ).copyWith(top: 5),
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.surfaceContainerHighest
+                          .withValues(alpha: 0.3),
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: theme.colorScheme.outlineVariant.withValues(
+                          alpha: 0.5,
+                        ),
                       ),
-                    );
-                  },
+                    ),
+                    child: TextField(
+                      controller: searchController,
+                      onChanged: (value) {
+                        context.read<SearchDoctorBloc>().add(
+                          SearchDoctor(
+                            searchKey: value.toLowerCase(),
+                            doctors: state.doctors,
+                          ),
+                        );
+                      },
+                      decoration: InputDecoration(
+                        hintText: AppStaticTexts.searchDoctors,
+                        prefixIcon: Icon(
+                          Icons.search_rounded,
+                          color: theme.colorScheme.onSurface.withValues(
+                            alpha: 0.4,
+                          ),
+                          size: 20,
+                        ),
+                        border: InputBorder.none,
+                        contentPadding: const EdgeInsets.symmetric(
+                          vertical: 11,
+                        ),
+                      ),
+                    ),
+                  ),
+                  titleSpacing: 0,
                 ),
-              _DoctorsResultSliver(
-                allDoctors: state.doctors,
-                searchController: searchController,
-                onRefresh: _fetchDoctors,
-              ),
-            ],
+                _DoctorsResultSliver(
+                  allDoctors: state.doctors,
+                  searchController: searchController,
+                  onRefresh: _fetchDoctors,
+                ),
+              ],
+            ),
           );
         },
       ),

@@ -38,23 +38,22 @@ class DoctorTile extends StatelessWidget {
 
     return Material(
       color: theme.colorScheme.surface,
-      borderRadius: BorderRadius.circular(22),
+      borderRadius: BorderRadius.circular(20),
       child: InkWell(
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(20),
         onTap: () => _onTileTap(context),
         child: Container(
-          padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: theme.colorScheme.surface,
-            borderRadius: BorderRadius.circular(22),
+            borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: theme.colorScheme.outlineVariant.withValues(alpha: .55),
+              color: theme.colorScheme.outlineVariant.withValues(alpha: .5),
             ),
             boxShadow: [
               BoxShadow(
-                color: theme.colorScheme.shadow.withValues(alpha: .05),
-                blurRadius: 18,
-                offset: const Offset(0, 10),
+                color: theme.colorScheme.shadow.withValues(alpha: .03),
+                blurRadius: 12,
+                offset: const Offset(0, 4),
               ),
             ],
           ),
@@ -63,53 +62,75 @@ class DoctorTile extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      _DoctorAvatar(doctor: doctor, size: 84),
-                      const Gap(16),
-                      Expanded(
-                        child: Container(
-                          constraints: const BoxConstraints(minHeight: 84),
-                          alignment: Alignment.centerLeft,
-                          child: _DoctorDetails(doctor: doctor),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _DoctorAvatar(doctor: doctor, size: 80),
+                            const Gap(16),
+                            Expanded(child: _DoctorDetails(doctor: doctor)),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                  if (doctor.branch.trim().isNotEmpty &&
-                      doctor.branch != '0') ...[
-                    const Gap(12),
-                    _LocationChip(branch: doctor.branch.trim()),
-                  ],
-                  if (doctor.isOnline) ...[
-                    const Gap(12),
-                    _AvailabilitySlot(
-                      icon: Icons.videocam_rounded,
-                      title: AppStaticTexts.videoConsultation,
-                      subtitle: doctor.availability.isNotEmpty
-                          ? doctor.availability
-                          : AppStaticTexts.available,
-                      color: const Color(0xFF1976D2),
-                      backgroundColor: const Color(0xFFE3F2FD),
+                        if (doctor.branch.trim().isNotEmpty &&
+                            doctor.branch != '0') ...[
+                          const Gap(12),
+                          _LocationChip(branch: doctor.branch.trim()),
+                        ],
+                      ],
                     ),
-                  ],
-                  if (doctor.availability.isNotEmpty &&
-                      doctor.availability.toLowerCase() != 'not available') ...[
-                    const Gap(8),
-                    _AvailabilitySlot(
-                      icon: Icons.business_rounded,
-                      title: AppStaticTexts.inPersonConsultation,
-                      subtitle: doctor.availability,
-                      color: const Color(0xFF388E3C),
-                      backgroundColor: const Color(0xFFE8F5E9),
+                  ),
+                  if (doctor.isOnline ||
+                      (doctor.availability.isNotEmpty &&
+                          doctor.availability.toLowerCase() !=
+                              'not available')) ...[
+                    Divider(
+                      height: 1,
+                      thickness: 1,
+                      color: theme.colorScheme.outlineVariant.withValues(
+                        alpha: .4,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Column(
+                        children: [
+                          if (doctor.isOnline) ...[
+                            _AvailabilitySlot(
+                              icon: Icons.videocam_rounded,
+                              title: AppStaticTexts.videoConsultation,
+                              subtitle: doctor.availability.isNotEmpty
+                                  ? doctor.availability
+                                  : AppStaticTexts.available,
+                              color: const Color(0xFF1976D2),
+                              backgroundColor: const Color(0xFFE3F2FD),
+                            ),
+                          ],
+                          if (doctor.availability.isNotEmpty &&
+                              doctor.availability.toLowerCase() !=
+                                  'not available') ...[
+                            if (doctor.isOnline) const Gap(8),
+                            _AvailabilitySlot(
+                              icon: Icons.business_rounded,
+                              title: AppStaticTexts.inPersonConsultation,
+                              subtitle: doctor.availability,
+                              color: const Color(0xFF388E3C),
+                              backgroundColor: const Color(0xFFE8F5E9),
+                            ),
+                          ],
+                        ],
+                      ),
                     ),
                   ],
                 ],
               ),
               if (bio != null)
                 Positioned(
-                  top: 0,
-                  right: 0,
+                  top: 8,
+                  right: 8,
                   child: _DoctorInfoButton(doctor: doctor, bio: bio),
                 ),
             ],
@@ -166,17 +187,12 @@ class _DoctorDetails extends StatelessWidget {
     final List<String> metaItems = [];
     if (doctor.experience.trim().isNotEmpty && doctor.experience != '0') {
       metaItems.add(
-        '${AppStaticTexts.experiencePrefix} ${doctor.experience} ${AppStaticTexts.yearsExperience}',
+        '${AppStaticTexts.experiencePrefix} ${doctor.experience}${AppStaticTexts.yearsExperience}',
       );
     }
     if (doctor.consultationFee > 0) {
       metaItems.add(
         '${AppStaticTexts.feePrefix} ${AppStaticTexts.qar} ${doctor.consultationFee.toStringAsFixed(0)}',
-      );
-    }
-    if (doctor.knownLanguages.isNotEmpty) {
-      metaItems.add(
-        '${AppStaticTexts.speaksPrefix} ${doctor.knownLanguages.join(', ')}',
       );
     }
 
@@ -189,30 +205,53 @@ class _DoctorDetails extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: AppTextStyles.largeBoldRoboto.copyWith(
             color: theme.colorScheme.onSurface,
-            fontSize: 16,
-            height: 1.2,
+            fontSize: 18,
+            height: 1.1,
           ),
         ),
         const Gap(4),
         Text(
-          doctor.doctorSpeciality.trim().toTitleCase(),
+          doctor.doctorSpeciality.trim().toUpperCase(),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: AppTextStyles.bodyTextInter.copyWith(
-            color: theme.colorScheme.onSurfaceVariant,
+            color: theme.colorScheme.onSurfaceVariant.withValues(alpha: .8),
+            fontWeight: FontWeight.w600,
+            fontSize: 13,
+            letterSpacing: 0.5,
+          ),
+        ),
+        const Gap(2),
+        Text(
+          doctor.departmentName.trim().toTitleCase(),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: AppTextStyles.bodyTextInter.copyWith(
+            color: theme.colorScheme.onSurfaceVariant.withValues(alpha: .7),
             fontWeight: FontWeight.w500,
-            fontSize: 12,
+            fontSize: 13,
           ),
         ),
         if (metaItems.isNotEmpty) ...[
           const Gap(4),
           Text(
             metaItems.join(' | '),
-            maxLines: 2,
+            style: AppTextStyles.bodyTextInter.copyWith(
+              color: theme.colorScheme.onSurfaceVariant.withValues(alpha: .6),
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ],
+        if (doctor.knownLanguages.isNotEmpty) ...[
+          const Gap(2),
+          Text(
+            '${AppStaticTexts.speaksPrefix} ${doctor.knownLanguages.join(', ')}',
+            maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: AppTextStyles.bodyTextInter.copyWith(
-              color: theme.colorScheme.onSurfaceVariant.withValues(alpha: .7),
-              fontSize: 11,
+              color: theme.colorScheme.onSurfaceVariant.withValues(alpha: .6),
+              fontSize: 12,
               fontWeight: FontWeight.w400,
             ),
           ),
@@ -231,18 +270,18 @@ class _LocationChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       decoration: BoxDecoration(
-        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: .4),
+        color: const Color(0xFFE3F2FD).withValues(alpha: 0.4),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
+          const Icon(
             Icons.location_on_rounded,
             size: 14,
-            color: theme.colorScheme.error,
+            color: Color(0xFFE53935),
           ),
           const Gap(6),
           Flexible(
@@ -251,9 +290,9 @@ class _LocationChip extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: AppTextStyles.bodyTextInter.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-                fontSize: 11,
-                fontWeight: FontWeight.w500,
+                color: theme.colorScheme.onSurfaceVariant.withValues(alpha: .9),
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),
