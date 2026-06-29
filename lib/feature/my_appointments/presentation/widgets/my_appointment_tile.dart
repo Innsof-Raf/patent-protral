@@ -16,6 +16,7 @@ import 'package:patient_portal/core/resources/helpers.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
+import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
 import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
@@ -263,9 +264,24 @@ class MyAppointmentTile extends StatelessWidget {
 
     context.router.push(
       BookAppointmentRoute(
-        doctorName: appointment.doctorName,
-        idDoctor: appointment.idDoctor,
-        doctorImage: _doctorImageUrl,
+        doctor: Doctor(
+          doctorId: appointment.doctorId,
+          idDoctor: appointment.idDoctor,
+          idDept: 0,
+          idBusUnit: 0,
+          busUnitName: appointment.busUnitName,
+          doctorName: appointment.doctorName,
+          departmentName: appointment.departName,
+          doctorSpeciality: appointment.speciality,
+          experience: '',
+          branch: appointment.branch,
+          knownLanguages: [],
+          doctorImage: appointment.profileUrl,
+          consultationFee: 0,
+          onlineConsultationFee: 0,
+          isOnline: false,
+          doctorBio: '',
+        ),
         appointmentId: appointment.id,
       ),
     );
@@ -330,9 +346,24 @@ class MyAppointmentTile extends StatelessWidget {
 
     context.router.push(
       BookAppointmentRoute(
-        doctorName: appointment.doctorName,
-        idDoctor: appointment.idDoctor,
-        doctorImage: _doctorImageUrl,
+        doctor: Doctor(
+          doctorId: appointment.doctorId,
+          idDoctor: appointment.idDoctor,
+          idDept: 0,
+          idBusUnit: 0,
+          busUnitName: appointment.busUnitName,
+          doctorName: appointment.doctorName,
+          departmentName: appointment.departName,
+          doctorSpeciality: appointment.speciality,
+          experience: '',
+          branch: appointment.branch,
+          knownLanguages: [],
+          doctorImage: appointment.profileUrl,
+          consultationFee: 0,
+          onlineConsultationFee: 0,
+          isOnline: false,
+          doctorBio: '',
+        ),
         appointmentId: 0,
       ),
     );

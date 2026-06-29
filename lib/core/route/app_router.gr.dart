@@ -78,18 +78,14 @@ class BookAppointmentRoute extends PageRouteInfo<BookAppointmentRouteArgs> {
   BookAppointmentRoute({
     Key? key,
     required int appointmentId,
-    required String doctorImage,
-    required String doctorName,
-    required int idDoctor,
+    required Doctor doctor,
     List<PageRouteInfo>? children,
   }) : super(
          BookAppointmentRoute.name,
          args: BookAppointmentRouteArgs(
            key: key,
            appointmentId: appointmentId,
-           doctorImage: doctorImage,
-           doctorName: doctorName,
-           idDoctor: idDoctor,
+           doctor: doctor,
          ),
          initialChildren: children,
        );
@@ -103,9 +99,7 @@ class BookAppointmentRoute extends PageRouteInfo<BookAppointmentRouteArgs> {
       return BookAppointmentScreen(
         key: args.key,
         appointmentId: args.appointmentId,
-        doctorImage: args.doctorImage,
-        doctorName: args.doctorName,
-        idDoctor: args.idDoctor,
+        doctor: args.doctor,
       );
     },
   );
@@ -115,24 +109,18 @@ class BookAppointmentRouteArgs {
   const BookAppointmentRouteArgs({
     this.key,
     required this.appointmentId,
-    required this.doctorImage,
-    required this.doctorName,
-    required this.idDoctor,
+    required this.doctor,
   });
 
   final Key? key;
 
   final int appointmentId;
 
-  final String doctorImage;
-
-  final String doctorName;
-
-  final int idDoctor;
+  final Doctor doctor;
 
   @override
   String toString() {
-    return 'BookAppointmentRouteArgs{key: $key, appointmentId: $appointmentId, doctorImage: $doctorImage, doctorName: $doctorName, idDoctor: $idDoctor}';
+    return 'BookAppointmentRouteArgs{key: $key, appointmentId: $appointmentId, doctor: $doctor}';
   }
 
   @override
@@ -141,18 +129,11 @@ class BookAppointmentRouteArgs {
     if (other is! BookAppointmentRouteArgs) return false;
     return key == other.key &&
         appointmentId == other.appointmentId &&
-        doctorImage == other.doctorImage &&
-        doctorName == other.doctorName &&
-        idDoctor == other.idDoctor;
+        doctor == other.doctor;
   }
 
   @override
-  int get hashCode =>
-      key.hashCode ^
-      appointmentId.hashCode ^
-      doctorImage.hashCode ^
-      doctorName.hashCode ^
-      idDoctor.hashCode;
+  int get hashCode => key.hashCode ^ appointmentId.hashCode ^ doctor.hashCode;
 }
 
 /// generated route for

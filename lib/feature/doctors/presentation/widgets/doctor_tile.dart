@@ -29,15 +29,7 @@ class DoctorTile extends StatelessWidget {
     BookAppointmentScreenHelpers.createDateList();
     BookAppointmentScreenHelpers.selectedDateNotifier.value =
         BookAppointmentScreenHelpers.dateList[0];
-    context.router.push(
-      BookAppointmentRoute(
-        doctorName: doctor.doctorName,
-        idDoctor: doctor.idDoctor,
-        doctorImage:
-            '${ConstantUrls.doctorImageUrl}/${doctor.idDoctor}/${doctor.doctorImage}',
-        appointmentId: 0,
-      ),
-    );
+    context.router.push(BookAppointmentRoute(doctor: doctor, appointmentId: 0));
   }
 
   @override

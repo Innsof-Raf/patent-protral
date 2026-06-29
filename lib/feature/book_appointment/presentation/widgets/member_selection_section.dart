@@ -87,7 +87,7 @@ class MemberSelectionSection extends StatelessWidget {
               );
             },
           ),
-          const Gap(80),
+          const Gap(12),
         ],
       ),
     );

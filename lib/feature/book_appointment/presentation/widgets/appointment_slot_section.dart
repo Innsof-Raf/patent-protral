@@ -35,7 +35,6 @@ class AppointmentSlotSection extends StatelessWidget {
   }
 
   Widget _buildHeader(ThemeData theme, ColorScheme colorScheme) {
-    // Clean up shift text if it contains template tags
     final displayShift = shift.shift.split('<').first.trim();
 
     return Row(
@@ -80,20 +79,22 @@ class AppointmentSlotSection extends StatelessWidget {
   Widget _buildSlotsGrid() {
     return ValueListenableBuilder(
       valueListenable: BookAppointmentScreenHelpers.selectedSlotNotifier,
-      builder: (context, value, child) => GridView.builder(
-        padding: EdgeInsets.zero,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          childAspectRatio: 2.1,
-        ),
-        itemCount: shift.slots.length,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) => SlotTile(
-          isSelected: shift.slots[index].appdttm == value,
-          slot: shift.slots[index],
+      builder: (context, value, child) => SizedBox(
+        height: 110,
+        child: GridView.builder(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 12,
+            childAspectRatio: 0.45,
+          ),
+          itemCount: shift.slots.length,
+          itemBuilder: (context, index) => SlotTile(
+            isSelected: shift.slots[index].appdttm == value,
+            slot: shift.slots[index],
+          ),
         ),
       ),
     );

@@ -1,7 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
+import 'package:intl/intl.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/success_dialog.dart';
@@ -20,12 +24,14 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
     required this.doctorName,
     required this.doctorImage,
     required this.idDoctor,
+    required this.selectedTypeNotifier,
   });
 
   final int appointmentId;
   final String doctorName;
   final String doctorImage;
   final int idDoctor;
+  final ValueNotifier<int> selectedTypeNotifier;
 
   @override
   Widget build(BuildContext context) {
@@ -65,14 +71,129 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                 ],
               ),
               child: SafeArea(
-                child: ActiveButton(
-                  isLoading: state.isAppointmentLoading,
-                  onPressed: () => _onPressed(context, state),
-                  child: Text(
-                    appointmentId == 0
-                        ? AppStaticTexts.confirmBooking
-                        : AppStaticTexts.rescheduleAppointment,
-                  ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ValueListenableBuilder<DateTime?>(
+                        valueListenable:
+                            BookAppointmentScreenHelpers.selectedSlotNotifier,
+                        builder: (context, selectedSlot, child) {
+                          if (selectedSlot == null) {
+                            return Text(
+                              AppStaticTexts.selectSlotToBookAppointment,
+                              style: AppTextStyles.bodyTextRoboto.copyWith(
+                                color: AppColors.textLight,
+                                fontSize: 11,
+                              ),
+                            );
+                          }
+                          final isToday = DateUtils.isSameDay(
+                            selectedSlot,
+                            DateTime.now(),
+                          );
+                          final dateStr = isToday
+                              ? AppStaticTexts.today
+                              : DateFormat('d MMM, yyyy').format(selectedSlot);
+
+                          return Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                DateFormat('EEEE').format(selectedSlot),
+                                style: AppTextStyles.bodyTextRoboto.copyWith(
+                                  color: AppColors.textLight,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              const Gap(2),
+                              Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: DateFormat(
+                                        'h:mm a',
+                                      ).format(selectedSlot),
+                                      style: AppTextStyles.largeBoldRoboto
+                                          .copyWith(
+                                            color: AppColors.textDark,
+                                            fontSize: 16,
+                                          ),
+                                    ),
+                                    TextSpan(
+                                      text: ', ',
+                                      style: AppTextStyles.largeRobotoNormal
+                                          .copyWith(
+                                            color: AppColors.textLight,
+                                            fontSize: 16,
+                                          ),
+                                    ),
+                                    TextSpan(
+                                      text: dateStr,
+                                      style: AppTextStyles.largeRobotoNormal
+                                          .copyWith(
+                                            color: AppColors.textLight,
+                                            fontSize: 14,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const Gap(4),
+                              ValueListenableBuilder<int>(
+                                valueListenable: selectedTypeNotifier,
+                                builder: (context, type, child) {
+                                  final isVideo = type == 1;
+                                  final color = isVideo
+                                      ? AppColors.blue
+                                      : AppColors.lightGreen;
+                                  return Row(
+                                    children: [
+                                      Icon(
+                                        isVideo
+                                            ? Icons.videocam_rounded
+                                            : Icons.person_pin_circle_rounded,
+                                        size: 16,
+                                        color: color,
+                                      ),
+                                      const Gap(6),
+                                      Text(
+                                        isVideo
+                                            ? AppStaticTexts.video
+                                            : AppStaticTexts.inPerson,
+                                        style: AppTextStyles.bodyTextRoboto
+                                            .copyWith(
+                                              color: color,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 13,
+                                            ),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                    const Gap(16),
+                    SizedBox(
+                      width: 150,
+                      child: ActiveButton(
+                        height: 48,
+                        backgroundColor: AppColors.primaryCyanDark,
+                        isLoading: state.isAppointmentLoading,
+                        onPressed: () => _onPressed(context, state),
+                        child: Text(
+                          appointmentId == 0
+                              ? AppStaticTexts.continueText
+                              : AppStaticTexts.reschedule,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             );

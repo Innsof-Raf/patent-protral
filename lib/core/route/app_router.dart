@@ -5,6 +5,7 @@ import 'package:patient_portal/feature/add_member/presentation/pages/add_member_
 import 'package:patient_portal/feature/book_appointment/presentation/pages/book_appointment_page.dart';
 import 'package:patient_portal/feature/cart/presentation/pages/cart_screen.dart';
 import 'package:patient_portal/feature/doctor_detail/presentation/pages/doctor_detail_screen.dart';
+import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
 import 'package:patient_portal/feature/doctors/presentation/pages/doctors_screen.dart';
 import 'package:patient_portal/feature/documents/presentation/pages/documents_screen.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/pages/edit_profile_details_screen.dart';

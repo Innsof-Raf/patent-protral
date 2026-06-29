@@ -293,6 +293,14 @@ class AppStaticTexts {
       'Start adding items from the lab to see them here.';
 
   // Book Appointment
+  static const String doctorDetails = 'Doctor Details';
+  static const String inPerson = 'In Person';
+  static const String video = 'Video';
+  static const String consultationFees = 'Consultation Fees';
+  static const String swipeRightToSeeMore = 'Swipe right to see more →';
+  static const String today = 'Today';
+  static const String selectDate = 'Select Date';
+  static const String doctorInformation = 'Doctor Information';
   static const String unableToLoadAppointmentSlots =
       'Unable to load appointment slots';
   static const String appointmentBookingFailed = 'Appointment booking failed';
