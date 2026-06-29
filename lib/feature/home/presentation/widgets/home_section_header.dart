@@ -28,7 +28,7 @@ class HomeSectionHeader extends StatelessWidget {
     final mutedColor = foregroundColor.withValues(alpha: .68);
 
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Expanded(
           child: Column(
@@ -39,40 +39,34 @@ class HomeSectionHeader extends StatelessWidget {
                 style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                   color: foregroundColor,
                   fontWeight: FontWeight.w800,
+                  fontSize: 18,
                   height: 1.15,
                 ),
               ),
-              const Gap(5),
-              Text(
-                subtitle,
-                style: AppTextStyles.bodyTextRoboto.copyWith(
-                  color: mutedColor,
-                  height: 1.35,
+              if (subtitle.isNotEmpty) ...[
+                const Gap(5),
+                Text(
+                  subtitle,
+                  style: AppTextStyles.bodyTextRoboto.copyWith(
+                    color: mutedColor,
+                    height: 1.35,
+                  ),
                 ),
-              ),
+                Gap(5),
+              ],
             ],
           ),
         ),
         if (onViewAll != null) ...[
           const Gap(12),
-          Tooltip(
-            message: actionTooltip ?? AppStaticTexts.viewAll,
-            child: IconButton(
-              style: IconButton.styleFrom(
-                backgroundColor: inverse
-                    ? theme.colorScheme.onPrimary.withValues(alpha: .14)
-                    : theme.colorScheme.surfaceContainerHighest.withValues(
-                        alpha: .72,
-                      ),
-                foregroundColor: foregroundColor,
-                fixedSize: const Size.square(40),
-                padding: EdgeInsets.zero,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
-                ),
+          InkWell(
+            onTap: onViewAll,
+            child: Text(
+              AppStaticTexts.viewAll,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.colorScheme.primary,
+                fontWeight: FontWeight.bold,
               ),
-              onPressed: onViewAll,
-              icon: const Icon(Icons.arrow_forward_rounded, size: 19),
             ),
           ),
         ],

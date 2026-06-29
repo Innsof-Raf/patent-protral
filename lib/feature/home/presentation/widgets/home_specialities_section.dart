@@ -19,31 +19,28 @@ class HomeSpecialitiesSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         HomeSectionHeader(
-          title: AppStaticTexts.findSpecialist,
-          subtitle: AppStaticTexts.findSpecialistSubtitle,
+          title: AppStaticTexts.findDoctorBySpeciality,
+          subtitle: '',
           actionTooltip: AppStaticTexts.viewAllSpecialities,
           onViewAll: () {
             MainScreenHelpers.mainScreenNotifier.value = 2;
           },
         ),
-        SizedBox(
-          height: 125,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.zero,
-            physics: const BouncingScrollPhysics(),
-            itemCount: specialities.length,
-            separatorBuilder: (context, index) => const Gap(12),
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: SizedBox(
-                  width: 120,
-                  child: HomeSpecialityCard(speciality: specialities[index]),
-                ),
-              );
-            },
+        const Gap(16),
+        GridView.builder(
+          padding: EdgeInsets.zero,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: specialities.length > 8 ? 8 : specialities.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4,
+            mainAxisSpacing: 16,
+            crossAxisSpacing: 8,
+            mainAxisExtent: 118,
           ),
+          itemBuilder: (context, index) {
+            return HomeSpecialityCard(speciality: specialities[index]);
+          },
         ),
       ],
     );

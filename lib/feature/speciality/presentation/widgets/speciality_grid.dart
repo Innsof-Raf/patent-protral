@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
 import 'package:patient_portal/feature/speciality/presentation/widgets/speciality_tile.dart';
 
@@ -10,31 +11,23 @@ class SpecialityGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 112),
-      sliver: SliverLayoutBuilder(
-        builder: (context, constraints) {
-          final width = constraints.crossAxisExtent;
-          final crossAxisCount = width < 520
-              ? 2
-              : width < 760
-              ? 3
-              : width < 1040
-              ? 4
-              : 5;
-
-          return SliverGrid.builder(
-            itemCount: specialities.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: crossAxisCount,
-              crossAxisSpacing: 14,
-              mainAxisSpacing: 14,
-              mainAxisExtent: width < 520 ? 168 : 176,
-            ),
-            itemBuilder: (context, index) {
-              return SpecialityTile(speciality: specialities[index]);
-            },
+      padding: const EdgeInsets.fromLTRB(0, 12, 0, 112),
+      sliver: SliverList(
+        delegate: SliverChildBuilderDelegate((context, index) {
+          return Column(
+            children: [
+              SpecialityTile(speciality: specialities[index]),
+              if (index != specialities.length - 1)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Divider(
+                    height: 1,
+                    color: AppColors.primaryCyan.withValues(alpha: 0.2),
+                  ),
+                ),
+            ],
           );
-        },
+        }, childCount: specialities.length),
       ),
     );
   }

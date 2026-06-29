@@ -17,79 +17,53 @@ class HomeSpecialityCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final borderRadius = BorderRadius.circular(18);
 
     return Semantics(
       button: true,
       label: '${AppStaticTexts.viewDoctorsIn} ${speciality.specialityName}',
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          borderRadius: borderRadius,
-          boxShadow: [
-            BoxShadow(
-              color: theme.colorScheme.shadow.withValues(alpha: .07),
-              blurRadius: 14,
-              offset: const Offset(0, 7),
-            ),
-          ],
-        ),
-        child: Material(
-          color: theme.colorScheme.surface,
-          borderRadius: borderRadius,
-          clipBehavior: Clip.antiAlias,
-          child: InkWell(
-            onTap: () {
-              context.router.root.push(
-                DoctorsRoute(idSpecilaity: speciality.idSpeciality),
-              );
-            },
-            child: Ink(
-              padding: const EdgeInsets.fromLTRB(10, 10, 10, 9),
+      child: InkWell(
+        onTap: () {
+          context.router.root.push(
+            DoctorsRoute(idSpecilaity: speciality.idSpeciality),
+          );
+        },
+        child: Column(
+          children: [
+            Container(
+              width: 72,
+              height: 72,
               decoration: BoxDecoration(
-                borderRadius: borderRadius,
+                shape: BoxShape.circle,
+                color: theme.colorScheme.surface,
                 border: Border.all(
-                  color: theme.colorScheme.primary.withValues(alpha: .12),
+                  color: theme.colorScheme.primary.withValues(alpha: .1),
                 ),
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    theme.colorScheme.primaryContainer.withValues(alpha: .24),
-                    theme.colorScheme.surface,
-                  ],
-                ),
-              ),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Icon(
-                      Icons.north_east_rounded,
-                      size: 15,
-                      color: theme.colorScheme.primary.withValues(alpha: .75),
-                    ),
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: _HomeSpecialityImage(speciality: speciality),
-                    ),
-                  ),
-                  const Gap(8),
-                  Text(
-                    speciality.specialityName,
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTextStyles.largeRobotoNormal.copyWith(
-                      color: theme.colorScheme.onSurface,
-                      fontWeight: FontWeight.w800,
-                      height: 1.15,
-                    ),
+                boxShadow: [
+                  BoxShadow(
+                    color: theme.colorScheme.primary.withValues(alpha: .05),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
                   ),
                 ],
               ),
+              child: Center(
+                child: _HomeSpecialityImage(speciality: speciality),
+              ),
             ),
-          ),
+            const Gap(8),
+            Text(
+              speciality.specialityName,
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: AppTextStyles.bodyLargeRobotoBold.copyWith(
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.9),
+                fontWeight: FontWeight.bold,
+                fontSize: 13,
+                height: 1.2,
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -105,32 +79,33 @@ class _HomeSpecialityImage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final image = speciality.specialityImage;
+    final icon = Icon(
+      Icons.local_hospital_outlined,
+      size: 28,
+      color: theme.colorScheme.primary,
+    );
 
     return Container(
-      width: 48,
-      height: 48,
-      padding: const EdgeInsets.all(9),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surface.withValues(alpha: .88),
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(
-          color: theme.colorScheme.primary.withValues(alpha: .10),
+      width: 42,
+      height: 42,
+      decoration: BoxDecoration(shape: BoxShape.circle),
+      child: CachedNetworkImage(
+        imageUrl:
+            '${ConstantUrls.specialityImageUrl}/${speciality.idSpeciality}/$image',
+        fadeInDuration: Duration.zero,
+        fit: BoxFit.contain,
+        placeholder: (context, url) => CommonNetworkImage.placeholder(
+          context,
+          url,
+          customPlaceholder: icon,
+        ),
+        errorWidget: (context, url, error) => CommonNetworkImage.errorWidget(
+          context,
+          url,
+          error,
+          customErrorWidget: icon,
         ),
       ),
-      child: image == null || image.trim().isEmpty
-          ? Icon(
-              Icons.local_hospital_outlined,
-              size: 25,
-              color: theme.colorScheme.primary,
-            )
-          : CachedNetworkImage(
-              imageUrl:
-                  '${ConstantUrls.specialityImageUrl}/${speciality.idSpeciality}/$image',
-              fadeInDuration: Duration.zero,
-              fit: BoxFit.contain,
-              placeholder: CommonNetworkImage.placeholder,
-              errorWidget: CommonNetworkImage.errorWidget,
-            ),
     );
   }
 }

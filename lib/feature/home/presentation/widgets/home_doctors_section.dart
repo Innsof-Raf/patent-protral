@@ -31,7 +31,7 @@ class HomeDoctorsSection extends StatelessWidget {
           padding: EdgeInsets.zero,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: doctors.length > 3 ? 3 : doctors.length,
-          separatorBuilder: (context, index) => const Gap(16),
+          separatorBuilder: (context, index) => const Gap(10),
           itemBuilder: (context, index) {
             return DoctorTile(doctor: doctors[index]);
           },

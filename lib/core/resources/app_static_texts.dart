@@ -61,6 +61,7 @@ class AppStaticTexts {
   // Home
   static const String unableToLoadHome = 'Unable to load home';
   static const String findSpecialist = 'Find Specialist';
+  static const String findDoctorBySpeciality = 'Find Doctor by Speciality';
   static const String findSpecialistSubtitle =
       'Consult top doctors online for any health concern';
   static const String viewAllSpecialities = 'View all specialities';
@@ -134,7 +135,7 @@ class AppStaticTexts {
 
   // Speciality
   static const String unableToLoadSpecialities = 'Unable to load specialities';
-  static const String searchSpecialityHint = 'Search speciality by department';
+  static const String searchSpecialityHint = 'Search Doctors or Specialities';
   static const String searchSpecialities = 'Search specialities';
   static const String noSpecialitiesFound = 'No specialities found';
   static const String noSpecialitiesFoundMessage = 'Please check again later.';
@@ -146,6 +147,7 @@ class AppStaticTexts {
   static const String specialitiesAvailable = 'specialities available';
   static const String findDoctors = 'Find Doctors';
   static const String viewDoctorsIn = 'View doctors in';
+  static const String allSpecialties = 'All Specialties';
 
   // Members
   static const String selectAll = 'Select All';

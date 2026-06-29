@@ -17,114 +17,53 @@ class SpecialityTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final borderRadius = BorderRadius.circular(24);
 
     return Semantics(
       button: true,
       label: '${AppStaticTexts.viewDoctorsIn} ${speciality.specialityName}',
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: borderRadius,
-          boxShadow: [
-            BoxShadow(
-              color: theme.colorScheme.primary.withValues(alpha: .06),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
-            ),
-          ],
+      child: InkWell(
+        onTap: () => context.router.root.push(
+          DoctorsRoute(idSpecilaity: speciality.idSpeciality),
         ),
-        child: Material(
-          color: theme.colorScheme.surface,
-          borderRadius: borderRadius,
-          clipBehavior: Clip.antiAlias,
-          child: InkWell(
-            onTap: () {
-              context.router.root.push(
-                DoctorsRoute(idSpecilaity: speciality.idSpeciality),
-              );
-            },
-            child: Ink(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                borderRadius: borderRadius,
-                border: Border.all(
-                  color: theme.colorScheme.primary.withValues(alpha: .12),
-                ),
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    theme.colorScheme.primaryContainer.withValues(alpha: .18),
-                    theme.colorScheme.surface,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: Row(
+            children: [
+              Container(
+                width: 52,
+                height: 52,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: theme.colorScheme.surface,
+                  border: Border.all(
+                    color: theme.colorScheme.primary.withValues(alpha: .1),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: theme.colorScheme.primary.withValues(alpha: .05),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
                   ],
                 ),
+                child: Center(child: _SpecialityImage(speciality: speciality)),
               ),
-              child: Stack(
-                children: [
-                  Positioned(
-                    top: -24,
-                    right: -24,
-                    child: Container(
-                      width: 88,
-                      height: 88,
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.primary.withValues(alpha: .04),
-                        shape: BoxShape.circle,
-                      ),
-                    ),
+              const Gap(16),
+              Expanded(
+                child: Text(
+                  speciality.specialityName,
+                  style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.9),
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15.5,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _SpecialityImage(speciality: speciality),
-                          Icon(
-                            Icons.north_east_rounded,
-                            size: 18,
-                            color: theme.colorScheme.primary.withValues(
-                              alpha: .6,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Spacer(),
-                      Text(
-                        speciality.specialityName,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
-                          color: theme.colorScheme.onSurface,
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: -0.5,
-                          height: 1.15,
-                        ),
-                      ),
-                      const Gap(8),
-                      Row(
-                        children: [
-                          Text(
-                            AppStaticTexts.findDoctors,
-                            style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                              color: theme.colorScheme.primary,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                          const Gap(4),
-                          Icon(
-                            Icons.arrow_forward_rounded,
-                            size: 14,
-                            color: theme.colorScheme.primary,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+                ),
               ),
-            ),
+              Icon(
+                Icons.chevron_right_rounded,
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.3),
+              ),
+            ],
           ),
         ),
       ),
@@ -141,39 +80,33 @@ class _SpecialityImage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final image = speciality.specialityImage;
+    final icon = Icon(
+      Icons.local_hospital_outlined,
+      size: 24,
+      color: theme.colorScheme.primary,
+    );
 
     return Container(
-      width: 52,
-      height: 52,
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: theme.colorScheme.primary.withValues(alpha: .08),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-        border: Border.all(
-          color: theme.colorScheme.primary.withValues(alpha: .06),
+      width: 32,
+      height: 32,
+      decoration: BoxDecoration(shape: BoxShape.circle),
+      child: CachedNetworkImage(
+        imageUrl:
+            '${ConstantUrls.specialityImageUrl}/${speciality.idSpeciality}/$image',
+        fadeInDuration: Duration.zero,
+        fit: BoxFit.contain,
+        placeholder: (context, url) => CommonNetworkImage.placeholder(
+          context,
+          url,
+          customPlaceholder: icon,
+        ),
+        errorWidget: (context, url, error) => CommonNetworkImage.errorWidget(
+          context,
+          url,
+          error,
+          customErrorWidget: icon,
         ),
       ),
-      child: image == null || image.trim().isEmpty
-          ? Icon(
-              Icons.local_hospital_outlined,
-              size: 26,
-              color: theme.colorScheme.primary,
-            )
-          : CachedNetworkImage(
-              imageUrl:
-                  '${ConstantUrls.specialityImageUrl}/${speciality.idSpeciality}/$image',
-              fadeInDuration: Duration.zero,
-              fit: BoxFit.contain,
-              placeholder: CommonNetworkImage.placeholder,
-              errorWidget: CommonNetworkImage.errorWidget,
-            ),
     );
   }
 }

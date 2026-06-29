@@ -5,8 +5,6 @@ import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/feature_header.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/params/speciality_params.dart';
@@ -52,7 +50,7 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.surface,
+      backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.9),
       body: BlocBuilder<SpecialityBloc, SpecialityState>(
         builder: (context, state) {
           if (state.isFetching) {
@@ -73,33 +71,74 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
               physics: const AlwaysScrollableScrollPhysics(),
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               slivers: [
+                SliverAppBar(
+                  floating: true,
+                  pinned: true,
+                  elevation: 0,
+                  scrolledUnderElevation: 0,
+                  backgroundColor: theme.colorScheme.surface,
+                  surfaceTintColor: theme.colorScheme.surface,
+                  centerTitle: false,
+                  title: Container(
+                    height: 46,
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                    ).copyWith(top: 5),
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.surfaceContainerHighest
+                          .withValues(alpha: 0.3),
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: theme.colorScheme.outlineVariant.withValues(
+                          alpha: 0.5,
+                        ),
+                      ),
+                    ),
+                    child: TextField(
+                      controller: searchController,
+                      onChanged: (value) {
+                        context.read<SpecialityBloc>().add(
+                          SearchSpecialities(
+                            params: SpecialityParams.searchSpecialities(
+                              searchKey: value,
+                              specialities: state.specialities,
+                            ),
+                          ),
+                        );
+                      },
+                      decoration: InputDecoration(
+                        hintText: AppStaticTexts.searchSpecialities,
+                        prefixIcon: Icon(
+                          Icons.search_rounded,
+                          color: theme.colorScheme.onSurface.withValues(
+                            alpha: 0.4,
+                          ),
+                          size: 20,
+                        ),
+                        border: InputBorder.none,
+                        contentPadding: const EdgeInsets.symmetric(
+                          vertical: 11,
+                        ),
+                      ),
+                    ),
+                  ),
+                  titleSpacing: 0,
+                ),
                 SliverPadding(
-                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 5),
+                  padding: const EdgeInsets.fromLTRB(16, 15, 16, 0),
                   sliver: SliverToBoxAdapter(
-                    child: FeatureHeader(
-                      title: AppStaticTexts.findSpecialist,
-                      subtitle: AppStaticTexts.specialistSubtitle,
-                      badgeText:
-                          '${state.specialities.length} ${AppStaticTexts.specialitiesAvailable}',
+                    child: Text(
+                      AppStaticTexts.allSpecialties,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                        color: theme.colorScheme.onSurface.withValues(
+                          alpha: 0.9,
+                        ),
+                      ),
                     ),
                   ),
                 ),
-                if (state.specialities.isNotEmpty)
-                  SliverSearchHeader(
-                    controller: searchController,
-                    title: AppStaticTexts.searchSpecialityHint,
-                    hintText: AppStaticTexts.searchSpecialities,
-                    onChanged: (value) {
-                      context.read<SpecialityBloc>().add(
-                        SearchSpecialities(
-                          params: SpecialityParams.searchSpecialities(
-                            searchKey: value,
-                            specialities: state.specialities,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
                 _SpecialityResultSliver(
                   allSpecialities: state.specialities,
                   searchController: searchController,

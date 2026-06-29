@@ -8,7 +8,10 @@ class CommonNetworkImage {
     BuildContext context,
     String url, {
     String? placeholderImage,
+    Widget? customPlaceholder,
   }) {
+    if (customPlaceholder != null) return customPlaceholder;
+
     final theme = Theme.of(context);
 
     return Container(
@@ -27,7 +30,10 @@ class CommonNetworkImage {
     dynamic error, {
     double padding = 16,
     String? fallbackImage,
+    Widget? customErrorWidget,
   }) {
+    if (customErrorWidget != null) return customErrorWidget;
+
     final theme = Theme.of(context);
     return Container(
       color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
