@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -173,7 +174,7 @@ class _InsuranceBadge extends StatelessWidget {
       child: Text(
         AppStaticTexts.insured,
         style: theme.textTheme.labelSmall?.copyWith(
-          color: Colors.white,
+          color: AppColors.primaryCyan,
           fontWeight: FontWeight.bold,
           letterSpacing: 0.5,
         ),
