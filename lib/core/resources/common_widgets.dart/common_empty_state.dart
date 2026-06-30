@@ -21,55 +21,69 @@ class CommonEmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Center(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(32.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(32),
-              decoration: BoxDecoration(
-                color: theme.colorScheme.primaryContainer.withValues(
-                  alpha: 0.1,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: constraints.maxHeight),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(32),
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.primaryContainer.withValues(
+                          alpha: 0.1,
+                        ),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        icon,
+                        size: 80,
+                        color: theme.colorScheme.primary.withValues(alpha: 0.5),
+                      ),
+                    ),
+                    if (title.isNotEmpty) ...[
+                      const Gap(32),
+                      Text(
+                        title,
+                        textAlign: TextAlign.center,
+                        style: theme.textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: theme.colorScheme.onSurface,
+                        ),
+                      ),
+                    ],
+                    if (description.isNotEmpty) ...[
+                      Gap(title.isNotEmpty ? 12 : 32),
+                      Text(
+                        description,
+                        textAlign: TextAlign.center,
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                          height: 1.5,
+                        ),
+                      ),
+                    ],
+                    if (onAction != null && actionLabel != null) ...[
+                      const Gap(32),
+                      ActiveOutlinedButton(
+                        width: 200,
+                        onPressed: onAction,
+                        child: Text(actionLabel!),
+                      ),
+                    ],
+                  ],
                 ),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                icon,
-                size: 80,
-                color: theme.colorScheme.primary.withValues(alpha: 0.5),
               ),
             ),
-            const Gap(32),
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: theme.textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: theme.colorScheme.onSurface,
-              ),
-            ),
-            const Gap(12),
-            Text(
-              description,
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-                height: 1.5,
-              ),
-            ),
-            if (onAction != null && actionLabel != null) ...[
-              const Gap(32),
-              ActiveOutlinedButton(
-                width: 200,
-                onPressed: onAction,
-                child: Text(actionLabel!),
-              ),
-            ],
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

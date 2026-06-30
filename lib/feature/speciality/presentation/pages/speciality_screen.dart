@@ -168,7 +168,6 @@ class _SpecialityResultSliver extends StatelessWidget {
   Widget build(BuildContext context) {
     if (allSpecialities.isEmpty) {
       return SliverFillRemaining(
-        hasScrollBody: false,
         child: CommonEmptyState(
           title: AppStaticTexts.noSpecialitiesFound,
           description: AppStaticTexts.noSpecialitiesFoundMessage,
@@ -187,7 +186,6 @@ class _SpecialityResultSliver extends StatelessWidget {
 
         if (specialities.isEmpty) {
           return const SliverFillRemaining(
-            hasScrollBody: false,
             child: CommonEmptyState(
               title: AppStaticTexts.noMatchingSpeciality,
               description: AppStaticTexts.noMatchingSpecialityMessage,

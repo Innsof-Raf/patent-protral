@@ -177,11 +177,23 @@ class AppStaticTexts {
   static const String delete = 'Delete';
 
   // Reports
+  static const String healthRecords = 'Health Records';
+  static const String changePatient = 'Change Patient';
+  static const String prescriptions = 'Prescriptions';
+  static const String labReports = 'Lab Reports';
+  static const String radiologyReports = 'Radiology Reports';
+  static const String selectPatient = 'Select Patient';
+  static const String oneMonth = '1 month';
+  static const String threeMonths = '3 months';
+  static const String sixMonths = '6 months';
+  static const String oneYear = '1 year';
   static const String unableToLoadReports = 'Unable to load reports';
   static const String unableToOpenReport = 'Unable to open report';
   static const String noReportsAvailable = 'No Reports Available';
   static const String noReportsMessage =
       'Your medical reports will appear here once available.';
+  static const String noReportsFoundInSelectedUser =
+      'No Records found in the selected user.\nNo Records found. Please Contact for further support.';
 
   // Profile
   static const String age = 'Age';

@@ -187,7 +187,6 @@ class _MembersResultSliver extends StatelessWidget {
   Widget build(BuildContext context) {
     if (allMembers.isEmpty) {
       return SliverFillRemaining(
-        hasScrollBody: false,
         child: CommonEmptyState(
           title: AppStaticTexts.noMembersFound,
           description: AppStaticTexts.noMembersFoundMessage,
@@ -206,7 +205,6 @@ class _MembersResultSliver extends StatelessWidget {
 
         if (members.isEmpty) {
           return const SliverFillRemaining(
-            hasScrollBody: false,
             child: CommonEmptyState(
               title: AppStaticTexts.noMatchingMember,
               description: AppStaticTexts.noMatchingMemberMessage,

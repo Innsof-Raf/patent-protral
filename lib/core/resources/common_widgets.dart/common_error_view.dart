@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 
 class CommonErrorView extends StatelessWidget {
   const CommonErrorView({
@@ -58,27 +59,11 @@ class CommonErrorView extends StatelessWidget {
             ),
             if (onRetry != null) ...[
               const Gap(40),
-              SizedBox(
+              ActiveButton(
                 width: 200,
-                height: 56,
-                child: FilledButton.icon(
-                  style: FilledButton.styleFrom(
-                    backgroundColor: colorScheme.primary,
-                    foregroundColor: colorScheme.onPrimary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                  onPressed: onRetry,
-                  icon: const Icon(Icons.refresh_rounded),
-                  label: Text(
-                    retryLabel,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
+                onPressed: onRetry,
+                icon: const Icon(Icons.refresh_rounded),
+                child: Text(retryLabel),
               ),
             ],
           ],

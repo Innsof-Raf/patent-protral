@@ -155,7 +155,6 @@ class _DoctorsResultSliver extends StatelessWidget {
   Widget build(BuildContext context) {
     if (allDoctors.isEmpty) {
       return SliverFillRemaining(
-        hasScrollBody: false,
         child: CommonEmptyState(
           title: AppStaticTexts.noDoctorsFound,
           description: AppStaticTexts.noDoctorsFoundMessage,
@@ -174,7 +173,6 @@ class _DoctorsResultSliver extends StatelessWidget {
 
         if (doctors.isEmpty) {
           return const SliverFillRemaining(
-            hasScrollBody: false,
             child: CommonEmptyState(
               title: AppStaticTexts.noMatchingDoctor,
               description: AppStaticTexts.noMatchingDoctorMessage,

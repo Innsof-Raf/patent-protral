@@ -1,132 +1,15 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/main_shell_app_bar.dart';
-import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/feature/reports/domain/usecases/params/reports_params.dart';
-import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
-import 'package:patient_portal/feature/reports/presentation/helpers/reports_appbar_helpers.dart';
 
 class ReportsAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ReportsAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MainShellAppBar(
-      titleWidget: const _ReportsMemberSelector(),
-      actions: [
-        IconButton(
-          tooltip: 'Search reports',
-          onPressed: () {},
-          icon: const Icon(Icons.search_rounded, size: 24),
-        ),
-      ],
-    );
+    return const MainShellAppBar(title: AppStaticTexts.reports);
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(64);
-}
-
-class _ReportsMemberSelector extends StatelessWidget {
-  const _ReportsMemberSelector();
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return BlocBuilder<UserBloc, UserState>(
-      builder: (userContext, userState) {
-        return BlocBuilder<ReportsBloc, ReportsState>(
-          builder: (context, state) {
-            final selectedMember = userState.user!.members
-                .where((element) => element.id == state.selectedMemberId)
-                .cast<dynamic>()
-                .firstOrNull;
-            final selectedName =
-                state.selectedMemberId == 0 || selectedMember == null
-                ? 'All reports'
-                : selectedMember.name;
-
-            return PopupMenuButton<int>(
-              initialValue: state.selectedMemberId,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              position: PopupMenuPosition.under,
-              padding: EdgeInsets.zero,
-              onSelected: (value) {
-                context.read<ReportsBloc>().add(
-                  GetReports(
-                    params: ReportsParams.getReports(
-                      memberId: value,
-                      token: userState.user!.accessToken,
-                      mobileNumber: userState.user!.mobileNumber,
-                    ),
-                  ),
-                );
-              },
-              itemBuilder: (context) =>
-                  ReportsAppbarHelpers.createPopupMenuItem(
-                    userState.user!.members,
-                  ),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.surfaceContainerHighest.withValues(
-                    alpha: .3,
-                  ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      ClipOval(
-                        child: CachedNetworkImage(
-                          imageUrl:
-                              'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
-                          height: 24,
-                          width: 24,
-                          fit: BoxFit.cover,
-                          placeholder: CommonNetworkImage.placeholder,
-                          errorWidget: CommonNetworkImage.errorWidget,
-                        ),
-                      ),
-                      const Gap(8),
-                      ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 120),
-                        child: Text(
-                          selectedName,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                            color: theme.colorScheme.onSurface,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                      const Gap(2),
-                      Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: theme.colorScheme.onSurfaceVariant,
-                        size: 18,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          },
-        );
-      },
-    );
-  }
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

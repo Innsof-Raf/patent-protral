@@ -25,6 +25,7 @@ import 'package:patient_portal/feature/profile/presentation/pages/profile_screen
 import 'package:patient_portal/feature/reports/presentation/pages/report_screen.dart';
 import 'package:patient_portal/feature/reports/presentation/pages/reports_screen.dart';
 import 'package:patient_portal/feature/set_password/presentation/pages/set_password_screen.dart';
+import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
 import 'package:patient_portal/feature/speciality/presentation/pages/speciality_screen.dart';
 
 part 'app_router.gr.dart';
