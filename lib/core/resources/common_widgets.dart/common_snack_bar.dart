@@ -33,7 +33,7 @@ class CommonSnackBar {
     }
 
     messenger
-      ..hideCurrentSnackBar()
+      ..removeCurrentSnackBar()
       ..showSnackBar(
         SnackBar(
           duration: duration,
