@@ -8,6 +8,7 @@ import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.d
 import 'package:patient_portal/core/resources/common_widgets.dart/active_text_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/confirmation_dialog.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/feature_header.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/sliver_search_header.dart';
@@ -115,6 +116,10 @@ class _MembersScreenState extends State<MembersScreen> {
       ),
       body: BlocBuilder<UserBloc, UserState>(
         builder: (context, userState) {
+          if (userState.user == null || userState.isLoading) {
+            return const CommonLoadingView();
+          }
+
           final members = userState.user?.members ?? [];
 
           return CustomScrollView(

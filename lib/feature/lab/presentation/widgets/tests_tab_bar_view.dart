@@ -16,7 +16,8 @@ class TestsTabBarView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ItemsBloc, ItemsState>(
       builder: (context, state) {
-        if (state.isItemsFetching) {
+        if (state.isItemsFetching ||
+            (!state.isItemsFetchingSuccess && !state.isItemsFetchingFailed)) {
           return const CommonLoadingView();
         } else if (state.isItemsFetchingFailed) {
           return CommonErrorView(

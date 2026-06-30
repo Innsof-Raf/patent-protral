@@ -53,7 +53,8 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
       backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.9),
       body: BlocBuilder<SpecialityBloc, SpecialityState>(
         builder: (context, state) {
-          if (state.isFetching) {
+          if (state.isFetching ||
+              (!state.isFetchingSuccess && !state.isFetchingError)) {
             return const CommonLoadingView();
           }
 

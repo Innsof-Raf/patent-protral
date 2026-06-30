@@ -58,7 +58,11 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
       appBar: CommonAppbar(title: widget.speciality.specialityName),
       body: BlocBuilder<DoctorBloc, DoctorState>(
         builder: (context, state) {
-          if (state.isDoctorsFetching) return const DoctorsLoadingView();
+          if (state.isDoctorsFetching ||
+              (!state.isDoctorsFetchingSuccess &&
+                  !state.isDoctorsFetchingFailed)) {
+            return const DoctorsLoadingView();
+          }
 
           if (state.isDoctorsFetchingFailed) {
             return CommonErrorView(

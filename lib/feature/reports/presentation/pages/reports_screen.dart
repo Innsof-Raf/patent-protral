@@ -138,7 +138,9 @@ class _ReportsScreenState extends State<ReportsScreen> {
                         Expanded(
                           child: BlocBuilder<ReportsBloc, ReportsState>(
                             builder: (context, state) {
-                              if (state.isFetchingReports) {
+                              if (state.isFetchingReports ||
+                                  (!state.isFetchingSuccess &&
+                                      !state.isFetchingFailed)) {
                                 return const CommonLoadingView();
                               }
 

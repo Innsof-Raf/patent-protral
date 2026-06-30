@@ -96,7 +96,9 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
           }
         },
         builder: (context, state) {
-          if (state.isFetchingDocumentTypes) {
+          if (state.isFetchingDocumentTypes ||
+              (!state.isFetchingDocumentTypesSuccess &&
+                  !state.isFetchingDocumentTypesFailed)) {
             return const CommonLoadingView();
           }
 

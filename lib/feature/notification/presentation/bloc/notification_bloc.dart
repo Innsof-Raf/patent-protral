@@ -13,7 +13,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
   NotificationBloc({required this.getNotificationsUseCase})
     : super(NotificationState.initial()) {
     on<GetNotifications>((event, emit) async {
-      emit(state.copyWith(isLoading: true, isError: false));
+      emit(state.copyWith(isLoading: true, isError: false, isSuccess: false));
 
       // Temporarily using static data instead of calling API
       await Future.delayed(const Duration(milliseconds: 500));
@@ -47,7 +47,11 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
       ];
 
       emit(
-        state.copyWith(isLoading: false, notifications: staticNotifications),
+        state.copyWith(
+          isLoading: false,
+          isSuccess: true,
+          notifications: staticNotifications,
+        ),
       );
 
       /*
@@ -63,11 +67,16 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
           state.copyWith(
             isLoading: false,
             isError: true,
+            isSuccess: false,
             errorMessage: failure.message,
           ),
         ),
         (notifications) => emit(
-          state.copyWith(isLoading: false, notifications: notifications),
+          state.copyWith(
+            isLoading: false,
+            isSuccess: true,
+            notifications: notifications,
+          ),
         ),
       );
       */

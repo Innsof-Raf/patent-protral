@@ -71,7 +71,11 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
           }
         },
         builder: (context, state) {
-          if (state.isAppointmentsFetching) return const CommonLoadingView();
+          if (state.isAppointmentsFetching ||
+              (!state.isAppointmentsFetchingSuccess &&
+                  !state.isAppointmentsFetchingFailed)) {
+            return const CommonLoadingView();
+          }
 
           if (state.isAppointmentsFetchingFailed) {
             return CommonErrorView(
@@ -112,7 +116,7 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
                           ),
                         ),
                       ),
-                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                       alignment: Alignment.centerLeft,
                       child: _AppointmentsTabBar(
                         selectedIndexListenable:

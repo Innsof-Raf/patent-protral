@@ -142,8 +142,9 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                           ),
                         );
                       }
-
-                      if (state.isSlotLoading) {
+                      if (state.isSlotLoading ||
+                          (!state.isFetchingSuccses &&
+                              !state.isFetchingError)) {
                         return Padding(
                           padding: EdgeInsets.symmetric(
                             vertical: 20,

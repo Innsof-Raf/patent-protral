@@ -50,7 +50,9 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
       appBar: const CommonAppbar(title: AppStaticTexts.memberDetails),
       body: BlocBuilder<UserBloc, UserState>(
         builder: (context, state) {
-          if (state.isFetchingMemberDetail) {
+          if (state.isFetchingMemberDetail ||
+              (!state.isMemberDetailFetchingSucess &&
+                  !state.isMemberDetailFetchingFailed)) {
             return const CommonLoadingView();
           } else if (state.isMemberDetailFetchingFailed) {
             return CommonErrorView(

@@ -43,7 +43,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
       appBar: const CommonAppbar(title: AppStaticTexts.notifications),
       body: BlocBuilder<NotificationBloc, NotificationState>(
         builder: (context, state) {
-          if (state.isLoading) {
+          if (state.isLoading || (!state.isSuccess && !state.isError)) {
             return const Center(child: CircularProgressIndicator());
           }
 

@@ -143,7 +143,8 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
       ),
       body: BlocBuilder<DocumentsBloc, DocumentsState>(
         builder: (context, state) {
-          if (state.isFetching) {
+          if (state.isFetching ||
+              (!state.isFetchingSuccess && !state.isFetchingFailed)) {
             return const CommonLoadingView();
           } else if (state.isFetchingFailed) {
             return CommonErrorView(

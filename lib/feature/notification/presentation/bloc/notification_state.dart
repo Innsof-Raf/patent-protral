@@ -6,6 +6,7 @@ sealed class NotificationState with _$NotificationState {
     required List<NotificationEntity> notifications,
     required bool isLoading,
     required bool isError,
+    required bool isSuccess,
     required String errorMessage,
   }) = _NotificationState;
 
@@ -13,6 +14,7 @@ sealed class NotificationState with _$NotificationState {
     notifications: [],
     isLoading: false,
     isError: false,
+    isSuccess: false,
     errorMessage: '',
   );
 }

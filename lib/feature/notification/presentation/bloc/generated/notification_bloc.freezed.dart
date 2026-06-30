@@ -268,7 +268,7 @@ as String,
 /// @nodoc
 mixin _$NotificationState {
 
- List<NotificationEntity> get notifications; bool get isLoading; bool get isError; String get errorMessage;
+ List<NotificationEntity> get notifications; bool get isLoading; bool get isError; bool get isSuccess; String get errorMessage;
 /// Create a copy of NotificationState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -279,16 +279,16 @@ $NotificationStateCopyWith<NotificationState> get copyWith => _$NotificationStat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotificationState&&const DeepCollectionEquality().equals(other.notifications, notifications)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isError, isError) || other.isError == isError)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotificationState&&const DeepCollectionEquality().equals(other.notifications, notifications)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isError, isError) || other.isError == isError)&&(identical(other.isSuccess, isSuccess) || other.isSuccess == isSuccess)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(notifications),isLoading,isError,errorMessage);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(notifications),isLoading,isError,isSuccess,errorMessage);
 
 @override
 String toString() {
-  return 'NotificationState(notifications: $notifications, isLoading: $isLoading, isError: $isError, errorMessage: $errorMessage)';
+  return 'NotificationState(notifications: $notifications, isLoading: $isLoading, isError: $isError, isSuccess: $isSuccess, errorMessage: $errorMessage)';
 }
 
 
@@ -299,7 +299,7 @@ abstract mixin class $NotificationStateCopyWith<$Res>  {
   factory $NotificationStateCopyWith(NotificationState value, $Res Function(NotificationState) _then) = _$NotificationStateCopyWithImpl;
 @useResult
 $Res call({
- List<NotificationEntity> notifications, bool isLoading, bool isError, String errorMessage
+ List<NotificationEntity> notifications, bool isLoading, bool isError, bool isSuccess, String errorMessage
 });
 
 
@@ -316,11 +316,12 @@ class _$NotificationStateCopyWithImpl<$Res>
 
 /// Create a copy of NotificationState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? notifications = null,Object? isLoading = null,Object? isError = null,Object? errorMessage = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? notifications = null,Object? isLoading = null,Object? isError = null,Object? isSuccess = null,Object? errorMessage = null,}) {
   return _then(_self.copyWith(
 notifications: null == notifications ? _self.notifications : notifications // ignore: cast_nullable_to_non_nullable
 as List<NotificationEntity>,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,isError: null == isError ? _self.isError : isError // ignore: cast_nullable_to_non_nullable
+as bool,isSuccess: null == isSuccess ? _self.isSuccess : isSuccess // ignore: cast_nullable_to_non_nullable
 as bool,errorMessage: null == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -404,10 +405,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<NotificationEntity> notifications,  bool isLoading,  bool isError,  String errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<NotificationEntity> notifications,  bool isLoading,  bool isError,  bool isSuccess,  String errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _NotificationState() when $default != null:
-return $default(_that.notifications,_that.isLoading,_that.isError,_that.errorMessage);case _:
+return $default(_that.notifications,_that.isLoading,_that.isError,_that.isSuccess,_that.errorMessage);case _:
   return orElse();
 
 }
@@ -425,10 +426,10 @@ return $default(_that.notifications,_that.isLoading,_that.isError,_that.errorMes
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<NotificationEntity> notifications,  bool isLoading,  bool isError,  String errorMessage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<NotificationEntity> notifications,  bool isLoading,  bool isError,  bool isSuccess,  String errorMessage)  $default,) {final _that = this;
 switch (_that) {
 case _NotificationState():
-return $default(_that.notifications,_that.isLoading,_that.isError,_that.errorMessage);}
+return $default(_that.notifications,_that.isLoading,_that.isError,_that.isSuccess,_that.errorMessage);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -442,10 +443,10 @@ return $default(_that.notifications,_that.isLoading,_that.isError,_that.errorMes
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<NotificationEntity> notifications,  bool isLoading,  bool isError,  String errorMessage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<NotificationEntity> notifications,  bool isLoading,  bool isError,  bool isSuccess,  String errorMessage)?  $default,) {final _that = this;
 switch (_that) {
 case _NotificationState() when $default != null:
-return $default(_that.notifications,_that.isLoading,_that.isError,_that.errorMessage);case _:
+return $default(_that.notifications,_that.isLoading,_that.isError,_that.isSuccess,_that.errorMessage);case _:
   return null;
 
 }
@@ -457,7 +458,7 @@ return $default(_that.notifications,_that.isLoading,_that.isError,_that.errorMes
 
 
 class _NotificationState implements NotificationState {
-  const _NotificationState({required final  List<NotificationEntity> notifications, required this.isLoading, required this.isError, required this.errorMessage}): _notifications = notifications;
+  const _NotificationState({required final  List<NotificationEntity> notifications, required this.isLoading, required this.isError, required this.isSuccess, required this.errorMessage}): _notifications = notifications;
   
 
  final  List<NotificationEntity> _notifications;
@@ -469,6 +470,7 @@ class _NotificationState implements NotificationState {
 
 @override final  bool isLoading;
 @override final  bool isError;
+@override final  bool isSuccess;
 @override final  String errorMessage;
 
 /// Create a copy of NotificationState
@@ -481,16 +483,16 @@ _$NotificationStateCopyWith<_NotificationState> get copyWith => __$NotificationS
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotificationState&&const DeepCollectionEquality().equals(other._notifications, _notifications)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isError, isError) || other.isError == isError)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotificationState&&const DeepCollectionEquality().equals(other._notifications, _notifications)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isError, isError) || other.isError == isError)&&(identical(other.isSuccess, isSuccess) || other.isSuccess == isSuccess)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_notifications),isLoading,isError,errorMessage);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_notifications),isLoading,isError,isSuccess,errorMessage);
 
 @override
 String toString() {
-  return 'NotificationState(notifications: $notifications, isLoading: $isLoading, isError: $isError, errorMessage: $errorMessage)';
+  return 'NotificationState(notifications: $notifications, isLoading: $isLoading, isError: $isError, isSuccess: $isSuccess, errorMessage: $errorMessage)';
 }
 
 
@@ -501,7 +503,7 @@ abstract mixin class _$NotificationStateCopyWith<$Res> implements $NotificationS
   factory _$NotificationStateCopyWith(_NotificationState value, $Res Function(_NotificationState) _then) = __$NotificationStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<NotificationEntity> notifications, bool isLoading, bool isError, String errorMessage
+ List<NotificationEntity> notifications, bool isLoading, bool isError, bool isSuccess, String errorMessage
 });
 
 
@@ -518,11 +520,12 @@ class __$NotificationStateCopyWithImpl<$Res>
 
 /// Create a copy of NotificationState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? notifications = null,Object? isLoading = null,Object? isError = null,Object? errorMessage = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? notifications = null,Object? isLoading = null,Object? isError = null,Object? isSuccess = null,Object? errorMessage = null,}) {
   return _then(_NotificationState(
 notifications: null == notifications ? _self._notifications : notifications // ignore: cast_nullable_to_non_nullable
 as List<NotificationEntity>,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,isError: null == isError ? _self.isError : isError // ignore: cast_nullable_to_non_nullable
+as bool,isSuccess: null == isSuccess ? _self.isSuccess : isSuccess // ignore: cast_nullable_to_non_nullable
 as bool,errorMessage: null == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String,
   ));

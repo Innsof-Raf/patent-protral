@@ -24,7 +24,8 @@ class CartScreen extends StatelessWidget {
       appBar: const CommonAppbar(title: AppStaticTexts.myCart),
       body: BlocBuilder<ItemsBloc, ItemsState>(
         builder: (context, state) {
-          if (state.isItemsFetching) {
+          if (state.isItemsFetching ||
+              (!state.isItemsFetchingSuccess && !state.isItemsFetchingFailed)) {
             return const CommonLoadingView();
           } else if (state.isItemsFetchingFailed) {
             return CommonErrorView(
