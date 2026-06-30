@@ -1,5 +1,8 @@
 class AppStaticTexts {
   // Appointments
+  static const String manageAppointments = 'Manage your appointments';
+  static const String manageAppointmentsSubtitle =
+      'Track and manage all your healthcare visits';
   static const String appointmentCanceled = 'Appointment canceled';
   static const String appointmentCanceledMessage =
       'The appointment has been removed from your upcoming schedule.';

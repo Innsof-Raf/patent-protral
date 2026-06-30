@@ -36,195 +36,117 @@ class MyAppointmentTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final isCancelled = appointment.status == 'INACTV';
 
     return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: colorScheme.outlineVariant.withValues(alpha: 0.5),
+          color: colorScheme.outlineVariant.withValues(alpha: .5),
         ),
         boxShadow: [
           BoxShadow(
-            color: colorScheme.shadow.withValues(alpha: 0.02),
-            blurRadius: 10,
+            color: colorScheme.shadow.withValues(alpha: .03),
+            blurRadius: 12,
             offset: const Offset(0, 4),
           ),
         ],
       ),
-      child: Material(
-        color: Colors.transparent,
-        child: GestureDetector(
-          //borderRadius: BorderRadius.circular(24),
-          onTap: () {},
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    _DoctorImage(imageUrl: _doctorImageUrl),
-                    const Gap(14),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            appointment.doctorName.toTitleCase(),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: AppTextStyles.subHeadingSemiBoldRoboto
-                                .copyWith(
-                                  fontWeight: FontWeight.w800,
-                                  letterSpacing: -0.2,
-                                ),
-                          ),
-                          const Gap(2),
-                          Text(
-                            '${appointment.departName.toTitleCase()}${appointment.branch.isNotEmpty && appointment.branch != '0' ? ' • ${appointment.branch.toTitleCase()}' : ''}',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: AppTextStyles.bodyTextRoboto.copyWith(
-                              color: colorScheme.onSurfaceVariant,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          if (appointment.stars > 0) ...[
-                            const Gap(4),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _DoctorAvatar(imageUrl: _doctorImageUrl, size: 64),
+                      const Gap(16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Icon(
-                                  Icons.star_rounded,
-                                  size: 14,
-                                  color: Colors.amber,
-                                ),
-                                const Gap(2),
-                                Text(
-                                  appointment.stars.toString(),
-                                  style: AppTextStyles.bodyTextRoboto.copyWith(
-                                    fontWeight: FontWeight.w700,
-                                    color: colorScheme.onSurfaceVariant,
+                                Expanded(
+                                  child: Text(
+                                    appointment.doctorName.toTitleCase(),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: AppTextStyles.largeBoldRoboto
+                                        .copyWith(
+                                          color: colorScheme.onSurface,
+                                          fontSize: 17,
+                                        ),
                                   ),
+                                ),
+                                _StatusBadge(
+                                  isConsulted: isConsulted,
+                                  isCancelled: isCancelled,
                                 ),
                               ],
                             ),
-                          ],
-                        ],
-                      ),
-                    ),
-                    _StatusBadge(
-                      isConsulted: isConsulted,
-                      status: appointment.status,
-                    ),
-                  ],
-                ),
-                const Gap(16),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 12,
-                  ),
-                  decoration: BoxDecoration(
-                    color: colorScheme.surfaceContainerHighest.withValues(
-                      alpha: 0.3,
-                    ),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Row(
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.person_outline_rounded,
-                            size: 16,
-                            color: colorScheme.primary,
-                          ),
-                          const Gap(8),
-                          Text(
-                            (appointment.memberName.isEmpty
-                                    ? AppStaticTexts.self
-                                    : appointment.memberName)
-                                .toTitleCase(),
-                            style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                              fontWeight: FontWeight.w800,
-                              color: colorScheme.onSurface,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Spacer(),
-                      Container(
-                        width: 1,
-                        height: 14,
-                        color: colorScheme.outlineVariant,
-                      ),
-                      const Spacer(),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.access_time_rounded,
-                            size: 16,
-                            color: colorScheme.onSurfaceVariant,
-                          ),
-                          const Gap(6),
-                          Text(
-                            DateFormat(
-                              'dd MMM, hh:mm a',
-                            ).format(appointment.appointmentDateTime),
-                            style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                              color: colorScheme.onSurfaceVariant,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                      if (appointment.tokenNo.isNotEmpty &&
-                          appointment.tokenNo != '0') ...[
-                        const Spacer(),
-                        Container(
-                          width: 1,
-                          height: 14,
-                          color: colorScheme.outlineVariant,
-                        ),
-                        const Spacer(),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.confirmation_number_outlined,
-                              size: 16,
-                              color: colorScheme.onSurfaceVariant,
-                            ),
-                            const Gap(6),
+                            const Gap(4),
                             Text(
-                              appointment.tokenNo,
-                              style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-                                color: colorScheme.onSurfaceVariant,
+                              appointment.speciality.trim().toUpperCase(),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppTextStyles.bodyTextInter.copyWith(
+                                color: colorScheme.onSurfaceVariant.withValues(
+                                  alpha: .8,
+                                ),
                                 fontWeight: FontWeight.w600,
+                                fontSize: 12,
+                                letterSpacing: 0.5,
+                              ),
+                            ),
+                            const Gap(2),
+                            Text(
+                              '${appointment.departName.toTitleCase()}${appointment.branch.isNotEmpty && appointment.branch != '0' ? ' • ${appointment.branch.toTitleCase()}' : ''}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppTextStyles.bodyTextInter.copyWith(
+                                color: colorScheme.onSurfaceVariant.withValues(
+                                  alpha: .6,
+                                ),
+                                fontSize: 12,
                               ),
                             ),
                           ],
                         ),
-                      ],
+                      ),
                     ],
                   ),
-                ),
-                const Gap(16),
-                _ActionBar(
-                  isConsulted: isConsulted,
-                  status: appointment.status,
-                  isCanceling: appointment.isCanceling,
-                  onReschedule: () => _onReschedulePressed(context),
-                  onCancel: () => _onCancelPressed(context),
-                  onBookAgain: () => _onBookAgainPressed(context),
-                ),
-              ],
+                  const Gap(16),
+                  _AppointmentDetails(appointment: appointment),
+                ],
+              ),
             ),
-          ),
+            Divider(
+              height: 1,
+              thickness: 1,
+              color: colorScheme.outlineVariant.withValues(alpha: .4),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: _ActionBar(
+                isConsulted: isConsulted,
+                isCancelled: isCancelled,
+                isCanceling: appointment.isCanceling,
+                onReschedule: () => _onReschedulePressed(context),
+                onCancel: () => _onCancelPressed(context),
+                onBookAgain: () => _onBookAgainPressed(context),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -373,7 +295,6 @@ class MyAppointmentTile extends StatelessWidget {
 
     final members = user.members;
 
-    // 1. Try to find by ID matching
     if (appointment.memberId != 0) {
       for (final member in members) {
         if (member.id == appointment.memberId) {
@@ -382,7 +303,6 @@ class MyAppointmentTile extends StatelessWidget {
       }
     }
 
-    // 2. Try to find by name matching (fallback if IDs differ between services)
     final appointmentMemberName = appointment.memberName.trim();
     final mainUserName = '${user.firstName} ${user.lastName}'.trim();
 
@@ -396,7 +316,6 @@ class MyAppointmentTile extends StatelessWidget {
       }
     }
 
-    // 3. Fallback for "Self"
     if (appointmentMemberName.isEmpty ||
         appointmentMemberName.toLowerCase() == mainUserName.toLowerCase() ||
         (appointment.memberId != 0 && appointment.memberId == user.idMember)) {
@@ -406,7 +325,6 @@ class MyAppointmentTile extends StatelessWidget {
         }
       }
 
-      // If still not found, return a synthetic member for the primary user
       return Member(
         id: appointment.memberId != 0 ? appointment.memberId : user.idMember,
         name: mainUserName,
@@ -440,33 +358,33 @@ class MyAppointmentTile extends StatelessWidget {
   }
 }
 
-class _DoctorImage extends StatelessWidget {
-  final String imageUrl;
+class _DoctorAvatar extends StatelessWidget {
+  const _DoctorAvatar({required this.imageUrl, required this.size});
 
-  const _DoctorImage({required this.imageUrl});
+  final String imageUrl;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final theme = Theme.of(context);
 
     return Container(
+      width: size,
+      height: size,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
+        shape: BoxShape.circle,
+        color: theme.colorScheme.surfaceContainerHighest,
         border: Border.all(
-          color: colorScheme.outlineVariant.withValues(alpha: 0.5),
+          color: theme.colorScheme.outlineVariant.withValues(alpha: .5),
+          width: 1,
         ),
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(16),
-        child: SizedBox(
-          width: 64,
-          height: 64,
-          child: CachedNetworkImage(
-            imageUrl: imageUrl,
-            fit: BoxFit.cover,
-            placeholder: CommonNetworkImage.placeholder,
-            errorWidget: CommonNetworkImage.errorWidget,
-          ),
+      child: ClipOval(
+        child: CachedNetworkImage(
+          imageUrl: imageUrl,
+          fit: BoxFit.cover,
+          placeholder: CommonNetworkImage.placeholder,
+          errorWidget: CommonNetworkImage.errorWidget,
         ),
       ),
     );
@@ -475,54 +393,139 @@ class _DoctorImage extends StatelessWidget {
 
 class _StatusBadge extends StatelessWidget {
   final bool isConsulted;
-  final String status;
+  final bool isCancelled;
 
-  const _StatusBadge({required this.isConsulted, required this.status});
+  const _StatusBadge({required this.isConsulted, required this.isCancelled});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final bool isCancelled = status == 'INACTV';
 
     final color = isCancelled
         ? colorScheme.error
         : (isConsulted ? Colors.green : colorScheme.primary);
 
+    final backgroundColor = color.withValues(alpha: 0.1);
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(20),
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Text(
+        isCancelled
+            ? 'Cancelled'
+            : (isConsulted ? AppStaticTexts.done : AppStaticTexts.upcoming),
+        style: AppTextStyles.bodyTextInter.copyWith(
+          color: color,
+          fontWeight: FontWeight.w700,
+          fontSize: 11,
+        ),
+      ),
+    );
+  }
+}
+
+class _AppointmentDetails extends StatelessWidget {
+  final MyAppointment appointment;
+
+  const _AppointmentDetails({required this.appointment});
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            width: 8,
-            height: 8,
-            decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+          _DetailItem(
+            icon: Icons.person_outline_rounded,
+            label:
+                (appointment.memberName.isEmpty
+                        ? AppStaticTexts.self
+                        : appointment.memberName)
+                    .toTitleCase(),
+            color: colorScheme.primary,
           ),
-          const Gap(8),
-          Text(
-            isCancelled
-                ? 'Cancelled'
-                : (isConsulted ? AppStaticTexts.done : AppStaticTexts.upcoming),
-            style: AppTextStyles.bodyTextRoboto.copyWith(
-              color: color,
-              fontWeight: FontWeight.w900,
-              letterSpacing: 0.5,
+          _VerticalDivider(),
+          _DetailItem(
+            icon: Icons.access_time_rounded,
+            label: DateFormat(
+              'dd MMM, hh:mm a',
+            ).format(appointment.appointmentDateTime),
+            color: colorScheme.onSurfaceVariant,
+          ),
+          if (appointment.tokenNo.isNotEmpty && appointment.tokenNo != '0') ...[
+            _VerticalDivider(),
+            _DetailItem(
+              icon: Icons.confirmation_number_outlined,
+              label: '#${appointment.tokenNo}',
+              color: colorScheme.onSurfaceVariant,
             ),
-          ),
+          ],
         ],
       ),
     );
   }
 }
 
+class _DetailItem extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final Color color;
+
+  const _DetailItem({
+    required this.icon,
+    required this.label,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(icon, size: 14, color: color),
+        const Gap(4),
+        Text(
+          label,
+          maxLines: 1,
+          style: AppTextStyles.bodyTextInter.copyWith(
+            color: color.withValues(alpha: 0.9),
+            fontWeight: FontWeight.w600,
+            fontSize: 11.5,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _VerticalDivider extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 1,
+      height: 20,
+      margin: const EdgeInsets.symmetric(horizontal: 8),
+      color: Theme.of(
+        context,
+      ).colorScheme.outlineVariant.withValues(alpha: 0.5),
+    );
+  }
+}
+
 class _ActionBar extends StatelessWidget {
   final bool isConsulted;
-  final String status;
+  final bool isCancelled;
   final bool isCanceling;
   final VoidCallback onReschedule;
   final VoidCallback onCancel;
@@ -530,7 +533,7 @@ class _ActionBar extends StatelessWidget {
 
   const _ActionBar({
     required this.isConsulted,
-    required this.status,
+    required this.isCancelled,
     required this.isCanceling,
     required this.onReschedule,
     required this.onCancel,
@@ -539,9 +542,7 @@ class _ActionBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final bool isCancelled = status == 'INACTV';
+    final colorScheme = Theme.of(context).colorScheme;
 
     if (isConsulted || isCancelled) {
       return SizedBox(
@@ -549,7 +550,7 @@ class _ActionBar extends StatelessWidget {
         child: ActiveButton(
           onPressed: onBookAgain,
           icon: const Icon(Icons.reorder_rounded, size: 18),
-          height: 48,
+          height: 44,
           child: const Text(AppStaticTexts.bookAgain),
         ),
       );
@@ -562,9 +563,9 @@ class _ActionBar extends StatelessWidget {
             isLoading: isCanceling,
             onPressed: onCancel,
             icon: const Icon(Icons.close_rounded, size: 18),
-            height: 48,
+            height: 44,
             foregroundColor: colorScheme.error,
-            borderColor: colorScheme.error.withValues(alpha: 0.5),
+            borderColor: colorScheme.error.withValues(alpha: 0.3),
             child: const Text(AppStaticTexts.cancel),
           ),
         ),
@@ -573,7 +574,7 @@ class _ActionBar extends StatelessWidget {
           child: ActiveButton(
             onPressed: isCanceling ? null : onReschedule,
             icon: const Icon(Icons.calendar_month_rounded, size: 18),
-            height: 48,
+            height: 44,
             child: const Text(AppStaticTexts.reschedule),
           ),
         ),
