@@ -124,7 +124,7 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
                 if (outputFile != null && context.mounted) {
                   CommonSnackBar.show(
                     context,
-                    message: 'Report saved successfully',
+                    message: 'Report saved at $outputFile',
                     type: SnackBarType.success,
                   );
                 }
