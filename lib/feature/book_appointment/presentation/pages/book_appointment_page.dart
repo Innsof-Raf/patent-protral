@@ -20,6 +20,7 @@ import 'package:patient_portal/feature/book_appointment/presentation/widgets/boo
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/member_selection_section.dart';
 import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
+import 'package:patient_portal/feature/doctors/presentation/widgets/doctor_info_widgets.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
 @RoutePage(name: 'BookAppointmentRoute')
@@ -39,7 +40,6 @@ class BookAppointmentScreen extends StatefulWidget {
 
 class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
   final ValueNotifier<int> _selectedTypeNotifier = ValueNotifier(0);
-  final ValueNotifier<bool> _isBioExpandedNotifier = ValueNotifier(true);
 
   @override
   void initState() {
@@ -84,6 +84,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                     speciality: widget.doctor.doctorSpeciality,
                     experience: widget.doctor.experience,
                     languages: widget.doctor.knownLanguages.join(', '),
+                    bio: widget.doctor.doctorBio,
                   ),
                   const Divider(height: 1, thickness: 1),
                   _AppointmentTypeToggle(notifier: _selectedTypeNotifier),
@@ -181,11 +182,6 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                                   const Divider(height: 1),
                                   const MemberSelectionSection(),
                                 ],
-                                if (widget.doctor.doctorBio != null)
-                                  _DoctorInformationAccordion(
-                                    bio: widget.doctor.doctorBio!,
-                                    isExpandedNotifier: _isBioExpandedNotifier,
-                                  ),
                                 const Gap(20),
                               ],
                             ],
@@ -370,6 +366,7 @@ class _DoctorInfoSection extends StatelessWidget {
   final String? speciality;
   final String? experience;
   final String? languages;
+  final String? bio;
 
   const _DoctorInfoSection({
     required this.image,
@@ -377,6 +374,7 @@ class _DoctorInfoSection extends StatelessWidget {
     this.speciality,
     this.experience,
     this.languages,
+    this.bio,
   });
 
   @override
@@ -385,92 +383,128 @@ class _DoctorInfoSection extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
         children: [
-          Container(
-            width: 80,
-            height: 80,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: theme.colorScheme.surfaceContainerHighest,
-              border: Border.all(
-                color: theme.colorScheme.outlineVariant.withValues(alpha: .5),
-                width: 1,
-              ),
-            ),
-            child: ClipOval(
-              child: CachedNetworkImage(
-                imageUrl: image,
-                fit: BoxFit.cover,
-                placeholder: CommonNetworkImage.placeholder,
-                errorWidget: CommonNetworkImage.errorWidget,
-              ),
-            ),
-          ),
-          const Gap(16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name.toTitleCase(),
-                  style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.textDark,
-                    fontSize: 18,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: theme.colorScheme.surfaceContainerHighest,
+                  border: Border.all(
+                    color: theme.colorScheme.outlineVariant.withValues(
+                      alpha: .5,
+                    ),
+                    width: 1,
                   ),
                 ),
-                if (speciality != null)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 2),
-                    child: Text(
-                      speciality!.toTitleCase(),
-                      style: AppTextStyles.bodyTextRoboto.copyWith(
-                        color: AppColors.textLightDark,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
+                child: ClipOval(
+                  child: CachedNetworkImage(
+                    imageUrl: image,
+                    fit: BoxFit.cover,
+                    placeholder: CommonNetworkImage.placeholder,
+                    errorWidget: CommonNetworkImage.errorWidget,
                   ),
-                if (experience != null)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 2),
-                    child: Text(
-                      '${AppStaticTexts.experiencePrefix} $experience',
-                      style: AppTextStyles.bodyTextRoboto.copyWith(
-                        color: AppColors.textLightDark,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
+                ),
+              ),
+              const Gap(16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name.toTitleCase(),
+                      style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.textDark,
+                        fontSize: 18,
                       ),
                     ),
-                  ),
-                if (languages != null && languages!.isNotEmpty)
-                  Container(
-                    margin: const EdgeInsets.only(top: 8),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      color: AppColors.lightGray,
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: AppColors.borderColor.withValues(alpha: 0.5),
+                    if (speciality != null && speciality!.isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 2),
+                        child: Text(
+                          speciality!.toTitleCase(),
+                          style: AppTextStyles.bodyTextRoboto.copyWith(
+                            color: AppColors.textLightDark,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
                       ),
-                    ),
-                    child: Text(
-                      '${AppStaticTexts.speaksPrefix} $languages',
-                      style: AppTextStyles.bodySmallRobotoNormal.copyWith(
-                        color: AppColors.textLight,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 11,
+                    if (experience != null && experience!.isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 2),
+                        child: Text(
+                          '${AppStaticTexts.experiencePrefix} $experience',
+                          style: AppTextStyles.bodyTextRoboto.copyWith(
+                            color: AppColors.textLightDark,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-              ],
-            ),
+                    if (languages != null && languages!.isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12),
+                        child: Wrap(
+                          spacing: 6,
+                          runSpacing: 6,
+                          children: languages!.split(',').map((lang) {
+                            return Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: theme.colorScheme.surfaceContainerHighest
+                                    .withValues(alpha: .5),
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(
+                                  color: theme.colorScheme.outlineVariant
+                                      .withValues(alpha: .3),
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.translate_rounded,
+                                    size: 11,
+                                    color: theme.colorScheme.primary.withValues(
+                                      alpha: .7,
+                                    ),
+                                  ),
+                                  const Gap(6),
+                                  Text(
+                                    lang.trim(),
+                                    style: AppTextStyles.bodyTextInter.copyWith(
+                                      color: theme.colorScheme.onSurfaceVariant
+                                          .withValues(alpha: .9),
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ],
           ),
+          if (bio != null && bio!.trim().isNotEmpty)
+            Positioned(
+              top: 0,
+              right: 0,
+              child: DoctorInfoButton(doctorName: name, bio: bio!),
+            ),
         ],
       ),
     );
@@ -597,52 +631,6 @@ class _LocationSection extends StatelessWidget {
           const Divider(),
         ],
       ),
-    );
-  }
-}
-
-class _DoctorInformationAccordion extends StatelessWidget {
-  final String bio;
-  final ValueNotifier<bool> isExpandedNotifier;
-
-  const _DoctorInformationAccordion({
-    required this.bio,
-    required this.isExpandedNotifier,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder<bool>(
-      valueListenable: isExpandedNotifier,
-      builder: (context, isExpanded, child) {
-        return Column(
-          children: [
-            ListTile(
-              title: Text(
-                AppStaticTexts.doctorInformation,
-                style: AppTextStyles.bodyLargeRobotoBold,
-              ),
-              trailing: Icon(
-                isExpanded ? Icons.expand_less : Icons.expand_more,
-              ),
-              onTap: () {
-                isExpandedNotifier.value = !isExpandedNotifier.value;
-              },
-            ),
-            if (isExpanded)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Text(
-                  bio,
-                  textAlign: TextAlign.justify,
-                  style: AppTextStyles.bodyTextRoboto.copyWith(
-                    color: AppColors.textLight,
-                  ),
-                ),
-              ),
-          ],
-        );
-      },
     );
   }
 }

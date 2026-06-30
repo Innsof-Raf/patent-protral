@@ -5,12 +5,12 @@ import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
-import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
+import 'package:patient_portal/feature/doctors/presentation/widgets/doctor_info_widgets.dart';
 
 class DoctorTile extends StatelessWidget {
   const DoctorTile({super.key, required this.doctor});
@@ -131,7 +131,10 @@ class DoctorTile extends StatelessWidget {
                 Positioned(
                   top: 8,
                   right: 8,
-                  child: _DoctorInfoButton(doctor: doctor, bio: bio),
+                  child: DoctorInfoButton(
+                    doctorName: doctor.doctorName,
+                    bio: bio,
+                  ),
                 ),
             ],
           ),
@@ -361,141 +364,6 @@ class _AvailabilitySlot extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _DoctorInfoButton extends StatelessWidget {
-  const _DoctorInfoButton({required this.doctor, required this.bio});
-
-  final Doctor doctor;
-  final String bio;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: .4),
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: theme.colorScheme.outlineVariant.withValues(alpha: .2),
-        ),
-      ),
-      child: SizedBox(
-        width: 28,
-        height: 28,
-        child: IconButton(
-          padding: EdgeInsets.zero,
-          constraints: const BoxConstraints(minWidth: 28, minHeight: 28),
-          visualDensity: VisualDensity.compact,
-          splashRadius: 14,
-          onPressed: () => showDialog<void>(
-            context: context,
-            builder: (dialogContext) => _DoctorInfoDialog(
-              doctorName: doctor.doctorName.toTitleCase(),
-              bio: bio,
-            ),
-          ),
-          tooltip: AppStaticTexts.viewInfo,
-          icon: Icon(
-            Icons.info_outline_rounded,
-            size: 16,
-            color: theme.colorScheme.onSurfaceVariant,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _DoctorInfoDialog extends StatelessWidget {
-  const _DoctorInfoDialog({required this.doctorName, required this.bio});
-
-  final String doctorName;
-  final String bio;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-      elevation: 0,
-      backgroundColor: Colors.transparent,
-      child: Container(
-        decoration: BoxDecoration(
-          color: theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(24),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.1),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
-            ),
-          ],
-        ),
-        child: Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(24, 32, 24, 24),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    AppStaticTexts.doctorInfo,
-                    style: theme.textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: theme.colorScheme.onSurface,
-                    ),
-                  ),
-                  const Gap(6),
-                  Text(
-                    doctorName,
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      color: theme.colorScheme.primary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const Gap(16),
-                  Flexible(
-                    child: SingleChildScrollView(
-                      child: Text(
-                        bio,
-                        style: theme.textTheme.bodyLarge?.copyWith(
-                          color: theme.colorScheme.onSurfaceVariant,
-                          height: 1.5,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const Gap(24),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ActiveButton(
-                      onPressed: () => Navigator.pop(context),
-                      height: 50,
-                      child: const Text(AppStaticTexts.close),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              top: 8,
-              right: 8,
-              child: IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: const Icon(Icons.close_rounded),
-                color: theme.colorScheme.onSurfaceVariant,
-                visualDensity: VisualDensity.compact,
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
