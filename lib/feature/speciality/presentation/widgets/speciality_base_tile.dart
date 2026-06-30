@@ -1,0 +1,30 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/route/app_router.dart';
+import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
+
+class SpecialityBaseTile extends StatelessWidget {
+  const SpecialityBaseTile({
+    super.key,
+    required this.speciality,
+    required this.child,
+  });
+
+  final Speciality speciality;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      label: '${AppStaticTexts.viewDoctorsIn} ${speciality.specialityName}',
+      child: InkWell(
+        onTap: () => context.router.root.push(
+          DoctorsRoute(idSpecilaity: speciality.idSpeciality),
+        ),
+        child: child,
+      ),
+    );
+  }
+}
