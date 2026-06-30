@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_icon_button.dart';
 import 'package:gap/gap.dart';
 
 class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
@@ -38,19 +39,12 @@ class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: centerTitle,
       leading: (onLeadingPressed != null || Navigator.of(context).canPop())
           ? Center(
-              child: IconButton(
-                icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
+              child: CommonIconButton(
+                icon: const Icon(Icons.arrow_back_ios_new_rounded),
                 onPressed:
                     onLeadingPressed ?? () => Navigator.of(context).pop(),
                 color: effectiveForegroundColor,
                 tooltip: 'Back',
-                style: IconButton.styleFrom(
-                  backgroundColor: theme.colorScheme.surfaceContainerHighest
-                      .withValues(alpha: 0.3),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
               ),
             )
           : null,

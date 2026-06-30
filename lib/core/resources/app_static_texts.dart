@@ -283,6 +283,7 @@ class AppStaticTexts {
   static const String uss = 'USS';
   static const String ctScan = 'CT Scan';
   static const String refresh = 'Refresh';
+  static const String back = 'Back';
 
   // Documents/Add Document
   static const String addDocument = 'Add Document';
@@ -302,6 +303,8 @@ class AppStaticTexts {
   static const String selectDocumentToUpload = 'Select document to upload';
   static const String documentUploadedSuccessfully =
       'Document uploaded successfully';
+  static const String saveReport = 'Save Report';
+  static const String reportSavedAt = 'Report saved at';
 
   // Cart
   static const String myCart = 'My Cart';

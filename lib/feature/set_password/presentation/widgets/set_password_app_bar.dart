@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_icon_button.dart';
 
 class SetPasswordAppBar extends StatelessWidget implements PreferredSizeWidget {
   const SetPasswordAppBar({super.key});
@@ -15,18 +16,11 @@ class SetPasswordAppBar extends StatelessWidget implements PreferredSizeWidget {
       scrolledUnderElevation: 3,
       centerTitle: false,
       leading: Center(
-        child: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
+        child: CommonIconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
           onPressed: () => Navigator.of(context).pop(),
           color: theme.colorScheme.onSurface,
-          tooltip: 'Back',
-          style: IconButton.styleFrom(
-            backgroundColor: theme.colorScheme.surfaceContainerHighest
-                .withValues(alpha: 0.3),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
+          tooltip: AppStaticTexts.back,
         ),
       ),
       title: Text(
@@ -37,10 +31,9 @@ class SetPasswordAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       actions: [
-        IconButton(
+        CommonIconButton(
           onPressed: () {},
           icon: const Icon(Icons.more_vert_rounded),
-          color: theme.colorScheme.onSurface,
         ),
         const Gap(8),
       ],

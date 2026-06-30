@@ -6,7 +6,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_icon_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_snack_bar.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
 
@@ -39,18 +41,11 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
       scrolledUnderElevation: 3,
       centerTitle: false,
       leading: Center(
-        child: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
+        child: CommonIconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
           onPressed: () => Navigator.of(context).pop(),
           color: theme.colorScheme.onSurface,
-          tooltip: 'Back',
-          style: IconButton.styleFrom(
-            backgroundColor: theme.colorScheme.surfaceContainerHighest
-                .withValues(alpha: 0.3),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
+          tooltip: AppStaticTexts.back,
         ),
       ),
       titleSpacing: 0,
@@ -104,19 +99,12 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
                 state.report == null) {
               return const SizedBox.shrink();
             }
-            return IconButton(
-              style: IconButton.styleFrom(
-                backgroundColor: theme.colorScheme.surfaceContainerHighest
-                    .withValues(alpha: 0.3),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
+            return CommonIconButton(
               onPressed: () async {
                 final String fileName = _getFileName(documentUrl, doctorName);
 
                 final String? outputFile = await FilePicker.saveFile(
-                  dialogTitle: 'Save Report',
+                  dialogTitle: AppStaticTexts.saveReport,
                   fileName: fileName,
                   bytes: state.report!.bytes,
                 );
@@ -124,12 +112,12 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
                 if (outputFile != null && context.mounted) {
                   CommonSnackBar.show(
                     context,
-                    message: 'Report saved at $outputFile',
+                    message: '${AppStaticTexts.reportSavedAt} $outputFile',
                     type: SnackBarType.success,
                   );
                 }
               },
-              icon: const Icon(Icons.downloading_rounded, size: 20),
+              icon: const Icon(Icons.downloading_rounded),
             );
           },
         ),

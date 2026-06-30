@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_text_button.dart';
 
 class HomeSectionHeader extends StatelessWidget {
   const HomeSectionHeader({
@@ -59,15 +60,10 @@ class HomeSectionHeader extends StatelessWidget {
         ),
         if (onViewAll != null) ...[
           const Gap(12),
-          InkWell(
-            onTap: onViewAll,
-            child: Text(
-              AppStaticTexts.viewAll,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.colorScheme.primary,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+          ActiveTextButton(
+            onPressed: onViewAll,
+            fontWeight: FontWeight.bold,
+            child: const Text(AppStaticTexts.viewAll),
           ),
         ],
       ],

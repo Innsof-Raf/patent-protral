@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
@@ -130,15 +131,9 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
       ),
       bottomNavigationBar: SafeArea(
         minimum: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-        child: FilledButton.icon(
-          style: FilledButton.styleFrom(
-            minimumSize: const Size.fromHeight(52),
-            backgroundColor: theme.colorScheme.primary,
-            foregroundColor: theme.colorScheme.onPrimary,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(18),
-            ),
-          ),
+        child: ActiveButton(
+          height: 52,
+          borderRadius: 18,
           onPressed: () {
             final member = _findMember(
               context.read<UserBloc>().state.user?.members,
@@ -149,7 +144,7 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
             context.router.root.push(AddMemberRoute(member: member));
           },
           icon: const Icon(Icons.edit_outlined),
-          label: const Text(AppStaticTexts.editInsuranceDetails),
+          child: const Text(AppStaticTexts.editInsuranceDetails),
         ),
       ),
     );
