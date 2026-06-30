@@ -20,9 +20,8 @@ class SpecialityBaseTile extends StatelessWidget {
       button: true,
       label: '${AppStaticTexts.viewDoctorsIn} ${speciality.specialityName}',
       child: InkWell(
-        onTap: () => context.router.root.push(
-          DoctorsRoute(idSpecilaity: speciality.idSpeciality),
-        ),
+        onTap: () =>
+            context.router.root.push(DoctorsRoute(speciality: speciality)),
         child: child,
       ),
     );

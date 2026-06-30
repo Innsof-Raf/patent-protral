@@ -12,12 +12,13 @@ import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_b
 import 'package:patient_portal/feature/doctors/presentation/widgets/doctor_tile.dart';
 import 'package:patient_portal/feature/doctors/presentation/widgets/doctors_state_view.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
+import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
 
 @RoutePage(name: 'DoctorsRoute')
 class DoctorsScreen extends StatefulWidget {
-  const DoctorsScreen({super.key, required this.idSpecilaity});
+  const DoctorsScreen({super.key, required this.speciality});
 
-  final int idSpecilaity;
+  final Speciality speciality;
 
   @override
   State<DoctorsScreen> createState() => _DoctorsScreenState();
@@ -36,7 +37,7 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
     final token = context.read<UserBloc>().state.user!.accessToken;
     context.read<DoctorBloc>().add(
       GetAvailableDoctorsByDepartment(
-        idspeciality: widget.idSpecilaity,
+        idspeciality: widget.speciality.idSpeciality,
         token: token,
       ),
     );
@@ -54,12 +55,10 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      appBar: const CommonAppbar(title: AppStaticTexts.doctors),
+      appBar: CommonAppbar(title: widget.speciality.specialityName),
       body: BlocBuilder<DoctorBloc, DoctorState>(
         builder: (context, state) {
-          if (state.isDoctorsFetching) {
-            return const DoctorsLoadingView();
-          }
+          if (state.isDoctorsFetching) return const DoctorsLoadingView();
 
           if (state.isDoctorsFetchingFailed) {
             return CommonErrorView(
