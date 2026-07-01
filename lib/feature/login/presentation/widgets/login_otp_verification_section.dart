@@ -5,13 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_text_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_verification_bloc/otp_verification_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
-import 'package:patient_portal/feature/login/presentation/widgets/login_action_button.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:pinput/pinput.dart';
@@ -40,8 +40,8 @@ class _LoginOtpVerificationSectionState
     super.dispose();
   }
 
-  void _verifyOtp(BuildContext context) {
-    if (_otpController.length == 4) {
+  void _verifyOtp(BuildContext context, OtpVerificationState state) {
+    if (_otpController.length == 4 && !state.isVerifying) {
       final idOtp = context.read<OtpGenerationBloc>().state.idOtp;
       final mobileNumber = context.read<OtpGenerationBloc>().state.mobileNumber;
       context.read<OtpVerificationBloc>().add(
@@ -58,142 +58,119 @@ class _LoginOtpVerificationSectionState
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          AppStaticTexts.enterOtp,
-          style: AppTextStyles.largeRobotoNormal.copyWith(
-            color: theme.colorScheme.onSurfaceVariant,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const Gap(10),
-        LayoutBuilder(
-          builder: (context, constraints) {
-            final rowWidth = constraints.maxWidth.clamp(0.0, 340.0).toDouble();
-
-            return SizedBox(
-              width: rowWidth,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(child: _OtpInput(controller: _otpController)),
-                  const Gap(12),
-                  BlocConsumer<OtpVerificationBloc, OtpVerificationState>(
-                    listener: (context, state) {
-                      if (state.isVerifyingFailed &&
-                          !state.isVerifyingSuccess) {
-                        showGeneralDialog(
-                          context: context,
-                          pageBuilder:
-                              (context, animation, secondaryAnimation) =>
-                                  Container(),
-                          transitionDuration: const Duration(milliseconds: 300),
-                          transitionBuilder:
-                              (context, animation, secondaryAnimation, child) =>
-                                  Transform.scale(
-                                    scale: Curves.easeOut.transform(
-                                      animation.value,
-                                    ),
-                                    child: CommonErrorAlert(
-                                      content: state.error.message,
-                                    ),
-                                  ),
-                        );
-                      } else if (state.isVerifyingSuccess &&
-                          !state.isVerifyingFailed) {
-                        context.read<UserBloc>().add(
-                          StoreUserDetails(
-                            params: ProfileParams.storeUserDetails(
-                              user: state.user!,
-                            ),
-                          ),
-                        );
-                        if (state.user!.members.isNotEmpty) {
-                          context.router.replaceAll([
-                            const MemberSelectionRoute(),
-                          ]);
-                        } else {
-                          context.router.replaceAll([const MainRoute()]);
-                        }
-                      }
-                    },
-                    builder: (context, state) {
-                      return LoginActionButton(
-                        icon: Icons.arrow_forward_rounded,
-                        tooltip: AppStaticTexts.verifyOtpTooltip,
-                        isLoading: state.isVerifying,
-                        onPressed: () => _verifyOtp(context),
-                      );
-                    },
-                  ),
-                ],
+    return BlocConsumer<OtpVerificationBloc, OtpVerificationState>(
+      listener: (context, state) {
+        if (state.isVerifyingFailed && !state.isVerifyingSuccess) {
+          showGeneralDialog(
+            context: context,
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                Container(),
+            transitionDuration: const Duration(milliseconds: 300),
+            transitionBuilder:
+                (context, animation, secondaryAnimation, child) =>
+                    Transform.scale(
+                      scale: Curves.easeOut.transform(animation.value),
+                      child: CommonErrorAlert(content: state.error.message),
+                    ),
+          );
+        } else if (state.isVerifyingSuccess && !state.isVerifyingFailed) {
+          context.read<UserBloc>().add(
+            StoreUserDetails(
+              params: ProfileParams.storeUserDetails(user: state.user!),
+            ),
+          );
+          if (state.user!.members.isNotEmpty) {
+            context.router.replaceAll([const MemberSelectionRoute()]);
+          } else {
+            context.router.replaceAll([const MainRoute()]);
+          }
+        }
+      },
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              AppStaticTexts.enterOtp,
+              style: AppTextStyles.largeRobotoNormal.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+                fontWeight: FontWeight.w600,
+                fontSize: 15,
               ),
-            );
-          },
-        ),
-        const Gap(18),
-        const _OtpSecondaryActions(),
-      ],
+            ),
+            const Gap(16),
+            _OtpInput(
+              controller: _otpController,
+              onCompleted: (_) => _verifyOtp(context, state),
+            ),
+            const Gap(18),
+            const _OtpSecondaryActions(),
+            const Gap(32),
+            ActiveButton(
+              isLoading: state.isVerifying,
+              onPressed: _otpController.text.length == 4
+                  ? () => _verifyOtp(context, state)
+                  : null,
+              child: const Text(AppStaticTexts.verifyOtpTooltip),
+            ),
+          ],
+        );
+      },
     );
   }
 }
 
 class _OtpInput extends StatelessWidget {
-  const _OtpInput({required this.controller});
+  const _OtpInput({required this.controller, this.onCompleted});
 
   final TextEditingController controller;
+  final ValueChanged<String>? onCompleted;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final baseDecoration = BoxDecoration(
-      color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: .34),
+      color: theme.colorScheme.surface,
       borderRadius: BorderRadius.circular(16),
-      border: Border.all(color: theme.colorScheme.outlineVariant),
+      border: Border.all(
+        color: theme.colorScheme.outlineVariant.withValues(alpha: 0.5),
+      ),
     );
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final fieldWidth = ((constraints.maxWidth - 24) / 4)
-            .clamp(42.0, 56.0)
-            .toDouble();
-
-        return Pinput(
-          autofocus: true,
-          controller: controller,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          isCursorAnimationEnabled: false,
-          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-          cursor: Container(
-            height: 18,
-            width: 1.4,
-            color: theme.colorScheme.primary,
-          ),
-          defaultPinTheme: PinTheme(
-            textStyle: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
-              color: theme.colorScheme.onSurface,
-              fontWeight: FontWeight.w700,
-            ),
-            decoration: baseDecoration,
-            width: fieldWidth,
-            height: 52,
-          ),
-          focusedPinTheme: PinTheme(
-            textStyle: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
-              color: theme.colorScheme.onSurface,
-              fontWeight: FontWeight.w700,
-            ),
-            decoration: baseDecoration.copyWith(
-              border: Border.all(color: theme.colorScheme.primary, width: 1.4),
-            ),
-            width: fieldWidth,
-            height: 52,
-          ),
-        );
-      },
+    return Pinput(
+      autofocus: true,
+      controller: controller,
+      length: 4,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      onCompleted: onCompleted,
+      isCursorAnimationEnabled: false,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+      cursor: Container(
+        height: 18,
+        width: 1.4,
+        color: theme.colorScheme.primary,
+      ),
+      defaultPinTheme: PinTheme(
+        textStyle: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
+          color: theme.colorScheme.onSurface,
+          fontWeight: FontWeight.w700,
+        ),
+        decoration: baseDecoration,
+        width: 64,
+        height: 56,
+      ),
+      focusedPinTheme: PinTheme(
+        textStyle: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
+          color: theme.colorScheme.onSurface,
+          fontWeight: FontWeight.w700,
+        ),
+        decoration: baseDecoration.copyWith(
+          border: Border.all(color: theme.colorScheme.primary, width: 1.5),
+        ),
+        width: 64,
+        height: 56,
+      ),
     );
   }
 }

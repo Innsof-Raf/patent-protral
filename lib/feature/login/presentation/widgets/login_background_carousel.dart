@@ -15,8 +15,6 @@ class LoginBackgroundCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -39,20 +37,6 @@ class LoginBackgroundCarousel extends StatelessWidget {
               height: double.infinity,
             );
           },
-        ),
-        DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                theme.colorScheme.scrim.withValues(alpha: .08),
-                theme.colorScheme.scrim.withValues(alpha: .18),
-                theme.colorScheme.scrim.withValues(alpha: .64),
-              ],
-              stops: const [.08, .5, 1],
-            ),
-          ),
         ),
       ],
     );

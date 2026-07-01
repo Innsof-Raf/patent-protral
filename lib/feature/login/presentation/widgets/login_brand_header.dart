@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class LoginBrandHeader extends StatelessWidget {
   const LoginBrandHeader({super.key});
@@ -10,36 +10,27 @@ class LoginBrandHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final titleStyle = AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
-      fontWeight: FontWeight.w700,
-      color: theme.colorScheme.onSurface,
-      height: 1.2,
-    );
-    final subtitleStyle = AppTextStyles.largeRobotoNormal.copyWith(
-      color: theme.colorScheme.onSurfaceVariant,
-      height: 1.35,
-    );
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
-          children: [
-            Expanded(
-              child: Text(
-                AppStaticTexts.getInvolvedWith,
-                style: titleStyle,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
+        Assets.logos.innsofColor.svg(height: 80, fit: BoxFit.contain),
+        const Gap(10),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Text(
+            AppStaticTexts.loginSubtitle,
+            style: theme.textTheme.bodyLarge?.copyWith(
+              fontWeight: FontWeight.w500,
+              color: AppColors.textBluishDark,
+              fontSize: 14,
+              height: 1.4,
+              letterSpacing: 0.1,
             ),
-            const Gap(12),
-            Assets.logos.innsofColor.svg(width: 96, fit: BoxFit.contain),
-          ],
+            textAlign: TextAlign.center,
+          ),
         ),
-        const Gap(8),
-        Text(AppStaticTexts.loginSubtitle, style: subtitleStyle),
       ],
     );
   }

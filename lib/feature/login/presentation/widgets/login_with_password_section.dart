@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/login_with_password_bloc/login_with_password_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
-import 'package:patient_portal/feature/login/presentation/widgets/login_action_button.dart';
+import 'package:patient_portal/feature/login/presentation/helpers/login_screen_form_helpers.dart';
 import 'package:patient_portal/feature/login/presentation/widgets/login_form_field.dart';
 import 'package:patient_portal/feature/login/presentation/widgets/login_terms_row.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
@@ -24,15 +25,19 @@ class LoginWithPasswordSection extends StatefulWidget {
 class _LoginWithPasswordSectionState extends State<LoginWithPasswordSection> {
   final _passwordFormKey = GlobalKey<FormState>();
   final _passwordController = TextEditingController();
+  final ValueNotifier<bool> _isAgreed = ValueNotifier<bool>(false);
 
   @override
   void dispose() {
     _passwordController.dispose();
+    _isAgreed.dispose();
     super.dispose();
   }
 
   void _login(BuildContext context, LoginWithPasswordState state) {
-    if (_passwordFormKey.currentState!.validate() && !state.isLogingin) {
+    if (_passwordFormKey.currentState!.validate() &&
+        !state.isLogingin &&
+        _isAgreed.value) {
       context.read<LoginWithPasswordBloc>().add(
         LoginWithPassword(
           mobileNumber: context.read<OtpGenerationBloc>().state.mobileNumber,
@@ -44,92 +49,67 @@ class _LoginWithPasswordSectionState extends State<LoginWithPasswordSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _passwordFormKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: LoginFormField(
-                  controller: _passwordController,
-                  label: AppStaticTexts.passwordLabel,
-                  keyboardType: TextInputType.visiblePassword,
-                  textInputAction: TextInputAction.done,
-                  obscureText: true,
-                  onFieldSubmitted: (_) {
-                    final state = context.read<LoginWithPasswordBloc>().state;
-                    _login(context, state);
-                  },
-                ),
-              ),
-              const Gap(12),
-              Padding(
-                padding: const EdgeInsets.only(top: 3),
-                child:
-                    BlocConsumer<LoginWithPasswordBloc, LoginWithPasswordState>(
-                      listener: (context, state) {
-                        if (state.isLoginFailed && !state.isLoginSuccess) {
-                          showGeneralDialog(
-                            context: context,
-                            pageBuilder:
-                                (context, animation, secondaryAnimation) =>
-                                    Container(),
-                            transitionDuration: const Duration(
-                              milliseconds: 300,
-                            ),
-                            transitionBuilder:
-                                (
-                                  context,
-                                  animation,
-                                  secondaryAnimation,
-                                  child,
-                                ) => Transform.scale(
-                                  scale: Curves.easeOut.transform(
-                                    animation.value,
-                                  ),
-                                  child: CommonErrorAlert(
-                                    content: state.error.message,
-                                  ),
-                                ),
-                          );
-                        } else if (state.isLoginSuccess &&
-                            !state.isLoginFailed) {
-                          context.read<UserBloc>().add(
-                            StoreUserDetails(
-                              params: ProfileParams.storeUserDetails(
-                                user: state.user!,
-                              ),
-                            ),
-                          );
-                          if (state.user!.members.isNotEmpty) {
-                            context.router.replaceAll([
-                              const MemberSelectionRoute(),
-                            ]);
-                          } else {
-                            context.router.replaceAll([const MainRoute()]);
-                          }
-                        }
-                      },
-                      builder: (context, state) {
-                        return LoginActionButton(
-                          icon: Icons.login_rounded,
-                          tooltip: AppStaticTexts.loginTooltip,
-                          isLoading: state.isLogingin,
-                          onPressed: () => _login(context, state),
-                        );
-                      },
+    return BlocConsumer<LoginWithPasswordBloc, LoginWithPasswordState>(
+      listener: (context, state) {
+        if (state.isLoginFailed && !state.isLoginSuccess) {
+          showGeneralDialog(
+            context: context,
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                Container(),
+            transitionDuration: const Duration(milliseconds: 300),
+            transitionBuilder:
+                (context, animation, secondaryAnimation, child) =>
+                    Transform.scale(
+                      scale: Curves.easeOut.transform(animation.value),
+                      child: CommonErrorAlert(content: state.error.message),
                     ),
+          );
+        } else if (state.isLoginSuccess && !state.isLoginFailed) {
+          context.read<UserBloc>().add(
+            StoreUserDetails(
+              params: ProfileParams.storeUserDetails(user: state.user!),
+            ),
+          );
+          if (state.user!.members.isNotEmpty) {
+            context.router.replaceAll([const MemberSelectionRoute()]);
+          } else {
+            context.router.replaceAll([const MainRoute()]);
+          }
+        }
+      },
+      builder: (context, state) {
+        return Form(
+          key: _passwordFormKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              LoginFormField(
+                controller: _passwordController,
+                label: AppStaticTexts.passwordLabel,
+                keyboardType: TextInputType.visiblePassword,
+                textInputAction: TextInputAction.done,
+                obscureText: true,
+                validator: LoginScreenFormHelpers.validatePassword,
+                onFieldSubmitted: (_) => _login(context, state),
+              ),
+              const Gap(16),
+              LoginTermsRow(onChanged: (value) => _isAgreed.value = value),
+              const Gap(32),
+              ValueListenableBuilder<bool>(
+                valueListenable: _isAgreed,
+                builder: (context, agreed, _) {
+                  return ActiveButton(
+                    isLoading: state.isLogingin,
+                    onPressed: agreed ? () => _login(context, state) : null,
+                    child: const Text(AppStaticTexts.loginTooltip),
+                  );
+                },
               ),
             ],
           ),
-          const Gap(18),
-          const LoginTermsRow(),
-        ],
-      ),
+        );
+      },
     );
   }
 }

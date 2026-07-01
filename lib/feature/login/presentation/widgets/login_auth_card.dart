@@ -1,39 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/feature/login/presentation/widgets/login_brand_header.dart';
 
 class LoginAuthCard extends StatelessWidget {
-  const LoginAuthCard({required this.child, super.key});
+  const LoginAuthCard({
+    required this.child,
+    this.showElevation = false,
+    super.key,
+  });
 
   final Widget child;
+  final bool showElevation;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(24, 22, 24, 24),
       decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(34)),
+        color: AppColors.lightGray,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(40)),
         boxShadow: [
           BoxShadow(
-            color: theme.colorScheme.shadow.withValues(alpha: .12),
-            blurRadius: 28,
-            offset: const Offset(0, -12),
+            color: Colors.black.withValues(alpha: 0.08),
+            blurRadius: 40,
+            offset: const Offset(0, -10),
           ),
+          if (showElevation)
+            BoxShadow(
+              color: theme.colorScheme.primary.withValues(alpha: 0.05),
+              blurRadius: 20,
+              offset: const Offset(0, -5),
+            ),
         ],
       ),
       child: SafeArea(
         top: false,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const LoginBrandHeader(),
-            const SizedBox(height: 22),
-            child,
-          ],
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(24, 16, 24, 32),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: [const LoginBrandHeader(), const Gap(32), child],
+            ),
+          ),
         ),
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
 
 class LoginFormField extends StatelessWidget {
   const LoginFormField({
@@ -31,12 +31,12 @@ class LoginFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final borderRadius = BorderRadius.circular(18);
-    final borderColor = theme.colorScheme.outlineVariant;
+    final borderRadius = BorderRadius.circular(16);
 
     return TextFormField(
       controller: controller,
       validator: validator,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       onFieldSubmitted: onFieldSubmitted,
       keyboardType: keyboardType,
       inputFormatters: inputFormatters,
@@ -44,48 +44,58 @@ class LoginFormField extends StatelessWidget {
       obscuringCharacter: '*',
       textInputAction: textInputAction,
       cursorColor: theme.colorScheme.primary,
-      style: AppTextStyles.largeSemiBoldRoboto.copyWith(
-        color: theme.colorScheme.onSurface,
+      style: theme.textTheme.bodyLarge?.copyWith(
+        color: AppColors.textDark,
         fontWeight: FontWeight.w600,
+        fontSize: 15,
       ),
       decoration: InputDecoration(
-        labelText: label,
+        labelText: label.isEmpty ? null : label,
         hintText: hintText,
         prefixText: prefixText,
         filled: true,
-        fillColor: theme.colorScheme.surfaceContainerHighest.withValues(
-          alpha: .34,
-        ),
+        fillColor: theme.colorScheme.surface,
         contentPadding: const EdgeInsets.symmetric(
-          horizontal: 18,
-          vertical: 17,
+          horizontal: 20,
+          vertical: 16,
         ),
-        labelStyle: AppTextStyles.largeRobotoNormal.copyWith(
-          color: theme.colorScheme.onSurfaceVariant,
+        labelStyle: theme.textTheme.bodyLarge?.copyWith(
+          color: AppColors.textLight,
+          fontSize: 14,
+          fontWeight: FontWeight.w400,
         ),
-        floatingLabelStyle: AppTextStyles.largeRobotoNormal.copyWith(
-          color: theme.colorScheme.primary,
-          fontWeight: FontWeight.w600,
+        hintStyle: theme.textTheme.bodyLarge?.copyWith(
+          color: AppColors.textLight.withValues(alpha: 0.6),
+          fontSize: 14,
         ),
-        prefixStyle: AppTextStyles.largeSemiBoldRoboto.copyWith(
-          color: theme.colorScheme.onSurface,
+        prefixStyle: theme.textTheme.bodyLarge?.copyWith(
+          color: AppColors.textDark,
           fontWeight: FontWeight.w700,
+          fontSize: 15,
+        ),
+        border: OutlineInputBorder(
+          borderRadius: borderRadius,
+          borderSide: BorderSide(
+            color: theme.colorScheme.outlineVariant.withValues(alpha: 0.5),
+          ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: borderRadius,
-          borderSide: BorderSide(color: borderColor),
+          borderSide: BorderSide(
+            color: theme.colorScheme.outlineVariant.withValues(alpha: 0.5),
+          ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: borderRadius,
-          borderSide: BorderSide(color: theme.colorScheme.primary, width: 1.4),
+          borderSide: BorderSide(color: theme.colorScheme.primary, width: 1.5),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: borderRadius,
-          borderSide: BorderSide(color: theme.colorScheme.error),
+          borderSide: BorderSide(color: theme.colorScheme.error, width: 1),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: borderRadius,
-          borderSide: BorderSide(color: theme.colorScheme.error, width: 1.4),
+          borderSide: BorderSide(color: theme.colorScheme.error, width: 1.5),
         ),
       ),
     );

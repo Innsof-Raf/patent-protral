@@ -1,12 +1,21 @@
 class LoginScreenFormHelpers {
   static String? validateMobileNumber(String? value) {
-    final RegExp mobileNumberRegex = RegExp('^(\\d{8}(\\,\\d{8}){0,2})\$');
-    if (value == null || value == '') {
+    if (value == null || value.isEmpty) {
       return 'Please enter your mobile number';
-    } else if (mobileNumberRegex.hasMatch(value)) {
-      return null;
-    } else {
-      return 'Enter a valid mobile number or email';
     }
+    if (value.length != 8) {
+      return 'Mobile number must be 8 digits';
+    }
+    return null;
+  }
+
+  static String? validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your password';
+    }
+    if (value.length < 6) {
+      return 'Password must be at least 6 characters';
+    }
+    return null;
   }
 }

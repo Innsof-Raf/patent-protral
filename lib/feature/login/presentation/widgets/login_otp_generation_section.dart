@@ -3,11 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/helpers/login_screen_form_helpers.dart';
 import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
-import 'package:patient_portal/feature/login/presentation/widgets/login_action_button.dart';
 import 'package:patient_portal/feature/login/presentation/widgets/login_form_field.dart';
 import 'package:patient_portal/feature/login/presentation/widgets/login_terms_row.dart';
 
@@ -22,6 +22,7 @@ class LoginOtpGenerationSection extends StatefulWidget {
 class _LoginOtpGenerationSectionState extends State<LoginOtpGenerationSection> {
   final _formKey = GlobalKey<FormState>();
   late final TextEditingController _mobileNumberController;
+  final ValueNotifier<bool> _isAgreed = ValueNotifier<bool>(false);
 
   @override
   void initState() {
@@ -32,11 +33,14 @@ class _LoginOtpGenerationSectionState extends State<LoginOtpGenerationSection> {
   @override
   void dispose() {
     _mobileNumberController.dispose();
+    _isAgreed.dispose();
     super.dispose();
   }
 
   void _generateOtp(BuildContext context, OtpGenerationState state) {
-    if (_formKey.currentState!.validate() && !state.isOtpGenerating) {
+    if (_formKey.currentState!.validate() &&
+        !state.isOtpGenerating &&
+        _isAgreed.value) {
       context.read<OtpGenerationBloc>().add(
         GenerateOtp(mobileNumber: _mobileNumberController.text),
       );
@@ -72,41 +76,33 @@ class _LoginOtpGenerationSectionState extends State<LoginOtpGenerationSection> {
         return Form(
           key: _formKey,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: LoginFormField(
-                      controller: _mobileNumberController,
-                      label: AppStaticTexts.mobileNumberLabel,
-                      prefixText: '+974 ',
-                      keyboardType: TextInputType.phone,
-                      textInputAction: TextInputAction.send,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                        LengthLimitingTextInputFormatter(8),
-                      ],
-                      validator: LoginScreenFormHelpers.validateMobileNumber,
-                      onFieldSubmitted: (_) => _generateOtp(context, state),
-                    ),
-                  ),
-                  const Gap(12),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 3),
-                    child: LoginActionButton(
-                      icon: Icons.arrow_forward_rounded,
-                      tooltip: AppStaticTexts.sendOtpTooltip,
-                      isLoading: state.isOtpGenerating,
-                      onPressed: () => _generateOtp(context, state),
-                    ),
-                  ),
+              LoginFormField(
+                controller: _mobileNumberController,
+                label: AppStaticTexts.mobileNumberLabel,
+                prefixText: AppStaticTexts.qatarCountryCode,
+                keyboardType: TextInputType.phone,
+                textInputAction: TextInputAction.send,
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(8),
                 ],
+                validator: LoginScreenFormHelpers.validateMobileNumber,
+                onFieldSubmitted: (_) => _generateOtp(context, state),
               ),
-              const Gap(18),
-              const LoginTermsRow(),
+              const Gap(16),
+              LoginTermsRow(onChanged: (value) => _isAgreed.value = value),
+              const Gap(32),
+              ValueListenableBuilder<bool>(
+                valueListenable: _isAgreed,
+                builder: (context, agreed, _) => ActiveButton(
+                  isLoading: state.isOtpGenerating,
+                  onPressed: agreed ? () => _generateOtp(context, state) : null,
+                  child: const Text(AppStaticTexts.sendOtpTooltip),
+                ),
+              ),
             ],
           ),
         );

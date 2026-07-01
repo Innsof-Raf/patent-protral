@@ -93,7 +93,8 @@ class AppStaticTexts {
   // Login
   static const String getInvolvedWith = 'Get involved with';
   static const String loginSubtitle =
-      'Access appointments, records, and care updates securely.';
+      'Experience seamless healthcare management at your fingertips.';
+  static const String qatarCountryCode = '+974 - ';
   static const String mobileNumberLabel = 'Mobile number';
   static const String sendOtpTooltip = 'Send OTP';
   static const String passwordLabel = 'Password';

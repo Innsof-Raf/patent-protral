@@ -2,9 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
-import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
 import 'package:patient_portal/feature/login/presentation/widgets/login_auth_card.dart';
 import 'package:patient_portal/feature/login/presentation/widgets/login_background_carousel.dart';
@@ -13,10 +11,10 @@ import 'package:patient_portal/feature/login/presentation/widgets/login_otp_veri
 import 'package:patient_portal/feature/login/presentation/widgets/login_with_password_section.dart';
 
 final List<String> bgImages = [
-  Assets.images.loginBackgroundImage.path,
-  Assets.images.loginBackgroundImage.path,
-  Assets.images.loginBackgroundImage.path,
-  Assets.images.loginBackgroundImage.path,
+  Assets.images.loginBgSlide1.path,
+  Assets.images.loginBgSlide2.path,
+  Assets.images.loginBgSlide3.path,
+  Assets.images.loginBgSlide4.path,
 ];
 
 final CarouselSliderController bgImageCarouselController =
@@ -45,31 +43,24 @@ class LogInScreen extends StatelessWidget {
           },
           child: AnnotatedRegion<SystemUiOverlayStyle>(
             value: SystemUiOverlayStyle(
-              statusBarColor: AppColors.black,
+              statusBarColor: Colors.transparent,
               statusBarIconBrightness: Brightness.light,
               statusBarBrightness: Brightness.dark,
               systemNavigationBarColor: theme.colorScheme.surface,
               systemNavigationBarIconBrightness: Brightness.dark,
             ),
             child: Scaffold(
-              resizeToAvoidBottomInset: false,
-              backgroundColor: theme.colorScheme.inverseSurface,
+              resizeToAvoidBottomInset: true,
               body: Stack(
                 children: [
-                  Positioned(
-                    left: 0,
-                    top: MediaQuery.paddingOf(context).top,
-                    right: 0,
-                    bottom: 0,
+                  Positioned.fill(
                     child: LoginBackgroundCarousel(
                       images: bgImages,
                       controller: bgImageCarouselController,
                     ),
                   ),
-                  Positioned(
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
+                  Align(
+                    alignment: Alignment.bottomCenter,
                     child: _LoginBottomPanel(sectionIndex: value),
                   ),
                 ],
@@ -93,45 +84,29 @@ class _LoginBottomPanel extends StatelessWidget {
       duration: const Duration(milliseconds: 220),
       curve: Curves.easeOutCubic,
       padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: LoginCarouselIndicator(
-              controller: bgImageCarouselController,
-              count: bgImages.length,
-            ),
-          ),
-          const Gap(18),
-          LoginAuthCard(
-            child: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 280),
-              switchInCurve: Curves.easeOutCubic,
-              switchOutCurve: Curves.easeInCubic,
-              transitionBuilder: (child, animation) {
-                final slideAnimation = Tween<Offset>(
-                  begin: const Offset(.08, 0),
-                  end: Offset.zero,
-                ).animate(animation);
+      child: LoginAuthCard(
+        showElevation: sectionIndex != 2,
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 280),
+          switchInCurve: Curves.easeOutCubic,
+          switchOutCurve: Curves.easeInCubic,
+          transitionBuilder: (child, animation) {
+            final slideAnimation = Tween<Offset>(
+              begin: const Offset(.08, 0),
+              end: Offset.zero,
+            ).animate(animation);
 
-                return FadeTransition(
-                  opacity: animation,
-                  child: SlideTransition(
-                    position: slideAnimation,
-                    child: child,
-                  ),
-                );
-              },
-              child: switch (sectionIndex) {
-                0 => const LoginOtpGenerationSection(key: ValueKey<int>(0)),
-                2 => const LoginWithPasswordSection(key: ValueKey<int>(2)),
-                _ => const LoginOtpVerificationSection(key: ValueKey<int>(1)),
-              },
-            ),
-          ),
-        ],
+            return FadeTransition(
+              opacity: animation,
+              child: SlideTransition(position: slideAnimation, child: child),
+            );
+          },
+          child: switch (sectionIndex) {
+            0 => const LoginOtpGenerationSection(key: ValueKey<int>(0)),
+            2 => const LoginWithPasswordSection(key: ValueKey<int>(2)),
+            _ => const LoginOtpVerificationSection(key: ValueKey<int>(1)),
+          },
+        ),
       ),
     );
   }

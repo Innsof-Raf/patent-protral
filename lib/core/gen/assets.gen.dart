@@ -213,6 +213,22 @@ class $AssetsImagesGen {
   AssetGenImage get loginBackgroundImage =>
       const AssetGenImage('assets/images/login_background_image.png');
 
+  /// File path: assets/images/login_bg_slide_1.png
+  AssetGenImage get loginBgSlide1 =>
+      const AssetGenImage('assets/images/login_bg_slide_1.png');
+
+  /// File path: assets/images/login_bg_slide_2.png
+  AssetGenImage get loginBgSlide2 =>
+      const AssetGenImage('assets/images/login_bg_slide_2.png');
+
+  /// File path: assets/images/login_bg_slide_3.png
+  AssetGenImage get loginBgSlide3 =>
+      const AssetGenImage('assets/images/login_bg_slide_3.png');
+
+  /// File path: assets/images/login_bg_slide_4.png
+  AssetGenImage get loginBgSlide4 =>
+      const AssetGenImage('assets/images/login_bg_slide_4.png');
+
   /// File path: assets/images/member_default_profile_image.png
   AssetGenImage get memberDefaultProfileImage =>
       const AssetGenImage('assets/images/member_default_profile_image.png');
@@ -228,6 +244,10 @@ class $AssetsImagesGen {
     homeMemberTileBackgroundImage,
     imageLoadingFailedImage,
     loginBackgroundImage,
+    loginBgSlide1,
+    loginBgSlide2,
+    loginBgSlide3,
+    loginBgSlide4,
     memberDefaultProfileImage,
     profilePhotoImage,
   ];
