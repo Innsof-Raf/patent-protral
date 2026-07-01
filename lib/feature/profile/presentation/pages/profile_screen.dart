@@ -103,7 +103,6 @@ class _LogoutButton extends StatelessWidget {
     );
   }
 
-  void _showLogoutDialog(BuildContext context) {
-    showDialog(context: context, builder: (context) => const LogoutDialog());
-  }
+  void _showLogoutDialog(BuildContext context) =>
+      showDialog(context: context, builder: (context) => const LogoutDialog());
 }

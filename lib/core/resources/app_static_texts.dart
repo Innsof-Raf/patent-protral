@@ -197,6 +197,7 @@ class AppStaticTexts {
       'No Records found in the selected user.\nNo Records found. Please Contact for further support.';
 
   // Profile
+  static const String profileTitle = 'My Profile';
   static const String age = 'Age';
   static const String ageNotProvided = 'Age Not Provided';
   static const String nationalId = 'National ID';
