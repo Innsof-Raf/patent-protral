@@ -37,7 +37,7 @@ class CommonSnackBar {
       ..showSnackBar(
         SnackBar(
           duration: duration,
-          backgroundColor: Colors.transparent,
+          backgroundColor: AppColors.transparent,
           elevation: 0,
           behavior: SnackBarBehavior.floating,
           padding: EdgeInsets.zero,

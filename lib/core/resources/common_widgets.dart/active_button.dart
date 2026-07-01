@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
 
 class ActiveButton extends StatelessWidget {
   final VoidCallback? onPressed;
@@ -46,7 +47,7 @@ class ActiveButton extends StatelessWidget {
           ? effectiveForegroundColor
           : theme.colorScheme.onSurface.withValues(alpha: 0.38),
       elevation: elevation,
-      shadowColor: Colors.transparent,
+      shadowColor: AppColors.transparent,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),
       ),

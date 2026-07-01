@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
@@ -49,11 +50,11 @@ class DoctorTile extends StatelessWidget {
             border: Border.all(
               color: theme.colorScheme.outlineVariant.withValues(alpha: .5),
             ),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
-                color: theme.colorScheme.shadow.withValues(alpha: .03),
+                color: AppColors.shadowColorUltraLight,
                 blurRadius: 12,
-                offset: const Offset(0, 4),
+                offset: Offset(0, 4),
               ),
             ],
           ),
@@ -105,8 +106,8 @@ class DoctorTile extends StatelessWidget {
                               subtitle: doctor.availability.isNotEmpty
                                   ? doctor.availability
                                   : AppStaticTexts.available,
-                              color: const Color(0xFF1976D2),
-                              backgroundColor: const Color(0xFFE3F2FD),
+                              color: AppColors.iconBlue,
+                              backgroundColor: AppColors.iconBlueBg,
                             ),
                           ],
                           if (doctor.availability.isNotEmpty &&
@@ -117,8 +118,8 @@ class DoctorTile extends StatelessWidget {
                               icon: Icons.business_rounded,
                               title: AppStaticTexts.inPersonConsultation,
                               subtitle: doctor.availability,
-                              color: const Color(0xFF388E3C),
-                              backgroundColor: const Color(0xFFE8F5E9),
+                              color: AppColors.iconGreen,
+                              backgroundColor: AppColors.iconGreenBg,
                             ),
                           ],
                         ],
@@ -275,7 +276,7 @@ class _LocationChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       decoration: BoxDecoration(
-        color: const Color(0xFFE3F2FD).withValues(alpha: 0.4),
+        color: AppColors.iconBlueBg.withValues(alpha: 0.4),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -284,7 +285,7 @@ class _LocationChip extends StatelessWidget {
           const Icon(
             Icons.location_on_rounded,
             size: 14,
-            color: Color(0xFFE53935),
+            color: AppColors.iconRed,
           ),
           const Gap(6),
           Flexible(

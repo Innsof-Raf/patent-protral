@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
@@ -71,11 +72,11 @@ class CartScreen extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               color: theme.colorScheme.surface,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.05),
+                  color: AppColors.shadowColorLight,
                   blurRadius: 10,
-                  offset: const Offset(0, -5),
+                  offset: Offset(0, -5),
                 ),
               ],
             ),

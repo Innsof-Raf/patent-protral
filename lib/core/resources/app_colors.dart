@@ -32,6 +32,12 @@ class AppColors {
   static const Color profileNameColor = Color(0xff2E3E5C);
   static const Color profileUHIDColor = Color(0xff757575);
 
+  // Shadow colors
+  static const Color shadowColor = Color(0x1A000000);
+  static const Color shadowColorLight = Color(0x0D000000);
+  static const Color shadowColorExtraLight = Color(0x0A000000);
+  static const Color shadowColorUltraLight = Color(0x08000000);
+
   // Icon and Background pairs
   static const Color iconBlue = Color(0xff1976D2);
   static const Color iconBlueBg = Color(0xffE3F2FD);

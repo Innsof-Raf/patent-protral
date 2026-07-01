@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
@@ -173,14 +174,14 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                 height: 24,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: value ? colorScheme.primary : Colors.transparent,
+                  color: value ? colorScheme.primary : AppColors.transparent,
                   border: Border.all(
                     color: value ? colorScheme.primary : colorScheme.outline,
                     width: 2,
                   ),
                 ),
                 child: value
-                    ? const Icon(Icons.check, size: 16, color: Colors.white)
+                    ? const Icon(Icons.check, size: 16, color: AppColors.white)
                     : null,
               ),
               const Gap(12),
@@ -202,11 +203,11 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
     return Container(
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: AppColors.shadowColorLight,
             blurRadius: 10,
-            offset: const Offset(0, -5),
+            offset: Offset(0, -5),
           ),
         ],
       ),

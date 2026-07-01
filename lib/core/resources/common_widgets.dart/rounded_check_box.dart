@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
 
 class RoundedCheckBoxTile extends StatelessWidget {
   final bool isSelected;
@@ -32,7 +33,7 @@ class RoundedCheckBoxTile extends StatelessWidget {
               decoration: BoxDecoration(
                 color: isSelected
                     ? theme.colorScheme.primary
-                    : Colors.transparent,
+                    : AppColors.transparent,
                 shape: BoxShape.circle,
                 border: Border.all(
                   color: isSelected

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class NotificationCard extends StatelessWidget {
@@ -38,11 +39,11 @@ class NotificationCard extends StatelessWidget {
               ? colorScheme.outlineVariant.withValues(alpha: 0.5)
               : colorScheme.primary.withValues(alpha: 0.2),
         ),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
+            color: AppColors.shadowColorUltraLight,
             blurRadius: 12,
-            offset: const Offset(0, 4),
+            offset: Offset(0, 4),
           ),
         ],
       ),

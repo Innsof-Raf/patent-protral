@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
@@ -33,11 +34,11 @@ class CartItemTile extends StatelessWidget {
             color: theme.dividerColor.withValues(alpha: 0.1),
             width: 1,
           ),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.04),
+              color: AppColors.shadowColorExtraLight,
               blurRadius: 8,
-              offset: const Offset(0, 4),
+              offset: Offset(0, 4),
             ),
           ],
         ),
@@ -175,7 +176,7 @@ class _ActionButton extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: theme.colorScheme.error,
-        foregroundColor: Colors.white,
+        foregroundColor: AppColors.white,
         elevation: 0,
         padding: const EdgeInsets.symmetric(horizontal: 8),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -184,12 +185,12 @@ class _ActionButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.delete_outline, size: 16, color: Colors.white),
+          const Icon(Icons.delete_outline, size: 16, color: AppColors.white),
           const Gap(4),
           Text(
             label,
             style: theme.textTheme.labelLarge?.copyWith(
-              color: Colors.white,
+              color: AppColors.white,
               fontWeight: FontWeight.w600,
             ),
           ),

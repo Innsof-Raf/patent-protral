@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
 
 class DefaultProfileImage extends StatelessWidget {
   final double radius;
@@ -16,11 +17,11 @@ class DefaultProfileImage extends StatelessWidget {
           color: theme.colorScheme.outlineVariant.withValues(alpha: 0.5),
           width: 2,
         ),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: AppColors.shadowColorLight,
             blurRadius: 10,
-            offset: const Offset(0, 4),
+            offset: Offset(0, 4),
           ),
         ],
       ),

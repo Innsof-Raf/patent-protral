@@ -22,12 +22,12 @@ class SlotTile extends StatelessWidget {
         return colorScheme.surfaceContainerHighest.withValues(alpha: 0.3);
       }
       if (isSelected) return AppColors.blue;
-      return Colors.white;
+      return AppColors.white;
     }
 
     Color getForegroundColor() {
       if (isBooked) return colorScheme.onSurfaceVariant.withValues(alpha: 0.4);
-      if (isSelected) return Colors.white;
+      if (isSelected) return AppColors.white;
       return AppColors.blue;
     }
 

@@ -34,11 +34,11 @@ class LabGridItemTile extends StatelessWidget {
             color: theme.dividerColor.withValues(alpha: 0.1),
             width: 1,
           ),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.04),
+              color: AppColors.shadowColorExtraLight,
               blurRadius: 8,
-              offset: const Offset(0, 4),
+              offset: Offset(0, 4),
             ),
           ],
         ),
@@ -202,13 +202,15 @@ class _ActionButton extends StatelessWidget {
         backgroundColor: isAdded
             ? AppColors.primaryCyan
             : theme.colorScheme.surface,
-        foregroundColor: isAdded ? Colors.white : theme.colorScheme.onSurface,
+        foregroundColor: isAdded
+            ? AppColors.white
+            : theme.colorScheme.onSurface,
         elevation: 0,
         padding: const EdgeInsets.symmetric(horizontal: 8),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
           side: BorderSide(
-            color: isAdded ? Colors.transparent : theme.dividerColor,
+            color: isAdded ? AppColors.transparent : theme.dividerColor,
           ),
         ),
         minimumSize: const Size(0, 36),
@@ -221,7 +223,9 @@ class _ActionButton extends StatelessWidget {
             height: 14,
             width: 14,
             colorFilter: ColorFilter.mode(
-              isAdded ? Colors.white : theme.iconTheme.color ?? Colors.black,
+              isAdded
+                  ? AppColors.white
+                  : theme.iconTheme.color ?? AppColors.black,
               BlendMode.srcIn,
             ),
           ),
@@ -229,7 +233,7 @@ class _ActionButton extends StatelessWidget {
           Text(
             label,
             style: theme.textTheme.labelLarge?.copyWith(
-              color: isAdded ? Colors.white : theme.colorScheme.onSurface,
+              color: isAdded ? AppColors.white : theme.colorScheme.onSurface,
               fontWeight: FontWeight.w600,
             ),
           ),

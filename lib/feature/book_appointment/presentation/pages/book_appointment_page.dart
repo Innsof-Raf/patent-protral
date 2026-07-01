@@ -273,11 +273,11 @@ class _CustomDateTab extends StatelessWidget {
                   offset: const Offset(0, 4),
                 ),
               ]
-            : [
+            : const [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.05),
+                  color: AppColors.shadowColorLight,
                   blurRadius: 4,
-                  offset: const Offset(0, 2),
+                  offset: Offset(0, 2),
                 ),
               ],
       ),
@@ -287,7 +287,7 @@ class _CustomDateTab extends StatelessWidget {
           Text(
             DateFormat('d MMM').format(date),
             style: AppTextStyles.largeBoldRoboto.copyWith(
-              color: isSelected ? Colors.white : AppColors.textDark,
+              color: isSelected ? AppColors.white : AppColors.textDark,
               fontSize: 15,
             ),
           ),
@@ -296,7 +296,7 @@ class _CustomDateTab extends StatelessWidget {
             isToday ? AppStaticTexts.today : DateFormat('EEE').format(date),
             style: AppTextStyles.bodySmallRobotoNormal.copyWith(
               color: isSelected
-                  ? Colors.white.withValues(alpha: 0.8)
+                  ? AppColors.white.withValues(alpha: 0.8)
                   : AppColors.textLight,
               fontSize: 11,
               fontWeight: FontWeight.w500,
@@ -327,7 +327,7 @@ class _SelectDateButton extends StatelessWidget {
               data: Theme.of(context).copyWith(
                 colorScheme: const ColorScheme.light(
                   primary: AppColors.blue,
-                  onPrimary: Colors.white,
+                  onPrimary: AppColors.white,
                   onSurface: AppColors.textDark,
                 ),
               ),
@@ -343,7 +343,7 @@ class _SelectDateButton extends StatelessWidget {
         width: 100,
         margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.white,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: AppColors.blue, width: 1.5),
         ),
@@ -576,15 +576,15 @@ class _TypeButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12),
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.primaryCyanDark : Colors.white,
+          color: isSelected ? AppColors.primaryCyanDark : AppColors.white,
           borderRadius: BorderRadius.circular(8),
           boxShadow: isSelected
               ? null
-              : [
+              : const [
                   BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.03),
+                    color: AppColors.shadowColorUltraLight,
                     blurRadius: 4,
-                    offset: const Offset(0, 2),
+                    offset: Offset(0, 2),
                   ),
                 ],
         ),
@@ -593,14 +593,14 @@ class _TypeButton extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: isSelected ? Colors.white : AppColors.blue,
+              color: isSelected ? AppColors.white : AppColors.blue,
               size: 20,
             ),
             const Gap(8),
             Text(
               title,
               style: AppTextStyles.bodyLargeRobotoBold.copyWith(
-                color: isSelected ? Colors.white : AppColors.blue,
+                color: isSelected ? AppColors.white : AppColors.blue,
               ),
             ),
           ],
