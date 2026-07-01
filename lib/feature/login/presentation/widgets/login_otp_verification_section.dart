@@ -12,9 +12,11 @@ import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_verification_bloc/otp_verification_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
+import 'package:patient_portal/feature/login/presentation/helpers/sms_retriever_impl.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:pinput/pinput.dart';
+import 'package:smart_auth/smart_auth.dart';
 
 class LoginOtpVerificationSection extends StatefulWidget {
   const LoginOtpVerificationSection({super.key});
@@ -27,16 +29,19 @@ class LoginOtpVerificationSection extends StatefulWidget {
 class _LoginOtpVerificationSectionState
     extends State<LoginOtpVerificationSection> {
   final TextEditingController _otpController = TextEditingController();
+  late final SmsRetriever smsRetriever;
 
   @override
   void initState() {
     super.initState();
     LoginScreenHelpers.addTimer();
+    smsRetriever = SmsRetrieverImpl(SmartAuth.instance);
   }
 
   @override
   void dispose() {
     _otpController.dispose();
+    smsRetriever.dispose();
     super.dispose();
   }
 
@@ -102,6 +107,7 @@ class _LoginOtpVerificationSectionState
             const Gap(16),
             _OtpInput(
               controller: _otpController,
+              smsRetriever: smsRetriever,
               onCompleted: (_) => _verifyOtp(context, state),
             ),
             const Gap(18),
@@ -122,9 +128,14 @@ class _LoginOtpVerificationSectionState
 }
 
 class _OtpInput extends StatelessWidget {
-  const _OtpInput({required this.controller, this.onCompleted});
+  const _OtpInput({
+    required this.controller,
+    required this.smsRetriever,
+    this.onCompleted,
+  });
 
   final TextEditingController controller;
+  final SmsRetriever smsRetriever;
   final ValueChanged<String>? onCompleted;
 
   @override
@@ -142,6 +153,7 @@ class _OtpInput extends StatelessWidget {
       autofocus: true,
       controller: controller,
       length: 4,
+      smsRetriever: smsRetriever,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       onCompleted: onCompleted,
       isCursorAnimationEnabled: false,

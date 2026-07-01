@@ -10,6 +10,7 @@ import 'package:patient_portal/feature/login/presentation/helpers/login_screen_f
 import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
 import 'package:patient_portal/feature/login/presentation/widgets/login_form_field.dart';
 import 'package:patient_portal/feature/login/presentation/widgets/login_terms_row.dart';
+import 'package:smart_auth/smart_auth.dart';
 
 class LoginOtpGenerationSection extends StatefulWidget {
   const LoginOtpGenerationSection({super.key});
@@ -28,6 +29,13 @@ class _LoginOtpGenerationSectionState extends State<LoginOtpGenerationSection> {
   void initState() {
     super.initState();
     _mobileNumberController = TextEditingController();
+    _getAppSignature();
+  }
+
+  Future<void> _getAppSignature() async {
+    final smartAuth = SmartAuth.instance;
+    final signature = await smartAuth.getAppSignature();
+    debugPrint('App Signature: $signature');
   }
 
   @override
