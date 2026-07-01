@@ -1,13 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gap/gap.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/logout_dialog.dart';
+import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:patient_portal/feature/profile/presentation/widgets/member_section.dart';
-import 'package:patient_portal/feature/profile/presentation/widgets/my_profile_section.dart';
+import 'package:patient_portal/feature/profile/presentation/widgets/profile_header.dart';
+import 'package:patient_portal/feature/profile/presentation/widgets/profile_menu_item.dart';
 
 @RoutePage(name: 'MyProfileRoute')
 class ProfileScreen extends StatelessWidget {
@@ -19,86 +20,114 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      body: DecoratedBox(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              theme.colorScheme.primaryContainer.withValues(alpha: .30),
-              theme.colorScheme.surface,
-              theme.colorScheme.surface,
-            ],
-            stops: const [0, .16, .4],
-          ),
-        ),
-        child: BlocBuilder<UserBloc, UserState>(
-          builder: (context, state) {
-            if (state.isLoading) return const CommonLoadingView();
+      body: BlocBuilder<UserBloc, UserState>(
+        builder: (context, state) {
+          if (state.isLoading) return const CommonLoadingView();
 
-            return RefreshIndicator(
-              onRefresh: () async {
-                context.read<UserBloc>().add(const RefreshToken());
-              },
-              child: CustomScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                keyboardDismissBehavior:
-                    ScrollViewKeyboardDismissBehavior.onDrag,
-                slivers: [
-                  const SliverPadding(
-                    padding: EdgeInsets.fromLTRB(16, 16, 16, 12),
-                    sliver: SliverToBoxAdapter(child: ProfileDetailsSection()),
-                  ),
-                  const SliverPadding(
-                    padding: EdgeInsets.fromLTRB(16, 0, 16, 12),
-                    sliver: SliverToBoxAdapter(child: MemberSection()),
-                  ),
-                  SliverPadding(
-                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 120),
-                    sliver: SliverToBoxAdapter(
-                      child: Column(children: [const Gap(8), _LogoutButton()]),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
+          final user = state.user;
+          if (user == null) return const SizedBox.shrink();
 
-class _LogoutButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+          final items = [
+            ProfileMenuItem(
+              icon: Icons.person_outline_rounded,
+              title: AppStaticTexts.profileTitle,
+              iconColor: AppColors.iconBlue,
+              backgroundColor: AppColors.iconBlueBg,
+              onTap: () =>
+                  context.router.root.push(const EditProfileDetailsRoute()),
+            ),
+            ProfileMenuItem(
+              icon: Icons.group_outlined,
+              title: AppStaticTexts.myFamily,
+              iconColor: AppColors.iconGreen,
+              backgroundColor: AppColors.iconGreenBg,
+              onTap: () => context.router.root.push(const MembersRoute()),
+            ),
+            // ProfileMenuItem(
+            //   icon: Icons.headset_mic_outlined,
+            //   title: AppStaticTexts.helpAndSupport,
+            //   iconColor: AppColors.iconPurple,
+            //   backgroundColor: AppColors.iconPurpleBg,
+            //   onTap: () {},
+            // ),
+            // ProfileMenuItem(
+            //   icon: Icons.key_outlined,
+            //   title: AppStaticTexts.createPassword,
+            //   iconColor: AppColors.iconOrange,
+            //   backgroundColor: AppColors.iconOrangeBg,
+            //   onTap: () => context.router.root.push(const SetPasswordRoute()),
+            // ),
+            ProfileMenuItem(
+              icon: Icons.description_outlined,
+              title: AppStaticTexts.termsAndConditions,
+              iconColor: AppColors.iconGreen,
+              backgroundColor: AppColors.iconGreenBg,
+              onTap: () {},
+            ),
+            ProfileMenuItem(
+              icon: Icons.lock_outline_rounded,
+              title: AppStaticTexts.privacyPolicy,
+              iconColor: AppColors.iconBlue,
+              backgroundColor: AppColors.iconBlueBg,
+              onTap: () {},
+            ),
+            ProfileMenuItem(
+              icon: Icons.translate_rounded,
+              title: AppStaticTexts.changeLanguage,
+              iconColor: AppColors.iconTeal,
+              backgroundColor: AppColors.iconTealBg,
+              onTap: () {},
+            ),
+            ProfileMenuItem(
+              icon: Icons.person_remove_outlined,
+              title: AppStaticTexts.deleteProfile,
+              iconColor: AppColors.iconOrange,
+              backgroundColor: AppColors.iconOrangeBg,
+              onTap: () {},
+            ),
+            ProfileMenuItem(
+              icon: Icons.logout_rounded,
+              title: AppStaticTexts.logout,
+              iconColor: AppColors.iconRed,
+              backgroundColor: AppColors.iconRedBg,
+              onTap: () => _showLogoutDialog(context),
+            ),
+          ];
 
-    return Material(
-      color: theme.colorScheme.errorContainer.withValues(alpha: 0.28),
-      borderRadius: BorderRadius.circular(16),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(16),
-        onTap: () {
-          _showLogoutDialog(context);
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.logout_rounded, color: theme.colorScheme.error),
-              const Gap(12),
-              Text(
-                AppStaticTexts.logout,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  color: theme.colorScheme.error,
-                  fontWeight: FontWeight.bold,
+          return RefreshIndicator(
+            onRefresh: () async {
+              context.read<UserBloc>().add(const RefreshToken());
+            },
+            child: CustomScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              slivers: [
+                SliverToBoxAdapter(child: ProfileHeader(user: user)),
+                const SliverToBoxAdapter(
+                  child: Divider(height: 1, thickness: 1),
                 ),
-              ),
-            ],
-          ),
-        ),
+                SliverPadding(
+                  padding: const EdgeInsets.only(top: 12, bottom: 24),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                      if (index.isOdd) {
+                        return Divider(
+                          height: 1,
+                          thickness: 0.5,
+                          indent: 72,
+                          endIndent: 20,
+                          color: theme.colorScheme.outlineVariant.withValues(
+                            alpha: 0.4,
+                          ),
+                        );
+                      }
+                      return items[index ~/ 2];
+                    }, childCount: items.length * 2 - 1),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

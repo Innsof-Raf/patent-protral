@@ -371,6 +371,13 @@ class AppStaticTexts {
 
   static const String logout = 'Logout';
   static const String logoutConfirmation = 'Are you sure you want to logout?';
+  static const String helpAndSupport = 'Help & Support';
+  static const String privacyPolicy = 'Privacy Policy';
+  static const String changeLanguage = 'Change Language';
+  static const String deleteProfile = 'Delete Profile';
+  static const String myFamily = 'My Family';
+  static const String createPassword = 'Create Password';
+  static const String uhid = 'UHID';
 
   static const String reviewAppointmentDetails =
       'Please review the appointment details before confirming.';

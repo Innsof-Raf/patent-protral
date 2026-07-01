@@ -29,4 +29,20 @@ class AppColors {
   static const Color borderDarkColor = Color(0xff6F8C95);
   static const Color skyblue = Color(0xff22D3EE);
   static const Color selectionColor = Color(0xffDFF7FB);
+  static const Color profileNameColor = Color(0xff2E3E5C);
+  static const Color profileUHIDColor = Color(0xff757575);
+
+  // Icon and Background pairs
+  static const Color iconBlue = Color(0xff1976D2);
+  static const Color iconBlueBg = Color(0xffE3F2FD);
+  static const Color iconGreen = Color(0xff388E3C);
+  static const Color iconGreenBg = Color(0xffE8F5E9);
+  static const Color iconTeal = Color(0xff00796B);
+  static const Color iconTealBg = Color(0xffE0F2F1);
+  static const Color iconOrange = Color(0xffF57C00);
+  static const Color iconOrangeBg = Color(0xffFFF3E0);
+  static const Color iconRed = Color(0xffD32F2F);
+  static const Color iconRedBg = Color(0xffFFEBEE);
+  static const Color iconPurple = Color(0xff7B1FA2);
+  static const Color iconPurpleBg = Color(0xffF3E5F5);
 }
