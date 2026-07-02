@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 
 class MonthTile extends StatelessWidget {
   final DateTime month;
@@ -30,7 +32,10 @@ class MonthTile extends StatelessWidget {
           ),
           const Gap(8),
           Text(
-            DateFormat('MMMM yyyy').format(month),
+            DateFormat(
+              'MMMM yyyy',
+              context.currentLang,
+            ).format(month).localize(context.currentLang),
             style: AppTextStyles.largeSemiBoldRoboto.copyWith(
               color: colorScheme.primary,
               fontWeight: FontWeight.w800,

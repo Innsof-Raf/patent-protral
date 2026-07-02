@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 
 class DateTab extends StatelessWidget {
   final DateTime date;
@@ -50,7 +52,9 @@ class DateTab extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              DateFormat('EEE').format(date).toUpperCase(),
+              DateFormat.E(
+                context.currentLang,
+              ).format(date).localize(context.currentLang).toUpperCase(),
               style: AppTextStyles.bodyTextRoboto.copyWith(
                 color: isSelected
                     ? colorScheme.onPrimary
@@ -61,7 +65,9 @@ class DateTab extends StatelessWidget {
             ),
             const Gap(6),
             Text(
-              DateFormat('dd').format(date),
+              DateFormat.d(
+                context.currentLang,
+              ).format(date).localize(context.currentLang),
               style: AppTextStyles.extraLargeRobotoBold.copyWith(
                 color: isSelected
                     ? colorScheme.onPrimary

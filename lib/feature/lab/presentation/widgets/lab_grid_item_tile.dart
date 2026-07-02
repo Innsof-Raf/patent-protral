@@ -76,7 +76,7 @@ class LabGridItemTile extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        '${context.lang.qar} ${item.itemPrice}',
+                        '${context.lang.qar} ${item.itemPrice.toString().localize(context.currentLang)}',
                         style: theme.textTheme.labelMedium?.copyWith(
                           color: theme.colorScheme.onPrimary,
                           fontWeight: FontWeight.bold,

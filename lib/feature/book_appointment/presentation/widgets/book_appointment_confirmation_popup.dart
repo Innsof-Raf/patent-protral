@@ -149,8 +149,11 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                                   const Gap(10),
                                   Text(
                                     DateFormat(
-                                      'dd MMM yyyy',
-                                    ).format(appointmentDateTime),
+                                          'dd MMM yyyy',
+                                          context.currentLang,
+                                        )
+                                        .format(appointmentDateTime)
+                                        .localize(context.currentLang),
                                     style: theme.textTheme.titleMedium
                                         ?.copyWith(
                                           fontWeight: FontWeight.bold,
@@ -170,7 +173,9 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                                   ),
                                   const Gap(10),
                                   Text(
-                                    DateFormat.jm().format(appointmentDateTime),
+                                    DateFormat.jm(context.currentLang)
+                                        .format(appointmentDateTime)
+                                        .localize(context.currentLang),
                                     style: theme.textTheme.titleMedium
                                         ?.copyWith(
                                           fontWeight: FontWeight.bold,

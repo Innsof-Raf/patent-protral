@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/gender_form_helpers.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/helpers/edit_profile_detail_screen_helpers.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/helpers/edit_profile_details_form_validation_helpers.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/widgets/edit_profile_section_card.dart';
@@ -30,7 +31,7 @@ class EditProfileDetailsSection extends StatelessWidget {
     phoneController.text = '';
   }
 
-  static void initializeFromUser(User? user) {
+  static void initializeFromUser(BuildContext context, User? user) {
     resetFormValues();
     if (user == null) return;
 
@@ -40,7 +41,10 @@ class EditProfileDetailsSection extends StatelessWidget {
     dob = member?.dob;
     dobController.text = dob == null
         ? ''
-        : DateFormat('dd-MM-yyyy').format(dob!);
+        : DateFormat(
+            'dd-MM-yyyy',
+            context.currentLang,
+          ).format(dob!).localize(context.currentLang);
     phoneController.text = member?.mobileNo ?? user.mobileNumber;
     final gender = member?.gender;
     if (gender == 'Male' || gender == 'Female') {
@@ -117,6 +121,7 @@ class EditProfileDetailsSection extends StatelessWidget {
                   ),
               readOnly: true,
               onTap: () async {
+                final String locale = context.currentLang;
                 final selectedDate =
                     await EditProfileDetailScreenHelpers.getDob(
                       initialDate: dob ?? DateTime.now(),
@@ -124,7 +129,10 @@ class EditProfileDetailsSection extends StatelessWidget {
                     );
                 if (selectedDate != null) {
                   dob = selectedDate;
-                  dobController.text = DateFormat('dd-MM-yyyy').format(dob!);
+                  dobController.text = DateFormat(
+                    'dd-MM-yyyy',
+                    locale,
+                  ).format(dob!).localize(locale);
                 }
               },
               controller: dobController,

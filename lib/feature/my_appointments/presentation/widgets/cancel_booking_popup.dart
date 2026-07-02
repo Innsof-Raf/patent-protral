@@ -177,7 +177,7 @@ class CancelBookingPopUp extends StatelessWidget {
                               ),
                               const Gap(10),
                               Text(
-                                '${DateFormat('dd MMM yyyy').format(appointmentDateTime)} ${context.lang.at} ${DateFormat.jm().format(appointmentDateTime)}',
+                                '${DateFormat('dd MMM yyyy', context.currentLang).format(appointmentDateTime).localize(context.currentLang)} ${context.lang.at} ${DateFormat.jm(context.currentLang).format(appointmentDateTime).localize(context.currentLang)}',
                                 style: theme.textTheme.titleSmall?.copyWith(
                                   fontWeight: FontWeight.bold,
                                   color: colorScheme.onSurface,

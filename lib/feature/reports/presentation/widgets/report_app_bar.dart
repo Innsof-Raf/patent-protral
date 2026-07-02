@@ -80,7 +80,8 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Text(
                   DateFormat(
                     'dd MMM yyyy, hh:mm a',
-                  ).format(consultaionDateTime),
+                    context.currentLang,
+                  ).format(consultaionDateTime).localize(context.currentLang),
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),

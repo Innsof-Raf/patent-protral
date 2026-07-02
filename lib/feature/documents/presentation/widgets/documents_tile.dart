@@ -5,6 +5,7 @@ import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/feature/documents/domain/entities/document.dart';
 
 class DocumentTile extends StatelessWidget {
@@ -45,7 +46,7 @@ class DocumentTile extends StatelessWidget {
                 ),
                 const SizedBox(height: 1),
                 Text(
-                  '${context.lang.expireOn} ${DateFormat('dd/MM/yyyy').format(document.expireDate)}',
+                  '${context.lang.expireOn} ${DateFormat('dd/MM/yyyy', context.currentLang).format(document.expireDate).localize(context.currentLang)}',
                   style: AppTextStyles.largeRobotoNormal.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),

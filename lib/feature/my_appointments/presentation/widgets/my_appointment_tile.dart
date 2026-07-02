@@ -458,16 +458,16 @@ class _AppointmentDetails extends StatelessWidget {
           _VerticalDivider(),
           _DetailItem(
             icon: Icons.access_time_rounded,
-            label: DateFormat(
-              'dd MMM, hh:mm a',
-            ).format(appointment.appointmentDateTime),
+            label: DateFormat('dd MMM, hh:mm a', context.currentLang)
+                .format(appointment.appointmentDateTime)
+                .localize(context.currentLang),
             color: colorScheme.onSurfaceVariant,
           ),
           if (appointment.tokenNo.isNotEmpty && appointment.tokenNo != '0') ...[
             _VerticalDivider(),
             _DetailItem(
               icon: Icons.confirmation_number_outlined,
-              label: '#${appointment.tokenNo}',
+              label: '#${appointment.tokenNo.localize(context.currentLang)}',
               color: colorScheme.onSurfaceVariant,
             ),
           ],

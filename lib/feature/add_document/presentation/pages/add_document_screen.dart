@@ -10,6 +10,7 @@ import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_dropdown_field.dart';
@@ -215,6 +216,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                             expireDate: _expireDateNotifier.value,
                           ),
                       onTap: () async {
+                        final String locale = context.currentLang;
                         final date =
                             await AddDocumentScreenHelpers.getExpireDate(
                               initialDate:
@@ -226,7 +228,8 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                           _expireDateNotifier.value = date;
                           _expireDateController.text = DateFormat(
                             'dd/MM/yyyy',
-                          ).format(date);
+                            locale,
+                          ).format(date).localize(locale);
                         }
                       },
                       suffixIcon: Icon(

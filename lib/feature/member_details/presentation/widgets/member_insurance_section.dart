@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_section_card.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_text_field.dart';
 
@@ -61,14 +62,17 @@ class MemberInsuranceSection extends StatelessWidget {
             const Gap(10),
             MemberTextField(
               title: context.lang.memberIdLabel,
-              value: memberNo,
+              value: memberNo.localize(context.currentLang),
               icon: Icons.confirmation_number_outlined,
             ),
             const Gap(10),
             MemberTextField(
               title: context.lang.expirationDate,
               value: expireDate != null
-                  ? DateFormat('dd-MM-yyyy').format(expireDate!)
+                  ? DateFormat(
+                      'dd-MM-yyyy',
+                      context.currentLang,
+                    ).format(expireDate!).localize(context.currentLang)
                   : '',
               icon: Icons.event_available_outlined,
             ),

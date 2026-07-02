@@ -102,7 +102,7 @@ class MemberSelectionTile extends StatelessWidget {
                   ),
                   const Gap(2),
                   Text(
-                    '${context.lang.age}: ${member.age}',
+                    '${context.lang.age}: ${member.age.localize(context.currentLang)}',
                     style: AppTextStyles.bodyTextRoboto.copyWith(
                       color: colorScheme.onSurfaceVariant,
                     ),

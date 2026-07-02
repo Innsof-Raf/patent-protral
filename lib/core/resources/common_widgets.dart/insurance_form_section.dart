@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_validation_helpers.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
 import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
@@ -52,9 +53,10 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
       InsuranceFormSection.memberNumberController.text =
           widget.memberNumber ?? '';
       if (widget.memberInsuranceExpireDate != null) {
-        InsuranceFormSection.expireDateController.text = DateFormat(
-          'dd-MM-yyyy',
-        ).format(widget.memberInsuranceExpireDate!);
+        InsuranceFormSection.expireDateController.text =
+            DateFormat('dd-MM-yyyy', context.currentLang)
+                .format(widget.memberInsuranceExpireDate!)
+                .localize(context.currentLang);
       }
     } else {
       InsuranceFormSection.expireDateController.text = '';
@@ -241,6 +243,7 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
                 ),
                 controller: InsuranceFormSection.expireDateController,
                 onTap: () async {
+                  final String locale = context.currentLang;
                   final DateTime? selectedDate =
                       await InsuranceHelpers.getExpireDate(
                         initialDate:
@@ -252,7 +255,8 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
                     InsuranceFormSection.expireDate = selectedDate;
                     InsuranceFormSection.expireDateController.text = DateFormat(
                       'dd-MM-yyyy',
-                    ).format(selectedDate);
+                      locale,
+                    ).format(selectedDate).localize(locale);
                   }
                 },
               ),

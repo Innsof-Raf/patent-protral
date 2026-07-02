@@ -7,6 +7,7 @@ import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_validation_helpers.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/rounded_check_box.dart';
 import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
 import 'package:patient_portal/feature/member_details/presentation/helpers/edit_member_insurance_helpers.dart';
@@ -149,6 +150,7 @@ class _EditMemberInsuranceSectionState
                 style: AppTextStyles.textFormFieldStyle,
                 controller: EditMemberInsuranceSection.expireDateController,
                 onTap: () async {
+                  final String locale = context.currentLang;
                   final DateTime? selectedDate =
                       await EditMemberInsuranceHelpers.getExpireDate(
                         initialDate:
@@ -159,9 +161,9 @@ class _EditMemberInsuranceSectionState
                   if (selectedDate != null) {
                     EditMemberInsuranceSection.expireDate = selectedDate;
                     EditMemberInsuranceSection.expireDateController.text =
-                        DateFormat(
-                          'dd-MM-yyyy',
-                        ).format(EditMemberInsuranceSection.expireDate!);
+                        DateFormat('dd-MM-yyyy', locale)
+                            .format(EditMemberInsuranceSection.expireDate!)
+                            .localize(locale);
                   }
                 },
               ),

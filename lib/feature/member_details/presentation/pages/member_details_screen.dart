@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
@@ -89,9 +90,9 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
                       title: member.name,
                       subtitle: [
                         if (member.age.isNotEmpty)
-                          '${context.lang.age} ${member.age}',
+                          '${context.lang.age} ${member.age.localize(context.currentLang)}',
                         if (member.nationalId.isNotEmpty)
-                          '${context.lang.id} ${member.nationalId}',
+                          '${context.lang.id} ${member.nationalId.localize(context.currentLang)}',
                       ].join('  |  '),
                     ),
                   ),

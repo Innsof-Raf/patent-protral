@@ -5,6 +5,7 @@ import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/gender_form_helpers.dart';
 import 'package:patient_portal/core/resources/common_helpers/member_form_validation_helpers.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/radio_button.dart';
 
 import 'add_member_screen_helpers.dart';
@@ -49,6 +50,7 @@ class MemberDetailsSection extends StatelessWidget {
             ),
             readOnly: true,
             onTap: () async {
+              final String locale = context.currentLang;
               final DateTime? selectedDate =
                   await AddMemberScreenHelpers.getDob(
                     initialDate: dob ?? DateTime(2000),
@@ -56,7 +58,10 @@ class MemberDetailsSection extends StatelessWidget {
                   );
               if (selectedDate != null) {
                 dob = selectedDate;
-                dobController.text = DateFormat('dd-MM-yyyy').format(dob!);
+                dobController.text = DateFormat(
+                  'dd-MM-yyyy',
+                  locale,
+                ).format(dob!).localize(locale);
               }
             },
             controller: dobController,

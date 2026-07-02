@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/feature/book_appointment/domain/entities/slot.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 
@@ -68,7 +70,10 @@ class SlotTile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
         alignment: Alignment.center,
         child: Text(
-          DateFormat('hh:mm a').format(slot.appdttm),
+          DateFormat(
+            'hh:mm a',
+            context.currentLang,
+          ).format(slot.appdttm).localize(context.currentLang),
           style: AppTextStyles.largeBoldRoboto.copyWith(
             color: getForegroundColor(),
             fontSize: 13,

@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/success_dialog.dart';
@@ -93,14 +94,19 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                           );
                           final dateStr = isToday
                               ? context.lang.today
-                              : DateFormat('d MMM, yyyy').format(selectedSlot);
+                              : DateFormat('d MMM, yyyy', context.currentLang)
+                                    .format(selectedSlot)
+                                    .localize(context.currentLang);
 
                           return Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                DateFormat('EEEE').format(selectedSlot),
+                                DateFormat(
+                                  'EEEE',
+                                  context.currentLang,
+                                ).format(selectedSlot),
                                 style: AppTextStyles.bodyTextRoboto.copyWith(
                                   color: AppColors.textLight,
                                   fontSize: 12,
@@ -112,9 +118,13 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                                 TextSpan(
                                   children: [
                                     TextSpan(
-                                      text: DateFormat(
-                                        'h:mm a',
-                                      ).format(selectedSlot),
+                                      text:
+                                          DateFormat(
+                                                'h:mm a',
+                                                context.currentLang,
+                                              )
+                                              .format(selectedSlot)
+                                              .localize(context.currentLang),
                                       style: AppTextStyles.largeBoldRoboto
                                           .copyWith(
                                             color: AppColors.textDark,

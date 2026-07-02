@@ -31,7 +31,7 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
   void initState() {
     super.initState();
     final user = context.read<UserBloc>().state.user;
-    EditProfileDetailsSection.initializeFromUser(user);
+    EditProfileDetailsSection.initializeFromUser(context, user);
     EditProfileDetailScreenHelpers.profileImage.value = null;
     context.read<UserBloc>().add(const ChangeMemberAddingSateToInitial());
   }

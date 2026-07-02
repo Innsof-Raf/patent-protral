@@ -76,9 +76,9 @@ class MyReportTile extends StatelessWidget {
                           ),
                           const Gap(4),
                           Text(
-                            DateFormat(
-                              'dd MMM yyyy',
-                            ).format(report.appointmentDate),
+                            DateFormat('dd MMM yyyy', context.currentLang)
+                                .format(report.appointmentDate)
+                                .localize(context.currentLang),
                             style: AppTextStyles.bodyTextRoboto.copyWith(
                               color: theme.colorScheme.onSurfaceVariant,
                               fontWeight: FontWeight.w600,
@@ -94,9 +94,9 @@ class MyReportTile extends StatelessWidget {
                           ),
                           const Gap(4),
                           Text(
-                            DateFormat(
-                              'hh:mm a',
-                            ).format(report.appointmentDate),
+                            DateFormat('hh:mm a', context.currentLang)
+                                .format(report.appointmentDate)
+                                .localize(context.currentLang),
                             style: AppTextStyles.bodyTextRoboto.copyWith(
                               color: theme.colorScheme.onSurfaceVariant,
                               fontWeight: FontWeight.w600,

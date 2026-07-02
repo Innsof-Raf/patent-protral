@@ -67,7 +67,7 @@ class MemberTile extends StatelessWidget {
                     ),
                     const Gap(2),
                     Text(
-                      member.age,
+                      member.age.localize(context.currentLang),
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                       ),

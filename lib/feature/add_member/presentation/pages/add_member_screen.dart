@@ -2,10 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:intl/intl.dart';
 import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
+import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
@@ -42,6 +44,12 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
       MemberDetailsSection.nationalIdController.text =
           widget.member!.nationalId;
       MemberDetailsSection.dob = widget.member!.dob;
+      if (MemberDetailsSection.dob != null) {
+        MemberDetailsSection.dobController.text = DateFormat(
+          'dd-MM-yyyy',
+          context.currentLang,
+        ).format(MemberDetailsSection.dob!).localize(context.currentLang);
+      }
       MemberDetailsSection.emailController.text = widget.member!.emailId ?? '';
     } else {
       MemberDetailsSection.nameController.text = '';

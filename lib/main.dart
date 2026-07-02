@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:patient_portal/core/gen/l10n/app_localizations.dart';
 import 'package:patient_portal/core/injection_container.dart' as di;
 import 'package:patient_portal/core/localization/bloc/language_bloc.dart';
@@ -50,6 +51,8 @@ void main() async {
       WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await di.init();
+  await initializeDateFormatting('ar', null);
+  await initializeDateFormatting('en', null);
 
   final initialUser = await di.sl<UserLocalDataSource>().getUser();
 

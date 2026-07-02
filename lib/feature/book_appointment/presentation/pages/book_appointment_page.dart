@@ -82,7 +82,9 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                     image: doctorImage,
                     name: widget.doctor.doctorName,
                     speciality: widget.doctor.doctorSpeciality,
-                    experience: widget.doctor.experience,
+                    experience: widget.doctor.experience.localize(
+                      context.currentLang,
+                    ),
                     languages: widget.doctor.knownLanguages.join(', '),
                     bio: widget.doctor.doctorBio,
                   ),
@@ -123,7 +125,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                             ),
                           ),
                           Text(
-                            '${context.lang.qar} ${widget.doctor.consultationFee.toStringAsFixed(0)}',
+                            '${context.lang.qar} ${widget.doctor.consultationFee.toStringAsFixed(0).localize(context.currentLang)}',
                             style: AppTextStyles.largeBoldRoboto,
                           ),
                         ],
@@ -285,7 +287,9 @@ class _CustomDateTab extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            DateFormat('d MMM').format(date),
+            DateFormat.MMMd(
+              context.currentLang,
+            ).format(date).localize(context.currentLang),
             style: AppTextStyles.largeBoldRoboto.copyWith(
               color: isSelected ? AppColors.white : AppColors.textDark,
               fontSize: 15,
@@ -293,7 +297,11 @@ class _CustomDateTab extends StatelessWidget {
           ),
           const Gap(2),
           Text(
-            isToday ? context.lang.today : DateFormat('EEE').format(date),
+            isToday
+                ? context.lang.today
+                : DateFormat.E(
+                    context.currentLang,
+                  ).format(date).localize(context.currentLang),
             style: AppTextStyles.bodySmallRobotoNormal.copyWith(
               color: isSelected
                   ? AppColors.white.withValues(alpha: 0.8)
@@ -322,6 +330,9 @@ class _SelectDateButton extends StatelessWidget {
           initialDate: BookAppointmentScreenHelpers.selectedDateNotifier.value,
           firstDate: DateTime.now(),
           lastDate: DateTime.now().add(const Duration(days: 90)),
+          locale: context.currentLang == 'ar'
+              ? const Locale('ar', 'SA')
+              : Locale(context.currentLang),
           builder: (context, child) {
             return Theme(
               data: Theme.of(context).copyWith(
@@ -440,7 +451,7 @@ class _DoctorInfoSection extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 2),
                         child: Text(
-                          '${context.lang.experiencePrefix} $experience',
+                          '${context.lang.experiencePrefix} ${experience!.localize(context.currentLang)}',
                           style: AppTextStyles.bodyTextRoboto.copyWith(
                             color: AppColors.textLightDark,
                             fontSize: 14,

@@ -191,12 +191,12 @@ class _DoctorDetails extends StatelessWidget {
     final List<String> metaItems = [];
     if (doctor.experience.trim().isNotEmpty && doctor.experience != '0') {
       metaItems.add(
-        '${context.lang.experiencePrefix} ${doctor.experience}${context.lang.yearsExperience}',
+        '${context.lang.experiencePrefix} ${doctor.experience.localize(context.currentLang)}${context.lang.yearsExperience}',
       );
     }
     if (doctor.consultationFee > 0) {
       metaItems.add(
-        '${context.lang.feePrefix} ${context.lang.qar} ${doctor.consultationFee.toStringAsFixed(0)}',
+        '${context.lang.feePrefix} ${context.lang.qar} ${doctor.consultationFee.toStringAsFixed(0).localize(context.currentLang)}',
       );
     }
 
