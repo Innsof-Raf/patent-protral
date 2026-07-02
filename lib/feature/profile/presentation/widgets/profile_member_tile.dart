@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -38,7 +38,7 @@ class ProfileMemberTile extends StatelessWidget {
                   children: [
                     Text(
                       (member.name.trim().isEmpty
-                              ? AppStaticTexts.unknown
+                              ? context.lang.unknown
                               : member.name)
                           .capitalize()
                           .toTitleCase(),
@@ -51,7 +51,7 @@ class ProfileMemberTile extends StatelessWidget {
                     ),
                     const Gap(4),
                     Text(
-                      _subtitle,
+                      _subtitle(context),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: theme.textTheme.bodySmall?.copyWith(
@@ -79,16 +79,14 @@ class ProfileMemberTile extends StatelessWidget {
     );
   }
 
-  String get _subtitle {
+  String _subtitle(BuildContext context) {
     final details = [
-      if (member.age.isNotEmpty) '${AppStaticTexts.age} ${member.age}',
+      if (member.age.isNotEmpty) '${context.lang.age} ${member.age}',
       if (member.nationalId.isNotEmpty)
-        '${AppStaticTexts.nationalId} ${member.nationalId}',
+        '${context.lang.nationalId} ${member.nationalId}',
     ];
 
-    return details.isEmpty
-        ? AppStaticTexts.memberProfile
-        : details.join('  •  ');
+    return details.isEmpty ? context.lang.memberProfile : details.join('  •  ');
   }
 }
 
@@ -172,7 +170,7 @@ class _InsuranceBadge extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
-        AppStaticTexts.insured,
+        context.lang.insured,
         style: theme.textTheme.labelSmall?.copyWith(
           color: AppColors.primaryCyan,
           fontWeight: FontWeight.bold,

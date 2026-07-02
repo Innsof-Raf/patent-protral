@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
@@ -48,7 +48,7 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      appBar: const CommonAppbar(title: AppStaticTexts.memberDetails),
+      appBar: CommonAppbar(title: context.lang.memberDetails),
       body: BlocBuilder<UserBloc, UserState>(
         builder: (context, state) {
           if (state.isFetchingMemberDetail ||
@@ -57,7 +57,7 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
             return const CommonLoadingView();
           } else if (state.isMemberDetailFetchingFailed) {
             return CommonErrorView(
-              title: AppStaticTexts.unableToLoadMember,
+              title: context.lang.unableToLoadMember,
               message: state.error.message,
               onRetry: _fetchMemberDetails,
             );
@@ -66,10 +66,10 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
 
             if (member == null) {
               return CommonEmptyState(
-                title: AppStaticTexts.memberDetailsNotFound,
-                description: AppStaticTexts.memberDetailsNotFoundMessage,
+                title: context.lang.memberDetailsNotFound,
+                description: context.lang.memberDetailsNotFoundMessage,
                 icon: Icons.person_search_outlined,
-                actionLabel: AppStaticTexts.refresh,
+                actionLabel: context.lang.refresh,
                 onAction: _fetchMemberDetails,
               );
             }
@@ -89,9 +89,9 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
                       title: member.name,
                       subtitle: [
                         if (member.age.isNotEmpty)
-                          '${AppStaticTexts.age} ${member.age}',
+                          '${context.lang.age} ${member.age}',
                         if (member.nationalId.isNotEmpty)
-                          '${AppStaticTexts.id} ${member.nationalId}',
+                          '${context.lang.id} ${member.nationalId}',
                       ].join('  |  '),
                     ),
                   ),
@@ -144,7 +144,7 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
             context.router.root.push(AddMemberRoute(member: member));
           },
           icon: const Icon(Icons.edit_outlined),
-          child: const Text(AppStaticTexts.editInsuranceDetails),
+          child: Text(context.lang.editInsuranceDetails),
         ),
       ),
     );

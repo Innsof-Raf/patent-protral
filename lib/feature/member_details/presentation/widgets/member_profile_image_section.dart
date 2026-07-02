@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -38,7 +38,7 @@ class MemberProfileImageSection extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  (title.trim().isEmpty ? AppStaticTexts.unknown : title)
+                  (title.trim().isEmpty ? context.lang.unknown : title)
                       .toTitleCase(),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -84,7 +84,7 @@ class _MemberAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final initial = title.trim().isEmpty
-        ? AppStaticTexts.unknownInitial
+        ? context.lang.unknownInitial
         : title.trim()[0].toUpperCase();
     final imageUrl = image == null || image!.trim().isEmpty
         ? null

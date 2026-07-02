@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_section_card.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_text_field.dart';
@@ -33,7 +33,7 @@ class MemberInsuranceSection extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  AppStaticTexts.insurance,
+                  context.lang.insurance,
                   style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                     color: theme.colorScheme.onSurface,
                     fontWeight: FontWeight.w800,
@@ -46,7 +46,7 @@ class MemberInsuranceSection extends StatelessWidget {
           const Gap(14),
           if (!hasInsurance)
             Text(
-              AppStaticTexts.noActiveInsurance,
+              context.lang.noActiveInsurance,
               style: AppTextStyles.largeRobotoNormal.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
                 fontWeight: FontWeight.w500,
@@ -54,19 +54,19 @@ class MemberInsuranceSection extends StatelessWidget {
             )
           else ...[
             MemberTextField(
-              title: AppStaticTexts.insurance,
+              title: context.lang.insurance,
               value: insuranceName,
               icon: Icons.health_and_safety_outlined,
             ),
             const Gap(10),
             MemberTextField(
-              title: AppStaticTexts.memberIdLabel,
+              title: context.lang.memberIdLabel,
               value: memberNo,
               icon: Icons.confirmation_number_outlined,
             ),
             const Gap(10),
             MemberTextField(
-              title: AppStaticTexts.expirationDate,
+              title: context.lang.expirationDate,
               value: expireDate != null
                   ? DateFormat('dd-MM-yyyy').format(expireDate!)
                   : '',
@@ -98,7 +98,7 @@ class _InsuranceStatusBadge extends StatelessWidget {
         borderRadius: BorderRadius.circular(999),
       ),
       child: Text(
-        isActive ? AppStaticTexts.active : AppStaticTexts.notLinked,
+        isActive ? context.lang.active : context.lang.notLinked,
         style: AppTextStyles.bodyTextRoboto.copyWith(
           color: color,
           fontWeight: FontWeight.w800,

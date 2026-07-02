@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 
 class DoctorInfoButton extends StatelessWidget {
@@ -41,7 +41,7 @@ class DoctorInfoButton extends StatelessWidget {
               bio: bio,
             ),
           ),
-          tooltip: AppStaticTexts.viewInfo,
+          tooltip: context.lang.viewInfo,
           icon: Icon(
             Icons.info_outline_rounded,
             size: 16,
@@ -92,7 +92,7 @@ class DoctorInfoDialog extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    AppStaticTexts.doctorInfo,
+                    context.lang.doctorInfo,
                     style: theme.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: theme.colorScheme.onSurface,
@@ -120,20 +120,12 @@ class DoctorInfoDialog extends StatelessWidget {
                     ),
                   ),
                   const Gap(24),
-                  // SizedBox(
-                  //   width: double.infinity,
-                  //   child: ActiveButton(
-                  //     onPressed: () => Navigator.pop(context),
-                  //     height: 50,
-                  //     child: const Text(AppStaticTexts.close),
-                  //   ),
-                  // ),
                 ],
               ),
             ),
-            Positioned(
+            PositionedDirectional(
               top: 8,
-              right: 8,
+              end: 8,
               child: IconButton(
                 onPressed: () => Navigator.pop(context),
                 icon: const Icon(Icons.close_rounded),

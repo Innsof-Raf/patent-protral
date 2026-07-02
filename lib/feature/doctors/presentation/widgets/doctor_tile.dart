@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
@@ -102,10 +102,10 @@ class DoctorTile extends StatelessWidget {
                           if (doctor.isOnline) ...[
                             _AvailabilitySlot(
                               icon: Icons.videocam_rounded,
-                              title: AppStaticTexts.videoConsultation,
+                              title: context.lang.videoConsultation,
                               subtitle: doctor.availability.isNotEmpty
                                   ? doctor.availability
-                                  : AppStaticTexts.available,
+                                  : context.lang.available,
                               color: AppColors.iconBlue,
                               backgroundColor: AppColors.iconBlueBg,
                             ),
@@ -116,7 +116,7 @@ class DoctorTile extends StatelessWidget {
                             if (doctor.isOnline) const Gap(8),
                             _AvailabilitySlot(
                               icon: Icons.business_rounded,
-                              title: AppStaticTexts.inPersonConsultation,
+                              title: context.lang.inPersonConsultation,
                               subtitle: doctor.availability,
                               color: AppColors.iconGreen,
                               backgroundColor: AppColors.iconGreenBg,
@@ -129,9 +129,9 @@ class DoctorTile extends StatelessWidget {
                 ],
               ),
               if (bio != null)
-                Positioned(
+                PositionedDirectional(
                   top: 8,
-                  right: 8,
+                  end: 8,
                   child: DoctorInfoButton(
                     doctorName: doctor.doctorName,
                     bio: bio,
@@ -191,12 +191,12 @@ class _DoctorDetails extends StatelessWidget {
     final List<String> metaItems = [];
     if (doctor.experience.trim().isNotEmpty && doctor.experience != '0') {
       metaItems.add(
-        '${AppStaticTexts.experiencePrefix} ${doctor.experience}${AppStaticTexts.yearsExperience}',
+        '${context.lang.experiencePrefix} ${doctor.experience}${context.lang.yearsExperience}',
       );
     }
     if (doctor.consultationFee > 0) {
       metaItems.add(
-        '${AppStaticTexts.feePrefix} ${AppStaticTexts.qar} ${doctor.consultationFee.toStringAsFixed(0)}',
+        '${context.lang.feePrefix} ${context.lang.qar} ${doctor.consultationFee.toStringAsFixed(0)}',
       );
     }
 
@@ -250,7 +250,7 @@ class _DoctorDetails extends StatelessWidget {
         if (doctor.knownLanguages.isNotEmpty) ...[
           const Gap(2),
           Text(
-            '${AppStaticTexts.speaksPrefix} ${doctor.knownLanguages.join(', ')}',
+            '${context.lang.speaksPrefix} ${doctor.knownLanguages.join(', ')}',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: AppTextStyles.bodyTextInter.copyWith(

@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
+import 'package:patient_portal/core/resources/constant_messages.dart';
 
 class CommonErrorView extends StatelessWidget {
   const CommonErrorView({
     required this.message,
-    this.title = 'Something went wrong',
+    this.title,
     this.icon = Icons.cloud_off_outlined,
     this.onRetry,
-    this.retryLabel = 'Try again',
+    this.retryLabel,
     this.padding = const EdgeInsets.all(24),
     super.key,
   });
 
-  final String title;
+  final String? title;
   final String message;
   final IconData icon;
   final VoidCallback? onRetry;
-  final String retryLabel;
+  final String? retryLabel;
   final EdgeInsetsGeometry padding;
 
   @override
@@ -41,7 +43,7 @@ class CommonErrorView extends StatelessWidget {
             ),
             const Gap(32),
             Text(
-              title,
+              title ?? context.lang.somethingWentWrong,
               textAlign: TextAlign.center,
               style: theme.textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.bold,
@@ -50,7 +52,7 @@ class CommonErrorView extends StatelessWidget {
             ),
             const Gap(12),
             Text(
-              message,
+              ConstantMessages.translate(context, message),
               textAlign: TextAlign.center,
               style: theme.textTheme.bodyLarge?.copyWith(
                 color: colorScheme.onSurfaceVariant,
@@ -63,7 +65,7 @@ class CommonErrorView extends StatelessWidget {
                 width: 200,
                 onPressed: onRetry,
                 icon: const Icon(Icons.refresh_rounded),
-                child: Text(retryLabel),
+                child: Text(retryLabel ?? context.lang.tryAgain),
               ),
             ],
           ],

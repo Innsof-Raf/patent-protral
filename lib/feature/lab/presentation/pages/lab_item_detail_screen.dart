@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_bottom_action_button.dart';
@@ -33,7 +33,7 @@ class LabItemDetailScreen extends StatelessWidget {
             ? state.items[itemIndex]
             : null;
         return Scaffold(
-          appBar: const CommonAppbar(title: AppStaticTexts.laboratory),
+          appBar: CommonAppbar(title: context.lang.laboratory),
           body: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
@@ -73,7 +73,7 @@ class LabItemDetailScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  AppStaticTexts.packageDescription,
+                  context.lang.packageDescription,
                   style: AppTextStyles.bodyTextRoboto.copyWith(
                     fontWeight: FontWeight.w600,
                     color: theme.colorScheme.onSurface,
@@ -129,7 +129,7 @@ class LabItemDetailScreen extends StatelessWidget {
                 Expanded(
                   child: CommonBottomActionButton(
                     isPrimary: false,
-                    title: AppStaticTexts.viewCart,
+                    title: context.lang.viewCart,
                     onPressed: () {},
                   ),
                 ),
@@ -140,7 +140,7 @@ class LabItemDetailScreen extends StatelessWidget {
                             selectedItem.isChangingCartStatus
                         ? theme.colorScheme.surface
                         : null,
-                    title: AppStaticTexts.addToCart,
+                    title: context.lang.addToCart,
                     onPressed: () {
                       if (selectedItem != null) {
                         context.read<ItemsBloc>().add(

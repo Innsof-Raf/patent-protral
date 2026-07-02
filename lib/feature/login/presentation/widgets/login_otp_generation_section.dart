@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
+import 'package:patient_portal/core/resources/constant_messages.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/helpers/login_screen_form_helpers.dart';
 import 'package:patient_portal/feature/login/presentation/helpers/login_screen_helpers.dart';
@@ -70,7 +71,12 @@ class _LoginOtpGenerationSectionState extends State<LoginOtpGenerationSection> {
                 (context, animation, secondaryAnimation, child) =>
                     Transform.scale(
                       scale: Curves.easeOut.transform(animation.value),
-                      child: CommonErrorAlert(content: state.error.message),
+                      child: CommonErrorAlert(
+                        content: ConstantMessages.translate(
+                          context,
+                          state.error.message,
+                        ),
+                      ),
                     ),
           );
         } else if (state.isOtpGenerationSuccess &&
@@ -89,15 +95,16 @@ class _LoginOtpGenerationSectionState extends State<LoginOtpGenerationSection> {
             children: [
               LoginFormField(
                 controller: _mobileNumberController,
-                label: AppStaticTexts.mobileNumberLabel,
-                prefixText: AppStaticTexts.qatarCountryCode,
+                label: context.lang.mobileNumberLabel,
+                prefixText: context.lang.qatarCountryCode,
                 keyboardType: TextInputType.phone,
                 textInputAction: TextInputAction.send,
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(8),
                 ],
-                validator: LoginScreenFormHelpers.validateMobileNumber,
+                validator: (value) =>
+                    LoginScreenFormHelpers.validateMobileNumber(context, value),
                 onFieldSubmitted: (_) => _generateOtp(context, state),
               ),
               const Gap(16),
@@ -108,7 +115,7 @@ class _LoginOtpGenerationSectionState extends State<LoginOtpGenerationSection> {
                 builder: (context, agreed, _) => ActiveButton(
                   isLoading: state.isOtpGenerating,
                   onPressed: agreed ? () => _generateOtp(context, state) : null,
-                  child: const Text(AppStaticTexts.sendOtpTooltip),
+                  child: Text(context.lang.sendOtpTooltip),
                 ),
               ),
             ],

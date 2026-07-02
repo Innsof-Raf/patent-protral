@@ -1,33 +1,46 @@
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:flutter/widgets.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 
 class InsuranceValidationHelpers {
-  static String? validateInsuranceType({required int? value}) {
+  static String? validateInsuranceType(
+    BuildContext context, {
+    required int? value,
+  }) {
     if (value == null) {
-      return AppStaticTexts.selectYourInsurance;
+      return context.lang.selectYourInsurance;
     } else {
       return null;
     }
   }
 
-  static String? validateInsuranceName({required String? value}) {
+  static String? validateInsuranceName(
+    BuildContext context, {
+    required String? value,
+  }) {
     if (value == null || value.isEmpty) {
-      return AppStaticTexts.enterInsuranceName;
+      return context.lang.enterInsuranceName;
     } else {
       return null;
     }
   }
 
-  static String? validateMemberNumber({required String? value}) {
+  static String? validateMemberNumber(
+    BuildContext context, {
+    required String? value,
+  }) {
     if (value == null || value.isEmpty) {
-      return AppStaticTexts.enterMemberNumber;
+      return context.lang.enterMemberNumber;
     } else {
       return null;
     }
   }
 
-  static String? expireDateValidator({required String? value}) {
+  static String? expireDateValidator(
+    BuildContext context, {
+    required String? value,
+  }) {
     if (value == null || value.isEmpty) {
-      return AppStaticTexts.enterExpireDate;
+      return context.lang.enterExpireDate;
     } else {
       return null;
     }

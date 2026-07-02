@@ -4,7 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/image_picker_helpers.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
@@ -20,13 +20,14 @@ class PickedDocument {
 
 class AddDocumentScreenHelpers {
   static DropdownMenuItem<int> createMemberDropDownItem({
+    required BuildContext context,
     required Member member,
   }) {
     return DropdownMenuItem(
       value: member.id,
       child: Text(
         member.name.trim().isEmpty
-            ? AppStaticTexts.unknown
+            ? context.lang.unknown
             : member.name.toTitleCase(),
         style: AppTextStyles.largeRobotoNormal,
       ),
@@ -74,11 +75,11 @@ class AddDocumentScreenHelpers {
   }) async {
     return await ImagePickerHelpers.showPickerSheet<PickedDocument>(
       context: context,
-      title: AppStaticTexts.document,
-      subtitle: AppStaticTexts.selectImageSource,
+      title: context.lang.document,
+      subtitle: context.lang.selectImageSource,
       actions: [
         PickerSheetAction<PickedDocument>(
-          title: AppStaticTexts.camera,
+          title: context.lang.camera,
           iconPath: Assets.icons.cameraIcon.path,
           onPressed: () async {
             final image = await ImagePickerHelpers.pickImageFromSource(
@@ -93,7 +94,7 @@ class AddDocumentScreenHelpers {
           },
         ),
         PickerSheetAction<PickedDocument>(
-          title: AppStaticTexts.files,
+          title: context.lang.files,
           iconPath: Assets.icons.folderIcon.path,
           onPressed: () async {
             final value = await FilePicker.pickFiles(
@@ -113,45 +114,49 @@ class AddDocumentScreenHelpers {
     );
   }
 
-  static String? validateDocumentType({
+  static String? validateDocumentType(
+    BuildContext context, {
     required int? value,
     required int? selectedDocumentType,
   }) {
     if (value == null || selectedDocumentType == null) {
-      return AppStaticTexts.selectDocumentType;
+      return context.lang.selectDocumentType;
     } else {
       return null;
     }
   }
 
-  static String? validateSelectedMember({
+  static String? validateSelectedMember(
+    BuildContext context, {
     required int? value,
     required int? selectedMember,
   }) {
     if (value == null || selectedMember == null) {
-      return AppStaticTexts.selectMember;
+      return context.lang.selectMemberCommon;
     } else {
       return null;
     }
   }
 
-  static String? validateExpireDate({
+  static String? validateExpireDate(
+    BuildContext context, {
     required String? value,
     required DateTime? expireDate,
   }) {
     if (value == null || value.isEmpty || expireDate == null) {
-      return AppStaticTexts.selectExpireDate;
+      return context.lang.selectExpireDate;
     } else {
       return null;
     }
   }
 
-  static String? validateSelectedDocument({
+  static String? validateSelectedDocument(
+    BuildContext context, {
     required String? value,
     required File? selectedDocument,
   }) {
     if (value == null || value.isEmpty || selectedDocument == null) {
-      return AppStaticTexts.selectDocumentToUpload;
+      return context.lang.selectDocumentToUpload;
     } else {
       return null;
     }

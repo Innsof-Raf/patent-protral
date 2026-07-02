@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -66,9 +66,9 @@ class _LoginTermsRowState extends State<LoginTermsRow> {
             text: TextSpan(
               style: bodyStyle,
               children: [
-                const TextSpan(text: AppStaticTexts.byContinuing),
+                TextSpan(text: context.lang.byContinuing),
                 TextSpan(
-                  text: AppStaticTexts.termsAndConditions,
+                  text: context.lang.termsAndConditions,
                   style: linkStyle,
                   recognizer: TapGestureRecognizer()..onTap = _launchTerms,
                 ),

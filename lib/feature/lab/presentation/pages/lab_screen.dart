@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_outlined_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
@@ -60,12 +60,12 @@ class _LabScreenState extends State<LabScreen>
 
     return Scaffold(
       appBar: CommonAppbar(
-        title: AppStaticTexts.labTestCategories,
+        title: context.lang.labTestCategories,
         actions: [
           IconButton(
             onPressed: () {},
             icon: const Icon(Icons.search_rounded),
-            tooltip: AppStaticTexts.searchTests,
+            tooltip: context.lang.searchTests,
           ),
         ],
       ),
@@ -88,9 +88,9 @@ class _LabScreenState extends State<LabScreen>
               unselectedLabelStyle: theme.textTheme.titleSmall?.copyWith(
                 fontWeight: FontWeight.w500,
               ),
-              tabs: const [
-                LabTabBar(title: AppStaticTexts.packages),
-                LabTabBar(title: AppStaticTexts.test),
+              tabs: [
+                LabTabBar(title: context.lang.packages),
+                LabTabBar(title: context.lang.test),
               ],
             ),
           ),
@@ -106,14 +106,14 @@ class _LabScreenState extends State<LabScreen>
                   CommonSnackBar.show(
                     context,
                     message:
-                        '${AppStaticTexts.cartUpdatingFailed} ${state.error}',
+                        '${context.lang.cartUpdatingFailed} ${state.error}',
                     type: SnackBarType.error,
                   );
                 }
               },
               child: TabBarView(
                 controller: _tabController,
-                children: const [PackagesTabBarView(), TestsTabBarView()],
+                children: [PackagesTabBarView(), TestsTabBarView()],
               ),
             ),
           ),
@@ -143,7 +143,7 @@ class _LabScreenState extends State<LabScreen>
                 onPressed: () {
                   context.router.push(const CartRoute());
                 },
-                child: const Text(AppStaticTexts.viewCart),
+                child: Text(context.lang.viewCart),
               ),
             ),
             const Gap(12),
@@ -152,7 +152,7 @@ class _LabScreenState extends State<LabScreen>
                 onPressed: () {
                   // TODO: Implement Checkout navigation
                 },
-                child: const Text(AppStaticTexts.checkOut),
+                child: Text(context.lang.checkOut),
               ),
             ),
           ],

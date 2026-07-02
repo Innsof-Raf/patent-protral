@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_icon_button.dart';
 
 class MedicalInsuranceAppBar extends StatelessWidget
@@ -20,11 +20,11 @@ class MedicalInsuranceAppBar extends StatelessWidget
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
           onPressed: () => Navigator.of(context).pop(),
           color: theme.colorScheme.onSurface,
-          tooltip: AppStaticTexts.back,
+          tooltip: context.lang.back,
         ),
       ),
       title: Text(
-        AppStaticTexts.medicalInsurance,
+        context.lang.medicalInsurance,
         style: theme.textTheme.titleLarge?.copyWith(
           fontWeight: FontWeight.bold,
           color: theme.colorScheme.onSurface,

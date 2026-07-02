@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
@@ -40,7 +40,7 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
     final colorScheme = theme.colorScheme;
 
     return Scaffold(
-      appBar: const CommonAppbar(title: AppStaticTexts.setPassword),
+      appBar: CommonAppbar(title: context.lang.setPassword),
       body: BlocListener<ChangePasswordBloc, ChangePasswordState>(
         listener: (context, state) {
           if (state.isPasswordChangingFailed) {
@@ -56,7 +56,7 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                AppStaticTexts.createNewPassword,
+                context.lang.createNewPassword,
                 style: AppTextStyles.extraLargeRobotoBold.copyWith(
                   fontWeight: FontWeight.bold,
                   color: colorScheme.onSurface,
@@ -64,7 +64,7 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
               ),
               const Gap(8),
               Text(
-                AppStaticTexts.createNewPasswordMessage,
+                context.lang.createNewPasswordMessage,
                 style: AppTextStyles.largeRobotoNormal.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 ),
@@ -79,11 +79,11 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: _buildBottomAction(theme),
+      bottomNavigationBar: _buildBottomAction(theme, context),
     );
   }
 
-  Widget _buildBottomAction(ThemeData theme) {
+  Widget _buildBottomAction(ThemeData theme, BuildContext context) {
     return Container(
       padding: const EdgeInsets.fromLTRB(24, 16, 24, 32),
       decoration: BoxDecoration(
@@ -102,7 +102,7 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
             width: double.infinity,
             isLoading: state.isPasswordChanging,
             onPressed: _onSavePressed,
-            child: const Text(AppStaticTexts.savePassword),
+            child: Text(context.lang.savePassword),
           );
         },
       ),
@@ -139,7 +139,7 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
       context: context,
       barrierDismissible: false,
       builder: (context) => SuccessDialog(
-        title: AppStaticTexts.passwordChangedSuccessfully,
+        title: context.lang.passwordChangedSuccessfully,
         onPressed: () {
           context.router.popUntilRouteWithName(MainRoute.name);
         },

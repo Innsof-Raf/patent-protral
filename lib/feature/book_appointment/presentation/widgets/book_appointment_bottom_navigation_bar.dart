@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
@@ -49,7 +49,7 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                 context: context,
                 builder: (context) => CommonErrorAlert(
                   content:
-                      '${AppStaticTexts.appointmentBookingFailed}\n ${state.error.message}',
+                      '${context.lang.appointmentBookingFailed}\n ${state.error.message}',
                 ),
               );
             } else if (state.isAppointmentSavingSuccses &&
@@ -80,7 +80,7 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                         builder: (context, selectedSlot, child) {
                           if (selectedSlot == null) {
                             return Text(
-                              AppStaticTexts.selectSlotToBookAppointment,
+                              context.lang.selectSlotToBookAppointment,
                               style: AppTextStyles.bodyTextRoboto.copyWith(
                                 color: AppColors.textLight,
                                 fontSize: 11,
@@ -92,7 +92,7 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                             DateTime.now(),
                           );
                           final dateStr = isToday
-                              ? AppStaticTexts.today
+                              ? context.lang.today
                               : DateFormat('d MMM, yyyy').format(selectedSlot);
 
                           return Column(
@@ -160,8 +160,8 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                                       const Gap(6),
                                       Text(
                                         isVideo
-                                            ? AppStaticTexts.video
-                                            : AppStaticTexts.inPerson,
+                                            ? context.lang.video
+                                            : context.lang.inPerson,
                                         style: AppTextStyles.bodyTextRoboto
                                             .copyWith(
                                               color: color,
@@ -188,8 +188,8 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
                         onPressed: () => _onPressed(context, state),
                         child: Text(
                           appointmentId == 0
-                              ? AppStaticTexts.continueText
-                              : AppStaticTexts.reschedule,
+                              ? context.lang.continueText
+                              : context.lang.reschedule,
                         ),
                       ),
                     ),
@@ -224,8 +224,8 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
 
   void _handleSuccess(BuildContext context, BookAppointmentState state) {
     final title = appointmentId == 0
-        ? AppStaticTexts.appointmentBookedSuccessfully
-        : AppStaticTexts.appointmentRescheduledSuccessfully;
+        ? context.lang.appointmentBookedSuccessfully
+        : context.lang.appointmentRescheduledSuccessfully;
     final router = context.router;
 
     showGeneralDialog(

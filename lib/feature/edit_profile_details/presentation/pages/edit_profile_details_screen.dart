@@ -2,12 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/success_dialog.dart';
+import 'package:patient_portal/core/resources/constant_messages.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/helpers/edit_profile_detail_screen_helpers.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/widgets/edit_profile_details_section.dart';
@@ -45,7 +46,7 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
       extendBody: true,
       resizeToAvoidBottomInset: true,
       backgroundColor: theme.colorScheme.surface,
-      appBar: const CommonAppbar(title: 'Profile Details'),
+      appBar: CommonAppbar(title: context.lang.profileDetails),
       body: BlocListener<UserBloc, UserState>(
         listenWhen: (previous, current) =>
             previous.isMemberAddingFailed != current.isMemberAddingFailed ||
@@ -55,7 +56,8 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
             showDialog(
               context: context,
               builder: (context) => CommonErrorAlert(
-                content: 'Profile update failed\n${state.error.message}',
+                content:
+                    '${context.lang.profileUpdateFailed}\n${ConstantMessages.translate(context, state.error.message)}',
               ),
             ).then((_) {
               if (context.mounted) {
@@ -70,7 +72,7 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
             showDialog(
               context: context,
               builder: (context) => SuccessDialog(
-                title: AppStaticTexts.profileUpdatedSuccessfully,
+                title: context.lang.profileUpdatedSuccessfully,
                 onPressed: () {
                   Navigator.pop(context);
                   context.read<UserBloc>().add(
@@ -79,13 +81,7 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
                   context.router.maybePop();
                 },
               ),
-            ).then((_) {
-              if (context.mounted) {
-                context.read<UserBloc>().add(
-                  const ChangeMemberAddingSateToInitial(),
-                );
-              }
-            });
+            );
           }
         },
         child: CustomScrollView(
@@ -122,7 +118,7 @@ class _EditProfileDetailsScreenState extends State<EditProfileDetailsScreen> {
               onPressed: () {
                 EditProfileDetailScreenHelpers.saveProfile(context: context);
               },
-              child: const Text('Save Changes'),
+              child: Text(context.lang.saveChanges),
             );
           },
         ),
@@ -169,7 +165,7 @@ class _EditProfileIntroCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Edit your profile',
+            context.lang.editYourProfile,
             style: AppTextStyles.extraLargeRobotoBold.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w800,
@@ -178,7 +174,7 @@ class _EditProfileIntroCard extends StatelessWidget {
           ),
           const Gap(8),
           Text(
-            'Review the essentials before continuing back to your profile.',
+            context.lang.reviewEssentialsSubtitle,
             style: AppTextStyles.largeRobotoNormal.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w500,

@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
@@ -17,8 +17,8 @@ class DoctorDetailScreen extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: const CommonAppbar(
-        title: AppStaticTexts.doctor,
+      appBar: CommonAppbar(
+        title: context.lang.doctor,
         backgroundColor: AppColors.primaryCyanDark,
         foregroundColor: AppColors.white,
       ),
@@ -34,16 +34,20 @@ class DoctorDetailScreen extends StatelessWidget {
                 ),
               ),
               child: Container(
-                padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                padding: const EdgeInsetsDirectional.only(
+                  start: 10,
+                  end: 10,
+                  top: 10,
+                ),
                 width: double.infinity,
                 child: LayoutBuilder(
                   builder: (context, constraints) => Stack(
                     clipBehavior: Clip.none,
                     children: [
-                      Positioned(
+                      PositionedDirectional(
                         bottom: -constraints.maxWidth * .08,
-                        left: 0,
-                        right: 0,
+                        start: 0,
+                        end: 0,
                         child: Row(
                           children: [
                             ClipRRect(

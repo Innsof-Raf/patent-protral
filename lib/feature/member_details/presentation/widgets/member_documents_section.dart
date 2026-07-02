@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_section_card.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member_document.dart';
@@ -20,7 +20,7 @@ class MemberDocumentsSection extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            AppStaticTexts.documents,
+            context.lang.documents,
             style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w800,
@@ -29,7 +29,7 @@ class MemberDocumentsSection extends StatelessWidget {
           const Gap(14),
           if (documents.isEmpty)
             Text(
-              AppStaticTexts.noDocumentsForMember,
+              context.lang.noDocumentsForMember,
               style: AppTextStyles.largeRobotoNormal.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
                 fontWeight: FontWeight.w500,
@@ -86,7 +86,7 @@ class _DocumentTile extends StatelessWidget {
           TextButton.icon(
             onPressed: () {},
             icon: const Icon(Icons.download_rounded, size: 18),
-            label: const Text(AppStaticTexts.download),
+            label: Text(context.lang.download),
           ),
         ],
       ),

@@ -85,9 +85,9 @@ class AppointmentStatusDialog extends StatelessWidget {
                 ],
               ),
             ),
-            Positioned(
+            PositionedDirectional(
               top: 8,
-              right: 8,
+              end: 8,
               child: IconButton(
                 onPressed: () => Navigator.pop(context),
                 icon: const Icon(Icons.close_rounded),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/feature_header.dart';
@@ -42,11 +42,11 @@ class MemberSelectionScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(24),
                       children: [
                         FeatureHeader(
-                          title: AppStaticTexts.selectMemberToContinue,
-                          subtitle: AppStaticTexts.pleaseChooseAMember,
+                          title: context.lang.selectMemberToContinue,
+                          subtitle: context.lang.pleaseChooseAMember,
                           badgeText: members.isEmpty
-                              ? AppStaticTexts.noMembersAdded
-                              : '${members.length} ${AppStaticTexts.membersLinked}',
+                              ? context.lang.noMembersAdded
+                              : '${members.length} ${context.lang.membersLinked}',
                         ),
                         const Gap(24),
                         ...members.map(
@@ -108,7 +108,7 @@ class _AddMemberTile extends StatelessWidget {
             Icon(Icons.person_add_alt_1_rounded, color: colorScheme.primary),
             const Gap(12),
             Text(
-              AppStaticTexts.addMember,
+              context.lang.addMember,
               style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                 color: colorScheme.primary,
                 fontWeight: FontWeight.bold,

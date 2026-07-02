@@ -4,6 +4,7 @@ import 'dart:developer' as dev;
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
+import 'package:patient_portal/core/localization/bloc/language_bloc.dart';
 import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/feature/add_document/data/datasources/add_document_remote_data_source.dart';
 import 'package:patient_portal/feature/add_document/data/repositories/add_document_repository_impl.dart';
@@ -109,6 +110,8 @@ Future<void> init() async {
       uploadDocumentUseCase: sl(),
     ),
   );
+
+  sl.registerFactory(() => LanguageBloc(sharedPreferences: sl()));
 
   // Use cases
   sl.registerLazySingleton(() => GetDocumentTypesUseCase(sl()));

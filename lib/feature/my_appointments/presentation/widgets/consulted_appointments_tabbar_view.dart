@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
 
 import 'appointments_tabbar_view.dart';
@@ -19,11 +19,11 @@ class ConsultedAppointmentsTabbarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppointmentsTabbarView(
-      title: AppStaticTexts.consultedAppointments,
+      title: context.lang.consultedAppointments,
       appointments: appointments,
       monthTimelineList: monthTimelineList,
-      emptyTitle: AppStaticTexts.noConsultedAppointments,
-      emptyMessage: AppStaticTexts.noConsultedAppointmentsMessage,
+      emptyTitle: context.lang.noConsultedAppointments,
+      emptyMessage: context.lang.noConsultedAppointmentsMessage,
       onRefresh: onRefresh,
     );
   }

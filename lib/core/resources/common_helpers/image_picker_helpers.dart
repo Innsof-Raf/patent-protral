@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/image_picker_tile.dart';
 
@@ -23,21 +23,21 @@ class PickerSheetAction<T> {
 class ImagePickerHelpers {
   static Future<File?> pickImage({
     required BuildContext context,
-    String title = AppStaticTexts.uploadProfilePhoto,
-    String subtitle = AppStaticTexts.selectImageSource,
+    String? title,
+    String? subtitle,
   }) async {
     return showPickerSheet<File>(
       context: context,
-      title: title,
-      subtitle: subtitle,
+      title: title ?? context.lang.uploadProfilePhoto,
+      subtitle: subtitle ?? context.lang.selectImageSource,
       actions: [
         PickerSheetAction<File>(
-          title: AppStaticTexts.camera,
+          title: context.lang.camera,
           iconPath: Assets.icons.cameraIcon.path,
           onPressed: () => pickImageFromSource(source: ImageSource.camera),
         ),
         PickerSheetAction<File>(
-          title: AppStaticTexts.gallery,
+          title: context.lang.gallery,
           iconPath: Assets.icons.galleryIcon.path,
           onPressed: () => pickImageFromSource(source: ImageSource.gallery),
         ),

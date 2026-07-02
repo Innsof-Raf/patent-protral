@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
 import 'package:patient_portal/feature/doctors/presentation/widgets/doctor_tile.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_section_header.dart';
@@ -19,9 +19,9 @@ class HomeDoctorsSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         HomeSectionHeader(
-          title: AppStaticTexts.topDoctors,
-          subtitle: AppStaticTexts.topDoctorsSubtitle,
-          actionTooltip: AppStaticTexts.viewAllDoctors,
+          title: context.lang.topDoctors,
+          subtitle: context.lang.topDoctorsSubtitle,
+          actionTooltip: context.lang.viewAllDoctors,
           onViewAll: () {
             MainScreenHelpers.mainScreenNotifier.value = 2;
           },

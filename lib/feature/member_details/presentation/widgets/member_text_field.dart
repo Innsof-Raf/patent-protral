@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class MemberTextField extends StatelessWidget {
@@ -49,7 +49,7 @@ class MemberTextField extends StatelessWidget {
                 ),
                 const Gap(4),
                 Text(
-                  value.isEmpty ? AppStaticTexts.notProvided : value,
+                  value.isEmpty ? context.lang.notProvided : value,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: AppTextStyles.largeRobotoNormal.copyWith(

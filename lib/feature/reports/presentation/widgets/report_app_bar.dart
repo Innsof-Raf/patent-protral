@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_icon_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_snack_bar.dart';
@@ -45,7 +45,7 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
           onPressed: () => Navigator.of(context).pop(),
           color: theme.colorScheme.onSurface,
-          tooltip: AppStaticTexts.back,
+          tooltip: context.lang.back,
         ),
       ),
       titleSpacing: 0,
@@ -104,7 +104,7 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
                 final String fileName = _getFileName(documentUrl, doctorName);
 
                 final String? outputFile = await FilePicker.saveFile(
-                  dialogTitle: AppStaticTexts.saveReport,
+                  dialogTitle: context.lang.saveReport,
                   fileName: fileName,
                   bytes: state.report!.bytes,
                 );
@@ -112,7 +112,7 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
                 if (outputFile != null && context.mounted) {
                   CommonSnackBar.show(
                     context,
-                    message: '${AppStaticTexts.reportSavedAt} $outputFile',
+                    message: '${context.lang.reportSavedAt} $outputFile',
                     type: SnackBarType.success,
                   );
                 }

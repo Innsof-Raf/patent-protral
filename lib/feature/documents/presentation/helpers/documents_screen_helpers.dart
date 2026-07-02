@@ -6,9 +6,9 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/injection_container.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/resources/api_helpers.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/constant_messages.dart';
 import 'package:patient_portal/core/resources/error_model.dart';
@@ -18,14 +18,17 @@ import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 class DocumentsScreenHelpers {
   static final ApiAgent _apiAgent = sl<ApiAgent>();
 
-  static List<PopupMenuItem<int>> createPopupMenuItem(List<Member> members) {
+  static List<PopupMenuItem<int>> createPopupMenuItem(
+    BuildContext context,
+    List<Member> members,
+  ) {
     final List<PopupMenuItem<int>> popupMenuItems = [
       PopupMenuItem(
         value: 0,
         height: 30,
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Text(
-          AppStaticTexts.all,
+          context.lang.all,
           overflow: TextOverflow.ellipsis,
           style: AppTextStyles.largeSemiBoldRoboto,
         ),

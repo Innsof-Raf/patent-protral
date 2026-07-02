@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
@@ -203,9 +203,9 @@ class _MemberDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final subtitle = [
-      if (member.age.isNotEmpty) '${AppStaticTexts.age} ${member.age}',
+      if (member.age.isNotEmpty) '${context.lang.age} ${member.age}',
       if (member.nationalId.isNotEmpty)
-        '${AppStaticTexts.nationalId} ${member.nationalId}',
+        '${context.lang.nationalId} ${member.nationalId}',
     ].join('  |  ');
 
     return Column(
@@ -213,7 +213,7 @@ class _MemberDetails extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          (member.name.trim().isEmpty ? AppStaticTexts.unknown : member.name)
+          (member.name.trim().isEmpty ? context.lang.unknown : member.name)
               .toTitleCase(),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
@@ -224,7 +224,7 @@ class _MemberDetails extends StatelessWidget {
         ),
         const Gap(5),
         Text(
-          subtitle.isEmpty ? AppStaticTexts.memberProfile : subtitle,
+          subtitle.isEmpty ? context.lang.memberProfile : subtitle,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: AppTextStyles.bodyTextInter.copyWith(
@@ -251,7 +251,7 @@ class _InsuranceBadge extends StatelessWidget {
         borderRadius: BorderRadius.circular(999),
       ),
       child: Text(
-        AppStaticTexts.insured,
+        context.lang.insured,
         style: AppTextStyles.bodySmallInterNormal.copyWith(
           color: theme.colorScheme.primary,
           fontWeight: FontWeight.w800,

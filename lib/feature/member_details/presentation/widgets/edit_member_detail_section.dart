@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/gender_form_helpers.dart';
@@ -24,11 +25,11 @@ class EditmemberDetailSection extends StatelessWidget {
         TextField(
           readOnly: true,
           controller: dobController,
-          decoration: const InputDecoration(labelText: 'Date of birth'),
+          decoration: InputDecoration(labelText: context.lang.dateOfBirth),
           style: AppTextStyles.textFormFieldStyle,
         ),
         const Gap(10),
-        Text('Gender', style: AppTextStyles.bodyTextRoboto),
+        Text(context.lang.gender, style: AppTextStyles.bodyTextRoboto),
         const Gap(5),
         Row(
           children: [
@@ -42,7 +43,7 @@ class EditmemberDetailSection extends StatelessWidget {
                   }
                 },
                 value: 'Male',
-                title: 'Male',
+                title: context.lang.male,
               ),
             ),
             const Gap(20),
@@ -56,7 +57,7 @@ class EditmemberDetailSection extends StatelessWidget {
                   }
                 },
                 value: 'Female',
-                title: 'Female',
+                title: context.lang.female,
               ),
             ),
           ],
@@ -70,9 +71,12 @@ class EditmemberDetailSection extends StatelessWidget {
           ],
           keyboardType: TextInputType.number,
           validator: (value) =>
-              MemeberFormValidationHelpers.nationalIdValidator(value: value),
+              MemeberFormValidationHelpers.nationalIdValidator(
+                context,
+                value: value,
+              ),
           textInputAction: TextInputAction.next,
-          decoration: const InputDecoration(labelText: 'National ID'),
+          decoration: InputDecoration(labelText: context.lang.nationalId),
           style: AppTextStyles.textFormFieldStyle,
           cursorColor: AppColors.textFormFieldStyleColor,
         ),
@@ -80,10 +84,14 @@ class EditmemberDetailSection extends StatelessWidget {
         TextFormField(
           controller: emailController,
           keyboardType: TextInputType.emailAddress,
-          decoration: const InputDecoration(labelText: 'Email (Optional)'),
+          decoration: InputDecoration(
+            labelText: context.lang.emailAddressOptional,
+          ),
           style: AppTextStyles.textFormFieldStyle,
-          validator: (value) =>
-              MemeberFormValidationHelpers.emailValidator(value: value),
+          validator: (value) => MemeberFormValidationHelpers.emailValidator(
+            context,
+            value: value,
+          ),
           cursorColor: AppColors.textFormFieldStyleColor,
         ),
         const Gap(20),

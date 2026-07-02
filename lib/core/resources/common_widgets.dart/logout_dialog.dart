@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_text_button.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -62,7 +62,7 @@ class LogoutDialog extends StatelessWidget {
                   ),
                   const Gap(24),
                   Text(
-                    AppStaticTexts.logout,
+                    context.lang.logout,
                     textAlign: TextAlign.center,
                     style: theme.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
@@ -71,7 +71,7 @@ class LogoutDialog extends StatelessWidget {
                   ),
                   const Gap(12),
                   Text(
-                    AppStaticTexts.logoutConfirmation,
+                    context.lang.logoutConfirmation,
                     textAlign: TextAlign.center,
                     style: theme.textTheme.bodyLarge?.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
@@ -83,7 +83,7 @@ class LogoutDialog extends StatelessWidget {
                       Expanded(
                         child: ActiveTextButton(
                           onPressed: () => Navigator.pop(context),
-                          child: const Text(AppStaticTexts.cancel),
+                          child: Text(context.lang.cancel),
                         ),
                       ),
                       const Gap(12),
@@ -97,9 +97,9 @@ class LogoutDialog extends StatelessWidget {
                           height: 50,
                           backgroundColor: theme.colorScheme.error,
                           foregroundColor: theme.colorScheme.onError,
-                          child: const Text(
-                            AppStaticTexts.logout,
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                          child: Text(
+                            context.lang.logout,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
@@ -108,9 +108,9 @@ class LogoutDialog extends StatelessWidget {
                 ],
               ),
             ),
-            Positioned(
+            PositionedDirectional(
               top: 8,
-              right: 8,
+              end: 8,
               child: IconButton(
                 onPressed: () => Navigator.pop(context),
                 icon: const Icon(Icons.close_rounded),

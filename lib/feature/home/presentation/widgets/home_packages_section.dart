@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/home/domain/entities/ad_banner.dart'
     as home_entity;
@@ -38,10 +38,10 @@ class HomePackagesSection extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(18, 18, 18, 12),
             child: HomeSectionHeader(
-              title: AppStaticTexts.bestHealthPackages,
-              subtitle: AppStaticTexts.bestHealthPackagesSubtitle,
+              title: context.lang.bestHealthPackages,
+              subtitle: context.lang.bestHealthPackagesSubtitle,
               inverse: true,
-              actionTooltip: AppStaticTexts.viewPackages,
+              actionTooltip: context.lang.viewPackages,
               onViewAll: () {
                 context.router.root.push(const LabRoute());
               },

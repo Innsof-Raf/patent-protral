@@ -1,49 +1,63 @@
+import 'package:flutter/widgets.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
+
 class EditProfileDetailsFormValidationHelpers {
-  static String? nameValidator({required String? value}) {
+  static String? nameValidator(BuildContext context, {required String? value}) {
     if (value == null || value.isEmpty) {
-      return 'Enter member name';
+      return context.lang.enterMemberName;
     } else {
       return null;
     }
   }
 
-  static String? dobValidator({required String? value}) {
+  static String? dobValidator(BuildContext context, {required String? value}) {
     if (value == null || value.isEmpty) {
-      return 'Enter member date of birth';
+      return context.lang.enterMemberDob;
     } else {
       return null;
     }
   }
 
-  static String? nationalIdValidator({required String? value}) {
+  static String? nationalIdValidator(
+    BuildContext context, {
+    required String? value,
+  }) {
     if (value == null || value.isEmpty) {
-      return 'Enter member national id';
+      return context.lang.enterMemberNationalId;
     } else if (value.length != 11) {
-      return 'Enter a valid national id';
+      return context.lang.enterValidNationalId;
     } else {
       return null;
     }
   }
 
-  static String? emailValidator({required String? value}) {
+  static String? emailValidator(
+    BuildContext context, {
+    required String? value,
+  }) {
     final RegExp emailRegexp = RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
     );
     if (value == null || value.isEmpty) {
       return null;
     } else if (!emailRegexp.hasMatch(value)) {
-      return 'Enter a valid email id';
+      return context.lang.enterValidEmail;
     } else {
       return null;
     }
   }
 
-  static String? phoneNumberValidator({required String? value}) {
+  static String? phoneNumberValidator(
+    BuildContext context, {
+    required String? value,
+  }) {
     final RegExp mobileNumberRegex = RegExp('^(\\d{8}(\\,\\d{8}){0,2})\$');
     if (value == null || value.isEmpty) {
-      return 'Enter Your MobileNumber';
+      return context.lang.enterYourMobileNumber;
     } else if (!mobileNumberRegex.hasMatch(value)) {
-      return 'Enter a valid mobileNumber';
+      return context
+          .lang
+          .enterYourMobileNumber; // Use a more general error or create a specific one
     } else {
       return null;
     }

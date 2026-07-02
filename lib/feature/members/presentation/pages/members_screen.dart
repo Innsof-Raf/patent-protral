@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_text_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
@@ -40,9 +40,9 @@ class _MembersScreenState extends State<MembersScreen> {
     showDialog(
       context: context,
       builder: (dialogContext) => ConfirmationDialog(
-        title: AppStaticTexts.deleteMembers,
-        message: AppStaticTexts.deleteMembersMessage,
-        confirmText: AppStaticTexts.delete,
+        title: context.lang.deleteMembers,
+        message: context.lang.deleteMembersMessage,
+        confirmText: context.lang.delete,
         isDestructive: true,
         iconPath: Assets.icons.deleteIcon.path,
         onConfirm: () {
@@ -64,7 +64,7 @@ class _MembersScreenState extends State<MembersScreen> {
       resizeToAvoidBottomInset: false,
       backgroundColor: theme.colorScheme.surface,
       appBar: CommonAppbar(
-        title: AppStaticTexts.members,
+        title: context.lang.members,
         actions: [
           BlocBuilder<DeleteMemberBloc, DeleteMemberState>(
             builder: (context, state) {
@@ -108,7 +108,7 @@ class _MembersScreenState extends State<MembersScreen> {
                     SelectAllMembers(membersIdList: membersIdList),
                   );
                 },
-                child: const Text(AppStaticTexts.selectAll),
+                child: Text(context.lang.selectAll),
               );
             },
           ),
@@ -129,19 +129,19 @@ class _MembersScreenState extends State<MembersScreen> {
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 5),
                 sliver: SliverToBoxAdapter(
                   child: FeatureHeader(
-                    title: AppStaticTexts.memberList,
-                    subtitle: AppStaticTexts.memberListSubtitle,
+                    title: context.lang.memberList,
+                    subtitle: context.lang.memberListSubtitle,
                     badgeText: members.isEmpty
-                        ? AppStaticTexts.noMembersAdded
-                        : '${members.length} ${AppStaticTexts.membersLinked}',
+                        ? context.lang.noMembersAdded
+                        : '${members.length} ${context.lang.membersLinked}',
                   ),
                 ),
               ),
               if (members.isNotEmpty)
                 SliverSearchHeader(
                   controller: searchController,
-                  title: AppStaticTexts.searchMemberHint,
-                  hintText: AppStaticTexts.searchMembers,
+                  title: context.lang.searchMemberHint,
+                  hintText: context.lang.searchMembers,
                   onChanged: (value) {
                     context.read<MemberSearchBloc>().add(
                       SearchMember(
@@ -171,7 +171,7 @@ class _MembersScreenState extends State<MembersScreen> {
           context.router.root.push(AddMemberRoute());
         },
         icon: const Icon(Icons.person_add_alt_1_rounded),
-        label: const Text(AppStaticTexts.addMember),
+        label: Text(context.lang.addMember),
       ),
     );
   }
@@ -193,10 +193,10 @@ class _MembersResultSliver extends StatelessWidget {
     if (allMembers.isEmpty) {
       return SliverFillRemaining(
         child: CommonEmptyState(
-          title: AppStaticTexts.noMembersFound,
-          description: AppStaticTexts.noMembersFoundMessage,
+          title: context.lang.noMembersFound,
+          description: context.lang.noMembersFoundMessage,
           icon: Icons.group_add_outlined,
-          actionLabel: AppStaticTexts.refresh,
+          actionLabel: context.lang.refresh,
           onAction: onRefresh,
         ),
       );
@@ -209,10 +209,10 @@ class _MembersResultSliver extends StatelessWidget {
             : allMembers;
 
         if (members.isEmpty) {
-          return const SliverFillRemaining(
+          return SliverFillRemaining(
             child: CommonEmptyState(
-              title: AppStaticTexts.noMatchingMember,
-              description: AppStaticTexts.noMatchingMemberMessage,
+              title: context.lang.noMatchingMember,
+              description: context.lang.noMatchingMemberMessage,
               icon: Icons.manage_search_rounded,
             ),
           );

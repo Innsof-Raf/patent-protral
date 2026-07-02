@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -49,9 +49,9 @@ class DrawerProfileTile extends StatelessWidget {
                       Assets.images.memberDefaultProfileImage.path,
                     ),
                   ),
-                  Positioned(
+                  PositionedDirectional(
                     bottom: -4,
-                    right: -2,
+                    end: -2,
                     child: Container(
                       padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
@@ -74,7 +74,7 @@ class DrawerProfileTile extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      (displayName.isEmpty ? AppStaticTexts.user : displayName)
+                      (displayName.isEmpty ? context.lang.user : displayName)
                           .toTitleCase(),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -87,7 +87,7 @@ class DrawerProfileTile extends StatelessWidget {
                     Text(
                       member == null
                           ? user?.mobileNumber ?? ''
-                          : '${AppStaticTexts.age} ${member.age} | ${AppStaticTexts.nationalId} ${member.nationalId}',
+                          : '${context.lang.age} ${member.age} | ${context.lang.nationalId} ${member.nationalId}',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: AppTextStyles.bodyTextRoboto.copyWith(

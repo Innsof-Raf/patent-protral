@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -63,10 +63,9 @@ class LabGridItemTile extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  // Price Tag Overlay (Optional but looks modern)
-                  Positioned(
+                  PositionedDirectional(
                     top: 8,
-                    right: 8,
+                    end: 8,
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 8,
@@ -77,7 +76,7 @@ class LabGridItemTile extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        '${AppStaticTexts.qar} ${item.itemPrice}',
+                        '${context.lang.qar} ${item.itemPrice}',
                         style: theme.textTheme.labelMedium?.copyWith(
                           color: theme.colorScheme.onPrimary,
                           fontWeight: FontWeight.bold,
@@ -154,8 +153,8 @@ class LabGridItemTile extends StatelessWidget {
                                       ? Assets.icons.cartIconWhite.path
                                       : Assets.icons.cartIconBlack.path,
                                   label: item.isCart
-                                      ? AppStaticTexts.added
-                                      : AppStaticTexts.add,
+                                      ? context.lang.added
+                                      : context.lang.add,
                                 ),
                         ),
                         const Gap(8),

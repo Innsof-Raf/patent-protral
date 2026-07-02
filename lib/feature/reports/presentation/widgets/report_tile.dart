@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/feature/reports/domain/entities/report.dart';
@@ -47,7 +47,7 @@ class MyReportTile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${AppStaticTexts.patient}: ${report.customerName.trim().isEmpty ? AppStaticTexts.unknown : report.customerName.toTitleCase()}',
+                        '${context.lang.patient}: ${report.customerName.trim().isEmpty ? context.lang.unknown : report.customerName.toTitleCase()}',
                         style: AppTextStyles.bodyTextRoboto.copyWith(
                           color: theme.colorScheme.primary,
                           fontWeight: FontWeight.w800,
@@ -134,25 +134,25 @@ class MyReportTile extends StatelessWidget {
                   _buildReportAction(
                     context,
                     url: report.labPdfUrl,
-                    title: AppStaticTexts.lab,
+                    title: context.lang.lab,
                   ),
                   const Gap(8),
                   _buildReportAction(
                     context,
                     url: report.xRayPdfUrl,
-                    title: AppStaticTexts.xRay,
+                    title: context.lang.xRay,
                   ),
                   const Gap(8),
                   _buildReportAction(
                     context,
                     url: report.ussPdfUrl,
-                    title: AppStaticTexts.uss,
+                    title: context.lang.uss,
                   ),
                   const Gap(8),
                   _buildReportAction(
                     context,
                     url: report.ctPdfUrl,
-                    title: AppStaticTexts.ctScan,
+                    title: context.lang.ctScan,
                   ),
                 ],
               ),

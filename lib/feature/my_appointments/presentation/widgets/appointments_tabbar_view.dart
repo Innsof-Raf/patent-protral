@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
@@ -35,7 +35,7 @@ class AppointmentsTabbarView extends StatelessWidget {
         title: emptyTitle,
         description: emptyMessage,
         icon: Icons.calendar_today_outlined,
-        actionLabel: AppStaticTexts.refresh,
+        actionLabel: context.lang.refresh,
         onAction: onRefresh,
       );
     }

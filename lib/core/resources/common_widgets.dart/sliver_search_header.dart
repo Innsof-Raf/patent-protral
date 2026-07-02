@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 
 class SliverSearchHeader extends StatelessWidget {
   const SliverSearchHeader({
     required this.controller,
     required this.onChanged,
-    this.hintText = 'Search...',
+    this.hintText,
     this.title,
     this.pinned = true,
     this.horizontalPadding = 20,
@@ -13,7 +14,7 @@ class SliverSearchHeader extends StatelessWidget {
 
   final TextEditingController controller;
   final ValueChanged<String> onChanged;
-  final String hintText;
+  final String? hintText;
   final String? title;
   final bool pinned;
   final double horizontalPadding;
@@ -25,7 +26,7 @@ class SliverSearchHeader extends StatelessWidget {
       delegate: _SliverSearchHeaderDelegate(
         controller: controller,
         onChanged: onChanged,
-        hintText: hintText,
+        hintText: hintText ?? context.lang.searchHint,
         title: title,
         horizontalPadding: horizontalPadding,
       ),

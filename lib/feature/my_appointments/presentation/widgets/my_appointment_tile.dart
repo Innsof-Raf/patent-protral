@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
@@ -164,7 +164,7 @@ class MyAppointmentTile extends StatelessWidget {
 
     final member = _findMember(context);
     if (member == null) {
-      CommonSnackBar.show(context, message: AppStaticTexts.memberNotFound);
+      CommonSnackBar.show(context, message: context.lang.memberNotFound);
       return;
     }
 
@@ -175,7 +175,7 @@ class MyAppointmentTile extends StatelessWidget {
     if (selectedDate == null) {
       CommonSnackBar.show(
         context,
-        message: AppStaticTexts.noAvailableDatesReschedule,
+        message: context.lang.noAvailableDatesReschedule,
       );
       return;
     }
@@ -218,7 +218,7 @@ class MyAppointmentTile extends StatelessWidget {
 
     final member = _findMember(context);
     if (member == null) {
-      CommonSnackBar.show(context, message: AppStaticTexts.memberNotFound);
+      CommonSnackBar.show(context, message: context.lang.memberNotFound);
       return;
     }
 
@@ -245,7 +245,7 @@ class MyAppointmentTile extends StatelessWidget {
   void _onBookAgainPressed(BuildContext context) {
     final member = _findMember(context);
     if (member == null) {
-      CommonSnackBar.show(context, message: AppStaticTexts.memberNotFound);
+      CommonSnackBar.show(context, message: context.lang.memberNotFound);
       return;
     }
 
@@ -256,7 +256,7 @@ class MyAppointmentTile extends StatelessWidget {
     if (BookAppointmentScreenHelpers.dateList.isEmpty) {
       CommonSnackBar.show(
         context,
-        message: AppStaticTexts.noAvailableDatesBooking,
+        message: context.lang.noAvailableDatesBooking,
       );
       return;
     }
@@ -417,7 +417,7 @@ class _StatusBadge extends StatelessWidget {
       child: Text(
         isCancelled
             ? 'Cancelled'
-            : (isConsulted ? AppStaticTexts.done : AppStaticTexts.upcoming),
+            : (isConsulted ? context.lang.done : context.lang.upcoming),
         style: AppTextStyles.bodyTextInter.copyWith(
           color: color,
           fontWeight: FontWeight.w700,
@@ -450,7 +450,7 @@ class _AppointmentDetails extends StatelessWidget {
             icon: Icons.person_outline_rounded,
             label:
                 (appointment.memberName.isEmpty
-                        ? AppStaticTexts.self
+                        ? context.lang.self
                         : appointment.memberName)
                     .toTitleCase(),
             color: colorScheme.primary,
@@ -551,7 +551,7 @@ class _ActionBar extends StatelessWidget {
           onPressed: onBookAgain,
           icon: const Icon(Icons.reorder_rounded, size: 18),
           height: 44,
-          child: const Text(AppStaticTexts.bookAgain),
+          child: Text(context.lang.bookAgain),
         ),
       );
     }
@@ -566,7 +566,7 @@ class _ActionBar extends StatelessWidget {
             height: 44,
             foregroundColor: colorScheme.error,
             borderColor: colorScheme.error.withValues(alpha: 0.3),
-            child: const Text(AppStaticTexts.cancel),
+            child: Text(context.lang.cancel),
           ),
         ),
         const Gap(12),
@@ -575,7 +575,7 @@ class _ActionBar extends StatelessWidget {
             onPressed: isCanceling ? null : onReschedule,
             icon: const Icon(Icons.calendar_month_rounded, size: 18),
             height: 44,
-            child: const Text(AppStaticTexts.reschedule),
+            child: Text(context.lang.reschedule),
           ),
         ),
       ],

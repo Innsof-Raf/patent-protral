@@ -2,8 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:patient_portal/core/gen/l10n/app_localizations.dart';
 import 'package:patient_portal/core/injection_container.dart' as di;
+import 'package:patient_portal/core/localization/bloc/language_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -270,23 +273,38 @@ class MyApp extends StatelessWidget {
         BlocProvider<LoginWithPasswordBloc>(
           create: (context) => di.sl<LoginWithPasswordBloc>(),
         ),
-      ],
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        builder: (context, child) {
-          FlutterNativeSplash.remove();
-          return child!;
-        },
-        theme: _buildTheme(),
-        routerConfig: _appRouter.config(
-          deepLinkBuilder: (deepLink) => DeepLink(
-            initialUser != null
-                ? initialUser!.members.isNotEmpty
-                      ? [const MemberSelectionRoute()]
-                      : [const MainRoute()]
-                : [const LoginRoute()],
-          ),
+        BlocProvider<LanguageBloc>(
+          create: (context) => di.sl<LanguageBloc>()..add(const LoadLanguage()),
         ),
+      ],
+      child: BlocBuilder<LanguageBloc, LanguageState>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: state.locale,
+            builder: (context, child) {
+              FlutterNativeSplash.remove();
+              return child!;
+            },
+            theme: _buildTheme(),
+            routerConfig: _appRouter.config(
+              deepLinkBuilder: (deepLink) => DeepLink(
+                initialUser != null
+                    ? initialUser!.members.isNotEmpty
+                          ? [const MemberSelectionRoute()]
+                          : [const MainRoute()]
+                    : [const LoginRoute()],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

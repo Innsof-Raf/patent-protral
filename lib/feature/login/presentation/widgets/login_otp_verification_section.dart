@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_text_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
+import 'package:patient_portal/core/resources/constant_messages.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_verification_bloc/otp_verification_bloc.dart';
@@ -75,7 +76,12 @@ class _LoginOtpVerificationSectionState
                 (context, animation, secondaryAnimation, child) =>
                     Transform.scale(
                       scale: Curves.easeOut.transform(animation.value),
-                      child: CommonErrorAlert(content: state.error.message),
+                      child: CommonErrorAlert(
+                        content: ConstantMessages.translate(
+                          context,
+                          state.error.message,
+                        ),
+                      ),
                     ),
           );
         } else if (state.isVerifyingSuccess && !state.isVerifyingFailed) {
@@ -97,7 +103,7 @@ class _LoginOtpVerificationSectionState
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              AppStaticTexts.enterOtp,
+              context.lang.enterOtp,
               style: AppTextStyles.largeRobotoNormal.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
                 fontWeight: FontWeight.w600,
@@ -118,7 +124,7 @@ class _LoginOtpVerificationSectionState
               onPressed: _otpController.text.length == 4
                   ? () => _verifyOtp(context, state)
                   : null,
-              child: const Text(AppStaticTexts.verifyOtpTooltip),
+              child: Text(context.lang.verifyOtpTooltip),
             ),
           ],
         );
@@ -205,7 +211,7 @@ class _OtpSecondaryActions extends StatelessWidget {
           builder: (context, value, _) {
             if (value != 0) {
               return Text(
-                '${AppStaticTexts.resend} 00:$value',
+                '${context.lang.resend} 00:$value',
                 style: AppTextStyles.bodyTextRoboto.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                   fontWeight: FontWeight.w600,
@@ -223,8 +229,8 @@ class _OtpSecondaryActions extends StatelessWidget {
               builder: (context, state) {
                 return _TextAction(
                   label: state.isResenting
-                      ? AppStaticTexts.resending
-                      : AppStaticTexts.resend,
+                      ? context.lang.resending
+                      : context.lang.resend,
                   onPressed: state.isResenting
                       ? null
                       : () {
@@ -239,7 +245,7 @@ class _OtpSecondaryActions extends StatelessWidget {
         ),
         if (generationState.showPasswordSection)
           _TextAction(
-            label: AppStaticTexts.loginWithPassword,
+            label: context.lang.loginWithPassword,
             onPressed: () {
               if (!context.read<OtpVerificationBloc>().state.isVerifying) {
                 LoginScreenHelpers.loginSectionNotifier.value = 2;

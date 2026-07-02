@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/helpers/edit_profile_detail_screen_helpers.dart';
@@ -33,7 +34,7 @@ class EditUserProfileImageSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Profile photo',
+                  context.lang.profilePhoto,
                   style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                     color: theme.colorScheme.onSurface,
                     fontWeight: FontWeight.w800,
@@ -41,7 +42,7 @@ class EditUserProfileImageSection extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'Upload a clear photo for easier identification.',
+                  context.lang.uploadProfilePhotoSubtitle,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: AppTextStyles.bodyTextRoboto.copyWith(
@@ -54,7 +55,7 @@ class EditUserProfileImageSection extends StatelessWidget {
           ),
           const SizedBox(width: 10),
           IconButton.filledTonal(
-            tooltip: 'Change photo',
+            tooltip: context.lang.changePhoto,
             onPressed: () {
               EditProfileDetailScreenHelpers.pickImage(context: context);
             },

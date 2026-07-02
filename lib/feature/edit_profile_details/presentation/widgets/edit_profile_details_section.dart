@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/gender_form_helpers.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/helpers/edit_profile_detail_screen_helpers.dart';
@@ -74,7 +75,7 @@ class EditProfileDetailsSection extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Personal details',
+              context.lang.personalDetails,
               style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                 color: theme.colorScheme.onSurface,
                 fontWeight: FontWeight.w800,
@@ -82,7 +83,7 @@ class EditProfileDetailsSection extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              'Keep your profile information accurate for smoother visits.',
+              context.lang.keepProfileAccurateSubtitle,
               style: AppTextStyles.bodyTextRoboto.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
                 fontWeight: FontWeight.w600,
@@ -92,6 +93,7 @@ class EditProfileDetailsSection extends StatelessWidget {
             EditProfileTextField(
               validator: (value) =>
                   EditProfileDetailsFormValidationHelpers.nameValidator(
+                    context,
                     value: value,
                   ),
               controller: nameController,
@@ -99,7 +101,7 @@ class EditProfileDetailsSection extends StatelessWidget {
               keyboardType: TextInputType.name,
               textInputAction: TextInputAction.next,
               textCapitalization: TextCapitalization.sentences,
-              label: 'Name',
+              label: context.lang.nameLabel,
               icon: Icons.person_outline_rounded,
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[A-Za-z ]')),
@@ -110,6 +112,7 @@ class EditProfileDetailsSection extends StatelessWidget {
             EditProfileTextField(
               validator: (value) =>
                   EditProfileDetailsFormValidationHelpers.dobValidator(
+                    context,
                     value: value,
                   ),
               readOnly: true,
@@ -125,19 +128,20 @@ class EditProfileDetailsSection extends StatelessWidget {
                 }
               },
               controller: dobController,
-              label: 'Date of birth',
+              label: context.lang.dateOfBirth,
               icon: Icons.calendar_today_outlined,
             ),
             const SizedBox(height: 12),
             EditProfileTextField(
               validator: (value) =>
                   EditProfileDetailsFormValidationHelpers.nationalIdValidator(
+                    context,
                     value: value,
                   ),
               controller: nationalIdController,
               keyboardType: TextInputType.number,
               textInputAction: TextInputAction.next,
-              label: 'National ID',
+              label: context.lang.nationalId,
               icon: Icons.badge_outlined,
               inputFormatters: [
                 FilteringTextInputFormatter.digitsOnly,
@@ -148,12 +152,13 @@ class EditProfileDetailsSection extends StatelessWidget {
             EditProfileTextField(
               validator: (value) =>
                   EditProfileDetailsFormValidationHelpers.phoneNumberValidator(
+                    context,
                     value: value,
                   ),
               controller: phoneController,
               keyboardType: TextInputType.phone,
               textInputAction: TextInputAction.done,
-              label: 'Phone number',
+              label: context.lang.phoneNumber,
               icon: Icons.phone_android_rounded,
               inputFormatters: [
                 FilteringTextInputFormatter.digitsOnly,
@@ -162,7 +167,7 @@ class EditProfileDetailsSection extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              'Gender',
+              context.lang.gender,
               style: AppTextStyles.largeSemiBoldRoboto.copyWith(
                 color: theme.colorScheme.onSurface,
                 fontWeight: FontWeight.w800,
@@ -187,16 +192,16 @@ class _GenderSelector extends StatelessWidget {
       builder: (context, value, child) {
         return SegmentedButton<String>(
           showSelectedIcon: false,
-          segments: const [
+          segments: [
             ButtonSegment(
               value: 'Male',
-              label: Text('Male'),
-              icon: Icon(Icons.male_rounded),
+              label: Text(context.lang.male),
+              icon: const Icon(Icons.male_rounded),
             ),
             ButtonSegment(
               value: 'Female',
-              label: Text('Female'),
-              icon: Icon(Icons.female_rounded),
+              label: Text(context.lang.female),
+              icon: const Icon(Icons.female_rounded),
             ),
           ],
           selected: {value},

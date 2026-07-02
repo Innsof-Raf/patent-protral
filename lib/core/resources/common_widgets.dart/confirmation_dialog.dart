@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_text_button.dart';
 
@@ -102,7 +102,7 @@ class ConfirmationDialog extends StatelessWidget {
                       Expanded(
                         child: ActiveTextButton(
                           onPressed: () => Navigator.pop(context),
-                          child: Text(cancelText ?? AppStaticTexts.cancel),
+                          child: Text(cancelText ?? context.lang.cancel),
                         ),
                       ),
                       const Gap(12),
@@ -119,7 +119,7 @@ class ConfirmationDialog extends StatelessWidget {
                               ? theme.colorScheme.onError
                               : theme.colorScheme.onPrimary,
                           child: Text(
-                            confirmText ?? AppStaticTexts.confirm,
+                            confirmText ?? context.lang.confirm,
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -129,9 +129,9 @@ class ConfirmationDialog extends StatelessWidget {
                 ],
               ),
             ),
-            Positioned(
+            PositionedDirectional(
               top: 8,
-              right: 8,
+              end: 8,
               child: IconButton(
                 onPressed: () => Navigator.pop(context),
                 icon: const Icon(Icons.close_rounded),

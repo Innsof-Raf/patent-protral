@@ -2,9 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_alert.dart';
+import 'package:patient_portal/core/resources/constant_messages.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/login_with_password_bloc/login_with_password_bloc.dart';
 import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
@@ -61,7 +62,12 @@ class _LoginWithPasswordSectionState extends State<LoginWithPasswordSection> {
                 (context, animation, secondaryAnimation, child) =>
                     Transform.scale(
                       scale: Curves.easeOut.transform(animation.value),
-                      child: CommonErrorAlert(content: state.error.message),
+                      child: CommonErrorAlert(
+                        content: ConstantMessages.translate(
+                          context,
+                          state.error.message,
+                        ),
+                      ),
                     ),
           );
         } else if (state.isLoginSuccess && !state.isLoginFailed) {
@@ -86,11 +92,12 @@ class _LoginWithPasswordSectionState extends State<LoginWithPasswordSection> {
             children: [
               LoginFormField(
                 controller: _passwordController,
-                label: AppStaticTexts.passwordLabel,
+                label: context.lang.passwordLabel,
                 keyboardType: TextInputType.visiblePassword,
                 textInputAction: TextInputAction.done,
                 obscureText: true,
-                validator: LoginScreenFormHelpers.validatePassword,
+                validator: (value) =>
+                    LoginScreenFormHelpers.validatePassword(context, value),
                 onFieldSubmitted: (_) => _login(context, state),
               ),
               const Gap(16),
@@ -102,7 +109,7 @@ class _LoginWithPasswordSectionState extends State<LoginWithPasswordSection> {
                   return ActiveButton(
                     isLoading: state.isLogingin,
                     onPressed: agreed ? () => _login(context, state) : null,
-                    child: const Text(AppStaticTexts.loginTooltip),
+                    child: Text(context.lang.loginTooltip),
                   );
                 },
               ),

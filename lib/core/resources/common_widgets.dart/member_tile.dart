@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/resources/urls.dart';
@@ -55,7 +55,7 @@ class MemberTile extends StatelessWidget {
                   children: [
                     Text(
                       (member.name.trim().isEmpty
-                              ? AppStaticTexts.unknown
+                              ? context.lang.unknown
                               : member.name)
                           .toTitleCase(),
                       style: theme.textTheme.titleMedium?.copyWith(
@@ -75,7 +75,7 @@ class MemberTile extends StatelessWidget {
               ),
               if (member.isInsurance && !member.isInsuranceExpired)
                 Tooltip(
-                  message: AppStaticTexts.insured,
+                  message: context.lang.insured,
                   child: Container(
                     padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(

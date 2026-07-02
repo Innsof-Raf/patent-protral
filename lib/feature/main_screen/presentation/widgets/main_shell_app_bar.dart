@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/main_shell_icon_button.dart';
 
 class MainShellAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -32,7 +32,7 @@ class MainShellAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: Center(
         child: MainShellIconButton(
           iconPath: Assets.icons.drawerIcon.path,
-          tooltip: AppStaticTexts.menu,
+          tooltip: context.lang.menu,
           onPressed: () => Scaffold.of(context).openDrawer(),
         ),
       ),

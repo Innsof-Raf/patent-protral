@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
@@ -75,7 +75,7 @@ class MemberSelectionTile extends StatelessWidget {
                     child: Text(
                       member.name.trim().isNotEmpty
                           ? member.name.trim()[0].toUpperCase()
-                          : AppStaticTexts.unknownInitial,
+                          : context.lang.unknownInitial,
                       style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                         color: AppColors.white,
                         fontWeight: FontWeight.bold,
@@ -92,7 +92,7 @@ class MemberSelectionTile extends StatelessWidget {
                 children: [
                   Text(
                     (member.name.trim().isEmpty
-                            ? AppStaticTexts.unknown
+                            ? context.lang.unknown
                             : member.name)
                         .toTitleCase(),
                     style: AppTextStyles.largeSemiBoldRoboto.copyWith(
@@ -102,7 +102,7 @@ class MemberSelectionTile extends StatelessWidget {
                   ),
                   const Gap(2),
                   Text(
-                    '${AppStaticTexts.age}: ${member.age}',
+                    '${context.lang.age}: ${member.age}',
                     style: AppTextStyles.bodyTextRoboto.copyWith(
                       color: colorScheme.onSurfaceVariant,
                     ),

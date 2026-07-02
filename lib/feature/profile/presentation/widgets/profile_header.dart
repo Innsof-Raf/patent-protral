@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 
@@ -13,13 +13,13 @@ class ProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final fullName = _fullName(user);
+    final fullName = _fullName(user, context);
     final initial = fullName.trim().isEmpty
-        ? AppStaticTexts.unknownInitial
+        ? context.lang.unknownInitial
         : fullName.trim()[0].toUpperCase();
 
     return Container(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
+      padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
       decoration: BoxDecoration(color: theme.colorScheme.surface),
       child: Row(
         children: [
@@ -55,7 +55,7 @@ class ProfileHeader extends StatelessWidget {
                 ),
                 const Gap(2),
                 Text(
-                  '${AppStaticTexts.uhid}: NA',
+                  '${context.lang.uhid}: NA',
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: AppColors.profileUHIDColor,
                     fontWeight: FontWeight.w500,
@@ -69,9 +69,9 @@ class ProfileHeader extends StatelessWidget {
     );
   }
 
-  String _fullName(User user) {
+  String _fullName(User user, BuildContext context) {
     final name = '${user.firstName} ${user.lastName}'.trim();
     if (name.isNotEmpty) return name;
-    return user.userName.isNotEmpty ? user.userName : AppStaticTexts.user;
+    return user.userName.isNotEmpty ? user.userName : context.lang.user;
   }
 }

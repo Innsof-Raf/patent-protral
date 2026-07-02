@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
@@ -66,7 +66,7 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
 
           if (state.isDoctorsFetchingFailed) {
             return CommonErrorView(
-              title: AppStaticTexts.unableToLoadDoctors,
+              title: context.lang.unableToLoadDoctors,
               message: state.error.message,
               onRetry: _fetchDoctors,
             );
@@ -113,7 +113,7 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
                         );
                       },
                       decoration: InputDecoration(
-                        hintText: AppStaticTexts.searchDoctors,
+                        hintText: context.lang.searchDoctors,
                         prefixIcon: Icon(
                           Icons.search_rounded,
                           color: theme.colorScheme.onSurface.withValues(
@@ -160,10 +160,10 @@ class _DoctorsResultSliver extends StatelessWidget {
     if (allDoctors.isEmpty) {
       return SliverFillRemaining(
         child: CommonEmptyState(
-          title: AppStaticTexts.noDoctorsFound,
-          description: AppStaticTexts.noDoctorsFoundMessage,
+          title: context.lang.noDoctorsFound,
+          description: context.lang.noDoctorsFoundMessage,
           icon: Icons.medical_services_outlined,
-          actionLabel: AppStaticTexts.refresh,
+          actionLabel: context.lang.refresh,
           onAction: onRefresh,
         ),
       );
@@ -176,10 +176,10 @@ class _DoctorsResultSliver extends StatelessWidget {
             : allDoctors;
 
         if (doctors.isEmpty) {
-          return const SliverFillRemaining(
+          return SliverFillRemaining(
             child: CommonEmptyState(
-              title: AppStaticTexts.noMatchingDoctor,
-              description: AppStaticTexts.noMatchingDoctorMessage,
+              title: context.lang.noMatchingDoctor,
+              description: context.lang.noMatchingDoctorMessage,
               icon: Icons.search_off_rounded,
             ),
           );

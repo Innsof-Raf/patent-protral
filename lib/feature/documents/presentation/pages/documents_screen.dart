@@ -3,8 +3,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
@@ -55,7 +55,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
             return BlocBuilder<DocumentsBloc, DocumentsState>(
               builder: (context, state) {
                 final selectedName = state.selectedMemberId == 0
-                    ? AppStaticTexts.allDocuments
+                    ? context.lang.allDocuments
                     : userState.user!.members
                           .singleWhere(
                             (element) => element.id == state.selectedMemberId,
@@ -84,6 +84,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
                   },
                   itemBuilder: (context) =>
                       DocumentsScreenHelpers.createPopupMenuItem(
+                        context,
                         userState.user!.members,
                       ),
                   child: Container(
@@ -148,7 +149,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
             return const CommonLoadingView();
           } else if (state.isFetchingFailed) {
             return CommonErrorView(
-              title: AppStaticTexts.unableToLoadDocuments,
+              title: context.lang.unableToLoadDocumentsCommon,
               message: state.error.message,
               onRetry: _fetchDocuments,
             );
@@ -165,10 +166,10 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
             }
             if (documents.isEmpty) {
               return CommonEmptyState(
-                title: AppStaticTexts.noDocumentsFound,
-                description: AppStaticTexts.noReportsMessage,
+                title: context.lang.noDocumentsFoundCommon,
+                description: context.lang.noReportsMessage,
                 icon: Icons.folder_open_outlined,
-                actionLabel: AppStaticTexts.refresh,
+                actionLabel: context.lang.refresh,
                 onAction: _fetchDocuments,
               );
             } else {
@@ -193,7 +194,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
         onPressed: () {
           context.router.push(const AddDocumentRoute());
         },
-        child: const Icon(Icons.add, color: AppColors.white),
+        child: Icon(Icons.add, color: AppColors.white),
       ),
     );
   }

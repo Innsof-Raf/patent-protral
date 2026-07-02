@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_snack_bar.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -28,7 +28,7 @@ class BookAppointmentScreenHelpers {
     if (BookAppointmentScreenHelpers.selectedSlotNotifier.value == null) {
       CommonSnackBar.show(
         context,
-        message: AppStaticTexts.selectSlotForRescheduleAppointment,
+        message: context.lang.selectSlotForRescheduleAppointment,
         type: SnackBarType.error,
       );
     } else {
@@ -48,7 +48,7 @@ class BookAppointmentScreenHelpers {
               scale: Curves.easeOut.transform(animation.value),
               child: BookAppointmentConfirmationPopUp(
                 appointmentId: idAppointment,
-                title: AppStaticTexts.rescheduleSlot,
+                title: context.lang.rescheduleSlot,
                 appointmentDateTime: selectedSlotNotifier.value!,
                 doctorImage: doctorImage,
                 doctorName: doctorName,
@@ -69,7 +69,7 @@ class BookAppointmentScreenHelpers {
     if (context.read<UserBloc>().state.user!.members.isEmpty) {
       CommonSnackBar.show(
         context,
-        message: AppStaticTexts.addMemberToBookAppointment,
+        message: context.lang.addMemberToBookAppointment,
         type: SnackBarType.error,
       );
     } else if (BookAppointmentScreenHelpers.selectedSlotNotifier.value ==
@@ -77,21 +77,21 @@ class BookAppointmentScreenHelpers {
         BookAppointmentScreenHelpers.selectedMemberNotifier.value == null) {
       CommonSnackBar.show(
         context,
-        message: AppStaticTexts.selectSlotAndMemberToBookAppointment,
+        message: context.lang.selectSlotAndMemberToBookAppointment,
         type: SnackBarType.error,
       );
     } else if (BookAppointmentScreenHelpers.selectedSlotNotifier.value ==
         null) {
       CommonSnackBar.show(
         context,
-        message: AppStaticTexts.selectSlotToBookAppointment,
+        message: context.lang.selectSlotToBookAppointment,
         type: SnackBarType.error,
       );
     } else if (BookAppointmentScreenHelpers.selectedMemberNotifier.value ==
         null) {
       CommonSnackBar.show(
         context,
-        message: AppStaticTexts.selectMemberToBookAppointment,
+        message: context.lang.selectMemberToBookAppointment,
         type: SnackBarType.error,
       );
     } else {
@@ -111,7 +111,7 @@ class BookAppointmentScreenHelpers {
               scale: Curves.easeOut.transform(animation.value),
               child: BookAppointmentConfirmationPopUp(
                 appointmentId: 0,
-                title: AppStaticTexts.bookSlot,
+                title: context.lang.bookSlot,
                 appointmentDateTime: selectedSlotNotifier.value!,
                 doctorImage: doctorImage,
                 doctorName: doctorName,

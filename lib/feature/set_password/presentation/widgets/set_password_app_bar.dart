@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_icon_button.dart';
 
 class SetPasswordAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -20,11 +20,11 @@ class SetPasswordAppBar extends StatelessWidget implements PreferredSizeWidget {
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
           onPressed: () => Navigator.of(context).pop(),
           color: theme.colorScheme.onSurface,
-          tooltip: AppStaticTexts.back,
+          tooltip: context.lang.back,
         ),
       ),
       title: Text(
-        AppStaticTexts.setPassword,
+        context.lang.setPassword,
         style: theme.textTheme.titleLarge?.copyWith(
           fontWeight: FontWeight.bold,
           color: theme.colorScheme.onSurface,

@@ -53,8 +53,8 @@ class HomeQuickActionCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(22),
             child: Stack(
               children: [
-                Positioned(
-                  right: -10,
+                PositionedDirectional(
+                  end: -10,
                   bottom: -10,
                   child: Image.asset(
                     backgroundImage,

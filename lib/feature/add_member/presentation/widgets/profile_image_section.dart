@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 import 'add_member_screen_helpers.dart';
@@ -50,7 +50,7 @@ class ProfileImageSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                AppStaticTexts.profilePicture,
+                context.lang.profilePicture,
                 style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                   fontWeight: FontWeight.bold,
                   color: colorScheme.onSurface,
@@ -58,7 +58,7 @@ class ProfileImageSection extends StatelessWidget {
               ),
               const Gap(4),
               Text(
-                AppStaticTexts.uploadMemberPhoto,
+                context.lang.uploadMemberPhoto,
                 style: AppTextStyles.bodyTextRoboto.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 ),
@@ -68,7 +68,7 @@ class ProfileImageSection extends StatelessWidget {
                 onPressed: () =>
                     AddMemberScreenHelpers.pickImage(context: context),
                 icon: const Icon(Icons.add_a_photo_rounded, size: 18),
-                label: const Text(AppStaticTexts.addPhoto),
+                label: Text(context.lang.addPhoto),
                 style: FilledButton.styleFrom(
                   backgroundColor: colorScheme.primary,
                   foregroundColor: colorScheme.onPrimary,

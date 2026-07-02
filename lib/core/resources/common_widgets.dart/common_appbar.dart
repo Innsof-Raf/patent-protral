@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_icon_button.dart';
 
 class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
@@ -45,7 +45,7 @@ class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
                 onPressed:
                     onLeadingPressed ?? () => Navigator.of(context).pop(),
                 color: effectiveForegroundColor,
-                tooltip: AppStaticTexts.back,
+                tooltip: context.lang.back,
               ),
             )
           : null,

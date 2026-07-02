@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -32,7 +32,7 @@ class MemberSelectionSection extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      AppStaticTexts.appointmentFor,
+                      context.lang.appointmentFor,
                       style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                         fontWeight: FontWeight.bold,
                         color: colorScheme.onSurface,
@@ -44,8 +44,8 @@ class MemberSelectionSection extends StatelessWidget {
                         final memberCount = state.user?.members.length ?? 0;
                         return Text(
                           memberCount == 0
-                              ? AppStaticTexts.noMembersAvailableToProceed
-                              : AppStaticTexts.selectMemberOrAddNew,
+                              ? context.lang.noMembersAvailableToProceed
+                              : context.lang.selectMemberOrAddNew,
                           style: AppTextStyles.bodyTextRoboto.copyWith(
                             color: colorScheme.onSurfaceVariant,
                           ),
@@ -61,7 +61,7 @@ class MemberSelectionSection extends StatelessWidget {
                   context.router.push(AddMemberRoute());
                 },
                 icon: const Icon(Icons.add_rounded),
-                tooltip: AppStaticTexts.addMember,
+                tooltip: context.lang.addMember,
               ),
             ],
           ),

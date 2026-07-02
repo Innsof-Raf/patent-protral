@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
@@ -40,7 +40,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CommonAppbar(title: AppStaticTexts.notifications),
+      appBar: CommonAppbar(title: context.lang.notifications),
       body: BlocBuilder<NotificationBloc, NotificationState>(
         builder: (context, state) {
           if (state.isLoading || (!state.isSuccess && !state.isError)) {
@@ -49,7 +49,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
           if (state.isError) {
             return CommonErrorView(
-              title: AppStaticTexts.unableToLoadNotifications,
+              title: context.lang.unableToLoadNotifications,
               message: state.errorMessage,
               onRetry: _fetchNotifications,
             );
@@ -57,10 +57,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
           if (state.notifications.isEmpty) {
             return CommonEmptyState(
-              title: AppStaticTexts.notificationsAllCaughtUp,
-              description: AppStaticTexts.notificationsEmptyMessage,
+              title: context.lang.notificationsAllCaughtUp,
+              description: context.lang.notificationsEmptyMessage,
               icon: Icons.notifications_none_rounded,
-              actionLabel: AppStaticTexts.refresh,
+              actionLabel: context.lang.refresh,
               onAction: _fetchNotifications,
             );
           }

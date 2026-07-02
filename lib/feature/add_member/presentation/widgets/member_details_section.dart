@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/gender_form_helpers.dart';
 import 'package:patient_portal/core/resources/common_helpers/member_form_validation_helpers.dart';
@@ -27,21 +28,25 @@ class MemberDetailsSection extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           TextFormField(
-            validator: (value) =>
-                MemeberFormValidationHelpers.nameValidator(value: value),
+            validator: (value) => MemeberFormValidationHelpers.nameValidator(
+              context,
+              value: value,
+            ),
             controller: nameController,
             keyboardType: TextInputType.name,
             textInputAction: TextInputAction.next,
             textCapitalization: TextCapitalization.words,
-            decoration: const InputDecoration(
-              labelText: 'Full Name',
-              prefixIcon: Icon(Icons.person_outline_rounded),
+            decoration: InputDecoration(
+              labelText: context.lang.fullName,
+              prefixIcon: const Icon(Icons.person_outline_rounded),
             ),
           ),
           const SizedBox(height: 16),
           TextFormField(
-            validator: (value) =>
-                MemeberFormValidationHelpers.dobValidator(value: value),
+            validator: (value) => MemeberFormValidationHelpers.dobValidator(
+              context,
+              value: value,
+            ),
             readOnly: true,
             onTap: () async {
               final DateTime? selectedDate =
@@ -55,14 +60,14 @@ class MemberDetailsSection extends StatelessWidget {
               }
             },
             controller: dobController,
-            decoration: const InputDecoration(
-              labelText: 'Date of Birth',
-              prefixIcon: Icon(Icons.calendar_month_outlined),
+            decoration: InputDecoration(
+              labelText: context.lang.dateOfBirth,
+              prefixIcon: const Icon(Icons.calendar_month_outlined),
             ),
           ),
           const SizedBox(height: 24),
           Text(
-            'Gender',
+            context.lang.gender,
             style: AppTextStyles.largeSemiBoldRoboto.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -70,9 +75,9 @@ class MemberDetailsSection extends StatelessWidget {
           const SizedBox(height: 8),
           Row(
             children: [
-              _buildGenderRadio('Male'),
+              _buildGenderRadio('Male', context.lang.male, context),
               const SizedBox(width: 24),
-              _buildGenderRadio('Female'),
+              _buildGenderRadio('Female', context.lang.female, context),
             ],
           ),
           const SizedBox(height: 24),
@@ -84,22 +89,27 @@ class MemberDetailsSection extends StatelessWidget {
             ],
             keyboardType: TextInputType.number,
             validator: (value) =>
-                MemeberFormValidationHelpers.nationalIdValidator(value: value),
+                MemeberFormValidationHelpers.nationalIdValidator(
+                  context,
+                  value: value,
+                ),
             textInputAction: TextInputAction.next,
-            decoration: const InputDecoration(
-              labelText: 'National ID',
-              prefixIcon: Icon(Icons.badge_outlined),
+            decoration: InputDecoration(
+              labelText: context.lang.nationalId,
+              prefixIcon: const Icon(Icons.badge_outlined),
             ),
           ),
           const SizedBox(height: 16),
           TextFormField(
             controller: emailController,
             keyboardType: TextInputType.emailAddress,
-            validator: (value) =>
-                MemeberFormValidationHelpers.emailValidator(value: value),
-            decoration: const InputDecoration(
-              labelText: 'Email Address (Optional)',
-              prefixIcon: Icon(Icons.email_outlined),
+            validator: (value) => MemeberFormValidationHelpers.emailValidator(
+              context,
+              value: value,
+            ),
+            decoration: InputDecoration(
+              labelText: context.lang.emailAddressOptional,
+              prefixIcon: const Icon(Icons.email_outlined),
             ),
           ),
         ],
@@ -107,7 +117,7 @@ class MemberDetailsSection extends StatelessWidget {
     );
   }
 
-  Widget _buildGenderRadio(String value) {
+  Widget _buildGenderRadio(String value, String label, BuildContext context) {
     return ValueListenableBuilder<String>(
       valueListenable: GenderFormHelpers.genderNotifier,
       builder: (context, currentGender, child) {
@@ -127,7 +137,7 @@ class MemberDetailsSection extends StatelessWidget {
                 title: '',
               ),
               Text(
-                value,
+                label,
                 style: AppTextStyles.largeRobotoNormal.copyWith(
                   color: isSelected
                       ? colorScheme.primary

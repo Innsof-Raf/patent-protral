@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_validation_helpers.dart';
@@ -51,7 +52,7 @@ class _EditMemberInsuranceSectionState
         RoundedCheckBoxTile(
           isSelected: true,
           onChanged: () {},
-          title: 'I have insurance',
+          title: context.lang.iHaveInsurance,
         ),
         Form(
           key: EditMemberInsuranceSection.insuranceFormKey,
@@ -65,9 +66,10 @@ class _EditMemberInsuranceSectionState
                 items: [],
                 validator: (value) =>
                     InsuranceValidationHelpers.validateInsuranceType(
+                      context,
                       value: value,
                     ),
-                decoration: const InputDecoration(labelText: 'Insurance'),
+                decoration: InputDecoration(labelText: context.lang.insurance),
                 onChanged: (value) {
                   EditMemberInsuranceHelpers.selectedInsuranceNotifier.value =
                       value;
@@ -98,12 +100,13 @@ class _EditMemberInsuranceSectionState
                                 ],
                                 validator: (value) =>
                                     InsuranceValidationHelpers.validateInsuranceName(
+                                      context,
                                       value: value,
                                     ),
                                 textCapitalization:
                                     TextCapitalization.characters,
-                                decoration: const InputDecoration(
-                                  labelText: 'Insurance Name',
+                                decoration: InputDecoration(
+                                  labelText: context.lang.insuranceName,
                                 ),
                                 style: AppTextStyles.textFormFieldStyle,
                                 cursorColor: AppColors.textFormFieldStyleColor,
@@ -118,6 +121,7 @@ class _EditMemberInsuranceSectionState
               TextFormField(
                 validator: (value) =>
                     InsuranceValidationHelpers.validateMemberNumber(
+                      context,
                       value: value,
                     ),
                 controller: EditMemberInsuranceSection.memberNumberController,
@@ -127,7 +131,9 @@ class _EditMemberInsuranceSectionState
                   LengthLimitingTextInputFormatter(20),
                   FilteringTextInputFormatter.allow(RegExp(r'[A-Za-z0-9]')),
                 ],
-                decoration: const InputDecoration(labelText: 'Member Number'),
+                decoration: InputDecoration(
+                  labelText: context.lang.memberNumber,
+                ),
                 style: AppTextStyles.textFormFieldStyle,
                 cursorColor: AppColors.textFormFieldStyleColor,
               ),
@@ -136,9 +142,10 @@ class _EditMemberInsuranceSectionState
                 readOnly: true,
                 validator: (value) =>
                     InsuranceValidationHelpers.expireDateValidator(
+                      context,
                       value: value,
                     ),
-                decoration: const InputDecoration(labelText: 'Expire date'),
+                decoration: InputDecoration(labelText: context.lang.expireDate),
                 style: AppTextStyles.textFormFieldStyle,
                 controller: EditMemberInsuranceSection.expireDateController,
                 onTap: () async {

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_helpers.dart';
 import 'package:patient_portal/core/resources/common_helpers/insurance_validation_helpers.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
@@ -115,7 +115,7 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
           InsuranceHelpers.showInsuranceFetchingFailedSnackBar(
             context: context,
             content:
-                '${state.error.message}\n${AppStaticTexts.cannotAddInsuranceRightNow}',
+                '${state.error.message}\n${context.lang.cannotAddInsuranceRightNow}',
           );
         }
         if (state.isInsuranceFetchingSuccess && state.insurances.isEmpty) {
@@ -123,7 +123,7 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
           InsuranceHelpers.showInsuranceFetchingFailedSnackBar(
             context: context,
             content:
-                '${ConstantMessages.serverFailureMessage}\n${AppStaticTexts.cannotAddInsuranceRightNow}',
+                '${ConstantMessages.translate(context, ConstantMessages.serverFailureMessage)}\n${context.lang.cannotAddInsuranceRightNow}',
           );
         }
       },
@@ -153,11 +153,12 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
                     .toList(),
                 validator: (value) =>
                     InsuranceValidationHelpers.validateInsuranceType(
+                      context,
                       value: value,
                     ),
                 decoration: _getInputDecoration(
                   context,
-                  AppStaticTexts.insuranceProvider,
+                  context.lang.insuranceProvider,
                   Icons.business_rounded,
                 ),
                 onChanged: (value) {
@@ -191,12 +192,13 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
                         ],
                         validator: (value) =>
                             InsuranceValidationHelpers.validateInsuranceName(
+                              context,
                               value: value,
                             ),
                         textCapitalization: TextCapitalization.words,
                         decoration: _getInputDecoration(
                           context,
-                          AppStaticTexts.insuranceName,
+                          context.lang.insuranceName,
                           Icons.drive_file_rename_outline_rounded,
                         ),
                       ),
@@ -208,6 +210,7 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
               TextFormField(
                 validator: (value) =>
                     InsuranceValidationHelpers.validateMemberNumber(
+                      context,
                       value: value,
                     ),
                 controller: InsuranceFormSection.memberNumberController,
@@ -219,7 +222,7 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
                 ],
                 decoration: _getInputDecoration(
                   context,
-                  AppStaticTexts.memberNumber,
+                  context.lang.memberNumber,
                   Icons.pin_rounded,
                 ),
               ),
@@ -228,11 +231,12 @@ class _InsuranceFormSectionState extends State<InsuranceFormSection> {
                 readOnly: true,
                 validator: (value) =>
                     InsuranceValidationHelpers.expireDateValidator(
+                      context,
                       value: value,
                     ),
                 decoration: _getInputDecoration(
                   context,
-                  AppStaticTexts.expirationDate,
+                  context.lang.expirationDate,
                   Icons.event_busy_rounded,
                 ),
                 controller: InsuranceFormSection.expireDateController,

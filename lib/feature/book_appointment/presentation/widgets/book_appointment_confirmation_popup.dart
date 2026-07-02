@@ -5,8 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_outlined_button.dart';
@@ -97,8 +97,8 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                   const Gap(16),
                   Text(
                     appointmentId == 0
-                        ? AppStaticTexts.reviewAppointmentDetails
-                        : AppStaticTexts.reviewUpdatedSlotDetails,
+                        ? context.lang.reviewAppointmentDetails
+                        : context.lang.reviewUpdatedSlotDetails,
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: colorScheme.onSurfaceVariant,
                       height: 1.5,
@@ -190,7 +190,7 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                               child: _UserMiniProfile(
                                 name: doctorName,
                                 imageUrl: doctorImage,
-                                label: AppStaticTexts.doctor,
+                                label: context.lang.doctor,
                               ),
                             ),
                             Padding(
@@ -207,15 +207,15 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                               child: _UserMiniProfile(
                                 name:
                                     (member.name.trim().isEmpty
-                                            ? AppStaticTexts.unknown
+                                            ? context.lang.unknown
                                             : member.name)
                                         .toTitleCase(),
                                 imageUrl: member.profileImage == null
                                     ? null
                                     : '${ConstantUrls.memberImageUrl}/${member.id}/${member.profileImage}',
-                                label: AppStaticTexts.patient,
+                                label: context.lang.patient,
                                 fallbackText: member.name.trim().isEmpty
-                                    ? AppStaticTexts.unknownInitial
+                                    ? context.lang.unknownInitial
                                     : member.name.trim()[0],
                               ),
                             ),
@@ -230,7 +230,7 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                       Expanded(
                         child: ActiveOutlinedButton(
                           onPressed: () => Navigator.pop(context),
-                          child: const Text(AppStaticTexts.cancel),
+                          child: Text(context.lang.cancel),
                         ),
                       ),
                       const Gap(12),
@@ -270,7 +270,7 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                             }
                             Navigator.pop(context);
                           },
-                          child: const Text(AppStaticTexts.confirm),
+                          child: Text(context.lang.confirm),
                         ),
                       ),
                     ],
@@ -278,9 +278,9 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                 ],
               ),
             ),
-            Positioned(
+            PositionedDirectional(
               top: 8,
-              right: 8,
+              end: 8,
               child: IconButton(
                 onPressed: () => Navigator.pop(context),
                 icon: const Icon(Icons.close_rounded),
@@ -337,7 +337,7 @@ class _UserMiniProfile extends StatelessWidget {
                             fallbackText ??
                             (name.isNotEmpty
                                 ? name[0]
-                                : AppStaticTexts.unknownInitial),
+                                : context.lang.unknownInitial),
                         backgroundColor: colorScheme.primaryContainer,
                         foregroundColor: colorScheme.onPrimaryContainer,
                       )
@@ -350,7 +350,7 @@ class _UserMiniProfile extends StatelessWidget {
                               fallbackText ??
                               (name.isNotEmpty
                                   ? name[0]
-                                  : AppStaticTexts.unknownInitial),
+                                  : context.lang.unknownInitial),
                           backgroundColor: colorScheme.surfaceContainerHighest,
                           foregroundColor: colorScheme.onSurfaceVariant,
                           showImageErrorIcon: true,
@@ -419,7 +419,7 @@ class _FallbackAvatar extends StatelessWidget {
               )
             : Text(
                 (text == null || text!.isEmpty)
-                    ? AppStaticTexts.unknownInitial
+                    ? context.lang.unknownInitial
                     : text!.toUpperCase(),
                 style: theme.textTheme.headlineMedium?.copyWith(
                   color: foregroundColor,

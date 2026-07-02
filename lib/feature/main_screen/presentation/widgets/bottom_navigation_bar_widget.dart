@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
 
@@ -38,7 +39,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     _BottomNavItem(
-                      label: 'Home',
+                      label: context.lang.home,
                       selectedIconPath:
                           Assets.icons.bottomBarIcons.homeSelectedIcon.path,
                       unselectedIconPath:
@@ -47,7 +48,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                       onTap: () => _selectTab(0),
                     ),
                     _BottomNavItem(
-                      label: 'Visits',
+                      label: context.lang.visits,
                       selectedIconPath: Assets
                           .icons
                           .bottomBarIcons
@@ -62,7 +63,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                       onTap: () => _selectTab(1),
                     ),
                     _BottomNavItem(
-                      label: 'Book',
+                      label: context.lang.book,
                       selectedIconPath: Assets
                           .icons
                           .bottomBarIcons
@@ -77,7 +78,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                       onTap: () => _selectTab(2),
                     ),
                     _BottomNavItem(
-                      label: 'Reports',
+                      label: context.lang.reports,
                       selectedIconPath:
                           Assets.icons.bottomBarIcons.reportsSelectedIcon.path,
                       unselectedIconPath: Assets
@@ -89,7 +90,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                       onTap: () => _selectTab(3),
                     ),
                     _BottomNavItem(
-                      label: 'Profile',
+                      label: context.lang.profile,
                       selectedIconPath:
                           Assets.icons.bottomBarIcons.profileSelectedIcon.path,
                       unselectedIconPath: Assets

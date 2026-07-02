@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 
 class ReportsAppbarHelpers {
-  static List<PopupMenuItem<int>> createPopupMenuItem(List<Member> members) {
+  static List<PopupMenuItem<int>> createPopupMenuItem(
+    BuildContext context,
+    List<Member> members,
+  ) {
     final List<PopupMenuItem<int>> popupMenuItems = [
       PopupMenuItem(
         value: 0,
         height: 30,
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Text(
-          'All',
+          context.lang.all,
           overflow: TextOverflow.ellipsis,
           style: AppTextStyles.bodyLargeRobotoSemiBold,
         ),

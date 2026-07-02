@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
@@ -22,7 +22,7 @@ class CartScreen extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: const CommonAppbar(title: AppStaticTexts.myCart),
+      appBar: CommonAppbar(title: context.lang.myCart),
       body: BlocBuilder<ItemsBloc, ItemsState>(
         builder: (context, state) {
           if (state.isItemsFetching ||
@@ -30,7 +30,7 @@ class CartScreen extends StatelessWidget {
             return const CommonLoadingView();
           } else if (state.isItemsFetchingFailed) {
             return CommonErrorView(
-              title: AppStaticTexts.unableToLoadTests,
+              title: context.lang.unableToLoadTests,
               message: state.error.message,
               onRetry: () => context.read<ItemsBloc>().add(
                 GetItems(
@@ -39,9 +39,9 @@ class CartScreen extends StatelessWidget {
               ),
             );
           } else if (state.cart.isEmpty) {
-            return const CommonEmptyState(
-              title: AppStaticTexts.yourCartIsEmpty,
-              description: AppStaticTexts.yourCartIsEmptyMessage,
+            return CommonEmptyState(
+              title: context.lang.yourCartIsEmpty,
+              description: context.lang.yourCartIsEmptyMessage,
               icon: Icons.shopping_cart_outlined,
             );
           }
@@ -88,7 +88,7 @@ class CartScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        AppStaticTexts.total,
+                        context.lang.total,
                         style: theme.textTheme.labelLarge?.copyWith(
                           color: theme.textTheme.bodySmall?.color?.withValues(
                             alpha: 0.6,
@@ -96,7 +96,7 @@ class CartScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '${AppStaticTexts.qar} ${state.cartTotal}',
+                        '${context.lang.qar} ${state.cartTotal}',
                         style: theme.textTheme.headlineSmall?.copyWith(
                           color: theme.colorScheme.primary,
                           fontWeight: FontWeight.bold,
@@ -111,7 +111,7 @@ class CartScreen extends StatelessWidget {
                     onPressed: () {
                       // TODO: Implement Checkout
                     },
-                    child: const Text(AppStaticTexts.checkOut),
+                    child: Text(context.lang.checkOut),
                   ),
                 ),
               ],

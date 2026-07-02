@@ -1,21 +1,28 @@
+import 'package:flutter/widgets.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
+
 class ChangePasswordFormHelpers {
-  static String? validatePassword(String? value) {
+  static String? validatePassword(BuildContext context, String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your password';
+      return context.lang.enterPassword;
     } else if (value.length >= 8) {
       return null;
     } else {
-      return 'Enter a password with minimum 8 characters';
+      return context.lang.passwordMinLength;
     }
   }
 
-  static String? validateConfirmPassword(String? value, String? password) {
+  static String? validateConfirmPassword(
+    BuildContext context,
+    String? value,
+    String? password,
+  ) {
     if (value == null || value.isEmpty) {
-      return 'Please confirm your password';
+      return context.lang.confirmPasswordRequired;
     } else if (value == password) {
       return null;
     } else {
-      return 'Passwords do not match';
+      return context.lang.passwordsDoNotMatch;
     }
   }
 }

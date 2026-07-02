@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:patient_portal/feature/home/presentation/pages/home_screen.dart';
@@ -19,20 +19,12 @@ import 'package:patient_portal/feature/profile/presentation/pages/profile_screen
 import 'package:patient_portal/feature/reports/presentation/pages/reports_screen.dart';
 import 'package:patient_portal/feature/speciality/presentation/pages/speciality_screen.dart';
 
-const List<Widget> screens = [
-  HomeScreen(),
-  MyAppointmentScreen(),
-  SpecialityScreen(),
-  ReportsScreen(),
-  ProfileScreen(),
-];
-
-const List<PreferredSizeWidget?> appBars = [
-  HomeAppBar(),
-  MainAppBar(title: AppStaticTexts.myAppointments),
-  MainAppBar(title: AppStaticTexts.specialist),
-  ReportsAppBar(),
-  ProfileAppBar(),
+final List<Widget> screens = [
+  const HomeScreen(),
+  const MyAppointmentScreen(),
+  const SpecialityScreen(),
+  const ReportsScreen(),
+  const ProfileScreen(),
 ];
 
 @RoutePage(name: 'MainRoute')
@@ -59,6 +51,14 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
+    final List<PreferredSizeWidget?> appBars = [
+      const HomeAppBar(),
+      MainAppBar(title: context.lang.myAppointments),
+      MainAppBar(title: context.lang.specialist),
+      const ReportsAppBar(),
+      const ProfileAppBar(),
+    ];
 
     return BlocListener<UserBloc, UserState>(
       listener: (context, state) {

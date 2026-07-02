@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_snack_bar.dart';
@@ -55,10 +55,10 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
               !state.isAppointmentsCancellationFailed) {
             await showDialog<void>(
               context: context,
-              builder: (context) => const AppointmentStatusDialog(
-                title: AppStaticTexts.appointmentCanceled,
-                message: AppStaticTexts.appointmentCanceledMessage,
-                actionLabel: AppStaticTexts.done,
+              builder: (context) => AppointmentStatusDialog(
+                title: context.lang.appointmentCanceled,
+                message: context.lang.appointmentCanceledMessage,
+                actionLabel: context.lang.done,
               ),
             );
           } else if (state.isAppointmentsCancellationFailed &&
@@ -79,7 +79,7 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
 
           if (state.isAppointmentsFetchingFailed) {
             return CommonErrorView(
-              title: AppStaticTexts.unableToLoadAppointments,
+              title: context.lang.unableToLoadAppointments,
               message: state.error.message,
               onRetry: _fetchAppointments,
             );
@@ -130,30 +130,30 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
                       AppointmentsTabbarView(
-                        title: AppStaticTexts.allAppointments,
+                        title: context.lang.allAppointments,
                         appointments: state.myAppointments,
                         monthTimelineList: state.monthTimelineList,
-                        emptyTitle: AppStaticTexts.noAppointmentsYet,
-                        emptyMessage: AppStaticTexts.noAppointmentsMessage,
+                        emptyTitle: context.lang.noAppointmentsYet,
+                        emptyMessage: context.lang.noAppointmentsMessage,
                         onRefresh: () async => _fetchAppointments(),
                       ),
                       AppointmentsTabbarView(
-                        title: AppStaticTexts.consultedAppointments,
+                        title: context.lang.consultedAppointments,
                         appointments: state.myConsultedAppointments,
                         monthTimelineList: state.monthTimelineListOfConsulted,
-                        emptyTitle: AppStaticTexts.noConsultedAppointments,
+                        emptyTitle: context.lang.noConsultedAppointments,
                         emptyMessage:
-                            AppStaticTexts.noConsultedAppointmentsMessage,
+                            context.lang.noConsultedAppointmentsMessage,
                         onRefresh: () async => _fetchAppointments(),
                       ),
                       AppointmentsTabbarView(
-                        title: AppStaticTexts.upcomingAppointments,
+                        title: context.lang.upcomingAppointments,
                         appointments: state.myNotConsultedAppointments,
                         monthTimelineList:
                             state.monthTimelineListOfNotConsulted,
-                        emptyTitle: AppStaticTexts.noUpcomingAppointments,
+                        emptyTitle: context.lang.noUpcomingAppointments,
                         emptyMessage:
-                            AppStaticTexts.noUpcomingAppointmentsMessage,
+                            context.lang.noUpcomingAppointmentsMessage,
                         onRefresh: () async => _fetchAppointments(),
                       ),
                     ],
@@ -224,15 +224,15 @@ class _AppointmentsTabBar extends StatelessWidget {
           padding: EdgeInsets.zero,
           tabs: [
             MyAppointmentScreenTabBar(
-              title: AppStaticTexts.all,
+              title: context.lang.all,
               isSelected: index == 0,
             ),
             MyAppointmentScreenTabBar(
-              title: AppStaticTexts.consulted,
+              title: context.lang.consulted,
               isSelected: index == 1,
             ),
             MyAppointmentScreenTabBar(
-              title: AppStaticTexts.upcoming,
+              title: context.lang.upcoming,
               isSelected: index == 2,
             ),
           ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/feature/book_appointment/domain/entities/shift.dart';
@@ -21,12 +21,12 @@ class AppointmentSlotSection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: shift.slots.isEmpty
-          ? _buildEmptyState(theme)
+          ? _buildEmptyState(theme, context)
           : Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                _buildHeader(theme, colorScheme),
+                _buildHeader(theme, colorScheme, context),
                 const Gap(16),
                 _buildSlotsGrid(),
               ],
@@ -34,13 +34,17 @@ class AppointmentSlotSection extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(ThemeData theme, ColorScheme colorScheme) {
+  Widget _buildHeader(
+    ThemeData theme,
+    ColorScheme colorScheme,
+    BuildContext context,
+  ) {
     final displayShift = shift.shift.split('<').first.trim();
 
     return Row(
       children: [
         Text(
-          AppStaticTexts.availableTime,
+          context.lang.availableTime,
           style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
             fontWeight: FontWeight.bold,
             color: colorScheme.onSurface,
@@ -100,11 +104,10 @@ class AppointmentSlotSection extends StatelessWidget {
     );
   }
 
-  Widget _buildEmptyState(ThemeData theme) {
-    return const CommonEmptyState(
-      title: AppStaticTexts.noSlotsAvailable,
-      description: AppStaticTexts.noSlotsAvailableMessage,
-      icon: Icons.event_busy_rounded,
-    );
-  }
+  Widget _buildEmptyState(ThemeData theme, BuildContext context) =>
+      CommonEmptyState(
+        title: context.lang.noSlotsAvailable,
+        description: context.lang.noSlotsAvailableMessage,
+        icon: Icons.event_busy_rounded,
+      );
 }

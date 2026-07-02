@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -24,14 +24,14 @@ class ProfileDetailsSection extends StatelessWidget {
 
         final theme = Theme.of(context);
         final primaryMember = _primaryMember(user);
-        final fullName = _fullName(user);
+        final fullName = _fullName(user, context);
 
         final age = (primaryMember?.age.isNotEmpty ?? false)
-            ? '${AppStaticTexts.age} ${primaryMember!.age}'
-            : AppStaticTexts.ageNotProvided;
+            ? '${context.lang.age} ${primaryMember!.age}'
+            : context.lang.ageNotProvided;
         final nationalId = (primaryMember?.nationalId.isNotEmpty ?? false)
-            ? '${AppStaticTexts.nationalId} ${primaryMember!.nationalId}'
-            : AppStaticTexts.idNotProvided;
+            ? '${context.lang.nationalId} ${primaryMember!.nationalId}'
+            : context.lang.idNotProvided;
 
         return ProfileSectionCard(
           padding: const EdgeInsets.fromLTRB(20, 24, 20, 20),
@@ -73,7 +73,7 @@ class ProfileDetailsSection extends StatelessWidget {
                       icon: Icons.mail_outline_rounded,
                       label: user.emailId.isNotEmpty
                           ? user.emailId
-                          : AppStaticTexts.emailNotProvided,
+                          : context.lang.emailNotProvided,
                     ),
                     Divider(
                       height: 20,
@@ -84,7 +84,7 @@ class ProfileDetailsSection extends StatelessWidget {
                       icon: Icons.call_outlined,
                       label: user.mobileNumber.isNotEmpty
                           ? user.mobileNumber
-                          : AppStaticTexts.mobileNotProvided,
+                          : context.lang.mobileNotProvided,
                     ),
                   ],
                 ),
@@ -98,7 +98,7 @@ class ProfileDetailsSection extends StatelessWidget {
                   },
                   height: 52,
                   icon: const Icon(Icons.edit_outlined, size: 18),
-                  child: const Text(AppStaticTexts.editProfile),
+                  child: Text(context.lang.editProfile),
                 ),
               ),
             ],
@@ -108,10 +108,10 @@ class ProfileDetailsSection extends StatelessWidget {
     );
   }
 
-  String _fullName(User user) {
+  String _fullName(User user, BuildContext context) {
     final name = '${user.firstName} ${user.lastName}'.trim();
     if (name.isNotEmpty) return name;
-    return user.userName.isNotEmpty ? user.userName : AppStaticTexts.user;
+    return user.userName.isNotEmpty ? user.userName : context.lang.user;
   }
 
   Member? _primaryMember(User user) {

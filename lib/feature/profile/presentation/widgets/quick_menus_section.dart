@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
@@ -21,7 +21,7 @@ class QuickMenuSection extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            AppStaticTexts.quickActions,
+            context.lang.quickActions,
             style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w800,
@@ -29,7 +29,7 @@ class QuickMenuSection extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            AppStaticTexts.quickActionsSubtitle,
+            context.lang.quickActionsSubtitle,
             style: AppTextStyles.bodyTextRoboto.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w600,
@@ -45,16 +45,16 @@ class QuickMenuSection extends StatelessWidget {
                 onPressed: () {
                   MainScreenHelpers.mainScreenNotifier.value = 3;
                 },
-                title: AppStaticTexts.reports,
-                subtitle: AppStaticTexts.viewFiles,
+                title: context.lang.reports,
+                subtitle: context.lang.viewFiles,
               ),
               QuickMenuButton(
                 imagePath: Assets.icons.lockIconDart.path,
                 onPressed: () {
                   context.router.root.push(const SetPasswordRoute());
                 },
-                title: AppStaticTexts.password,
-                subtitle: AppStaticTexts.changeLogin,
+                title: context.lang.password,
+                subtitle: context.lang.changeLogin,
               ),
             ],
           ),

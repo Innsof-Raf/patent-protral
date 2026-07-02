@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
@@ -68,7 +68,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
 
     return Scaffold(
       appBar: CommonAppbar(
-        title: AppStaticTexts.doctorDetails,
+        title: context.lang.doctorDetails,
         centerTitle: true,
       ),
       body: Column(
@@ -117,13 +117,13 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            AppStaticTexts.consultationFees,
+                            context.lang.consultationFees,
                             style: AppTextStyles.largeBoldRoboto.copyWith(
                               color: AppColors.textLight,
                             ),
                           ),
                           Text(
-                            '${AppStaticTexts.qar} ${widget.doctor.consultationFee.toStringAsFixed(0)}',
+                            '${context.lang.qar} ${widget.doctor.consultationFee.toStringAsFixed(0)}',
                             style: AppTextStyles.largeBoldRoboto,
                           ),
                         ],
@@ -133,7 +133,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                     builder: (context, state) {
                       if (state.isFetchingError) {
                         return CommonErrorView(
-                          title: AppStaticTexts.unableToLoadAppointmentSlots,
+                          title: context.lang.unableToLoadAppointmentSlots,
                           message: state.error.message,
                           onRetry: () => _fetchSlots(
                             BookAppointmentScreenHelpers
@@ -174,7 +174,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                                 const Gap(8),
                                 Center(
                                   child: Text(
-                                    AppStaticTexts.swipeRightToSeeMore,
+                                    context.lang.swipeRightToSeeMore,
                                     style: AppTextStyles.bodySmallRobotoNormal,
                                   ),
                                 ),
@@ -293,7 +293,7 @@ class _CustomDateTab extends StatelessWidget {
           ),
           const Gap(2),
           Text(
-            isToday ? AppStaticTexts.today : DateFormat('EEE').format(date),
+            isToday ? context.lang.today : DateFormat('EEE').format(date),
             style: AppTextStyles.bodySmallRobotoNormal.copyWith(
               color: isSelected
                   ? AppColors.white.withValues(alpha: 0.8)
@@ -349,7 +349,7 @@ class _SelectDateButton extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            AppStaticTexts.selectDate,
+            context.lang.selectDate,
             style: AppTextStyles.largeBoldRoboto.copyWith(
               color: AppColors.blue,
               fontSize: 13,
@@ -440,7 +440,7 @@ class _DoctorInfoSection extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 2),
                         child: Text(
-                          '${AppStaticTexts.experiencePrefix} $experience',
+                          '${context.lang.experiencePrefix} $experience',
                           style: AppTextStyles.bodyTextRoboto.copyWith(
                             color: AppColors.textLightDark,
                             fontSize: 14,
@@ -501,9 +501,9 @@ class _DoctorInfoSection extends StatelessWidget {
             ],
           ),
           if (bio != null && bio!.trim().isNotEmpty)
-            Positioned(
+            PositionedDirectional(
               top: 0,
-              right: 0,
+              end: 0,
               child: DoctorInfoButton(doctorName: name, bio: bio!),
             ),
         ],
@@ -533,7 +533,7 @@ class _AppointmentTypeToggle extends StatelessWidget {
               children: [
                 Expanded(
                   child: _TypeButton(
-                    title: AppStaticTexts.inPerson,
+                    title: context.lang.inPerson,
                     icon: Icons.person_outline,
                     isSelected: value == 0,
                     onTap: () => notifier.value = 0,
@@ -541,7 +541,7 @@ class _AppointmentTypeToggle extends StatelessWidget {
                 ),
                 Expanded(
                   child: _TypeButton(
-                    title: AppStaticTexts.video,
+                    title: context.lang.video,
                     icon: Icons.videocam_outlined,
                     isSelected: value == 1,
                     onTap: () => notifier.value = 1,

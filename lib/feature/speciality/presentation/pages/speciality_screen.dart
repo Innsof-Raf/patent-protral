@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
@@ -60,7 +60,7 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
 
           if (state.isFetchingError) {
             return CommonErrorView(
-              title: AppStaticTexts.unableToLoadSpecialities,
+              title: context.lang.unableToLoadSpecialities,
               message: state.error.message,
               onRetry: _fetchSpecialities,
             );
@@ -108,7 +108,7 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
                         );
                       },
                       decoration: InputDecoration(
-                        hintText: AppStaticTexts.searchSpecialities,
+                        hintText: context.lang.searchSpecialities,
                         prefixIcon: Icon(
                           Icons.search_rounded,
                           color: theme.colorScheme.onSurface.withValues(
@@ -129,7 +129,7 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
                   padding: const EdgeInsets.fromLTRB(16, 15, 16, 0),
                   sliver: SliverToBoxAdapter(
                     child: Text(
-                      AppStaticTexts.allSpecialties,
+                      context.lang.allSpecialties,
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         fontSize: 14,
@@ -170,10 +170,10 @@ class _SpecialityResultSliver extends StatelessWidget {
     if (allSpecialities.isEmpty) {
       return SliverFillRemaining(
         child: CommonEmptyState(
-          title: AppStaticTexts.noSpecialitiesFound,
-          description: AppStaticTexts.noSpecialitiesFoundMessage,
+          title: context.lang.noSpecialitiesFound,
+          description: context.lang.noSpecialitiesFoundMessage,
           icon: Icons.medical_information_outlined,
-          actionLabel: AppStaticTexts.refresh,
+          actionLabel: context.lang.refresh,
           onAction: onRefresh,
         ),
       );
@@ -186,10 +186,10 @@ class _SpecialityResultSliver extends StatelessWidget {
             : allSpecialities;
 
         if (specialities.isEmpty) {
-          return const SliverFillRemaining(
+          return SliverFillRemaining(
             child: CommonEmptyState(
-              title: AppStaticTexts.noMatchingSpeciality,
-              description: AppStaticTexts.noMatchingSpecialityMessage,
+              title: context.lang.noMatchingSpeciality,
+              description: context.lang.noMatchingSpecialityMessage,
               icon: Icons.search_off_rounded,
             ),
           );

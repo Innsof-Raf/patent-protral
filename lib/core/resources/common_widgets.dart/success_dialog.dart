@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 
 class SuccessDialog extends StatelessWidget {
@@ -62,7 +62,7 @@ class SuccessDialog extends StatelessWidget {
                   ),
                   const Gap(24),
                   Text(
-                    AppStaticTexts.success,
+                    context.lang.success,
                     textAlign: TextAlign.center,
                     style: theme.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
@@ -83,7 +83,7 @@ class SuccessDialog extends StatelessWidget {
                     width: double.infinity,
                     height: 50,
                     child: Text(
-                      AppStaticTexts.done.toUpperCase(),
+                      context.lang.done.toUpperCase(),
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -93,9 +93,9 @@ class SuccessDialog extends StatelessWidget {
                 ],
               ),
             ),
-            Positioned(
+            PositionedDirectional(
               top: 8,
-              right: 8,
+              end: 8,
               child: IconButton(
                 onPressed: () => Navigator.pop(context),
                 icon: const Icon(Icons.close_rounded),

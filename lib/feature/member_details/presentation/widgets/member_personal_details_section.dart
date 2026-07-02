@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_details_section_card.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_text_field.dart';
@@ -30,7 +30,7 @@ class MemberPersonalDetailsSection extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            AppStaticTexts.personalDetails,
+            context.lang.personalDetails,
             style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.w800,
@@ -38,25 +38,27 @@ class MemberPersonalDetailsSection extends StatelessWidget {
           ),
           const Gap(14),
           MemberTextField(
-            title: AppStaticTexts.dobLabel,
+            title: context.lang.dobLabel,
             value: dob != null ? DateFormat('dd-MM-yyyy').format(dob!) : '',
             icon: Icons.calendar_today_outlined,
           ),
           const Gap(10),
           MemberTextField(
-            title: AppStaticTexts.genderLabel,
-            value: gender,
+            title: context.lang.genderLabel,
+            value: gender == 'Male'
+                ? context.lang.male
+                : (gender == 'Female' ? context.lang.female : gender),
             icon: Icons.wc_rounded,
           ),
           const Gap(10),
           MemberTextField(
-            title: AppStaticTexts.nationalId,
+            title: context.lang.nationalId,
             value: nationalId,
             icon: Icons.badge_outlined,
           ),
           const Gap(10),
           MemberTextField(
-            title: AppStaticTexts.emailLabel,
+            title: context.lang.emailLabel,
             value: email ?? '',
             icon: Icons.mail_outline_rounded,
           ),

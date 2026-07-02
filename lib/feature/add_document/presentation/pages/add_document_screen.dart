@@ -7,8 +7,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
@@ -76,13 +76,13 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      appBar: const CommonAppbar(title: AppStaticTexts.addDocument),
+      appBar: CommonAppbar(title: context.lang.addDocument),
       body: BlocConsumer<AddDocumentBloc, AddDocumentState>(
         listener: (context, state) {
           if (state.isUploadingDocumentSuccess) {
             CommonSnackBar.show(
               context,
-              message: AppStaticTexts.documentUploadedSuccessfully,
+              message: context.lang.documentUploadedSuccessfully,
               type: SnackBarType.success,
             );
             context.router.back();
@@ -105,7 +105,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
 
           if (state.isFetchingDocumentTypesFailed) {
             return CommonErrorView(
-              title: AppStaticTexts.unableToLoadDocumentTypes,
+              title: context.lang.unableToLoadDocumentTypes,
               message: state.error.message,
               onRetry: _fetchDocumentTypes,
             );
@@ -113,10 +113,10 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
 
           if (state.documentTypes.isEmpty) {
             return CommonEmptyState(
-              title: AppStaticTexts.documentTypesUnavailable,
-              description: AppStaticTexts.documentTypesUnavailableMessage,
+              title: context.lang.documentTypesUnavailable,
+              description: context.lang.documentTypesUnavailableMessage,
               icon: Icons.folder_off_outlined,
-              actionLabel: AppStaticTexts.refresh,
+              actionLabel: context.lang.refresh,
               onAction: _fetchDocumentTypes,
             );
           }
@@ -131,14 +131,14 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      AppStaticTexts.documents,
+                      context.lang.documents,
                       style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                         color: theme.colorScheme.primary,
                       ),
                     ),
                     const Gap(4),
                     Text(
-                      AppStaticTexts.documentsSubtitle,
+                      context.lang.documentsSubtitle,
                       style: AppTextStyles.largeRobotoNormal.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                       ),
@@ -148,10 +148,11 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                       valueListenable: _selectedMemberNotifier,
                       builder: (context, selectedMember, child) {
                         return CommonDropdownField<int>(
-                          labelText: AppStaticTexts.member,
+                          labelText: context.lang.member,
                           value: selectedMember,
                           validator: (value) =>
                               AddDocumentScreenHelpers.validateSelectedMember(
+                                context,
                                 value: value,
                                 selectedMember: _selectedMemberNotifier.value,
                               ),
@@ -163,6 +164,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                               .map(
                                 (member) =>
                                     AddDocumentScreenHelpers.createMemberDropDownItem(
+                                      context: context,
                                       member: member,
                                     ),
                               )
@@ -178,10 +180,11 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                       valueListenable: _selectedDocumentTypeNotifier,
                       builder: (context, selectedDocumentType, child) {
                         return CommonDropdownField<int>(
-                          labelText: AppStaticTexts.documentType,
+                          labelText: context.lang.documentType,
                           value: selectedDocumentType,
                           validator: (value) =>
                               AddDocumentScreenHelpers.validateDocumentType(
+                                context,
                                 value: value,
                                 selectedDocumentType:
                                     _selectedDocumentTypeNotifier.value,
@@ -202,11 +205,12 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                     ),
                     const Gap(24),
                     CommonTextField(
-                      labelText: AppStaticTexts.expireDate,
+                      labelText: context.lang.expireDate,
                       controller: _expireDateController,
                       readOnly: true,
                       validator: (value) =>
                           AddDocumentScreenHelpers.validateExpireDate(
+                            context,
                             value: value,
                             expireDate: _expireDateNotifier.value,
                           ),
@@ -233,11 +237,12 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                     ),
                     const Gap(24),
                     CommonTextField(
-                      labelText: AppStaticTexts.document,
+                      labelText: context.lang.document,
                       controller: _documentNameController,
                       readOnly: true,
                       validator: (value) =>
                           AddDocumentScreenHelpers.validateSelectedDocument(
+                            context,
                             value: value,
                             selectedDocument: _selectedDocumentNotifier.value,
                           ),
@@ -289,7 +294,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
                   width: double.infinity,
                   isLoading: state.isUploadingDocument,
                   onPressed: _onSubmit,
-                  child: const Text(AppStaticTexts.addDocument),
+                  child: Text(context.lang.addDocument),
                 );
               },
             ),

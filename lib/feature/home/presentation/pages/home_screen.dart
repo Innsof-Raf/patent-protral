@@ -3,7 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
         if (state.isDataFetchingFailed) {
           return Scaffold(
             body: CommonErrorView(
-              title: AppStaticTexts.unableToLoadHome,
+              title: context.lang.unableToLoadHome,
               message: state.error.message,
               onRetry: () {
                 final token =

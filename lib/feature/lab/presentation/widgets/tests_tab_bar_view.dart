@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
@@ -21,7 +21,7 @@ class TestsTabBarView extends StatelessWidget {
           return const CommonLoadingView();
         } else if (state.isItemsFetchingFailed) {
           return CommonErrorView(
-            title: AppStaticTexts.unableToLoadTests,
+            title: context.lang.unableToLoadTests,
             message: state.error.message,
             onRetry: () => context.read<ItemsBloc>().add(
               GetItems(token: context.read<UserBloc>().state.user!.accessToken),
@@ -33,10 +33,10 @@ class TestsTabBarView extends StatelessWidget {
               .toList();
           if (tests.isEmpty) {
             return CommonEmptyState(
-              title: AppStaticTexts.noTestsAvailable,
-              description: AppStaticTexts.noTestsMessage,
+              title: context.lang.noTestsAvailable,
+              description: context.lang.noTestsMessage,
               icon: Icons.science_outlined,
-              actionLabel: AppStaticTexts.refresh,
+              actionLabel: context.lang.refresh,
               onAction: () => context.read<ItemsBloc>().add(
                 GetItems(
                   token: context.read<UserBloc>().state.user!.accessToken,

@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_outlined_button.dart';
@@ -79,7 +79,7 @@ class CancelBookingPopUp extends StatelessWidget {
                       const Gap(12),
                       Expanded(
                         child: Text(
-                          AppStaticTexts.cancelBooking,
+                          context.lang.cancelBooking,
                           style: theme.textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: theme.colorScheme.onSurface,
@@ -90,7 +90,7 @@ class CancelBookingPopUp extends StatelessWidget {
                   ),
                   const Gap(16),
                   Text(
-                    AppStaticTexts.cancelBookingMessage,
+                    context.lang.cancelBookingMessage,
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: colorScheme.onSurfaceVariant,
                       height: 1.5,
@@ -120,7 +120,7 @@ class CancelBookingPopUp extends StatelessWidget {
                               child: _ProfilePreview(
                                 imageUrl: doctorImage,
                                 title: doctorName,
-                                subtitle: AppStaticTexts.doctor,
+                                subtitle: context.lang.doctor,
                               ),
                             ),
                             Padding(
@@ -140,12 +140,12 @@ class CancelBookingPopUp extends StatelessWidget {
                                     : '${ConstantUrls.memberImageUrl}/${member.id}/${member.profileImage}',
                                 title:
                                     (member.name.trim().isEmpty
-                                            ? AppStaticTexts.unknown
+                                            ? context.lang.unknown
                                             : member.name)
                                         .toTitleCase(),
-                                subtitle: AppStaticTexts.member,
+                                subtitle: context.lang.member,
                                 fallbackText: member.name.trim().isEmpty
-                                    ? AppStaticTexts.unknownInitial
+                                    ? context.lang.unknownInitial
                                     : member.name.trim()[0],
                               ),
                             ),
@@ -177,7 +177,7 @@ class CancelBookingPopUp extends StatelessWidget {
                               ),
                               const Gap(10),
                               Text(
-                                '${DateFormat('dd MMM yyyy').format(appointmentDateTime)} ${AppStaticTexts.at} ${DateFormat.jm().format(appointmentDateTime)}',
+                                '${DateFormat('dd MMM yyyy').format(appointmentDateTime)} ${context.lang.at} ${DateFormat.jm().format(appointmentDateTime)}',
                                 style: theme.textTheme.titleSmall?.copyWith(
                                   fontWeight: FontWeight.bold,
                                   color: colorScheme.onSurface,
@@ -195,7 +195,7 @@ class CancelBookingPopUp extends StatelessWidget {
                       Expanded(
                         child: ActiveOutlinedButton(
                           onPressed: () => Navigator.pop(context),
-                          child: const Text(AppStaticTexts.keepBooking),
+                          child: Text(context.lang.keepBooking),
                         ),
                       ),
                       const Gap(12),
@@ -218,7 +218,7 @@ class CancelBookingPopUp extends StatelessWidget {
                               ),
                             );
                           },
-                          child: const Text(AppStaticTexts.cancelIt),
+                          child: Text(context.lang.cancelIt),
                         ),
                       ),
                     ],
@@ -226,9 +226,9 @@ class CancelBookingPopUp extends StatelessWidget {
                 ],
               ),
             ),
-            Positioned(
+            PositionedDirectional(
               top: 8,
-              right: 8,
+              end: 8,
               child: IconButton(
                 onPressed: () => Navigator.pop(context),
                 icon: const Icon(Icons.close_rounded),
@@ -359,7 +359,7 @@ class _FallbackAvatar extends StatelessWidget {
               )
             : Text(
                 (text == null || text!.isEmpty)
-                    ? AppStaticTexts.unknownInitial
+                    ? context.lang.unknownInitial
                     : text!.toUpperCase(),
                 style: theme.textTheme.headlineMedium?.copyWith(
                   color: foregroundColor,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class AppointmentsOverviewCard extends StatelessWidget {
@@ -41,7 +41,7 @@ class AppointmentsOverviewCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            AppStaticTexts.manageAppointments,
+            context.lang.manageAppointments,
             style: AppTextStyles.largeBoldRoboto.copyWith(
               color: colorScheme.onSurface,
               fontSize: 18,
@@ -49,7 +49,7 @@ class AppointmentsOverviewCard extends StatelessWidget {
           ),
           const Gap(4),
           Text(
-            AppStaticTexts.manageAppointmentsSubtitle,
+            context.lang.manageAppointmentsSubtitle,
             style: AppTextStyles.bodyTextInter.copyWith(
               color: colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
               fontSize: 13,
@@ -60,7 +60,7 @@ class AppointmentsOverviewCard extends StatelessWidget {
             children: [
               Expanded(
                 child: _MetricChip(
-                  label: AppStaticTexts.total,
+                  label: context.lang.total,
                   value: totalCount,
                   icon: Icons.calendar_today_rounded,
                   color: colorScheme.primary,
@@ -69,7 +69,7 @@ class AppointmentsOverviewCard extends StatelessWidget {
               const Gap(12),
               Expanded(
                 child: _MetricChip(
-                  label: AppStaticTexts.done,
+                  label: context.lang.done,
                   value: consultedCount,
                   icon: Icons.check_circle_outline_rounded,
                   color: Colors.green,
@@ -78,7 +78,7 @@ class AppointmentsOverviewCard extends StatelessWidget {
               const Gap(12),
               Expanded(
                 child: _MetricChip(
-                  label: AppStaticTexts.upcoming,
+                  label: context.lang.upcoming,
                   value: upcomingCount,
                   icon: Icons.upcoming_rounded,
                   color: Colors.orange,

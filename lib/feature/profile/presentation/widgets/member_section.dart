@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/resources/app_static_texts.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/widgets/profile_member_tile.dart';
@@ -31,7 +31,7 @@ class MemberSection extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        AppStaticTexts.members,
+                        context.lang.members,
                         style: theme.textTheme.titleLarge?.copyWith(
                           color: theme.colorScheme.onSurface,
                           fontWeight: FontWeight.bold,
@@ -40,8 +40,8 @@ class MemberSection extends StatelessWidget {
                       const Gap(2),
                       Text(
                         members.isEmpty
-                            ? AppStaticTexts.noMembersAddedYet
-                            : '${members.length} ${AppStaticTexts.membersLinked}',
+                            ? context.lang.noMembersAddedYet
+                            : '${members.length} ${context.lang.membersLinked}',
                         style: theme.textTheme.bodyMedium?.copyWith(
                           color: theme.colorScheme.onSurfaceVariant,
                           fontWeight: FontWeight.w500,
@@ -61,7 +61,7 @@ class MemberSection extends StatelessWidget {
                       ),
                     ),
                     icon: Text(
-                      AppStaticTexts.viewAll,
+                      context.lang.viewAll,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     label: const Icon(
@@ -127,7 +127,7 @@ class _EmptyMembersView extends StatelessWidget {
           ),
           const Gap(16),
           Text(
-            AppStaticTexts.noMembersFound,
+            context.lang.noMembersFound,
             style: theme.textTheme.titleMedium?.copyWith(
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeight.bold,
@@ -135,7 +135,7 @@ class _EmptyMembersView extends StatelessWidget {
           ),
           const Gap(6),
           Text(
-            AppStaticTexts.addMembersSubtitle,
+            context.lang.addMembersSubtitle,
             textAlign: TextAlign.center,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
