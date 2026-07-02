@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
 
 import 'appointments_tabbar_view.dart';
@@ -18,11 +19,11 @@ class NotConsultedAppointmentsTabbarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppointmentsTabbarView(
-      title: 'Upcoming appointments',
+      title: context.lang.upcomingAppointments,
       appointments: appointments,
       monthTimelineList: monthTimelineList,
-      emptyTitle: 'No upcoming appointments',
-      emptyMessage: 'You do not have any scheduled visits right now.',
+      emptyTitle: context.lang.noUpcomingAppointments,
+      emptyMessage: context.lang.noUpcomingAppointmentsMessage,
       onRefresh: onRefresh,
     );
   }

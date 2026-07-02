@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_helpers/gender_form_helpers.dart';
 import 'package:patient_portal/core/resources/common_helpers/image_picker_helpers.dart';
 import 'package:patient_portal/feature/edit_profile_details/presentation/widgets/edit_profile_details_section.dart';
@@ -37,8 +38,8 @@ class EditProfileDetailScreenHelpers {
   static Future<void> pickImage({required BuildContext context}) async {
     final image = await ImagePickerHelpers.pickImage(
       context: context,
-      title: 'Profile photo',
-      subtitle: 'Choose a source for your new profile image.',
+      title: context.lang.profilePhoto,
+      subtitle: context.lang.uploadProfilePhotoSubtitle,
     );
     if (image != null) {
       profileImage.value = image;
