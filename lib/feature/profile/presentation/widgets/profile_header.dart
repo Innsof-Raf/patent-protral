@@ -55,7 +55,7 @@ class ProfileHeader extends StatelessWidget {
                 ),
                 const Gap(2),
                 Text(
-                  '${context.lang.uhid}: NA',
+                  '${context.lang.nationalId}: NA',
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: AppColors.profileUHIDColor,
                     fontWeight: FontWeight.w500,
