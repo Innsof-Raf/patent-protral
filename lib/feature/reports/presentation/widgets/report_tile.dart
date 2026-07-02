@@ -88,8 +88,9 @@ class MyReportTile extends StatelessWidget {
                           Icon(
                             Icons.schedule_rounded,
                             size: 14,
-                            color: theme.colorScheme.onSurfaceVariant
-                                .withValues(alpha: 0.7),
+                            color: theme.colorScheme.primary.withValues(
+                              alpha: 0.7,
+                            ),
                           ),
                           const Gap(4),
                           Text(
