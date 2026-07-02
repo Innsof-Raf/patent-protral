@@ -29,10 +29,10 @@ class DrawerProfileTile extends StatelessWidget {
 
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: 14),
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
             color: theme.colorScheme.onPrimary.withValues(alpha: .12),
-            borderRadius: BorderRadius.circular(24),
+            borderRadius: BorderRadius.circular(20),
             border: Border.all(
               color: theme.colorScheme.onPrimary.withValues(alpha: .14),
             ),
@@ -43,7 +43,7 @@ class DrawerProfileTile extends StatelessWidget {
                 clipBehavior: Clip.none,
                 children: [
                   CircleAvatar(
-                    radius: 31,
+                    radius: 26,
                     backgroundColor: theme.colorScheme.onPrimary,
                     backgroundImage: AssetImage(
                       Assets.images.memberDefaultProfileImage.path,

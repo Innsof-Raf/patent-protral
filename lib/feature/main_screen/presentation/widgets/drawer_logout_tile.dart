@@ -14,7 +14,7 @@ class LogOutTile extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(14, 10, 14, 25),
+      padding: const EdgeInsets.fromLTRB(14, 8, 14, 20),
       child: DecoratedBox(
         decoration: BoxDecoration(
           border: Border(
@@ -24,22 +24,20 @@ class LogOutTile extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(top: 14),
+          padding: const EdgeInsets.only(top: 8),
           child: Material(
             color: theme.colorScheme.onPrimary,
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(16),
             child: InkWell(
-              borderRadius: BorderRadius.circular(18),
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => const LogoutDialog(),
-                );
-              },
+              borderRadius: BorderRadius.circular(16),
+              onTap: () => showDialog(
+                context: context,
+                builder: (context) => const LogoutDialog(),
+              ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,
-                  vertical: 14,
+                  vertical: 12,
                 ),
                 child: Row(
                   children: [

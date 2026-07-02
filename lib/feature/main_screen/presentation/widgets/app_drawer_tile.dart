@@ -23,17 +23,17 @@ class AppDrawerTile extends StatelessWidget {
     final foregroundColor = theme.colorScheme.onPrimary;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 3),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 1),
       child: Material(
         color: isSelected
             ? foregroundColor.withValues(alpha: .14)
             : Colors.transparent,
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(16),
         child: InkWell(
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(16),
           onTap: onPress,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             child: Row(
               children: [
                 SvgPicture.asset(
