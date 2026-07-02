@@ -53,6 +53,8 @@ class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
           titleWidget ??
           Text(
             title!,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: theme.textTheme.titleLarge?.copyWith(
               color: effectiveForegroundColor,
               fontWeight: FontWeight.bold,

@@ -65,9 +65,13 @@ class ActiveButton extends StatelessWidget {
               color: effectiveForegroundColor,
             ),
           )
-        : DefaultTextStyle.merge(
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            child: child,
+        : FittedBox(
+            fit: BoxFit.scaleDown,
+            child: DefaultTextStyle.merge(
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              softWrap: false,
+              child: child,
+            ),
           );
 
     return SizedBox(

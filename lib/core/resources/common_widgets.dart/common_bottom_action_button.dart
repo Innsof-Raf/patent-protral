@@ -40,11 +40,15 @@ class CommonBottomActionButton extends StatelessWidget {
         elevation: 0,
       ),
       onPressed: onPressed,
-      child: Text(
-        title,
-        style: theme.textTheme.titleMedium?.copyWith(
-          color: effectiveForegroundColor,
-          fontWeight: FontWeight.w700,
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Text(
+          title,
+          maxLines: 1,
+          style: theme.textTheme.titleMedium?.copyWith(
+            color: effectiveForegroundColor,
+            fontWeight: FontWeight.w700,
+          ),
         ),
       ),
     );

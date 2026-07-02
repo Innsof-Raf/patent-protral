@@ -33,15 +33,19 @@ class ActiveTextButton extends StatelessWidget {
         visualDensity: VisualDensity.compact,
       ),
       onPressed: onPressed,
-      child: DefaultTextStyle.merge(
-        style:
-            style?.copyWith(color: effectiveForegroundColor) ??
-            TextStyle(
-              fontSize: fontSize ?? 14,
-              fontWeight: fontWeight ?? FontWeight.w500,
-              color: effectiveForegroundColor,
-            ),
-        child: child,
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: DefaultTextStyle.merge(
+          softWrap: false,
+          style:
+              style?.copyWith(color: effectiveForegroundColor) ??
+              TextStyle(
+                fontSize: fontSize ?? 14,
+                fontWeight: fontWeight ?? FontWeight.w500,
+                color: effectiveForegroundColor,
+              ),
+          child: child,
+        ),
       ),
     );
   }

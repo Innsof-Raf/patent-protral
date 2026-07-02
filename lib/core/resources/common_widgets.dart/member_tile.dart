@@ -58,6 +58,8 @@ class MemberTile extends StatelessWidget {
                               ? context.lang.unknown
                               : member.name)
                           .toTitleCase(),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: theme.colorScheme.onSurface,
