@@ -11,7 +11,7 @@ class SpecialityGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: const EdgeInsets.fromLTRB(0, 12, 0, 112),
+      padding: const EdgeInsets.only(bottom: 100),
       sliver: SliverList(
         delegate: SliverChildBuilderDelegate((context, index) {
           return Column(

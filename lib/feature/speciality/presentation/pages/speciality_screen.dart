@@ -126,7 +126,7 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
                   titleSpacing: 0,
                 ),
                 SliverPadding(
-                  padding: const EdgeInsets.fromLTRB(16, 15, 16, 0),
+                  padding: const EdgeInsets.fromLTRB(16, 5, 16, 0),
                   sliver: SliverToBoxAdapter(
                     child: Text(
                       context.lang.allSpecialties,
