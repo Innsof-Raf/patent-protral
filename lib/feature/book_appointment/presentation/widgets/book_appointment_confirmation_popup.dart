@@ -1,10 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
-import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
@@ -336,31 +334,12 @@ class _UserMiniProfile extends StatelessWidget {
               child: SizedBox(
                 width: 64,
                 height: 64,
-                child: imageUrl == null
-                    ? _FallbackAvatar(
-                        text:
-                            fallbackText ??
-                            (name.isNotEmpty
-                                ? name[0]
-                                : context.lang.unknownInitial),
-                        backgroundColor: colorScheme.primaryContainer,
-                        foregroundColor: colorScheme.onPrimaryContainer,
-                      )
-                    : CachedNetworkImage(
-                        imageUrl: imageUrl!,
-                        fit: BoxFit.cover,
-                        placeholder: CommonNetworkImage.placeholder,
-                        errorWidget: (context, url, error) => _FallbackAvatar(
-                          text:
-                              fallbackText ??
-                              (name.isNotEmpty
-                                  ? name[0]
-                                  : context.lang.unknownInitial),
-                          backgroundColor: colorScheme.surfaceContainerHighest,
-                          foregroundColor: colorScheme.onSurfaceVariant,
-                          showImageErrorIcon: true,
-                        ),
-                      ),
+                child: CachedNetworkImage(
+                  imageUrl: imageUrl!,
+                  fit: BoxFit.cover,
+                  placeholder: CommonNetworkImage.placeholder,
+                  errorWidget: CommonNetworkImage.errorWidget,
+                ),
               ),
             ),
           ),
@@ -391,47 +370,6 @@ class _UserMiniProfile extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _FallbackAvatar extends StatelessWidget {
-  final String? text;
-  final Color backgroundColor;
-  final Color foregroundColor;
-  final bool showImageErrorIcon;
-
-  const _FallbackAvatar({
-    required this.text,
-    required this.backgroundColor,
-    required this.foregroundColor,
-    this.showImageErrorIcon = false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return ColoredBox(
-      color: backgroundColor,
-      child: Center(
-        child: showImageErrorIcon
-            ? Padding(
-                padding: const EdgeInsets.all(14),
-                child: SvgPicture.asset(
-                  Assets.images.doctorImageLoadingFailedImage.path,
-                  fit: BoxFit.contain,
-                ),
-              )
-            : Text(
-                (text == null || text!.isEmpty)
-                    ? context.lang.unknownInitial
-                    : text!.toUpperCase(),
-                style: theme.textTheme.headlineMedium?.copyWith(
-                  color: foregroundColor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-      ),
     );
   }
 }
