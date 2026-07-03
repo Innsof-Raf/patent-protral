@@ -7,7 +7,7 @@ class HomeQuickActionCard extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.onTap,
-    required this.backgroundImage,
+    required this.icon,
     this.child,
     super.key,
   });
@@ -15,7 +15,7 @@ class HomeQuickActionCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final VoidCallback onTap;
-  final String backgroundImage;
+  final IconData icon;
   final Widget? child;
 
   @override
@@ -29,113 +29,87 @@ class HomeQuickActionCard extends StatelessWidget {
           end: Alignment.bottomRight,
           colors: [
             theme.colorScheme.surface,
-            theme.colorScheme.primaryContainer.withValues(alpha: .22),
+            theme.colorScheme.primaryContainer.withValues(alpha: 0.1),
           ],
         ),
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: theme.colorScheme.primary.withValues(alpha: .12),
+          color: theme.colorScheme.primary.withValues(alpha: 0.1),
         ),
         boxShadow: [
           BoxShadow(
-            color: theme.colorScheme.primary.withValues(alpha: .08),
-            blurRadius: 24,
-            offset: const Offset(0, 12),
+            color: theme.colorScheme.primary.withValues(alpha: 0.05),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
           ),
         ],
       ),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          borderRadius: BorderRadius.circular(22),
+          borderRadius: BorderRadius.circular(24),
           onTap: onTap,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(22),
-            child: Stack(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                PositionedDirectional(
-                  end: -10,
-                  bottom: -10,
-                  child: Image.asset(
-                    backgroundImage,
-                    width: 110,
-                    height: 110,
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                Positioned.fill(
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          theme.colorScheme.surface.withValues(alpha: 0.96),
-                          theme.colorScheme.primaryContainer.withValues(
-                            alpha: 0.28,
-                          ),
-                          theme.colorScheme.primary.withValues(alpha: 0.04),
-                        ],
-                        stops: const [0.2, 0.7, 1.0],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.primaryContainer.withValues(
+                          alpha: 0.4,
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Icon(
+                        icon,
+                        color: theme.colorScheme.primary,
+                        size: 18,
                       ),
                     ),
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: theme.colorScheme.onSurfaceVariant.withValues(
+                        alpha: 0.5,
+                      ),
+                      size: 14,
+                    ),
+                  ],
+                ),
+                const Gap(12),
+                Text(
+                  title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
+                    color: theme.colorScheme.onSurface,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 15,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              title,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: AppTextStyles.subHeadingSemiBoldRoboto
-                                  .copyWith(
-                                    color: theme.colorScheme.primary,
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 15,
-                                  ),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              color: theme.colorScheme.primary.withValues(
-                                alpha: .14,
-                              ),
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.arrow_forward_rounded,
-                              color: theme.colorScheme.primary,
-                              size: 14,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Gap(4),
-                      Text(
-                        subtitle,
-                        maxLines: child == null ? 2 : 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppTextStyles.bodyTextRoboto.copyWith(
-                          color: theme.colorScheme.onSurfaceVariant,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 11,
-                        ),
-                      ),
-                      if (child != null) ...[
-                        const Gap(12),
-                        Expanded(child: child!),
-                      ],
-                    ],
+                const Gap(2),
+                Text(
+                  subtitle,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTextStyles.bodyTextRoboto.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                    fontSize: 12,
                   ),
                 ),
+                if (child != null) ...[
+                  const Gap(12),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      child: child!,
+                    ),
+                  ),
+                ],
               ],
             ),
           ),

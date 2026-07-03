@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/route/app_router.dart';
@@ -24,10 +23,8 @@ class MembersTile extends StatelessWidget {
           subtitle: memberCount == 1
               ? '${context.lang.one} ${context.lang.memberFound}'
               : '$memberCount ${context.lang.membersFound}',
-          backgroundImage: Assets.images.homeMemberTileBackgroundImage.path,
-          onTap: () {
-            context.router.root.push(const MembersRoute());
-          },
+          icon: Icons.people_rounded,
+          onTap: () => context.router.root.push(const MembersRoute()),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
