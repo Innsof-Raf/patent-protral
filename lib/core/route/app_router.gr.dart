@@ -173,11 +173,16 @@ class DoctorDetailRoute extends PageRouteInfo<void> {
 class DoctorsRoute extends PageRouteInfo<DoctorsRouteArgs> {
   DoctorsRoute({
     Key? key,
-    required Speciality speciality,
+    Speciality? speciality,
+    List<Doctor>? initialDoctors,
     List<PageRouteInfo>? children,
   }) : super(
          DoctorsRoute.name,
-         args: DoctorsRouteArgs(key: key, speciality: speciality),
+         args: DoctorsRouteArgs(
+           key: key,
+           speciality: speciality,
+           initialDoctors: initialDoctors,
+         ),
          initialChildren: children,
        );
 
@@ -186,33 +191,49 @@ class DoctorsRoute extends PageRouteInfo<DoctorsRouteArgs> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<DoctorsRouteArgs>();
-      return DoctorsScreen(key: args.key, speciality: args.speciality);
+      final args = data.argsAs<DoctorsRouteArgs>(
+        orElse: () => const DoctorsRouteArgs(),
+      );
+      return DoctorsScreen(
+        key: args.key,
+        speciality: args.speciality,
+        initialDoctors: args.initialDoctors,
+      );
     },
   );
 }
 
 class DoctorsRouteArgs {
-  const DoctorsRouteArgs({this.key, required this.speciality});
+  const DoctorsRouteArgs({this.key, this.speciality, this.initialDoctors});
 
   final Key? key;
 
-  final Speciality speciality;
+  final Speciality? speciality;
+
+  final List<Doctor>? initialDoctors;
 
   @override
   String toString() {
-    return 'DoctorsRouteArgs{key: $key, speciality: $speciality}';
+    return 'DoctorsRouteArgs{key: $key, speciality: $speciality, initialDoctors: $initialDoctors}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! DoctorsRouteArgs) return false;
-    return key == other.key && speciality == other.speciality;
+    return key == other.key &&
+        speciality == other.speciality &&
+        const ListEquality<Doctor>().equals(
+          initialDoctors,
+          other.initialDoctors,
+        );
   }
 
   @override
-  int get hashCode => key.hashCode ^ speciality.hashCode;
+  int get hashCode =>
+      key.hashCode ^
+      speciality.hashCode ^
+      const ListEquality<Doctor>().hash(initialDoctors);
 }
 
 /// generated route for

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/home/domain/entities/ad_banner.dart'
@@ -14,29 +15,26 @@ class AdBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Material(
-      color: Colors.transparent,
-      borderRadius: BorderRadius.circular(22),
+      color: AppColors.transparent,
+      borderRadius: BorderRadius.circular(16),
       child: InkWell(
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(16),
         onTap: onPressed,
         child: Ink(
           decoration: BoxDecoration(
-            color: theme.colorScheme.surfaceContainerHighest.withValues(
-              alpha: .36,
-            ),
-            borderRadius: BorderRadius.circular(22),
-            boxShadow: [
+            color: AppColors.lightGray,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: const [
               BoxShadow(
-                color: theme.colorScheme.shadow.withValues(alpha: .07),
+                color: AppColors.shadowColorLight,
                 blurRadius: 18,
-                offset: const Offset(0, 10),
+                offset: Offset(0, 10),
               ),
             ],
           ),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(22),
+            borderRadius: BorderRadius.circular(16),
             child: adBanner.imageName != null
                 ? CachedNetworkImage(
                     imageUrl:

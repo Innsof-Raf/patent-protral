@@ -32,6 +32,22 @@ class AppColors {
   static const Color profileNameColor = Color(0xff2E3E5C);
   static const Color profileUHIDColor = Color(0xff757575);
 
+  // Book Service Section Colors
+  static const Color bookServiceBlueBandStart = Color(0xFF285BB3);
+  static const Color bookServiceBlueBandEnd = Color(0xFF2E64C6);
+  static const Color bookServiceGreenBandStart = Color(0xFF4CBD58);
+  static const Color bookServiceGreenBandEnd = Color(0xFF46B953);
+  static const Color bookServiceConsultNowStart = Color(0xFF2E63C2);
+  static const Color bookServiceConsultNowEnd = Color(0xFF10BF93);
+  static const Color bookServiceRadiologyStart = Color(0xFF2B8CEB);
+  static const Color bookServiceRadiologyEnd = Color(0xFF3396F3);
+  static const Color bookServiceTileBackground = Color(0xFFF4F8FC);
+
+  // Speciality Section Colors
+  static const Color specialityCircleBorder = Color(
+    0x1F000000,
+  ); // placeholder, better use dynamic
+
   // Shadow colors
   static const Color shadowColor = Color(0x1A000000);
   static const Color shadowColorLight = Color(0x0D000000);

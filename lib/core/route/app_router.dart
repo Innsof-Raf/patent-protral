@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_portal/feature/add_document/presentation/pages/add_document_screen.dart';
 import 'package:patient_portal/feature/add_member/presentation/pages/add_member_screen.dart';

@@ -16,9 +16,10 @@ import 'package:patient_portal/feature/speciality/domain/entities/speciality.dar
 
 @RoutePage(name: 'DoctorsRoute')
 class DoctorsScreen extends StatefulWidget {
-  const DoctorsScreen({super.key, required this.speciality});
+  const DoctorsScreen({super.key, this.speciality, this.initialDoctors});
 
-  final Speciality speciality;
+  final Speciality? speciality;
+  final List<Doctor>? initialDoctors;
 
   @override
   State<DoctorsScreen> createState() => _DoctorsScreenState();
@@ -30,14 +31,17 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
   @override
   void initState() {
     super.initState();
-    _fetchDoctors();
+    if (widget.initialDoctors == null && widget.speciality != null) {
+      _fetchDoctors();
+    }
   }
 
   void _fetchDoctors() {
+    if (widget.speciality == null) return;
     final token = context.read<UserBloc>().state.user!.accessToken;
     context.read<DoctorBloc>().add(
       GetAvailableDoctorsByDepartment(
-        idspeciality: widget.speciality.idSpeciality,
+        idspeciality: widget.speciality!.idSpeciality,
         token: token,
       ),
     );
@@ -55,90 +59,100 @@ class _DoctorsScreenState extends State<DoctorsScreen> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      appBar: CommonAppbar(title: widget.speciality.specialityName),
-      body: BlocBuilder<DoctorBloc, DoctorState>(
-        builder: (context, state) {
-          if (state.isDoctorsFetching ||
-              (!state.isDoctorsFetchingSuccess &&
-                  !state.isDoctorsFetchingFailed)) {
-            return const DoctorsLoadingView();
-          }
+      appBar: CommonAppbar(
+        title: widget.speciality?.specialityName ?? context.lang.topDoctors,
+      ),
+      body: widget.initialDoctors != null
+          ? _buildDoctorsList(widget.initialDoctors!)
+          : BlocBuilder<DoctorBloc, DoctorState>(
+              builder: (context, state) {
+                if (state.isDoctorsFetching ||
+                    (!state.isDoctorsFetchingSuccess &&
+                        !state.isDoctorsFetchingFailed)) {
+                  return const DoctorsLoadingView();
+                }
 
-          if (state.isDoctorsFetchingFailed) {
-            return CommonErrorView(
-              title: context.lang.unableToLoadDoctors,
-              message: state.error.message,
-              onRetry: _fetchDoctors,
-            );
-          }
+                if (state.isDoctorsFetchingFailed) {
+                  return CommonErrorView(
+                    title: context.lang.unableToLoadDoctors,
+                    message: state.error.message,
+                    onRetry: _fetchDoctors,
+                  );
+                }
 
-          return RefreshIndicator(
-            onRefresh: () async => _fetchDoctors(),
-            child: CustomScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              slivers: [
-                SliverAppBar(
-                  floating: true,
-                  pinned: true,
-                  elevation: 0,
-                  scrolledUnderElevation: 0,
-                  backgroundColor: theme.colorScheme.surface,
-                  surfaceTintColor: theme.colorScheme.surface,
-                  centerTitle: false,
-                  automaticallyImplyLeading: false,
-                  title: Container(
-                    height: 46,
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                    ).copyWith(top: 5),
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.surfaceContainerHighest
-                          .withValues(alpha: 0.3),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: theme.colorScheme.outlineVariant.withValues(
-                          alpha: 0.5,
-                        ),
-                      ),
-                    ),
-                    child: TextField(
-                      controller: searchController,
-                      onChanged: (value) {
-                        context.read<SearchDoctorBloc>().add(
-                          SearchDoctor(
-                            searchKey: value.toLowerCase(),
-                            doctors: state.doctors,
-                          ),
-                        );
-                      },
-                      decoration: InputDecoration(
-                        hintText: context.lang.searchDoctors,
-                        prefixIcon: Icon(
-                          Icons.search_rounded,
-                          color: theme.colorScheme.onSurface.withValues(
-                            alpha: 0.4,
-                          ),
-                          size: 20,
-                        ),
-                        border: InputBorder.none,
-                        contentPadding: const EdgeInsets.symmetric(
-                          vertical: 11,
-                        ),
-                      ),
-                    ),
-                  ),
-                  titleSpacing: 0,
-                ),
-                _DoctorsResultSliver(
-                  allDoctors: state.doctors,
-                  searchController: searchController,
-                  onRefresh: _fetchDoctors,
-                ),
-              ],
+                return _buildDoctorsList(state.doctors);
+              },
             ),
-          );
-        },
+    );
+  }
+
+  Widget _buildDoctorsList(List<Doctor> doctors) {
+    final theme = Theme.of(context);
+    return RefreshIndicator(
+      onRefresh: () async {
+        if (widget.initialDoctors == null) {
+          _fetchDoctors();
+        }
+      },
+      child: CustomScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        slivers: [
+          SliverAppBar(
+            floating: true,
+            pinned: true,
+            elevation: 0,
+            scrolledUnderElevation: 0,
+            backgroundColor: theme.colorScheme.surface,
+            surfaceTintColor: theme.colorScheme.surface,
+            centerTitle: false,
+            automaticallyImplyLeading: false,
+            title: Container(
+              height: 46,
+              margin: const EdgeInsets.symmetric(
+                horizontal: 16,
+              ).copyWith(top: 5),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.surfaceContainerHighest.withValues(
+                  alpha: 0.3,
+                ),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: theme.colorScheme.outlineVariant.withValues(
+                    alpha: 0.5,
+                  ),
+                ),
+              ),
+              child: TextField(
+                controller: searchController,
+                onChanged: (value) {
+                  context.read<SearchDoctorBloc>().add(
+                    SearchDoctor(
+                      searchKey: value.toLowerCase(),
+                      doctors: doctors,
+                    ),
+                  );
+                },
+                decoration: InputDecoration(
+                  hintText: context.lang.searchDoctors,
+                  prefixIcon: Icon(
+                    Icons.search_rounded,
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
+                    size: 20,
+                  ),
+                  border: InputBorder.none,
+                  contentPadding: const EdgeInsets.symmetric(vertical: 11),
+                ),
+              ),
+            ),
+            titleSpacing: 0,
+          ),
+          _DoctorsResultSliver(
+            allDoctors: doctors,
+            searchController: searchController,
+            onRefresh: widget.initialDoctors == null ? _fetchDoctors : () {},
+          ),
+        ],
       ),
     );
   }

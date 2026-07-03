@@ -191,6 +191,23 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/book_service_consult_doctor_now.png
+  AssetGenImage get bookServiceConsultDoctorNow =>
+      const AssetGenImage('assets/images/book_service_consult_doctor_now.png');
+
+  /// File path: assets/images/book_service_hospital_appointment.png
+  AssetGenImage get bookServiceHospitalAppointment => const AssetGenImage(
+    'assets/images/book_service_hospital_appointment.png',
+  );
+
+  /// File path: assets/images/book_service_radiology_scans.png
+  AssetGenImage get bookServiceRadiologyScans =>
+      const AssetGenImage('assets/images/book_service_radiology_scans.png');
+
+  /// File path: assets/images/book_service_video_consultation.png
+  AssetGenImage get bookServiceVideoConsultation =>
+      const AssetGenImage('assets/images/book_service_video_consultation.png');
+
   /// File path: assets/images/doctor_image_loading_failed_image.svg
   SvgGenImage get doctorImageLoadingFailedImage =>
       const SvgGenImage('assets/images/doctor_image_loading_failed_image.svg');
@@ -239,6 +256,10 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<dynamic> get values => [
+    bookServiceConsultDoctorNow,
+    bookServiceHospitalAppointment,
+    bookServiceRadiologyScans,
+    bookServiceVideoConsultation,
     doctorImageLoadingFailedImage,
     homeDocumentsTileBackgroundImage,
     homeMemberTileBackgroundImage,

@@ -39,7 +39,7 @@ class HomeSectionHeader extends StatelessWidget {
                 title,
                 style: AppTextStyles.subHeadingSemiBoldRoboto.copyWith(
                   color: foregroundColor,
-                  fontWeight: FontWeight.w800,
+                  fontWeight: FontWeight.bold,
                   fontSize: 18,
                   height: 1.15,
                 ),

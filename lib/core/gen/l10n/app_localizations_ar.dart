@@ -1139,4 +1139,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get one => '١';
+
+  @override
+  String get bookAService => 'حجز خدمة';
+
+  @override
+  String get bookHospitalAppointment => 'حجز موعد في المستشفى';
+
+  @override
+  String get bookVideoConsultation => 'حجز استشارة فيديو';
+
+  @override
+  String get consultDoctorNow => 'استشر طبيب الآن';
+
+  @override
+  String get bookRadiologyScans => 'حجز فحوصات الأشعة';
 }

@@ -363,5 +363,10 @@
   "searchHint": "Search...",
   "medicalInsurances": "Medical Insurances",
   "pickProfilePhotoSubtitle": "Choose a source for your new profile image.",
-  "one": "1"
+  "one": "1",
+  "bookAService": "Book a Service",
+  "bookHospitalAppointment": "Book Hospital Appointment",
+  "bookVideoConsultation": "Book Video Consultation",
+  "consultDoctorNow": "Consult Doctor Now",
+  "bookRadiologyScans": "Book Radiology Scans"
 }

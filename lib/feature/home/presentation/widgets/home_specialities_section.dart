@@ -26,7 +26,7 @@ class HomeSpecialitiesSection extends StatelessWidget {
             MainScreenHelpers.mainScreenNotifier.value = 2;
           },
         ),
-        const Gap(16),
+        const Gap(20),
         GridView.builder(
           padding: EdgeInsets.zero,
           shrinkWrap: true,
@@ -34,9 +34,9 @@ class HomeSpecialitiesSection extends StatelessWidget {
           itemCount: specialities.length > 8 ? 8 : specialities.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
-            mainAxisSpacing: 16,
+            mainAxisSpacing: 24,
             crossAxisSpacing: 8,
-            mainAxisExtent: 118,
+            mainAxisExtent: 104,
           ),
           itemBuilder: (context, index) {
             return HomeSpecialityCard(speciality: specialities[index]);

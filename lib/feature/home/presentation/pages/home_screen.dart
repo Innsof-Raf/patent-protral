@@ -8,10 +8,11 @@ import 'package:patient_portal/core/resources/common_widgets.dart/common_error_v
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:patient_portal/feature/home/presentation/helpers/home_helpers.dart';
-import 'package:patient_portal/feature/home/presentation/widgets/home_banner_carousel.dart';
+import 'package:patient_portal/feature/home/presentation/widgets/home_book_service_section.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_doctors_section.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_insurance_section.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_packages_section.dart';
+import 'package:patient_portal/feature/home/presentation/widgets/home_promotional_slider_section.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_quick_actions_section.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_specialities_section.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -23,6 +24,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeHelpers.packageAdPositionNotifier.value = 0;
+    HomeHelpers.homeAdPositionNotifier.value = 0;
     final packageCarouselController = CarouselSliderController();
 
     return BlocBuilder<HomeBloc, HomeState>(
@@ -77,13 +79,15 @@ class HomeScreen extends StatelessWidget {
                 physics: const AlwaysScrollableScrollPhysics(),
                 padding: const EdgeInsets.fromLTRB(14, 14, 14, 104),
                 children: [
-                  HomeBannerCarousel(
+                  const HomeBookServiceSection(),
+                  const Gap(24),
+                  HomePromotionalSliderSection(
                     banners: homeData.ads
                         .where((e) => e.bannerType == 'HOMEBANNER')
                         .toList(),
                   ),
                   if (homeData.ads.any((e) => e.bannerType == 'HOMEBANNER'))
-                    const Gap(22),
+                    const Gap(24),
                   HomeSpecialitiesSection(
                     specialities: homeData.topSpecialities,
                   ),

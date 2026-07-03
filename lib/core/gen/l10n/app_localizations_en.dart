@@ -1150,4 +1150,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get one => '1';
+
+  @override
+  String get bookAService => 'Book a Service';
+
+  @override
+  String get bookHospitalAppointment => 'Book Hospital Appointment';
+
+  @override
+  String get bookVideoConsultation => 'Book Video Consultation';
+
+  @override
+  String get consultDoctorNow => 'Consult Doctor Now';
+
+  @override
+  String get bookRadiologyScans => 'Book Radiology Scans';
 }

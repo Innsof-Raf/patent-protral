@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
@@ -33,15 +34,15 @@ class SpecialityImageCircle extends StatelessWidget {
       height: outerSize,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: theme.colorScheme.surface,
+        color: AppColors.white,
         border: Border.all(
-          color: theme.colorScheme.primary.withValues(alpha: .1),
+          color: AppColors.primaryCyan.withValues(alpha: 0.12),
         ),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
-            color: theme.colorScheme.primary.withValues(alpha: .05),
+            color: AppColors.shadowColorLight,
             blurRadius: 10,
-            offset: const Offset(0, 4),
+            offset: Offset(0, 4),
           ),
         ],
       ),

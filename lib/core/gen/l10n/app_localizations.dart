@@ -2281,6 +2281,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'1'**
   String get one;
+
+  /// No description provided for @bookAService.
+  ///
+  /// In en, this message translates to:
+  /// **'Book a Service'**
+  String get bookAService;
+
+  /// No description provided for @bookHospitalAppointment.
+  ///
+  /// In en, this message translates to:
+  /// **'Book Hospital Appointment'**
+  String get bookHospitalAppointment;
+
+  /// No description provided for @bookVideoConsultation.
+  ///
+  /// In en, this message translates to:
+  /// **'Book Video Consultation'**
+  String get bookVideoConsultation;
+
+  /// No description provided for @consultDoctorNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Consult Doctor Now'**
+  String get consultDoctorNow;
+
+  /// No description provided for @bookRadiologyScans.
+  ///
+  /// In en, this message translates to:
+  /// **'Book Radiology Scans'**
+  String get bookRadiologyScans;
 }
 
 class _AppLocalizationsDelegate

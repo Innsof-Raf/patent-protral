@@ -363,5 +363,10 @@
   "searchHint": "بحث...",
   "medicalInsurances": "التأمينات الطبية",
   "pickProfilePhotoSubtitle": "اختر مصدرًا لصورة ملفك الشخصي الجديدة.",
-  "one": "١"
+  "one": "١",
+  "bookAService": "حجز خدمة",
+  "bookHospitalAppointment": "حجز موعد في المستشفى",
+  "bookVideoConsultation": "حجز استشارة فيديو",
+  "consultDoctorNow": "استشر طبيب الآن",
+  "bookRadiologyScans": "حجز فحوصات الأشعة"
 }
