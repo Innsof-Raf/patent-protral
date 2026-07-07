@@ -5,6 +5,7 @@ import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:patient_portal/feature/home/presentation/pages/home_screen.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
+import 'package:patient_portal/feature/main_screen/presentation/widgets/app_drawer.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/bottom_navigation_bar_widget.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/pages/my_appointment_screen.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
@@ -57,6 +58,8 @@ class _MainScreenState extends State<MainScreen> {
         builder: (context, value, child) {
           _loadedScreens.add(value);
           return Scaffold(
+            key: MainScreenHelpers.scaffoldKey,
+            drawer: const AppDrawer(),
             resizeToAvoidBottomInset: false,
             extendBody: true,
             backgroundColor: theme.colorScheme.surface,

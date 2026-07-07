@@ -5,14 +5,16 @@ import 'package:patient_portal/core/resources/app_text_styles.dart';
 
 class AppDrawerTile extends StatelessWidget {
   const AppDrawerTile({
-    required this.iconPath,
+    this.iconPath,
+    this.icon,
     required this.tileName,
     required this.onPress,
     this.isSelected = false,
     super.key,
-  });
+  }) : assert(iconPath != null || icon != null);
 
-  final String iconPath;
+  final String? iconPath;
+  final IconData? icon;
   final String tileName;
   final VoidCallback onPress;
   final bool isSelected;
@@ -36,15 +38,24 @@ class AppDrawerTile extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             child: Row(
               children: [
-                SvgPicture.asset(
-                  iconPath,
-                  height: 21,
-                  width: 21,
-                  colorFilter: ColorFilter.mode(
-                    foregroundColor.withValues(alpha: isSelected ? 1 : .82),
-                    BlendMode.srcIn,
+                if (iconPath != null)
+                  SvgPicture.asset(
+                    iconPath!,
+                    height: 21,
+                    width: 21,
+                    colorFilter: ColorFilter.mode(
+                      foregroundColor.withValues(alpha: isSelected ? 1 : .82),
+                      BlendMode.srcIn,
+                    ),
+                  )
+                else
+                  Icon(
+                    icon,
+                    size: 21,
+                    color: foregroundColor.withValues(
+                      alpha: isSelected ? 1 : .82,
+                    ),
                   ),
-                ),
                 const Gap(14),
                 Expanded(
                   child: Text(

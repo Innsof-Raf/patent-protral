@@ -5,7 +5,6 @@ import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_snack_bar.dart';
-import 'package:patient_portal/feature/main_screen/presentation/widgets/app_drawer.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/main_appbar.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
@@ -89,7 +88,6 @@ class _MyAppointmentScreenContentState
                   !state.isAppointmentsFetchingFailed)) {
             return Scaffold(
               appBar: MainAppBar(title: context.lang.myAppointments),
-              drawer: const AppDrawer(),
               body: const CommonLoadingView(),
             );
           }
@@ -97,7 +95,6 @@ class _MyAppointmentScreenContentState
           if (state.isAppointmentsFetchingFailed) {
             return Scaffold(
               appBar: MainAppBar(title: context.lang.myAppointments),
-              drawer: const AppDrawer(),
               body: CommonErrorView(
                 title: context.lang.unableToLoadAppointments,
                 message: state.error.message,
@@ -108,7 +105,6 @@ class _MyAppointmentScreenContentState
 
           return Scaffold(
             appBar: MainAppBar(title: context.lang.myAppointments),
-            drawer: const AppDrawer(),
             body: Container(
               color: colorScheme.surface,
               child: CustomScrollView(

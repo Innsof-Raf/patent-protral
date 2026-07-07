@@ -5,7 +5,6 @@ import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
-import 'package:patient_portal/feature/main_screen/presentation/widgets/app_drawer.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/main_appbar.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
@@ -54,7 +53,6 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
     return Scaffold(
       backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.9),
       appBar: MainAppBar(title: context.lang.specialist),
-      drawer: const AppDrawer(),
       body: BlocBuilder<SpecialityBloc, SpecialityState>(
         builder: (context, state) {
           if (state.isFetching ||

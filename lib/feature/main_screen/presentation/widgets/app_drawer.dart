@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/localization/language_helper.dart';
 import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
@@ -101,6 +102,12 @@ class AppDrawer extends StatelessWidget {
                         tileName: context.lang.profile,
                         isSelected: selectedIndex == 4,
                         onPress: () => _selectTab(context, 4),
+                      ),
+                      AppDrawerTile(
+                        icon: Icons.translate_outlined,
+                        tileName: context.lang.changeLanguage,
+                        onPress: () =>
+                            LanguageHelper.showLanguageSelection(context),
                       ),
                     ],
                   );

@@ -11,7 +11,6 @@ import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_s
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/member_selection_tile.dart';
-import 'package:patient_portal/feature/main_screen/presentation/widgets/app_drawer.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/reports_app_bar.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -85,7 +84,6 @@ class _ReportsScreenState extends State<ReportsScreen> {
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
       appBar: const ReportsAppBar(),
-      drawer: const AppDrawer(),
       body: DefaultTabController(
         length: 3,
         initialIndex: 1,
