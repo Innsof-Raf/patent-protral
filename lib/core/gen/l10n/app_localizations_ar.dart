@@ -1154,4 +1154,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get bookRadiologyScans => 'حجز فحوصات الأشعة';
+
+  @override
+  String get english => 'الإنجليزية';
+
+  @override
+  String get arabic => 'العربية';
 }

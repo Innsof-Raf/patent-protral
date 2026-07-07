@@ -2311,6 +2311,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Book Radiology Scans'**
   String get bookRadiologyScans;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @arabic.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic'**
+  String get arabic;
 }
 
 class _AppLocalizationsDelegate

@@ -1165,4 +1165,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get bookRadiologyScans => 'Book Radiology Scans';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get arabic => 'Arabic';
 }

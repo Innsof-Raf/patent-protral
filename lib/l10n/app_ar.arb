@@ -368,5 +368,7 @@
   "bookHospitalAppointment": "حجز موعد في المستشفى",
   "bookVideoConsultation": "حجز استشارة فيديو",
   "consultDoctorNow": "استشر طبيب الآن",
-  "bookRadiologyScans": "حجز فحوصات الأشعة"
+  "bookRadiologyScans": "حجز فحوصات الأشعة",
+  "english": "الإنجليزية",
+  "arabic": "العربية"
 }

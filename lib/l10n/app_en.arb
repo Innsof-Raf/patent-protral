@@ -368,5 +368,7 @@
   "bookHospitalAppointment": "Book Hospital Appointment",
   "bookVideoConsultation": "Book Video Consultation",
   "consultDoctorNow": "Consult Doctor Now",
-  "bookRadiologyScans": "Book Radiology Scans"
+  "bookRadiologyScans": "Book Radiology Scans",
+  "english": "English",
+  "arabic": "Arabic"
 }
