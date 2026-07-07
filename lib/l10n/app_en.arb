@@ -370,5 +370,7 @@
   "consultDoctorNow": "Consult Doctor Now",
   "bookRadiologyScans": "Book Radiology Scans",
   "english": "English",
-  "arabic": "Arabic"
+  "arabic": "Arabic",
+  "showMore": "Show More",
+  "showLess": "Show Less"
 }

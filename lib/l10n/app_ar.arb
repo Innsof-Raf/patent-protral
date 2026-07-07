@@ -370,5 +370,7 @@
   "consultDoctorNow": "استشر طبيب الآن",
   "bookRadiologyScans": "حجز فحوصات الأشعة",
   "english": "الإنجليزية",
-  "arabic": "العربية"
+  "arabic": "العربية",
+  "showMore": "عرض المزيد",
+  "showLess": "عرض أقل"
 }

@@ -11,8 +11,21 @@ import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_
 
 import 'member_selection_tile.dart';
 
-class MemberSelectionSection extends StatelessWidget {
+class MemberSelectionSection extends StatefulWidget {
   const MemberSelectionSection({super.key});
+
+  @override
+  State<MemberSelectionSection> createState() => _MemberSelectionSectionState();
+}
+
+class _MemberSelectionSectionState extends State<MemberSelectionSection> {
+  final ValueNotifier<bool> _isExpandedNotifier = ValueNotifier(false);
+
+  @override
+  void dispose() {
+    _isExpandedNotifier.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,19 +84,61 @@ class MemberSelectionSection extends StatelessWidget {
               final members = state.user?.members ?? [];
               if (members.isEmpty) return const SizedBox.shrink();
 
-              return ValueListenableBuilder(
-                valueListenable:
-                    BookAppointmentScreenHelpers.selectedMemberNotifier,
-                builder: (context, selectedMember, child) => ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: members.length,
-                  separatorBuilder: (context, index) => const Gap(12),
-                  itemBuilder: (context, index) => MemberSelectionTile(
-                    isSelected: selectedMember == members[index],
-                    member: members[index],
-                  ),
-                ),
+              return ValueListenableBuilder<bool>(
+                valueListenable: _isExpandedNotifier,
+                builder: (context, isExpanded, child) {
+                  final visibleMembers = (isExpanded || members.length <= 3)
+                      ? members
+                      : members.take(3).toList();
+
+                  return Column(
+                    children: [
+                      ValueListenableBuilder(
+                        valueListenable:
+                            BookAppointmentScreenHelpers.selectedMemberNotifier,
+                        builder: (context, selectedMember, child) =>
+                            ListView.separated(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: visibleMembers.length,
+                              separatorBuilder: (context, index) =>
+                                  const Gap(12),
+                              itemBuilder: (context, index) =>
+                                  MemberSelectionTile(
+                                    isSelected:
+                                        selectedMember == visibleMembers[index],
+                                    member: visibleMembers[index],
+                                  ),
+                            ),
+                      ),
+                      if (members.length > 3) ...[
+                        const Gap(8),
+                        Center(
+                          child: TextButton.icon(
+                            onPressed: () => _isExpandedNotifier.value =
+                                !_isExpandedNotifier.value,
+                            style: TextButton.styleFrom(
+                              foregroundColor: colorScheme.primary,
+                            ),
+                            icon: Icon(
+                              isExpanded
+                                  ? Icons.keyboard_arrow_up_rounded
+                                  : Icons.keyboard_arrow_down_rounded,
+                            ),
+                            label: Text(
+                              isExpanded
+                                  ? context.lang.showLess
+                                  : context.lang.showMore,
+                              style: AppTextStyles.bodyTextBoldRoboto.copyWith(
+                                color: colorScheme.primary,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ],
+                  );
+                },
               );
             },
           ),
