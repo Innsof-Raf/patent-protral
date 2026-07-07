@@ -10,10 +10,10 @@ import 'package:patient_portal/core/resources/common_widgets.dart/active_outline
 import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
-import 'package:patient_portal/feature/book_appointment/presentation/widgets/member_selection_tile.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/reports_app_bar.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
+import 'package:patient_portal/feature/profile/presentation/helpers/member_helper.dart';
 import 'package:patient_portal/feature/reports/domain/entities/report.dart';
 import 'package:patient_portal/feature/reports/domain/usecases/params/reports_params.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
@@ -266,7 +266,10 @@ class _ReportsScreenState extends State<ReportsScreen> {
                 ),
               ),
               ActiveOutlinedButton(
-                onPressed: () => _showMemberSelection(context),
+                onPressed: () => MemberHelper.showMemberSelection(
+                  context: context,
+                  title: context.lang.selectPatient,
+                ),
                 width: 120,
                 height: 36,
                 borderRadius: 10,
@@ -392,65 +395,6 @@ class _ReportsScreenState extends State<ReportsScreen> {
     return RefreshIndicator(
       onRefresh: () async => _fetchReports(),
       child: ReportsListView(reports: filteredReports),
-    );
-  }
-
-  void _showMemberSelection(BuildContext context) {
-    final theme = Theme.of(context);
-    final userState = context.read<UserBloc>().state;
-    final members = userState.user?.members ?? [];
-
-    showModalBottomSheet(
-      context: context,
-      constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height * 0.6,
-      ),
-      isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      builder: (context) {
-        return Container(
-          padding: const EdgeInsets.symmetric(vertical: 24).copyWith(top: 5),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.outlineVariant,
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
-              const Gap(16),
-              Flexible(
-                child: ListView(
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  children: [
-                    ...members.map(
-                      (member) => Padding(
-                        padding: const EdgeInsets.only(bottom: 12),
-                        child: MemberSelectionTile(
-                          member: member,
-                          isSelected: userState.selectedMember?.id == member.id,
-                          onTap: () {
-                            context.read<UserBloc>().add(
-                              SelectMember(member: member),
-                            );
-                            Navigator.pop(context);
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        );
-      },
     );
   }
 }
