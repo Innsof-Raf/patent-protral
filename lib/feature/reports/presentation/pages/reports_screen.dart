@@ -86,27 +86,34 @@ class _ReportsScreenState extends State<ReportsScreen> {
       backgroundColor: theme.colorScheme.surface,
       appBar: const ReportsAppBar(),
       drawer: const AppDrawer(),
-      body: BlocListener<UserBloc, UserState>(
-        listenWhen: (previous, current) =>
-            previous.selectedMember != current.selectedMember,
-        listener: (context, state) => _fetchReports(),
-        child: ValueListenableBuilder<int>(
-          valueListenable: _selectedTimeFilterIndexNotifier,
-          builder: (context, selectedIndex, _) {
-            final selectedTimeFilter = _timeFilters[selectedIndex];
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Divider(height: 1),
-                _buildMemberSelector(context),
-                _buildTimeFilter(context, selectedIndex),
-                const Gap(8),
-                Expanded(
-                  child: DefaultTabController(
-                    length: 3,
-                    initialIndex: 1,
-                    child: Column(
-                      children: [
+      body: DefaultTabController(
+        length: 3,
+        initialIndex: 1,
+        child: BlocListener<UserBloc, UserState>(
+          listenWhen: (previous, current) =>
+              previous.selectedMember != current.selectedMember,
+          listener: (context, state) => _fetchReports(),
+          child: ValueListenableBuilder<int>(
+            valueListenable: _selectedTimeFilterIndexNotifier,
+            builder: (context, selectedIndex, _) {
+              final selectedTimeFilter = _timeFilters[selectedIndex];
+              return NestedScrollView(
+                headerSliverBuilder: (context, innerBoxIsScrolled) {
+                  return [
+                    SliverToBoxAdapter(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Divider(height: 1),
+                          _buildMemberSelector(context),
+                          _buildTimeFilter(context, selectedIndex),
+                          const Gap(8),
+                        ],
+                      ),
+                    ),
+                    SliverPersistentHeader(
+                      pinned: true,
+                      delegate: _SliverAppBarDelegate(
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8),
                           child: TabBar(
@@ -155,55 +162,52 @@ class _ReportsScreenState extends State<ReportsScreen> {
                             ],
                           ),
                         ),
-                        Expanded(
-                          child: BlocBuilder<ReportsBloc, ReportsState>(
-                            builder: (context, state) {
-                              if (state.isFetchingReports ||
-                                  (!state.isFetchingSuccess &&
-                                      !state.isFetchingFailed)) {
-                                return const CommonLoadingView();
-                              }
+                      ),
+                    ),
+                  ];
+                },
+                body: BlocBuilder<ReportsBloc, ReportsState>(
+                  builder: (context, state) {
+                    if (state.isFetchingReports ||
+                        (!state.isFetchingSuccess && !state.isFetchingFailed)) {
+                      return const CommonLoadingView();
+                    }
 
-                              if (state.isFetchingFailed) {
-                                return CommonErrorView(
-                                  title: context.lang.unableToLoadReports,
-                                  message: state.error.message,
-                                  onRetry: _fetchReports,
-                                );
-                              }
+                    if (state.isFetchingFailed) {
+                      return CommonErrorView(
+                        title: context.lang.unableToLoadReports,
+                        message: state.error.message,
+                        onRetry: _fetchReports,
+                      );
+                    }
 
-                              return TabBarView(
-                                children: [
-                                  _buildReportsList(
-                                    state.reports,
-                                    context.lang.prescriptions,
-                                    selectedTimeFilter,
-                                    context,
-                                  ),
-                                  _buildReportsList(
-                                    state.reports,
-                                    context.lang.labReports,
-                                    selectedTimeFilter,
-                                    context,
-                                  ),
-                                  _buildReportsList(
-                                    state.reports,
-                                    context.lang.radiologyReports,
-                                    selectedTimeFilter,
-                                    context,
-                                  ),
-                                ],
-                              );
-                            },
-                          ),
+                    return TabBarView(
+                      children: [
+                        _buildReportsList(
+                          state.reports,
+                          context.lang.prescriptions,
+                          selectedTimeFilter,
+                          context,
+                        ),
+                        _buildReportsList(
+                          state.reports,
+                          context.lang.labReports,
+                          selectedTimeFilter,
+                          context,
+                        ),
+                        _buildReportsList(
+                          state.reports,
+                          context.lang.radiologyReports,
+                          selectedTimeFilter,
+                          context,
                         ),
                       ],
-                    ),
-                  ),
+                    );
+                  },
                 ),
-              ],
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );
@@ -450,5 +454,34 @@ class _ReportsScreenState extends State<ReportsScreen> {
         );
       },
     );
+  }
+}
+
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  _SliverAppBarDelegate(this._widget);
+
+  final Widget _widget;
+
+  @override
+  double get minExtent => 56.0;
+
+  @override
+  double get maxExtent => 56.0;
+
+  @override
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
+    return Container(
+      color: Theme.of(context).colorScheme.surface,
+      child: _widget,
+    );
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return false;
   }
 }
