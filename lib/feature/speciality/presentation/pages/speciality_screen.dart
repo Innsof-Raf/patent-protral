@@ -88,7 +88,9 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
                   centerTitle: false,
                   title: Container(
                     height: 46,
-                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                    ).copyWith(top: 3),
                     decoration: BoxDecoration(
                       color: theme.colorScheme.surfaceContainerHighest
                           .withValues(alpha: 0.3),
