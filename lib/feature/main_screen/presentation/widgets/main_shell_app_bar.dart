@@ -27,6 +27,7 @@ class MainShellAppBar extends StatelessWidget implements PreferredSizeWidget {
       surfaceTintColor: theme.colorScheme.surface,
       elevation: 0,
       scrolledUnderElevation: 3,
+      toolbarHeight: preferredSize.height,
       shadowColor: theme.colorScheme.shadow.withValues(alpha: 0.1),
       centerTitle: centerTitle,
       leading: Center(

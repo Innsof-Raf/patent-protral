@@ -5,6 +5,8 @@ import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_empty_state.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
+import 'package:patient_portal/feature/main_screen/presentation/widgets/app_drawer.dart';
+import 'package:patient_portal/feature/main_screen/presentation/widgets/main_appbar.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
 import 'package:patient_portal/feature/speciality/domain/usecases/params/speciality_params.dart';
@@ -51,6 +53,8 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.9),
+      appBar: MainAppBar(title: context.lang.specialist),
+      drawer: const AppDrawer(),
       body: BlocBuilder<SpecialityBloc, SpecialityState>(
         builder: (context, state) {
           if (state.isFetching ||
@@ -74,17 +78,17 @@ class _SpecialityScreenState extends State<SpecialityScreen> {
               slivers: [
                 SliverAppBar(
                   floating: true,
-                  pinned: true,
+                  pinned: false,
                   elevation: 0,
                   scrolledUnderElevation: 0,
+                  toolbarHeight: 56,
+                  automaticallyImplyLeading: false,
                   backgroundColor: theme.colorScheme.surface,
                   surfaceTintColor: theme.colorScheme.surface,
                   centerTitle: false,
                   title: Container(
                     height: 46,
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                    ).copyWith(top: 5),
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
                     decoration: BoxDecoration(
                       color: theme.colorScheme.surfaceContainerHighest
                           .withValues(alpha: 0.3),

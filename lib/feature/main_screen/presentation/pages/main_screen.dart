@@ -1,17 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:patient_portal/feature/home/presentation/pages/home_screen.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
-import 'package:patient_portal/feature/main_screen/presentation/widgets/app_drawer.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/bottom_navigation_bar_widget.dart';
-import 'package:patient_portal/feature/main_screen/presentation/widgets/home_appbar.dart';
-import 'package:patient_portal/feature/main_screen/presentation/widgets/main_appbar.dart';
-import 'package:patient_portal/feature/main_screen/presentation/widgets/profile_app_bar.dart';
-import 'package:patient_portal/feature/main_screen/presentation/widgets/reports_app_bar.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/pages/my_appointment_screen.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -52,14 +46,6 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    final List<PreferredSizeWidget?> appBars = [
-      const HomeAppBar(),
-      MainAppBar(title: context.lang.myAppointments),
-      MainAppBar(title: context.lang.specialist),
-      const ReportsAppBar(),
-      const ProfileAppBar(),
-    ];
-
     return BlocListener<UserBloc, UserState>(
       listener: (context, state) {
         if (state.user == null) {
@@ -74,8 +60,6 @@ class _MainScreenState extends State<MainScreen> {
             resizeToAvoidBottomInset: false,
             extendBody: true,
             backgroundColor: theme.colorScheme.surface,
-            drawer: const AppDrawer(),
-            appBar: appBars[value],
             body: PopScope(
               canPop: value == 0,
               onPopInvokedWithResult: (didPop, result) {

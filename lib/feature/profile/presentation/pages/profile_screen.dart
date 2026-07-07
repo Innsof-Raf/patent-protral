@@ -7,6 +7,8 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/logout_dialog.dart';
 import 'package:patient_portal/core/route/app_router.dart';
+import 'package:patient_portal/feature/main_screen/presentation/widgets/app_drawer.dart';
+import 'package:patient_portal/feature/main_screen/presentation/widgets/profile_app_bar.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/widgets/profile_header.dart';
 import 'package:patient_portal/feature/profile/presentation/widgets/profile_menu_item.dart';
@@ -21,6 +23,8 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
+      appBar: const ProfileAppBar(),
+      drawer: const AppDrawer(),
       body: BlocBuilder<UserBloc, UserState>(
         builder: (context, state) {
           if (state.isLoading) return const CommonLoadingView();

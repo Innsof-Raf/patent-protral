@@ -15,6 +15,8 @@ import 'package:patient_portal/feature/home/presentation/widgets/home_packages_s
 import 'package:patient_portal/feature/home/presentation/widgets/home_promotional_slider_section.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_quick_actions_section.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_specialities_section.dart';
+import 'package:patient_portal/feature/main_screen/presentation/widgets/app_drawer.dart';
+import 'package:patient_portal/feature/main_screen/presentation/widgets/home_appbar.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
 @RoutePage(name: 'HomeRoute')
@@ -30,11 +32,17 @@ class HomeScreen extends StatelessWidget {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         if (state.isDataFetching) {
-          return const Scaffold(body: CommonLoadingView());
+          return const Scaffold(
+            appBar: HomeAppBar(),
+            drawer: AppDrawer(),
+            body: CommonLoadingView(),
+          );
         }
 
         if (state.isDataFetchingFailed) {
           return Scaffold(
+            appBar: const HomeAppBar(),
+            drawer: const AppDrawer(),
             body: CommonErrorView(
               title: context.lang.unableToLoadHome,
               message: state.error.message,
@@ -54,6 +62,8 @@ class HomeScreen extends StatelessWidget {
 
         return Scaffold(
           backgroundColor: theme.colorScheme.surface,
+          appBar: const HomeAppBar(),
+          drawer: const AppDrawer(),
           body: DecoratedBox(
             decoration: BoxDecoration(
               gradient: LinearGradient(

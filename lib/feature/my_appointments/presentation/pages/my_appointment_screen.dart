@@ -5,6 +5,8 @@ import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_snack_bar.dart';
+import 'package:patient_portal/feature/main_screen/presentation/widgets/app_drawer.dart';
+import 'package:patient_portal/feature/main_screen/presentation/widgets/main_appbar.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/helpers/my_appointment_screen_helpers.dart';
@@ -15,14 +17,25 @@ import 'package:patient_portal/feature/my_appointments/presentation/widgets/my_a
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
 @RoutePage(name: 'MyAppointmentsRoute')
-class MyAppointmentScreen extends StatefulWidget {
+class MyAppointmentScreen extends StatelessWidget {
   const MyAppointmentScreen({super.key});
 
   @override
-  State<MyAppointmentScreen> createState() => _MyAppointmentScreenState();
+  Widget build(BuildContext context) {
+    return const _MyAppointmentScreenContent();
+  }
 }
 
-class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
+class _MyAppointmentScreenContent extends StatefulWidget {
+  const _MyAppointmentScreenContent();
+
+  @override
+  State<_MyAppointmentScreenContent> createState() =>
+      _MyAppointmentScreenContentState();
+}
+
+class _MyAppointmentScreenContentState
+    extends State<_MyAppointmentScreenContent> {
   @override
   void initState() {
     super.initState();
@@ -74,92 +87,104 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen> {
           if (state.isAppointmentsFetching ||
               (!state.isAppointmentsFetchingSuccess &&
                   !state.isAppointmentsFetchingFailed)) {
-            return const CommonLoadingView();
-          }
-
-          if (state.isAppointmentsFetchingFailed) {
-            return CommonErrorView(
-              title: context.lang.unableToLoadAppointments,
-              message: state.error.message,
-              onRetry: _fetchAppointments,
+            return Scaffold(
+              appBar: MainAppBar(title: context.lang.myAppointments),
+              drawer: const AppDrawer(),
+              body: const CommonLoadingView(),
             );
           }
 
-          return Container(
-            color: colorScheme.surface,
-            child: CustomScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                    child: AppointmentsOverviewCard(
-                      totalCount: state.myAppointments.length,
-                      consultedCount: state.myConsultedAppointments.length,
-                      upcomingCount: state.myNotConsultedAppointments.length,
+          if (state.isAppointmentsFetchingFailed) {
+            return Scaffold(
+              appBar: MainAppBar(title: context.lang.myAppointments),
+              drawer: const AppDrawer(),
+              body: CommonErrorView(
+                title: context.lang.unableToLoadAppointments,
+                message: state.error.message,
+                onRetry: _fetchAppointments,
+              ),
+            );
+          }
+
+          return Scaffold(
+            appBar: MainAppBar(title: context.lang.myAppointments),
+            drawer: const AppDrawer(),
+            body: Container(
+              color: colorScheme.surface,
+              child: CustomScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                      child: AppointmentsOverviewCard(
+                        totalCount: state.myAppointments.length,
+                        consultedCount: state.myConsultedAppointments.length,
+                        upcomingCount: state.myNotConsultedAppointments.length,
+                      ),
                     ),
                   ),
-                ),
-                SliverPersistentHeader(
-                  pinned: true,
-                  delegate: _SliverAppBarDelegate(
-                    child: Container(
-                      height: 72,
-                      decoration: BoxDecoration(
-                        color: colorScheme.surface,
-                        border: Border(
-                          bottom: BorderSide(
-                            color: colorScheme.outlineVariant.withValues(
-                              alpha: .3,
+                  SliverPersistentHeader(
+                    pinned: true,
+                    delegate: _SliverAppBarDelegate(
+                      child: Container(
+                        height: 72,
+                        decoration: BoxDecoration(
+                          color: colorScheme.surface,
+                          border: Border(
+                            bottom: BorderSide(
+                              color: colorScheme.outlineVariant.withValues(
+                                alpha: .3,
+                              ),
+                              width: 1,
                             ),
-                            width: 1,
                           ),
                         ),
-                      ),
-                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-                      alignment: Alignment.centerLeft,
-                      child: _AppointmentsTabBar(
-                        selectedIndexListenable:
-                            MyAppointmentScreenHelpers.selectedTabNotifier,
+                        padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                        alignment: Alignment.centerLeft,
+                        child: _AppointmentsTabBar(
+                          selectedIndexListenable:
+                              MyAppointmentScreenHelpers.selectedTabNotifier,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                SliverFillRemaining(
-                  child: TabBarView(
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: [
-                      AppointmentsTabbarView(
-                        title: context.lang.allAppointments,
-                        appointments: state.myAppointments,
-                        monthTimelineList: state.monthTimelineList,
-                        emptyTitle: context.lang.noAppointmentsYet,
-                        emptyMessage: context.lang.noAppointmentsMessage,
-                        onRefresh: () async => _fetchAppointments(),
-                      ),
-                      AppointmentsTabbarView(
-                        title: context.lang.consultedAppointments,
-                        appointments: state.myConsultedAppointments,
-                        monthTimelineList: state.monthTimelineListOfConsulted,
-                        emptyTitle: context.lang.noConsultedAppointments,
-                        emptyMessage:
-                            context.lang.noConsultedAppointmentsMessage,
-                        onRefresh: () async => _fetchAppointments(),
-                      ),
-                      AppointmentsTabbarView(
-                        title: context.lang.upcomingAppointments,
-                        appointments: state.myNotConsultedAppointments,
-                        monthTimelineList:
-                            state.monthTimelineListOfNotConsulted,
-                        emptyTitle: context.lang.noUpcomingAppointments,
-                        emptyMessage:
-                            context.lang.noUpcomingAppointmentsMessage,
-                        onRefresh: () async => _fetchAppointments(),
-                      ),
-                    ],
+                  SliverFillRemaining(
+                    child: TabBarView(
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: [
+                        AppointmentsTabbarView(
+                          title: context.lang.allAppointments,
+                          appointments: state.myAppointments,
+                          monthTimelineList: state.monthTimelineList,
+                          emptyTitle: context.lang.noAppointmentsYet,
+                          emptyMessage: context.lang.noAppointmentsMessage,
+                          onRefresh: () async => _fetchAppointments(),
+                        ),
+                        AppointmentsTabbarView(
+                          title: context.lang.consultedAppointments,
+                          appointments: state.myConsultedAppointments,
+                          monthTimelineList: state.monthTimelineListOfConsulted,
+                          emptyTitle: context.lang.noConsultedAppointments,
+                          emptyMessage:
+                              context.lang.noConsultedAppointmentsMessage,
+                          onRefresh: () async => _fetchAppointments(),
+                        ),
+                        AppointmentsTabbarView(
+                          title: context.lang.upcomingAppointments,
+                          appointments: state.myNotConsultedAppointments,
+                          monthTimelineList:
+                              state.monthTimelineListOfNotConsulted,
+                          emptyTitle: context.lang.noUpcomingAppointments,
+                          emptyMessage:
+                              context.lang.noUpcomingAppointmentsMessage,
+                          onRefresh: () async => _fetchAppointments(),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
