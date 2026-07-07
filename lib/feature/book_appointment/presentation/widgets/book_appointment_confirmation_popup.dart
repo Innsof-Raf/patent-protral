@@ -60,225 +60,227 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(24, 32, 24, 24),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: colorScheme.primary.withValues(alpha: 0.1),
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(
-                          appointmentId == 0
-                              ? Icons.event_available_rounded
-                              : Icons.update_rounded,
-                          color: colorScheme.primary,
-                          size: 24,
-                        ),
-                      ),
-                      const Gap(12),
-                      Expanded(
-                        child: Text(
-                          title,
-                          style: theme.textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: theme.colorScheme.onSurface,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const Gap(16),
-                  Text(
-                    appointmentId == 0
-                        ? context.lang.reviewAppointmentDetails
-                        : context.lang.reviewUpdatedSlotDetails,
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: colorScheme.onSurfaceVariant,
-                      height: 1.5,
-                    ),
-                  ),
-                  const Gap(24),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: colorScheme.surfaceContainerHighest.withValues(
-                        alpha: 0.3,
-                      ),
-                      borderRadius: BorderRadius.circular(24),
-                      border: Border.all(
-                        color: colorScheme.outlineVariant.withValues(
-                          alpha: 0.5,
-                        ),
-                      ),
-                    ),
-                    child: Column(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
                       children: [
                         Container(
-                          width: double.infinity,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 14,
-                          ),
+                          padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: colorScheme.surface,
-                            borderRadius: BorderRadius.circular(18),
-                            border: Border.all(
-                              color: colorScheme.outlineVariant.withValues(
-                                alpha: 0.5,
-                              ),
-                            ),
+                            color: colorScheme.primary.withValues(alpha: 0.1),
+                            shape: BoxShape.circle,
                           ),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.calendar_today_rounded,
-                                    size: 18,
-                                    color: colorScheme.primary,
-                                  ),
-                                  const Gap(10),
-                                  Text(
-                                    DateFormat(
-                                          'dd MMM yyyy',
-                                          context.currentLang,
-                                        )
-                                        .format(appointmentDateTime)
-                                        .localize(context.currentLang),
-                                    style: theme.textTheme.titleMedium
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          color: colorScheme.onSurface,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                              const Gap(10),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.access_time_rounded,
-                                    size: 18,
-                                    color: colorScheme.primary,
-                                  ),
-                                  const Gap(10),
-                                  Text(
-                                    DateFormat.jm(context.currentLang)
-                                        .format(appointmentDateTime)
-                                        .localize(context.currentLang),
-                                    style: theme.textTheme.titleMedium
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          color: colorScheme.onSurface,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                          child: Icon(
+                            appointmentId == 0
+                                ? Icons.event_available_rounded
+                                : Icons.update_rounded,
+                            color: colorScheme.primary,
+                            size: 24,
                           ),
                         ),
-                        const Gap(20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              child: _UserMiniProfile(
-                                name: doctorName,
-                                imageUrl: doctorImage,
-                                label: context.lang.doctor,
-                              ),
+                        const Gap(12),
+                        Expanded(
+                          child: Text(
+                            title,
+                            style: theme.textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: theme.colorScheme.onSurface,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                              ),
-                              child: Icon(
-                                Icons.arrow_forward_rounded,
-                                color: colorScheme.outlineVariant,
-                                size: 20,
-                              ),
-                            ),
-                            Expanded(
-                              child: _UserMiniProfile(
-                                name:
-                                    (member.name.trim().isEmpty
-                                            ? context.lang.unknown
-                                            : member.name)
-                                        .toTitleCase(),
-                                imageUrl: member.profileImage == null
-                                    ? null
-                                    : '${ConstantUrls.memberImageUrl}/${member.id}/${member.profileImage}',
-                                label: context.lang.patient,
-                                fallbackText: member.name.trim().isEmpty
-                                    ? context.lang.unknownInitial
-                                    : member.name.trim()[0],
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                  const Gap(28),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: ActiveOutlinedButton(
-                          onPressed: () => Navigator.pop(context),
-                          child: Text(context.lang.cancel),
+                    const Gap(16),
+                    Text(
+                      appointmentId == 0
+                          ? context.lang.reviewAppointmentDetails
+                          : context.lang.reviewUpdatedSlotDetails,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: colorScheme.onSurfaceVariant,
+                        height: 1.5,
+                      ),
+                    ),
+                    const Gap(24),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: colorScheme.surfaceContainerHighest.withValues(
+                          alpha: 0.3,
+                        ),
+                        borderRadius: BorderRadius.circular(24),
+                        border: Border.all(
+                          color: colorScheme.outlineVariant.withValues(
+                            alpha: 0.5,
+                          ),
                         ),
                       ),
-                      const Gap(12),
-                      Expanded(
-                        child: ActiveButton(
-                          onPressed: () {
-                            if (appointmentId == 0) {
-                              context.read<BookAppointmentBloc>().add(
-                                BookNewAppointment(
-                                  appointmentDateTime: appointmentDateTime,
-                                  idDoctor: idDoctor,
-                                  idMember: member.id,
-                                  mobileNo: context
-                                      .read<UserBloc>()
-                                      .state
-                                      .user!
-                                      .mobileNumber,
-                                  token: context
-                                      .read<UserBloc>()
-                                      .state
-                                      .user!
-                                      .accessToken,
+                      child: Column(
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 14,
+                            ),
+                            decoration: BoxDecoration(
+                              color: colorScheme.surface,
+                              borderRadius: BorderRadius.circular(18),
+                              border: Border.all(
+                                color: colorScheme.outlineVariant.withValues(
+                                  alpha: 0.5,
                                 ),
-                              );
-                            } else {
-                              context.read<BookAppointmentBloc>().add(
-                                RescheduleAppointment(
-                                  idAppointment: appointmentId,
-                                  appointmentDateTime: appointmentDateTime,
-                                  token: context
-                                      .read<UserBloc>()
-                                      .state
-                                      .user!
-                                      .accessToken,
+                              ),
+                            ),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.calendar_today_rounded,
+                                      size: 18,
+                                      color: colorScheme.primary,
+                                    ),
+                                    const Gap(10),
+                                    Text(
+                                      DateFormat(
+                                            'dd MMM yyyy',
+                                            context.currentLang,
+                                          )
+                                          .format(appointmentDateTime)
+                                          .localize(context.currentLang),
+                                      style: theme.textTheme.titleMedium
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            color: colorScheme.onSurface,
+                                          ),
+                                    ),
+                                  ],
                                 ),
-                              );
-                            }
-                            Navigator.pop(context);
-                          },
-                          child: Text(context.lang.confirm),
-                        ),
+                                const Gap(10),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.access_time_rounded,
+                                      size: 18,
+                                      color: colorScheme.primary,
+                                    ),
+                                    const Gap(10),
+                                    Text(
+                                      DateFormat.jm(context.currentLang)
+                                          .format(appointmentDateTime)
+                                          .localize(context.currentLang),
+                                      style: theme.textTheme.titleMedium
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            color: colorScheme.onSurface,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Gap(20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                child: _UserMiniProfile(
+                                  name: doctorName,
+                                  imageUrl: doctorImage,
+                                  label: context.lang.doctor,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                child: Icon(
+                                  Icons.arrow_forward_rounded,
+                                  color: colorScheme.outlineVariant,
+                                  size: 20,
+                                ),
+                              ),
+                              Expanded(
+                                child: _UserMiniProfile(
+                                  name:
+                                      (member.name.trim().isEmpty
+                                              ? context.lang.unknown
+                                              : member.name)
+                                          .toTitleCase(),
+                                  imageUrl: member.profileImage == null
+                                      ? null
+                                      : '${ConstantUrls.memberImageUrl}/${member.id}/${member.profileImage}',
+                                  label: context.lang.patient,
+                                  fallbackText: member.name.trim().isEmpty
+                                      ? context.lang.unknownInitial
+                                      : member.name.trim()[0],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                    const Gap(28),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ActiveOutlinedButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: Text(context.lang.cancel),
+                          ),
+                        ),
+                        const Gap(12),
+                        Expanded(
+                          child: ActiveButton(
+                            onPressed: () {
+                              if (appointmentId == 0) {
+                                context.read<BookAppointmentBloc>().add(
+                                  BookNewAppointment(
+                                    appointmentDateTime: appointmentDateTime,
+                                    idDoctor: idDoctor,
+                                    idMember: member.id,
+                                    mobileNo: context
+                                        .read<UserBloc>()
+                                        .state
+                                        .user!
+                                        .mobileNumber,
+                                    token: context
+                                        .read<UserBloc>()
+                                        .state
+                                        .user!
+                                        .accessToken,
+                                  ),
+                                );
+                              } else {
+                                context.read<BookAppointmentBloc>().add(
+                                  RescheduleAppointment(
+                                    idAppointment: appointmentId,
+                                    appointmentDateTime: appointmentDateTime,
+                                    token: context
+                                        .read<UserBloc>()
+                                        .state
+                                        .user!
+                                        .accessToken,
+                                  ),
+                                );
+                              }
+                              Navigator.pop(context);
+                            },
+                            child: Text(context.lang.confirm),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             PositionedDirectional(
@@ -330,18 +332,32 @@ class _UserMiniProfile extends StatelessWidget {
           child: CircleAvatar(
             radius: 32,
             backgroundColor: colorScheme.primaryContainer,
-            child: ClipOval(
-              child: SizedBox(
-                width: 64,
-                height: 64,
-                child: CachedNetworkImage(
-                  imageUrl: imageUrl!,
-                  fit: BoxFit.cover,
-                  placeholder: CommonNetworkImage.placeholder,
-                  errorWidget: CommonNetworkImage.errorWidget,
-                ),
-              ),
-            ),
+            child: imageUrl != null && imageUrl!.isNotEmpty
+                ? ClipOval(
+                    child: SizedBox(
+                      width: 64,
+                      height: 64,
+                      child: CachedNetworkImage(
+                        imageUrl: imageUrl!,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) =>
+                            CommonNetworkImage.placeholder(context, url),
+                        errorWidget: (context, url, error) =>
+                            CommonNetworkImage.errorWidget(context, url, error),
+                      ),
+                    ),
+                  )
+                : Text(
+                    (fallbackText ??
+                            (name.isNotEmpty
+                                ? name[0]
+                                : context.lang.unknownInitial))
+                        .capitalize(),
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                      color: colorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
           ),
         ),
         const Gap(12),
