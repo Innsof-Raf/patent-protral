@@ -32,10 +32,11 @@ dependencies:
   auto_route: ^11.1.0
   cached_network_image: ^3.4.1
   carousel_slider: ^5.1.2
+  collection: ^1.19.1
   cupertino_icons: ^1.0.9
   dartz: ^0.10.1
   dio: ^5.10.0
-  equatable: ^2.0.8
+  equatable: ^2.1.0
   file_picker: ^11.0.2
   flutter:
     sdk: flutter
@@ -51,7 +52,7 @@ dependencies:
   google_fonts: ^8.1.0
   http: ^1.6.0
   image_picker: ^1.2.3
-  intl: 0.20.2
+  intl: ^0.20.2
   json_annotation: ^4.12.0
   json_serializable: ^6.14.0
   path_provider: ^2.1.6
@@ -60,7 +61,7 @@ dependencies:
   shared_preferences: ^2.5.5
   smart_auth: ^3.2.0
   smooth_page_indicator: ^2.0.1
-  syncfusion_flutter_pdfviewer: ^33.2.12
+  syncfusion_flutter_pdfviewer: ^33.2.13
   url_launcher: ^6.3.2
 
 dev_dependencies:
