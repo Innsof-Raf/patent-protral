@@ -37,9 +37,9 @@ import 'package:patient_portal/feature/speciality/presentation/bloc/speciality_b
 final _appRouter = AppRouter();
 
 const _systemUiOverlayStyle = SystemUiOverlayStyle(
-  statusBarColor: AppColors.black,
-  statusBarIconBrightness: Brightness.light,
-  statusBarBrightness: Brightness.dark,
+  statusBarColor: Colors.transparent,
+  statusBarIconBrightness: Brightness.dark,
+  statusBarBrightness: Brightness.light,
   systemNavigationBarColor: Colors.transparent,
   systemNavigationBarDividerColor: Colors.transparent,
   systemNavigationBarIconBrightness: Brightness.dark,

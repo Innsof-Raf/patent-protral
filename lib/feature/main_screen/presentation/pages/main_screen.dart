@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
@@ -57,34 +58,43 @@ class _MainScreenState extends State<MainScreen> {
         valueListenable: MainScreenHelpers.mainScreenNotifier,
         builder: (context, value, child) {
           _loadedScreens.add(value);
-          return Scaffold(
-            key: MainScreenHelpers.scaffoldKey,
-            drawer: const AppDrawer(),
-            resizeToAvoidBottomInset: false,
-            extendBody: true,
-            backgroundColor: theme.colorScheme.surface,
-            body: PopScope(
-              canPop: value == 0,
-              onPopInvokedWithResult: (didPop, result) {
-                if (didPop) return;
-                MainScreenHelpers.mainScreenNotifier.value = 0;
-              },
-              child: IndexedStack(
-                index: value,
-                children: screens
-                    .asMap()
-                    .entries
-                    .map(
-                      (entry) => _loadedScreens.contains(entry.key)
-                          ? entry.value
-                          : const SizedBox.shrink(),
-                    )
-                    .toList(),
-              ),
+          return AnnotatedRegion<SystemUiOverlayStyle>(
+            value: SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
+              statusBarIconBrightness: Brightness.dark,
+              statusBarBrightness: Brightness.light,
+              systemNavigationBarColor: Colors.transparent,
+              systemNavigationBarIconBrightness: Brightness.dark,
             ),
-            floatingActionButton: const BottomNavigationBarWidget(),
-            floatingActionButtonLocation:
-                const _CompactBottomNavigationBarLocation(),
+            child: Scaffold(
+              key: MainScreenHelpers.scaffoldKey,
+              drawer: const AppDrawer(),
+              resizeToAvoidBottomInset: false,
+              extendBody: true,
+              backgroundColor: theme.colorScheme.surface,
+              body: PopScope(
+                canPop: value == 0,
+                onPopInvokedWithResult: (didPop, result) {
+                  if (didPop) return;
+                  MainScreenHelpers.mainScreenNotifier.value = 0;
+                },
+                child: IndexedStack(
+                  index: value,
+                  children: screens
+                      .asMap()
+                      .entries
+                      .map(
+                        (entry) => _loadedScreens.contains(entry.key)
+                            ? entry.value
+                            : const SizedBox.shrink(),
+                      )
+                      .toList(),
+                ),
+              ),
+              floatingActionButton: const BottomNavigationBarWidget(),
+              floatingActionButtonLocation:
+                  const _CompactBottomNavigationBarLocation(),
+            ),
           );
         },
       ),
