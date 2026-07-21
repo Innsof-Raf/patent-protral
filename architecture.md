@@ -1,65 +1,84 @@
 # architecture.md — Structural & Data-Flow Documentation
 
-> Scope: derived exclusively from the directory tree and imports under `lib/`.
+> Scope: derived exclusively from the directory tree and file imports under `lib/`, plus `pubspec.yaml`.
 
 ## Structural Pattern
 
-The project uses a **feature-first architecture**. Top level of `lib/`:
+The project is **feature-first with Clean Architecture layering inside each feature**. Top level of `lib/`:
 
 ```
 lib/
-├── main.dart          # entry point, root widget, global BLoC registration, theme
-├── feature/           # one directory per screen/feature (24 features)
-├── resources/         # cross-feature shared code
-└── route/             # centralized navigation
+├── main.dart                  # entry point, theme, root MultiBlocProvider, router wiring
+├── core/                      # cross-cutting infrastructure
+│   ├── injection_container.dart   # all get_it registrations + Dio setup
+│   ├── error/                 # ServerException / CacheException / AuthenticationException; Failure hierarchy
+│   ├── gen/                   # flutter_gen output (assets, fonts) + generated l10n delegates
+│   ├── localization/          # LanguageBloc, context.lang extension, language helper
+│   ├── resources/             # design tokens, ApiAgent, urls, helpers, common widgets/models/helpers
+│   ├── route/                 # AppRouter (auto_route), generated app_router.gr.dart, AuthGuard
+│   └── usecases/              # abstract UseCase<T, Params> base + NoParams
+├── feature/                   # 21 feature modules
+└── l10n/                      # app_en.arb, app_ar.arb
 ```
 
 ### Feature module layout
 
-Each directory under `lib/feature/` follows the same internal convention (folders present only when the feature needs them):
+Each directory under `lib/feature/` follows the same three-layer convention (layers present only when the feature needs them):
 
-- `<feature>_screen.dart` — the screen widget, at feature root.
-- `bloc/` or `blocs/` — BLoC, event, and state files (`blocs/` holds multiple named sub-BLoC folders when a feature has several, e.g. `login/blocs/otp_generation_bloc/`, `otp_verification_bloc/`, `otp_resent_bloc/`, `login_with_password_bloc/`).
-- `services/` (or `service/`) — static-method classes performing HTTP calls.
-- `models/` — freezed data models with generated `.freezed.dart` / `.g.dart` files co-located.
-- `helpers/` — static utility classes: form validators, `ValueNotifier` holders, widget-building/dialog-showing routines.
-- `widgets/` — feature-private widgets (tiles, app bars, tab views, popups).
+```
+feature/<name>/
+├── data/
+│   ├── datasources/       # abstract RemoteDataSource + Impl calling ApiAgent
+│   ├── models/            # freezed/json_serializable DTOs with toEntity() mappers
+│   └── repositories/      # RepositoryImpl implementing the domain interface
+├── domain/
+│   ├── entities/          # freezed domain objects
+│   ├── repositories/      # abstract repository contracts
+│   └── usecases/          # use case classes + params/ (freezed union parameter objects)
+└── presentation/
+    ├── bloc/              # bloc + event + state (freezed, `part of` files)
+    ├── pages/             # @RoutePage screen widgets
+    ├── widgets/           # feature-private widget classes
+    └── helpers/           # static helper classes (menus, validation, dialogs)
+```
 
-Features present: `add_document`, `add_member`, `book_appointment`, `cart`, `doctor_detail`, `doctors`, `documents`, `edit_profile_details`, `home`, `Item_detail_screen`, `lab`, `lab_item_detail`, `login`, `main_screen`, `medical_insurances`, `member_details`, `members`, `my_appointments`, `my_profile`, `notification`, `profile`, `report`, `reports`, `set_password`, `speciality`.
+Features present: `add_document`, `add_member`, `book_appointment`, `cart`, `doctor_detail`, `doctors`, `documents`, `edit_profile_details`, `home`, `lab`, `login`, `main_screen`, `medical_insurances`, `member_details`, `members`, `my_appointments`, `notification`, `profile`, `reports`, `set_password`, `speciality`.
 
-### Shared layer (`lib/resources/`)
+**Presentation-only features:** `cart`, `doctor_detail`, `edit_profile_details`, `main_screen`, `medical_insurances`, `member_details`, and `members` contain only a `presentation/` layer (no `data/` or `domain/`); their blocs either hold pure UI state or reuse other features' use cases. Features with multiple blocs nest them in named subfolders (e.g. `login/presentation/bloc/otp_generation_bloc/`, `otp_verification_bloc/`, `login_with_password_bloc/`).
 
-- `app_colors.dart`, `app_text_styles.dart`, `dimens.dart` — design tokens.
-- `urls.dart` — all endpoint constants (`ConstantUrls`).
-- `constant_messages.dart` — user-facing error message strings.
-- `error_model.dart` — the single failure type (`ErrorModel { String message }`).
-- `enums.dart`, `helpers.dart` — shared enums and utilities.
-- `common_widgets.dart/` (a directory) — reusable widgets: buttons, app bar, dialogs, checkboxes, image-picker tile, member tile, etc.
-- `common_helpers/` — shared form/validation helpers.
-- `common_models/` — models used by multiple features (appointment, insurance).
+All generated code (`.freezed.dart`, `.g.dart`) is emitted into a `generated/` subfolder next to its source file and referenced with `part 'generated/<file>.freezed.dart'`.
 
-### Navigation layer (`lib/route/`)
+### Navigation layer (`lib/core/route/`)
 
-- `route_constants.dart` — string route names as `RouteConstants` constants.
-- `router.dart` — `Approuter.generateRoute`, a single `switch` over route names. Every route is built with `PageRouteBuilder` using a shared 300 ms ease-in slide transition. Route parameters are passed as a `Map` in `RouteSettings.arguments` and unpacked by key inside each `case`.
+- `AppRouter` (`@AutoRouterConfig(replaceInRouteName: 'Screen,Route')`) extends `RootStackRouter` and declares 24 flat `AutoRoute` entries; `LoginRoute` is `initial: true`.
+- The default route type is a custom 300 ms ease-in horizontal slide transition (`_slideTransition`).
+- Screens are annotated `@RoutePage(name: '...')`; typed route arguments are generated into `app_router.gr.dart`. Route argument objects include domain entities (`Doctor`, `Member`, `Speciality`).
+- `AuthGuard extends AutoRouteGuard` resolves `UserBloc` from the `get_it` locator and redirects: an authenticated user hitting `LoginRoute` is replaced with `MainRoute`; an unauthenticated user hitting anything else is replaced with `LoginRoute`.
+- Startup routing: `MaterialApp.router` uses `_appRouter.config(deepLinkBuilder: ...)`, choosing the initial stack from the cached user — `MemberSelectionRoute` when the user has members, `MainRoute` when not, `LoginRoute` when no user is cached.
 
 ## Data Flow
 
-The concrete path from user interaction to network and back, as implemented (example: My Appointments):
+The concrete path from user interaction to the network and back (as implemented in the `reports` feature; other data-backed features follow the identical shape):
 
-1. **Screen → Event.** The screen widget dispatches an event with `context.read<SomeBloc>().add(...)`. Initial fetches are dispatched from `build` inside `WidgetsBinding.instance.addPostFrameCallback`. Credentials are read from `UserBloc` state at dispatch time and carried **inside the event** (`token`, `mobileNumber` fields).
-2. **BLoC → Service.** Each BLoC registers handlers in its constructor via `on<Event>`. A handler first emits a "fetching" state (resetting success/failure flags with `copyWith`), then awaits a **static method** on the feature's service class.
-3. **Service → Network.** Service methods build the request and call `package:http` directly. Business API calls POST to the single RPC endpoint `ConstantUrls.serviceUrl` with a JSON envelope of the shape `{ "CONTENT": "<stringified JSON payload>", "TYPE": "<operation code>" }` (e.g. `PP0015` = fetch appointments, `PP0019` = cancel appointment), plus a `Bearer` token in the `Authorization` header.
-4. **Service → Either.** The service decodes the response, maps JSON into freezed models via `Model.fromJson`, and returns `Either<ErrorModel, T>` (dartz): `Right(data)` on HTTP 200/201, `Left(ErrorModel)` otherwise. `SocketException`, `TimeoutException`, and a generic `catch` are converted to `Left` with the corresponding `ConstantMessages` string.
-5. **BLoC folds.** The handler calls `.fold(...)`: the left branch emits a failure state carrying the `ErrorModel`; the right branch performs any in-handler list processing (sorting, grouping appointments by month, splitting consulted/not-consulted) and emits a success state via `copyWith`.
-6. **State → UI.** Screens subscribe with `BlocBuilder` or `BlocConsumer`. The `builder` branches on boolean state flags: fetching → GIF loading image; failed → `state.error.message` text; empty → empty-state text; otherwise → data widgets. One-shot side effects (success dialogs) run in the `BlocConsumer` `listener`.
-7. **Local mutations.** Post-network list updates (cancelled/rescheduled/newly booked appointments) are applied by dedicated BLoC events that copy and transform the in-memory lists already held in state, without a refetch.
+1. **Screen → Event.** The screen (`reports_screen.dart`) reads the session from `UserBloc` state (`accessToken`, member id, mobile number) and dispatches `context.read<ReportsBloc>().add(GetReports(params: ReportsParams.getReports(...)))`. Initial fetches are dispatched from `initState`; re-fetches are triggered by a `BlocListener` on `UserBloc` when the selected member changes. Credentials always travel **inside the freezed params object**, not through the data layer's own state.
+2. **BLoC → UseCase.** Handlers are registered in the bloc constructor via `on<Event>`. A handler first emits a loading state (`copyWith` raising `isFetching...` and resetting the success/failure flags), then awaits the injected use case, which returns `Future<Either<ErrorModel, T>>`.
+3. **UseCase → Repository.** Use cases (e.g. `ReportsUseCase`) are thin classes holding the abstract domain repository and forwarding the params. An abstract `UseCase<T, Params>` base with `call()` exists in `lib/core/usecases/usecase.dart`; the feature use cases examined expose named methods returning `Either<ErrorModel, T>` directly.
+4. **Repository → DataSource.** `RepositoryImpl` (data layer) calls the abstract `RemoteDataSource`, maps returned DTO models to domain entities via `model.toEntity()`, and wraps the result: `Right(entities)` on success, `Left(ErrorModel(message: ...))` on any caught exception (stripping the `'ServerException: '` prefix from the message).
+5. **DataSource → Network.** `RemoteDataSourceImpl` unpacks the freezed params union with `params.maybeMap(...)` (throwing `ServerException` for a mismatched variant), builds the request envelope with `serviceRequest(type: 'PPxxxx', content: p.toJson())` (`lib/core/resources/api_helpers.dart`), and posts it to the single RPC endpoint `ConstantUrls.serviceUrl` through `ApiAgent` with a `Bearer` token. Responses are decoded with `decodeResponseData` and mapped into models via `Model.fromJson`. Binary downloads use `client.get<Uint8List>(responseType: ResponseType.bytes)`.
+6. **ApiAgent (network boundary).** `ApiAgent` wraps `Dio.get`/`Dio.post`, sets content type (`application/json` or `multipart/form-data`) and the `Authorization` header, and converts every `DioException` into a `ServerException` with a human-readable message (timeout, no-connection, server `message` field extraction, status-code fallback). A `_CustomLogger` Dio interceptor logs request/response/error details via `dart:developer` in debug mode only.
+7. **BLoC folds.** The handler calls `.fold(...)`: the left branch emits a failure state carrying the `ErrorModel`; the right branch emits a success state with the data. Every terminal emit sets exactly one of the `is...Success` / `is...Failed` flags.
+8. **State → UI.** Screens subscribe with `BlocBuilder` (rendering: loading view → error view with retry → data/empty state) and use `BlocListener`/`BlocConsumer` for one-shot side effects (snack bars, dialogs, refetch triggers). Cross-feature session state (current user, selected member) is read from the globally provided `UserBloc`.
 
 ## Dependency Management
 
-- **No service locator.** There is no `get_it`, `injectable`, `provider`-based DI, or manual locator anywhere in `lib/`.
-- **BLoC registration:** all 20 globally shared BLoCs are instantiated eagerly in `lib/main.dart` inside one root `MultiBlocProvider` wrapping `MaterialApp`. Widgets obtain them with `context.read<T>()` / `BlocBuilder` from anywhere in the tree; no feature-scoped `BlocProvider` exists at route level.
-- **Services:** every service class exposes only `static` methods and holds no state; they are never instantiated, injected, or mocked via abstraction — BLoCs reference them by class name directly.
-- **Helpers:** static-only classes. Several hold **global mutable UI state as `static ValueNotifier` fields** (e.g. `MyAppointmentScreenHelpers.selectedTabNotifier`), reset imperatively from screen `build` methods.
-- **Initialization order:** `main()` calls `WidgetsFlutterBinding.ensureInitialized()`, sets portrait orientation, then runs `MyApp`. `MaterialApp` sets `initialRoute` to the login screen and the global `ThemeData` (color scheme, input decoration theme, text button theme, text theme).
-- **Session lifetime:** the authenticated user object (including `accessToken`) exists only in `UserBloc` state for the life of the process; no dependency provides persistence across launches.
+- **Service locator:** `get_it`, exposed as the top-level `final sl = GetIt.instance` in `lib/core/injection_container.dart`. There is no `injectable` code generation; every registration is written by hand in a single async `init()` function, organized by feature with `//! Features - <name>` banner comments.
+- **Registration conventions:**
+  - **BLoCs** → `registerFactory` (a new instance per resolution). `UserBloc` uses `registerFactoryParam<UserBloc, User?, void>` to accept the initial cached user.
+  - **Use cases** → `registerLazySingleton`.
+  - **Repositories** → `registerLazySingleton<AbstractRepository>(() => RepositoryImpl(remoteDataSource: sl()))`, bound to the domain interface.
+  - **Data sources** → `registerLazySingleton<AbstractDataSource>(() => DataSourceImpl(client: sl()))`.
+  - **Externals** → `SharedPreferences.getInstance()` is awaited inside `init()` and registered as a lazy singleton; `ApiAgent` and a configured `Dio` (20 s timeouts + `_CustomLogger` interceptor) are lazy singletons.
+- **Initialization order (`main()`):** `WidgetsFlutterBinding.ensureInitialized()` → `FlutterNativeSplash.preserve` → `await di.init()` → date-formatting init for `ar`/`en` → cached user loaded via `sl<UserLocalDataSource>().getUser()` → system UI mode/overlay/orientation setup → `runApp(MyApp(initialUser: ...))`.
+- **BLoC provisioning:** all 20 blocs are provided once, app-wide, in the root `MultiBlocProvider` in `MyApp.build`, each created by resolving from `sl`. `UserBloc` is created with `param1: initialUser` and immediately receives an `InitializeUser` event; `LanguageBloc` immediately receives `LoadLanguage`. No route-scoped `BlocProvider` exists.
+- **Locale rebuild:** `MaterialApp.router` is wrapped in a `BlocBuilder<LanguageBloc, LanguageState>` so a language change rebuilds the app with the new `locale`.
+- **Session persistence:** `UserLocalDataSourceImpl` persists the `User` entity (with access/refresh tokens) to `SharedPreferences` as JSON; `saveUser` preserves an existing non-empty refresh token when the incoming user object lacks one. The router's deep-link builder and `AuthGuard` both key off this session state.
