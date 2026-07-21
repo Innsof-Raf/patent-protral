@@ -1,0 +1,35 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/localization/localization_extension.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_appbar.dart';
+import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
+import 'package:patient_portal/feature/medical_insurances/presentation/widgets/medical_insurance_widget.dart';
+
+@RoutePage(name: 'MedicalInsuranceRoute')
+class MedicalInsurancesScreen extends StatelessWidget {
+  const MedicalInsurancesScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: CommonAppbar(title: context.lang.medicalInsurance),
+      body: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) => GridView.builder(
+          padding: const EdgeInsets.all(15),
+          shrinkWrap: true,
+          itemCount: state.homeData.topInsurances.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+          ),
+          itemBuilder: ((context, index) => MedicalInsuranceWidget(
+            idInsurance: state.homeData.topInsurances[index].idInsurance,
+            image: state.homeData.topInsurances[index].img!,
+          )),
+        ),
+      ),
+    );
+  }
+}
