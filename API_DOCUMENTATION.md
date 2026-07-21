@@ -1,0 +1,352 @@
+# Full Project API Documentation - Patient Portal (Flutter Guide)
+
+This document provides a comprehensive, detailed breakdown of all the backend API endpoints utilized by the Patient Portal. It has been specifically adapted for a **Flutter/Dart** frontend implementation, translating the existing web application's service architecture into mobile-compatible patterns.
+
+---
+
+## 1. Base Configuration & HTTP Client Setup
+
+In Flutter, network requests should be centralized using a client like `dio` or the `http` package.
+- **Base URL:** `http://localhost:4255/api/` (Use `10.0.2.2` if running on an Android emulator locally, or point to a staging server like `http://185.52.54.42:8081/api/`).
+- **Interceptors / Middleware:**
+    - On a `401 Unauthorized` response, the app should clear local storage and use `Navigator` or `GoRouter` to redirect the user to the Login screen.
+    - Implement a central exception handler for standard error dialogs.
+
+---
+
+## 2. Authentication & Authorization APIs
+
+These endpoints handle login, registration, and OTP-based authentication, returning a user object containing the JWT token.
+
+### 2.1 Standard Username/Password Login
+- **Endpoint:** `user/auth`
+- **Method:** `POST` (JSON Payload)
+- **Why Used:** For internal users or patients logging in with a registered username and password.
+- **Request Body (JSON):**
+  ```json
+  {
+    "username": "example_user",
+    "password": "example_password"
+  }
+  ```
+- **Response Model:** Returns a complete JSON object that maps to the `UserModel` Dart class.
+- **Flutter Implementation:** Parse the response into a `UserModel` and save the token securely.
+
+### 2.2 Patient Portal OTP Request
+- **Endpoint:** `user/ppauth`
+- **Method:** `POST` (JSON Payload)
+- **Why Used:** First step for the mobile OTP login flow. It triggers an SMS with an OTP to the given mobile number.
+- **Request Body:** Requires mobile number or user identity (e.g. `{"mobileNo": "1234567890"}`).
+- **Response Model:** Success/Failure confirmation message.
+
+### 2.3 Patient Portal OTP Verification
+- **Endpoint:** `user/ppauthotp`
+- **Method:** `POST` (JSON Payload)
+- **Why Used:** Second step for mobile OTP login. Validates the OTP.
+- **Request Body:** Requires the OTP code and mobile number (e.g. `{"mobileNo": "1234567890", "otp": "1234"}`).
+- **Response Model:** Returns a complete JSON object mapping to the `UserModel` class.
+
+### 2.4 User Registration
+- **Endpoint:** `register`
+- **Method:** `POST` (JSON Payload)
+- **Why Used:** To register a new user account.
+- **Request Body:** JSON representation of new user details.
+- **Response Model:** Success confirmation or the newly created `UserModel`.
+
+---
+
+## 3. Generic Data & Page Services
+
+These APIs power dynamic rendering and metadata fetching. They require the `Authorization` header (`Bearer <token>`). All use **JSON** payloads.
+
+| Function Name        | Method | Endpoint        | Description                                                         |
+|:---------------------|:------:|:----------------|:--------------------------------------------------------------------|
+| `getPageSearch`      |  POST  | `page/search`   | Fetches generic search results for a specific page/module ID.       |
+| `getPageInfo`        |  GET   | `page/info`     | Retrieves metadata or structural configuration for a specific page. |
+| `getPageLookup`      |  POST  | `page/lookup`   | Performs a lookup query (e.g., dropdowns).                          |
+| `getPageRecordInfo`  |  POST  | `page/edit`     | Retrieves detailed information for a specific record.               |
+| `savePageRecordInfo` |  POST  | `page/save`     | Saves or updates a generic page record.                             |
+| `getReportInfo`      |  GET   | *(Dynamic URL)* | Fetches reports by passing a dynamic URL to the service.            |
+
+---
+
+## 4. Patient Portal Specific Services (The `Apm` Handler)
+
+A majority of the patient portal business logic routes through a single generic handler (`Apm/service`), where the desired action is specified via a `type` (Service Code) parameter in the payload.
+
+### 4.1 The Generic Portal Handler
+- **Endpoint:** `/Apm/service`
+- **Method:** `POST`
+- **Headers:** `Authorization: Bearer <token>`, `Content-Type: application/json`
+- **Why Used:** Centralized gateway for all portal-specific actions.
+- **Standard Request Payload (JSON):**
+  ```json
+  {
+    "type": "SERVICE_CODE",
+    "content": "JSON_STRINGIFIED_DATA"
+  }
+  ```
+
+---
+
+## 5. File & Report Operations
+
+### 5.1 Upload File (FormData API Call)
+- **Endpoint:** `file/upload`
+- **Method:** `POST`
+- **Headers:** `Authorization: Bearer <token>`, `Content-Type: multipart/form-data`
+- **Why Used:** Used to upload images (e.g., patient profiles). Must use Flutter's `MultipartRequest` in the `http` package or `FormData` in `dio`.
+- **Request Payload (FormData):**
+    - `file`: The binary file data to be uploaded.
+- **Response Model:** Returns a JSON object containing the string URL or file ID generated by the server.
+
+### 5.2 Download Report
+- **Endpoint:** `/Apm/Report`
+- **Method:** `GET`
+- **Headers:** `Authorization: Bearer <token>`
+- **Why Used:** Fetches PDF reports (Lab results, Prescriptions).
+- **Response Model:** Returns a Base64-encoded PDF string which can be decoded in Dart and passed to a PDF viewing widget.
+
+---
+
+## 6. Usage Context & Payload Architecture (Dart Implementation)
+
+By examining the existing architecture, we can replicate how Service Codes are wrapped into network requests using a central Service Handler in Dart.
+
+### 6.1 The Payload Structure
+Whenever a screen needs data (like fetching Home page banners or Doctors), it calls the `/Apm/service` endpoint. The payload ALWAYS contains two properties:
+1. `type`: The literal string code (e.g., `"PP0038"`). It is recommended to create a Dart `enum` or a class with static const strings for these codes.
+2. `content`: A **stringified** JSON object containing the actual parameters. In Dart, you achieve this by passing `jsonEncode(map)` as the string value.
+
+### 6.2 Execution Examples in Dart
+
+**Example 1: Fetching Home Page Details (`PP0038`)**
+Used in the Home Screen's `initState` or BLoC/Provider.
+```dart
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+Future<void> fetchPortalHomeDetails() async {
+  final url = Uri.parse('http://10.0.2.2:4255/api/Apm/service');
+  final payload = {
+    "type": "PP0038", // AppointmentPortalServiceCodes.portalHomeDetails
+    "content": jsonEncode({
+      "id_client": 6
+    })
+  };
+
+  final response = await http.post(
+    url,
+    headers: {
+      "Authorization": "Bearer \$token",
+      "Content-Type": "application/json"
+    },
+    body: jsonEncode(payload),
+  );
+
+  if (response.statusCode == 200) {
+    final data = jsonDecode(response.body);
+    // Parse data into Dart models (e.g., List<DoctorModel>)
+  }
+}
+```
+
+**Example 2: Cancelling an Appointment (`HMS0089`)**
+Used to cancel an existing appointment by its ID.
+```dart
+Future<void> cancelAppointment(int appointmentId) async {
+  final url = Uri.parse('http://10.0.2.2:4255/api/Apm/service');
+  final payload = {
+    "type": "HMS0089",
+    "content": jsonEncode({
+      "id_appmnt": appointmentId
+    })
+  };
+
+  final response = await http.post(
+    url,
+    headers: {
+      "Authorization": "Bearer \$token",
+      "Content-Type": "application/json"
+    },
+    body: jsonEncode(payload),
+  );
+
+  if (response.statusCode == 200) {
+    final data = jsonDecode(response.body);
+    // data['status'] == 1 indicates success
+  }
+}
+```
+---
+
+## 7. Complete Service Codes Reference
+
+The backend expects specific "Service Codes" to route requests. Below is the complete list of actively used codes for the Patient Portal, including exactly what JSON to send and what Response Model to expect back.
+
+### 7.1 Actively Used Portal Service Codes
+
+All of these requests are sent to the `/Apm/service` endpoint via `POST` using a standard JSON payload format.
+
+| Code (`type`) | Constant Name                | Request Payload (`content`)                       | Expected Response Model                                                                |
+|---------------|------------------------------|---------------------------------------------------|----------------------------------------------------------------------------------------|
+| `PP0001`      | `getDoctorList`              | `{}` (Empty JSON)                                 | `List<DoctorModel>`                                                                    |
+| `PP0002`      | `getDoctorAvailableDate`     | `{"id_doctor":"EMP001", "currDate":"yyyy-MM-dd"}` | List of available dates (Strings)                                                      |
+| `PP0003`      | `getDoctorAvailableDateTime` | `{"id_doctor":"EMP001", "shift_dt":"yyyy-MM-dd"}` | List of available time slots (Strings)                                                 |
+| `PP0008`      | `saveAppointment`            | JSON mapping to `AppointmentModel`                | Success/Failure Message or Boolean                                                     |
+| `PP0013`      | `getDepartmentList`          | `{}` (Empty JSON)                                 | List of Department Objects (e.g. `[{"id": 1, "name": "Cardiology"}]`)                  |
+| `PP0014`      | `getfilterOptions`           | `{}` (Empty JSON)                                 | List of Location/Language filter options                                               |
+| `PP0016`      | `getVisitHistory`            | `{"mobile_no": "...", "status": "ALL"}`           | `List<AppointmentModel>`                                                               |
+| `PP0038`      | `portalHomeDetails`          | `{"id_client": 6}`                                | Object containing `banner` list, `DOCTOR` (`List<DoctorModel>`), and `department` list |
+| `PP0039`      | `updateStars`                | `{"id_employee": "EMP001", "rating": 5}`          | Success/Failure Boolean                                                                |
+| `HMS0034`     | `PatientBasicDetails`        | `{"patient_id": "..."}`                           | Object containing Patient Demographic details                                          |
+| `HMS0035`     | `SavePatientBasicDetails`    | JSON containing updated patient demography        | Success/Failure Boolean                                                                |
+| `HMS0089`     | `cancelappointment`          | `{"id_appmnt": 123}`                              | Success/Failure Boolean (Status: 1/true)                                               |
+| `WRK0012`     | `GetNotifications`           | `{}` (Empty JSON)                                 | List of Notification Objects                                                           |
+
+---
+
+## 8. Data Response Models (Dart Classes)
+
+To easily parse the JSON responses from the `Apm/service` endpoint, you should define corresponding Dart data models. Below are the core response structures translated directly from the original TypeScript definitions (`UserModel`, `DoctorModel`, and `AppointmentModel`).
+
+### 8.1 User Model (Authentication)
+Used to parse the response from the `/user/auth` and OTP verification endpoints.
+
+```dart
+class UserModel {
+  final String id;
+  final String username;
+  final String emailId;
+  final String mobileNo;
+  final String accessToken;
+  final String fcmToken;
+  final int notificationCount;
+
+  UserModel({
+    required this.id,
+    required this.username,
+    required this.emailId,
+    required this.mobileNo,
+    required this.accessToken,
+    required this.fcmToken,
+    required this.notificationCount,
+  });
+
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      id: json['Id'] ?? '',
+      username: json['Username'] ?? '',
+      emailId: json['EmailID'] ?? '',
+      mobileNo: json['MobileNo'] ?? '',
+      accessToken: json['accessToken'] ?? '',
+      fcmToken: json['FCM_Token'] ?? '',
+      notificationCount: json['notificationcount'] ?? 0,
+    );
+  }
+}
+```
+
+### 8.2 Doctor Model
+Used when fetching lists of doctors (`PP0001`) or home page details (`PP0038`).
+
+```dart
+class DoctorModel {
+  final String idBusunit;
+  final String idDept;
+  final String deptName;
+  final String idEmployee;
+  final String employeeId;
+  final String employeeName;
+  final String experience;
+  final String branch;
+  final String consFee;
+  final String availability;
+  final String profileUrl;
+  final List<String> languageKnown;
+
+  DoctorModel({
+    required this.idBusunit,
+    required this.idDept,
+    required this.deptName,
+    required this.idEmployee,
+    required this.employeeId,
+    required this.employeeName,
+    required this.experience,
+    required this.branch,
+    required this.consFee,
+    required this.availability,
+    required this.profileUrl,
+    required this.languageKnown,
+  });
+
+  factory DoctorModel.fromJson(Map<String, dynamic> json) {
+    return DoctorModel(
+      idBusunit: json['id_busunit'] ?? '',
+      idDept: json['id_dept'] ?? '',
+      deptName: json['dept_name'] ?? '',
+      idEmployee: json['id_employee'] ?? '',
+      employeeId: json['employee_id'] ?? '',
+      employeeName: json['employee_name'] ?? '',
+      experience: json['experience'] ?? '',
+      branch: json['branch'] ?? '',
+      consFee: json['cons_fee'] ?? '',
+      availability: json['availability'] ?? '',
+      profileUrl: json['profileUrl'] ?? '',
+      languageKnown: List<String>.from(json['lang'] ?? []),
+    );
+  }
+}
+```
+
+### 8.3 Appointment Model
+Used when fetching visit history (`PP0016`) or parsing appointment responses.
+
+```dart
+class AppointmentModel {
+  final String id;
+  final String idEmployee;
+  final String employeeName;
+  final String employeeImg;
+  final String busunitName;
+  final String appmntMode;
+  final String appmntDttm;
+  final String appmntDt;
+  final String appmntTime;
+  final String idCustomer;
+  final String customerName;
+  final String mobileNo;
+
+  AppointmentModel({
+    required this.id,
+    required this.idEmployee,
+    required this.employeeName,
+    required this.employeeImg,
+    required this.busunitName,
+    required this.appmntMode,
+    required this.appmntDttm,
+    required this.appmntDt,
+    required this.appmntTime,
+    required this.idCustomer,
+    required this.customerName,
+    required this.mobileNo,
+  });
+
+  factory AppointmentModel.fromJson(Map<String, dynamic> json) {
+    return AppointmentModel(
+      id: json['Id'] ?? '',
+      idEmployee: json['ID_Employee'] ?? '',
+      employeeName: json['Employee_Name'] ?? '',
+      employeeImg: json['Employee_Img'] ?? '',
+      busunitName: json['Busunit_Name'] ?? '',
+      appmntMode: json['Appmnt_Mode'] ?? '',
+      appmntDttm: json['Appmnt_Dttm'] ?? '',
+      appmntDt: json['Appmnt_Dt'] ?? '',
+      appmntTime: json['Appmnt_Time'] ?? '',
+      idCustomer: json['ID_Customer'] ?? '',
+      customerName: json['Customer_Name'] ?? '',
+      mobileNo: json['Mobile_No'] ?? json['Patient_MobileNo'] ?? '',
+    );
+  }
+}
+```

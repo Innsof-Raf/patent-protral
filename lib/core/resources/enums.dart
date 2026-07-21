@@ -1,0 +1,1 @@
+enum CartItemTypes { package, test }

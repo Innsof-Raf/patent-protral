@@ -1,155 +1,313 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_portal/feature/add_document/bloc/add_document_bloc.dart';
-import 'package:patient_portal/feature/add_member/blocs/inurance_bloc/insurance_bloc.dart';
-import 'package:patient_portal/feature/book_appointment/blocs/appointment_bloc.dart/appointment_bloc.dart';
-import 'package:patient_portal/feature/doctors/blocs/doctor/doctor_bloc.dart';
-import 'package:patient_portal/feature/home/bloc/home_bloc.dart';
-import 'package:patient_portal/feature/lab/blocs/items_bloc/items_bloc.dart';
-import 'package:patient_portal/feature/login/blocs/otp_generation_bloc/otp_generation_bloc.dart';
-import 'package:patient_portal/feature/login/blocs/otp_verification_bloc/otp_verification_bloc.dart';
-import 'package:patient_portal/feature/profile/bloc/user_bloc.dart';
-import 'package:patient_portal/feature/reports/bloc/reports_bloc.dart';
-import 'package:patient_portal/feature/set_password/bloc/change_password_bloc.dart';
-import 'package:patient_portal/resources/app_colors.dart';
-import 'package:patient_portal/resources/app_text_styles.dart';
-import 'package:patient_portal/route/route_constants.dart';
-import 'package:patient_portal/route/router.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:patient_portal/core/gen/l10n/app_localizations.dart';
+import 'package:patient_portal/core/injection_container.dart' as di;
+import 'package:patient_portal/core/localization/bloc/language_bloc.dart';
+import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/resources/app_text_styles.dart';
+import 'package:patient_portal/core/route/app_router.dart';
+import 'package:patient_portal/feature/add_document/presentation/bloc/add_document_bloc.dart';
+import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
+import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
+import 'package:patient_portal/feature/doctors/presentation/bloc/doctor_bloc/doctor_bloc.dart';
+import 'package:patient_portal/feature/doctors/presentation/bloc/search_doctor_bloc/search_doctor_bloc.dart';
+import 'package:patient_portal/feature/documents/presentation/bloc/documents_bloc/documents_bloc.dart';
+import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
+import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
+import 'package:patient_portal/feature/login/presentation/bloc/login_with_password_bloc/login_with_password_bloc.dart';
+import 'package:patient_portal/feature/login/presentation/bloc/otp_generation_bloc/otp_generation_bloc.dart';
+import 'package:patient_portal/feature/login/presentation/bloc/otp_verification_bloc/otp_verification_bloc.dart';
+import 'package:patient_portal/feature/member_details/presentation/bloc/member_detail_bloc.dart';
+import 'package:patient_portal/feature/members/presentation/bloc/delete_member_bloc/delete_member_bloc.dart';
+import 'package:patient_portal/feature/members/presentation/bloc/member_search_bloc/member_search_bloc.dart';
+import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
+import 'package:patient_portal/feature/notification/presentation/bloc/notification_bloc.dart';
+import 'package:patient_portal/feature/profile/data/datasources/user_local_data_source.dart';
+import 'package:patient_portal/feature/profile/domain/entities/user.dart';
+import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
+import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
+import 'package:patient_portal/feature/set_password/presentation/bloc/change_password_bloc.dart';
+import 'package:patient_portal/feature/speciality/presentation/bloc/speciality_bloc/speciality_bloc.dart';
 
-import 'feature/book_appointment/blocs/slot_bloc/slot_bloc.dart';
-import 'feature/doctors/blocs/search_doctor/search_doctor_bloc.dart';
-import 'feature/documents/bloc/documents_bloc.dart';
-import 'feature/login/blocs/login_with_password_bloc/login_with_password_bloc.dart';
-import 'feature/members/blocs/member_serach_bloc/member_search_bloc.dart';
-import 'feature/my_appointments/bloc/my_appointments_bloc.dart';
-import 'feature/report/bloc/report_bloc.dart';
-import 'feature/speciality/blocs/search_bloc/search_speciality_bloc_bloc.dart';
-import 'feature/speciality/blocs/speciality_bloc/speciality_bloc.dart';
+final _appRouter = AppRouter();
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
+const _systemUiOverlayStyle = SystemUiOverlayStyle(
+  statusBarColor: Colors.transparent,
+  statusBarIconBrightness: Brightness.dark,
+  statusBarBrightness: Brightness.light,
+  systemNavigationBarColor: Colors.transparent,
+  systemNavigationBarDividerColor: Colors.transparent,
+  systemNavigationBarIconBrightness: Brightness.dark,
+  systemNavigationBarContrastEnforced: false,
+);
+
+void main() async {
+  final WidgetsBinding widgetsBinding =
+      WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  await di.init();
+  await initializeDateFormatting('ar', null);
+  await initializeDateFormatting('en', null);
+
+  final initialUser = await di.sl<UserLocalDataSource>().getUser();
+
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  SystemChrome.setSystemUIOverlayStyle(_systemUiOverlayStyle);
+  await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
-  ]).then((value) => runApp(const MyApp()));
-  runApp(const MyApp());
+  ]);
+
+  runApp(MyApp(initialUser: initialUser));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final User? initialUser;
+
+  const MyApp({super.key, this.initialUser});
+
+  ThemeData _buildTheme() {
+    final colorScheme =
+        ColorScheme.fromSeed(
+          seedColor: AppColors.primaryCyan,
+          brightness: Brightness.light,
+        ).copyWith(
+          primary: AppColors.primaryCyan,
+          onPrimary: AppColors.white,
+          primaryContainer: const Color(0xffCFF8FF),
+          onPrimaryContainer: const Color(0xff0B3C4A),
+          secondary: const Color(0xff14B8A6),
+          onSecondary: AppColors.white,
+          secondaryContainer: const Color(0xffCCFBF1),
+          surface: AppColors.white,
+          surfaceContainerHighest: const Color(0xffEAF7FA),
+          outline: const Color(0xffA5C4CC),
+          outlineVariant: const Color(0xffD1E6EB),
+          onSurface: AppColors.textDark,
+          onSurfaceVariant: AppColors.textLight,
+          error: AppColors.red,
+          shadow: const Color(0xff0F172A),
+        );
+
+    final baseTheme = ThemeData(
+      useMaterial3: true,
+      colorScheme: colorScheme,
+      primaryColor: AppColors.primaryCyan,
+      scaffoldBackgroundColor: const Color(0xffF6FCFD),
+      canvasColor: AppColors.white,
+      dividerColor: colorScheme.outlineVariant,
+      appBarTheme: const AppBarTheme(
+        systemOverlayStyle: _systemUiOverlayStyle,
+        backgroundColor: Colors.transparent,
+        foregroundColor: AppColors.textDark,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        surfaceTintColor: Colors.transparent,
+        centerTitle: false,
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          foregroundColor: colorScheme.primary,
+          textStyle: AppTextStyles.bodyTextRobotoSemiBold,
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          elevation: 0,
+          backgroundColor: colorScheme.primary,
+          foregroundColor: colorScheme.onPrimary,
+          disabledBackgroundColor: AppColors.disabledBackgroundColor,
+          disabledForegroundColor: AppColors.disabledTextColor,
+          minimumSize: const Size.fromHeight(52),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+          ),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: colorScheme.primary,
+          side: BorderSide(color: colorScheme.primary.withValues(alpha: .2)),
+          minimumSize: const Size.fromHeight(52),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+          ),
+        ),
+      ),
+      filledButtonTheme: FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+          backgroundColor: colorScheme.primary,
+          foregroundColor: colorScheme.onPrimary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+          ),
+        ),
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: colorScheme.primary,
+        foregroundColor: colorScheme.onPrimary,
+        elevation: 0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      ),
+      cardTheme: CardThemeData(
+        color: AppColors.white,
+        elevation: 0,
+        shadowColor: colorScheme.shadow.withValues(alpha: .06),
+        surfaceTintColor: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24),
+          side: BorderSide(
+            color: colorScheme.outlineVariant.withValues(alpha: .8),
+          ),
+        ),
+      ),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        color: colorScheme.primary,
+        linearTrackColor: colorScheme.primaryContainer,
+        circularTrackColor: colorScheme.primaryContainer.withValues(alpha: .45),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        contentPadding: const EdgeInsets.all(15),
+        labelStyle: AppTextStyles.largeRobotoNormal,
+        floatingLabelStyle: AppTextStyles.bodyTextRoboto.copyWith(
+          color: colorScheme.primary,
+        ),
+        hintStyle: AppTextStyles.bodyTextRoboto.copyWith(
+          color: colorScheme.onSurfaceVariant,
+        ),
+        filled: true,
+        fillColor: colorScheme.surfaceContainerHighest.withValues(alpha: .6),
+        errorMaxLines: 2,
+        errorStyle: AppTextStyles.bodyTextInter.copyWith(color: AppColors.red),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: BorderSide(color: colorScheme.outlineVariant),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: const BorderSide(color: AppColors.red),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: const BorderSide(color: AppColors.red, width: 1.4),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: colorScheme.primary, width: 1.4),
+          borderRadius: BorderRadius.circular(18),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: BorderSide(color: colorScheme.outlineVariant),
+        ),
+      ),
+      bottomSheetTheme: const BottomSheetThemeData(
+        backgroundColor: AppColors.white,
+        surfaceTintColor: Colors.transparent,
+      ),
+      snackBarTheme: SnackBarThemeData(
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: colorScheme.inverseSurface,
+        contentTextStyle: AppTextStyles.bodyTextRoboto.copyWith(
+          color: colorScheme.onInverseSurface,
+        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+      ),
+      textTheme: TextTheme(
+        displayLarge: AppTextStyles.xXXLargeRobotoSemiBold,
+        displayMedium: AppTextStyles.xXLargeRobotoSemiBold,
+        headlineLarge: AppTextStyles.extraLargeRobotoBold,
+        headlineMedium: AppTextStyles.extraLargeRobotoSemiBold,
+        headlineSmall: AppTextStyles.subHeadingSemiBoldRoboto,
+        titleLarge: AppTextStyles.largeBoldRoboto,
+        titleMedium: AppTextStyles.largeSemiBoldRoboto,
+        titleSmall: AppTextStyles.largeRobotoNormal,
+        bodyLarge: AppTextStyles.bodyLargeRobotoBold,
+        bodyMedium: AppTextStyles.bodyLargeRobotoSemiBold,
+        bodySmall: AppTextStyles.bodyTextInter,
+        labelLarge: AppTextStyles.bodyTextRobotoSemiBold,
+        labelMedium: AppTextStyles.bodySemiBoldRoboto,
+        labelSmall: AppTextStyles.bodySmallRobotoNormal,
+      ),
+    );
+
+    return baseTheme;
+  }
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => OtpGenerationBloc(),
+        BlocProvider<OtpGenerationBloc>(
+          create: (context) => di.sl<OtpGenerationBloc>(),
+        ),
+        BlocProvider<OtpVerificationBloc>(
+          create: (context) => di.sl<OtpVerificationBloc>(),
+        ),
+        BlocProvider<DoctorBloc>(create: (context) => di.sl<DoctorBloc>()),
+        BlocProvider<SearchDoctorBloc>(
+          create: (context) => di.sl<SearchDoctorBloc>(),
         ),
         BlocProvider(
-          create: (context) => OtpVerificationBloc(),
+          create: (context) =>
+              di.sl<UserBloc>(param1: initialUser)..add(const InitializeUser()),
         ),
-        BlocProvider(
-          create: (context) => UserBloc(),
+        BlocProvider(create: (context) => di.sl<SpecialityBloc>()),
+        BlocProvider(create: (context) => di.sl<HomeBloc>()),
+        BlocProvider(create: (context) => di.sl<AddMemberBloc>()),
+        BlocProvider(create: (context) => di.sl<BookAppointmentBloc>()),
+        BlocProvider(create: (context) => di.sl<MemberSearchBloc>()),
+        BlocProvider(create: (context) => di.sl<DeleteMemberBloc>()),
+        BlocProvider(create: (context) => di.sl<MemberDetailBloc>()),
+        BlocProvider(create: (context) => di.sl<NotificationBloc>()),
+        BlocProvider(create: (context) => di.sl<MyAppointmentsBloc>()),
+        BlocProvider(create: (context) => di.sl<ItemsBloc>()),
+        BlocProvider(create: (context) => di.sl<ReportsBloc>()),
+        BlocProvider(create: (context) => di.sl<ChangePasswordBloc>()),
+        BlocProvider(create: (context) => di.sl<DocumentsBloc>()),
+        BlocProvider(create: (context) => di.sl<AddDocumentBloc>()),
+        BlocProvider<LoginWithPasswordBloc>(
+          create: (context) => di.sl<LoginWithPasswordBloc>(),
         ),
-        BlocProvider(
-          create: (context) => SpecialityBloc(),
+        BlocProvider<LanguageBloc>(
+          create: (context) => di.sl<LanguageBloc>()..add(const LoadLanguage()),
         ),
-        BlocProvider(
-          create: (context) => DoctorBloc(),
-        ),
-        BlocProvider(
-          create: (context) => HomeBloc(),
-        ),
-        BlocProvider(
-          create: (context) => InsuranceBloc(),
-        ),
-        BlocProvider(
-          create: (context) => SlotBloc(),
-        ),
-        BlocProvider(
-          create: (context) => AppointmentBloc(),
-        ),
-        BlocProvider(
-          create: (context) => MemberSearchBloc(),
-        ),
-        BlocProvider(
-          create: (context) => MyAppointmentsBloc(),
-        ),
-        BlocProvider(
-          create: (context) => ItemsBloc(),
-        ),
-        BlocProvider(
-          create: (context) => ReportsBloc(),
-        ),
-        BlocProvider(
-          create: (context) => ChangePasswordBloc(),
-        ),
-        BlocProvider(
-          create: (context) => SearchSpecialityBloc(),
-        ),
-        BlocProvider(
-          create: (context) => SearchDoctorBloc(),
-        ),
-        BlocProvider(
-          create: (context) => ReportBloc(),
-        ),
-        BlocProvider(
-          create: (context) => DocumentsBloc(),
-        ),
-        BlocProvider(
-          create: (context) => AddDocumentBloc(),
-        ),
-        BlocProvider(
-          create: (context) => LoginWithPasswordBloc(),
-        )
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            colorScheme: const ColorScheme.light(
-              primary: AppColors.vilot,
-              onPrimary: AppColors.white,
-              onSurface: AppColors.textDark,
+      child: BlocBuilder<LanguageBloc, LanguageState>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: state.locale,
+            builder: (context, child) {
+              FlutterNativeSplash.remove();
+              return child!;
+            },
+            theme: _buildTheme(),
+            routerConfig: _appRouter.config(
+              deepLinkBuilder: (deepLink) => DeepLink(
+                initialUser != null
+                    ? initialUser!.members.isNotEmpty
+                          ? [const MemberSelectionRoute()]
+                          : [const MainRoute()]
+                    : [const LoginRoute()],
+              ),
             ),
-            primaryColor: AppColors.vilot,
-            scaffoldBackgroundColor: AppColors.white,
-            textButtonTheme: TextButtonThemeData(
-                style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    foregroundColor: AppColors.textLight)),
-            primarySwatch: Colors.blue,
-            textTheme: TextTheme(
-                titleMedium: AppTextStyles.largeRobotoNormal
-                    .copyWith(color: AppColors.textDark)),
-            inputDecorationTheme: InputDecorationTheme(
-                contentPadding: const EdgeInsets.all(15),
-                labelStyle: AppTextStyles.largeRobotoNormal,
-                floatingLabelStyle: AppTextStyles.bodyTextRoboto,
-                errorMaxLines: 2,
-                errorStyle:
-                    AppTextStyles.bodyTextInter.copyWith(color: AppColors.red),
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(4),
-                    borderSide: const BorderSide(
-                        color: AppColors.textFormFIeldBagroundColor)),
-                errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(4),
-                    borderSide: const BorderSide(color: AppColors.red)),
-                focusedErrorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(4),
-                    borderSide: const BorderSide(color: AppColors.red)),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(
-                      color: AppColors.textFormFIeldBagroundColor),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(4),
-                    borderSide: const BorderSide(
-                        color: Color.fromRGBO(202, 212, 224, 1))))),
-        initialRoute: RouteConstants.loginScreen,
-        onGenerateRoute: (settings) => Approuter.generateRoute(settings),
+          );
+        },
       ),
     );
   }

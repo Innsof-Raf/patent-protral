@@ -1,5 +1,0 @@
-
-enum CartItemTypes {
-  package,
-  test,
-}
