@@ -144,6 +144,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile => 'Profile';
 
   @override
+  String get contactUs => 'Contact Us';
+
+  @override
+  String get call => 'Call';
+
+  @override
+  String get whatsApp => 'WhatsApp';
+
+  @override
+  String get email => 'Email';
+
+  @override
   String get orders => 'Orders';
 
   @override
@@ -847,6 +859,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get patient => 'Patient';
+
+  @override
+  String get patientId => 'Patient ID';
 
   @override
   String get confirm => 'Confirm';

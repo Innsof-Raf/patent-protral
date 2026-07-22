@@ -10,6 +10,8 @@ class AppDrawerTile extends StatelessWidget {
     required this.tileName,
     required this.onPress,
     this.isSelected = false,
+    this.padding,
+    this.trailing,
     super.key,
   }) : assert(iconPath != null || icon != null);
 
@@ -18,6 +20,8 @@ class AppDrawerTile extends StatelessWidget {
   final String tileName;
   final VoidCallback onPress;
   final bool isSelected;
+  final EdgeInsetsGeometry? padding;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +29,7 @@ class AppDrawerTile extends StatelessWidget {
     final foregroundColor = theme.colorScheme.onPrimary;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 1),
+      padding: padding ?? const EdgeInsets.symmetric(horizontal: 14, vertical: 1),
       child: Material(
         color: isSelected
             ? foregroundColor.withValues(alpha: .14)
@@ -72,6 +76,10 @@ class AppDrawerTile extends StatelessWidget {
                     ),
                   ),
                 ),
+                if (trailing != null) ...[
+                  const Gap(8),
+                  trailing!,
+                ],
               ],
             ),
           ),

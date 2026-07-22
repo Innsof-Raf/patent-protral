@@ -350,6 +350,30 @@ abstract class AppLocalizations {
   /// **'Profile'**
   String get profile;
 
+  /// No description provided for @contactUs.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Us'**
+  String get contactUs;
+
+  /// No description provided for @call.
+  ///
+  /// In en, this message translates to:
+  /// **'Call'**
+  String get call;
+
+  /// No description provided for @whatsApp.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp'**
+  String get whatsApp;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
   /// No description provided for @orders.
   ///
   /// In en, this message translates to:
@@ -1711,6 +1735,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Patient'**
   String get patient;
+
+  /// No description provided for @patientId.
+  ///
+  /// In en, this message translates to:
+  /// **'Patient ID'**
+  String get patientId;
 
   /// No description provided for @confirm.
   ///

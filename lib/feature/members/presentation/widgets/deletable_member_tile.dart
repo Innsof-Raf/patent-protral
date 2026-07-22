@@ -222,7 +222,17 @@ class _MemberDetails extends StatelessWidget {
             fontWeight: FontWeight.w800,
           ),
         ),
-        const Gap(5),
+        const Gap(3),
+        Text(
+          'Patient ID: ${member.memberNo?.trim().isNotEmpty == true ? member.memberNo : member.id}',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: AppTextStyles.bodyTextInter.copyWith(
+            color: theme.colorScheme.primary,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        const Gap(3),
         Text(
           subtitle.isEmpty ? context.lang.memberProfile : subtitle,
           maxLines: 1,

@@ -141,6 +141,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get profile => 'الملف الشخصي';
 
   @override
+  String get contactUs => 'اتصل بنا';
+
+  @override
+  String get call => 'اتصال';
+
+  @override
+  String get whatsApp => 'واتساب';
+
+  @override
+  String get email => 'البريد الإلكتروني';
+
+  @override
   String get orders => 'الطلبات';
 
   @override
@@ -840,6 +852,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get patient => 'المريض';
 
   @override
+  String get patientId => 'معرف المريض';
+
+  @override
   String get confirm => 'تأكيد';
 
   @override
@@ -1156,7 +1171,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get bookRadiologyScans => 'حجز فحوصات الأشعة';
 
   @override
-  String get english => 'الإنجليزية';
+  String get english => 'English';
 
   @override
   String get arabic => 'العربية';
