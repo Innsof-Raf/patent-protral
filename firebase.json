@@ -1,0 +1,22 @@
+{
+    "flutter": {
+        "platforms": {
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "patient-portal-innsof-ad10d",
+                    "configurations": {
+                        "android": "1:405705533040:android:ce7cea6ca86585adaf76b5",
+                        "ios": "1:405705533040:ios:b3ea3e6fa0f036f2af76b5"
+                    }
+                }
+            },
+            "android": {
+                "default": {
+                    "projectId": "patient-portal-innsof-ad10d",
+                    "appId": "1:405705533040:android:ce7cea6ca86585adaf76b5",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            }
+        }
+    }
+}
