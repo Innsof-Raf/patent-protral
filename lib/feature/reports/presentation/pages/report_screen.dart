@@ -2,8 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_portal/core/analytics/app_analytics_events.dart';
+import 'package:patient_portal/core/injection_container.dart' as di;
 import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/services/analytics_service.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_error_view.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_loading_view.dart';
 import 'package:patient_portal/feature/reports/domain/usecases/params/reports_params.dart';
@@ -39,6 +42,12 @@ class _ReportScreenState extends State<ReportScreen> {
     documentUrl = kDebugMode
         ? 'https://images.drlogy.com/assets/uploads/lab/pdf/CBC-test-report-format-example-sample-template-Drlogy-lab-report.pdf'
         : widget.pdfUrl;
+    di.sl<AnalyticsService>().logEvent(
+          AppAnalyticsEvents.labReportViewed(
+            reportId: widget.pdfUrl,
+            testCategory: 'Lab Report',
+          ),
+        );
     _downloadReport();
   }
 

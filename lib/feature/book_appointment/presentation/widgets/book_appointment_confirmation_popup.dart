@@ -14,7 +14,7 @@ import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_a
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 
-class BookAppointmentConfirmationPopUp extends StatelessWidget {
+class BookAppointmentConfirmationPopUp extends StatefulWidget {
   final String title;
   final DateTime appointmentDateTime;
   final int appointmentId;
@@ -34,6 +34,13 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
     required this.doctorImage,
   });
 
+  @override
+  State<BookAppointmentConfirmationPopUp> createState() =>
+      _BookAppointmentConfirmationPopUpState();
+}
+
+class _BookAppointmentConfirmationPopUpState
+    extends State<BookAppointmentConfirmationPopUp> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -74,7 +81,7 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                             shape: BoxShape.circle,
                           ),
                           child: Icon(
-                            appointmentId == 0
+                            widget.appointmentId == 0
                                 ? Icons.event_available_rounded
                                 : Icons.update_rounded,
                             color: colorScheme.primary,
@@ -84,7 +91,7 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                         const Gap(12),
                         Expanded(
                           child: Text(
-                            title,
+                            widget.title,
                             style: theme.textTheme.titleLarge?.copyWith(
                               fontWeight: FontWeight.bold,
                               color: theme.colorScheme.onSurface,
@@ -95,7 +102,7 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                     ),
                     const Gap(16),
                     Text(
-                      appointmentId == 0
+                      widget.appointmentId == 0
                           ? context.lang.reviewAppointmentDetails
                           : context.lang.reviewUpdatedSlotDetails,
                       style: theme.textTheme.bodyMedium?.copyWith(
@@ -151,7 +158,7 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                                             'dd MMM yyyy',
                                             context.currentLang,
                                           )
-                                          .format(appointmentDateTime)
+                                          .format(widget.appointmentDateTime)
                                           .localize(context.currentLang),
                                       style: theme.textTheme.titleMedium
                                           ?.copyWith(
@@ -173,7 +180,7 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                                     const Gap(10),
                                     Text(
                                       DateFormat.jm(context.currentLang)
-                                          .format(appointmentDateTime)
+                                          .format(widget.appointmentDateTime)
                                           .localize(context.currentLang),
                                       style: theme.textTheme.titleMedium
                                           ?.copyWith(
@@ -192,8 +199,8 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: _UserMiniProfile(
-                                  name: doctorName,
-                                  imageUrl: doctorImage,
+                                  name: widget.doctorName,
+                                  imageUrl: widget.doctorImage,
                                   label: context.lang.doctor,
                                 ),
                               ),
@@ -210,17 +217,18 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                               Expanded(
                                 child: _UserMiniProfile(
                                   name:
-                                      (member.name.trim().isEmpty
+                                      (widget.member.name.trim().isEmpty
                                               ? context.lang.unknown
-                                              : member.name)
+                                              : widget.member.name)
                                           .toTitleCase(),
-                                  imageUrl: member.profileImage == null
+                                  imageUrl: widget.member.profileImage == null
                                       ? null
-                                      : '${ConstantUrls.memberImageUrl}/${member.id}/${member.profileImage}',
+                                      : '${ConstantUrls.memberImageUrl}/${widget.member.id}/${widget.member.profileImage}',
                                   label: context.lang.patient,
-                                  fallbackText: member.name.trim().isEmpty
+                                  fallbackText:
+                                      widget.member.name.trim().isEmpty
                                       ? context.lang.unknownInitial
-                                      : member.name.trim()[0],
+                                      : widget.member.name.trim()[0],
                                 ),
                               ),
                             ],
@@ -228,7 +236,7 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const Gap(28),
+                    const Gap(20),
                     Row(
                       children: [
                         Expanded(
@@ -241,12 +249,13 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                         Expanded(
                           child: ActiveButton(
                             onPressed: () {
-                              if (appointmentId == 0) {
+                              if (widget.appointmentId == 0) {
                                 context.read<BookAppointmentBloc>().add(
                                   BookNewAppointment(
-                                    appointmentDateTime: appointmentDateTime,
-                                    idDoctor: idDoctor,
-                                    idMember: member.id,
+                                    appointmentDateTime:
+                                        widget.appointmentDateTime,
+                                    idDoctor: widget.idDoctor,
+                                    idMember: widget.member.id,
                                     mobileNo: context
                                         .read<UserBloc>()
                                         .state
@@ -262,8 +271,9 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                               } else {
                                 context.read<BookAppointmentBloc>().add(
                                   RescheduleAppointment(
-                                    idAppointment: appointmentId,
-                                    appointmentDateTime: appointmentDateTime,
+                                    idAppointment: widget.appointmentId,
+                                    appointmentDateTime:
+                                        widget.appointmentDateTime,
                                     token: context
                                         .read<UserBloc>()
                                         .state
@@ -272,6 +282,7 @@ class BookAppointmentConfirmationPopUp extends StatelessWidget {
                                   ),
                                 );
                               }
+
                               Navigator.pop(context);
                             },
                             child: Text(context.lang.confirm),

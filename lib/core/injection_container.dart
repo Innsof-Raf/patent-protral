@@ -4,9 +4,11 @@ import 'dart:developer' as dev;
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:patient_portal/core/localization/bloc/language_bloc.dart';
 import 'package:patient_portal/core/resources/api_agent.dart';
 import 'package:patient_portal/core/services/analytics_service.dart';
+import 'package:patient_portal/core/services/firebase_analytics_service.dart';
 import 'package:patient_portal/feature/add_document/data/datasources/add_document_remote_data_source.dart';
 import 'package:patient_portal/feature/add_document/data/repositories/add_document_repository_impl.dart';
 import 'package:patient_portal/feature/add_document/domain/repositories/add_document_repository.dart';
@@ -417,7 +419,12 @@ Future<void> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
 
-  sl.registerLazySingleton(() => AnalyticsService());
+  //! Services
+  final firebaseAnalytics = FirebaseAnalytics.instance;
+  sl.registerLazySingleton(() => firebaseAnalytics);
+  sl.registerLazySingleton<AnalyticsService>(
+    () => FirebaseAnalyticsService(sl<FirebaseAnalytics>()),
+  );
 
   sl.registerLazySingleton(() => ApiAgent(sl()));
 

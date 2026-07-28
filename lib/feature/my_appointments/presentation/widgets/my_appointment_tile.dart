@@ -19,6 +19,9 @@ import 'package:patient_portal/feature/my_appointments/domain/entities/my_appoin
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
+import 'package:patient_portal/core/analytics/app_analytics_events.dart';
+import 'package:patient_portal/core/injection_container.dart' as di;
+import 'package:patient_portal/core/services/analytics_service.dart';
 
 import 'cancel_booking_popup.dart';
 
@@ -88,9 +91,13 @@ class MyAppointmentTile extends StatelessWidget {
                                         ),
                                   ),
                                 ),
-                                _StatusBadge(
-                                  isConsulted: isConsulted,
-                                  isCancelled: isCancelled,
+                                Row(
+                                  children: [
+                                    _StatusBadge(
+                                      isConsulted: isConsulted,
+                                      isCancelled: isCancelled,
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -126,7 +133,11 @@ class MyAppointmentTile extends StatelessWidget {
                     ],
                   ),
                   const Gap(16),
-                  _AppointmentDetails(appointment: appointment),
+                  _AppointmentDetails(
+                    appointment: appointment,
+                    isConsulted: isConsulted,
+                    isCancelled: isCancelled,
+                  ),
                 ],
               ),
             ),
@@ -181,6 +192,14 @@ class MyAppointmentTile extends StatelessWidget {
     }
 
     BookAppointmentScreenHelpers.selectedDateNotifier.value = selectedDate;
+
+    di.sl<AnalyticsService>().logEvent(
+          AppAnalyticsEvents.doctorSelected(
+            doctorId: appointment.idDoctor.toString(),
+            doctorName: appointment.doctorName,
+            speciality: appointment.speciality,
+          ),
+        );
 
     context.router.push(
       BookAppointmentRoute(
@@ -263,6 +282,14 @@ class MyAppointmentTile extends StatelessWidget {
 
     BookAppointmentScreenHelpers.selectedDateNotifier.value =
         BookAppointmentScreenHelpers.dateList.first;
+
+    di.sl<AnalyticsService>().logEvent(
+          AppAnalyticsEvents.doctorSelected(
+            doctorId: appointment.idDoctor.toString(),
+            doctorName: appointment.doctorName,
+            speciality: appointment.speciality,
+          ),
+        );
 
     context.router.push(
       BookAppointmentRoute(
@@ -430,8 +457,14 @@ class _StatusBadge extends StatelessWidget {
 
 class _AppointmentDetails extends StatelessWidget {
   final MyAppointment appointment;
+  final bool isConsulted;
+  final bool isCancelled;
 
-  const _AppointmentDetails({required this.appointment});
+  const _AppointmentDetails({
+    required this.appointment,
+    required this.isConsulted,
+    required this.isCancelled,
+  });
 
   @override
   Widget build(BuildContext context) {

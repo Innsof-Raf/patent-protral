@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/analytics/app_analytics_events.dart';
+import 'package:patient_portal/core/injection_container.dart' as di;
 import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/services/analytics_service.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
@@ -233,6 +236,17 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
   }
 
   void _handleSuccess(BuildContext context, BookAppointmentState state) {
+    if (state.appointmentDetails != null) {
+      di.sl<AnalyticsService>().logEvent(
+            AppAnalyticsEvents.appointmentBooked(
+              doctorId: state.appointmentDetails!.idDoctor.toString(),
+              speciality: state.appointmentDetails!.doctorSpeciality,
+              appointmentType:
+                  selectedTypeNotifier.value == 1 ? 'Virtual' : 'In-Clinic',
+            ),
+          );
+    }
+
     final title = appointmentId == 0
         ? context.lang.appointmentBookedSuccessfully
         : context.lang.appointmentRescheduledSuccessfully;

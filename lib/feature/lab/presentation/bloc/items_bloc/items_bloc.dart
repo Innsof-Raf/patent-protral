@@ -1,6 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:patient_portal/core/analytics/app_analytics_events.dart';
+import 'package:patient_portal/core/injection_container.dart' as di;
 import 'package:patient_portal/core/resources/error_model.dart';
+import 'package:patient_portal/core/services/analytics_service.dart';
 import 'package:patient_portal/feature/lab/domain/entities/item.dart';
 import 'package:patient_portal/feature/lab/domain/usecases/get_items_usecase.dart';
 import 'package:patient_portal/feature/lab/domain/usecases/params/lab_params.dart';
@@ -113,6 +116,12 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
             );
             cart.add(item);
             cartTotal = cartTotal + item.itemPrice;
+            di.sl<AnalyticsService>().logEvent(
+                  AppAnalyticsEvents.addLabToCart(
+                    itemId: event.idItem.toString(),
+                    itemType: 'Lab Test/Package',
+                  ),
+                );
           }
 
           return emit(

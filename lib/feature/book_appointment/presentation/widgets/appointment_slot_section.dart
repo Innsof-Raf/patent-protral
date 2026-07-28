@@ -10,8 +10,13 @@ import 'slot_tile.dart';
 
 class AppointmentSlotSection extends StatelessWidget {
   final Shift shift;
+  final String doctorId;
 
-  const AppointmentSlotSection({super.key, required this.shift});
+  const AppointmentSlotSection({
+    super.key,
+    required this.shift,
+    required this.doctorId,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +86,8 @@ class AppointmentSlotSection extends StatelessWidget {
   }
 
   Widget _buildSlotsGrid() {
+    final shiftType = shift.shift.split('<').first.trim();
+
     return ValueListenableBuilder(
       valueListenable: BookAppointmentScreenHelpers.selectedSlotNotifier,
       builder: (context, value, child) => SizedBox(
@@ -98,6 +105,8 @@ class AppointmentSlotSection extends StatelessWidget {
           itemBuilder: (context, index) => SlotTile(
             isSelected: shift.slots[index].appdttm == value,
             slot: shift.slots[index],
+            doctorId: doctorId,
+            shiftType: shiftType,
           ),
         ),
       ),

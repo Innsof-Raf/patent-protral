@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:patient_portal/core/injection_container.dart' as di;
+import 'package:patient_portal/core/localization/bloc/language_bloc.dart';
 import 'package:patient_portal/core/localization/localization_extension.dart';
+import 'package:patient_portal/core/services/analytics_service.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_text_button.dart';
@@ -85,6 +88,17 @@ class _LoginOtpVerificationSectionState
                     ),
           );
         } else if (state.isVerifyingSuccess && !state.isVerifyingFailed) {
+          di.sl<AnalyticsService>().logLogin(loginMethod: 'OTP');
+          di.sl<AnalyticsService>().setUserId(state.user!.id.toString());
+          di.sl<AnalyticsService>().setUserProperties(
+            activeRole: 'Patient',
+            isFamilyMember: false,
+            preferredLanguage: context
+                .read<LanguageBloc>()
+                .state
+                .locale
+                .languageCode,
+          );
           context.read<UserBloc>().add(
             StoreUserDetails(
               params: ProfileParams.storeUserDetails(user: state.user!),
