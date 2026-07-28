@@ -75,6 +75,15 @@ class _ReportsScreenState extends State<ReportsScreen> {
         ),
       ),
     );
+    context.read<ReportsBloc>().add(
+      GetPrescriptions(
+        params: ReportsParams.getPrescriptions(
+          memberId: memberId,
+          token: user.accessToken,
+          mobileNumber: user.mobileNumber,
+        ),
+      ),
+    );
   }
 
   @override
@@ -182,7 +191,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                     return TabBarView(
                       children: [
                         _buildReportsList(
-                          state.reports,
+                          state.prescriptions,
                           context.lang.prescriptions,
                           selectedTimeFilter,
                           context,
@@ -356,7 +365,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
           )
           .toList();
     } else if (category == context.lang.prescriptions) {
-      filteredReports = [];
+      filteredReports = reports;
     } else {
       filteredReports = [];
     }

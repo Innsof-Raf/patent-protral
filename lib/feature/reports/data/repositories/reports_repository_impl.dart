@@ -26,6 +26,20 @@ class ReportsRepositoryImpl implements ReportsRepository {
   }
 
   @override
+  Future<Either<ErrorModel, List<Report>>> getPrescriptions(
+    ReportsParams params,
+  ) async {
+    try {
+      final models = await remoteDataSource.getPrescriptions(params);
+      return Right(models.map((model) => model.toEntity()).toList());
+    } catch (e) {
+      return Left(
+        ErrorModel(message: e.toString().replaceAll('ServerException: ', '')),
+      );
+    }
+  }
+
+  @override
   Future<Either<ErrorModel, ReportFile>> downloadReport(
     ReportsParams params,
   ) async {

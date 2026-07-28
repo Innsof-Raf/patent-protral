@@ -7,5 +7,9 @@ import 'package:patient_portal/feature/reports/domain/usecases/params/reports_pa
 abstract class ReportsRepository {
   Future<Either<ErrorModel, List<Report>>> getReports(ReportsParams params);
 
+  Future<Either<ErrorModel, List<Report>>> getPrescriptions(
+    ReportsParams params,
+  );
+
   Future<Either<ErrorModel, ReportFile>> downloadReport(ReportsParams params);
 }

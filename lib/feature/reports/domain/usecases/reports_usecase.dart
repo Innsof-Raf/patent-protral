@@ -14,6 +14,12 @@ class ReportsUseCase {
     return repository.getReports(params);
   }
 
+  Future<Either<ErrorModel, List<Report>>> getPrescriptions(
+    ReportsParams params,
+  ) {
+    return repository.getPrescriptions(params);
+  }
+
   Future<Either<ErrorModel, ReportFile>> downloadReport(ReportsParams params) {
     return repository.downloadReport(params);
   }

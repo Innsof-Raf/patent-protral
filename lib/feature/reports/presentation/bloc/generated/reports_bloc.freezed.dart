@@ -55,11 +55,12 @@ extension ReportsEventPatterns on ReportsEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( GetReports value)?  getReports,TResult Function( StoreReport value)?  storeReport,TResult Function( ClearReport value)?  clearReport,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( GetReports value)?  getReports,TResult Function( GetPrescriptions value)?  getPrescriptions,TResult Function( StoreReport value)?  storeReport,TResult Function( ClearReport value)?  clearReport,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case GetReports() when getReports != null:
-return getReports(_that);case StoreReport() when storeReport != null:
+return getReports(_that);case GetPrescriptions() when getPrescriptions != null:
+return getPrescriptions(_that);case StoreReport() when storeReport != null:
 return storeReport(_that);case ClearReport() when clearReport != null:
 return clearReport(_that);case _:
   return orElse();
@@ -79,11 +80,12 @@ return clearReport(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( GetReports value)  getReports,required TResult Function( StoreReport value)  storeReport,required TResult Function( ClearReport value)  clearReport,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( GetReports value)  getReports,required TResult Function( GetPrescriptions value)  getPrescriptions,required TResult Function( StoreReport value)  storeReport,required TResult Function( ClearReport value)  clearReport,}){
 final _that = this;
 switch (_that) {
 case GetReports():
-return getReports(_that);case StoreReport():
+return getReports(_that);case GetPrescriptions():
+return getPrescriptions(_that);case StoreReport():
 return storeReport(_that);case ClearReport():
 return clearReport(_that);}
 }
@@ -99,11 +101,12 @@ return clearReport(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( GetReports value)?  getReports,TResult? Function( StoreReport value)?  storeReport,TResult? Function( ClearReport value)?  clearReport,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( GetReports value)?  getReports,TResult? Function( GetPrescriptions value)?  getPrescriptions,TResult? Function( StoreReport value)?  storeReport,TResult? Function( ClearReport value)?  clearReport,}){
 final _that = this;
 switch (_that) {
 case GetReports() when getReports != null:
-return getReports(_that);case StoreReport() when storeReport != null:
+return getReports(_that);case GetPrescriptions() when getPrescriptions != null:
+return getPrescriptions(_that);case StoreReport() when storeReport != null:
 return storeReport(_that);case ClearReport() when clearReport != null:
 return clearReport(_that);case _:
   return null;
@@ -122,10 +125,11 @@ return clearReport(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( ReportsParams params)?  getReports,TResult Function( ReportsParams params)?  storeReport,TResult Function()?  clearReport,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( ReportsParams params)?  getReports,TResult Function( ReportsParams params)?  getPrescriptions,TResult Function( ReportsParams params)?  storeReport,TResult Function()?  clearReport,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case GetReports() when getReports != null:
-return getReports(_that.params);case StoreReport() when storeReport != null:
+return getReports(_that.params);case GetPrescriptions() when getPrescriptions != null:
+return getPrescriptions(_that.params);case StoreReport() when storeReport != null:
 return storeReport(_that.params);case ClearReport() when clearReport != null:
 return clearReport();case _:
   return orElse();
@@ -145,10 +149,11 @@ return clearReport();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( ReportsParams params)  getReports,required TResult Function( ReportsParams params)  storeReport,required TResult Function()  clearReport,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( ReportsParams params)  getReports,required TResult Function( ReportsParams params)  getPrescriptions,required TResult Function( ReportsParams params)  storeReport,required TResult Function()  clearReport,}) {final _that = this;
 switch (_that) {
 case GetReports():
-return getReports(_that.params);case StoreReport():
+return getReports(_that.params);case GetPrescriptions():
+return getPrescriptions(_that.params);case StoreReport():
 return storeReport(_that.params);case ClearReport():
 return clearReport();}
 }
@@ -164,10 +169,11 @@ return clearReport();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( ReportsParams params)?  getReports,TResult? Function( ReportsParams params)?  storeReport,TResult? Function()?  clearReport,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( ReportsParams params)?  getReports,TResult? Function( ReportsParams params)?  getPrescriptions,TResult? Function( ReportsParams params)?  storeReport,TResult? Function()?  clearReport,}) {final _that = this;
 switch (_that) {
 case GetReports() when getReports != null:
-return getReports(_that.params);case StoreReport() when storeReport != null:
+return getReports(_that.params);case GetPrescriptions() when getPrescriptions != null:
+return getPrescriptions(_that.params);case StoreReport() when storeReport != null:
 return storeReport(_that.params);case ClearReport() when clearReport != null:
 return clearReport();case _:
   return null;
@@ -235,6 +241,81 @@ class _$GetReportsCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? params = null,}) {
   return _then(GetReports(
+params: null == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
+as ReportsParams,
+  ));
+}
+
+/// Create a copy of ReportsEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ReportsParamsCopyWith<$Res> get params {
+  
+  return $ReportsParamsCopyWith<$Res>(_self.params, (value) {
+    return _then(_self.copyWith(params: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class GetPrescriptions implements ReportsEvent {
+  const GetPrescriptions({required this.params});
+  
+
+ final  ReportsParams params;
+
+/// Create a copy of ReportsEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$GetPrescriptionsCopyWith<GetPrescriptions> get copyWith => _$GetPrescriptionsCopyWithImpl<GetPrescriptions>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetPrescriptions&&(identical(other.params, params) || other.params == params));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,params);
+
+@override
+String toString() {
+  return 'ReportsEvent.getPrescriptions(params: $params)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $GetPrescriptionsCopyWith<$Res> implements $ReportsEventCopyWith<$Res> {
+  factory $GetPrescriptionsCopyWith(GetPrescriptions value, $Res Function(GetPrescriptions) _then) = _$GetPrescriptionsCopyWithImpl;
+@useResult
+$Res call({
+ ReportsParams params
+});
+
+
+$ReportsParamsCopyWith<$Res> get params;
+
+}
+/// @nodoc
+class _$GetPrescriptionsCopyWithImpl<$Res>
+    implements $GetPrescriptionsCopyWith<$Res> {
+  _$GetPrescriptionsCopyWithImpl(this._self, this._then);
+
+  final GetPrescriptions _self;
+  final $Res Function(GetPrescriptions) _then;
+
+/// Create a copy of ReportsEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? params = null,}) {
+  return _then(GetPrescriptions(
 params: null == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
 as ReportsParams,
   ));
@@ -362,7 +443,7 @@ String toString() {
 /// @nodoc
 mixin _$ReportsState {
 
- bool get isFetchingReports; bool get isFetchingFailed; bool get isFetchingSuccess; ReportFile? get report; bool get isReportSaving; bool get isReportSavingFailed; bool get isReportSavingSuccess; ErrorModel get error; int get selectedMemberId; List<Report> get reports;
+ bool get isFetchingReports; bool get isFetchingFailed; bool get isFetchingSuccess; bool get isFetchingPrescriptions; bool get isFetchingPrescriptionsFailed; bool get isFetchingPrescriptionsSuccess; ReportFile? get report; bool get isReportSaving; bool get isReportSavingFailed; bool get isReportSavingSuccess; ErrorModel get error; int get selectedMemberId; List<Report> get reports; List<Report> get prescriptions;
 /// Create a copy of ReportsState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -373,16 +454,16 @@ $ReportsStateCopyWith<ReportsState> get copyWith => _$ReportsStateCopyWithImpl<R
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReportsState&&(identical(other.isFetchingReports, isFetchingReports) || other.isFetchingReports == isFetchingReports)&&(identical(other.isFetchingFailed, isFetchingFailed) || other.isFetchingFailed == isFetchingFailed)&&(identical(other.isFetchingSuccess, isFetchingSuccess) || other.isFetchingSuccess == isFetchingSuccess)&&(identical(other.report, report) || other.report == report)&&(identical(other.isReportSaving, isReportSaving) || other.isReportSaving == isReportSaving)&&(identical(other.isReportSavingFailed, isReportSavingFailed) || other.isReportSavingFailed == isReportSavingFailed)&&(identical(other.isReportSavingSuccess, isReportSavingSuccess) || other.isReportSavingSuccess == isReportSavingSuccess)&&(identical(other.error, error) || other.error == error)&&(identical(other.selectedMemberId, selectedMemberId) || other.selectedMemberId == selectedMemberId)&&const DeepCollectionEquality().equals(other.reports, reports));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReportsState&&(identical(other.isFetchingReports, isFetchingReports) || other.isFetchingReports == isFetchingReports)&&(identical(other.isFetchingFailed, isFetchingFailed) || other.isFetchingFailed == isFetchingFailed)&&(identical(other.isFetchingSuccess, isFetchingSuccess) || other.isFetchingSuccess == isFetchingSuccess)&&(identical(other.isFetchingPrescriptions, isFetchingPrescriptions) || other.isFetchingPrescriptions == isFetchingPrescriptions)&&(identical(other.isFetchingPrescriptionsFailed, isFetchingPrescriptionsFailed) || other.isFetchingPrescriptionsFailed == isFetchingPrescriptionsFailed)&&(identical(other.isFetchingPrescriptionsSuccess, isFetchingPrescriptionsSuccess) || other.isFetchingPrescriptionsSuccess == isFetchingPrescriptionsSuccess)&&(identical(other.report, report) || other.report == report)&&(identical(other.isReportSaving, isReportSaving) || other.isReportSaving == isReportSaving)&&(identical(other.isReportSavingFailed, isReportSavingFailed) || other.isReportSavingFailed == isReportSavingFailed)&&(identical(other.isReportSavingSuccess, isReportSavingSuccess) || other.isReportSavingSuccess == isReportSavingSuccess)&&(identical(other.error, error) || other.error == error)&&(identical(other.selectedMemberId, selectedMemberId) || other.selectedMemberId == selectedMemberId)&&const DeepCollectionEquality().equals(other.reports, reports)&&const DeepCollectionEquality().equals(other.prescriptions, prescriptions));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isFetchingReports,isFetchingFailed,isFetchingSuccess,report,isReportSaving,isReportSavingFailed,isReportSavingSuccess,error,selectedMemberId,const DeepCollectionEquality().hash(reports));
+int get hashCode => Object.hash(runtimeType,isFetchingReports,isFetchingFailed,isFetchingSuccess,isFetchingPrescriptions,isFetchingPrescriptionsFailed,isFetchingPrescriptionsSuccess,report,isReportSaving,isReportSavingFailed,isReportSavingSuccess,error,selectedMemberId,const DeepCollectionEquality().hash(reports),const DeepCollectionEquality().hash(prescriptions));
 
 @override
 String toString() {
-  return 'ReportsState(isFetchingReports: $isFetchingReports, isFetchingFailed: $isFetchingFailed, isFetchingSuccess: $isFetchingSuccess, report: $report, isReportSaving: $isReportSaving, isReportSavingFailed: $isReportSavingFailed, isReportSavingSuccess: $isReportSavingSuccess, error: $error, selectedMemberId: $selectedMemberId, reports: $reports)';
+  return 'ReportsState(isFetchingReports: $isFetchingReports, isFetchingFailed: $isFetchingFailed, isFetchingSuccess: $isFetchingSuccess, isFetchingPrescriptions: $isFetchingPrescriptions, isFetchingPrescriptionsFailed: $isFetchingPrescriptionsFailed, isFetchingPrescriptionsSuccess: $isFetchingPrescriptionsSuccess, report: $report, isReportSaving: $isReportSaving, isReportSavingFailed: $isReportSavingFailed, isReportSavingSuccess: $isReportSavingSuccess, error: $error, selectedMemberId: $selectedMemberId, reports: $reports, prescriptions: $prescriptions)';
 }
 
 
@@ -393,7 +474,7 @@ abstract mixin class $ReportsStateCopyWith<$Res>  {
   factory $ReportsStateCopyWith(ReportsState value, $Res Function(ReportsState) _then) = _$ReportsStateCopyWithImpl;
 @useResult
 $Res call({
- bool isFetchingReports, bool isFetchingFailed, bool isFetchingSuccess, ReportFile? report, bool isReportSaving, bool isReportSavingFailed, bool isReportSavingSuccess, ErrorModel error, int selectedMemberId, List<Report> reports
+ bool isFetchingReports, bool isFetchingFailed, bool isFetchingSuccess, bool isFetchingPrescriptions, bool isFetchingPrescriptionsFailed, bool isFetchingPrescriptionsSuccess, ReportFile? report, bool isReportSaving, bool isReportSavingFailed, bool isReportSavingSuccess, ErrorModel error, int selectedMemberId, List<Report> reports, List<Report> prescriptions
 });
 
 
@@ -410,11 +491,14 @@ class _$ReportsStateCopyWithImpl<$Res>
 
 /// Create a copy of ReportsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isFetchingReports = null,Object? isFetchingFailed = null,Object? isFetchingSuccess = null,Object? report = freezed,Object? isReportSaving = null,Object? isReportSavingFailed = null,Object? isReportSavingSuccess = null,Object? error = null,Object? selectedMemberId = null,Object? reports = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isFetchingReports = null,Object? isFetchingFailed = null,Object? isFetchingSuccess = null,Object? isFetchingPrescriptions = null,Object? isFetchingPrescriptionsFailed = null,Object? isFetchingPrescriptionsSuccess = null,Object? report = freezed,Object? isReportSaving = null,Object? isReportSavingFailed = null,Object? isReportSavingSuccess = null,Object? error = null,Object? selectedMemberId = null,Object? reports = null,Object? prescriptions = null,}) {
   return _then(_self.copyWith(
 isFetchingReports: null == isFetchingReports ? _self.isFetchingReports : isFetchingReports // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingFailed: null == isFetchingFailed ? _self.isFetchingFailed : isFetchingFailed // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingSuccess: null == isFetchingSuccess ? _self.isFetchingSuccess : isFetchingSuccess // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingPrescriptions: null == isFetchingPrescriptions ? _self.isFetchingPrescriptions : isFetchingPrescriptions // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingPrescriptionsFailed: null == isFetchingPrescriptionsFailed ? _self.isFetchingPrescriptionsFailed : isFetchingPrescriptionsFailed // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingPrescriptionsSuccess: null == isFetchingPrescriptionsSuccess ? _self.isFetchingPrescriptionsSuccess : isFetchingPrescriptionsSuccess // ignore: cast_nullable_to_non_nullable
 as bool,report: freezed == report ? _self.report : report // ignore: cast_nullable_to_non_nullable
 as ReportFile?,isReportSaving: null == isReportSaving ? _self.isReportSaving : isReportSaving // ignore: cast_nullable_to_non_nullable
 as bool,isReportSavingFailed: null == isReportSavingFailed ? _self.isReportSavingFailed : isReportSavingFailed // ignore: cast_nullable_to_non_nullable
@@ -422,6 +506,7 @@ as bool,isReportSavingSuccess: null == isReportSavingSuccess ? _self.isReportSav
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,selectedMemberId: null == selectedMemberId ? _self.selectedMemberId : selectedMemberId // ignore: cast_nullable_to_non_nullable
 as int,reports: null == reports ? _self.reports : reports // ignore: cast_nullable_to_non_nullable
+as List<Report>,prescriptions: null == prescriptions ? _self.prescriptions : prescriptions // ignore: cast_nullable_to_non_nullable
 as List<Report>,
   ));
 }
@@ -525,10 +610,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isFetchingReports,  bool isFetchingFailed,  bool isFetchingSuccess,  ReportFile? report,  bool isReportSaving,  bool isReportSavingFailed,  bool isReportSavingSuccess,  ErrorModel error,  int selectedMemberId,  List<Report> reports)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isFetchingReports,  bool isFetchingFailed,  bool isFetchingSuccess,  bool isFetchingPrescriptions,  bool isFetchingPrescriptionsFailed,  bool isFetchingPrescriptionsSuccess,  ReportFile? report,  bool isReportSaving,  bool isReportSavingFailed,  bool isReportSavingSuccess,  ErrorModel error,  int selectedMemberId,  List<Report> reports,  List<Report> prescriptions)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ReportsState() when $default != null:
-return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingSuccess,_that.report,_that.isReportSaving,_that.isReportSavingFailed,_that.isReportSavingSuccess,_that.error,_that.selectedMemberId,_that.reports);case _:
+return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingSuccess,_that.isFetchingPrescriptions,_that.isFetchingPrescriptionsFailed,_that.isFetchingPrescriptionsSuccess,_that.report,_that.isReportSaving,_that.isReportSavingFailed,_that.isReportSavingSuccess,_that.error,_that.selectedMemberId,_that.reports,_that.prescriptions);case _:
   return orElse();
 
 }
@@ -546,10 +631,10 @@ return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingS
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isFetchingReports,  bool isFetchingFailed,  bool isFetchingSuccess,  ReportFile? report,  bool isReportSaving,  bool isReportSavingFailed,  bool isReportSavingSuccess,  ErrorModel error,  int selectedMemberId,  List<Report> reports)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isFetchingReports,  bool isFetchingFailed,  bool isFetchingSuccess,  bool isFetchingPrescriptions,  bool isFetchingPrescriptionsFailed,  bool isFetchingPrescriptionsSuccess,  ReportFile? report,  bool isReportSaving,  bool isReportSavingFailed,  bool isReportSavingSuccess,  ErrorModel error,  int selectedMemberId,  List<Report> reports,  List<Report> prescriptions)  $default,) {final _that = this;
 switch (_that) {
 case _ReportsState():
-return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingSuccess,_that.report,_that.isReportSaving,_that.isReportSavingFailed,_that.isReportSavingSuccess,_that.error,_that.selectedMemberId,_that.reports);}
+return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingSuccess,_that.isFetchingPrescriptions,_that.isFetchingPrescriptionsFailed,_that.isFetchingPrescriptionsSuccess,_that.report,_that.isReportSaving,_that.isReportSavingFailed,_that.isReportSavingSuccess,_that.error,_that.selectedMemberId,_that.reports,_that.prescriptions);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -563,10 +648,10 @@ return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingS
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isFetchingReports,  bool isFetchingFailed,  bool isFetchingSuccess,  ReportFile? report,  bool isReportSaving,  bool isReportSavingFailed,  bool isReportSavingSuccess,  ErrorModel error,  int selectedMemberId,  List<Report> reports)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isFetchingReports,  bool isFetchingFailed,  bool isFetchingSuccess,  bool isFetchingPrescriptions,  bool isFetchingPrescriptionsFailed,  bool isFetchingPrescriptionsSuccess,  ReportFile? report,  bool isReportSaving,  bool isReportSavingFailed,  bool isReportSavingSuccess,  ErrorModel error,  int selectedMemberId,  List<Report> reports,  List<Report> prescriptions)?  $default,) {final _that = this;
 switch (_that) {
 case _ReportsState() when $default != null:
-return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingSuccess,_that.report,_that.isReportSaving,_that.isReportSavingFailed,_that.isReportSavingSuccess,_that.error,_that.selectedMemberId,_that.reports);case _:
+return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingSuccess,_that.isFetchingPrescriptions,_that.isFetchingPrescriptionsFailed,_that.isFetchingPrescriptionsSuccess,_that.report,_that.isReportSaving,_that.isReportSavingFailed,_that.isReportSavingSuccess,_that.error,_that.selectedMemberId,_that.reports,_that.prescriptions);case _:
   return null;
 
 }
@@ -578,12 +663,15 @@ return $default(_that.isFetchingReports,_that.isFetchingFailed,_that.isFetchingS
 
 
 class _ReportsState implements ReportsState {
-  const _ReportsState({required this.isFetchingReports, required this.isFetchingFailed, required this.isFetchingSuccess, required this.report, required this.isReportSaving, required this.isReportSavingFailed, required this.isReportSavingSuccess, required this.error, required this.selectedMemberId, required final  List<Report> reports}): _reports = reports;
+  const _ReportsState({required this.isFetchingReports, required this.isFetchingFailed, required this.isFetchingSuccess, required this.isFetchingPrescriptions, required this.isFetchingPrescriptionsFailed, required this.isFetchingPrescriptionsSuccess, required this.report, required this.isReportSaving, required this.isReportSavingFailed, required this.isReportSavingSuccess, required this.error, required this.selectedMemberId, required final  List<Report> reports, required final  List<Report> prescriptions}): _reports = reports,_prescriptions = prescriptions;
   
 
 @override final  bool isFetchingReports;
 @override final  bool isFetchingFailed;
 @override final  bool isFetchingSuccess;
+@override final  bool isFetchingPrescriptions;
+@override final  bool isFetchingPrescriptionsFailed;
+@override final  bool isFetchingPrescriptionsSuccess;
 @override final  ReportFile? report;
 @override final  bool isReportSaving;
 @override final  bool isReportSavingFailed;
@@ -597,6 +685,13 @@ class _ReportsState implements ReportsState {
   return EqualUnmodifiableListView(_reports);
 }
 
+ final  List<Report> _prescriptions;
+@override List<Report> get prescriptions {
+  if (_prescriptions is EqualUnmodifiableListView) return _prescriptions;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_prescriptions);
+}
+
 
 /// Create a copy of ReportsState
 /// with the given fields replaced by the non-null parameter values.
@@ -608,16 +703,16 @@ _$ReportsStateCopyWith<_ReportsState> get copyWith => __$ReportsStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ReportsState&&(identical(other.isFetchingReports, isFetchingReports) || other.isFetchingReports == isFetchingReports)&&(identical(other.isFetchingFailed, isFetchingFailed) || other.isFetchingFailed == isFetchingFailed)&&(identical(other.isFetchingSuccess, isFetchingSuccess) || other.isFetchingSuccess == isFetchingSuccess)&&(identical(other.report, report) || other.report == report)&&(identical(other.isReportSaving, isReportSaving) || other.isReportSaving == isReportSaving)&&(identical(other.isReportSavingFailed, isReportSavingFailed) || other.isReportSavingFailed == isReportSavingFailed)&&(identical(other.isReportSavingSuccess, isReportSavingSuccess) || other.isReportSavingSuccess == isReportSavingSuccess)&&(identical(other.error, error) || other.error == error)&&(identical(other.selectedMemberId, selectedMemberId) || other.selectedMemberId == selectedMemberId)&&const DeepCollectionEquality().equals(other._reports, _reports));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ReportsState&&(identical(other.isFetchingReports, isFetchingReports) || other.isFetchingReports == isFetchingReports)&&(identical(other.isFetchingFailed, isFetchingFailed) || other.isFetchingFailed == isFetchingFailed)&&(identical(other.isFetchingSuccess, isFetchingSuccess) || other.isFetchingSuccess == isFetchingSuccess)&&(identical(other.isFetchingPrescriptions, isFetchingPrescriptions) || other.isFetchingPrescriptions == isFetchingPrescriptions)&&(identical(other.isFetchingPrescriptionsFailed, isFetchingPrescriptionsFailed) || other.isFetchingPrescriptionsFailed == isFetchingPrescriptionsFailed)&&(identical(other.isFetchingPrescriptionsSuccess, isFetchingPrescriptionsSuccess) || other.isFetchingPrescriptionsSuccess == isFetchingPrescriptionsSuccess)&&(identical(other.report, report) || other.report == report)&&(identical(other.isReportSaving, isReportSaving) || other.isReportSaving == isReportSaving)&&(identical(other.isReportSavingFailed, isReportSavingFailed) || other.isReportSavingFailed == isReportSavingFailed)&&(identical(other.isReportSavingSuccess, isReportSavingSuccess) || other.isReportSavingSuccess == isReportSavingSuccess)&&(identical(other.error, error) || other.error == error)&&(identical(other.selectedMemberId, selectedMemberId) || other.selectedMemberId == selectedMemberId)&&const DeepCollectionEquality().equals(other._reports, _reports)&&const DeepCollectionEquality().equals(other._prescriptions, _prescriptions));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isFetchingReports,isFetchingFailed,isFetchingSuccess,report,isReportSaving,isReportSavingFailed,isReportSavingSuccess,error,selectedMemberId,const DeepCollectionEquality().hash(_reports));
+int get hashCode => Object.hash(runtimeType,isFetchingReports,isFetchingFailed,isFetchingSuccess,isFetchingPrescriptions,isFetchingPrescriptionsFailed,isFetchingPrescriptionsSuccess,report,isReportSaving,isReportSavingFailed,isReportSavingSuccess,error,selectedMemberId,const DeepCollectionEquality().hash(_reports),const DeepCollectionEquality().hash(_prescriptions));
 
 @override
 String toString() {
-  return 'ReportsState(isFetchingReports: $isFetchingReports, isFetchingFailed: $isFetchingFailed, isFetchingSuccess: $isFetchingSuccess, report: $report, isReportSaving: $isReportSaving, isReportSavingFailed: $isReportSavingFailed, isReportSavingSuccess: $isReportSavingSuccess, error: $error, selectedMemberId: $selectedMemberId, reports: $reports)';
+  return 'ReportsState(isFetchingReports: $isFetchingReports, isFetchingFailed: $isFetchingFailed, isFetchingSuccess: $isFetchingSuccess, isFetchingPrescriptions: $isFetchingPrescriptions, isFetchingPrescriptionsFailed: $isFetchingPrescriptionsFailed, isFetchingPrescriptionsSuccess: $isFetchingPrescriptionsSuccess, report: $report, isReportSaving: $isReportSaving, isReportSavingFailed: $isReportSavingFailed, isReportSavingSuccess: $isReportSavingSuccess, error: $error, selectedMemberId: $selectedMemberId, reports: $reports, prescriptions: $prescriptions)';
 }
 
 
@@ -628,7 +723,7 @@ abstract mixin class _$ReportsStateCopyWith<$Res> implements $ReportsStateCopyWi
   factory _$ReportsStateCopyWith(_ReportsState value, $Res Function(_ReportsState) _then) = __$ReportsStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isFetchingReports, bool isFetchingFailed, bool isFetchingSuccess, ReportFile? report, bool isReportSaving, bool isReportSavingFailed, bool isReportSavingSuccess, ErrorModel error, int selectedMemberId, List<Report> reports
+ bool isFetchingReports, bool isFetchingFailed, bool isFetchingSuccess, bool isFetchingPrescriptions, bool isFetchingPrescriptionsFailed, bool isFetchingPrescriptionsSuccess, ReportFile? report, bool isReportSaving, bool isReportSavingFailed, bool isReportSavingSuccess, ErrorModel error, int selectedMemberId, List<Report> reports, List<Report> prescriptions
 });
 
 
@@ -645,11 +740,14 @@ class __$ReportsStateCopyWithImpl<$Res>
 
 /// Create a copy of ReportsState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isFetchingReports = null,Object? isFetchingFailed = null,Object? isFetchingSuccess = null,Object? report = freezed,Object? isReportSaving = null,Object? isReportSavingFailed = null,Object? isReportSavingSuccess = null,Object? error = null,Object? selectedMemberId = null,Object? reports = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isFetchingReports = null,Object? isFetchingFailed = null,Object? isFetchingSuccess = null,Object? isFetchingPrescriptions = null,Object? isFetchingPrescriptionsFailed = null,Object? isFetchingPrescriptionsSuccess = null,Object? report = freezed,Object? isReportSaving = null,Object? isReportSavingFailed = null,Object? isReportSavingSuccess = null,Object? error = null,Object? selectedMemberId = null,Object? reports = null,Object? prescriptions = null,}) {
   return _then(_ReportsState(
 isFetchingReports: null == isFetchingReports ? _self.isFetchingReports : isFetchingReports // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingFailed: null == isFetchingFailed ? _self.isFetchingFailed : isFetchingFailed // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingSuccess: null == isFetchingSuccess ? _self.isFetchingSuccess : isFetchingSuccess // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingPrescriptions: null == isFetchingPrescriptions ? _self.isFetchingPrescriptions : isFetchingPrescriptions // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingPrescriptionsFailed: null == isFetchingPrescriptionsFailed ? _self.isFetchingPrescriptionsFailed : isFetchingPrescriptionsFailed // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingPrescriptionsSuccess: null == isFetchingPrescriptionsSuccess ? _self.isFetchingPrescriptionsSuccess : isFetchingPrescriptionsSuccess // ignore: cast_nullable_to_non_nullable
 as bool,report: freezed == report ? _self.report : report // ignore: cast_nullable_to_non_nullable
 as ReportFile?,isReportSaving: null == isReportSaving ? _self.isReportSaving : isReportSaving // ignore: cast_nullable_to_non_nullable
 as bool,isReportSavingFailed: null == isReportSavingFailed ? _self.isReportSavingFailed : isReportSavingFailed // ignore: cast_nullable_to_non_nullable
@@ -657,6 +755,7 @@ as bool,isReportSavingSuccess: null == isReportSavingSuccess ? _self.isReportSav
 as bool,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as ErrorModel,selectedMemberId: null == selectedMemberId ? _self.selectedMemberId : selectedMemberId // ignore: cast_nullable_to_non_nullable
 as int,reports: null == reports ? _self._reports : reports // ignore: cast_nullable_to_non_nullable
+as List<Report>,prescriptions: null == prescriptions ? _self._prescriptions : prescriptions // ignore: cast_nullable_to_non_nullable
 as List<Report>,
   ));
 }

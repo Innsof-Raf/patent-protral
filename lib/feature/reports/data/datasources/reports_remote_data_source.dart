@@ -13,6 +13,7 @@ import 'package:patient_portal/feature/reports/domain/usecases/params/reports_pa
 
 abstract class ReportsRemoteDataSource {
   Future<List<ReportModel>> getReports(ReportsParams params);
+  Future<List<ReportModel>> getPrescriptions(ReportsParams params);
   Future<ReportFileModel> downloadReport(ReportsParams params);
 }
 
@@ -42,6 +43,31 @@ class ReportsRemoteDataSourceImpl implements ReportsRemoteDataSource {
       rethrow;
     } catch (e, stackTrace) {
       log('getReports Error', error: e, stackTrace: stackTrace);
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<List<ReportModel>> getPrescriptions(ReportsParams params) async {
+    try {
+      final p = params.maybeMap(
+        getPrescriptions: (value) => value,
+        orElse: () => throw ServerException('Invalid prescriptions params'),
+      );
+
+      final data = serviceRequest(type: 'PP0040', content: p.toJson());
+      final response = await client.post(
+        url: ConstantUrls.serviceUrl,
+        body: data,
+        token: p.token,
+      );
+
+      final List responseList = decodeResponseData(response.data);
+      return responseList.map((raw) => ReportModel.fromJson(raw)).toList();
+    } on ServerException {
+      rethrow;
+    } catch (e, stackTrace) {
+      log('getPrescriptions Error', error: e, stackTrace: stackTrace);
       throw ServerException(e.toString());
     }
   }

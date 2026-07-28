@@ -23,6 +23,25 @@ Map<String, dynamic> _$GetReportsParamsToJson(GetReportsParams instance) =>
       'runtimeType': instance.$type,
     };
 
+GetPrescriptionsParams _$GetPrescriptionsParamsFromJson(
+  Map<String, dynamic> json,
+) => GetPrescriptionsParams(
+  memberId: (json['id_customer'] as num).toInt(),
+  token: json['token'] as String? ?? '',
+  mobileNumber: json['mobile_no'] as String? ?? '',
+  status: json['status'] as String? ?? 'ALL',
+  $type: json['runtimeType'] as String?,
+);
+
+Map<String, dynamic> _$GetPrescriptionsParamsToJson(
+  GetPrescriptionsParams instance,
+) => <String, dynamic>{
+  'id_customer': instance.memberId,
+  'mobile_no': instance.mobileNumber,
+  'status': instance.status,
+  'runtimeType': instance.$type,
+};
+
 DownloadReportParams _$DownloadReportParamsFromJson(
   Map<String, dynamic> json,
 ) => DownloadReportParams(

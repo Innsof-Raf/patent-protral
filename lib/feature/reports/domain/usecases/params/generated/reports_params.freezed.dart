@@ -19,6 +19,10 @@ ReportsParams _$ReportsParamsFromJson(
           return GetReportsParams.fromJson(
             json
           );
+                case 'getPrescriptions':
+          return GetPrescriptionsParams.fromJson(
+            json
+          );
                 case 'downloadReport':
           return DownloadReportParams.fromJson(
             json
@@ -81,11 +85,12 @@ extension ReportsParamsPatterns on ReportsParams {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( GetReportsParams value)?  getReports,TResult Function( DownloadReportParams value)?  downloadReport,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( GetReportsParams value)?  getReports,TResult Function( GetPrescriptionsParams value)?  getPrescriptions,TResult Function( DownloadReportParams value)?  downloadReport,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case GetReportsParams() when getReports != null:
-return getReports(_that);case DownloadReportParams() when downloadReport != null:
+return getReports(_that);case GetPrescriptionsParams() when getPrescriptions != null:
+return getPrescriptions(_that);case DownloadReportParams() when downloadReport != null:
 return downloadReport(_that);case _:
   return orElse();
 
@@ -104,11 +109,12 @@ return downloadReport(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( GetReportsParams value)  getReports,required TResult Function( DownloadReportParams value)  downloadReport,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( GetReportsParams value)  getReports,required TResult Function( GetPrescriptionsParams value)  getPrescriptions,required TResult Function( DownloadReportParams value)  downloadReport,}){
 final _that = this;
 switch (_that) {
 case GetReportsParams():
-return getReports(_that);case DownloadReportParams():
+return getReports(_that);case GetPrescriptionsParams():
+return getPrescriptions(_that);case DownloadReportParams():
 return downloadReport(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
@@ -123,11 +129,12 @@ return downloadReport(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( GetReportsParams value)?  getReports,TResult? Function( DownloadReportParams value)?  downloadReport,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( GetReportsParams value)?  getReports,TResult? Function( GetPrescriptionsParams value)?  getPrescriptions,TResult? Function( DownloadReportParams value)?  downloadReport,}){
 final _that = this;
 switch (_that) {
 case GetReportsParams() when getReports != null:
-return getReports(_that);case DownloadReportParams() when downloadReport != null:
+return getReports(_that);case GetPrescriptionsParams() when getPrescriptions != null:
+return getPrescriptions(_that);case DownloadReportParams() when downloadReport != null:
 return downloadReport(_that);case _:
   return null;
 
@@ -145,10 +152,11 @@ return downloadReport(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber,  String status)?  getReports,TResult Function(@JsonKey(includeToJson: false)  String url)?  downloadReport,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber,  String status)?  getReports,TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token)?  getPrescriptions,TResult Function(@JsonKey(includeToJson: false)  String url)?  downloadReport,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case GetReportsParams() when getReports != null:
-return getReports(_that.memberId,_that.token,_that.mobileNumber,_that.status);case DownloadReportParams() when downloadReport != null:
+return getReports(_that.memberId,_that.token,_that.mobileNumber,_that.status);case GetPrescriptionsParams() when getPrescriptions != null:
+return getPrescriptions(_that.memberId,_that.token);case DownloadReportParams() when downloadReport != null:
 return downloadReport(_that.url);case _:
   return orElse();
 
@@ -167,10 +175,11 @@ return downloadReport(_that.url);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber,  String status)  getReports,required TResult Function(@JsonKey(includeToJson: false)  String url)  downloadReport,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber,  String status)  getReports,required TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token)  getPrescriptions,required TResult Function(@JsonKey(includeToJson: false)  String url)  downloadReport,}) {final _that = this;
 switch (_that) {
 case GetReportsParams():
-return getReports(_that.memberId,_that.token,_that.mobileNumber,_that.status);case DownloadReportParams():
+return getReports(_that.memberId,_that.token,_that.mobileNumber,_that.status);case GetPrescriptionsParams():
+return getPrescriptions(_that.memberId,_that.token);case DownloadReportParams():
 return downloadReport(_that.url);}
 }
 /// A variant of `when` that fallback to returning `null`
@@ -185,10 +194,11 @@ return downloadReport(_that.url);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber,  String status)?  getReports,TResult? Function(@JsonKey(includeToJson: false)  String url)?  downloadReport,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber,  String status)?  getReports,TResult? Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token)?  getPrescriptions,TResult? Function(@JsonKey(includeToJson: false)  String url)?  downloadReport,}) {final _that = this;
 switch (_that) {
 case GetReportsParams() when getReports != null:
-return getReports(_that.memberId,_that.token,_that.mobileNumber,_that.status);case DownloadReportParams() when downloadReport != null:
+return getReports(_that.memberId,_that.token,_that.mobileNumber,_that.status);case GetPrescriptionsParams() when getPrescriptions != null:
+return getPrescriptions(_that.memberId,_that.token);case DownloadReportParams() when downloadReport != null:
 return downloadReport(_that.url);case _:
   return null;
 
@@ -265,6 +275,85 @@ class _$GetReportsParamsCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? memberId = null,Object? token = null,Object? mobileNumber = null,Object? status = null,}) {
   return _then(GetReportsParams(
+memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
+as int,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,mobileNumber: null == mobileNumber ? _self.mobileNumber : mobileNumber // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class GetPrescriptionsParams implements ReportsParams {
+  const GetPrescriptionsParams({@JsonKey(name: 'id_customer') required this.memberId, @JsonKey(includeToJson: false) required this.token, @JsonKey(name: 'mobile_no') required this.mobileNumber, this.status = 'ALL', final  String? $type}): $type = $type ?? 'getPrescriptions';
+  factory GetPrescriptionsParams.fromJson(Map<String, dynamic> json) => _$GetPrescriptionsParamsFromJson(json);
+
+@JsonKey(name: 'id_customer') final  int memberId;
+@JsonKey(includeToJson: false) final  String token;
+@JsonKey(name: 'mobile_no') final  String mobileNumber;
+@JsonKey() final  String status;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
+
+/// Create a copy of ReportsParams
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$GetPrescriptionsParamsCopyWith<GetPrescriptionsParams> get copyWith => _$GetPrescriptionsParamsCopyWithImpl<GetPrescriptionsParams>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$GetPrescriptionsParamsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GetPrescriptionsParams&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.token, token) || other.token == token)&&(identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber)&&(identical(other.status, status) || other.status == status));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,memberId,token,mobileNumber,status);
+
+@override
+String toString() {
+  return 'ReportsParams.getPrescriptions(memberId: $memberId, token: $token, mobileNumber: $mobileNumber, status: $status)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $GetPrescriptionsParamsCopyWith<$Res> implements $ReportsParamsCopyWith<$Res> {
+  factory $GetPrescriptionsParamsCopyWith(GetPrescriptionsParams value, $Res Function(GetPrescriptionsParams) _then) = _$GetPrescriptionsParamsCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'id_customer') int memberId,@JsonKey(includeToJson: false) String token,@JsonKey(name: 'mobile_no') String mobileNumber, String status
+});
+
+
+
+
+}
+/// @nodoc
+class _$GetPrescriptionsParamsCopyWithImpl<$Res>
+    implements $GetPrescriptionsParamsCopyWith<$Res> {
+  _$GetPrescriptionsParamsCopyWithImpl(this._self, this._then);
+
+  final GetPrescriptionsParams _self;
+  final $Res Function(GetPrescriptionsParams) _then;
+
+/// Create a copy of ReportsParams
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? memberId = null,Object? token = null,Object? mobileNumber = null,Object? status = null,}) {
+  return _then(GetPrescriptionsParams(
 memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
 as int,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
 as String,mobileNumber: null == mobileNumber ? _self.mobileNumber : mobileNumber // ignore: cast_nullable_to_non_nullable

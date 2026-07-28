@@ -47,6 +47,38 @@ class ReportsBloc extends Bloc<ReportsEvent, ReportsState> {
         ),
       );
     });
+    on<GetPrescriptions>((event, emit) async {
+      final getPrescriptionsParams = event.params.maybeMap(
+        getPrescriptions: (value) => value,
+        orElse: () => throw Exception('Invalid prescriptions params'),
+      );
+      emit(
+        state.copyWith(
+          selectedMemberId: getPrescriptionsParams.memberId,
+          isFetchingPrescriptions: true,
+          isFetchingPrescriptionsSuccess: false,
+          isFetchingPrescriptionsFailed: false,
+        ),
+      );
+      final Either<ErrorModel, List<Report>> prescriptionsFetchingOptions =
+          await reportsUseCase.getPrescriptions(event.params);
+      prescriptionsFetchingOptions.fold(
+        (error) => emit(
+          state.copyWith(
+            isFetchingPrescriptions: false,
+            isFetchingPrescriptionsFailed: true,
+            error: error,
+          ),
+        ),
+        (prescriptions) => emit(
+          state.copyWith(
+            isFetchingPrescriptions: false,
+            isFetchingPrescriptionsSuccess: true,
+            prescriptions: prescriptions,
+          ),
+        ),
+      );
+    });
     on<StoreReport>((event, emit) async {
       emit(
         state.copyWith(
