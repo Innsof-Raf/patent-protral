@@ -22,6 +22,9 @@ import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_
 import 'package:patient_portal/core/analytics/app_analytics_events.dart';
 import 'package:patient_portal/core/injection_container.dart' as di;
 import 'package:patient_portal/core/services/analytics_service.dart';
+import 'package:patient_portal/feature/reminder/presentation/cubit/reminder_cubit.dart';
+import 'package:patient_portal/feature/reminder/presentation/cubit/reminder_state.dart';
+import 'package:patient_portal/feature/reminder/presentation/widgets/reminder_selection_bottom_sheet.dart';
 
 import 'cancel_booking_popup.dart';
 
@@ -93,6 +96,59 @@ class MyAppointmentTile extends StatelessWidget {
                                 ),
                                 Row(
                                   children: [
+                                    if (!isConsulted && !isCancelled)
+                                      BlocSelector<ReminderCubit, ReminderState, bool>(
+                                        selector: (state) => state.hasReminderFor(
+                                          appointment.id.toString(),
+                                        ),
+                                        builder: (context, hasReminder) {
+                                          return Padding(
+                                            padding:
+                                                const EdgeInsets.only(right: 6),
+                                            child: InkWell(
+                                              borderRadius:
+                                                  BorderRadius.circular(16),
+                                              onTap: () {
+                                                final cubit =
+                                                    context.read<ReminderCubit>();
+                                                final activeReminders =
+                                                    cubit.state.getRemindersFor(
+                                                  appointment.id.toString(),
+                                                );
+                                                ReminderSelectionBottomSheet.show(
+                                                  context: context,
+                                                  appointment: appointment,
+                                                  activeReminders:
+                                                      activeReminders,
+                                                );
+                                              },
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.all(5),
+                                                decoration: BoxDecoration(
+                                                  color: hasReminder
+                                                      ? colorScheme.primary
+                                                          .withValues(alpha: 0.1)
+                                                      : colorScheme
+                                                          .surfaceContainerHighest
+                                                          .withValues(alpha: 0.4),
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Icon(
+                                                  hasReminder
+                                                      ? Icons.notifications_active_rounded
+                                                      : Icons.notifications_none_rounded,
+                                                  size: 16,
+                                                  color: hasReminder
+                                                      ? colorScheme.primary
+                                                      : colorScheme
+                                                          .onSurfaceVariant,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
                                     _StatusBadge(
                                       isConsulted: isConsulted,
                                       isCancelled: isCancelled,

@@ -19,6 +19,9 @@ import 'package:patient_portal/feature/my_appointments/domain/entities/my_appoin
 import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 
+import 'package:patient_portal/feature/reminder/domain/usecases/params/schedule_appointment_reminder_params.dart';
+import 'package:patient_portal/feature/reminder/presentation/cubit/reminder_cubit.dart';
+
 import 'book_appointment_screen_helpers.dart';
 
 class BookAppointmentBottomNavigationBar extends StatelessWidget {
@@ -284,6 +287,19 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
     BookAppointmentScreenHelpers.selectedSlotNotifier.value = null;
 
     if (appointmentId == 0) {
+      final pendingOffset =
+          BookAppointmentScreenHelpers.pendingReminderOffsetNotifier.value;
+      if (pendingOffset != null && state.appointmentDetails != null) {
+        final params = ScheduleAppointmentReminderParams(
+          targetId: state.appointmentDetails!.id.toString(),
+          targetDateTime: state.appointmentDetails!.appointmentDateTime,
+          doctorName: state.appointmentDetails!.doctorName,
+          offsetMinutes: pendingOffset,
+        );
+        context.read<ReminderCubit>().scheduleReminder(params);
+        BookAppointmentScreenHelpers.pendingReminderOffsetNotifier.value = null;
+      }
+
       context.read<MyAppointmentsBloc>().add(
         StoreBookedAppointment(
           params: MyAppointmentsParams.storeBookedAppointment(

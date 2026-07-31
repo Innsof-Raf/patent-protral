@@ -11,8 +11,12 @@ import 'package:patient_portal/core/resources/common_widgets.dart/active_outline
 import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
+import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
+import 'package:patient_portal/feature/reminder/domain/entities/reminder_trigger_offset.dart';
+import 'package:patient_portal/feature/reminder/domain/usecases/params/schedule_appointment_reminder_params.dart';
+import 'package:patient_portal/feature/reminder/presentation/cubit/reminder_cubit.dart';
 
 class BookAppointmentConfirmationPopUp extends StatefulWidget {
   final String title;
@@ -41,6 +45,17 @@ class BookAppointmentConfirmationPopUp extends StatefulWidget {
 
 class _BookAppointmentConfirmationPopUpState
     extends State<BookAppointmentConfirmationPopUp> {
+  bool _setReminder = false;
+  int _selectedReminderOffset = ReminderTriggerOffset.oneHourBefore.minutes;
+
+  final List<ReminderTriggerOffset> _reminderPresets = [
+    ReminderTriggerOffset.fifteenMinsBefore,
+    ReminderTriggerOffset.thirtyMinsBefore,
+    ReminderTriggerOffset.oneHourBefore,
+    ReminderTriggerOffset.twoHoursBefore,
+    ReminderTriggerOffset.oneDayBefore,
+  ];
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -236,6 +251,94 @@ class _BookAppointmentConfirmationPopUpState
                         ],
                       ),
                     ),
+                    const Gap(16),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          _setReminder = !_setReminder;
+                        });
+                      },
+                      borderRadius: BorderRadius.circular(12),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 4,
+                          horizontal: 2,
+                        ),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: Checkbox(
+                                value: _setReminder,
+                                onChanged: (val) {
+                                  setState(() {
+                                    _setReminder = val ?? false;
+                                  });
+                                },
+                                activeColor: colorScheme.primary,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                              ),
+                            ),
+                            const Gap(10),
+                            Icon(
+                              Icons.alarm_add_rounded,
+                              size: 18,
+                              color: _setReminder
+                                  ? colorScheme.primary
+                                  : colorScheme.onSurfaceVariant,
+                            ),
+                            const Gap(6),
+                            Text(
+                              'Set appointment reminder alarm',
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.w600,
+                                color: colorScheme.onSurface,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    if (_setReminder) ...[
+                      const Gap(10),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: _reminderPresets.map((preset) {
+                            final isSelected =
+                                _selectedReminderOffset == preset.minutes;
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 8),
+                              child: ChoiceChip(
+                                showCheckmark: false,
+                                label: Text(preset.getLocalizedLabel(context)),
+                                selected: isSelected,
+                                onSelected: (selected) {
+                                  if (selected) {
+                                    setState(() {
+                                      _selectedReminderOffset = preset.minutes;
+                                    });
+                                  }
+                                },
+                                selectedColor: colorScheme.primaryContainer,
+                                labelStyle: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: isSelected
+                                      ? FontWeight.bold
+                                      : FontWeight.normal,
+                                  color: isSelected
+                                      ? colorScheme.onPrimaryContainer
+                                      : colorScheme.onSurfaceVariant,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ],
                     const Gap(20),
                     Row(
                       children: [
@@ -249,6 +352,26 @@ class _BookAppointmentConfirmationPopUpState
                         Expanded(
                           child: ActiveButton(
                             onPressed: () {
+                              if (widget.appointmentId == 0) {
+                                BookAppointmentScreenHelpers
+                                    .pendingReminderOffsetNotifier
+                                    .value = _setReminder
+                                    ? _selectedReminderOffset
+                                    : null;
+                              } else if (_setReminder) {
+                                final params =
+                                    ScheduleAppointmentReminderParams(
+                                      targetId: widget.appointmentId.toString(),
+                                      targetDateTime:
+                                          widget.appointmentDateTime,
+                                      doctorName: widget.doctorName,
+                                      offsetMinutes: _selectedReminderOffset,
+                                    );
+                                context.read<ReminderCubit>().scheduleReminder(
+                                  params,
+                                );
+                              }
+
                               if (widget.appointmentId == 0) {
                                 context.read<BookAppointmentBloc>().add(
                                   BookNewAppointment(
