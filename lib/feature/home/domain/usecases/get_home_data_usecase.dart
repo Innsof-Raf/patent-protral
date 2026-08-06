@@ -12,9 +12,10 @@ class GetHomeDataUseCase implements UseCase<HomeData, HomeParams> {
 
   @override
   Future<Either<Failure, HomeData>> call(HomeParams params) {
-    return params.when(
+    return params.maybeWhen(
       getHomeData: (token, idBusunit) =>
           repository.getHomeData(token: token, idBusunit: idBusunit),
+      orElse: () => throw Exception('Invalid params for GetHomeDataUseCase'),
     );
   }
 }

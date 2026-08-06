@@ -10,6 +10,7 @@ import 'package:patient_portal/core/resources/common_widgets.dart/common_bottom_
 import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/resources/dimens.dart';
 import 'package:patient_portal/core/resources/urls.dart';
+import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/lab/domain/entities/item.dart';
 import 'package:patient_portal/feature/lab/presentation/bloc/items_bloc/items_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -32,6 +33,11 @@ class LabItemDetailScreen extends StatelessWidget {
         final Item? selectedItem = itemIndex != -1
             ? state.items[itemIndex]
             : null;
+
+        final bool isInCart =
+            state.cart.any((element) => element.idItem == idItem) ||
+            (selectedItem?.isCart ?? false);
+
         return Scaffold(
           appBar: CommonAppbar(title: context.lang.laboratory),
           body: Padding(
@@ -128,36 +134,47 @@ class LabItemDetailScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: CommonBottomActionButton(
-                    isPrimary: false,
+                    isPrimary: isInCart,
                     title: context.lang.viewCart,
-                    onPressed: () {},
-                  ),
-                ),
-                Expanded(
-                  child: CommonBottomActionButton(
-                    backgroundColor:
-                        selectedItem != null &&
-                            selectedItem.isChangingCartStatus
-                        ? theme.colorScheme.surface
-                        : null,
-                    title: context.lang.addToCart,
                     onPressed: () {
-                      if (selectedItem != null) {
-                        context.read<ItemsBloc>().add(
-                          UpdateItemCartSatus(
-                            idItem: selectedItem.idItem,
-                            idUser: context.read<UserBloc>().state.user!.id,
-                            token: context
-                                .read<UserBloc>()
-                                .state
-                                .user!
-                                .accessToken,
-                          ),
+                      if (context.router.stack.any(
+                        (r) => r.name == CartRoute.name,
+                      )) {
+                        context.router.popUntil(
+                          (r) => r.settings.name == CartRoute.name,
                         );
+                      } else {
+                        context.router.push(const CartRoute());
                       }
                     },
                   ),
                 ),
+                if (!isInCart)
+                  Expanded(
+                    child: CommonBottomActionButton(
+                      backgroundColor:
+                          selectedItem != null &&
+                              selectedItem.isChangingCartStatus
+                          ? theme.colorScheme.surface
+                          : null,
+                      title: context.lang.addToCart,
+                      onPressed: () {
+                        if (selectedItem != null) {
+                          context.read<ItemsBloc>().add(
+                            UpdateItemCartSatus(
+                              idItem: selectedItem.idItem,
+                              idUser: context.read<UserBloc>().state.user!.id,
+                              token: context
+                                  .read<UserBloc>()
+                                  .state
+                                  .user!
+                                  .accessToken,
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  ),
               ],
             ),
           ),

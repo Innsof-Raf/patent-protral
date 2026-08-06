@@ -53,14 +53,37 @@ class CartItemTile extends StatelessWidget {
                     borderRadius: const BorderRadius.vertical(
                       top: Radius.circular(16),
                     ),
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          '${ConstantUrls.packageImageUrl}/${item.idItem}/${item.itemImg}',
-                      placeholder: CommonNetworkImage.placeholder,
-                      errorWidget: CommonNetworkImage.errorWidget,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                    ),
+                    child: item.itemImg.isNotEmpty
+                        ? CachedNetworkImage(
+                            imageUrl:
+                                '${ConstantUrls.packageImageUrl}/${item.idItem}/${item.itemImg}',
+                            placeholder: CommonNetworkImage.placeholder,
+                            errorWidget: (context, url, error) => Container(
+                              color: theme.colorScheme.primaryContainer
+                                  .withValues(alpha: 0.2),
+                              child: Center(
+                                child: Icon(
+                                  Icons.biotech_outlined,
+                                  size: 36,
+                                  color: theme.colorScheme.primary,
+                                ),
+                              ),
+                            ),
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                          )
+                        : Container(
+                            color: theme.colorScheme.primaryContainer
+                                .withValues(alpha: 0.2),
+                            width: double.infinity,
+                            child: Center(
+                              child: Icon(
+                                Icons.biotech_outlined,
+                                size: 36,
+                                color: theme.colorScheme.primary,
+                              ),
+                            ),
+                          ),
                   ),
                   PositionedDirectional(
                     top: 8,

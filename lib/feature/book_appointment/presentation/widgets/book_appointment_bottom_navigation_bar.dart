@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -335,22 +336,24 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
           .read<MyAppointmentsBloc>()
           .state
           .myAppointments
-          .singleWhere((appointment) => appointment.id == appointmentId);
+          .firstWhereOrNull((appointment) => appointment.id == appointmentId);
 
-      context.read<BookAppointmentBloc>().add(
-        ChangeRescheduledSlotState(
-          oldSlot: selectedAppointment.appointmentDateTime,
-          currentSlot: state.appointmentDetails!.appointmentDateTime,
-        ),
-      );
-      context.read<MyAppointmentsBloc>().add(
-        ChangeRescheduledAppointmentDetails(
-          params: MyAppointmentsParams.changeRescheduledAppointmentDetails(
-            appointment: selectedAppointment,
+      if (selectedAppointment != null) {
+        context.read<BookAppointmentBloc>().add(
+          ChangeRescheduledSlotState(
+            oldSlot: selectedAppointment.appointmentDateTime,
             currentSlot: state.appointmentDetails!.appointmentDateTime,
           ),
-        ),
-      );
+        );
+        context.read<MyAppointmentsBloc>().add(
+          ChangeRescheduledAppointmentDetails(
+            params: MyAppointmentsParams.changeRescheduledAppointmentDetails(
+              appointment: selectedAppointment,
+              currentSlot: state.appointmentDetails!.appointmentDateTime,
+            ),
+          ),
+        );
+      }
     }
   }
 }

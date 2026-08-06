@@ -152,11 +152,11 @@ return downloadReport(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber,  String status)?  getReports,TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token)?  getPrescriptions,TResult Function(@JsonKey(includeToJson: false)  String url)?  downloadReport,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber,  String status)?  getReports,TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber,  String status)?  getPrescriptions,TResult Function(@JsonKey(includeToJson: false)  String url)?  downloadReport,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case GetReportsParams() when getReports != null:
 return getReports(_that.memberId,_that.token,_that.mobileNumber,_that.status);case GetPrescriptionsParams() when getPrescriptions != null:
-return getPrescriptions(_that.memberId,_that.token);case DownloadReportParams() when downloadReport != null:
+return getPrescriptions(_that.memberId,_that.token,_that.mobileNumber,_that.status);case DownloadReportParams() when downloadReport != null:
 return downloadReport(_that.url);case _:
   return orElse();
 
@@ -175,11 +175,11 @@ return downloadReport(_that.url);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber,  String status)  getReports,required TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token)  getPrescriptions,required TResult Function(@JsonKey(includeToJson: false)  String url)  downloadReport,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber,  String status)  getReports,required TResult Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber,  String status)  getPrescriptions,required TResult Function(@JsonKey(includeToJson: false)  String url)  downloadReport,}) {final _that = this;
 switch (_that) {
 case GetReportsParams():
 return getReports(_that.memberId,_that.token,_that.mobileNumber,_that.status);case GetPrescriptionsParams():
-return getPrescriptions(_that.memberId,_that.token);case DownloadReportParams():
+return getPrescriptions(_that.memberId,_that.token,_that.mobileNumber,_that.status);case DownloadReportParams():
 return downloadReport(_that.url);}
 }
 /// A variant of `when` that fallback to returning `null`
@@ -194,11 +194,11 @@ return downloadReport(_that.url);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber,  String status)?  getReports,TResult? Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token)?  getPrescriptions,TResult? Function(@JsonKey(includeToJson: false)  String url)?  downloadReport,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber,  String status)?  getReports,TResult? Function(@JsonKey(name: 'id_customer')  int memberId, @JsonKey(includeToJson: false)  String token, @JsonKey(name: 'mobile_no')  String mobileNumber,  String status)?  getPrescriptions,TResult? Function(@JsonKey(includeToJson: false)  String url)?  downloadReport,}) {final _that = this;
 switch (_that) {
 case GetReportsParams() when getReports != null:
 return getReports(_that.memberId,_that.token,_that.mobileNumber,_that.status);case GetPrescriptionsParams() when getPrescriptions != null:
-return getPrescriptions(_that.memberId,_that.token);case DownloadReportParams() when downloadReport != null:
+return getPrescriptions(_that.memberId,_that.token,_that.mobileNumber,_that.status);case DownloadReportParams() when downloadReport != null:
 return downloadReport(_that.url);case _:
   return null;
 

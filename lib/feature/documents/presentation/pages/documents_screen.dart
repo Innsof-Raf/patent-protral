@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -56,11 +57,12 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
               builder: (context, state) {
                 final selectedName = state.selectedMemberId == 0
                     ? context.lang.allDocuments
-                    : userState.user!.members
-                          .singleWhere(
-                            (element) => element.id == state.selectedMemberId,
-                          )
-                          .name;
+                    : (userState.user!.members
+                            .firstWhereOrNull(
+                              (element) => element.id == state.selectedMemberId,
+                            )
+                            ?.name ??
+                        context.lang.allDocuments);
 
                 return PopupMenuButton<int>(
                   initialValue: state.selectedMemberId,

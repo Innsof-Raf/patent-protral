@@ -87,28 +87,42 @@ DateTime? _nullableDateTimeFromJson(Object? value) {
 }
 
 Map<String, dynamic> _normalizeMemberJson(Map<String, dynamic> json) {
-  if (json.containsKey('Id') || json.containsKey('Name')) {
-    return json;
+  final Map<String, dynamic> normalized = Map<String, dynamic>.from(json);
+
+  final dynamic customerIdRaw = json['customer_id'] ??
+      json['Customer_ID'] ??
+      json['Customer_Id'] ??
+      json['patient_id'] ??
+      json['customer_code'] ??
+      json['member_no'];
+
+  final String? parsedMemberNo = _nullableStringFromJson(customerIdRaw);
+
+  if (!json.containsKey('Id') && !json.containsKey('Name')) {
+    normalized['Id'] = json['id_customer'] ?? json['Id'];
+    normalized['Name'] = json['customer_name'] ?? json['Name'];
+    normalized['MobileNo'] = json['mobile_no'] ?? json['MobileNo'];
+    normalized['EmailID'] = json['email'] ?? json['EmailID'];
+    normalized['Age'] = json['age'] ?? json['Age'];
+    normalized['SSN'] = json['national_id'] ?? json['SSN'];
+    normalized['Profile_Img'] = json['profile_img'] ?? json['Profile_Img'];
+    normalized['Is_Insu'] = json['is_insurance'] ?? json['Is_Insu'] ?? false;
+    normalized['Is_InsuExpired'] =
+        json['is_insurance_expired'] ?? json['Is_InsuExpired'] ?? false;
+    normalized['Insur_Exp'] = json['expiry_dt'] ?? json['Insur_Exp'];
+    normalized['Dob'] = json['dob'] ?? json['Dob'];
+    normalized['insur_name'] = json['insurance_name'] ?? json['insur_name'];
+    normalized['insu_id'] = json['id_insurance'] ?? json['insu_id'];
+    normalized['Gender'] = json['gender'] ?? json['Gender'];
+    normalized['docs'] = json['docs'] ?? const [];
+    normalized['isSelected'] = json['isSelected'] ?? false;
   }
 
-  return {
-    'Id': json['id_customer'] ?? json['Id'],
-    'Name': json['customer_name'] ?? json['Name'],
-    'MobileNo': json['mobile_no'] ?? json['MobileNo'],
-    'EmailID': json['email'] ?? json['EmailID'],
-    'Age': json['age'] ?? json['Age'],
-    'SSN': json['national_id'] ?? json['SSN'],
-    'Profile_Img': json['profile_img'] ?? json['Profile_Img'],
-    'Is_Insu': json['is_insurance'] ?? json['Is_Insu'] ?? false,
-    'Is_InsuExpired':
-        json['is_insurance_expired'] ?? json['Is_InsuExpired'] ?? false,
-    'Insur_Exp': json['expiry_dt'] ?? json['Insur_Exp'],
-    'Dob': json['dob'] ?? json['Dob'],
-    'member_no': json['member_no'],
-    'insur_name': json['insurance_name'] ?? json['insur_name'],
-    'insu_id': json['id_insurance'] ?? json['insu_id'],
-    'Gender': json['gender'] ?? json['Gender'],
-    'docs': json['docs'] ?? const [],
-    'isSelected': json['isSelected'] ?? false,
-  };
+  if (parsedMemberNo != null &&
+      parsedMemberNo.isNotEmpty &&
+      parsedMemberNo.toLowerCase() != 'new') {
+    normalized['member_no'] = parsedMemberNo;
+  }
+
+  return normalized;
 }

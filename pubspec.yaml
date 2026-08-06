@@ -44,6 +44,7 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^9.1.1
   flutter_downloader: ^1.12.0
+  flutter_local_notifications: ^18.0.1
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.4.7
@@ -64,6 +65,7 @@ dependencies:
   smart_auth: ^3.2.0
   smooth_page_indicator: ^2.0.1
   syncfusion_flutter_pdfviewer: ^33.2.13
+  timezone: ^0.9.4
   url_launcher: ^6.3.2
 
 dev_dependencies:

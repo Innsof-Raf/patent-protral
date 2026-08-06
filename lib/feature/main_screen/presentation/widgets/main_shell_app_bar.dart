@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/localization/localization_extension.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/cart_icon_button.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/main_shell_icon_button.dart';
 
@@ -11,6 +12,7 @@ class MainShellAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.titleWidget,
     this.actions = const [],
     this.centerTitle = false,
+    this.showCart = true,
     super.key,
   }) : assert(title != null || titleWidget != null);
 
@@ -18,6 +20,7 @@ class MainShellAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? titleWidget;
   final List<Widget> actions;
   final bool centerTitle;
+  final bool showCart;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +54,11 @@ class MainShellAppBar extends StatelessWidget implements PreferredSizeWidget {
               letterSpacing: -0.5,
             ),
           ),
-      actions: [...actions, const Gap(8)],
+      actions: [
+        ...actions,
+        if (showCart) const CartIconButton(),
+        const Gap(8),
+      ],
     );
   }
 

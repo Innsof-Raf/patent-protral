@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/core/analytics/app_analytics_events.dart';
@@ -41,18 +42,25 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
           ),
         ),
         (items) {
-          double cartTotal = 0;
+          final List<Item> mergedCart = List.from(state.cart);
           for (Item item in items) {
-            if (item.isCart) {
-              cartTotal = cartTotal + item.itemPrice;
+            if (item.isCart &&
+                !mergedCart.any((c) => c.idItem == item.idItem)) {
+              mergedCart.add(item);
             }
           }
+
+          double cartTotal = 0;
+          for (Item item in mergedCart) {
+            cartTotal += item.itemPrice;
+          }
+
           return emit(
             state.copyWith(
               isItemsFetching: false,
               isItemsFetchingSuccess: true,
               cartTotal: cartTotal,
-              cart: items.where((item) => item.isCart).toList(),
+              cart: mergedCart,
               items: items,
             ),
           );
@@ -101,21 +109,29 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
             }).toList(),
           ),
         ),
-        (success) {
+        (success) async {
           double cartTotal = state.cartTotal;
           final List<Item> cart = List.from(state.cart);
-          if (cart.any((item) => item.idItem == event.idItem)) {
-            final Item item = cart.singleWhere(
-              (item) => item.idItem == event.idItem,
-            );
-            cart.remove(item);
-            cartTotal = cartTotal - item.itemPrice;
+          final existingInCart = cart.firstWhereOrNull(
+            (item) => item.idItem == event.idItem,
+          );
+
+          if (existingInCart != null) {
+            cart.removeWhere((item) => item.idItem == event.idItem);
+            cartTotal = cartTotal - existingInCart.itemPrice;
           } else {
-            final Item item = state.items.singleWhere(
+            final Item? itemInItems = state.items.firstWhereOrNull(
               (item) => item.idItem == event.idItem,
-            );
-            cart.add(item);
-            cartTotal = cartTotal + item.itemPrice;
+            ) ?? event.item;
+            if (itemInItems != null) {
+              cart.add(
+                itemInItems.copyWith(
+                  isCart: true,
+                  isChangingCartStatus: false,
+                ),
+              );
+              cartTotal = cartTotal + itemInItems.itemPrice;
+            }
             di.sl<AnalyticsService>().logEvent(
                   AppAnalyticsEvents.addLabToCart(
                     itemId: event.idItem.toString(),
@@ -124,25 +140,16 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
                 );
           }
 
-          return emit(
+          emit(
             state.copyWith(
-              cartTotal: cartTotal,
+              cartTotal: cartTotal < 0 ? 0 : cartTotal,
               isCartUpdatingSucees: true,
-              cart: cart.map((item) {
-                if (event.idItem == item.idItem) {
-                  return item.copyWith(
-                    isChangingCartStatus: false,
-                    isCart: !item.isCart,
-                  );
-                } else {
-                  return item;
-                }
-              }).toList(),
+              cart: cart,
               items: state.items.map((item) {
                 if (event.idItem == item.idItem) {
                   return item.copyWith(
                     isChangingCartStatus: false,
-                    isCart: !item.isCart,
+                    isCart: existingInCart == null,
                   );
                 } else {
                   return item;
@@ -151,6 +158,16 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
             ),
           );
         },
+      );
+    });
+    on<ClearCart>((event, emit) {
+      emit(
+        state.copyWith(
+          cart: [],
+          cartTotal: 0,
+          items:
+              state.items.map((item) => item.copyWith(isCart: false)).toList(),
+        ),
       );
     });
   }

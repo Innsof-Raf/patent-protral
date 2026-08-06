@@ -7,7 +7,11 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MainShellAppBar(title: context.lang.profileTitle, centerTitle: true);
+    return MainShellAppBar(
+      title: context.lang.profileTitle,
+      centerTitle: true,
+      showCart: false,
+    );
   }
 
   @override

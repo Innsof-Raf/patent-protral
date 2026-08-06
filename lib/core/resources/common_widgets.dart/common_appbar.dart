@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:patient_portal/core/localization/localization_extension.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/cart_icon_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_icon_button.dart';
 
 class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
@@ -12,6 +13,7 @@ class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
   final Color? backgroundColor;
   final Color? foregroundColor;
   final double? elevation;
+  final bool showCart;
 
   const CommonAppbar({
     super.key,
@@ -23,6 +25,7 @@ class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.backgroundColor,
     this.foregroundColor,
     this.elevation,
+    this.showCart = true,
   }) : assert(title != null || titleWidget != null);
 
   @override
@@ -61,7 +64,11 @@ class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
               letterSpacing: -0.5,
             ),
           ),
-      actions: [...?actions, const Gap(8)],
+      actions: [
+        ...?actions,
+        if (showCart) CartIconButton(color: effectiveForegroundColor),
+        const Gap(8),
+      ],
     );
   }
 

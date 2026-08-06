@@ -113,7 +113,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           final int currentMemberIndex = members.indexWhere(
             (member) => member.id == event.params.memberId,
           );
-          members[currentMemberIndex] = memberDetail;
+          if (currentMemberIndex != -1) {
+            members[currentMemberIndex] = memberDetail;
+          } else {
+            members.add(memberDetail);
+          }
           return emit(
             state.copyWith(
               isMemberAdding: false,
@@ -146,10 +150,14 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         ),
         (memberDetail) {
           final List<Member> members = List.from(state.user!.members);
-          final int cureentMemberIndex = members.indexWhere(
+          final int currentMemberIndex = members.indexWhere(
             (member) => member.id == event.params.memberId,
           );
-          members[cureentMemberIndex] = memberDetail;
+          if (currentMemberIndex != -1) {
+            members[currentMemberIndex] = memberDetail;
+          } else {
+            members.add(memberDetail);
+          }
           return emit(
             state.copyWith(
               isFetchingMemberDetail: false,
@@ -223,10 +231,10 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     });
     on<SelectMember>((event, emit) {
       di.sl<AnalyticsService>().logEvent(
-            AppAnalyticsEvents.familyMemberSwitched(
-              memberRelation: event.member.name,
-            ),
-          );
+        AppAnalyticsEvents.familyMemberSwitched(
+          memberRelation: event.member.name,
+        ),
+      );
       emit(state.copyWith(selectedMember: event.member));
     });
   }

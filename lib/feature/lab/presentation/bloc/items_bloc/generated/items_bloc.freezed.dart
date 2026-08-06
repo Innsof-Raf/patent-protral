@@ -14,61 +14,30 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ItemsEvent {
 
- String get token;
-/// Create a copy of ItemsEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$ItemsEventCopyWith<ItemsEvent> get copyWith => _$ItemsEventCopyWithImpl<ItemsEvent>(this as ItemsEvent, _$identity);
+
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ItemsEvent&&(identical(other.token, token) || other.token == token));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ItemsEvent);
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,token);
+int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ItemsEvent(token: $token)';
+  return 'ItemsEvent()';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $ItemsEventCopyWith<$Res>  {
-  factory $ItemsEventCopyWith(ItemsEvent value, $Res Function(ItemsEvent) _then) = _$ItemsEventCopyWithImpl;
-@useResult
-$Res call({
- String token
-});
-
-
-
-
-}
-/// @nodoc
-class _$ItemsEventCopyWithImpl<$Res>
-    implements $ItemsEventCopyWith<$Res> {
-  _$ItemsEventCopyWithImpl(this._self, this._then);
-
-  final ItemsEvent _self;
-  final $Res Function(ItemsEvent) _then;
-
-/// Create a copy of ItemsEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? token = null,}) {
-  return _then(_self.copyWith(
-token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
+class $ItemsEventCopyWith<$Res>  {
+$ItemsEventCopyWith(ItemsEvent _, $Res Function(ItemsEvent) __);
 }
 
 
@@ -86,12 +55,13 @@ extension ItemsEventPatterns on ItemsEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( GetItems value)?  getItems,TResult Function( UpdateItemCartSatus value)?  updateItemCartSatus,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( GetItems value)?  getItems,TResult Function( UpdateItemCartSatus value)?  updateItemCartSatus,TResult Function( ClearCart value)?  clearCart,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case GetItems() when getItems != null:
 return getItems(_that);case UpdateItemCartSatus() when updateItemCartSatus != null:
-return updateItemCartSatus(_that);case _:
+return updateItemCartSatus(_that);case ClearCart() when clearCart != null:
+return clearCart(_that);case _:
   return orElse();
 
 }
@@ -109,12 +79,13 @@ return updateItemCartSatus(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( GetItems value)  getItems,required TResult Function( UpdateItemCartSatus value)  updateItemCartSatus,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( GetItems value)  getItems,required TResult Function( UpdateItemCartSatus value)  updateItemCartSatus,required TResult Function( ClearCart value)  clearCart,}){
 final _that = this;
 switch (_that) {
 case GetItems():
 return getItems(_that);case UpdateItemCartSatus():
-return updateItemCartSatus(_that);}
+return updateItemCartSatus(_that);case ClearCart():
+return clearCart(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -128,12 +99,13 @@ return updateItemCartSatus(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( GetItems value)?  getItems,TResult? Function( UpdateItemCartSatus value)?  updateItemCartSatus,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( GetItems value)?  getItems,TResult? Function( UpdateItemCartSatus value)?  updateItemCartSatus,TResult? Function( ClearCart value)?  clearCart,}){
 final _that = this;
 switch (_that) {
 case GetItems() when getItems != null:
 return getItems(_that);case UpdateItemCartSatus() when updateItemCartSatus != null:
-return updateItemCartSatus(_that);case _:
+return updateItemCartSatus(_that);case ClearCart() when clearCart != null:
+return clearCart(_that);case _:
   return null;
 
 }
@@ -150,11 +122,12 @@ return updateItemCartSatus(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String token)?  getItems,TResult Function( int idItem,  int idUser,  String token)?  updateItemCartSatus,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String token)?  getItems,TResult Function( int idItem,  int idUser,  String token,  Item? item)?  updateItemCartSatus,TResult Function()?  clearCart,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case GetItems() when getItems != null:
 return getItems(_that.token);case UpdateItemCartSatus() when updateItemCartSatus != null:
-return updateItemCartSatus(_that.idItem,_that.idUser,_that.token);case _:
+return updateItemCartSatus(_that.idItem,_that.idUser,_that.token,_that.item);case ClearCart() when clearCart != null:
+return clearCart();case _:
   return orElse();
 
 }
@@ -172,11 +145,12 @@ return updateItemCartSatus(_that.idItem,_that.idUser,_that.token);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String token)  getItems,required TResult Function( int idItem,  int idUser,  String token)  updateItemCartSatus,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String token)  getItems,required TResult Function( int idItem,  int idUser,  String token,  Item? item)  updateItemCartSatus,required TResult Function()  clearCart,}) {final _that = this;
 switch (_that) {
 case GetItems():
 return getItems(_that.token);case UpdateItemCartSatus():
-return updateItemCartSatus(_that.idItem,_that.idUser,_that.token);}
+return updateItemCartSatus(_that.idItem,_that.idUser,_that.token,_that.item);case ClearCart():
+return clearCart();}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -190,11 +164,12 @@ return updateItemCartSatus(_that.idItem,_that.idUser,_that.token);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String token)?  getItems,TResult? Function( int idItem,  int idUser,  String token)?  updateItemCartSatus,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String token)?  getItems,TResult? Function( int idItem,  int idUser,  String token,  Item? item)?  updateItemCartSatus,TResult? Function()?  clearCart,}) {final _that = this;
 switch (_that) {
 case GetItems() when getItems != null:
 return getItems(_that.token);case UpdateItemCartSatus() when updateItemCartSatus != null:
-return updateItemCartSatus(_that.idItem,_that.idUser,_that.token);case _:
+return updateItemCartSatus(_that.idItem,_that.idUser,_that.token,_that.item);case ClearCart() when clearCart != null:
+return clearCart();case _:
   return null;
 
 }
@@ -209,11 +184,11 @@ class GetItems implements ItemsEvent {
   const GetItems({required this.token});
   
 
-@override final  String token;
+ final  String token;
 
 /// Create a copy of ItemsEvent
 /// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
+@JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $GetItemsCopyWith<GetItems> get copyWith => _$GetItemsCopyWithImpl<GetItems>(this, _$identity);
 
@@ -239,7 +214,7 @@ String toString() {
 /// @nodoc
 abstract mixin class $GetItemsCopyWith<$Res> implements $ItemsEventCopyWith<$Res> {
   factory $GetItemsCopyWith(GetItems value, $Res Function(GetItems) _then) = _$GetItemsCopyWithImpl;
-@override @useResult
+@useResult
 $Res call({
  String token
 });
@@ -258,7 +233,7 @@ class _$GetItemsCopyWithImpl<$Res>
 
 /// Create a copy of ItemsEvent
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? token = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? token = null,}) {
   return _then(GetItems(
 token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
 as String,
@@ -272,16 +247,17 @@ as String,
 
 
 class UpdateItemCartSatus implements ItemsEvent {
-  const UpdateItemCartSatus({required this.idItem, required this.idUser, required this.token});
+  const UpdateItemCartSatus({required this.idItem, required this.idUser, required this.token, this.item});
   
 
  final  int idItem;
  final  int idUser;
-@override final  String token;
+ final  String token;
+ final  Item? item;
 
 /// Create a copy of ItemsEvent
 /// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
+@JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $UpdateItemCartSatusCopyWith<UpdateItemCartSatus> get copyWith => _$UpdateItemCartSatusCopyWithImpl<UpdateItemCartSatus>(this, _$identity);
 
@@ -289,16 +265,16 @@ $UpdateItemCartSatusCopyWith<UpdateItemCartSatus> get copyWith => _$UpdateItemCa
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateItemCartSatus&&(identical(other.idItem, idItem) || other.idItem == idItem)&&(identical(other.idUser, idUser) || other.idUser == idUser)&&(identical(other.token, token) || other.token == token));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateItemCartSatus&&(identical(other.idItem, idItem) || other.idItem == idItem)&&(identical(other.idUser, idUser) || other.idUser == idUser)&&(identical(other.token, token) || other.token == token)&&(identical(other.item, item) || other.item == item));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,idItem,idUser,token);
+int get hashCode => Object.hash(runtimeType,idItem,idUser,token,item);
 
 @override
 String toString() {
-  return 'ItemsEvent.updateItemCartSatus(idItem: $idItem, idUser: $idUser, token: $token)';
+  return 'ItemsEvent.updateItemCartSatus(idItem: $idItem, idUser: $idUser, token: $token, item: $item)';
 }
 
 
@@ -307,13 +283,13 @@ String toString() {
 /// @nodoc
 abstract mixin class $UpdateItemCartSatusCopyWith<$Res> implements $ItemsEventCopyWith<$Res> {
   factory $UpdateItemCartSatusCopyWith(UpdateItemCartSatus value, $Res Function(UpdateItemCartSatus) _then) = _$UpdateItemCartSatusCopyWithImpl;
-@override @useResult
+@useResult
 $Res call({
- int idItem, int idUser, String token
+ int idItem, int idUser, String token, Item? item
 });
 
 
-
+$ItemCopyWith<$Res>? get item;
 
 }
 /// @nodoc
@@ -326,17 +302,62 @@ class _$UpdateItemCartSatusCopyWithImpl<$Res>
 
 /// Create a copy of ItemsEvent
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? idItem = null,Object? idUser = null,Object? token = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? idItem = null,Object? idUser = null,Object? token = null,Object? item = freezed,}) {
   return _then(UpdateItemCartSatus(
 idItem: null == idItem ? _self.idItem : idItem // ignore: cast_nullable_to_non_nullable
 as int,idUser: null == idUser ? _self.idUser : idUser // ignore: cast_nullable_to_non_nullable
 as int,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
-as String,
+as String,item: freezed == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
+as Item?,
   ));
 }
 
+/// Create a copy of ItemsEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ItemCopyWith<$Res>? get item {
+    if (_self.item == null) {
+    return null;
+  }
+
+  return $ItemCopyWith<$Res>(_self.item!, (value) {
+    return _then(_self.copyWith(item: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class ClearCart implements ItemsEvent {
+  const ClearCart();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClearCart);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'ItemsEvent.clearCart()';
+}
+
 
 }
+
+
+
 
 /// @nodoc
 mixin _$ItemsState {
