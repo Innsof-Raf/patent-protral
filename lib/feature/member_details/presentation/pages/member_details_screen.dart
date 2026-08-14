@@ -14,6 +14,7 @@ import 'package:patient_portal/feature/member_details/presentation/widgets/membe
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_insurance_section.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_personal_details_section.dart';
 import 'package:patient_portal/feature/member_details/presentation/widgets/member_profile_image_section.dart';
+import 'package:patient_portal/feature/member_details/presentation/widgets/member_vitals_section.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/params/profile_params.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
@@ -89,6 +90,7 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
                       image: member.profileImage,
                       title: member.name,
                       subtitle: [
+                        '${context.lang.patientId} ${member.memberNo?.trim().isNotEmpty == true ? member.memberNo : member.id}',
                         if (member.age.isNotEmpty)
                           '${context.lang.age} ${member.age.localize(context.currentLang)}',
                         if (member.nationalId.isNotEmpty)
@@ -106,6 +108,12 @@ class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
                       gender: member.gender ?? '',
                       nationalId: member.nationalId,
                     ),
+                  ),
+                ),
+                const SliverPadding(
+                  padding: EdgeInsets.fromLTRB(16, 0, 16, 12),
+                  sliver: SliverToBoxAdapter(
+                    child: MemberVitalsSection(),
                   ),
                 ),
                 SliverPadding(

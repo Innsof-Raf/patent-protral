@@ -6,8 +6,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/analytics/app_analytics_events.dart';
+import 'package:patient_portal/core/injection_container.dart' as di;
 import 'package:patient_portal/core/localization/localization_extension.dart';
+import 'package:patient_portal/core/services/analytics_service.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/cart_icon_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_icon_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/common_snack_bar.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
@@ -111,6 +115,12 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
                 );
 
                 if (outputFile != null && context.mounted) {
+                  di.sl<AnalyticsService>().logEvent(
+                        AppAnalyticsEvents.downloadPdfReport(
+                          reportId: documentUrl,
+                          fileType: 'PDF',
+                        ),
+                      );
                   CommonSnackBar.show(
                     context,
                     message: '${context.lang.reportSavedAt} $outputFile',
@@ -122,6 +132,8 @@ class ReportAppBar extends StatelessWidget implements PreferredSizeWidget {
             );
           },
         ),
+        const Gap(8),
+        CartIconButton(color: theme.colorScheme.onSurface),
         const Gap(12),
       ],
     );

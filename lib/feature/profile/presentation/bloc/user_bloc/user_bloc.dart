@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:patient_portal/core/error/failures.dart';
 import 'package:patient_portal/core/resources/error_model.dart';
+import 'package:patient_portal/core/analytics/app_analytics_events.dart';
+import 'package:patient_portal/core/injection_container.dart' as di;
+import 'package:patient_portal/core/services/analytics_service.dart';
 import 'package:patient_portal/feature/login/domain/usecases/params/login_params.dart';
 import 'package:patient_portal/feature/login/domain/usecases/refresh_token_usecase.dart';
 import 'package:patient_portal/feature/profile/data/datasources/user_local_data_source.dart';
@@ -110,7 +113,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           final int currentMemberIndex = members.indexWhere(
             (member) => member.id == event.params.memberId,
           );
-          members[currentMemberIndex] = memberDetail;
+          if (currentMemberIndex != -1) {
+            members[currentMemberIndex] = memberDetail;
+          } else {
+            members.add(memberDetail);
+          }
           return emit(
             state.copyWith(
               isMemberAdding: false,
@@ -143,10 +150,14 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         ),
         (memberDetail) {
           final List<Member> members = List.from(state.user!.members);
-          final int cureentMemberIndex = members.indexWhere(
+          final int currentMemberIndex = members.indexWhere(
             (member) => member.id == event.params.memberId,
           );
-          members[cureentMemberIndex] = memberDetail;
+          if (currentMemberIndex != -1) {
+            members[currentMemberIndex] = memberDetail;
+          } else {
+            members.add(memberDetail);
+          }
           return emit(
             state.copyWith(
               isFetchingMemberDetail: false,
@@ -183,6 +194,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       }
     });
     on<LogOut>((event, emit) async {
+      di.sl<AnalyticsService>().clearUser();
       emit(state.copyWith(user: null));
       await userLocalDataSource.clearUser();
     });
@@ -218,6 +230,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       );
     });
     on<SelectMember>((event, emit) {
+      di.sl<AnalyticsService>().logEvent(
+        AppAnalyticsEvents.familyMemberSwitched(
+          memberRelation: event.member.name,
+        ),
+      );
       emit(state.copyWith(selectedMember: event.member));
     });
   }

@@ -65,6 +65,7 @@ class _MembersScreenState extends State<MembersScreen> {
       backgroundColor: theme.colorScheme.surface,
       appBar: CommonAppbar(
         title: context.lang.members,
+        showCart: false,
         actions: [
           BlocBuilder<DeleteMemberBloc, DeleteMemberState>(
             builder: (context, state) {

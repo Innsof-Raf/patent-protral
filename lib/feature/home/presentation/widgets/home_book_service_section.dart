@@ -8,8 +8,10 @@ import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
+import 'package:patient_portal/feature/home/presentation/pages/radiology_scans_screen.dart';
 import 'package:patient_portal/feature/home/presentation/widgets/home_section_header.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
+import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:patient_portal/feature/profile/presentation/helpers/member_helper.dart';
 
 enum HomeBookServiceType {
@@ -112,7 +114,7 @@ class _BookServiceTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         child: InkWell(
           borderRadius: BorderRadius.circular(16),
-          onTap: () {
+          onTap: () async {
             switch (item.type) {
               case HomeBookServiceType.hospitalAppointment:
                 MainScreenHelpers.mainScreenNotifier.value = 2;
@@ -135,7 +137,17 @@ class _BookServiceTile extends StatelessWidget {
                 );
                 break;
               case HomeBookServiceType.radiologyScans:
-                // TODO: Navigate to Radiology Scans
+                MemberHelper.showMemberSelection(
+                  context: context,
+                  title: context.lang.selectPatient,
+                  onMemberSelected: (member) {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const RadiologyScansScreen(),
+                      ),
+                    );
+                  },
+                );
                 break;
             }
           },

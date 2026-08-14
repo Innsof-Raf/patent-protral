@@ -67,6 +67,16 @@ class MemberTile extends StatelessWidget {
                     ),
                     const Gap(2),
                     Text(
+                      'Patient ID: ${member.memberNo?.trim().isNotEmpty == true ? member.memberNo : member.id}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.primary,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const Gap(2),
+                    Text(
                       member.age.localize(context.currentLang),
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,

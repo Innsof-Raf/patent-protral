@@ -141,6 +141,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get profile => 'الملف الشخصي';
 
   @override
+  String get contactUs => 'اتصل بنا';
+
+  @override
+  String get call => 'اتصال';
+
+  @override
+  String get whatsApp => 'واتساب';
+
+  @override
+  String get email => 'البريد الإلكتروني';
+
+  @override
   String get orders => 'الطلبات';
 
   @override
@@ -840,6 +852,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get patient => 'المريض';
 
   @override
+  String get patientId => 'معرف المريض';
+
+  @override
   String get confirm => 'تأكيد';
 
   @override
@@ -974,6 +989,27 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get emailLabel => 'البريد الإلكتروني';
+
+  @override
+  String get vitals => 'العلامات الحيوية';
+
+  @override
+  String get heartRate => 'معدل ضربات القلب';
+
+  @override
+  String get bloodPressure => 'ضغط الدم';
+
+  @override
+  String get temperature => 'درجة الحرارة';
+
+  @override
+  String get oxygenLevel => 'مستوى الأكسجين';
+
+  @override
+  String get bpm => 'نبضة/دقيقة';
+
+  @override
+  String get mmHg => 'ملم زئبق';
 
   @override
   String get notifications => 'الإشعارات';
@@ -1156,7 +1192,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get bookRadiologyScans => 'حجز فحوصات الأشعة';
 
   @override
-  String get english => 'الإنجليزية';
+  String get english => 'English';
 
   @override
   String get arabic => 'العربية';
@@ -1166,4 +1202,82 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get showLess => 'عرض أقل';
+
+  @override
+  String get unableToLoadServices => 'تعذر تحميل الخدمات';
+
+  @override
+  String get searchServices => 'ابحث عن الخدمات...';
+
+  @override
+  String get allServices => 'جميع الخدمات';
+
+  @override
+  String get noServicesFound => 'لم يتم العثور على خدمات';
+
+  @override
+  String get noServicesFoundMessage =>
+      'لا توجد خدمات تطابق معايير البحث الخاصة بك.';
+
+  @override
+  String get appointmentReminderTitle => 'تذكير بموعد';
+
+  @override
+  String appointmentReminderBody(Object doctorName, Object time) {
+    return 'لديك موعد مع $doctorName الساعة $time';
+  }
+
+  @override
+  String get snoozedReminderTitle => 'تذكير بموعد (مؤجل)';
+
+  @override
+  String get snoozedReminderBody => 'تذكير بموعد الطبيب (تم تأجيله ١٠ دقائق).';
+
+  @override
+  String get reminderOffset15Mins => 'قبل ١٥ دقيقة';
+
+  @override
+  String get reminderOffset30Mins => 'قبل ٣٠ دقيقة';
+
+  @override
+  String get reminderOffset1Hour => 'قبل ساعة واحدة';
+
+  @override
+  String get reminderOffset2Hours => 'قبل ساعتين';
+
+  @override
+  String get reminderOffset1Day => 'قبل يوم واحد';
+
+  @override
+  String get reminderOffsetCustom => 'مخصص';
+
+  @override
+  String get setReminderTitle => 'ضبط تذكير الموعد';
+
+  @override
+  String get reminderCustomHint => 'أدخل المدة بالدقائق';
+
+  @override
+  String get reminderInvalidDuration => 'يرجى إدخال مدة صالحة أكبر من ٠';
+
+  @override
+  String get reminderDurationTooLong => 'لا يمكن أن تتجاوز المدة ٧ أيام';
+
+  @override
+  String get minutesShort => 'دقيقة';
+
+  @override
+  String get setReminder => 'حفظ التذكير';
+
+  @override
+  String get removeReminder => 'إزالة التذكير';
+
+  @override
+  String get notificationsDisabled => 'إشعارات التطبيق معطلة';
+
+  @override
+  String get exactAlarmDenied => 'إذن المنبه الدقيق مطلوب للتذكيرات';
+
+  @override
+  String get reminderScheduledSuccessfully => 'تم ضبط التذكير بنجاح';
 }

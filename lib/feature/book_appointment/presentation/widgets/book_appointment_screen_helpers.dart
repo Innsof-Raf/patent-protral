@@ -8,6 +8,8 @@ import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_
 import 'book_appointment_confirmation_popup.dart';
 
 class BookAppointmentScreenHelpers {
+  static final ValueNotifier<int?> pendingReminderOffsetNotifier =
+      ValueNotifier<int?>(null);
   static final List<DateTime> dateList = [];
   static void createDateList() {
     if (dateList.isEmpty || dateList[0].day != DateTime.now().day) {

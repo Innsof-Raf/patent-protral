@@ -523,6 +523,22 @@ class MyProfileRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [RadiologyScansScreen]
+class RadiologyScansRoute extends PageRouteInfo<void> {
+  const RadiologyScansRoute({List<PageRouteInfo>? children})
+    : super(RadiologyScansRoute.name, initialChildren: children);
+
+  static const String name = 'RadiologyScansRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const RadiologyScansScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [ReportScreen]
 class ReportRoute extends PageRouteInfo<ReportRouteArgs> {
   ReportRoute({

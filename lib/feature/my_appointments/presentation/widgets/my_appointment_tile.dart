@@ -19,6 +19,12 @@ import 'package:patient_portal/feature/my_appointments/domain/entities/my_appoin
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:patient_portal/feature/profile/domain/entities/member.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
+import 'package:patient_portal/core/analytics/app_analytics_events.dart';
+import 'package:patient_portal/core/injection_container.dart' as di;
+import 'package:patient_portal/core/services/analytics_service.dart';
+import 'package:patient_portal/feature/reminder/presentation/cubit/reminder_cubit.dart';
+import 'package:patient_portal/feature/reminder/presentation/cubit/reminder_state.dart';
+import 'package:patient_portal/feature/reminder/presentation/widgets/reminder_selection_bottom_sheet.dart';
 
 import 'cancel_booking_popup.dart';
 
@@ -88,9 +94,66 @@ class MyAppointmentTile extends StatelessWidget {
                                         ),
                                   ),
                                 ),
-                                _StatusBadge(
-                                  isConsulted: isConsulted,
-                                  isCancelled: isCancelled,
+                                Row(
+                                  children: [
+                                    if (!isConsulted && !isCancelled)
+                                      BlocSelector<ReminderCubit, ReminderState, bool>(
+                                        selector: (state) => state.hasReminderFor(
+                                          appointment.id.toString(),
+                                        ),
+                                        builder: (context, hasReminder) {
+                                          return Padding(
+                                            padding:
+                                                const EdgeInsets.only(right: 6),
+                                            child: InkWell(
+                                              borderRadius:
+                                                  BorderRadius.circular(16),
+                                              onTap: () {
+                                                final cubit =
+                                                    context.read<ReminderCubit>();
+                                                final activeReminders =
+                                                    cubit.state.getRemindersFor(
+                                                  appointment.id.toString(),
+                                                );
+                                                ReminderSelectionBottomSheet.show(
+                                                  context: context,
+                                                  appointment: appointment,
+                                                  activeReminders:
+                                                      activeReminders,
+                                                );
+                                              },
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.all(5),
+                                                decoration: BoxDecoration(
+                                                  color: hasReminder
+                                                      ? colorScheme.primary
+                                                          .withValues(alpha: 0.1)
+                                                      : colorScheme
+                                                          .surfaceContainerHighest
+                                                          .withValues(alpha: 0.4),
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Icon(
+                                                  hasReminder
+                                                      ? Icons.notifications_active_rounded
+                                                      : Icons.notifications_none_rounded,
+                                                  size: 16,
+                                                  color: hasReminder
+                                                      ? colorScheme.primary
+                                                      : colorScheme
+                                                          .onSurfaceVariant,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    _StatusBadge(
+                                      isConsulted: isConsulted,
+                                      isCancelled: isCancelled,
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -126,7 +189,11 @@ class MyAppointmentTile extends StatelessWidget {
                     ],
                   ),
                   const Gap(16),
-                  _AppointmentDetails(appointment: appointment),
+                  _AppointmentDetails(
+                    appointment: appointment,
+                    isConsulted: isConsulted,
+                    isCancelled: isCancelled,
+                  ),
                 ],
               ),
             ),
@@ -181,6 +248,14 @@ class MyAppointmentTile extends StatelessWidget {
     }
 
     BookAppointmentScreenHelpers.selectedDateNotifier.value = selectedDate;
+
+    di.sl<AnalyticsService>().logEvent(
+          AppAnalyticsEvents.doctorSelected(
+            doctorId: appointment.idDoctor.toString(),
+            doctorName: appointment.doctorName,
+            speciality: appointment.speciality,
+          ),
+        );
 
     context.router.push(
       BookAppointmentRoute(
@@ -263,6 +338,14 @@ class MyAppointmentTile extends StatelessWidget {
 
     BookAppointmentScreenHelpers.selectedDateNotifier.value =
         BookAppointmentScreenHelpers.dateList.first;
+
+    di.sl<AnalyticsService>().logEvent(
+          AppAnalyticsEvents.doctorSelected(
+            doctorId: appointment.idDoctor.toString(),
+            doctorName: appointment.doctorName,
+            speciality: appointment.speciality,
+          ),
+        );
 
     context.router.push(
       BookAppointmentRoute(
@@ -430,8 +513,14 @@ class _StatusBadge extends StatelessWidget {
 
 class _AppointmentDetails extends StatelessWidget {
   final MyAppointment appointment;
+  final bool isConsulted;
+  final bool isCancelled;
 
-  const _AppointmentDetails({required this.appointment});
+  const _AppointmentDetails({
+    required this.appointment,
+    required this.isConsulted,
+    required this.isCancelled,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -8,5 +8,8 @@ sealed class ItemsEvent with _$ItemsEvent {
     required int idItem,
     required int idUser,
     required String token,
+    Item? item,
   }) = UpdateItemCartSatus;
+
+  const factory ItemsEvent.clearCart() = ClearCart;
 }

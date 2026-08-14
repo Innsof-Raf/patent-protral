@@ -4,13 +4,25 @@ import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
+import 'package:patient_portal/core/analytics/app_analytics_events.dart';
+import 'package:patient_portal/core/injection_container.dart' as di;
+import 'package:patient_portal/core/services/analytics_service.dart';
 import 'package:patient_portal/feature/book_appointment/domain/entities/slot.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 
 class SlotTile extends StatelessWidget {
   final bool isSelected;
   final Slot slot;
-  const SlotTile({super.key, required this.isSelected, required this.slot});
+  final String doctorId;
+  final String shiftType;
+
+  const SlotTile({
+    super.key,
+    required this.isSelected,
+    required this.slot,
+    required this.doctorId,
+    required this.shiftType,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +60,20 @@ class SlotTile extends StatelessWidget {
               } else {
                 BookAppointmentScreenHelpers.selectedSlotNotifier.value =
                     slot.appdttm;
+
+                final selectedDateStr =
+                    DateFormat('yyyy-MM-dd').format(slot.appdttm);
+                final selectedTimeSlotStr =
+                    DateFormat('hh:mm a').format(slot.appdttm);
+
+                di.sl<AnalyticsService>().logEvent(
+                      AppAnalyticsEvents.slotSelected(
+                        doctorId: doctorId,
+                        selectedDate: selectedDateStr,
+                        selectedTimeSlot: selectedTimeSlotStr,
+                        shiftType: shiftType,
+                      ),
+                    );
               }
             },
       borderRadius: BorderRadius.circular(10),

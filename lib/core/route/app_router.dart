@@ -29,6 +29,8 @@ import 'package:patient_portal/feature/set_password/presentation/pages/set_passw
 import 'package:patient_portal/feature/speciality/domain/entities/speciality.dart';
 import 'package:patient_portal/feature/speciality/presentation/pages/speciality_screen.dart';
 
+import 'package:patient_portal/feature/home/presentation/pages/radiology_scans_screen.dart';
+
 part 'app_router.gr.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen,Route')
@@ -65,6 +67,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: NotificationRoute.page),
     AutoRoute(page: DocumentsRoute.page),
     AutoRoute(page: AddDocumentRoute.page),
+    AutoRoute(page: RadiologyScansRoute.page),
   ];
 }
 

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +12,8 @@ import 'package:patient_portal/core/localization/bloc/language_bloc.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/route/app_router.dart';
+import 'package:patient_portal/core/services/analytics_service.dart';
+import 'package:patient_portal/core/services/notification_service.dart';
 import 'package:patient_portal/feature/add_document/presentation/bloc/add_document_bloc.dart';
 import 'package:patient_portal/feature/add_member/presentation/bloc/add_member_bloc.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_appointment_bloc.dart';
@@ -30,9 +33,15 @@ import 'package:patient_portal/feature/notification/presentation/bloc/notificati
 import 'package:patient_portal/feature/profile/data/datasources/user_local_data_source.dart';
 import 'package:patient_portal/feature/profile/domain/entities/user.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
+import 'package:patient_portal/feature/reminder/presentation/cubit/reminder_cubit.dart';
 import 'package:patient_portal/feature/reports/presentation/bloc/reports_bloc.dart';
 import 'package:patient_portal/feature/set_password/presentation/bloc/change_password_bloc.dart';
 import 'package:patient_portal/feature/speciality/presentation/bloc/speciality_bloc/speciality_bloc.dart';
+
+import 'dart:developer' as dev;
+import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
+import 'package:patient_portal/feature/my_appointments/presentation/helpers/my_appointment_screen_helpers.dart';
+import 'package:patient_portal/firebase_options.dart';
 
 final _appRouter = AppRouter();
 
@@ -46,11 +55,48 @@ const _systemUiOverlayStyle = SystemUiOverlayStyle(
   systemNavigationBarContrastEnforced: false,
 );
 
+class _AppLifecycleObserver extends WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      di.sl<ReminderCubit>().restoreReminders();
+    }
+  }
+}
+
+void _setupNotificationCallbacks() {
+  final notificationService = di.sl<NotificationService>();
+
+  notificationService.onNotificationTap = (rawPayload) {
+    final payload = ReminderPayload.tryDecode(rawPayload);
+    MainScreenHelpers.mainScreenNotifier.value = 1;
+    MyAppointmentScreenHelpers.selectedTabNotifier.value = 2;
+    _appRouter.push(const MainRoute());
+  };
+
+  notificationService.onSnoozeAction = (rawPayload) async {
+    dev.log('Snoozing reminder for 10 minutes...', name: 'Notification');
+    final payload = ReminderPayload.tryDecode(rawPayload);
+    if (payload != null) {
+      await di.sl<ReminderCubit>().snooze(
+            payload: payload,
+            duration: const Duration(minutes: 10),
+          );
+    }
+  };
+}
+
 void main() async {
   final WidgetsBinding widgetsBinding =
       WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await di.init();
+  await di.sl<NotificationService>().init();
+  _setupNotificationCallbacks();
+  WidgetsBinding.instance.addObserver(_AppLifecycleObserver());
+  await di.sl<NotificationService>().checkAppLaunchNotification();
   await initializeDateFormatting('ar', null);
   await initializeDateFormatting('en', null);
 
@@ -273,6 +319,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => di.sl<ChangePasswordBloc>()),
         BlocProvider(create: (context) => di.sl<DocumentsBloc>()),
         BlocProvider(create: (context) => di.sl<AddDocumentBloc>()),
+        BlocProvider(
+          create: (context) => di.sl<ReminderCubit>()..restoreReminders(),
+        ),
         BlocProvider<LoginWithPasswordBloc>(
           create: (context) => di.sl<LoginWithPasswordBloc>(),
         ),
@@ -298,6 +347,7 @@ class MyApp extends StatelessWidget {
             },
             theme: _buildTheme(),
             routerConfig: _appRouter.config(
+              navigatorObservers: () => [di.sl<AnalyticsService>().observer],
               deepLinkBuilder: (deepLink) => DeepLink(
                 initialUser != null
                     ? initialUser!.members.isNotEmpty

@@ -10,6 +10,16 @@ sealed class HomeParams with _$HomeParams {
     @JsonKey(name: 'id_client') required int idBusunit,
   }) = _GetHomeDataParams;
 
+  const factory HomeParams.getTreeDetail({
+    @JsonKey(includeToJson: false) required String token,
+    @JsonKey(name: 'id_treedetail') required int idTreedetail,
+  }) = _GetTreeDetailParams;
+
+  const factory HomeParams.getTreeDetailItem({
+    @JsonKey(includeToJson: false) required String token,
+    @JsonKey(name: 'id_treedetail') required int idTreedetail,
+  }) = _GetTreeDetailItemParams;
+
   factory HomeParams.fromJson(Map<String, dynamic> json) =>
       _$HomeParamsFromJson(json);
 }

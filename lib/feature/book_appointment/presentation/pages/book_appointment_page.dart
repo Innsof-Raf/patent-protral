@@ -170,6 +170,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                                 shift: isOnlineUnavailable
                                     ? const Shift(shift: '', slots: [])
                                     : state.shift,
+                                doctorId: widget.doctor.idDoctor.toString(),
                               ),
                               if (!isOnlineUnavailable &&
                                   state.shift.slots.isNotEmpty) ...[

@@ -350,6 +350,30 @@ abstract class AppLocalizations {
   /// **'Profile'**
   String get profile;
 
+  /// No description provided for @contactUs.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Us'**
+  String get contactUs;
+
+  /// No description provided for @call.
+  ///
+  /// In en, this message translates to:
+  /// **'Call'**
+  String get call;
+
+  /// No description provided for @whatsApp.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp'**
+  String get whatsApp;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
   /// No description provided for @orders.
   ///
   /// In en, this message translates to:
@@ -1712,6 +1736,12 @@ abstract class AppLocalizations {
   /// **'Patient'**
   String get patient;
 
+  /// No description provided for @patientId.
+  ///
+  /// In en, this message translates to:
+  /// **'Patient ID'**
+  String get patientId;
+
   /// No description provided for @confirm.
   ///
   /// In en, this message translates to:
@@ -1969,6 +1999,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Email'**
   String get emailLabel;
+
+  /// No description provided for @vitals.
+  ///
+  /// In en, this message translates to:
+  /// **'Vitals'**
+  String get vitals;
+
+  /// No description provided for @heartRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Heart Rate'**
+  String get heartRate;
+
+  /// No description provided for @bloodPressure.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood Pressure'**
+  String get bloodPressure;
+
+  /// No description provided for @temperature.
+  ///
+  /// In en, this message translates to:
+  /// **'Temperature'**
+  String get temperature;
+
+  /// No description provided for @oxygenLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Oxygen Level'**
+  String get oxygenLevel;
+
+  /// No description provided for @bpm.
+  ///
+  /// In en, this message translates to:
+  /// **'bpm'**
+  String get bpm;
+
+  /// No description provided for @mmHg.
+  ///
+  /// In en, this message translates to:
+  /// **'mmHg'**
+  String get mmHg;
 
   /// No description provided for @notifications.
   ///
@@ -2335,6 +2407,156 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Show Less'**
   String get showLess;
+
+  /// No description provided for @unableToLoadServices.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load services'**
+  String get unableToLoadServices;
+
+  /// No description provided for @searchServices.
+  ///
+  /// In en, this message translates to:
+  /// **'Search services...'**
+  String get searchServices;
+
+  /// No description provided for @allServices.
+  ///
+  /// In en, this message translates to:
+  /// **'All Services'**
+  String get allServices;
+
+  /// No description provided for @noServicesFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No services found'**
+  String get noServicesFound;
+
+  /// No description provided for @noServicesFoundMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'No services match your search criteria.'**
+  String get noServicesFoundMessage;
+
+  /// No description provided for @appointmentReminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment Reminder'**
+  String get appointmentReminderTitle;
+
+  /// No description provided for @appointmentReminderBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You have an appointment with {doctorName} at {time}'**
+  String appointmentReminderBody(Object doctorName, Object time);
+
+  /// No description provided for @snoozedReminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Snoozed Appointment Reminder'**
+  String get snoozedReminderTitle;
+
+  /// No description provided for @snoozedReminderBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your doctor appointment reminder (Snoozed 10 mins).'**
+  String get snoozedReminderBody;
+
+  /// No description provided for @reminderOffset15Mins.
+  ///
+  /// In en, this message translates to:
+  /// **'15 Minutes Before'**
+  String get reminderOffset15Mins;
+
+  /// No description provided for @reminderOffset30Mins.
+  ///
+  /// In en, this message translates to:
+  /// **'30 Minutes Before'**
+  String get reminderOffset30Mins;
+
+  /// No description provided for @reminderOffset1Hour.
+  ///
+  /// In en, this message translates to:
+  /// **'1 Hour Before'**
+  String get reminderOffset1Hour;
+
+  /// No description provided for @reminderOffset2Hours.
+  ///
+  /// In en, this message translates to:
+  /// **'2 Hours Before'**
+  String get reminderOffset2Hours;
+
+  /// No description provided for @reminderOffset1Day.
+  ///
+  /// In en, this message translates to:
+  /// **'1 Day Before'**
+  String get reminderOffset1Day;
+
+  /// No description provided for @reminderOffsetCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get reminderOffsetCustom;
+
+  /// No description provided for @setReminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set Appointment Reminder'**
+  String get setReminderTitle;
+
+  /// No description provided for @reminderCustomHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter duration in minutes'**
+  String get reminderCustomHint;
+
+  /// No description provided for @reminderInvalidDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid duration greater than 0'**
+  String get reminderInvalidDuration;
+
+  /// No description provided for @reminderDurationTooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration cannot exceed 7 days'**
+  String get reminderDurationTooLong;
+
+  /// No description provided for @minutesShort.
+  ///
+  /// In en, this message translates to:
+  /// **'mins'**
+  String get minutesShort;
+
+  /// No description provided for @setReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Set Reminder'**
+  String get setReminder;
+
+  /// No description provided for @removeReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove Reminder'**
+  String get removeReminder;
+
+  /// No description provided for @notificationsDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification permissions are disabled'**
+  String get notificationsDisabled;
+
+  /// No description provided for @exactAlarmDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Exact alarm permission is required for reminders'**
+  String get exactAlarmDenied;
+
+  /// No description provided for @reminderScheduledSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder set successfully'**
+  String get reminderScheduledSuccessfully;
 }
 
 class _AppLocalizationsDelegate

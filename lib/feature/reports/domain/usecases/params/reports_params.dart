@@ -12,6 +12,13 @@ sealed class ReportsParams with _$ReportsParams {
     @Default('ALL') String status,
   }) = GetReportsParams;
 
+  const factory ReportsParams.getPrescriptions({
+    @JsonKey(name: 'id_customer') required int memberId,
+    @JsonKey(includeToJson: false) required String token,
+    @JsonKey(name: 'mobile_no') required String mobileNumber,
+    @Default('ALL') String status,
+  }) = GetPrescriptionsParams;
+
   const factory ReportsParams.downloadReport({
     @JsonKey(includeToJson: false) required String url,
   }) = DownloadReportParams;

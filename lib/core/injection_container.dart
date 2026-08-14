@@ -2,10 +2,14 @@ import 'dart:convert';
 import 'dart:developer' as dev;
 
 import 'package:dio/dio.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:patient_portal/core/localization/bloc/language_bloc.dart';
 import 'package:patient_portal/core/resources/api_agent.dart';
+import 'package:patient_portal/core/services/analytics_service.dart';
+import 'package:patient_portal/core/services/firebase_analytics_service.dart';
+import 'package:patient_portal/core/services/notification_service.dart';
 import 'package:patient_portal/feature/add_document/data/datasources/add_document_remote_data_source.dart';
 import 'package:patient_portal/feature/add_document/data/repositories/add_document_repository_impl.dart';
 import 'package:patient_portal/feature/add_document/domain/repositories/add_document_repository.dart';
@@ -39,6 +43,8 @@ import 'package:patient_portal/feature/home/data/datasources/home_remote_data_so
 import 'package:patient_portal/feature/home/data/repositories/home_repository_impl.dart';
 import 'package:patient_portal/feature/home/domain/repositories/home_repository.dart';
 import 'package:patient_portal/feature/home/domain/usecases/get_home_data_usecase.dart';
+import 'package:patient_portal/feature/home/domain/usecases/get_tree_detail_item_usecase.dart';
+import 'package:patient_portal/feature/home/domain/usecases/get_tree_detail_usecase.dart';
 import 'package:patient_portal/feature/home/presentation/bloc/home_bloc/home_bloc.dart';
 import 'package:patient_portal/feature/lab/data/datasources/lab_remote_data_source.dart';
 import 'package:patient_portal/feature/lab/data/repositories/lab_repository_impl.dart';
@@ -81,6 +87,14 @@ import 'package:patient_portal/feature/profile/domain/usecases/add_profile_membe
 import 'package:patient_portal/feature/profile/domain/usecases/change_member_insurance_details_usecase.dart';
 import 'package:patient_portal/feature/profile/domain/usecases/get_member_detail_usecase.dart';
 import 'package:patient_portal/feature/profile/presentation/bloc/user_bloc/user_bloc.dart';
+import 'package:patient_portal/feature/reminder/data/datasources/reminder_local_data_source.dart';
+import 'package:patient_portal/feature/reminder/data/repositories/reminder_repository_impl.dart';
+import 'package:patient_portal/feature/reminder/domain/repositories/reminder_repository.dart';
+import 'package:patient_portal/feature/reminder/domain/usecases/cancel_appointment_reminder_usecase.dart';
+import 'package:patient_portal/feature/reminder/domain/usecases/get_scheduled_reminders_usecase.dart';
+import 'package:patient_portal/feature/reminder/domain/usecases/restore_pending_reminders_usecase.dart';
+import 'package:patient_portal/feature/reminder/domain/usecases/schedule_appointment_reminder_usecase.dart';
+import 'package:patient_portal/feature/reminder/presentation/cubit/reminder_cubit.dart';
 import 'package:patient_portal/feature/reports/data/datasources/reports_remote_data_source.dart';
 import 'package:patient_portal/feature/reports/data/repositories/reports_repository_impl.dart';
 import 'package:patient_portal/feature/reports/domain/repositories/reports_repository.dart';
@@ -238,10 +252,18 @@ Future<void> init() async {
 
   //! Features - Home
   // Bloc
-  sl.registerFactory(() => HomeBloc(getHomeDataUseCase: sl()));
+  sl.registerFactory(
+    () => HomeBloc(
+      getHomeDataUseCase: sl(),
+      getTreeDetailUseCase: sl(),
+      getTreeDetailItemUseCase: sl(),
+    ),
+  );
 
   // Use cases
   sl.registerLazySingleton(() => GetHomeDataUseCase(sl()));
+  sl.registerLazySingleton(() => GetTreeDetailUseCase(sl()));
+  sl.registerLazySingleton(() => GetTreeDetailItemUseCase(sl()));
 
   // Repository
   sl.registerLazySingleton<HomeRepository>(
@@ -415,6 +437,37 @@ Future<void> init() async {
   //! External
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
+
+  sl.registerLazySingleton(() => NotificationService());
+
+  sl.registerLazySingleton<ReminderLocalDataSource>(
+    () => ReminderLocalDataSourceImpl(sharedPreferences: sl()),
+  );
+  sl.registerLazySingleton<ReminderRepository>(
+    () => ReminderRepositoryImpl(
+      localDataSource: sl(),
+      notificationService: sl(),
+    ),
+  );
+  sl.registerLazySingleton(() => ScheduleAppointmentReminderUseCase(sl()));
+  sl.registerLazySingleton(() => CancelAppointmentReminderUseCase(sl()));
+  sl.registerLazySingleton(() => GetScheduledRemindersUseCase(sl()));
+  sl.registerLazySingleton(() => RestorePendingRemindersUseCase(sl()));
+  sl.registerFactory(
+    () => ReminderCubit(
+      scheduleAppointmentReminderUseCase: sl(),
+      cancelAppointmentReminderUseCase: sl(),
+      getScheduledRemindersUseCase: sl(),
+      restorePendingRemindersUseCase: sl(),
+    ),
+  );
+
+  //! Services
+  final firebaseAnalytics = FirebaseAnalytics.instance;
+  sl.registerLazySingleton(() => firebaseAnalytics);
+  sl.registerLazySingleton<AnalyticsService>(
+    () => FirebaseAnalyticsService(sl<FirebaseAnalytics>()),
+  );
 
   sl.registerLazySingleton(() => ApiAgent(sl()));
 

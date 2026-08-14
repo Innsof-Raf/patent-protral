@@ -9,6 +9,9 @@ import 'package:patient_portal/core/resources/common_helpers/string_extensions.d
 import 'package:patient_portal/core/resources/common_widgets.dart/common_network_image.dart';
 import 'package:patient_portal/core/resources/urls.dart';
 import 'package:patient_portal/core/route/app_router.dart';
+import 'package:patient_portal/core/analytics/app_analytics_events.dart';
+import 'package:patient_portal/core/injection_container.dart' as di;
+import 'package:patient_portal/core/services/analytics_service.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/widgets/book_appointment_screen_helpers.dart';
 import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
 import 'package:patient_portal/feature/doctors/presentation/widgets/doctor_info_widgets.dart';
@@ -26,6 +29,13 @@ class DoctorTile extends StatelessWidget {
   }
 
   void _onTileTap(BuildContext context) {
+    di.sl<AnalyticsService>().logEvent(
+          AppAnalyticsEvents.doctorSelected(
+            doctorId: doctor.idDoctor.toString(),
+            doctorName: doctor.doctorName,
+            speciality: doctor.doctorSpeciality,
+          ),
+        );
     BookAppointmentScreenHelpers.createDateList();
     BookAppointmentScreenHelpers.selectedDateNotifier.value =
         BookAppointmentScreenHelpers.dateList[0];

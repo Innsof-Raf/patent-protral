@@ -144,6 +144,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile => 'Profile';
 
   @override
+  String get contactUs => 'Contact Us';
+
+  @override
+  String get call => 'Call';
+
+  @override
+  String get whatsApp => 'WhatsApp';
+
+  @override
+  String get email => 'Email';
+
+  @override
   String get orders => 'Orders';
 
   @override
@@ -849,6 +861,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get patient => 'Patient';
 
   @override
+  String get patientId => 'Patient ID';
+
+  @override
   String get confirm => 'Confirm';
 
   @override
@@ -986,6 +1001,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emailLabel => 'Email';
+
+  @override
+  String get vitals => 'Vitals';
+
+  @override
+  String get heartRate => 'Heart Rate';
+
+  @override
+  String get bloodPressure => 'Blood Pressure';
+
+  @override
+  String get temperature => 'Temperature';
+
+  @override
+  String get oxygenLevel => 'Oxygen Level';
+
+  @override
+  String get bpm => 'bpm';
+
+  @override
+  String get mmHg => 'mmHg';
 
   @override
   String get notifications => 'Notifications';
@@ -1177,4 +1213,85 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get showLess => 'Show Less';
+
+  @override
+  String get unableToLoadServices => 'Unable to load services';
+
+  @override
+  String get searchServices => 'Search services...';
+
+  @override
+  String get allServices => 'All Services';
+
+  @override
+  String get noServicesFound => 'No services found';
+
+  @override
+  String get noServicesFoundMessage =>
+      'No services match your search criteria.';
+
+  @override
+  String get appointmentReminderTitle => 'Appointment Reminder';
+
+  @override
+  String appointmentReminderBody(Object doctorName, Object time) {
+    return 'You have an appointment with $doctorName at $time';
+  }
+
+  @override
+  String get snoozedReminderTitle => 'Snoozed Appointment Reminder';
+
+  @override
+  String get snoozedReminderBody =>
+      'Your doctor appointment reminder (Snoozed 10 mins).';
+
+  @override
+  String get reminderOffset15Mins => '15 Minutes Before';
+
+  @override
+  String get reminderOffset30Mins => '30 Minutes Before';
+
+  @override
+  String get reminderOffset1Hour => '1 Hour Before';
+
+  @override
+  String get reminderOffset2Hours => '2 Hours Before';
+
+  @override
+  String get reminderOffset1Day => '1 Day Before';
+
+  @override
+  String get reminderOffsetCustom => 'Custom';
+
+  @override
+  String get setReminderTitle => 'Set Appointment Reminder';
+
+  @override
+  String get reminderCustomHint => 'Enter duration in minutes';
+
+  @override
+  String get reminderInvalidDuration =>
+      'Please enter a valid duration greater than 0';
+
+  @override
+  String get reminderDurationTooLong => 'Duration cannot exceed 7 days';
+
+  @override
+  String get minutesShort => 'mins';
+
+  @override
+  String get setReminder => 'Set Reminder';
+
+  @override
+  String get removeReminder => 'Remove Reminder';
+
+  @override
+  String get notificationsDisabled => 'Notification permissions are disabled';
+
+  @override
+  String get exactAlarmDenied =>
+      'Exact alarm permission is required for reminders';
+
+  @override
+  String get reminderScheduledSuccessfully => 'Reminder set successfully';
 }

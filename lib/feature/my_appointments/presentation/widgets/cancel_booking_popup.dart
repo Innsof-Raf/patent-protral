@@ -5,7 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
+import 'package:patient_portal/core/analytics/app_analytics_events.dart';
+import 'package:patient_portal/core/injection_container.dart' as di;
 import 'package:patient_portal/core/localization/localization_extension.dart';
+import 'package:patient_portal/core/services/analytics_service.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_outlined_button.dart';
@@ -204,6 +207,12 @@ class CancelBookingPopUp extends StatelessWidget {
                           backgroundColor: colorScheme.error,
                           foregroundColor: colorScheme.onError,
                           onPressed: () {
+                            di.sl<AnalyticsService>().logEvent(
+                                  AppAnalyticsEvents.appointmentCancelled(
+                                    appointmentId: appointmentId.toString(),
+                                    reason: 'User cancelled appointment',
+                                  ),
+                                );
                             Navigator.pop(context);
                             context.read<MyAppointmentsBloc>().add(
                               CancelAppointment(

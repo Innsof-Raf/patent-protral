@@ -14,15 +14,35 @@ T _$identity<T>(T value) => value;
 HomeParams _$HomeParamsFromJson(
   Map<String, dynamic> json
 ) {
-    return _GetHomeDataParams.fromJson(
-      json
-    );
+        switch (json['runtimeType']) {
+                  case 'getHomeData':
+          return _GetHomeDataParams.fromJson(
+            json
+          );
+                case 'getTreeDetail':
+          return _GetTreeDetailParams.fromJson(
+            json
+          );
+                case 'getTreeDetailItem':
+          return _GetTreeDetailItemParams.fromJson(
+            json
+          );
+        
+          default:
+            throw CheckedFromJsonException(
+  json,
+  'runtimeType',
+  'HomeParams',
+  'Invalid union type "${json['runtimeType']}"!'
+);
+        }
+      
 }
 
 /// @nodoc
 mixin _$HomeParams {
 
-@JsonKey(includeToJson: false) String get token;@JsonKey(name: 'id_client') int get idBusunit;
+@JsonKey(includeToJson: false) String get token;
 /// Create a copy of HomeParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -35,16 +55,16 @@ $HomeParamsCopyWith<HomeParams> get copyWith => _$HomeParamsCopyWithImpl<HomePar
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeParams&&(identical(other.token, token) || other.token == token)&&(identical(other.idBusunit, idBusunit) || other.idBusunit == idBusunit));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeParams&&(identical(other.token, token) || other.token == token));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,token,idBusunit);
+int get hashCode => Object.hash(runtimeType,token);
 
 @override
 String toString() {
-  return 'HomeParams(token: $token, idBusunit: $idBusunit)';
+  return 'HomeParams(token: $token)';
 }
 
 
@@ -55,7 +75,7 @@ abstract mixin class $HomeParamsCopyWith<$Res>  {
   factory $HomeParamsCopyWith(HomeParams value, $Res Function(HomeParams) _then) = _$HomeParamsCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(includeToJson: false) String token,@JsonKey(name: 'id_client') int idBusunit
+@JsonKey(includeToJson: false) String token
 });
 
 
@@ -72,11 +92,10 @@ class _$HomeParamsCopyWithImpl<$Res>
 
 /// Create a copy of HomeParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? token = null,Object? idBusunit = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? token = null,}) {
   return _then(_self.copyWith(
 token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
-as String,idBusunit: null == idBusunit ? _self.idBusunit : idBusunit // ignore: cast_nullable_to_non_nullable
-as int,
+as String,
   ));
 }
 
@@ -97,11 +116,13 @@ extension HomeParamsPatterns on HomeParams {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetHomeDataParams value)?  getHomeData,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetHomeDataParams value)?  getHomeData,TResult Function( _GetTreeDetailParams value)?  getTreeDetail,TResult Function( _GetTreeDetailItemParams value)?  getTreeDetailItem,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _GetHomeDataParams() when getHomeData != null:
-return getHomeData(_that);case _:
+return getHomeData(_that);case _GetTreeDetailParams() when getTreeDetail != null:
+return getTreeDetail(_that);case _GetTreeDetailItemParams() when getTreeDetailItem != null:
+return getTreeDetailItem(_that);case _:
   return orElse();
 
 }
@@ -119,11 +140,13 @@ return getHomeData(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetHomeDataParams value)  getHomeData,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetHomeDataParams value)  getHomeData,required TResult Function( _GetTreeDetailParams value)  getTreeDetail,required TResult Function( _GetTreeDetailItemParams value)  getTreeDetailItem,}){
 final _that = this;
 switch (_that) {
 case _GetHomeDataParams():
-return getHomeData(_that);}
+return getHomeData(_that);case _GetTreeDetailParams():
+return getTreeDetail(_that);case _GetTreeDetailItemParams():
+return getTreeDetailItem(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -137,11 +160,13 @@ return getHomeData(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetHomeDataParams value)?  getHomeData,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetHomeDataParams value)?  getHomeData,TResult? Function( _GetTreeDetailParams value)?  getTreeDetail,TResult? Function( _GetTreeDetailItemParams value)?  getTreeDetailItem,}){
 final _that = this;
 switch (_that) {
 case _GetHomeDataParams() when getHomeData != null:
-return getHomeData(_that);case _:
+return getHomeData(_that);case _GetTreeDetailParams() when getTreeDetail != null:
+return getTreeDetail(_that);case _GetTreeDetailItemParams() when getTreeDetailItem != null:
+return getTreeDetailItem(_that);case _:
   return null;
 
 }
@@ -158,10 +183,12 @@ return getHomeData(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'id_client')  int idBusunit)?  getHomeData,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'id_client')  int idBusunit)?  getHomeData,TResult Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'id_treedetail')  int idTreedetail)?  getTreeDetail,TResult Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'id_treedetail')  int idTreedetail)?  getTreeDetailItem,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GetHomeDataParams() when getHomeData != null:
-return getHomeData(_that.token,_that.idBusunit);case _:
+return getHomeData(_that.token,_that.idBusunit);case _GetTreeDetailParams() when getTreeDetail != null:
+return getTreeDetail(_that.token,_that.idTreedetail);case _GetTreeDetailItemParams() when getTreeDetailItem != null:
+return getTreeDetailItem(_that.token,_that.idTreedetail);case _:
   return orElse();
 
 }
@@ -179,10 +206,12 @@ return getHomeData(_that.token,_that.idBusunit);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'id_client')  int idBusunit)  getHomeData,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'id_client')  int idBusunit)  getHomeData,required TResult Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'id_treedetail')  int idTreedetail)  getTreeDetail,required TResult Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'id_treedetail')  int idTreedetail)  getTreeDetailItem,}) {final _that = this;
 switch (_that) {
 case _GetHomeDataParams():
-return getHomeData(_that.token,_that.idBusunit);}
+return getHomeData(_that.token,_that.idBusunit);case _GetTreeDetailParams():
+return getTreeDetail(_that.token,_that.idTreedetail);case _GetTreeDetailItemParams():
+return getTreeDetailItem(_that.token,_that.idTreedetail);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -196,10 +225,12 @@ return getHomeData(_that.token,_that.idBusunit);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'id_client')  int idBusunit)?  getHomeData,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'id_client')  int idBusunit)?  getHomeData,TResult? Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'id_treedetail')  int idTreedetail)?  getTreeDetail,TResult? Function(@JsonKey(includeToJson: false)  String token, @JsonKey(name: 'id_treedetail')  int idTreedetail)?  getTreeDetailItem,}) {final _that = this;
 switch (_that) {
 case _GetHomeDataParams() when getHomeData != null:
-return getHomeData(_that.token,_that.idBusunit);case _:
+return getHomeData(_that.token,_that.idBusunit);case _GetTreeDetailParams() when getTreeDetail != null:
+return getTreeDetail(_that.token,_that.idTreedetail);case _GetTreeDetailItemParams() when getTreeDetailItem != null:
+return getTreeDetailItem(_that.token,_that.idTreedetail);case _:
   return null;
 
 }
@@ -211,11 +242,15 @@ return getHomeData(_that.token,_that.idBusunit);case _:
 @JsonSerializable()
 
 class _GetHomeDataParams implements HomeParams {
-  const _GetHomeDataParams({@JsonKey(includeToJson: false) required this.token, @JsonKey(name: 'id_client') required this.idBusunit});
+  const _GetHomeDataParams({@JsonKey(includeToJson: false) required this.token, @JsonKey(name: 'id_client') required this.idBusunit, final  String? $type}): $type = $type ?? 'getHomeData';
   factory _GetHomeDataParams.fromJson(Map<String, dynamic> json) => _$GetHomeDataParamsFromJson(json);
 
 @override@JsonKey(includeToJson: false) final  String token;
-@override@JsonKey(name: 'id_client') final  int idBusunit;
+@JsonKey(name: 'id_client') final  int idBusunit;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
 
 /// Create a copy of HomeParams
 /// with the given fields replaced by the non-null parameter values.
@@ -271,6 +306,156 @@ class __$GetHomeDataParamsCopyWithImpl<$Res>
   return _then(_GetHomeDataParams(
 token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
 as String,idBusunit: null == idBusunit ? _self.idBusunit : idBusunit // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _GetTreeDetailParams implements HomeParams {
+  const _GetTreeDetailParams({@JsonKey(includeToJson: false) required this.token, @JsonKey(name: 'id_treedetail') required this.idTreedetail, final  String? $type}): $type = $type ?? 'getTreeDetail';
+  factory _GetTreeDetailParams.fromJson(Map<String, dynamic> json) => _$GetTreeDetailParamsFromJson(json);
+
+@override@JsonKey(includeToJson: false) final  String token;
+@JsonKey(name: 'id_treedetail') final  int idTreedetail;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
+
+/// Create a copy of HomeParams
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$GetTreeDetailParamsCopyWith<_GetTreeDetailParams> get copyWith => __$GetTreeDetailParamsCopyWithImpl<_GetTreeDetailParams>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$GetTreeDetailParamsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetTreeDetailParams&&(identical(other.token, token) || other.token == token)&&(identical(other.idTreedetail, idTreedetail) || other.idTreedetail == idTreedetail));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,token,idTreedetail);
+
+@override
+String toString() {
+  return 'HomeParams.getTreeDetail(token: $token, idTreedetail: $idTreedetail)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$GetTreeDetailParamsCopyWith<$Res> implements $HomeParamsCopyWith<$Res> {
+  factory _$GetTreeDetailParamsCopyWith(_GetTreeDetailParams value, $Res Function(_GetTreeDetailParams) _then) = __$GetTreeDetailParamsCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(includeToJson: false) String token,@JsonKey(name: 'id_treedetail') int idTreedetail
+});
+
+
+
+
+}
+/// @nodoc
+class __$GetTreeDetailParamsCopyWithImpl<$Res>
+    implements _$GetTreeDetailParamsCopyWith<$Res> {
+  __$GetTreeDetailParamsCopyWithImpl(this._self, this._then);
+
+  final _GetTreeDetailParams _self;
+  final $Res Function(_GetTreeDetailParams) _then;
+
+/// Create a copy of HomeParams
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? token = null,Object? idTreedetail = null,}) {
+  return _then(_GetTreeDetailParams(
+token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,idTreedetail: null == idTreedetail ? _self.idTreedetail : idTreedetail // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _GetTreeDetailItemParams implements HomeParams {
+  const _GetTreeDetailItemParams({@JsonKey(includeToJson: false) required this.token, @JsonKey(name: 'id_treedetail') required this.idTreedetail, final  String? $type}): $type = $type ?? 'getTreeDetailItem';
+  factory _GetTreeDetailItemParams.fromJson(Map<String, dynamic> json) => _$GetTreeDetailItemParamsFromJson(json);
+
+@override@JsonKey(includeToJson: false) final  String token;
+@JsonKey(name: 'id_treedetail') final  int idTreedetail;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
+
+/// Create a copy of HomeParams
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$GetTreeDetailItemParamsCopyWith<_GetTreeDetailItemParams> get copyWith => __$GetTreeDetailItemParamsCopyWithImpl<_GetTreeDetailItemParams>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$GetTreeDetailItemParamsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetTreeDetailItemParams&&(identical(other.token, token) || other.token == token)&&(identical(other.idTreedetail, idTreedetail) || other.idTreedetail == idTreedetail));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,token,idTreedetail);
+
+@override
+String toString() {
+  return 'HomeParams.getTreeDetailItem(token: $token, idTreedetail: $idTreedetail)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$GetTreeDetailItemParamsCopyWith<$Res> implements $HomeParamsCopyWith<$Res> {
+  factory _$GetTreeDetailItemParamsCopyWith(_GetTreeDetailItemParams value, $Res Function(_GetTreeDetailItemParams) _then) = __$GetTreeDetailItemParamsCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(includeToJson: false) String token,@JsonKey(name: 'id_treedetail') int idTreedetail
+});
+
+
+
+
+}
+/// @nodoc
+class __$GetTreeDetailItemParamsCopyWithImpl<$Res>
+    implements _$GetTreeDetailItemParamsCopyWith<$Res> {
+  __$GetTreeDetailItemParamsCopyWithImpl(this._self, this._then);
+
+  final _GetTreeDetailItemParams _self;
+  final $Res Function(_GetTreeDetailItemParams) _then;
+
+/// Create a copy of HomeParams
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? token = null,Object? idTreedetail = null,}) {
+  return _then(_GetTreeDetailItemParams(
+token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,idTreedetail: null == idTreedetail ? _self.idTreedetail : idTreedetail // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }

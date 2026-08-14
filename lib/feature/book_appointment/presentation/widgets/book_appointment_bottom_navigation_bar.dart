@@ -1,10 +1,14 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:patient_portal/core/analytics/app_analytics_events.dart';
+import 'package:patient_portal/core/injection_container.dart' as di;
 import 'package:patient_portal/core/localization/localization_extension.dart';
 import 'package:patient_portal/core/resources/app_colors.dart';
+import 'package:patient_portal/core/services/analytics_service.dart';
 import 'package:patient_portal/core/resources/app_text_styles.dart';
 import 'package:patient_portal/core/resources/common_helpers/string_extensions.dart';
 import 'package:patient_portal/core/resources/common_widgets.dart/active_button.dart';
@@ -15,6 +19,9 @@ import 'package:patient_portal/feature/book_appointment/presentation/bloc/book_a
 import 'package:patient_portal/feature/my_appointments/domain/entities/my_appointment.dart';
 import 'package:patient_portal/feature/my_appointments/domain/usecases/params/my_appointments_params.dart';
 import 'package:patient_portal/feature/my_appointments/presentation/bloc/my_appointments_bloc/my_appointments_bloc.dart';
+
+import 'package:patient_portal/feature/reminder/domain/usecases/params/schedule_appointment_reminder_params.dart';
+import 'package:patient_portal/feature/reminder/presentation/cubit/reminder_cubit.dart';
 
 import 'book_appointment_screen_helpers.dart';
 
@@ -233,6 +240,17 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
   }
 
   void _handleSuccess(BuildContext context, BookAppointmentState state) {
+    if (state.appointmentDetails != null) {
+      di.sl<AnalyticsService>().logEvent(
+            AppAnalyticsEvents.appointmentBooked(
+              doctorId: state.appointmentDetails!.idDoctor.toString(),
+              speciality: state.appointmentDetails!.doctorSpeciality,
+              appointmentType:
+                  selectedTypeNotifier.value == 1 ? 'Virtual' : 'In-Clinic',
+            ),
+          );
+    }
+
     final title = appointmentId == 0
         ? context.lang.appointmentBookedSuccessfully
         : context.lang.appointmentRescheduledSuccessfully;
@@ -270,6 +288,19 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
     BookAppointmentScreenHelpers.selectedSlotNotifier.value = null;
 
     if (appointmentId == 0) {
+      final pendingOffset =
+          BookAppointmentScreenHelpers.pendingReminderOffsetNotifier.value;
+      if (pendingOffset != null && state.appointmentDetails != null) {
+        final params = ScheduleAppointmentReminderParams(
+          targetId: state.appointmentDetails!.id.toString(),
+          targetDateTime: state.appointmentDetails!.appointmentDateTime,
+          doctorName: state.appointmentDetails!.doctorName,
+          offsetMinutes: pendingOffset,
+        );
+        context.read<ReminderCubit>().scheduleReminder(params);
+        BookAppointmentScreenHelpers.pendingReminderOffsetNotifier.value = null;
+      }
+
       context.read<MyAppointmentsBloc>().add(
         StoreBookedAppointment(
           params: MyAppointmentsParams.storeBookedAppointment(
@@ -305,22 +336,24 @@ class BookAppointmentBottomNavigationBar extends StatelessWidget {
           .read<MyAppointmentsBloc>()
           .state
           .myAppointments
-          .singleWhere((appointment) => appointment.id == appointmentId);
+          .firstWhereOrNull((appointment) => appointment.id == appointmentId);
 
-      context.read<BookAppointmentBloc>().add(
-        ChangeRescheduledSlotState(
-          oldSlot: selectedAppointment.appointmentDateTime,
-          currentSlot: state.appointmentDetails!.appointmentDateTime,
-        ),
-      );
-      context.read<MyAppointmentsBloc>().add(
-        ChangeRescheduledAppointmentDetails(
-          params: MyAppointmentsParams.changeRescheduledAppointmentDetails(
-            appointment: selectedAppointment,
+      if (selectedAppointment != null) {
+        context.read<BookAppointmentBloc>().add(
+          ChangeRescheduledSlotState(
+            oldSlot: selectedAppointment.appointmentDateTime,
             currentSlot: state.appointmentDetails!.appointmentDateTime,
           ),
-        ),
-      );
+        );
+        context.read<MyAppointmentsBloc>().add(
+          ChangeRescheduledAppointmentDetails(
+            params: MyAppointmentsParams.changeRescheduledAppointmentDetails(
+              appointment: selectedAppointment,
+              currentSlot: state.appointmentDetails!.appointmentDateTime,
+            ),
+          ),
+        );
+      }
     }
   }
 }
