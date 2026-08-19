@@ -12,8 +12,22 @@ class CommonSnackBar {
     SnackBarType type = SnackBarType.info,
     Duration duration = const Duration(seconds: 3),
   }) {
-    final messenger = ScaffoldMessenger.of(context);
+    showWithMessenger(
+      ScaffoldMessenger.of(context),
+      message: message,
+      type: type,
+      duration: duration,
+      bottomInset: MediaQuery.of(context).viewInsets.bottom,
+    );
+  }
 
+  static void showWithMessenger(
+    ScaffoldMessengerState messenger, {
+    required String message,
+    SnackBarType type = SnackBarType.info,
+    Duration duration = const Duration(seconds: 3),
+    double bottomInset = 0,
+  }) {
     Color backgroundColor;
     IconData icon;
 
@@ -70,7 +84,7 @@ class CommonSnackBar {
             ),
           ),
           margin: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom + 20,
+            bottom: bottomInset + 20,
             left: 16,
             right: 16,
           ),

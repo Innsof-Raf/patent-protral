@@ -215,6 +215,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get documentsSubtitle => 'احتفظ بالسجلات الهامة جاهزة';
 
   @override
+  String get ourLocations => 'مواقعنا';
+
+  @override
+  String clinicsAvailableNearYou(int count) {
+    return '$count عيادات متاحة بالقرب منك';
+  }
+
+  @override
   String get insuranceDocuments => 'وثائق التأمين';
 
   @override
@@ -916,6 +924,24 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get privacyPolicy => 'سياسة الخصوصية';
+
+  @override
+  String get feedback => 'الآراء والملاحظات';
+
+  @override
+  String get shareYourFeedback => 'شاركنا رأيك';
+
+  @override
+  String get feedbackHint => 'أخبرنا برأيك...';
+
+  @override
+  String get pleaseEnterYourFeedback => 'يرجى إدخال ملاحظاتك';
+
+  @override
+  String get submit => 'إرسال';
+
+  @override
+  String get feedbackSubmittedMessage => 'شكرًا لك على ملاحظاتك!';
 
   @override
   String get changeLanguage => 'تغيير اللغة';

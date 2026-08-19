@@ -66,6 +66,15 @@
   "memberFound": "member found",
   "documents": "Documents",
   "documentsSubtitle": "Keep important records ready",
+  "ourLocations": "Our Locations",
+  "clinicsAvailableNearYou": "{count} clinics available near you",
+  "@clinicsAvailableNearYou": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "insuranceDocuments": "Insurance Documents",
   "passport": "Passport",
   "residentPermit": "Resident Permit",
@@ -294,6 +303,12 @@
   "logoutConfirmation": "Are you sure you want to logout?",
   "helpAndSupport": "Help & Support",
   "privacyPolicy": "Privacy Policy",
+  "feedback": "Feedback",
+  "shareYourFeedback": "Share Your Feedback",
+  "feedbackHint": "Tell us what you think...",
+  "pleaseEnterYourFeedback": "Please enter your feedback",
+  "submit": "Submit",
+  "feedbackSubmittedMessage": "Thank you for your feedback!",
   "changeLanguage": "Change Language",
   "deleteProfile": "Delete Profile",
   "myFamily": "My Family",

@@ -219,6 +219,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get documentsSubtitle => 'Keep important records ready';
 
   @override
+  String get ourLocations => 'Our Locations';
+
+  @override
+  String clinicsAvailableNearYou(int count) {
+    return '$count clinics available near you';
+  }
+
+  @override
   String get insuranceDocuments => 'Insurance Documents';
 
   @override
@@ -928,6 +936,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get privacyPolicy => 'Privacy Policy';
+
+  @override
+  String get feedback => 'Feedback';
+
+  @override
+  String get shareYourFeedback => 'Share Your Feedback';
+
+  @override
+  String get feedbackHint => 'Tell us what you think...';
+
+  @override
+  String get pleaseEnterYourFeedback => 'Please enter your feedback';
+
+  @override
+  String get submit => 'Submit';
+
+  @override
+  String get feedbackSubmittedMessage => 'Thank you for your feedback!';
 
   @override
   String get changeLanguage => 'Change Language';

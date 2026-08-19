@@ -494,6 +494,18 @@ abstract class AppLocalizations {
   /// **'Keep important records ready'**
   String get documentsSubtitle;
 
+  /// No description provided for @ourLocations.
+  ///
+  /// In en, this message translates to:
+  /// **'Our Locations'**
+  String get ourLocations;
+
+  /// No description provided for @clinicsAvailableNearYou.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} clinics available near you'**
+  String clinicsAvailableNearYou(int count);
+
   /// No description provided for @insuranceDocuments.
   ///
   /// In en, this message translates to:
@@ -1861,6 +1873,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Privacy Policy'**
   String get privacyPolicy;
+
+  /// No description provided for @feedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Feedback'**
+  String get feedback;
+
+  /// No description provided for @shareYourFeedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Your Feedback'**
+  String get shareYourFeedback;
+
+  /// No description provided for @feedbackHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us what you think...'**
+  String get feedbackHint;
+
+  /// No description provided for @pleaseEnterYourFeedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your feedback'**
+  String get pleaseEnterYourFeedback;
+
+  /// No description provided for @submit.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit'**
+  String get submit;
+
+  /// No description provided for @feedbackSubmittedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for your feedback!'**
+  String get feedbackSubmittedMessage;
 
   /// No description provided for @changeLanguage.
   ///

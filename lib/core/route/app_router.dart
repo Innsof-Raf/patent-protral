@@ -5,6 +5,7 @@ import 'package:patient_portal/feature/add_document/presentation/pages/add_docum
 import 'package:patient_portal/feature/add_member/presentation/pages/add_member_screen.dart';
 import 'package:patient_portal/feature/book_appointment/presentation/pages/book_appointment_page.dart';
 import 'package:patient_portal/feature/cart/presentation/pages/cart_screen.dart';
+import 'package:patient_portal/feature/clinic_locations/presentation/pages/clinic_locations_screen.dart';
 import 'package:patient_portal/feature/doctor_detail/presentation/pages/doctor_detail_screen.dart';
 import 'package:patient_portal/feature/doctors/domain/entities/doctor.dart';
 import 'package:patient_portal/feature/doctors/presentation/pages/doctors_screen.dart';
@@ -66,6 +67,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: LabItemDetailRoute.page),
     AutoRoute(page: NotificationRoute.page),
     AutoRoute(page: DocumentsRoute.page),
+    AutoRoute(page: ClinicLocationsRoute.page),
     AutoRoute(page: AddDocumentRoute.page),
     AutoRoute(page: RadiologyScansRoute.page),
   ];

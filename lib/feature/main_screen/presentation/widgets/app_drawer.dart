@@ -4,12 +4,14 @@ import 'package:gap/gap.dart';
 import 'package:patient_portal/core/gen/assets.gen.dart';
 import 'package:patient_portal/core/localization/language_helper.dart';
 import 'package:patient_portal/core/localization/localization_extension.dart';
+import 'package:patient_portal/core/resources/common_widgets.dart/common_snack_bar.dart';
 import 'package:patient_portal/core/route/app_router.dart';
 import 'package:patient_portal/feature/main_screen/presentation/helpers/main_screen_helpers.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/app_drawer_tile.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/drawer_contact_us_tile.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/drawer_logout_tile.dart';
 import 'package:patient_portal/feature/main_screen/presentation/widgets/drawer_profile_tile.dart';
+import 'package:patient_portal/feature/main_screen/presentation/widgets/feedback_bottom_sheet.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -69,6 +71,12 @@ class AppDrawer extends StatelessWidget {
                           isSelected: selectedIndex == 1,
                           onPress: () => _selectTab(context, 1),
                         ),
+                        AppDrawerTile(
+                          icon: Icons.location_on_outlined,
+                          tileName: context.lang.ourLocations,
+                          onPress: () =>
+                              _openRoute(context, const ClinicLocationsRoute()),
+                        ),
                         const Gap(8),
                         _buildSectionHeader(
                           context,
@@ -106,10 +114,7 @@ class AppDrawer extends StatelessWidget {
                           ),
                         ),
                         const Gap(8),
-                        _buildSectionHeader(
-                          context,
-                          context.lang.profileTitle,
-                        ),
+                        _buildSectionHeader(context, context.lang.profileTitle),
                         AppDrawerTile(
                           iconPath: Assets.icons.profileIcon.path,
                           tileName: context.lang.profile,
@@ -117,6 +122,11 @@ class AppDrawer extends StatelessWidget {
                           onPress: () => _selectTab(context, 4),
                         ),
                         const DrawerContactUsTile(),
+                        AppDrawerTile(
+                          icon: Icons.feedback_outlined,
+                          tileName: context.lang.feedback,
+                          onPress: () => _showFeedback(context),
+                        ),
                         AppDrawerTile(
                           icon: Icons.translate_outlined,
                           tileName: context.lang.changeLanguage,
@@ -160,5 +170,20 @@ class AppDrawer extends StatelessWidget {
     final router = context.router.root;
     Navigator.of(context).pop();
     router.push(route);
+  }
+
+  Future<void> _showFeedback(BuildContext context) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final submittedMessage = context.lang.feedbackSubmittedMessage;
+
+    Navigator.of(context).pop();
+    final submitted = await FeedbackBottomSheet.show(context);
+    if (submitted == true) {
+      CommonSnackBar.showWithMessenger(
+        messenger,
+        message: submittedMessage,
+        type: SnackBarType.success,
+      );
+    }
   }
 }

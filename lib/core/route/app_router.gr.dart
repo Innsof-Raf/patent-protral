@@ -153,6 +153,22 @@ class CartRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ClinicLocationsScreen]
+class ClinicLocationsRoute extends PageRouteInfo<void> {
+  const ClinicLocationsRoute({List<PageRouteInfo>? children})
+    : super(ClinicLocationsRoute.name, initialChildren: children);
+
+  static const String name = 'ClinicLocationsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ClinicLocationsScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [DoctorDetailScreen]
 class DoctorDetailRoute extends PageRouteInfo<void> {
   const DoctorDetailRoute({List<PageRouteInfo>? children})
